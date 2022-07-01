@@ -1,0 +1,209 @@
+.offcanvas-backdrop{
+    z-index: 2002;
+}
+
+html, body {
+    overflow: hidden;
+}
+
+.bs-admin-navbar {
+    min-height: 80px;
+    z-index: 2000;
+}
+
+.bs-admin-sidebar-toggle {
+    display: none;
+}
+
+.bs-admin-navbar-toggler-toggle{
+    display: none;
+}
+
+.bs-admin-sidebar {
+    box-shadow: 1px 0 5px #e7e7e7;
+    z-index: 1034;
+    top: 80px;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #fff;
+    transition: 0.3s transform;
+    transform: translateX(0);
+}
+
+
+.bs-admin-sidebar.bs-admin-sidebar-open {
+    transform: translateX(0);
+}
+
+
+.bs-admin-main {
+    position: relative;
+    padding-left: 240px;
+    height: calc(100vh - 80px);
+    transition: 0.3s padding-left;
+}
+
+
+.bs-admin-main iframe {
+    height: 100%;
+    width: 100%;
+}
+
+@media (max-width: 575.98px) {
+
+}
+
+@media (max-width: 767.98px) {
+
+}
+
+@media (max-width: 991.98px) {
+    .bs-admin-sidebar-toggle {
+        display: inline-block;
+    }
+
+    .bs-admin-navbar-toggler-toggle{
+        display: inline-block;
+    }
+
+    .bs-admin-sidebar {
+        transform: translateX(-100%);
+    }
+
+    .bs-admin-main {
+        padding-left: 0;
+    }
+
+    /* 遮罩层 */
+    .lyear-mask-modal {
+        border-radius: inherit;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: inherit;
+        width: 100%;
+        will-change: opacity;
+        opacity: 0.46;
+        background-color: rgb(33, 33, 33);
+        border-color: rgb(33, 33, 33);
+    }
+
+}
+
+@media (max-width: 1199.98px) {
+
+}
+
+
+.bs-admin-sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background: 0 0
+}
+
+
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper {
+    background: 0 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 10px;
+    margin-top: 60px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper li+li {
+    margin-top: 5px
+}
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper li:first-child {
+    margin-top: 5px
+}
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper li:last-child {
+    margin-bottom: 5px
+}
+
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper>li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: relative
+}
+
+
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 8px 15px;
+    font-size: 15px;
+    color: #5f5f5f;
+    outline-width: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    letter-spacing: .5px;
+    border: 1px solid #ffffff00;
+    transition: all .3s ease-out
+}
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper a .parent-icon {
+    font-size: 24px;
+    line-height: 1
+}
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper a .menu-title {
+    margin-left: 10px
+}
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper ul a {
+    padding: 6px 15px 6px 15px;
+    font-size: 15px;
+    border: 0
+}
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper ul a i {
+    margin-right: 10px
+}
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper ul {
+    border: 1px solid #ededed;
+    background: #fff
+}
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul a {
+    padding: 8px 15px 8px 30px
+}
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul ul a {
+    padding: 8px 15px 8px 45px
+}
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper .mm-active>a,
+.bs-admin-sidebar .bs-admin-sidebar-wrapper a:active,
+.bs-admin-sidebar .bs-admin-sidebar-wrapper a:focus,
+.bs-admin-sidebar .bs-admin-sidebar-wrapper a:hover {
+    color: #0d6efd;
+    text-decoration: none;
+    background: rgb(13 110 253 / .12)
+}

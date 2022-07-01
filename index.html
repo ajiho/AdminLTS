@@ -4,113 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-admin.css">
     <link rel="stylesheet" href="lib/fontawesome-free-6.1.1-web/css/all.min.css">
     <title>bootstrap-admin</title>
-    <style>
-        .offcanvas-backdrop{
-            z-index: 2002;
-        }
-
-        html, body {
-            overflow: hidden;
-        }
-
-        .bs-admin-navbar {
-            min-height: 80px;
-            z-index: 2000;
-        }
-
-        .bs-admin-sidebar-toggle {
-            display: none;
-        }
-
-        .bs-admin-navbar-toggler-toggle{
-            display: none;
-        }
-
-        .bs-admin-sidebar {
-            box-shadow: 1px 0 5px #e7e7e7;
-            z-index: 1034;
-            top: 80px;
-            left: 0;
-            bottom: 0;
-            width: 240px;
-            position: fixed;
-            overflow-x: hidden;
-            overflow-y: auto;
-            background-color: #fff;
-            transition: 0.3s transform;
-            transform: translateX(0);
-        }
-
-
-        .bs-admin-sidebar.bs-admin-sidebar-open {
-            transform: translateX(0);
-        }
-
-
-        .bs-admin-main {
-            position: relative;
-            padding-left: 240px;
-            height: calc(100vh - 80px);
-            transition: 0.3s padding-left;
-        }
-
-
-        .bs-admin-main iframe {
-            height: 100%;
-            width: 100%;
-        }
-
-        @media (max-width: 575.98px) {
-
-        }
-
-        @media (max-width: 767.98px) {
-
-        }
-
-        @media (max-width: 991.98px) {
-            .bs-admin-sidebar-toggle {
-                display: inline-block;
-            }
-
-            .bs-admin-navbar-toggler-toggle{
-                display: inline-block;
-            }
-
-            .bs-admin-sidebar {
-                transform: translateX(-100%);
-            }
-
-            .bs-admin-main {
-                padding-left: 0;
-            }
-
-            /* 遮罩层 */
-            .lyear-mask-modal {
-                border-radius: inherit;
-                bottom: 0;
-                height: 100%;
-                left: 0;
-                position: absolute;
-                right: 0;
-                top: 0;
-                transition: inherit;
-                width: 100%;
-                will-change: opacity;
-                opacity: 0.46;
-                background-color: rgb(33, 33, 33);
-                border-color: rgb(33, 33, 33);
-            }
-
-        }
-
-        @media (max-width: 1199.98px) {
-
-        }
-
-    </style>
 </head>
 <body>
 
@@ -121,11 +17,9 @@
             <i class="fa-solid fa-bars"></i>
         </button>
 
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="javascript:">
             xx后台管理系统
         </a>
-
-
 
 
         <button type="button" class="btn btn-light bs-admin-navbar-toggler-toggle">
@@ -133,55 +27,47 @@
         </button>
 
 
-<!--        <button type="button" class="btn btn-light bs-admin-navbar-toggler-toggle" data-bs-toggle="collapse"-->
-<!--                data-bs-target="#navbarSupportedContent">-->
-<!--            <i class="fa-solid fa-bars"></i>-->
-<!--        </button>-->
-
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="javascript:">首页</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="javascript:">平台</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle" href="javascript:" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
+                        商城
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="javascript:">菜单一</a></li>
+                        <li><a class="dropdown-item" href="javascript:">菜单二</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="javascript:">菜单三</a></li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
                 </li>
             </ul>
 
 
             <ul class="navbar-nav mb-2 mb-lg-0">
-
-                <li class="nav-item d-lg-flex align-items-lg-center" data-bs-toggle="offcanvas" href="#offcanvasExample">
-                    <a class="nav-link" aria-current="page" href="javascript:" >
+                <li class="nav-item d-lg-flex align-items-lg-center" data-bs-toggle="offcanvas"
+                    href="#offcanvasExample">
+                    <a class="nav-link" aria-current="page" href="javascript:">
                         <i class="fa-solid fa-palette text-muted"></i>
                     </a>
                 </li>
 
                 <li class="nav-item d-lg-flex align-items-lg-center dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                    <a class="nav-link dropdown-toggle" href="javascript:" id="navbarDropdown2" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
 
                         <div style="display: inline-block">
-                            <img style="height: 48px;border-radius: 50%;width: 48px" src="static/images/avatar.jpg" alt="">
+                            <img style="height: 48px;border-radius: 50%;width: 48px" src="static/images/avatar.jpg"
+                                 alt="">
                             欲饮琵琶码上催
                         </div>
                     </a>
@@ -205,35 +91,81 @@
 
 
 <div class="bs-admin-sidebar">
-    <h1>dsadsa111</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa</h1>
-    <h1>dsadsa222</h1>
+
+    <ul class="bs-admin-sidebar-wrapper">
+
+        <li>
+            <a href="index.html">
+                <div class="parent-icon"><i class="fa-solid fa-house"></i></div>
+                <div class="menu-title">首页</div>
+            </a>
+        </li>
+
+
+        <li>
+
+            <a href="javascript:" class="has-children">
+                <div class="parent-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="menu-title">其它页面2</div>
+            </a>
+
+            <ul>
+                <li><a href="page_login.html" target="_blank">登录页面</a></li>
+                <li><a href="page_curd.html">CURD页面</a></li>
+                <li><a href="page_error.html" target="_blank">错误页面</a></li>
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="javascript:" class="has-children">
+                <div class="parent-icon"><i class="fa-solid fa-baby-carriage"></i></div>
+                <div class="menu-title">其它页面333</div>
+            </a>
+
+            <ul>
+                <li><a href="page_login.html" target="_blank">登录页面22</a></li>
+                <li><a href="page_curd.html">CURD页面222</a></li>
+                <li><a href="page_error.html" target="_blank">错误页面333</a></li>
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="javascript:" class="has-children">
+                <div class="parent-icon"><i class="fa-solid fa-bars-staggered"></i></div>
+                <div class="menu-title">多级菜单</div>
+            </a>
+
+            <ul>
+                <li><a href="page_login.html" target="_blank">一级菜单</a></li>
+                <li>
+                    <a href="javascript:" class="has-children">
+                        一级菜单
+                    </a>
+                    <ul>
+                        <li><a href="page_login.html" target="_blank">二级菜单</a></li>
+                        <li>
+                            <a href="javascript:" class="has-children">
+                                二级菜单
+                            </a>
+
+                            <ul>
+                                <li><a href="page_login.html" target="_blank">三级菜单</a></li>
+                                <li><a href="page_login.html" target="_blank">三级菜单</a></li>
+
+                            </ul>
+
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+
+    </ul>
+
+
 </div>
 
 
@@ -242,116 +174,87 @@
 </div>
 
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="z-index: 2200">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"
+     style="z-index: 2200">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">主题设置</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <div>
-            Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+
+        <hr/>
+        <h6 class="mb-0">Header Colors</h6>
+        <hr/>
+        <div class="header-colors-indigators">
+            <div class="row row-cols-auto g-3">
+                <div class="col">
+                    <div class="indigator headercolor1" id="headercolor1"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator headercolor2" id="headercolor2"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator headercolor3" id="headercolor3"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator headercolor4" id="headercolor4"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator headercolor5" id="headercolor5"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator headercolor6" id="headercolor6"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator headercolor7" id="headercolor7"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator headercolor8" id="headercolor8"></div>
+                </div>
+            </div>
         </div>
-        <div class="dropdown mt-3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                Dropdown button
-            </button>
-            <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+
+        <hr/>
+        <h6 class="mb-0">Sidebar Backgrounds</h6>
+        <hr/>
+        <div class="header-colors-indigators">
+            <div class="row row-cols-auto g-3">
+                <div class="col">
+                    <div class="indigator sidebarcolor1" id="sidebarcolor1"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator sidebarcolor2" id="sidebarcolor2"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator sidebarcolor3" id="sidebarcolor3"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator sidebarcolor4" id="sidebarcolor4"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator sidebarcolor5" id="sidebarcolor5"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator sidebarcolor6" id="sidebarcolor6"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator sidebarcolor7" id="sidebarcolor7"></div>
+                </div>
+                <div class="col">
+                    <div class="indigator sidebarcolor8" id="sidebarcolor8"></div>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
 
 
-
 <script src="static/js/bootstrap.bundle.min.js"></script>
-<script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script src="static/js/bootstrap-admin.js"></script>
 
-
-
-    const bsCollapse = new bootstrap.Collapse('#navbarSupportedContent',{
-        toggle: false
-    });
-
-
-
-    var bsAdminSidebar = document.querySelector('.bs-admin-sidebar');
-    var bsAdminMain = document.querySelector('.bs-admin-main');
-
-    document.querySelector('.bs-admin-sidebar-toggle').addEventListener('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        if (!bsAdminSidebar.classList.contains('bs-admin-sidebar-open')) {
-
-            bsAdminSidebar.classList.add('bs-admin-sidebar-open')
-        } else {
-
-            bsAdminSidebar.classList.remove('bs-admin-sidebar-open')
-        }
-
-        let mask = document.querySelector('.lyear-mask-modal');
-        if (!mask) {
-            bsAdminMain.insertAdjacentHTML('beforeEnd', '<div class="lyear-mask-modal"></div>');
-        } else {
-            mask.remove();
-        }
-
-         bsCollapse.hide();
-
-
-
-    }, false);
-
-
-
-    document.querySelector('.bs-admin-navbar-toggler-toggle').addEventListener('click',function (event){
-        bsCollapse.toggle();
-
-        if(bsAdminSidebar){
-            bsAdminSidebar.classList.remove('bs-admin-sidebar-open');
-        }
-
-        let mask = document.querySelector('.lyear-mask-modal');
-        if(mask){
-            mask.remove();
-        }
-
-
-
-
-    });
-
-
-    document.body.addEventListener('click',function (event){
-        let target = event.target;
-
-        if(target.classList.contains('lyear-mask-modal')){
-
-
-            target.remove();
-
-
-            if (!bsAdminSidebar.classList.contains('bs-admin-sidebar-open')) {
-
-                bsAdminSidebar.classList.add('bs-admin-sidebar-open')
-            } else {
-
-                bsAdminSidebar.classList.remove('bs-admin-sidebar-open')
-            }
-
-
-
-        }
-
-    },false);
-
-
-
-
-</script>
 
 </body>
 </html>
