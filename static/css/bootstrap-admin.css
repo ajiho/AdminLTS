@@ -150,7 +150,6 @@ html, body {
     overflow: hidden;
     letter-spacing: .5px;
     border: 1px solid #ffffff00;
-    transition: all .3s ease-out
 }
 
 
@@ -163,28 +162,25 @@ html, body {
 }
 
 
+
 /*一级子集的框框*/
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul {
-    /*border: 1px solid #ededed;*/
     background: #fff;
-    /*height: max-content;*/
-    /*height: 0;*/
-    /*overflow: hidden;*/
-    /*transition: 300ms height;*/
-
-    display: none;
-
-    /*border: 1px solid red;*/
-
+    transition: 300ms height;
+    overflow: hidden;
+    height: 0;
 }
+
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children.open+ul{
+    height: auto;
+}
+
 
 /*一级子集 a链接 */
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul a {
 
-    padding-top: 6px;
-    padding-right: 15px;
-    padding-bottom: 6px;
-    padding-left: 40px;
+    padding: 6px 15px 6px 40px;
     font-size: 15px;
 }
 
@@ -192,22 +188,15 @@ html, body {
 
 /*多级菜单*/
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul a {
-    /*padding: 8px 15px 8px 30px;*/
 
-    padding-top: 8px;
-    padding-right: 15px;
-    padding-bottom: 8px;
-    padding-left: 60px;
+
+    padding: 8px 15px 8px 60px;
 
 }
 
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul ul a {
-    padding-top: 8px;
-    padding-right: 15px;
-    padding-bottom: 8px;
-    padding-left: 80px;
+    padding: 8px 15px 8px 80px;
 }
-
 
 
 .bs-admin-sidebar .bs-admin-sidebar-wrapper a:active,
@@ -222,17 +211,20 @@ html, body {
 
 .bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children:after {
     position: absolute;
-    content: "";
-    width: .5em;
-    height: .5em;
-    border-style: solid;
-    border-width: 1.2px 0 0 1.2px;
-    border-color: initial;
-    right: 15px;
-    transform: rotate(-45deg) translateY(-50%);
-    transform-origin: top;
-    top: 50%;
-    transition: all .3s ease-out
+    right: 12px;
+    font-family: "Font Awesome 5 Brands","Font Awesome 5 Free";
+    content: '\f099';
+    transition: transform 0.3s linear;
 }
+
+
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children.open:after {
+    /*transform: rotate(360deg);*/
+    transform: rotate(90deg);
+}
+
+
+
 
 

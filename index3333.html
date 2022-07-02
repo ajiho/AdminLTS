@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-type" name="viewport"
+          content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 400px; padding: 15px;  background-color: #f0f3f9;
+        }
+        .container {
+            height: 0; position: relative;  overflow: hidden;
+            -webkit-transition: height 0.6s;
+            -moz-transition: height 0.6s;
+            -o-transition: height 0.6s;
+            transition: height 0.6s;
+        }
+        .container .wrap {
+            border: 20px solid #333;
+        }
+        :root .container .wrap {
+            /* 正统slide效果 */
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<a href="javascript:" id="button" data-rel="more">点击我</a>
+
+<div id="more" class="container">
+    <div class="wrap">
+        <img src="https://img2.baidu.com/it/u=1006201538,3454807331&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"  />
+    </div>
+</div>
+<script>
+    var slideToggleTrans = function(element, display) { //  display表示默认更多展开元素是显示状态还是隐藏
+        element.addEventListener("click", function() {
+
+            display = !display;
+
+            var  eleMore = document.querySelector("#more" );
+
+            eleMore && (eleMore.style.height = display? (function() {
+                var height = 0;
+                Array.prototype.slice.call(eleMore.childNodes).forEach(function(child) {
+                    if (child.nodeType === 1) {
+                        var oStyle = window.getComputedStyle(child);
+                        height = child.clientHeight + (parseInt(oStyle.borderTopWidth) || 0) + (parseInt(oStyle.borderBottomWidth) || 0);
+                    }
+                });
+                return height;
+            })() + "px": "0px");
+
+        });
+
+    };
+
+    // 应用渐进使用transition交互的slideToggle效果
+    slideToggleTrans(document.getElementById("button"));
+
+</script>
+
+
+</body>
+</html>
