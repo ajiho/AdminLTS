@@ -1,11 +1,12 @@
 ;(function () {
 
 
-    function siblings(el){
+    function siblings(el) {
         let a = [];    //保存所有兄弟节点
         let p = el.parentNode.children; //获取父级的所有子节点
-        for(let i = 0; i < p.length; i++){  //循环
-            if(p[i].nodeType === 1 && p[i] !== el){  //如果该节点是元素节点与不是这个节点本身
+
+        for (let i = 0; i < p.length; i++) {  //循环
+            if (p[i].nodeType === 1 && p[i] !== el) {  //如果该节点是元素节点与不是这个节点本身
                 a.push(p[i]);      // 添加到兄弟节点里
             }
         }
@@ -155,20 +156,23 @@
 
                 }
 
-                //$(this).parent().siblings().find('a.has-children').next().slideUp(300);
-
-                // 兄弟节点
+                // 兄弟节点处理
                 let pnode = el.parentNode;
                 let sbs = siblings(pnode);
-
-                //兄弟节点过滤掉一部分只能找到有子集的a的兄弟元素
-
-
-
-
-                console.log(sbs)
-
-
+                sbs.forEach((el, index) => {
+                    Array.from(el.children).forEach((el, index) => {
+                        if(el.matches('a.has-children.open')){
+                            let ulHeight = el.nextElementSibling.scrollHeight + 'px';
+                            el.classList.remove('open');
+                            //1.动态设置高度
+                            el.nextElementSibling.style.cssText = `display:block;height:${ulHeight};overflow: hidden;`;
+                            //重新读取属性让css重排
+                            void el.scrollHeight;
+                            //2.设置为0
+                            el.nextElementSibling.style.cssText = `display:block;height:0;overflow: hidden;`;
+                        }
+                    })
+                })
             }
         });
 

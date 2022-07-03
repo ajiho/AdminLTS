@@ -31,10 +31,19 @@ html, body {
     background-color: #fff;
     transition: 0.3s transform;
     transform: translateX(0);
+    /* IE */
+    -ms-overflow-style: none;
+    /* 火狐 */
+    scrollbar-width: none;
 }
 
 .bs-admin-sidebar.bs-admin-sidebar-open {
     transform: translateX(0);
+}
+
+/* 谷歌 */
+.bs-admin-sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 
@@ -136,37 +145,28 @@ html, body {
 
 
 .bs-admin-sidebar .bs-admin-sidebar-wrapper a {
-    text-decoration: none;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    padding: 8px 15px;
-    font-size: 15px;
+    padding: 6px 22px 8px 16px;
     color: #5f5f5f;
-    outline-width: 0;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    letter-spacing: .5px;
-    border: 1px solid #ffffff00;
-}
-
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper a .parent-icon {
     font-size: 16px;
+    letter-spacing: .5px;
+    text-decoration: none;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.bs-admin-sidebar .bs-admin-sidebar-wrapper a .menu-title {
-    margin-left: 10px
+.bs-admin-sidebar .bs-admin-sidebar-wrapper a > i {
+    margin-right: 16px;
+    text-align: center;
+    width: 1.25em;
 }
 
 
-/*一级子集的框框*/
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul {
-    background: #fff;
-    transition: 300ms height;
+    transition: height 300ms ease-in-out;
     display: none;
-
 }
 
 
@@ -177,22 +177,24 @@ html, body {
 
 /*一级菜单 a链接 */
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul a {
-
-    padding-left: 42px;
-
-
+    padding-left: calc(16px + 16px + 1.25em);
 }
 
 
 /*二级菜单 a链接 */
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul a {
-    padding-left: 58px;
-
-
+    padding-left: calc(16px + 16px + 2.25em);
 }
+
+
 /*三级菜单 a链接 */
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul ul a {
-    padding-left: 74px;
+    padding-left: calc(16px + 16px + 3.25em);
+}
+
+
+.bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul ul ul a {
+    padding-left: calc(16px + 16px + 4.25em);
 }
 
 
@@ -205,22 +207,21 @@ html, body {
 }
 
 
-
-
 .bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children:after {
-    position: absolute;
-    right: 12px;
+
     font: var(--fa-font-solid);
     content: "\f104";
     transition: transform 0.3s linear;
-    font-size: 10px;
-
-
+    zoom: .5;
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    transform: translate(0, -50%);    /* 50%为自身尺寸的一半 */
+    transform-origin: 0 25%;
 }
 
 
 .bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children.open:after {
-    /*transform: rotate(360deg);*/
     transform: rotate(-90deg);
 }
 
