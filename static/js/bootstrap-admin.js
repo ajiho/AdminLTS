@@ -1,30 +1,60 @@
 ;(function () {
 
 
+    function siblings(el){
+        let a = [];    //保存所有兄弟节点
+        let p = el.parentNode.children; //获取父级的所有子节点
+        for(let i = 0; i < p.length; i++){  //循环
+            if(p[i].nodeType === 1 && p[i] !== el){  //如果该节点是元素节点与不是这个节点本身
+                a.push(p[i]);      // 添加到兄弟节点里
+            }
+        }
+        return a;
+    }
+
+    function eventDelegate(element, eventType, selector, fn) {
+        element.addEventListener(eventType, e => {
+            let el = e.target;
+            // 当点击的元素不为li本⾝的时候，⽐如说span，就找⽗级是否为li
+            while (!el.matches(selector)) {
+                // 不断向上找⽗级元素，判断是否有li标签
+                if (element === el) {
+                    // 直到找到代理元素就不执⾏委托
+                    el = null;
+                    break;
+                }
+                el = el.parentNode;
+            }
+            el && fn.call(el, e, el);
+        })
+        return element;
+    }
+
     function getParent(el, className = '') {
 
         let rest = [];
-
         let targetParent = el.parentNode;
         while (!(targetParent instanceof Document)) {
 
-            console.log(targetParent);
             if (targetParent.classList.contains(className)) {
                 rest.push(targetParent);
             }
+
             targetParent = targetParent.parentNode;
         }
         return rest;
     }
 
+
     window.addEventListener("DOMContentLoaded", function () {
-        const bsCollapse = new bootstrap.Collapse('#navbarSupportedContent', {
+
+
+        const bsCollapse = new bootstrap.Collapse('.bs-admin-navbar-collapse', {
             toggle: false
         });
 
-
-        var bsAdminSidebar = document.querySelector('.bs-admin-sidebar');
-        var bsAdminMain = document.querySelector('.bs-admin-main');
+        let bsAdminSidebar = document.querySelector('.bs-admin-sidebar');
+        let bsAdminMain = document.querySelector('.bs-admin-main');
 
         document.querySelector('.bs-admin-sidebar-toggle').addEventListener('click', function (event) {
             event.preventDefault();
@@ -39,7 +69,7 @@
 
             let mask = document.querySelector('.lyear-mask-modal');
             if (!mask) {
-                bsAdminMain.insertAdjacentHTML('beforeEnd', '<div class="lyear-mask-modal"></div>');
+                bsAdminMain.insertAdjacentHTML('beforeEnd', '<div class="bs-admin-mask"></div>');
             } else {
                 mask.remove();
             }
@@ -51,29 +81,27 @@
 
 
         document.querySelector('.bs-admin-navbar-toggler-toggle').addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
             bsCollapse.toggle();
 
             if (bsAdminSidebar) {
                 bsAdminSidebar.classList.remove('bs-admin-sidebar-open');
             }
 
-            let mask = document.querySelector('.lyear-mask-modal');
+            let mask = document.querySelector('.bs-admin-mask');
             if (mask) {
                 mask.remove();
             }
-
-
         });
 
 
         document.body.addEventListener('click', function (event) {
             let target = event.target;
 
-            if (target.classList.contains('lyear-mask-modal')) {
-
+            if (target.classList.contains('bs-admin-mask')) {
 
                 target.remove();
-
 
                 if (!bsAdminSidebar.classList.contains('bs-admin-sidebar-open')) {
 
@@ -82,196 +110,67 @@
 
                     bsAdminSidebar.classList.remove('bs-admin-sidebar-open')
                 }
-
-
             }
 
         }, false);
 
 
-        /*        let transitionendType = null; //1:展开 0 闭合
-
-                //监听
-                let sidebarUl = document.querySelectorAll('.bs-admin-sidebar .bs-admin-sidebar-wrapper ul');
-                sidebarUl.forEach(function (el, index) {
-                    el.addEventListener("transitionend", function () {
-
-
-                     //   console.log(transitionendType);
-
-                        if (transitionendType === 0) {
-
-                        } else if(transitionendType === 1) {
-                            el.style.display = 'none';
-                            el.style.height = '';
-                        }
-                        el.style.overflow = '';
-
-                    }, false);
-                });
-
-
-                document.querySelector('.bs-admin-sidebar-wrapper').addEventListener('click', function (event) {
-                    // event.preventDefault();
-                    // event.stopPropagation();
-
-                    // console.log(this)
-                    let target = event.target;
-
-                    // console.log(target)
-                    // has-children
-
-                    if (target.nodeName.toLowerCase() === 'a' && target.classList.contains('has-children')) {
-
-
-                        target.classList.add('open');
-
-                        //找到当前同级的ul
-                        let nextUlElement = target.nextElementSibling;
-                        // console.log(getComputedStyle(nextUlElement).height);
-                        let tempH = nextUlElement.style.height;
-                        console.log(tempH);
-
-
-                        if ((tempH !== '') || (tempH === '0px')) { //展开
-
-                            transitionendType = 1;
-
-                            let timer = setInterval(function () {
-                                clearInterval(timer);
-                                // nextUlElement.style.height = 0;
-                                nextUlElement.style.cssText = `display:block;height:0;overflow: hidden;`;
-
-                            }, 0);
-
-
-                        } else {
-                            transitionendType = 0;
-                            // console.log(nextUlElement);
-
-
-                            //获取它的物理高度
-                            // display:block;position:absolute;z-index:-1000
-
-                            nextUlElement.style.cssText = 'display:block;position:absolute;z-index:-1000';
-                            let height = nextUlElement.scrollHeight.toString() + "px";
-                            nextUlElement.style.cssText = `display:block;height:0;overflow: hidden;`;
-
-                            //再设置回正常的高度
-                            let timer = setInterval(function () {
-                                clearInterval(timer);
-                                nextUlElement.style.height = height;
-                            }, 0);
-
-                        }
-
-
-                    }
-
-                }, false);*/
-
-
-        // $('.bs-admin-sidebar-wrapper').on('click', 'a.has-children', function () {
-        //
-        //
-        //     let $nextUlElement = $(this).next();
-        //     $nextUlElement.stop().slideToggle(300);
-        //     $(this).parent().siblings().find('a.has-children').next().slideUp(300);
-        //
-        //
-        // });
-
-
-        /*        let transitionendType = null;
-                let sidebarUl = document.querySelectorAll('.bs-admin-sidebar .bs-admin-sidebar-wrapper ul');
-                sidebarUl.forEach(function (el, index) {
-                    el.addEventListener("transitionend", function () {
-
-                        if (transitionendType === 1) {
-                            this.style.height = 'auto';
-                        }
-
-                    }, false);
-                });*/
-        let transitionendType = null;
         document.querySelector('.bs-admin-sidebar .bs-admin-sidebar-wrapper')
             .addEventListener("transitionend", function (event) {
-                // console.log(this);
-                // console.log(event.target);
                 let target = event.target;
                 if (target.nodeName.toLowerCase() === 'ul') {
-                    if (transitionendType === 1) {
-                        target.style.height = 'auto';
-                    }
+                    target.style = '';
                 }
             });
+        let bsAdminSidebarWrapper = document.querySelector('.bs-admin-sidebar-wrapper');
+        bsAdminSidebarWrapper.addEventListener('click', function (e) {
 
-
-        //给默认展开的赋值高度
-        // let aaa = document.querySelectorAll('.bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children.open+ul');
-        //
-        // aaa.forEach((el, index) => {
-        //     el.style.height = el.scrollHeight.toString() + "px";
-        // })
-
-        document.querySelector('.bs-admin-sidebar-wrapper').addEventListener('click', function (event) {
-
-
-            let target = event.target;
-
-            if (target.nodeName.toLowerCase() === 'a' && target.classList.contains('has-children')) {
-
-                //找到当前同级的ul
-                let nextUlElement = target.nextElementSibling;
-
-                if (!target.classList.contains('open')) {//展开
-
-
-                    transitionendType = 1;
-
-                    nextUlElement.style.height = 0;
-
-                    target.classList.add('open');
-
-                    let timer = setInterval(function () {
-                        clearInterval(timer);
-                        nextUlElement.style.height = nextUlElement.scrollHeight.toString() + "px";
-                    }, 0);
-
-
+            let el = e.target
+            while (el && !el.matches('a.has-children')) {
+                el = el.parentNode
+                if (bsAdminSidebarWrapper === el) {
+                    el = null
+                }
+            }
+            if (el) {
+                e.preventDefault();
+                //回调函数
+                if (!el.classList.contains('open')) {//展开
+                    el.classList.add('open');
+                    //先计算得到它原本的高度
+                    let ulHeight = el.nextElementSibling.scrollHeight + 'px';
+                    //1.动态设置高度为0
+                    el.nextElementSibling.style.cssText = `display:block;height:0;overflow: hidden;`;
+                    void el.scrollHeight;
+                    el.nextElementSibling.style.cssText = `display:block;height:${ulHeight};overflow: hidden;`;
                 } else {
-                    nextUlElement.style.height = nextUlElement.scrollHeight.toString() + "px";
-
-                    target.classList.remove('open');
-                    transitionendType = null;
-
-
-
-                    let timer = setInterval(function () {
-                        clearInterval(timer);
-                        nextUlElement.style.height = 0;
-                    }, 0);
-
-                    // console.log(target)
-                    //
-                    // target.classList.remove('open');
-                    // nextUlElement.style.height = 0;
-
+                    let ulHeight = el.nextElementSibling.scrollHeight + 'px';
+                    el.classList.remove('open');
+                    //1.动态设置高度
+                    el.nextElementSibling.style.cssText = `display:block;height:${ulHeight};overflow: hidden;`;
+                    //重新读取属性让css重排
+                    void el.scrollHeight;
+                    //2.设置为0
+                    el.nextElementSibling.style.cssText = `display:block;height:0;overflow: hidden;`;
 
                 }
 
-                //排斥别的菜单进行闭合
+                //$(this).parent().siblings().find('a.has-children').next().slideUp(300);
+
+                // 兄弟节点
+                let pnode = el.parentNode;
+                let sbs = siblings(pnode);
+
+                //兄弟节点过滤掉一部分只能找到有子集的a的兄弟元素
 
 
-                console.log(target.parentNode)
 
 
-                // $(this).parent().siblings().find('a.has-children').next().slideUp(300);
+                console.log(sbs)
 
 
             }
-
-        }, false)
+        });
 
 
     });

@@ -1,27 +1,26 @@
-.offcanvas-backdrop{
-    z-index: 2002;
-}
-
 html, body {
     overflow: hidden;
 }
 
+
 .bs-admin-navbar {
     min-height: 80px;
-    z-index: 2000;
+    z-index: 1030;
 }
+
 
 .bs-admin-sidebar-toggle {
     display: none;
 }
 
-.bs-admin-navbar-toggler-toggle{
+
+.bs-admin-navbar-toggler-toggle {
     display: none;
 }
 
 .bs-admin-sidebar {
     box-shadow: 1px 0 5px #e7e7e7;
-    z-index: 1034;
+    z-index: 1020;
     top: 80px;
     left: 0;
     bottom: 0;
@@ -33,7 +32,6 @@ html, body {
     transition: 0.3s transform;
     transform: translateX(0);
 }
-
 
 .bs-admin-sidebar.bs-admin-sidebar-open {
     transform: translateX(0);
@@ -47,11 +45,18 @@ html, body {
     transition: 0.3s padding-left;
 }
 
+.bs-admin-navbar-collapse .bs-admin-avatar {
+    height: 48px;
+    border-radius: 50%;
+    width: 48px
+}
+
 
 .bs-admin-main iframe {
     height: 100%;
     width: 100%;
 }
+
 
 @media (max-width: 575.98px) {
 
@@ -66,7 +71,7 @@ html, body {
         display: inline-block;
     }
 
-    .bs-admin-navbar-toggler-toggle{
+    .bs-admin-navbar-toggler-toggle {
         display: inline-block;
     }
 
@@ -79,8 +84,9 @@ html, body {
         padding-left: 0;
     }
 
-    /* 遮罩层 */
-    .lyear-mask-modal {
+
+    .bs-admin-mask {
+        z-index: 1010;
         border-radius: inherit;
         bottom: 0;
         height: 100%;
@@ -111,11 +117,8 @@ html, body {
 }
 
 
-
-
-
 /*找到后面相邻兄弟*/
-.bs-admin-sidebar .bs-admin-sidebar-wrapper li+li {
+.bs-admin-sidebar .bs-admin-sidebar-wrapper li + li {
     margin-top: 5px;
     /*border: 1px solid red;*/
 }
@@ -130,10 +133,6 @@ html, body {
     margin-bottom: 5px;
     /*border: 1px solid red;*/
 }
-
-
-
-
 
 
 .bs-admin-sidebar .bs-admin-sidebar-wrapper a {
@@ -162,40 +161,38 @@ html, body {
 }
 
 
-
 /*一级子集的框框*/
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul {
     background: #fff;
     transition: 300ms height;
-    overflow: hidden;
-    height: 0;
+    display: none;
+
 }
 
 
-.bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children.open+ul{
-    height: auto;
+.bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children.open + ul {
+    display: block;
 }
 
 
-/*一级子集 a链接 */
+/*一级菜单 a链接 */
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul a {
 
-    padding: 6px 15px 6px 40px;
-    font-size: 15px;
+    padding-left: 42px;
+
+
 }
 
 
-
-/*多级菜单*/
+/*二级菜单 a链接 */
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul a {
+    padding-left: 58px;
 
-
-    padding: 8px 15px 8px 60px;
 
 }
-
+/*三级菜单 a链接 */
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul ul a {
-    padding: 8px 15px 8px 80px;
+    padding-left: 74px;
 }
 
 
@@ -209,19 +206,22 @@ html, body {
 
 
 
+
 .bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children:after {
     position: absolute;
     right: 12px;
-    font-family: "Font Awesome 5 Brands","Font Awesome 5 Free";
-    content: '\f099';
+    font: var(--fa-font-solid);
+    content: "\f104";
     transition: transform 0.3s linear;
-}
+    font-size: 10px;
 
+
+}
 
 
 .bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children.open:after {
     /*transform: rotate(360deg);*/
-    transform: rotate(90deg);
+    transform: rotate(-90deg);
 }
 
 
