@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="lib/fontawesome-free-6.1.1-web/css/all.min.css">
     <title>bootstrap-admin</title>
 </head>
+
+
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm bs-admin-navbar">
@@ -21,8 +23,7 @@
             xx后台管理系统
         </a>
 
-
-        <button type="button" class="btn btn-light bs-admin-navbar-toggler-toggle">
+        <button type="button" class="btn btn-light bs-admin-navbar-toggle">
             <i class="fa-solid fa-bars"></i>
         </button>
 
@@ -62,10 +63,8 @@
                 </li>
 
                 <li class="nav-item d-lg-flex align-items-lg-center dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:" id="navbarDropdown2" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-
-                        <div style="display: inline-block">
+                    <a class="nav-link dropdown-toggle" href="javascript:" data-bs-toggle="dropdown">
+                        <div class="d-inline-block">
                             <img class="bs-admin-avatar" src="static/images/avatar.jpg"
                                  alt="头像">
                             欲饮琵琶码上催
@@ -91,27 +90,19 @@
 
 
 <div class="bs-admin-sidebar">
-
     <ul class="bs-admin-sidebar-wrapper">
-
         <li>
-            <a href="index.html">
+            <a href="blank.html" data-target-iframe data-defaultpage>
                 <i class="fa-solid fa-baby-carriage"></i>首页
             </a>
         </li>
-
 
         <li>
             <a href="javascript:" class="has-children">
                 <i class="fa-solid fa-baby-carriage"></i>其它页面333
             </a>
-
             <ul>
-                <li><a href="page_login.html">登录页面</a></li>
-                <li><a href="page_curd.html">CURD页面</a></li>
-                <li><a href="page_error.html">错误页面</a></li>
-                <li><a href="page_error.html">错误页面</a></li>
-                <li><a href="page_error.html">错误页面</a></li>
+                <li><a href="page_login.html" data-target-iframe>登录页面</a></li>
             </ul>
         </li>
 
@@ -120,29 +111,35 @@
                 <i class="fa-solid fa-baby-carriage"></i>其它页面333
             </a>
             <ul>
-                <li><a href="page_login.html">登录页面22</a></li>
-                <li><a href="page_curd.html">CURD页面222</a></li>
+                <li><a href="page_login.html" data-target-iframe>登录页面22</a></li>
             </ul>
         </li>
 
         <li>
-            <a href="javascript:" class="has-children">
+            <a href="javascript:" data-target-iframe class="has-children">
                 <i class="fa-solid fa-baby-carriage"></i>多级菜单
             </a>
             <ul>
-                <li><a href="page_login.html">一级菜单</a></li>
+                <li><a href="javascript:" data-target-iframe>一级菜单</a></li>
                 <li>
-                    <a href="javascript:" class="has-children">一级菜单单单单单单单单单</a>
+                    <a href="javascript:" class="has-children">一级菜单</a>
                     <ul>
-                        <li><a href="page_login.html">二级菜单</a></li>
+                        <li><a href="javascript:" data-target-iframe>二级菜单</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:" class="has-children" >一级菜单</a>
+                    <ul>
+                        <li><a href="javascript:" data-target-iframe>二级菜单</a></li>
                         <li>
                             <a href="javascript:" class="has-children">二级菜单</a>
                             <ul>
-                                <li><a href="page_login.html">三级菜单</a></li>
+                                <li><a href="javascript:" data-target-iframe>三级菜单</a></li>
                                 <li>
-                                    <a href="page_login.html" class="has-children">三级菜单</a>
+                                    <a href="javascript:" class="has-children">三级菜单</a>
                                     <ul>
-                                        <li><a href="page_login.html">四级菜单</a></li>
+                                        <li><a href="javascript:" data-target-iframe>四级菜单</a></li>
+                                        <li><a href="javascript:" data-target-iframe>四级菜单</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -157,9 +154,8 @@
 
 
 <div class="bs-admin-main">
-    <iframe src="blank.html"></iframe>
+    <iframe></iframe>
 </div>
-
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"
      style="z-index: 2200">

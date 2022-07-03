@@ -14,7 +14,7 @@ html, body {
 }
 
 
-.bs-admin-navbar-toggler-toggle {
+.bs-admin-navbar-toggle {
     display: none;
 }
 
@@ -80,7 +80,7 @@ html, body {
         display: inline-block;
     }
 
-    .bs-admin-navbar-toggler-toggle {
+    .bs-admin-navbar-toggle {
         display: inline-block;
     }
 
@@ -129,18 +129,15 @@ html, body {
 /*找到后面相邻兄弟*/
 .bs-admin-sidebar .bs-admin-sidebar-wrapper li + li {
     margin-top: 5px;
-    /*border: 1px solid red;*/
 }
 
 
 .bs-admin-sidebar .bs-admin-sidebar-wrapper li:first-child {
     margin-top: 5px;
-    /*border: 1px solid red;*/
 }
 
 .bs-admin-sidebar .bs-admin-sidebar-wrapper li:last-child {
     margin-bottom: 5px;
-    /*border: 1px solid red;*/
 }
 
 
@@ -163,9 +160,8 @@ html, body {
     width: 1.25em;
 }
 
-
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul {
-    transition: height 300ms ease-in-out;
+    transition: height 150ms linear;
     display: none;
 }
 
