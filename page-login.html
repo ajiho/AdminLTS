@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="static/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="static/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/fontawesome-free-6.1.1-web/css/all.min.css">
+    <title>bootstrap-admin</title>
+</head>
+<body>
+
+<div class="bg-light min-vh-100">
+    <div class="min-vh-100 container d-flex justify-content-center align-items-center">
+        <div class="card shadow bg-white my-3" style="width: 30rem;">
+            <div class="card-header bg-white border-bottom py-3">
+                <h5 class="card-title  text-center">
+                    <a href="index.html"
+                       class="text-decoration-none d-inline-flex align-items-center justify-content-center">
+                        xx后台管理系统
+                    </a>
+                </h5>
+            </div>
+            <div class="card-body">
+                <form class="form">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">账号</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="邮箱/用户名/手机号"
+                        >
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">密码</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="请输入密码">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="captcha" class="form-label">验证码</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="captcha" name="captcha"
+                                   placeholder="请输入验证码">
+                            <img style="cursor: pointer" src="static/images/captcha.png"
+                                 title="点击刷新"
+                                 class="captcha-img"
+                                 height="38"
+                            />
+                        </div>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember"
+                               value="1">
+                        <label class="form-check-label" for="exampleCheck1">记住我</label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card-footer bg-white py-3">
+                <div class="d-flex justify-content-between align-items-end">
+                    <button id="login-btn" type="button" class="btn btn-success">登录</button>
+                    <div>
+                        <span class="text-muted">没有帐号？ 点此</span>
+                        <a class="link-dark text-decoration-none" href="register.html">注册</a>
+                    </div>
+                </div>
+                <div class="text-center py-2 my-2">
+                    <span class="text-muted">继续即代表同意</span>
+                    <a target="_blank" href="javascript:">《隐私政策》</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="static/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

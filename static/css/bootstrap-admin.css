@@ -9,14 +9,14 @@ html, body {
 }
 
 
-.bs-admin-sidebar-toggle {
+.bs-admin-sidebar-mobile-toggle,
+.bs-admin-navbar-mobile-toggle {
     display: none;
+    font-size: 26px;
+    color: #404142;
+    cursor: pointer;
 }
 
-
-.bs-admin-navbar-toggle {
-    display: none;
-}
 
 .bs-admin-sidebar {
     box-shadow: 1px 0 5px #e7e7e7;
@@ -29,11 +29,8 @@ html, body {
     overflow-x: hidden;
     overflow-y: auto;
     background-color: #fff;
-    transition: 0.3s transform;
     transform: translateX(0);
-    /* IE */
     -ms-overflow-style: none;
-    /* 火狐 */
     scrollbar-width: none;
 }
 
@@ -49,9 +46,8 @@ html, body {
 
 .bs-admin-main {
     position: relative;
-    padding-left: 240px;
+    margin-left: 240px;
     height: calc(100vh - 80px);
-    transition: 0.3s padding-left;
 }
 
 .bs-admin-navbar-collapse .bs-admin-avatar {
@@ -76,11 +72,11 @@ html, body {
 }
 
 @media (max-width: 991.98px) {
-    .bs-admin-sidebar-toggle {
+    .bs-admin-sidebar-mobile-toggle {
         display: inline-block;
     }
 
-    .bs-admin-navbar-toggle {
+    .bs-admin-navbar-mobile-toggle {
         display: inline-block;
     }
 
@@ -90,9 +86,8 @@ html, body {
     }
 
     .bs-admin-main {
-        padding-left: 0;
+        margin-left: 0;
     }
-
 
     .bs-admin-mask {
         z-index: 1010;
@@ -163,6 +158,8 @@ html, body {
 .bs-admin-sidebar .bs-admin-sidebar-wrapper ul {
     transition: height 150ms linear;
     display: none;
+    border: 1px solid #ededed;
+    background: #fff
 }
 
 
@@ -212,16 +209,232 @@ html, body {
     position: absolute;
     top: 50%;
     right: 24px;
-    transform: translate(0, -50%);    /* 50%为自身尺寸的一半 */
+    transform: translate(0, -50%); /* 50%为自身尺寸的一半 */
     transform-origin: 0 25%;
 }
-
 
 .bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children.open:after {
     transform: rotate(-90deg);
 }
 
+.bs-admin-switcher-btn {
+    cursor: pointer;
+}
+
+
+/*===================headercolor=============================*/
+
+.bs-admin-headercolor-wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bs-admin-headercolor-wrap > div {
+    width: 45px;
+    height: 45px;
+    background-color: #f4f2f2;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 16px;
+    margin-bottom: 16px;
+}
+
+/*准备颜色*/
+.bs-admin-headercolor-wrap .headercolor1 {
+    background: #0727d7 !important
+}
+
+.bs-admin-headercolor-wrap .headercolor2 {
+    background: #23282c !important
+}
+
+.bs-admin-headercolor-wrap .headercolor3 {
+    background: #e10a1f !important
+}
+
+.bs-admin-headercolor-wrap .headercolor4 {
+    background: #157d4c !important
+}
+
+.bs-admin-headercolor-wrap .headercolor5 {
+    background: #673ab7 !important
+}
+
+.bs-admin-headercolor-wrap .headercolor6 {
+    background: #795548 !important
+}
+
+.bs-admin-headercolor-wrap .headercolor7 {
+    background: #d3094e !important
+}
+
+.bs-admin-headercolor-wrap .headercolor8 {
+    background: #ff9800 !important
+}
+
+html.color-header .bs-admin-navbar .navbar-nav .nav-link {
+    color: #fff
+}
+
+html.color-header .bs-admin-navbar .navbar-brand {
+    color: #fff
+}
+
+html.color-header .bs-admin-navbar .bs-admin-sidebar-mobile-toggle {
+    color: #fff
+}
+
+html.color-header .bs-admin-navbar .bs-admin-navbar-mobile-toggle {
+    color: #fff
+}
+
+
+/*修改颜色*/
+html.headercolor1 .bs-admin-navbar {
+    background: #0727d7 !important;
+}
+
+html.headercolor2 .bs-admin-navbar {
+    background: #23282c !important;
+}
+
+html.headercolor3 .bs-admin-navbar {
+    background: #e10a1f !important;
+}
+
+html.headercolor4 .bs-admin-navbar {
+    background: #157d4c !important;
+}
+
+html.headercolor5 .bs-admin-navbar {
+    background: #673ab7 !important;
+}
+
+html.headercolor6 .bs-admin-navbar {
+    background: #795548 !important;
+}
+
+html.headercolor7 .bs-admin-navbar {
+    background: #d3094e !important;
+}
+
+html.headercolor8 .bs-admin-navbar {
+    background: #ff9800 !important;
+}
+
+
+/*===================sidebarcolor=============================*/
+
+.bs-admin-sidebarcolor-wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bs-admin-sidebarcolor-wrap > div {
+    width: 45px;
+    height: 45px;
+    background-color: #f4f2f2;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 16px;
+    margin-bottom: 16px;
+}
+
+
+.bs-admin-sidebarcolor-wrap .sidebarcolor1 {
+    background-image: url(../images/1.png);
+}
+
+.bs-admin-sidebarcolor-wrap .sidebarcolor2 {
+    background-image: url(../images/2.png);
+}
+
+.bs-admin-sidebarcolor-wrap .sidebarcolor3 {
+    background-image: url(../images/3.png);
+}
+
+.bs-admin-sidebarcolor-wrap .sidebarcolor4 {
+    background-image: url(../images/4.png);
+}
+
+.bs-admin-sidebarcolor-wrap .sidebarcolor5 {
+    background-image: url(../images/5.png);
+}
+
+.bs-admin-sidebarcolor-wrap .sidebarcolor6 {
+    background-image: url(../images/6.png);
+}
+
+.bs-admin-sidebarcolor-wrap .sidebarcolor7 {
+    background-image: url(../images/7.png);
+}
+
+.bs-admin-sidebarcolor-wrap .sidebarcolor8 {
+    background-image: url(../images/8.png);
+}
 
 
 
 
+html.color-sidebar .bs-admin-sidebar .bs-admin-sidebar-wrapper a:active,
+html.color-sidebar .bs-admin-sidebar .bs-admin-sidebar-wrapper a:focus,
+html.color-sidebar .bs-admin-sidebar .bs-admin-sidebar-wrapper a:hover {
+    color: #fff;
+    text-decoration: none;
+    background: rgb(255 255 255 / 18%);
+}
+
+
+/*背景色*/
+html.color-sidebar .bs-admin-sidebar .bs-admin-sidebar-wrapper ul {
+    border: 1px solid #ffffff00;
+    background: rgb(255 255 255 / 8%);
+}
+
+/*a链接色*/
+html.color-sidebar .bs-admin-sidebar .bs-admin-sidebar-wrapper a {
+    color: rgb(255 255 255 / 85%);
+}
+
+
+html.color-sidebar .bs-admin-sidebar {
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*改变背景色*/
+html.color-sidebar.sidebarcolor1 .bs-admin-sidebar {
+    background-image: url(../images/1.png);
+}
+
+html.color-sidebar.sidebarcolor2 .bs-admin-sidebar {
+    background-image: url(../images/2.png);
+}
+
+html.color-sidebar.sidebarcolor3 .bs-admin-sidebar {
+    background-image: url(../images/3.png);
+}
+
+html.color-sidebar.sidebarcolor4 .bs-admin-sidebar {
+    background-image: url(../images/4.png);
+}
+
+html.color-sidebar.sidebarcolor5 .bs-admin-sidebar {
+    background-image: url(../images/5.png);
+}
+
+html.color-sidebar.sidebarcolor6 .bs-admin-sidebar {
+    background-image: url(../images/6.png);
+}
+
+html.color-sidebar.sidebarcolor7 .bs-admin-sidebar {
+    background-image: url(../images/7.png);
+}
+
+html.color-sidebar.sidebarcolor8 .bs-admin-sidebar {
+    background-image: url(../images/8.png);
+}

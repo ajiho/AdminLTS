@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/fontawesome-free-6.1.1-web/css/all.min.css">
+    <title>bootstrap-admin</title>
+</head>
+<body class="p-3 bg-light">
+
+<div class="card text-dark border-0 mb-3 shadow" >
+    <div class="card-header bg-white">文本框</div>
+    <div class="card-body">
+        <input class="form-control form-control-lg mb-3" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
+        <input class="form-control mb-3" type="text" placeholder="Default input" aria-label="default input example">
+        <input class="form-control form-control-sm mb-3" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example">
+        <input class="form-control mb-3" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled>
+        <input class="form-control mb-3" type="text" placeholder="Disabled readonly input" aria-label="Disabled input example" disabled readonly>
+        <input class="form-control" type="text" placeholder="Readonly input here..." aria-label="readonly input example" readonly>
+    </div>
+</div>
+
+
+<div class="card text-dark border-0 mb-3 shadow" >
+    <div class="card-header bg-white">选择框</div>
+    <div class="card-body">
+        <select class="form-select mb-3" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <select class="form-select" aria-label="Disabled select example" disabled>
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+    </div>
+</div>
+
+<div class="card text-dark border-0 mb-3 shadow" >
+    <div class="card-header bg-white">文件选择框</div>
+    <div class="card-body">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input class="form-control" type="file" id="formFile">
+        </div>
+        <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+            <input class="form-control" type="file" id="formFileMultiple" multiple>
+        </div>
+        <div class="mb-3">
+            <label for="formFileDisabled" class="form-label">Disabled file input example</label>
+            <input class="form-control" type="file" id="formFileDisabled" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="formFileSm" class="form-label">Small file input example</label>
+            <input class="form-control form-control-sm" id="formFileSm" type="file">
+        </div>
+        <div>
+            <label for="formFileLg" class="form-label">Large file input example</label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file">
+        </div>
+    </div>
+</div>
+
+<div class="card text-dark border-0 mb-3 shadow" >
+    <div class="card-header bg-white">数据列表</div>
+    <div class="card-body">
+        <label for="exampleDataList" class="form-label">Datalist example</label>
+        <input class="form-control" list="datalistOptions" id="exampleDataList"
+               placeholder="Type to search...">
+        <datalist id="datalistOptions">
+            <option value="San Francisco">
+            <option value="New York">
+            <option value="Seattle">
+            <option value="Los Angeles">
+            <option value="Chicago">
+        </datalist>
+    </div>
+</div>
+
+<div class="card text-dark border-0 mb-3 shadow" >
+    <div class="card-header bg-white">单选/复选框</div>
+    <div class="card-body">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">Default checkbox</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">Checked checkbox</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+            <label class="form-check-label" for="flexCheckIndeterminate">Indeterminate
+                checkbox</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"
+                   disabled>
+            <label class="form-check-label" for="flexCheckDisabled">Disabled checkbox</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled"
+                   checked disabled>
+            <label class="form-check-label" for="flexCheckCheckedDisabled">Disabled checked
+                checkbox</label>
+        </div>
+        <hr/>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                   id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">Default radio</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                   id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">Default checked radio</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDisabled"
+                   id="flexRadioDisabled" disabled>
+            <label class="form-check-label" for="flexRadioDisabled">Disabled radio</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDisabled"
+                   id="flexRadioCheckedDisabled" checked disabled>
+            <label class="form-check-label" for="flexRadioCheckedDisabled">Disabled checked
+                radio</label>
+        </div>
+        <hr/>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox
+                input</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox
+                input</label>
+        </div>
+        <div class="form-check-danger form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDanger"
+                   checked>
+            <label class="form-check-label" for="flexSwitchCheckCheckedDanger">Checked switch
+                checkbox input</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
+            <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch checkbox
+                input</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled"
+                   checked disabled>
+            <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked
+                switch checkbox input</label>
+        </div>
+        <hr/>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"
+                   disabled>
+            <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                   value="option1">
+            <label class="form-check-label" for="inlineRadio1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                   value="option2">
+            <label class="form-check-label" for="inlineRadio2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                   value="option3" disabled>
+            <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
+        </div>
+    </div>
+</div>
+
+
+<div class="card text-dark border-0 mb-3 shadow" >
+    <div class="card-header bg-white">输入框多类型演示</div>
+    <div class="card-body">
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Date:</label>
+                <input type="date" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Date time:</label>
+                <input type="datetime-local" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email:</label>
+                <input type="email" class="form-control" placeholder="example@gmail.com">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password:</label>
+                <input type="password" class="form-control" value="........">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Input File:</label>
+                <input type="file" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Month:</label>
+                <input type="month" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Search:</label>
+                <input type="search" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tel:</label>
+                <input type="tel" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Time:</label>
+                <input type="time" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Url:</label>
+                <input type="url" class="form-control" placeholder="https://example.com/users/">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Week:</label>
+                <input type="week" class="form-control">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="card text-dark border-0 mb-3 shadow" >
+    <div class="card-header bg-white">范围选择器</div>
+    <div class="card-body">
+        <div class="mb-3">
+            <label for="customRange1" class="form-label">Example range</label>
+            <input type="range" class="form-range" id="customRange1">
+        </div>
+        <div class="mb-3">
+            <label for="disabledRange" class="form-label">Disabled range</label>
+            <input type="range" class="form-range" id="disabledRange" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="customRange2" class="form-label">Example range</label>
+            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+        </div>
+    </div>
+</div>
+
+
+<script src="static/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

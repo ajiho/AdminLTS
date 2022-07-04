@@ -42,18 +42,37 @@
     }
 
     window.addEventListener("DOMContentLoaded", function () {
-        let iframe = document.querySelector('.bs-admin-main iframe');
-        let defaultHref = document.querySelector('a[data-defaultpage]').getAttribute('href');
-        iframe.setAttribute('src', defaultHref);
+
+
         let bodyEl = document.body;
-        let bsAdminSidebarWrapper = document.querySelector('.bs-admin-sidebar  .bs-admin-sidebar-wrapper');
+        let bsAdminSidebarWrapper = document.querySelector('.bs-admin-sidebar .bs-admin-sidebar-wrapper');
         let bsAdminSidebar = document.querySelector('.bs-admin-sidebar');
         let bsAdminMain = document.querySelector('.bs-admin-main');
-        let bsAdminSidebarToggle = document.querySelector('.bs-admin-sidebar-toggle');
-        let bsAdminNavbarToggle = document.querySelector('.bs-admin-navbar-toggle');
+
+        let bsAdminSidebarMobileToggle = document.querySelector('.bs-admin-sidebar-mobile-toggle');
+        let bsAdminNavbarMobileToggle = document.querySelector('.bs-admin-navbar-mobile-toggle');
+
+
         let bsAdminMaskClassName = 'bs-admin-mask';
+
+        let bsAdminSwitcherBtn = document.querySelector('.bs-admin-switcher-btn');
+
+        bsAdminSidebar.style.transition = 'transform 300ms';
+        bsAdminMain.style.transition = 'margin-left 300ms';
+        bsAdminMain.insertAdjacentHTML('beforeEnd', `<iframe></iframe>`);
+        let iframe = document.querySelector('.bs-admin-main iframe');
+        let aDataDefaultPage = document.querySelector('a[data-defaultpage]');
+        let bsAdminHeaderColorWrap = document.querySelector('.bs-admin-headercolor-wrap');
+        let bsAdminSidebarColorWrap = document.querySelector('.bs-admin-sidebarcolor-wrap');
+        aDataDefaultPage && iframe.setAttribute('src', aDataDefaultPage.getAttribute('href'));
         const bsAdminNavbarCollapse = new bootstrap.Collapse('.bs-admin-navbar-collapse', {
             toggle: false
+        });
+        const bsAdminSwitcherOffcanvas = new bootstrap.Offcanvas(document.querySelector('.bs-admin-switcher-offcanvas'));
+
+        bsAdminSwitcherBtn.addEventListener('click', function (event) {
+            event.preventDefault();
+            bsAdminSwitcherOffcanvas.show();
         });
 
         //监听所有的特定属性的a链接
@@ -63,8 +82,7 @@
             let url = this.getAttribute('href') + "?var=" + Math.random();
             iframe.setAttribute('src', url)
         });
-
-        bsAdminSidebarToggle.addEventListener('click', function (event) {
+        bsAdminSidebarMobileToggle.addEventListener('click', function (event) {
             event.preventDefault();
             event.stopPropagation();
             if (!bsAdminSidebar.classList.contains('bs-admin-sidebar-open')) {
@@ -80,8 +98,7 @@
             }
             bsAdminNavbarCollapse.hide();
         });
-
-        bsAdminNavbarToggle.addEventListener('click', function (event) {
+        bsAdminNavbarMobileToggle.addEventListener('click', function (event) {
             event.preventDefault();
             event.stopPropagation();
             bsAdminNavbarCollapse.toggle();
@@ -116,7 +133,6 @@
         eventDelegate(bsAdminSidebarWrapper, 'click', 'a.has-children', function (e) {
             e.preventDefault();
             e.stopPropagation();
-
 
             let el = this;
             if (!el.classList.contains('open')) {//展开
@@ -155,6 +171,31 @@
                     }
                 })
             })
+        });
+
+
+        eventDelegate(bsAdminHeaderColorWrap, 'click', 'div[class^=headercolor]', function (e) {
+            let headercolor = this.getAttribute('class');
+            document.documentElement.classList.add("color-header", headercolor);
+            let headercolorList = ["headercolor1", "headercolor2", "headercolor3",
+                "headercolor4", "headercolor5", "headercolor6",
+                "headercolor7", "headercolor8"];
+            headercolorList.splice(headercolorList.indexOf(headercolor), 1);
+            document.documentElement.classList.remove(...headercolorList);
+        });
+
+
+        eventDelegate(bsAdminSidebarColorWrap, 'click', 'div[class^=sidebarcolor]', function (e) {
+            let sidebarcolor = this.getAttribute('class');
+
+
+            document.documentElement.classList.add("color-sidebar", sidebarcolor);
+
+            let sidebarcolorList = ["sidebarcolor1", "sidebarcolor2", "sidebarcolor3",
+                "sidebarcolor4", "sidebarcolor5", "sidebarcolor6",
+                "sidebarcolor7", "sidebarcolor8"];
+            sidebarcolorList.splice(sidebarcolorList.indexOf(sidebarcolor), 1);
+            document.documentElement.classList.remove(...sidebarcolorList);
         });
 
     });
