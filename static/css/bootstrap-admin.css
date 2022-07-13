@@ -1,67 +1,291 @@
+:root {
+    scroll-behavior: auto !important;
+}
+
 html, body {
-    overflow: hidden;
+    background: #f8f9fa;
+    word-break: break-all;
+
 }
 
 
-.bs-admin-navbar {
-    min-height: 80px;
-    z-index: 1030;
-}
-
-
-.bs-admin-sidebar-mobile-toggle,
-.bs-admin-navbar-mobile-toggle {
-    display: none;
-    font-size: 26px;
-    color: #404142;
-    cursor: pointer;
-}
-
-
-.bs-admin-sidebar {
-    box-shadow: 1px 0 5px #e7e7e7;
-    z-index: 1020;
-    top: 80px;
+.bsa-sidebar {
+    position: fixed;
+    top: 0;
     left: 0;
     bottom: 0;
-    width: 240px;
-    position: fixed;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: #fff;
+    width: 250px;
+    z-index: 1050;
+    transition: 0.3s transform;
     transform: translateX(0);
+    background: #fff;
+    box-shadow: 0 .3rem .8rem rgba(0, 0, 0, .12);
+}
+
+.bsa-sidebar .bsa-sidebar-header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0 15px;
+    z-index: 5;
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(127, 113, 113, 0.08);
+}
+
+
+.bsa-sidebar .bsa-sidebar-header .bsa-logo-icon {
+    width: 36px
+}
+
+
+.bsa-sidebar .bsa-sidebar-header .bsa-logo-text {
+    margin-left: 10px;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+    color: #4d5259;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.bsa-sidebar-body {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-.bs-admin-sidebar.bs-admin-sidebar-open {
-    transform: translateX(0);
-}
-
-/* 谷歌 */
-.bs-admin-sidebar::-webkit-scrollbar {
+.bsa-sidebar-body::-webkit-scrollbar {
     display: none;
 }
 
 
-.bs-admin-main {
-    position: relative;
-    margin-left: 240px;
-    height: calc(100vh - 80px);
+.bsa-menu, .bsa-menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
-.bs-admin-navbar-collapse .bs-admin-avatar {
+
+.bsa-menu li + li {
+    margin-top: 5px;
+}
+
+.bsa-menu li:first-child {
+    margin-top: 5px;
+}
+
+.bsa-menu li:last-child {
+    margin-bottom: 5px;
+}
+
+
+.bsa-menu a {
+    position: relative;
+    padding-left: 16px;
+    padding-right: 24px;
+    color: #5f5f5f;
+    text-decoration: none;
+    height: 40px;
+    line-height: 40px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.bsa-menu > li > a > i {
+    margin-right: 10px;
+}
+
+.bsa-menu ul {
+    transition: height 150ms linear;
+    display: none;
+    border: 1px solid #ededed;
+}
+
+
+.bsa-menu .has-children.open + ul {
+    display: block;
+}
+
+
+.bsa-menu a.active,
+.bsa-menu a:active,
+.bsa-menu a:focus,
+.bsa-menu a:hover {
+    color: #0d6efd;
+    text-decoration: none;
+    background: rgb(13 110 253 / .12)
+}
+
+.bsa-menu .has-children:after {
+    font-family: bootstrap-icons, serif;
+    content: "\F284";
+    transition: transform 0.3s linear;
+    zoom: .5;
+    position: absolute;
+    right: 24px;
+}
+
+
+.bsa-menu .has-children.open:after {
+    transform: rotate(-90deg);
+}
+
+
+.bsa-menu ul a {
+    padding-left: calc(16px + 1rem + 10px);
+}
+
+
+.bsa-menu ul ul a {
+    padding-left: calc(16px + 2rem + 10px);
+}
+
+
+.bsa-menu ul ul ul a {
+    padding-left: calc(16px + 3rem + 10px);
+}
+
+
+.bsa-menu ul ul ul ul a {
+    padding-left: calc(16px + 4rem + 10px);
+}
+
+
+.bsa-main {
+    padding-top: 80px;
+    padding-left: 250px;
+}
+
+
+/*头部*/
+.bsa-header {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    right: 0;
+    min-height: 80px;
+    background: #fff;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    z-index: 1030;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: nowrap;
+    padding: 0 12px;
+}
+
+
+.bsa-user-img {
     height: 48px;
     border-radius: 50%;
-    width: 48px
+    width: 48px;
 }
 
 
-.bs-admin-main iframe {
-    height: 100%;
-    width: 100%;
+.bsa-header .bsa-user-detail {
+    padding-left: 10px;
+    max-width: 150px;
 }
 
+
+.bsa-user-detail .bsa-user-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #413c3c;
+    margin-bottom: 0;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.bsa-user-detail .bsa-user-role {
+    font-size: 13px;
+    color: #a9a8a8;
+    margin-bottom: 0;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.bsa-header .bsa-search-wrapper {
+    flex-grow: 1;
+}
+
+
+.bsa-search-wrapper .bsa-search-box {
+    position: relative;
+    width: 80%;
+}
+
+.bsa-search-box .bsa-form-control {
+    background-color: #f6f5f5;
+    border: none;
+    padding-right: 2.5rem;
+    border-radius: 30px;
+}
+
+.bsa-search-box .bsa-search-icon,
+.bsa-search-box .bsa-close-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    right: 15px;
+    color: #616161;
+}
+
+
+.bsa-header .bsa-user-info {
+    display: flex;
+    align-items: center;
+}
+
+
+.bsa-header .bsa-num-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 12px;
+    transform: scale(0.8);
+    font-weight: 500;
+    color: #fff;
+    background: #f62718;
+    word-break: keep-all;
+}
+
+
+.bsa-pointer{
+    cursor: pointer;
+}
 
 @media (max-width: 575.98px) {
 
@@ -72,369 +296,66 @@ html, body {
 }
 
 @media (max-width: 991.98px) {
-    .bs-admin-sidebar-mobile-toggle {
-        display: inline-block;
+
+    .bsa-header {
+        left: 0;
+        justify-content: space-between;
     }
 
-    .bs-admin-navbar-mobile-toggle {
-        display: inline-block;
+    .bsa-header .dropdown {
+        position: static !important
     }
 
-    .bs-admin-sidebar {
+    .bsa-header .dropdown-menu {
+        width: 100% !important
+    }
+
+
+    .bsa-header .bsa-mobile-sidebar-btn {
+        display: block;
+    }
+
+    .bsa-header .bsa-search-wrapper {
+        display: none;
+    }
+
+    .bsa-header .bsa-user-img {
+        height: 38px;
+        width: 38px;
+    }
+
+
+    .bsa-sidebar {
         transform: translateX(-100%);
         box-shadow: none;
     }
 
-    .bs-admin-main {
-        margin-left: 0;
+
+    .bsa-main {
+        padding-left: 0;
     }
 
-    .bs-admin-mask {
-        z-index: 1010;
+    .bsa-mask {
+        z-index: 1035;
         border-radius: inherit;
-        bottom: 0;
-        height: 100%;
+        position: fixed;
         left: 0;
-        position: absolute;
+        bottom: 0;
         right: 0;
         top: 0;
         transition: inherit;
-        width: 100%;
         will-change: opacity;
         opacity: 0.46;
         background-color: rgb(33, 33, 33);
         border-color: rgb(33, 33, 33);
     }
-
 }
+
 
 @media (max-width: 1199.98px) {
 
+    .bsa-user-detail {
+        display: none;
+    }
 }
 
-
-.bs-admin-sidebar ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    background: 0 0
-}
-
-
-/*找到后面相邻兄弟*/
-.bs-admin-sidebar .bs-admin-sidebar-wrapper li + li {
-    margin-top: 5px;
-}
-
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper li:first-child {
-    margin-top: 5px;
-}
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper li:last-child {
-    margin-bottom: 5px;
-}
-
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper a {
-    position: relative;
-    padding: 6px 22px 8px 16px;
-    color: #5f5f5f;
-    font-size: 16px;
-    letter-spacing: .5px;
-    text-decoration: none;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper a > i {
-    margin-right: 16px;
-    text-align: center;
-    width: 1.25em;
-}
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper ul {
-    transition: height 150ms linear;
-    display: none;
-    border: 1px solid #ededed;
-    background: #fff
-}
-
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children.open + ul {
-    display: block;
-}
-
-
-/*一级菜单 a链接 */
-.bs-admin-sidebar .bs-admin-sidebar-wrapper ul a {
-    padding-left: calc(16px + 16px + 1.25em);
-}
-
-
-/*二级菜单 a链接 */
-.bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul a {
-    padding-left: calc(16px + 16px + 2.25em);
-}
-
-
-/*三级菜单 a链接 */
-.bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul ul a {
-    padding-left: calc(16px + 16px + 3.25em);
-}
-
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper ul ul ul ul a {
-    padding-left: calc(16px + 16px + 4.25em);
-}
-
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper a:active,
-.bs-admin-sidebar .bs-admin-sidebar-wrapper a:focus,
-.bs-admin-sidebar .bs-admin-sidebar-wrapper a:hover {
-    color: #0d6efd;
-    text-decoration: none;
-    background: rgb(13 110 253 / .12)
-}
-
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children:after {
-
-    font: var(--fa-font-solid);
-    content: "\f104";
-    transition: transform 0.3s linear;
-    zoom: .5;
-    position: absolute;
-    top: 50%;
-    right: 24px;
-    transform: translate(0, -50%); /* 50%为自身尺寸的一半 */
-    transform-origin: 0 25%;
-}
-
-.bs-admin-sidebar .bs-admin-sidebar-wrapper .has-children.open:after {
-    transform: rotate(-90deg);
-}
-
-.bs-admin-switcher-btn {
-    cursor: pointer;
-}
-
-
-/*===================headercolor=============================*/
-
-.bs-admin-headercolor-wrap {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.bs-admin-headercolor-wrap > div {
-    width: 45px;
-    height: 45px;
-    background-color: #f4f2f2;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-right: 16px;
-    margin-bottom: 16px;
-}
-
-/*准备颜色*/
-.bs-admin-headercolor-wrap .headercolor1 {
-    background: #0727d7 !important
-}
-
-.bs-admin-headercolor-wrap .headercolor2 {
-    background: #23282c !important
-}
-
-.bs-admin-headercolor-wrap .headercolor3 {
-    background: #e10a1f !important
-}
-
-.bs-admin-headercolor-wrap .headercolor4 {
-    background: #157d4c !important
-}
-
-.bs-admin-headercolor-wrap .headercolor5 {
-    background: #673ab7 !important
-}
-
-.bs-admin-headercolor-wrap .headercolor6 {
-    background: #795548 !important
-}
-
-.bs-admin-headercolor-wrap .headercolor7 {
-    background: #d3094e !important
-}
-
-.bs-admin-headercolor-wrap .headercolor8 {
-    background: #ff9800 !important
-}
-
-html.color-header .bs-admin-navbar .navbar-nav .nav-link {
-    color: #fff
-}
-
-html.color-header .bs-admin-navbar .navbar-brand {
-    color: #fff
-}
-
-html.color-header .bs-admin-navbar .bs-admin-sidebar-mobile-toggle {
-    color: #fff
-}
-
-html.color-header .bs-admin-navbar .bs-admin-navbar-mobile-toggle {
-    color: #fff
-}
-
-
-/*修改颜色*/
-html.headercolor1 .bs-admin-navbar {
-    background: #0727d7 !important;
-}
-
-html.headercolor2 .bs-admin-navbar {
-    background: #23282c !important;
-}
-
-html.headercolor3 .bs-admin-navbar {
-    background: #e10a1f !important;
-}
-
-html.headercolor4 .bs-admin-navbar {
-    background: #157d4c !important;
-}
-
-html.headercolor5 .bs-admin-navbar {
-    background: #673ab7 !important;
-}
-
-html.headercolor6 .bs-admin-navbar {
-    background: #795548 !important;
-}
-
-html.headercolor7 .bs-admin-navbar {
-    background: #d3094e !important;
-}
-
-html.headercolor8 .bs-admin-navbar {
-    background: #ff9800 !important;
-}
-
-
-/*===================sidebarcolor=============================*/
-
-.bs-admin-sidebarcolor-wrap {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.bs-admin-sidebarcolor-wrap > div {
-    width: 45px;
-    height: 45px;
-    background-color: #f4f2f2;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-right: 16px;
-    margin-bottom: 16px;
-}
-
-
-.bs-admin-sidebarcolor-wrap .sidebarcolor1 {
-    background-image: url(../images/1.png);
-}
-
-.bs-admin-sidebarcolor-wrap .sidebarcolor2 {
-    background-image: url(../images/2.png);
-}
-
-.bs-admin-sidebarcolor-wrap .sidebarcolor3 {
-    background-image: url(../images/3.png);
-}
-
-.bs-admin-sidebarcolor-wrap .sidebarcolor4 {
-    background-image: url(../images/4.png);
-}
-
-.bs-admin-sidebarcolor-wrap .sidebarcolor5 {
-    background-image: url(../images/5.png);
-}
-
-.bs-admin-sidebarcolor-wrap .sidebarcolor6 {
-    background-image: url(../images/6.png);
-}
-
-.bs-admin-sidebarcolor-wrap .sidebarcolor7 {
-    background-image: url(../images/7.png);
-}
-
-.bs-admin-sidebarcolor-wrap .sidebarcolor8 {
-    background-image: url(../images/8.png);
-}
-
-
-
-
-html.color-sidebar .bs-admin-sidebar .bs-admin-sidebar-wrapper a:active,
-html.color-sidebar .bs-admin-sidebar .bs-admin-sidebar-wrapper a:focus,
-html.color-sidebar .bs-admin-sidebar .bs-admin-sidebar-wrapper a:hover {
-    color: #fff;
-    text-decoration: none;
-    background: rgb(255 255 255 / 18%);
-}
-
-
-/*背景色*/
-html.color-sidebar .bs-admin-sidebar .bs-admin-sidebar-wrapper ul {
-    border: 1px solid #ffffff00;
-    background: rgb(255 255 255 / 8%);
-}
-
-/*a链接色*/
-html.color-sidebar .bs-admin-sidebar .bs-admin-sidebar-wrapper a {
-    color: rgb(255 255 255 / 85%);
-}
-
-
-html.color-sidebar .bs-admin-sidebar {
-    background-size: 100% 100%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/*改变背景色*/
-html.color-sidebar.sidebarcolor1 .bs-admin-sidebar {
-    background-image: url(../images/1.png);
-}
-
-html.color-sidebar.sidebarcolor2 .bs-admin-sidebar {
-    background-image: url(../images/2.png);
-}
-
-html.color-sidebar.sidebarcolor3 .bs-admin-sidebar {
-    background-image: url(../images/3.png);
-}
-
-html.color-sidebar.sidebarcolor4 .bs-admin-sidebar {
-    background-image: url(../images/4.png);
-}
-
-html.color-sidebar.sidebarcolor5 .bs-admin-sidebar {
-    background-image: url(../images/5.png);
-}
-
-html.color-sidebar.sidebarcolor6 .bs-admin-sidebar {
-    background-image: url(../images/6.png);
-}
-
-html.color-sidebar.sidebarcolor7 .bs-admin-sidebar {
-    background-image: url(../images/7.png);
-}
-
-html.color-sidebar.sidebarcolor8 .bs-admin-sidebar {
-    background-image: url(../images/8.png);
-}

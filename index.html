@@ -2,214 +2,183 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="icon" href="static/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="static/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
     <link rel="stylesheet" href="static/css/bootstrap-admin.css">
-    <link rel="stylesheet" href="lib/fontawesome-free-6.1.1-web/css/all.min.css">
     <title>bootstrap-admin</title>
 </head>
-
-
 <body>
-<!--头部-->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm bs-admin-navbar">
-    <div class="container-fluid">
-        <div class="bs-admin-sidebar-mobile-toggle">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-        <a class="navbar-brand" href="javascript:">
-            xx后台管理系统
-        </a>
-        <div class="bs-admin-navbar-mobile-toggle">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-        <div class="collapse navbar-collapse bs-admin-navbar-collapse">
-
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="javascript:">首页</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:">平台</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        商城
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="javascript:">菜单一</a></li>
-                        <li><a class="dropdown-item" href="javascript:">菜单二</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:">菜单三</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item d-lg-flex align-items-lg-center">
-                    <a class="nav-link bs-admin-switcher-btn">
-                        <i class="fa-solid fa-palette"></i>
-                    </a>
-                </li>
-
-                <li class="nav-item d-lg-flex align-items-lg-center dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:" data-bs-toggle="dropdown">
-                        <div class="d-inline-block">
-                            <img class="bs-admin-avatar" src="static/images/avatar.jpg"
-                                 alt="头像">
-                            欲饮琵琶码上催
-                        </div>
-                    </a>
-
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="javascript:">个人信息</a></li>
-                        <li><a class="dropdown-item" href="javascript:">修改密码</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:">退出登录</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 
 <!--侧边栏-->
-<div class="bs-admin-sidebar">
-    <ul class="bs-admin-sidebar-wrapper">
-        <li>
-            <a href="welcome.html" data-target-iframe data-defaultpage>
-                <i class="fa-solid fa-house"></i>首页
-            </a>
-        </li>
-        <li>
-            <a href="javascript:" class="has-children">
-                <i class="fa-solid fa-border-all"></i>组件
-            </a>
-            <ul>
-                <li><a href="components-accordion.html" data-target-iframe>手风琴(accordion)</a></li>
-                <li><a href="components-alerts.html" data-target-iframe>警告框(alerts)</a></li>
-                <li>
-                    <a href="javascript:" class="has-children">表单</a>
-                    <ul>
-                        <li><a href="components-form-elements.html" data-target-iframe>表单元素</a></li>
-                    </ul>
-                </li>
-                <li><a href="components-table.html" data-target-iframe>表格</a></li>
+<div class="bsa-sidebar">
 
-            </ul>
-        </li>
+    <div class="bsa-sidebar-header">
+        <img src="static/images/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
+        <div class="bsa-logo-text">厦门某某科技有限公司</div>
+    </div>
 
-        <li>
-            <a href="javascript:" class="has-children">
-                <i class="fa-brands fa-html5"></i>页面
-            </a>
-            <ul>
-                <li><a href="page-login.html"  target="_blank">登录注册</a></li>
-            </ul>
-        </li>
 
-        <li>
-            <a href="javascript:" class="has-children open">
-                <i class="fa-solid fa-plug-circle-plus"></i>插件
-            </a>
-            <ul>
-                <li><a href="page_login.html" data-target-iframe>通知插件</a></li>
-                <li><a href="page_login.html" data-target-iframe>弹层插件</a></li>
-                <li><a href="page_login.html" data-target-iframe>表单验证</a></li>
-            </ul>
-        </li>
+    <div class="bsa-sidebar-body">
 
-        <li>
-            <a href="javascript:" data-target-iframe class="has-children">
-                <i class="fa-solid fa-bars-staggered"></i>多级菜单
-            </a>
-            <ul>
-                <li><a href="javascript:" data-target-iframe>一级菜单</a></li>
-                <li>
-                    <a href="javascript:" class="has-children">一级菜单</a>
-                    <ul>
-                        <li><a href="javascript:" data-target-iframe>二级菜单</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:" class="has-children">一级菜单</a>
-                    <ul>
-                        <li><a href="javascript:" data-target-iframe>二级菜单</a></li>
-                        <li>
-                            <a href="javascript:" class="has-children">二级菜单</a>
-                            <ul>
-                                <li><a href="javascript:" data-target-iframe>三级菜单</a></li>
-                                <li>
-                                    <a href="javascript:" class="has-children">三级菜单</a>
-                                    <ul>
-                                        <li><a href="javascript:" data-target-iframe>四级菜单</a></li>
-                                        <li><a href="javascript:" data-target-iframe>四级菜单</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
+        <ul class="bsa-menu">
+            <li>
+                <a href="index.html">
+                    <i class="bi bi-house"></i>首页
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:" class="has-children">
+                    <i class="bi bi-filetype-html"></i>页面
+                </a>
+                <ul>
+                    <li>
+                        <a href="javascript:">
+                            登录页
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:" class="has-children open">
+                    <i class="bi bi-filetype-js"></i>插件
+                </a>
+                <ul>
+                    <li><a href="javascript:">通知插件</a></li>
+                    <li><a href="javascript:">弹层插件</a></li>
+                    <li><a href="javascript:">表单验证</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:" class="has-children">
+                    <i class="bi bi-list-nested"></i>多级菜单
+                </a>
+                <ul>
+                    <li><a href="javascript:">一级菜单</a></li>
+                    <li>
+                        <a href="javascript:" class="has-children">一级菜单</a>
+                        <ul>
+                            <li><a href="javascript:">二级菜单</a></li>
+                            <li>
+                                <a href="javascript:" class="has-children">二级菜单</a>
+                                <ul>
+                                    <li><a href="javascript:">三级菜单</a></li>
+                                    <li>
+                                        <a href="javascript:" class="has-children">三级菜单</a>
+                                        <ul>
+                                            <li><a href="javascript:">四级菜单</a></li>
+                                            <li><a href="javascript:">四级菜单</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>
 
 
-<!--iframe内容区域-->
-<div class="bs-admin-main"></div>
+<div class="bsa-header">
+
+    <i class="me-3 me-lg-4 fs-4 bi bi-list bsa-pointer"></i>
 
 
-<!--调色板-->
-<div class="offcanvas offcanvas-end bs-admin-switcher-offcanvas">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title">主题设置</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    <div class="bsa-search-wrapper ">
+        <div class="bsa-search-box">
+            <input type="text" class="form-control bsa-form-control" placeholder="搜索关键词">
+            <i class="bi bi-search bsa-search-icon"></i>
+            <i class="bi bi-x bsa-close-icon"></i>
+        </div>
     </div>
 
-    <div class="offcanvas-body">
-        <h6 class="mb-0">头部颜色</h6>
-        <hr/>
-        <div class="bs-admin-headercolor-wrap">
-            <div class="headercolor1"></div>
-            <div class="headercolor2"></div>
-            <div class="headercolor3"></div>
-            <div class="headercolor4"></div>
-            <div class="headercolor5"></div>
-            <div class="headercolor6"></div>
-            <div class="headercolor7"></div>
-            <div class="headercolor8"></div>
+
+    <i class="me-3 me-lg-4 fs-4 bi bi-search bsa-pointer"></i>
+
+    <i class="me-3 me-lg-4 ms-auto fs-4 bi bi-grid bsa-pointer"></i>
+
+
+    <div class="me-3 me-lg-4 fs-4 dropdown">
+
+        <div class="position-relative bsa-pointer" data-bs-toggle="dropdown">
+            <span class="bsa-num-count">99+</span>
+            <i class="bi bi-bell"></i>
         </div>
 
-        <h6 class="mb-0">侧边栏</h6>
-        <hr/>
-        <div class="bs-admin-sidebarcolor-wrap">
-            <div class="sidebarcolor1"></div>
-            <div class="sidebarcolor2"></div>
-            <div class="sidebarcolor3"></div>
-            <div class="sidebarcolor4"></div>
-            <div class="sidebarcolor5"></div>
-            <div class="sidebarcolor6"></div>
-            <div class="sidebarcolor7"></div>
-            <div class="sidebarcolor8"></div>
-        </div>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-person"></i>个人资料</a></li>
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-gear"></i>设置</a></li>
+            <li>
+                <div class="dropdown-divider"></div>
+            </li>
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-box-arrow-right"></i>退出登录</a></li>
+        </ul>
 
     </div>
+
+
+    <div class="me-3 me-lg-4 fs-4 dropdown">
+
+
+        <div class="position-relative bsa-pointer" data-bs-toggle="dropdown">
+            <span class="bsa-num-count">9</span>
+            <i class="bi bi-chat-left"></i>
+        </div>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-person"></i>个人资料</a></li>
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-gear"></i>设置</a></li>
+            <li>
+                <div class="dropdown-divider"></div>
+            </li>
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-box-arrow-right"></i>退出登录</a></li>
+        </ul>
+
+
+    </div>
+
+
+    <div class="dropdown">
+
+        <div class="bsa-user-info bsa-pointer" data-bs-toggle="dropdown">
+            <img src="static/images/avatar.jpg" class="bsa-user-img" alt="用户头像">
+            <div class="bsa-user-detail">
+                <div class="bsa-user-name">欲饮琵琶码上催</div>
+                <div class="bsa-user-role">超级管理员</div>
+            </div>
+        </div>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-person"></i>个人资料</a></li>
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-gear"></i>设置</a></li>
+            <li>
+                <div class="dropdown-divider"></div>
+            </li>
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-box-arrow-right"></i>退出登录</a></li>
+        </ul>
+
+
+    </div>
+
+
+</div>
+
+
+<!--内容区域-->
+<div class="bsa-main">
+    <h1>
+        dsadsaddsadsaddsadsaddsadsaddsadsaddsadsaddsadsaddsadsaddsadsaddsadsaddsadsaddsadsaddsadsaddsadsaddsadsaddsadsad</h1>
 </div>
 
 
 <script src="static/js/bootstrap.bundle.min.js"></script>
 <script src="static/js/bootstrap-admin.js"></script>
-
 
 </body>
 </html>
