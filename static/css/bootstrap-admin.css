@@ -48,10 +48,17 @@ html, body {
     margin-bottom: 0;
     letter-spacing: 1px;
     color: #4d5259;
-    display: block;
+
+
+    /*display: block;*/
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+    /*text-overflow: ellipsis;*/
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
 
@@ -170,11 +177,14 @@ html, body {
 }
 
 
-.bsa-main {
+.bsa-main-wrapper {
     padding-top: 80px;
     padding-left: 250px;
 }
 
+.bsa-main-content {
+    padding: 12px 12px 1rem 12px
+}
 
 /*头部*/
 .bsa-header {
@@ -185,7 +195,7 @@ html, body {
     min-height: 80px;
     background: #fff;
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
-    z-index: 1030;
+    z-index: 1050;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -194,18 +204,31 @@ html, body {
 }
 
 
-.bsa-user-img {
+.bsa-header .bsa-header-item {
+    margin-right: 2.5rem;
+    font-size: 18px;
+}
+
+.bsa-header .bsa-header-item:last-child {
+    margin-right: 0;
+}
+
+.bsa-header-item .bsa-user-info {
+    margin-bottom: 10px;
+}
+
+
+.bsa-user-info .bsa-user-img {
     height: 48px;
     border-radius: 50%;
     width: 48px;
+    user-select: none;
 }
 
-
-.bsa-header .bsa-user-detail {
+.bsa-user-info .bsa-user-detail {
     padding-left: 10px;
     max-width: 150px;
 }
-
 
 .bsa-user-detail .bsa-user-name {
     font-size: 15px;
@@ -230,31 +253,53 @@ html, body {
 }
 
 
-.bsa-header .bsa-search-wrapper {
+.bsa-header .bsa-search-bar-item {
     flex-grow: 1;
 }
 
 
-.bsa-search-wrapper .bsa-search-box {
+.bsa-search-bar-item .bsa-search-box {
     position: relative;
     width: 80%;
 }
 
-.bsa-search-box .bsa-form-control {
+.bsa-search-box .bsa-search-input {
     background-color: #f6f5f5;
     border: none;
     padding-right: 2.5rem;
     border-radius: 30px;
 }
 
-.bsa-search-box .bsa-search-icon,
-.bsa-search-box .bsa-close-icon {
+
+.bsa-search-box .bsa-search-btn {
     position: absolute;
     top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    color: #616161;
+}
+
+
+.bsa-search-box .bsa-search-close-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 15px;
     transform: translateY(-50%);
     font-size: 18px;
-    right: 15px;
     color: #616161;
+}
+
+
+.bsa-search-box .bsa-search-btn {
+    display: block;
+}
+
+.bsa-search-box .bsa-search-close-icon {
+    display: none;
 }
 
 
@@ -266,7 +311,7 @@ html, body {
 
 .bsa-header .bsa-num-count {
     position: absolute;
-    top: -10px;
+    top: -13px;
     right: -10px;
     width: 26px;
     height: 26px;
@@ -275,17 +320,524 @@ html, body {
     justify-content: center;
     border-radius: 50%;
     font-size: 12px;
-    transform: scale(0.8);
+    transform: scale(0.80);
     font-weight: 500;
+    user-select: none;
     color: #fff;
     background: #f62718;
     word-break: keep-all;
 }
 
+.bsa-header .bsa-mobile-sidebar-item {
+    display: none;
+}
 
-.bsa-pointer{
+.bsa-header .bsa-mobile-search-item {
+    display: none;
     cursor: pointer;
 }
+
+
+.bsa-header-item .dropdown-menu {
+    border: 0;
+    padding: 0 0;
+
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgb(0 0 0 / 8%);
+    max-width: 360px;
+
+}
+
+.bsa-header-item .dropdown-menu .dropdown-item {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 8px 20px;
+    color: #5f5f5f;
+}
+
+.bsa-header-item .dropdown-menu .dropdown-item > i {
+    margin-right: 12px;
+}
+
+.bsa-header-item .dropdown-menu .dropdown-item.active,
+.bsa-header-item .dropdown-menu .dropdown-item:active,
+.bsa-header-item .dropdown-menu .dropdown-item:hover,
+.bsa-header-item .dropdown-menu .dropdown-item:focus {
+    background: #f9fafb;
+}
+
+
+.bsa-header .bsa-dropdown-menu {
+    width: 360px;
+}
+
+
+.bsa-dropdown-menu .bsa-dropdown-menu-header {
+    padding: .8rem 1rem;
+    border-bottom: 1px solid #ededed;
+    background-clip: border-box;
+    background: #fff;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px
+}
+
+.bsa-dropdown-menu .bsa-dropdown-menu-body {
+    position: relative;
+    max-height: 360px;
+    overflow: auto;
+}
+
+
+.bsa-dropdown-menu .bsa-dropdown-menu-footer {
+    padding: .8rem 1rem;
+    border-top: 1px solid #ededed;
+    background-clip: border-box;
+    background: 0 0;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem
+}
+
+
+.bsa-dropdown-menu .bsa-dropdown-menu-title {
+    font-size: 15px;
+    color: #1c1b1b;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+.bsa-dropdown-menu .bsa-dropdown-menu-all-read {
+    font-size: 12px;
+    color: #585858;
+    margin-bottom: 0;
+    text-decoration: none;
+}
+
+
+.bsa-dropdown-menu .bsa-dropdown-view-all {
+    color: #1c1b1b;
+    text-decoration: none;
+}
+
+
+.bsa-dropdown-menu .bsa-dropdown-menu-body .bsa-app-thumb {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #f6f6f6
+}
+
+
+.bsa-dropdown-menu-body .bsa-media {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bsa-media .bsa-media-thumb {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 22px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+
+.bsa-media-thumb .bsa-media-thumb-img {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 22px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+
+.bsa-media .bsa-media-body {
+    flex-grow: 1;
+}
+
+.bsa-media-body .bsa-media-title,
+.bsa-media-body .bsa-media-text,
+.bsa-media-body .bsa-media-time {
+    margin-bottom: 0;
+}
+
+
+/*调色*/
+.bsa-switcher {
+    width: 280px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2200;
+    background: #fff;
+    box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .13);
+    transform: translateX(100%);
+    transition: 0.3s transform;
+
+}
+
+.bsa-switcher.open {
+    transform: translateX(0);
+}
+
+
+.bsa-switcher > .bsa-switcher-toggler-btn {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 24px;
+    background-image: linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%);
+    box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .13);
+    color: #fff;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    cursor: pointer;
+}
+
+.bsa-switcher .bsa-switcher-header {
+    height: 80px;
+    background: #fff;
+    background-clip: padding-box;
+    border-bottom: 1px solid #e4e4e4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #4d5259;
+    padding: 0 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.bsa-switcher .bsa-switcher-header .bsa-switcher-header-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+
+.bsa-switcher .bsa-switcher-body {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    padding: 20px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.bsa-switcher .bsa-switcher-body::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0)
+    }
+    100% {
+        transform: rotate(359deg)
+    }
+}
+
+.bsa-switcher-toggler-btn .bsa-switcher-toggler-icon {
+    animation: spin 2s linear infinite;
+}
+
+
+/*头部颜色*/
+
+.bsa-headercolor-wrap {
+    margin-bottom: 16px;
+}
+
+
+.bsa-headercolor-wrap div[class^=headercolor],
+.bsa-sidebarcolor-wrap div[class^=sidebarcolor] {
+    width: 45px;
+    height: 45px;
+    background-color: #f4f2f2;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.bsa-headercolor-wrap .headercolor1 {
+    background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
+
+}
+
+.bsa-headercolor-wrap .headercolor2 {
+    background-image: linear-gradient(135deg, #5EFCE8 10%, #736EFE 100%);
+
+}
+
+.bsa-headercolor-wrap .headercolor3 {
+    background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);
+
+}
+
+.bsa-headercolor-wrap .headercolor4 {
+    background-image: linear-gradient(135deg, #FFF6B7 10%, #F6416C 100%);
+}
+
+.bsa-headercolor-wrap .headercolor5 {
+    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
+
+}
+
+.bsa-headercolor-wrap .headercolor6 {
+    background-image: linear-gradient(135deg, #A0FE65 10%, #FA016D 100%);
+
+}
+
+.bsa-headercolor-wrap .headercolor7 {
+    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
+
+}
+
+.bsa-headercolor-wrap .headercolor8 {
+    background-image: linear-gradient(135deg, #F05F57 10%, #360940 100%);
+
+}
+
+
+html.headercolor1 .bsa-header {
+    background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
+}
+
+html.headercolor2 .bsa-header {
+    background-image: linear-gradient(135deg, #5EFCE8 10%, #736EFE 100%);
+
+}
+
+html.headercolor3 .bsa-header {
+    background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);
+}
+
+html.headercolor4 .bsa-header {
+    background-image: linear-gradient(135deg, #FFF6B7 10%, #F6416C 100%);
+}
+
+html.headercolor5 .bsa-header {
+    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
+}
+
+html.headercolor6 .bsa-header {
+    background-image: linear-gradient(135deg, #A0FE65 10%, #FA016D 100%);
+}
+
+html.headercolor7 .bsa-header {
+    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
+}
+
+html.headercolor8 .bsa-header {
+    background-image: linear-gradient(135deg, #F05F57 10%, #360940 100%);
+}
+
+
+/*其它的一些调整*/
+html.color-header .bsa-header .bsa-header-item {
+    color: #fff !important;
+}
+
+
+html.color-header .bsa-header .bsa-user-detail .bsa-user-name,
+html.color-header .bsa-header .bsa-user-detail .bsa-user-role {
+    color: #fff
+}
+
+html.color-header .bsa-search-box .bsa-search-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+
+/*侧边栏*/
+
+.bsa-sidebarcolor-wrap .sidebarcolor1 {
+    background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
+}
+
+.bsa-sidebarcolor-wrap .sidebarcolor2 {
+    background-image: linear-gradient(135deg, #5EFCE8 10%, #736EFE 100%);
+}
+
+.bsa-sidebarcolor-wrap .sidebarcolor3 {
+    background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);
+}
+
+.bsa-sidebarcolor-wrap .sidebarcolor4 {
+    background-image: linear-gradient(135deg, #FFF6B7 10%, #F6416C 100%);
+}
+
+.bsa-sidebarcolor-wrap .sidebarcolor5 {
+    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
+}
+
+.bsa-sidebarcolor-wrap .sidebarcolor6 {
+    background-image: linear-gradient(135deg, #A0FE65 10%, #FA016D 100%);
+}
+
+.bsa-sidebarcolor-wrap .sidebarcolor7 {
+    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
+}
+
+.bsa-sidebarcolor-wrap .sidebarcolor8 {
+    background-image: linear-gradient(135deg, #F05F57 10%, #360940 100%);
+}
+
+
+/*改变背景色*/
+html.color-sidebar.sidebarcolor1 .bsa-sidebar {
+    background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
+
+}
+
+html.color-sidebar.sidebarcolor2 .bsa-sidebar {
+    background-image: linear-gradient(135deg, #5EFCE8 10%, #736EFE 100%);
+}
+
+html.color-sidebar.sidebarcolor3 .bsa-sidebar {
+    background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);
+}
+
+html.color-sidebar.sidebarcolor4 .bsa-sidebar {
+    background-image: linear-gradient(135deg, #FFF6B7 10%, #F6416C 100%);
+}
+
+html.color-sidebar.sidebarcolor5 .bsa-sidebar {
+    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
+}
+
+html.color-sidebar.sidebarcolor6 .bsa-sidebar {
+    background-image: linear-gradient(135deg, #A0FE65 10%, #FA016D 100%);
+}
+
+html.color-sidebar.sidebarcolor7 .bsa-sidebar {
+    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
+}
+
+html.color-sidebar.sidebarcolor8 .bsa-sidebar {
+    background-image: linear-gradient(135deg, #F05F57 10%, #360940 100%);
+}
+
+
+/*logo颜色的改变*/
+html.color-sidebar .bsa-sidebar .bsa-logo-icon {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+
+html.color-sidebar .bsa-sidebar .bsa-logo-text {
+    color: #fff;
+}
+
+
+html.color-sidebar .bsa-sidebar .bsa-sidebar-header {
+    border-bottom: 1px solid rgb(255 255 255 / 15%);
+}
+
+
+html.color-sidebar .bsa-sidebar .bsa-menu a:active,
+html.color-sidebar .bsa-sidebar .bsa-menu a:focus,
+html.color-sidebar .bsa-sidebar .bsa-menu a:hover {
+    color: #fff;
+    background: rgb(255 255 255 / 18%);
+}
+
+
+/*背景色*/
+html.color-sidebar .bsa-sidebar .bsa-menu ul {
+    border: 1px solid #ffffff00;
+    background: rgb(255 255 255 / 8%);
+}
+
+/*a链接色*/
+html.color-sidebar .bsa-sidebar .bsa-menu a {
+    color: rgb(255 255 255 / 85%);
+}
+
+
+/*bootstrap-admin拓展助手工具*/
+.bsa-bg-color1 {
+    background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
+
+}
+
+.bsa-bg-color2 {
+    background-image: linear-gradient(135deg, #5EFCE8 10%, #736EFE 100%);
+}
+
+.bsa-bg-color3 {
+    background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);
+}
+
+.bsa-bg-color4 {
+    background-image: linear-gradient(135deg, #FFF6B7 10%, #F6416C 100%);
+}
+
+.bsa-bg-color5 {
+    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
+}
+
+.bsa-bg-color6 {
+    background-image: linear-gradient(135deg, #A0FE65 10%, #FA016D 100%);
+}
+
+.bsa-bg-color7 {
+    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
+}
+
+.bsa-bg-color8 {
+    background-image: linear-gradient(135deg, #F05F57 10%, #360940 100%);
+}
+
+
+.bsa-radius-10 {
+    border-radius: 10px !important;
+}
+
+.bsa-radius-15 {
+    border-radius: 15px !important;
+}
+
+.bsa-radius-20 {
+    border-radius: 30px !important;
+}
+
+.bsa-radius-25 {
+    border-radius: 30px !important;
+}
+
+.bsa-radius-30 {
+    border-radius: 30px !important;
+}
+
 
 @media (max-width: 575.98px) {
 
@@ -299,6 +851,7 @@ html, body {
 
     .bsa-header {
         left: 0;
+        z-index: 1030;
         justify-content: space-between;
     }
 
@@ -307,31 +860,55 @@ html, body {
     }
 
     .bsa-header .dropdown-menu {
-        width: 100% !important
+        width: 100% !important;
+        max-width: 100% !important
     }
 
-
-    .bsa-header .bsa-mobile-sidebar-btn {
+    .bsa-header .bsa-mobile-search-item {
         display: block;
     }
 
-    .bsa-header .bsa-search-wrapper {
+    .bsa-header .bsa-mobile-sidebar-item {
+        display: block;
+    }
+
+
+    .bsa-search-box .bsa-search-btn {
         display: none;
     }
 
-    .bsa-header .bsa-user-img {
-        height: 38px;
-        width: 38px;
+    .bsa-search-box .bsa-search-close-icon {
+        display: block;
+    }
+
+
+    .bsa-header .bsa-search-bar-item {
+        display: none;
+    }
+
+
+    .bsa-user-info .bsa-user-img {
+        height: 32px;
+        width: 32px;
+    }
+
+    .bsa-header .bsa-header-item {
+        margin-right: 1rem;
+        font-size: 18px;
     }
 
 
     .bsa-sidebar {
-        transform: translateX(-100%);
+        transform: translateX(-101%);
         box-shadow: none;
     }
 
+    .bsa-sidebar.open {
+        transform: translateX(0);
+    }
 
-    .bsa-main {
+
+    .bsa-main-wrapper {
         padding-left: 0;
     }
 
@@ -349,12 +926,41 @@ html, body {
         background-color: rgb(33, 33, 33);
         border-color: rgb(33, 33, 33);
     }
+
+    .bsa-lock-scroll {
+        position: fixed;
+        width: 100%;
+    }
+
+
+    .bsa-search-bar-item.open {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 2000;
+        background: inherit;
+        height: 80px;
+        padding: 0 1.4rem;
+        margin: 0;
+    }
+
+    .bsa-search-bar-item.open .bsa-search-box {
+        width: 100%;
+    }
+
+    .bsa-switcher {
+        z-index: 1032;
+    }
+
 }
 
 
 @media (max-width: 1199.98px) {
 
-    .bsa-user-detail {
+    .bsa-user-info .bsa-user-detail {
         display: none;
     }
 }

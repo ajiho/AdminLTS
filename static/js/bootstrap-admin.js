@@ -57,81 +57,24 @@
         return rest;
     }
 
+    // 判断是否有滚动条
+    function hasScrolled(element, direction) {
+        if (direction === 'vertical') {
+            return element.scrollHeight > element.clientHeight;
+        } else if (direction === 'horizontal') {
+            return element.scrollWidth > element.clientWidth;
+        }
+    }
+
     window.addEventListener("DOMContentLoaded", function () {
 
-
-        let msk = 'bsm-mask';
-
-
-        let eqwewqweq = document.querySelector('.mobile-toggle-menu');
-
-        let sidebarEl = document.querySelector('.bsm-sidebar');
-        let bsAdminSidebarWrapper = document.querySelector('.bsm-sidebar-body');
-
-
-        let timer = null; //定义一个定时器
-
-
-        let enableClick = true;
-
-
-        //回到顶部事件委托
-        eventDelegate(document.body, 'click', '.back-to-top', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-
-            if (enableClick === true) {
-                enableClick = false;
-                //设置一个定时器
-                timer = setInterval(function () {
-
-                    let osTop = document.documentElement.scrollTop || document.body.scrollTop;
-                    let speed = Math.floor(-osTop / 6);
-                    document.documentElement.scrollTop = document.body.scrollTop = osTop + speed;
-
-                    if (osTop === 0) {
-                        enableClick = true;
-                        clearInterval(timer);
-                    }
-
-                }, 16);
-
-            }
+        //禁止所有的input记忆
+        document.querySelectorAll('input').forEach((e, i) => {
+            e.setAttribute("AutoComplete", "off");
         });
 
 
-        window.addEventListener('scroll', function (e) {
-            //获取滚动条高度
-            let originScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            //查找该元素是否能找到
-            let fdsf = document.querySelector('.back-to-top');
-
-            if (originScrollTop === 0) {
-                //清空定时器
-                clearInterval(timer);
-                enableClick = true;
-            } else if (originScrollTop > 300) {
-                fdsf !== null ? fdsf.style.display = 'block' : '';
-            } else {
-                fdsf !== null ? fdsf.style.display = 'none' : '';
-            }
-
-        });
-
-
-        // $(window).on("scroll", function () {
-        //     $(this).scrollTop() > 300 ? $(".back-to-top").fadeIn() : $(".back-to-top").fadeOut()
-        // });
-
-
-        // $(".back-to-top").on("click", function () {
-        //     return $("html, body").animate({
-        //         scrollTop: 0
-        //     }, 600);
-        // })
-
-
-        eventDelegate(document.querySelector('.bsa-sidebarcolor-wrap'), 'click', 'div[class^=sidebarcolor]', function (event) {
+        eventDelegate(document.body, 'click', '.bsa-sidebarcolor-wrap div[class^=sidebarcolor]', function (event) {
 
             event.preventDefault();
             event.stopPropagation();
@@ -147,8 +90,7 @@
         });
 
 
-        eventDelegate(document.querySelector('.bsa-headercolor-wrap'), 'click', 'div[class^=headercolor]', function (event) {
-
+        eventDelegate(document.body, 'click', '.bsa-headercolor-wrap div[class^=headercolor]', function (event) {
             event.preventDefault();
             event.stopPropagation();
 
@@ -162,84 +104,66 @@
         });
 
 
-        document.querySelector('.bsa-switcher-header>.btn-close').addEventListener('click', function (event) {
+        //调色板打开
+        eventDelegate(document.body, 'click', '.bsa-switcher .bsa-switcher-toggler-btn', function (event) {
             event.preventDefault();
             event.stopPropagation();
 
-
-            let bsaSwitcherWrapper = document.querySelector('.bsa-switcher-wrapper');
-            bsaSwitcherWrapper.classList.remove('open');
-        });
-
-        //
-
-        document.querySelector('.bsa-switcher-btn').addEventListener('click', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-
-
-            let bsaSwitcherWrapper = document.querySelector('.bsa-switcher-wrapper');
-
-            if (!bsaSwitcherWrapper.classList.contains('open')) {
-                bsaSwitcherWrapper.classList.add('open')
+            let bsaSwitcher = document.querySelector('.bsa-switcher');
+            if (!bsaSwitcher.classList.contains('open')) {
+                bsaSwitcher.classList.add('open')
             } else {
-                bsaSwitcherWrapper.classList.remove('open')
+                bsaSwitcher.classList.remove('open')
             }
-
         });
 
 
         //搜索框关闭
-        document.querySelector('.search-bar-box > i:nth-of-type(2)').addEventListener('click', function (event) {
+        eventDelegate(document.body, 'click', '.bsa-search-box .bsa-search-close-icon', function (event) {
             event.preventDefault();
             event.stopPropagation();
-            //关闭搜索框
-            this.parentNode.parentNode.classList.remove('full-search-bar');
-        });
-
-        //搜索打开
-        document.querySelector('.bsm-mobile-search-icon').addEventListener('click', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            document.querySelector('.search-bar').classList.add('full-search-bar');
-
-
+            document.querySelector('.bsa-search-bar-item').classList.remove('open');
         });
 
 
-        //遮罩层处理
-        eventDelegate(document.body, 'click', '.bsm-mask', function (event) {
+        //搜索框打开
+        eventDelegate(document.body, 'click', '.bsa-mobile-search-item', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.querySelector('.bsa-search-bar-item').classList.add('open');
+        });
+
+
+        //遮罩层点击
+        eventDelegate(document.body, 'click', '.bsa-mask', function (event) {
             event.preventDefault();
             event.stopPropagation();
             this.remove();
             unLockScroll();
-            sidebarEl.classList.remove('open');
+            document.querySelector('.bsa-sidebar').classList.remove('open');
         });
 
 
         //左侧菜单
-        eqwewqweq.addEventListener('click', function (event) {
+        eventDelegate(document.body, 'click', '.bsa-header .bsa-mobile-sidebar-item', function (event) {
             event.preventDefault();
             event.stopPropagation();
-
-            sidebarEl.classList.add('open');
+            document.querySelector('.bsa-sidebar').classList.add('open');
             lockScroll();
-            document.body.insertAdjacentHTML('beforeEnd', `<div class="${msk}"></div>`);
-
+            document.body.insertAdjacentHTML('beforeEnd', `<div class="bsa-mask"></div>`);
         });
 
 
-        bsAdminSidebarWrapper.addEventListener("transitionend", function (event) {
+        eventDelegate(document.body, 'transitionend', '.bsa-sidebar-body .bsa-menu', function (event) {
             let target = event.target;
             if (target.nodeName.toLowerCase() === 'ul') {
                 target.style = '';
             }
         });
 
-        eventDelegate(bsAdminSidebarWrapper, 'click', 'a.has-children', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
+        eventDelegate(document.body, 'click', '.bsa-sidebar-body .bsa-menu a.has-children', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
             let el = this;
             if (!el.classList.contains('open')) {//展开
                 el.classList.add('open');
@@ -278,7 +202,6 @@
                 })
             })
         });
-
 
     });
 })();
