@@ -2,25 +2,23 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="icon" href="static/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="static/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="lib/fontawesome-free-6.1.1-web/css/all.min.css">
+    <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link rel="stylesheet" href="static/css/bootstrap-admin.css">
     <title>bootstrap-admin</title>
 </head>
 <body>
 
 <div class="bg-light min-vh-100">
     <div class="min-vh-100 container d-flex justify-content-center align-items-center">
-        <div class="card shadow bg-white my-3" style="width: 30rem;">
-            <div class="card-header bg-white border-bottom py-3">
-                <h5 class="card-title  text-center">
-                    <a href="index.html"
-                       class="text-decoration-none d-inline-flex align-items-center justify-content-center">
-                        xx后台管理系统
-                    </a>
-                </h5>
+        <div class="card shadow border-0 bg-white my-3" style="width: 30rem;">
+            <div class="card-header bg-white border-bottom p-3 text-center">
+                <a href="index.html" class="h3  fs-4 text-muted text-decoration-none">
+                    xx后台管理系统
+                </a>
             </div>
             <div class="card-body">
                 <form class="form">
@@ -43,8 +41,7 @@
                             <img style="cursor: pointer" src="static/images/captcha.png"
                                  title="点击刷新"
                                  class="captcha-img"
-                                 height="38"
-                            />
+                                 height="38"/>
                         </div>
                     </div>
                     <div class="mb-3 form-check">
@@ -60,21 +57,21 @@
                     <button id="login-btn" type="button" class="btn btn-success">登录</button>
                     <div>
                         <span class="text-muted">没有帐号？ 点此</span>
-                        <a class="link-dark text-decoration-none" href="register.html">注册</a>
+                        <a href="javascript:" class="text-decoration-none text-dark">注册</a>
                     </div>
                 </div>
                 <div class="text-center py-2 my-2">
                     <span class="text-muted">继续即代表同意</span>
-                    <a target="_blank" href="javascript:">《隐私政策》</a>
+                    <a href="javascript:" class="text-decoration-none">《隐私政策》</a>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
 
 <script src="static/js/bootstrap.bundle.min.js"></script>
+<script src="static/js/bootstrap-admin.js"></script>
 
 </body>
 </html>
