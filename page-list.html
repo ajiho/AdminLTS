@@ -15,36 +15,36 @@
 
 <!--侧边栏-->
 <div class="bsa-sidebar">
-
     <div class="bsa-sidebar-header">
         <img src="static/images/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
         <div class="bsa-logo-text">bootstrap-admin</div>
     </div>
-
-
     <div class="bsa-sidebar-body">
-
         <ul class="bsa-menu">
             <li>
                 <a href="index.html">
                     <i class="bi bi-house"></i>首页
                 </a>
             </li>
-
             <li>
                 <a href="javascript:" class="has-children open">
                     <i class="bi bi-filetype-html"></i>页面
                 </a>
                 <ul>
                     <li>
-                        <a href="page_blank.html" class="active">
-                            新页面
-                        </a>
+                        <a href="page-error.html">错误页面</a>
                     </li>
                     <li>
-                        <a href="auth_login.html">
-                            登录页
-                        </a>
+                        <a href="page-add.html">新增页面</a>
+                    </li>
+                    <li>
+                        <a href="page-list.html" class="active">列表页</a>
+                    </li>
+                    <li>
+                        <a href="page-blank.html">新页面</a>
+                    </li>
+                    <li>
+                        <a href="page-login.html">登录页</a>
                     </li>
                 </ul>
             </li>
@@ -53,8 +53,8 @@
                     <i class="bi bi-filetype-js"></i>插件
                 </a>
                 <ul>
-                    <li><a href="javascript:">通知插件</a></li>
-                    <li><a href="javascript:">弹层插件</a></li>
+                    <li><a href="plugin-bootstrap-notify.html">通知插件</a></li>
+                    <li><a href="plugin-bootstrap-dialog.html">弹层插件</a></li>
                     <li><a href="javascript:">表单验证</a></li>
                 </ul>
             </li>
@@ -81,6 +81,12 @@
                                     </li>
                                 </ul>
                             </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="has-children">一级菜单</a>
+                        <ul>
+                            <li><a href="javascript:">二级菜单</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -322,72 +328,87 @@
 <div class="bsa-main-wrapper">
     <div class="bsa-main-content">
 
-        <div class="container-fluid">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <a class="btn btn-outline-primary" href="javascript:" role="button"><i class="bi bi-plus"></i>新增</a>
+                <a class="btn btn-outline-success" href="javascript:" role="button"><i class="bi bi-check2"></i>启用</a>
+                <a class="btn btn-outline-dark" href="javascript:" role="button"><i class="bi bi-x-octagon"></i>禁用</a>
+                <a class="btn btn-outline-danger" href="javascript:" role="button"><i class="bi bi-x"></i>删除</a>
+                <a class="btn btn-outline-warning" href="javascript:" role="button"><i class="bi bi-trash"></i>回收站</a>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>
+                                <input class="form-check-input" aria-label="checkbox" type="checkbox">
+                            </th>
+                            <th>编号</th>
+                            <th>用户名</th>
+                            <th>性别</th>
+                            <th>姓名</th>
+                            <th>手机号</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input class="form-check-input" aria-label="checkbox" type="checkbox" name="id[]" value="1">
+                            </td>
+                            <td>1</td>
+                            <td>admin21</td>
+                            <td>男</td>
+                            <td>王伟</td>
+                            <td>15805136482</td>
+                            <td><span class="badge rounded-pill bg-success">正常</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-diagram-2"></i></a>
+                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-person-check-fill"></i></a>
+                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-pencil"></i></a>
+                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="form-check-input" aria-label="checkbox" type="checkbox" name="id[]" value="2">
+                            </td>
+                            <td>2</td>
+                            <td>admin21</td>
+                            <td>男</td>
+                            <td>黄小琥</td>
+                            <td>15805136482</td>
+                            <td><span class="badge rounded-pill bg-success">正常</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-diagram-2"></i></a>
+                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-person-check-fill"></i></a>
+                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-pencil"></i></a>
+                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-            </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
-            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">Row column</div>
-                </div>
             </div>
         </div>
 

@@ -48,13 +48,6 @@ html, body {
     margin-bottom: 0;
     letter-spacing: 1px;
     color: #4d5259;
-
-
-    /*display: block;*/
-    /*overflow: hidden;*/
-    /*white-space: nowrap;*/
-    /*text-overflow: ellipsis;*/
-
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -135,6 +128,8 @@ html, body {
 
 .bsa-menu a.has-children.open,
 .bsa-menu a.active,
+.bsa-menu a:active,
+.bsa-menu a:focus,
 .bsa-menu a:hover {
     color: #0d6efd;
     text-decoration: none;
@@ -339,12 +334,11 @@ html, body {
 
 .bsa-header-item .dropdown-menu {
     border: 0;
-    padding: 0 0;
-
+    padding: 0;
     border-radius: 10px;
     box-shadow: 0 0 4px rgb(0 0 0 / 8%);
     max-width: 360px;
-
+    overflow: hidden;
 }
 
 .bsa-header-item .dropdown-menu .dropdown-item {
@@ -761,9 +755,11 @@ html.color-sidebar .bsa-sidebar .bsa-sidebar-header {
     border-bottom: 1px solid rgb(255 255 255 / 15%);
 }
 
+
+html.color-sidebar .bsa-sidebar .bsa-menu a.has-children.open,
 html.color-sidebar .bsa-sidebar .bsa-menu a.active,
-/*html.color-sidebar .bsa-sidebar .bsa-menu a:active,*/
-/*html.color-sidebar .bsa-sidebar .bsa-menu a:focus,*/
+html.color-sidebar .bsa-sidebar .bsa-menu a:active,
+html.color-sidebar .bsa-sidebar .bsa-menu a:focus,
 html.color-sidebar .bsa-sidebar .bsa-menu a:hover {
     color: #fff;
     background: rgb(255 255 255 / 18%);

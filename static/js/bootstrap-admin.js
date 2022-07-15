@@ -198,6 +198,8 @@
                         void el.scrollHeight;
                         //2.设置为0
                         el.nextElementSibling.style.cssText = `display:block;height:0;overflow: hidden;`;
+                    }else if(el.matches('a.active')){
+                        el.classList.remove('active');
                     }
                 })
             })

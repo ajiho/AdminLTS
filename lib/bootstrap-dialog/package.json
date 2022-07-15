@@ -1,0 +1,30 @@
+{
+  "name": "bootdialog",
+  "version": "0.0.1",
+  "description": "Make the modal component of bootstrap easier to use",
+  "main": "src/bootdialog.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/x852/bootdialog.git"
+  },
+  "keywords": [
+    "Bootstrap",
+    "Bootstrap 5",
+    "Modal",
+    "Dialog"
+  ],
+  "author": "x852",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-rename": "^2.0.0",
+    "gulp-terser": "^2.1.0"
+  }
+}

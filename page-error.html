@@ -22,17 +22,17 @@
     <div class="bsa-sidebar-body">
         <ul class="bsa-menu">
             <li>
-                <a href="index.html" class="active">
+                <a href="index.html">
                     <i class="bi bi-house"></i>首页
                 </a>
             </li>
             <li>
-                <a href="javascript:" class="has-children">
+                <a href="javascript:" class="has-children open">
                     <i class="bi bi-filetype-html"></i>页面
                 </a>
                 <ul>
                     <li>
-                        <a href="page-error.html">错误页面</a>
+                        <a href="page-error.html" class="active">错误页面</a>
                     </li>
                     <li>
                         <a href="page-add.html">新增页面</a>
@@ -96,11 +96,12 @@
 </div>
 
 
-<!--头部导航-->
 <div class="bsa-header">
+
     <div class="bsa-header-item bsa-mobile-sidebar-item" role="button">
         <i class="bi bi-list"></i>
     </div>
+
     <div class="bsa-header-item bsa-search-bar-item">
         <form class="bsa-search-box" action="#">
             <input type="text" class="form-control bsa-search-input" name="keyword" aria-label="搜索关键词"
@@ -109,9 +110,11 @@
             <i class="bi bi-x bsa-search-close-icon"></i>
         </form>
     </div>
+
     <div class="bsa-header-item bsa-mobile-search-item">
         <i class="bi bi-search"></i>
     </div>
+
     <div class="bsa-header-item dropdown">
         <i class="bi bi-grid" data-bs-toggle="dropdown" role="button"></i>
         <div class="dropdown-menu dropdown-menu-end bsa-dropdown-menu">
@@ -147,6 +150,7 @@
             </div>
         </div>
     </div>
+
     <div class="bsa-header-item dropdown">
         <div class="position-relative " data-bs-toggle="dropdown" role="button">
             <span class="bsa-num-count">99+</span>
@@ -219,6 +223,8 @@
 
         </div>
     </div>
+
+
     <div class="bsa-header-item dropdown">
         <div class="position-relative " data-bs-toggle="dropdown" role="button">
             <span class="bsa-num-count">9</span>
@@ -296,6 +302,8 @@
             </div>
         </div>
     </div>
+
+
     <div class="bsa-header-item dropdown">
         <div class="bsa-user-info" data-bs-toggle="dropdown" role="button">
             <img src="static/images/avatar.jpg" class="bsa-user-img" alt="用户头像">
@@ -319,142 +327,20 @@
 <!--内容区域-->
 <div class="bsa-main-wrapper">
     <div class="bsa-main-content">
-        <!-- 内容都应该写包裹在此-->
-        <div class="container-fluid">
-            <div class="row g-3 gy-4">
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color4 bsa-radius-15">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">今日收入</h6>
-                                    <h4 class="mb-1">102,125.00</h4>
-                                    <small class="mb-0">相比上周<i class="bi bi-caret-up-fill"></i>60.14%</small>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-currency-yen"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color3 bsa-radius-15">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">用户总数</h6>
-                                    <h4 class="mb-1">1546</h4>
-                                    <small class="mb-0">相比上周<i class="bi bi-caret-up-fill"></i>25%</small>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h5 class="card-title">您没有权限访问该页面</h5>
+                <hr>
 
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color1 bsa-radius-15">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">订单总数</h6>
-                                    <h4 class="mb-1">2000</h4>
-                                    <small class="mb-0">相比上周<i class="bi bi-caret-up-fill"></i>17.14%</small>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-cart"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color2 bsa-radius-15">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">留言</h6>
-                                    <h4 class="mb-1">1000</h4>
-                                    <small class="mb-0">相比上周<i class="bi bi-caret-down-fill"></i>30%</small>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-chat"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            折线图
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myChart2"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            条形图
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            表格信息
-                        </div>
-                        <div class="card-body">
-
-                            <div class="table-responsive">
-                                <table class="table  table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h1 class="display-1">
+                    <span class="text-primary">4</span>
+                    <span class="text-danger">0</span>
+                    <span class="text-success">4</span>
+                </h1>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -540,71 +426,9 @@
         </div>
     </div>
 </div>
-
 <script src="static/js/bootstrap.bundle.min.js"></script>
 <script src="static/js/bootstrap-admin.js"></script>
-<script src="lib/chart.js/dist/chart.min.js"></script>
 
-<script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-
-    const ctx2 = document.getElementById('myChart2').getContext('2d');
-    const myChart2 = new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: 'My First Dataset',
-                data: [65, 59, 80, 81, 56, 55, 40],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
 
 </body>
 </html>
