@@ -464,12 +464,19 @@ html, body {
 
 .bsa-media .bsa-media-body {
     flex-grow: 1;
+    display: block;
+    overflow: hidden;
 }
 
 .bsa-media-body .bsa-media-title,
 .bsa-media-body .bsa-media-text,
 .bsa-media-body .bsa-media-time {
-    margin-bottom: 0;
+    margin-bottom: 4px;
+    display: block;
+    /*没有出现省略号*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 
