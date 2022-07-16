@@ -4,10 +4,7 @@
 
 html, body {
     background: #f8f9fa;
-    word-break: break-all;
-
 }
-
 
 .bsa-sidebar {
     position: fixed;
@@ -177,7 +174,7 @@ html, body {
 }
 
 .bsa-main-content {
-    padding: 12px 12px 1rem 12px
+    padding: 12px 12px 4rem 12px
 }
 
 /*头部*/
@@ -189,7 +186,7 @@ html, body {
     min-height: 80px;
     background: #fff;
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
-    z-index: 1050;
+    z-index: 1030;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -200,7 +197,7 @@ html, body {
 
 .bsa-header .bsa-header-item {
     margin-right: 2.5rem;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .bsa-header .bsa-header-item:last-child {
@@ -254,7 +251,7 @@ html, body {
 
 .bsa-search-bar-item .bsa-search-box {
     position: relative;
-    width: 80%;
+    width: 60%;
 }
 
 .bsa-search-box .bsa-search-input {
@@ -305,8 +302,8 @@ html, body {
 
 .bsa-header .bsa-num-count {
     position: absolute;
-    top: -13px;
-    right: -10px;
+    top: -10px;
+    right: -8px;
     width: 26px;
     height: 26px;
     display: flex;
@@ -324,6 +321,7 @@ html, body {
 
 .bsa-header .bsa-mobile-sidebar-item {
     display: none;
+    cursor: pointer;
 }
 
 .bsa-header .bsa-mobile-search-item {
@@ -846,7 +844,6 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 
     .bsa-header {
         left: 0;
-        z-index: 1030;
         justify-content: space-between;
     }
 
@@ -883,13 +880,12 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 
 
     .bsa-user-info .bsa-user-img {
-        height: 32px;
-        width: 32px;
+        height: 38px;
+        width: 38px;
     }
 
     .bsa-header .bsa-header-item {
         margin-right: 1rem;
-        font-size: 18px;
     }
 
 

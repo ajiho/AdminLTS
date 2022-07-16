@@ -98,7 +98,7 @@
 
 <!--头部导航-->
 <div class="bsa-header">
-    <div class="bsa-header-item bsa-mobile-sidebar-item" role="button">
+    <div class="bsa-header-item bsa-mobile-sidebar-item">
         <i class="bi bi-list"></i>
     </div>
     <div class="bsa-header-item bsa-search-bar-item">
@@ -322,14 +322,14 @@
         <!-- 内容都应该写包裹在此-->
         <div class="container-fluid">
             <div class="row g-3 gy-4">
+
                 <div class="col-xxl-3 col-xl-6">
                     <div class="card border-0 shadow-sm text-white bsa-bg-color4 bsa-radius-15">
-                        <div class="card-body">
+                        <div class="card-body p-4">
                             <div class="d-flex align-items-center">
                                 <div style="flex-shrink: 0">
                                     <h6 class="mb-1">今日收入</h6>
                                     <h4 class="mb-1">102,125.00</h4>
-                                    <small class="mb-0">相比上周<i class="bi bi-caret-up-fill"></i>60.14%</small>
                                 </div>
                                 <div class="ms-auto fs-1" style="flex-shrink: 0">
                                     <i class="bi bi-currency-yen"></i>
@@ -341,12 +341,11 @@
 
                 <div class="col-xxl-3 col-xl-6">
                     <div class="card border-0 shadow-sm text-white bsa-bg-color3 bsa-radius-15">
-                        <div class="card-body">
+                        <div class="card-body p-4">
                             <div class="d-flex align-items-center">
                                 <div style="flex-shrink: 0">
                                     <h6 class="mb-1">用户总数</h6>
                                     <h4 class="mb-1">1546</h4>
-                                    <small class="mb-0">相比上周<i class="bi bi-caret-up-fill"></i>25%</small>
                                 </div>
                                 <div class="ms-auto fs-1" style="flex-shrink: 0">
                                     <i class="bi bi-people"></i>
@@ -358,12 +357,11 @@
 
                 <div class="col-xxl-3 col-xl-6">
                     <div class="card border-0 shadow-sm text-white bsa-bg-color1 bsa-radius-15">
-                        <div class="card-body">
+                        <div class="card-body p-4">
                             <div class="d-flex align-items-center">
                                 <div style="flex-shrink: 0">
                                     <h6 class="mb-1">订单总数</h6>
                                     <h4 class="mb-1">2000</h4>
-                                    <small class="mb-0">相比上周<i class="bi bi-caret-up-fill"></i>17.14%</small>
                                 </div>
                                 <div class="ms-auto fs-1" style="flex-shrink: 0">
                                     <i class="bi bi-cart"></i>
@@ -373,15 +371,13 @@
                     </div>
                 </div>
 
-
                 <div class="col-xxl-3 col-xl-6">
                     <div class="card border-0 shadow-sm text-white bsa-bg-color2 bsa-radius-15">
-                        <div class="card-body">
+                        <div class="card-body p-4">
                             <div class="d-flex align-items-center">
                                 <div style="flex-shrink: 0">
                                     <h6 class="mb-1">留言</h6>
                                     <h4 class="mb-1">1000</h4>
-                                    <small class="mb-0">相比上周<i class="bi bi-caret-down-fill"></i>30%</small>
                                 </div>
                                 <div class="ms-auto fs-1" style="flex-shrink: 0">
                                     <i class="bi bi-chat"></i>
@@ -394,58 +390,153 @@
                 <div class="col-md-6">
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-white">
-                            折线图
+                            近七天pv值
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart2"></canvas>
+                            <canvas id="chart-bar"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-white">
+                            年营业额走势
+                        </div>
+                        <div class="card-body">
+                            <canvas id="chart-line"></canvas>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            条形图
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myChart"></canvas>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-12">
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-white">
-                            表格信息
+                            订单摘要
                         </div>
                         <div class="card-body">
 
                             <div class="table-responsive">
-                                <table class="table  table-hover">
-                                    <thead>
+                                <table class="table align-middle mb-0">
+                                    <thead class="table-light">
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th>订单号</th>
+                                        <th>商品</th>
+                                        <th>下单人</th>
+                                        <th>下单日期</th>
+                                        <th>价格</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <td>#157444499</td>
+                                        <td>
+                                            Apple iPhone 13 (A2634) 512GB
+                                        </td>
+                                        <td>剑胆琴心</td>
+                                        <td>2022/7/16</td>
+                                        <td>￥100.00</td>
+                                        <td>
+                                            <span class="badge bg-success">交易成功</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:" class="btn btn-sm btn-light"><i class="bi bi-gear"></i></a>
+                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i class="bi bi-arrow-down"></i></a>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
+                                        <td>#157444499</td>
+                                        <td>
+                                            Apple iPhone 13 (A2634) 512GB
+                                        </td>
+                                        <td>剑胆琴心</td>
+                                        <td>2022/7/16</td>
+                                        <td>￥100.00</td>
+                                        <td>
+                                            <span class="badge bg-success">交易成功</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:" class="btn btn-sm btn-light"><i class="bi bi-gear"></i></a>
+                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i class="bi bi-arrow-down"></i></a>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
+                                        <td>#157444499</td>
+                                        <td>
+                                            Apple iPhone 13 (A2634) 512GB
+                                        </td>
+                                        <td>剑胆琴心</td>
+                                        <td>2022/7/16</td>
+                                        <td>￥100.00</td>
+                                        <td>
+                                            <span class="badge bg-success">交易成功</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:" class="btn btn-sm btn-light"><i class="bi bi-gear"></i></a>
+                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i class="bi bi-arrow-down"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#157444499</td>
+                                        <td>
+                                            Apple iPhone 13 (A2634) 512GB
+                                        </td>
+                                        <td>剑胆琴心</td>
+                                        <td>2022/7/16</td>
+                                        <td>￥100.00</td>
+                                        <td>
+                                            <span class="badge bg-success">交易成功</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:" class="btn btn-sm btn-light"><i class="bi bi-gear"></i></a>
+                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i class="bi bi-arrow-down"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#157444499</td>
+                                        <td>
+                                            Apple iPhone 13 (A2634) 512GB
+                                        </td>
+                                        <td>剑胆琴心</td>
+                                        <td>2022/7/16</td>
+                                        <td>￥100.00</td>
+                                        <td>
+                                            <span class="badge bg-success">交易成功</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:" class="btn btn-sm btn-light"><i class="bi bi-gear"></i></a>
+                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i class="bi bi-arrow-down"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#157444499</td>
+                                        <td>
+                                            Apple iPhone 13 (A2634) 512GB
+                                        </td>
+                                        <td>剑胆琴心</td>
+                                        <td>2022/7/16</td>
+                                        <td>￥100.00</td>
+                                        <td>
+                                            <span class="badge bg-success">交易成功</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:" class="btn btn-sm btn-light"><i class="bi bi-gear"></i></a>
+                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i class="bi bi-arrow-down"></i></a>
+                                            </div>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -453,6 +544,68 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-12">
+                    <div class="card bsa-radius-10 border-0 shadow-sm">
+                        <div class="card-header bg-white">
+                            项目完成情况
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <p>项目A</p>
+                                <div class="progress">
+                                    <div class="progress-bar  progress-bar-striped progress-bar-animated bg-danger"
+                                         style="width: 25%;">
+                                        25%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p>项目B</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                         style="width: 35%;">
+                                        35%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p>项目C</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                                         style="width: 45%;">
+                                        45%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p>项目D</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+                                         style="width: 55%;">
+                                        55%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p>项目E</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                         style="width: 65%;">
+                                        65%
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -460,20 +613,15 @@
 
 <!--调色板-->
 <div class="bsa-switcher">
-
     <div class="bsa-switcher-toggler-btn">
         <div class="bsa-switcher-toggler-icon">
             <i class="bi bi-gear"></i>
         </div>
     </div>
-
-
     <div class="bsa-switcher-header">
         <h5 class="bsa-switcher-header-title">自定义主题</h5>
         <button type="button" class="btn-close text-reset bsa-switcher-toggler-btn"></button>
     </div>
-
-
     <div class="bsa-switcher-body">
         <h6 class="text-dark">头部颜色</h6>
         <hr>
@@ -546,13 +694,12 @@
 <script src="lib/chart.js/dist/chart.min.js"></script>
 
 <script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
+    new Chart(document.getElementById('chart-bar').getContext('2d'), {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
             datasets: [{
-                label: '# of Votes',
+                label: 'pv值',
                 data: [12, 19, 3, 5, 2, 3],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -583,14 +730,13 @@
     });
 
 
-    const ctx2 = document.getElementById('myChart2').getContext('2d');
-    const myChart2 = new Chart(ctx2, {
+    new Chart(document.getElementById('chart-line').getContext('2d'), {
         type: 'line',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
             datasets: [{
-                label: 'My First Dataset',
-                data: [65, 59, 80, 81, 56, 55, 40],
+                label: '营业额 单位/万元',
+                data: [65, 90, 60, 50, 40, 30, 20],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1

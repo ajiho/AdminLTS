@@ -98,7 +98,7 @@
 
 <div class="bsa-header">
 
-    <div class="bsa-header-item bsa-mobile-sidebar-item" role="button">
+    <div class="bsa-header-item bsa-mobile-sidebar-item">
         <i class="bi bi-list"></i>
     </div>
 
@@ -330,11 +330,25 @@
 
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
-                <a class="btn btn-outline-primary" href="javascript:" role="button"><i class="bi bi-plus"></i>新增</a>
-                <a class="btn btn-outline-success" href="javascript:" role="button"><i class="bi bi-check2"></i>启用</a>
-                <a class="btn btn-outline-dark" href="javascript:" role="button"><i class="bi bi-x-octagon"></i>禁用</a>
-                <a class="btn btn-outline-danger" href="javascript:" role="button"><i class="bi bi-x"></i>删除</a>
-                <a class="btn btn-outline-warning" href="javascript:" role="button"><i class="bi bi-trash"></i>回收站</a>
+
+                <div class="row row-cols-auto g-3">
+                    <div class="col">
+                        <a class="btn btn-outline-primary" href="javascript:" role="button"><i class="bi bi-plus"></i>新增</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-outline-success" href="javascript:" role="button"><i class="bi bi-check2"></i>启用</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-outline-dark" href="javascript:" role="button"><i class="bi bi-x-octagon"></i>禁用</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-outline-danger" href="javascript:" role="button"><i class="bi bi-x"></i>删除</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-outline-warning" href="javascript:" role="button"><i class="bi bi-trash"></i>回收站</a>
+                    </div>
+                </div>
+
                 <hr>
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -355,7 +369,8 @@
                         <tbody>
                         <tr>
                             <td>
-                                <input class="form-check-input" aria-label="checkbox" type="checkbox" name="id[]" value="1">
+                                <input class="form-check-input" aria-label="checkbox" type="checkbox" name="id[]"
+                                       value="1">
                             </td>
                             <td>1</td>
                             <td>admin21</td>
@@ -364,15 +379,22 @@
                             <td>15805136482</td>
                             <td><span class="badge rounded-pill bg-success">正常</span></td>
                             <td>
-                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-diagram-2"></i></a>
-                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-person-check-fill"></i></a>
-                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-pencil"></i></a>
-                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-trash"></i></a>
+                                <div class="d-flex align-items-center">
+                                    <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i
+                                            class="bi bi-diagram-2"></i></a>
+                                    <a class="btn btn-sm btn-primary ms-2" href="javascript:" title="角色"><i
+                                            class="bi bi-person-check-fill"></i></a>
+                                    <a class="btn btn-sm btn-primary ms-2" href="javascript:" title="修改"><i
+                                            class="bi bi-pencil"></i></a>
+                                    <a class="btn btn-sm btn-primary ms-2" href="javascript:" title="删除"><i
+                                            class="bi bi-trash"></i></a>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input class="form-check-input" aria-label="checkbox" type="checkbox" name="id[]" value="2">
+                                <input class="form-check-input" aria-label="checkbox" type="checkbox" name="id[]"
+                                       value="2">
                             </td>
                             <td>2</td>
                             <td>admin21</td>
@@ -381,10 +403,16 @@
                             <td>15805136482</td>
                             <td><span class="badge rounded-pill bg-success">正常</span></td>
                             <td>
-                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-diagram-2"></i></a>
-                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-person-check-fill"></i></a>
-                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-pencil"></i></a>
-                                <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i class="bi bi-trash"></i></a>
+                                <div class="d-flex align-items-center">
+                                    <a class="btn btn-sm btn-primary" href="javascript:" title="权限"><i
+                                            class="bi bi-diagram-2"></i></a>
+                                    <a class="btn btn-sm btn-primary ms-2" href="javascript:" title="角色"><i
+                                            class="bi bi-person-check-fill"></i></a>
+                                    <a class="btn btn-sm btn-primary ms-2" href="javascript:" title="修改"><i
+                                            class="bi bi-pencil"></i></a>
+                                    <a class="btn btn-sm btn-primary ms-2" href="javascript:" title="删除"><i
+                                            class="bi bi-trash"></i></a>
+                                </div>
                             </td>
                         </tr>
                         </tbody>
