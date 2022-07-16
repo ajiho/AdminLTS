@@ -832,7 +832,21 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 }
 
 
+
+/*==================================错误页面==================================*/
+.bsa-error-code{
+    font-size: 8rem;
+    font-weight: 700;
+    text-shadow: 4px 4px 0 #f5f6fa, 6px 6px 0 #5f5f5f;
+    color: #5f5f5f;
+}
+
+
 @media (max-width: 575.98px) {
+
+    .bsa-error-code{
+        font-size: 5rem;
+    }
 
 }
 
