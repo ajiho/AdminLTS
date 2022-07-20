@@ -1,6 +1,9 @@
 {
   "dependencies": {
-    "bootstrap-icons": "^1.8.3",
-    "chart.js": "^3.8.0"
+    "@ztree/ztree_v3": "^3.5.48",
+    "bootstrap-icons": "^1.9.1",
+    "chart.js": "^3.8.0",
+    "jquery": "^3.6.0",
+    "moment": "^2.29.4"
   }
 }

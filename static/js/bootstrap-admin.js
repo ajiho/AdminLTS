@@ -45,11 +45,11 @@
         return element;
     }
 
-    function getParent(el, className = '') {
+    function getParent(el, selector = '') {
         let rest = [];
         let targetParent = el.parentNode;
         while (!(targetParent instanceof Document)) {
-            if (targetParent.classList.contains(className)) {
+            if (targetParent.matches(selector)) {
                 rest.push(targetParent);
             }
             targetParent = targetParent.parentNode;
@@ -73,6 +73,17 @@
             e.setAttribute("AutoComplete", "off");
         });
 
+
+        //全选
+        eventDelegate(document.body, 'change', '.check-all', function (event) {
+            let target = event.target;
+            let pTable = getParent(target, 'table')[0];
+            let checkboxes = pTable.querySelectorAll("input[type='checkbox']");
+            let status = target.checked;
+            checkboxes.forEach((el, index) => {
+                el.checked = status;
+            })
+        });
 
         eventDelegate(document.body, 'click', '.bsa-sidebarcolor-wrap div[class^=sidebarcolor]', function (event) {
 
@@ -198,7 +209,7 @@
                         void el.scrollHeight;
                         //2.设置为0
                         el.nextElementSibling.style.cssText = `display:block;height:0;overflow: hidden;`;
-                    }else if(el.matches('a.active')){
+                    } else if (el.matches('a.active')) {
                         el.classList.remove('active');
                     }
                 })

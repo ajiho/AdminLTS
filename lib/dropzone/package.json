@@ -1,0 +1,113 @@
+{
+  "_from": "dropzone",
+  "_id": "dropzone@6.0.0-beta.2",
+  "_inBundle": false,
+  "_integrity": "sha512-k44yLuFFhRk53M8zP71FaaNzJYIzr99SKmpbO/oZKNslDjNXQsBTdfLs+iONd0U0L94zzlFzRnFdqbLcs7h9fQ==",
+  "_location": "/dropzone",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "dropzone",
+    "name": "dropzone",
+    "escapedName": "dropzone",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/dropzone/-/dropzone-6.0.0-beta.2.tgz",
+  "_shasum": "098be8fa84bdc08674cf0b74f4c889e2679083d6",
+  "_spec": "dropzone",
+  "_where": "D:\\phpstudy_pro\\WWW\\think-blog",
+  "browserslist": "defaults, > 0.25%",
+  "bugs": {
+    "url": "https://github.com/dropzone/dropzone/issues",
+    "email": "m@tias.me"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Matias Meno",
+      "email": "m@tias.me",
+      "url": "https://www.yesmeno.com"
+    }
+  ],
+  "dependencies": {
+    "@swc/helpers": "^0.2.13",
+    "just-extend": "^5.0.0"
+  },
+  "deprecated": false,
+  "description": "Handles drag and drop of files for you.",
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.0.0",
+    "@parcel/transformer-sass": "^2.0.0",
+    "chai": "4.3.4",
+    "cypress": "^8.7.0",
+    "cypress-file-upload": "^5.0.8",
+    "karma": "^6.1.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-mocha": "^2.0.1",
+    "karma-sinon-chai": "^2.0.2",
+    "karma-spec-reporter": "^0.0.32",
+    "mocha": "^9.1.3",
+    "mocha-headless-chrome": "^3.0.0",
+    "node-static": "^0.7.11",
+    "parcel": "^2.0.0",
+    "sass": "^1.33.0",
+    "sinon": "^11.1.2",
+    "sinon-chai": "^3.5.0"
+  },
+  "homepage": "https://www.dropzone.dev/js",
+  "keywords": [
+    "dragndrop",
+    "drag and drop",
+    "file upload",
+    "upload"
+  ],
+  "license": "MIT",
+  "main": "dist/dropzone.js",
+  "maintainers": [
+    {
+      "name": "Matias Meno",
+      "email": "m@tias.me",
+      "url": "https://www.yesmeno.com"
+    }
+  ],
+  "module": "dist/dropzone.mjs",
+  "name": "dropzone",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dropzone/dropzone.git"
+  },
+  "scripts": {
+    "build": "parcel build && yarn run css",
+    "css": "yarn sass src/:dist/ --style compressed",
+    "start-test-server": "node test/test-server.js",
+    "test": "karma start test/karma.conf.js",
+    "watch": "parcel watch",
+    "watch-css": "yarn sass src/:dist/ --watch --style compressed"
+  },
+  "source": "src/dropzone.js",
+  "standalone": "dist/dropzone-min.js",
+  "targets": {
+    "main": {
+      "source": "src/dropzone.js"
+    },
+    "module": {
+      "source": "src/dropzone.js"
+    },
+    "standalone": {
+      "source": "tool/dropzone-global.js",
+      "outputFormat": "global"
+    },
+    "built-test": {
+      "source": "test/unit-tests.js",
+      "distDir": "test/built/"
+    }
+  },
+  "version": "6.0.0-beta.2"
+}

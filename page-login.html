@@ -21,11 +21,10 @@
                 </a>
             </div>
             <div class="card-body">
-                <form class="form">
+                <form id="form" class="form">
                     <div class="mb-3">
-                        <label for="name" class="form-label">账号</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="邮箱/用户名/手机号"
-                        >
+                        <label for="username" class="form-label">账号</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="邮箱/用户名/手机号">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">密码</label>
@@ -49,17 +48,18 @@
                                value="1">
                         <label class="form-check-label" for="exampleCheck1">记住我</label>
                     </div>
+
+                    <div class="d-flex justify-content-between align-items-end">
+                        <button id="login-btn" type="submit" class="btn btn-success">登录</button>
+                        <div>
+                            <span class="text-muted">没有帐号？ 点此</span>
+                            <a href="javascript:" class="text-decoration-none text-dark">注册</a>
+                        </div>
+                    </div>
                 </form>
             </div>
 
-            <div class="card-footer bg-white py-3">
-                <div class="d-flex justify-content-between align-items-end">
-                    <button id="login-btn" type="button" class="btn btn-success">登录</button>
-                    <div>
-                        <span class="text-muted">没有帐号？ 点此</span>
-                        <a href="javascript:" class="text-decoration-none text-dark">注册</a>
-                    </div>
-                </div>
+            <div class="card-footer bg-white">
                 <div class="text-center py-2 my-2">
                     <span class="text-muted">继续即代表同意</span>
                     <a href="javascript:" class="text-decoration-none">《隐私政策》</a>
@@ -73,5 +73,51 @@
 <script src="static/js/bootstrap.bundle.min.js"></script>
 <script src="static/js/bootstrap-admin.js"></script>
 
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script src="lib/formvalidation/js/formValidation.js"></script>
+<script src="lib/formvalidation/js/framework/bootstrap.js"></script>
+<script src="lib/formvalidation/js/language/zh_CN.js"></script>
+<script>
+    //前端表单验证
+    $('#form').formValidation({
+        fields: {
+            username: {
+                validators: {
+                    notEmpty: true,
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: true,
+                }
+            },
+            captcha: {
+                validators: {
+                    notEmpty: true,
+                }
+            }
+        }
+    }).on('success.form.fv', function (e) {
+        //阻止表单提交
+        e.preventDefault();
+        //得到表单对象
+        let $form = $(e.target);
+        let data = $form.serialize();
+
+        alert('表单验证通过,即将发起ajax');
+        //得到序列化数据
+        $.ajax({
+            url: "/login.php",
+            method: 'POST',
+            data
+        }).then(function (res) {
+            if (res.code === 200) {
+                //登录成功
+            } else {
+                //登录失败
+            }
+        });
+    });
+</script>
 </body>
 </html>

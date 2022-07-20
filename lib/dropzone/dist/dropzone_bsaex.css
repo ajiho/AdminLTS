@@ -1,0 +1,44 @@
+.dropzone {
+    border: none;
+    background: #f8f9fa;
+    min-height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dz-preview {
+    background: #f8f9fa !important;
+}
+
+.dz-image {
+    background-color: rgba(0, 0, 0, .08);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.dz-error-message {
+    margin-top: 1.3rem;
+}
+
+
+/*默认提示文本*/
+.dz-default {
+    color: #6c757d;;
+}
+
+.dz-error-message {
+    background: #dc3545 !important;
+}
+
+.dz-error-message:after {
+    border-bottom-color: #dc3545 !important;
+}
+
+.dz-remove {
+    text-decoration: none !important;
+}
+
+.dz-hide-default {
+    display: none;
+}
