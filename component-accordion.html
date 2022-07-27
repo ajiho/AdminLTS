@@ -6,8 +6,9 @@
     <link rel="icon" href="static/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="static/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="static/css/bootstrap.css">
-    <link rel="stylesheet" href="static/css/bootstrap-admin.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
+    <link rel="stylesheet" href="lib/prismjs/themes/prism-okaidia.css">
     <title>bootstrap-admin</title>
 </head>
 <body>
@@ -370,46 +371,60 @@
             <div class="card-body">
                 <h5 class="card-title">基本手风琴案例</h5>
                 <hr>
-                <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                网银支付支持的银行？
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                             data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                您可以在收银台上，点击“添加新卡/网银支付”的按键，在银行卡号输入框的右侧会显示支持的银行，点击后即可查看快捷和网银分别支持的银行
+
+                <div class="bsa-component">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Lorem ipsum dolor sit amet, consectetur.
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias distinctio dolorum
+                                    eaque eum illo magnam quas quos voluptatum! Aliquam animi dolorum incidunt mollitia
+                                    numquam quasi, quibusdam quidem repellendus voluptas?
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                什么是组合支付？
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                             data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                请您按照提示到银行操作转账， 线下公司转账方式的到账时间是1-3个工作日（支付+对账时效：10天）；
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Lorem ipsum dolor sit amet, consectetur.
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aperiam
+                                    architecto
+                                    autem consectetur, dicta enim est hic inventore magni nisi numquam officia omnis
+                                    placeat
+                                    porro quaerat quod repudiandae, rerum?
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                什么是快捷支付？
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                             data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                快捷支付是一种安全、便捷的付款方式，只需要关联用户的银行卡，在支付时输入支付密码或短信验证码即可完成付款，无需使用网银。
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                    Lorem ipsum dolor sit amet, consectetur.
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque fugiat hic
+                                    laborum
+                                    nihil quibusdam recusandae. Ab corporis cumque eius laboriosam minima mollitia quam
+                                    quis
+                                    repellat rerum voluptates! Esse numquam, ullam.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -417,64 +432,57 @@
 
                 <h5 class="card-title mt-5">无边框和圆角的手风琴</h5>
                 <hr>
-                <div class="accordion accordion-flush" id="accordionFlushExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne">
-                                什么是次日达？
-                            </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse"
-                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                在一定时间点之前提交的现货订单，将于次日送达。
-                                注：先货订单以提交时间点开始计算，先款订单以支付完成时间点计算。
+                <div class="bsa-component">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                    Lorem ipsum dolor sit amet, consectetur.
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                 aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad aliquam, animi aspernatur
+                                    assumenda consequatur illo incidunt ipsum maxime minus nesciunt non nostrum numquam
+                                    quaerat soluta temporibus tenetur voluptate voluptates.
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                    aria-controls="flush-collapseTwo">
-                                次日达有没有运费？运费是多少？
-                            </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                             aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                次日达不特殊增加运费，运费标准和京东普通运费标准一致。 配送服务收费标准请查看【消费者购买京东自营商品运费收取标准】
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                        aria-controls="flush-collapseTwo">
+                                    Lorem ipsum dolor sit amet, consectetur.
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                 aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque deleniti deserunt error
+                                    minima rem. Accusamus asperiores assumenda beatae blanditiis ducimus eligendi enim
+                                    laudantium libero quaerat quidem. Architecto cupiditate debitis quisquam?
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                    aria-controls="flush-collapseThree">
-                                我如何下自提的订单？自提流程是什么？
-                            </button>
-                        </h2>
-                        <div id="flush-collapseThree" class="accordion-collapse collapse"
-                             aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                注意事项
-
-                                1.自提时间：周一至周日，09:00 － 19:00（部分自提点工作时间为9:00-18:00，如遇国家法定节假日，则以京东新闻发布放假时间为准，请大家届时关注）
-
-                                2.商品到达自提点后，我们将为您保留三天(自然日)，超过三天（自然日）则视为默认取消订单（国家法定节假日除外）；
-
-                                3.钱、货需客户当面点清，离开提货前台后京东将不再对钱、货数量负责；
-
-                                4.普通发票：由库房开具发票，随包裹一同发送，自提点不提供开票和换票服务。
-
-                                特殊说明：
-
-                                1.如果一个ID账号在一个月内有过1次以上或一年内有过3次以上，在规定的时间内因客户原因不履约提货，我司将在相应的ID账户里每单扣除500京豆作为运费；时间计算方法为：成功提交订单后向前推算30天为一个月，成功提交订单后向前推算365天为一年，不以自然月和自然年计算；
-
-                                2.对于上门自提的客户，京东可以接受现金、pos机刷卡和支票支付（支票支持北京、上海）。选择支票支付方式，需要客户自行将支票内容填写完整（除广州不分金额一律到账后提货，其他城市货款5000元以下可先提货，5000元及以上必须款到帐后方可提货）；POS机刷卡只支持带有银联标识的银行卡；
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                        aria-controls="flush-collapseThree">
+                                    Lorem ipsum dolor sit amet, consectetur.
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                 aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi dolore est ex
+                                    illum ipsa ipsum laboriosam laborum, maiores numquam obcaecati odit optio repellat
+                                    saepe, voluptates? Deserunt magni pariatur saepe.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -567,9 +575,10 @@
         </div>
     </div>
 </div>
-<script src="static/js/bootstrap.bundle.min.js"></script>
-<script src="static/js/bootstrap-admin.js"></script>
 
+<script src="lib/prismjs/prism.js"></script>
+<script src="static/js/bootstrap.bundle.min.js"></script>
+<script src="static/js/bootstrap-admin.min.js"></script>
 
 </body>
 </html>
