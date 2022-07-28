@@ -6,12 +6,13 @@
     <link rel="icon" href="static/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="static/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="static/css/bootstrap.css">
-    <link rel="stylesheet" href="static/css/bootstrap-admin.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
+    <!--  代码高亮  -->
+    <link rel="stylesheet" href="lib/prismjs/themes/prism-okaidia.css">
     <title>bootstrap-admin</title>
 </head>
 <body>
-
 
 <!--侧边栏-->
 <div class="bsa-sidebar">
@@ -366,140 +367,385 @@
     <div class="bsa-main-content">
         <div class="container-fluid">
 
-            <h4 class="text-dark mt-4">卡片基本示例</h4>
+
+            <h4 class="text-dark mt-4">卡片的一些基本示例</h4>
             <hr>
-            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 g-3 mb-3">
+            <div class="row row-cols-1 g-3 mb-3">
                 <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body">
-                            <div>
-                                <h5 class="card-title">《天净沙·秋思》</h5>
+                    <div class="bsa-component">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis eius error inventore
+                                molestiae vel? A debitis, dignissimos doloremque eaque expedita nobis similique
+                                voluptate.
+                                Atque dolores explicabo fugiat id nostrum quos.
                             </div>
-                            <p class="card-text">枯藤老树昏鸦，小桥流水人家</p>	<a href="javascript:" class="btn btn-primary">更多绝句</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="bsa-component">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias blanditiis
+                                    cupiditate
+                                    dolores harum hic id illum libero, odit officiis quidem quo reiciendis repellat
+                                    repellendus similique sit soluta, totam ullam, vitae!
+                                </p>
+                                <a href="javascript:" class="card-link">Card link</a>
+                                <a href="javascript:" class="card-link">Another link</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body">
-                            <div>
-                                <h5 class="card-title">《蝶恋花·伫倚危楼风细细》</h5>
+                    <div class="bsa-component">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header">
+                                card-header
                             </div>
-                            <p class="card-text">衣带渐宽终不悔，为伊消得人憔悴</p>	<a href="javascript:" class="btn btn-danger">更多绝句</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body">
-                            <div>
-                                <h5 class="card-title">《滕王阁序》</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus asperiores,
+                                    dolores
+                                    doloribus earum eius eligendi fugiat ipsam iure nihil numquam pariatur perferendis
+                                    quas
+                                    quibusdam repellendus, reprehenderit saepe suscipit tempora unde!
+                                </p>
+                                <a href="javascript:" class="btn btn-primary">button</a>
                             </div>
-                            <p class="card-text">落霞与孤鹜齐飞，秋水共长天一色</p>	<a href="javascript:" class="btn btn-success">更多绝句</a>
+                            <div class="card-footer">
+                                card-footer
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 g-3">
+
+
+            <h4 class="text-dark mt-4">文本对齐</h4>
+            <hr>
+            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 g-3 mb-3">
                 <div class="col">
-                    <div class="card bg-primary text-white shadow-sm border-0">
-                        <div class="card-body">
-                            <h5 class="card-title text-white">《离思五首·其四》</h5>
-                            <p class="card-text">曾经沧海难为水，除却巫山不是云</p>
+                    <div class="bsa-component">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet exercitationem impedit
+                                    quod, tempore ullam veniam! Ad incidunt nam quam sequi unde? Accusamus distinctio
+                                    dolores esse et hic quaerat qui ullam.
+                                </p>
+                                <a href="javascript:" class="btn btn-primary">link</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card bg-danger text-white shadow-sm border-0">
-                        <div class="card-body">
-                            <h5 class="card-title text-white">《木兰词·拟古决绝词柬友》</h5>
-                            <p class="card-text">人生若只如初见，何事秋风悲画扇</p>
+                    <div class="bsa-component">
+                        <div class="card text-center border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aut, beatae
+                                    doloremque ea eius eos in minima minus nam nisi odit optio pariatur, ratione
+                                    reprehenderit soluta tempore unde veniam voluptas?
+                                </p>
+                                <a href="javascript:" class="btn btn-primary">link</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card bg-success text-white shadow-sm border-0">
-                        <div class="card-body">
-                            <h5 class="card-title text-white">《无题·昨夜星辰昨夜风》</h5>
-                            <p class="card-text">身无彩凤双飞翼，心有灵犀一点通</p>
+                    <div class="bsa-component">
+                        <div class="card text-end border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur doloribus earum
+                                    magni nam quis! Aliquam amet aspernatur commodi consequuntur, dolores error excepturi
+                                    facilis illum ipsa iste nobis quas soluta, voluptatem.
+                                </p>
+                                <a href="javascript:" class="btn btn-primary">link</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <h4 class="text-dark mt-4">和导航组件一起使用</h4>
+            <hr>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2 g-3 mb-3">
+                <div class="col">
+                    <div class="bsa-component">
+                        <div class="card text-center border-0 shadow-sm">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs card-header-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="true" href="javascript:">Active</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="javascript:">Link</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled">Disabled</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi debitis eius et
+                                    excepturi magnam, nemo obcaecati possimus quaerat. Dignissimos doloribus, inventore iure
+                                    laborum magni quasi quod sit! Consectetur, quibusdam, sapiente?
+                                </p>
+                                <a href="javascript:" class="btn btn-primary">link</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="bsa-component">
+                        <div class="card text-center border-0 shadow-sm">
+                            <div class="card-header">
+                                <ul class="nav nav-pills card-header-pills">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="javascript:">Active</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="javascript:">Link</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled">Disabled</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium animi at
+                                    commodi in molestiae nesciunt perferendis quidem quo sequi? Consectetur dignissimos hic,
+                                    maxime nisi officia perspiciatis saepe sit veniam?
+                                </p>
+                                <a href="javascript:" class="btn btn-primary">link</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h4 class="text-dark mt-4">卡片的不同情景色</h4>
+            <hr>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2 g-3 mb-3">
+
+                <div class="col">
+                    <div class="bsa-component">
+                        <div class="card text-white bg-primary mb-3 border-0 shadow-sm">
+                            <div class="card-header">card-header</div>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At consequatur ducimus maxime
+                                    nihil porro quia soluta unde. At autem beatae cum, deserunt, ducimus esse ipsa,
+                                    laboriosam molestiae nesciunt saepe voluptatibus?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="bsa-component">
+                        <div class="card text-white bg-secondary mb-3 border-0 shadow-sm">
+                            <div class="card-header">card-header</div>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dolorem eum
+                                    incidunt quibusdam reiciendis voluptate. Maiores nam nemo nesciunt. Architecto aut
+                                    dolorum eligendi fugit magni quas repudiandae voluptatum? Aut, corporis.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="bsa-component">
+                        <div class="card text-white bg-success mb-3 border-0 shadow-sm">
+                            <div class="card-header">card-header</div>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci assumenda
+                                    dolor eligendi enim error hic mollitia non odio odit. Alias aspernatur at ex id officia
+                                    quas quia vel voluptas?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="bsa-component">
+                        <div class="card text-white bg-danger mb-3 border-0 shadow-sm">
+                            <div class="card-header">card-header</div>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid culpa dolore
+                                    doloribus error esse hic id illo inventore magnam, maiores mollitia necessitatibus
+                                    pariatur perspiciatis quis, rem tempore unde veniam!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="bsa-component">
+                        <div class="card text-dark bg-warning mb-3 border-0 shadow-sm">
+                            <div class="card-header">card-header</div>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cumque eos
+                                    eveniet, iusto maxime reiciendis temporibus ullam! Aut error esse, laboriosam obcaecati
+                                    perspiciatis sapiente suscipit totam. Eum natus quia sapiente?
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card bg-dark text-white shadow-sm border-0">
-                        <div class="card-body">
-                            <h5 class="card-title text-white">《摸鱼儿·雁丘词》</h5>
-                            <p class="card-text">问世间，情为何物，直教生死相许</p>
+                    <div class="bsa-component">
+                        <div class="card text-dark bg-info mb-3 border-0 shadow-sm">
+                            <div class="card-header">card-header</div>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi incidunt quibusdam
+                                    sequi similique unde. A atque explicabo hic mollitia neque nisi, nobis optio pariatur
+                                    praesentium qui sapiente sequi veniam veritatis?
+                                </p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col">
-                    <div class="card bg-warning shadow-sm border-0">
-                        <div class="card-body">
-                            <h5 class="card-title text-dark">《诗经·击鼓》</h5>
-                            <p class="card-text text-dark">执子之手，与子偕老</p>
+                    <div class="bsa-component">
+                        <div class="card text-dark bg-light mb-3 border-0 shadow-sm">
+                            <div class="card-header">card-header</div>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium iusto libero
+                                    magnam magni nisi non quidem vero voluptas! Beatae illo iusto quos repudiandae
+                                    voluptatum! Aliquid asperiores esse illo inventore velit?
+                                </p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col">
-                    <div class="card bg-info shadow-sm border-0">
-                        <div class="card-body">
-                            <h5 class="card-title text-dark">《竹枝词二首·其一》</h5>
-                            <p class="card-text text-dark">东边日出西边雨，道是无晴却有晴</p>
+                    <div class="bsa-component">
+                        <div class="card text-white bg-dark mb-3 border-0 shadow-sm">
+                            <div class="card-header">card-header</div>
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci alias aspernatur
+                                    autem deleniti distinctio eaque earum eveniet exercitationem iure laborum modi nam,
+                                    optio perspiciatis quibusdam repellat sapiente ut voluptatem.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <h4 class="text-dark mt-4">携带图片的卡片</h4>
             <hr>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-4 g-3">
                 <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <img src="static/images/804f663be837f448585faa77c96c774a.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">梵净山</h5>
-                            <p class="card-text bsa-ellipsis3">
-                                梵净山（Mount
-                                Fanjing），得名于“梵天净土”，位于贵州省铜仁市的印江、江口、松桃（西南部）3县交界，地处北纬27°49′50″—28°1′30″，东经108°45′55″—108°48′30″，靠近江口县城、印江县东南部、松桃县西南部。系武陵山脉主峰，是中国的佛教道
-                            </p>
-                            <a href="javascript:" class="btn btn-outline-primary">阅读详情</a>
+                    <div class="bsa-component">
+                        <div class="card shadow-sm border-0">
+                            <img src="https://via.placeholder.com/600x400?text=img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text bsa-ellipsis3">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda dicta,
+                                    doloribus enim eveniet explicabo illum impedit ipsa iure laborum mollitia nobis quas
+                                    quia quisquam quo quod reprehenderit suscipit vero!
+                                </p>
+                                <a href="javascript:" class="btn btn-outline-primary">button</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <img src="static/images/9f6607434d271837917bd23e86e38094.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">鼓浪屿</h5>
-                            <p class="card-text bsa-ellipsis3">
-                                鼓浪屿，原名“圆沙洲”，别名“圆洲仔”，南宋时期命“五龙屿”，岛西南有一海蚀岩洞受浪潮冲击，声如擂鼓，自明朝雅化为今名称“鼓浪屿”，位于福建省厦门市思明区鼓浪屿街道，面积1.88平方公里，与厦门岛隔海相望，至高点为日光岩，与厦门岛上的厦门世茂海.. </p>
-                            <a href="javascript:" class="btn btn-primary">阅读详情</a>
+                    <div class="bsa-component">
+                        <div class="card shadow-sm border-0">
+                            <img src="https://via.placeholder.com/600x400?text=img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text bsa-ellipsis3">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci assumenda
+                                    atque commodi culpa deleniti dolore eveniet excepturi fugit harum illum ipsum magni
+                                    minus modi officiis omnis, totam ut, velit?
+                                </p>
+                                <a href="javascript:" class="btn btn-primary">button</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <img src="static/images/901146f34585de4223db9953f9b97794.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">黄果树瀑布</h5>
-                            <p class="card-text bsa-ellipsis3">
-                                黄果树瀑布，即黄果树大瀑布。古称白水河瀑布，亦名“黄葛墅”瀑布或“黄葛树”瀑布，贵州民间自古以来就流传有黄果树瀑布的神话故事，黄果树瀑布的名称就来自这个神话故事中结“黄果”的树。位于中国贵州省安顺市镇宁布依族苗族自治县，属珠江水系西江干流南 </p>
-                            <a href="javascript:" class="btn btn-secondary">阅读详情</a>
+                    <div class="bsa-component">
+                        <div class="card shadow-sm border-0">
+                            <img src="https://via.placeholder.com/600x400?text=img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text bsa-ellipsis3">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi eveniet fuga, maiores
+                                    molestiae mollitia nobis quibusdam tempora vel? Consequuntur culpa eveniet
+                                    exercitationem harum in nostrum rem ullam voluptates? Aliquid, molestias!
+                                </p>
+                                <a href="javascript:" class="btn btn-secondary">button</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <img src="static/images/2268b9975a329e460d19ec6f3e55bc01.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">厦门植物园</h5>
-                            <p class="card-text bsa-ellipsis3">
-                                厦门植物园一般指厦门园林植物园。
-                                厦门园林植物园，俗称“万石植物园”，位于福建省厦门岛东南隅的万石山中，背靠五老峰、南普陀寺、厦门大学，紧邻中山路商圈。始建于1960年，占地4.93平方公里，是福建省第一个植物园，是鼓浪屿—万石山风景名胜区的 </p>
-                            <a href="javascript:" class="btn btn-success">阅读详情</a>
+                    <div class="bsa-component">
+                        <div class="card shadow-sm border-0">
+                            <img src="https://via.placeholder.com/600x400?text=img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text bsa-ellipsis3">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam beatae
+                                    corporis deleniti dolor id illo iste magnam magni nobis non officiis pariatur quidem,
+                                    quos ratione recusandae tempore voluptatem voluptatibus?
+                                </p>
+                                <a href="javascript:" class="btn btn-success">button</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -507,84 +753,104 @@
             <hr>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-4 g-3">
                 <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <img src="static/images/ad104375c7475da9145cabc30574e418.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">《水浒传》</h5>
-                            <p class="card-text bsa-ellipsis3">
-                                北宋仁宗年间，某年京师瘟疫盛行，军民伤损甚多。天子钦点洪太尉前往江西信州龙虎山，宣请张天师驱邪除祟。洪太尉寻天师不见，却因固执走了上清宫中镇压的一百单八个魔头。转眼数十年过去，...
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item small">张天师祈禳瘟疫，洪太尉误走妖魔</li>
-                            <li class="list-group-item small">王教头私走延安府，九纹龙大闹史家村</li>
-                            <li class="list-group-item small">史大郎夜走华阴县，鲁提辖拳打镇关西</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="javascript:" class="card-link">更多章节</a>
-                            <a href="javascript:" class="card-link">作者信息</a>
+                    <div class="bsa-component">
+                        <div class="card shadow-sm border-0">
+                            <img src="https://via.placeholder.com/600x400?text=img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text bsa-ellipsis3">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ex natus omnis. A dolor
+                                    et iusto laborum natus nisi perspiciatis? A assumenda ducimus ea et facere impedit,
+                                    maxime neque repudiandae.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item small">list-group-item</li>
+                                <li class="list-group-item small">list-group-item</li>
+                                <li class="list-group-item small">list-group-item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="javascript:" class="card-link">linkA</a>
+                                <a href="javascript:" class="card-link">linkB</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <img src="static/images/753a22aaf947c3c739b4d14236bd9794.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">《红楼梦》</h5>
-                            <p class="card-text bsa-ellipsis3">
-                                女娲炼石补天,所炼之石剩一块未用,弃在大荒山无稽崖青埂峰下.此石"自经煅炼之后灵性已通",因未被选中补天常悲伤自怨.一日,和尚茫茫大士,道士渺渺真人经过此地,经顽石苦求再四
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item small">甄士隐梦幻识通灵， 贾雨村风尘怀闺秀</li>
-                            <li class="list-group-item small">贾夫人仙逝扬州城， 冷子兴演说荣国府</li>
-                            <li class="list-group-item small"> 托内兄如海荐西宾， 接外孙贾母惜孤女</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="javascript:" class="card-link">更多章节</a>
-                            <a href="javascript:" class="card-link">作者信息</a>
+                    <div class="bsa-component">
+                        <div class="card shadow-sm border-0">
+                            <img src="https://via.placeholder.com/600x400?text=img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text bsa-ellipsis3">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur aut dolor
+                                    dolores dolorum esse excepturi facilis impedit, incidunt modi, nesciunt optio quia sequi
+                                    ullam unde velit vero vitae voluptates?
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item small">list-group-item</li>
+                                <li class="list-group-item small">list-group-item</li>
+                                <li class="list-group-item small">list-group-item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="javascript:" class="card-link">linkA</a>
+                                <a href="javascript:" class="card-link">linkB</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <img src="static/images/67b2213d33699ad08858cb7443e18076.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">《西游记》</h5>
-                            <p class="card-text bsa-ellipsis3">
-                                古典名著《西游记》中国古典四大名著之一,是一部优秀的神魔小说,也是一部群众创作和文人创作相结合的作品.小说以整整七回的《大闹天宫》故事开始,把孙悟空的形象提到全书首要的地位
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item small">灵根育孕源流出,心性修持大道生</li>
-                            <li class="list-group-item small">悟彻菩提真妙理,断魔归本合元神</li>
-                            <li class="list-group-item small">四海千山皆拱伏,九幽十类尽除名</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="javascript:" class="card-link">更多章节</a>
-                            <a href="javascript:" class="card-link">作者信息</a>
+                    <div class="bsa-component">
+                        <div class="card shadow-sm border-0">
+                            <img src="https://via.placeholder.com/600x400?text=img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text bsa-ellipsis3">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsam iure iusto
+                                    minima molestiae molestias, obcaecati optio ratione soluta unde! Ab culpa expedita
+                                    facilis, fuga illo laboriosam numquam odio quaerat!
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item small">list-group-item</li>
+                                <li class="list-group-item small">list-group-item</li>
+                                <li class="list-group-item small">list-group-item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="javascript:" class="card-link">linkA</a>
+                                <a href="javascript:" class="card-link">linkB</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm border-0">
-                        <img src="static/images/ef00328fe2397f7cc8f0ab434f10c17c.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">《三国演义》</h5>
-                            <p class="card-text bsa-ellipsis3">
-                                《三国演义》描绘了三国时代的一幅政治风云的彩色画卷,是一个龙争虎斗的战争史诗.着重表现的是从东汉末年到晋朝将近一个世纪多个政治集团间错综复杂紧张尖锐的斗争.这种斗争发展成为连接.
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item small">宴桃园豪杰三结义 斩黄巾英雄首立功</li>
-                            <li class="list-group-item small">张翼德怒鞭督邮 何国舅谋诛宦竖</li>
-                            <li class="list-group-item small">议温明董卓叱丁原 馈金珠李肃说吕布</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="javascript:" class="card-link">更多章节</a>
-                            <a href="javascript:" class="card-link">作者信息</a>
+                    <div class="bsa-component">
+                        <div class="card shadow-sm border-0">
+                            <img src="https://via.placeholder.com/600x400?text=img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title</h5>
+                                <p class="card-text bsa-ellipsis3">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At error fuga ipsum,
+                                    necessitatibus nihil non odio officiis pariatur repellat sequi. Delectus deleniti ex
+                                    fugiat illum laboriosam quas repellendus rerum similique.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item small">list-group-item</li>
+                                <li class="list-group-item small">list-group-item</li>
+                                <li class="list-group-item small">list-group-item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="javascript:" class="card-link">linkA</a>
+                                <a href="javascript:" class="card-link">linkB</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -592,131 +858,174 @@
             <hr>
             <div class="row row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
                 <div class="col">
-                    <div class="card mb-3 border-0 shadow-sm">
-                        <img src="static/images/0f331f944b6ae02732511c8d37268ac4.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">贵州腊肉</h5>
-                            <p class="card-text">
-                                贵州腊肉一般指贵州小腊肉。 这是一道具有地方特色的美食。腊肉，色泽金黄，肉身干燥，肥膘透明，较长时间保存不腐败，是冬季肉食制品。
-                            </p>
-                            <p class="card-text"><small class="text-muted">最后更新 2022/7/17</small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card mb-3 border-0 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">贵州腊肠</h5>
-                            <p class="card-text">贵州腊肠：贵州特产烟熏腊肠，以农家土猪肉烟熏制作而成</p>
-                            <p class="card-text"><small class="text-muted">最后更新 2022/7/17</small>
-                            </p>
-                        </div>
-                        <img src="static/images/d46b6d38f60247cceb167210bcb9af5b.jpeg" class="card-img-top" alt="...">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-0 shadow-sm">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="static/images/e97579b7aeb2e1c78f2dd480d6edeb67.jpeg" alt="..." class="card-img">
+                    <div class="bsa-component">
+                        <div class="card mb-3 border-0 shadow-sm">
+                            <img src="https://via.placeholder.com/800x600?text=img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title-1</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos natus quaerat sapiente ut.
+                                    A consequuntur cum deserunt ea eaque eligendi est ipsum, iure laboriosam modi natus
+                                    praesentium provident veniam voluptatem.
+                                </p>
+                                <p class="card-text"><small class="text-muted">last update 2022/7/17</small>
+                                </p>
                             </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">凉拌折耳根</h5>
-                                    <p class="card-text">
-                                        凉拌折耳根原产地为四川、云南、贵州、重庆等周边地区，为具有浓厚地方特色的西南民间菜。
-                                    </p>
-                                    <p class="card-text"><small class="text-muted">最后更新 2022/7/17</small>
-                                    </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="bsa-component">
+                        <div class="card mb-3 border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">card-title-2</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo facilis hic impedit
+                                    incidunt laudantium officiis praesentium, voluptatibus. Asperiores doloremque, dolorum
+                                    et, eum hic illum ipsum molestias pariatur quis tenetur, totam?
+                                </p>
+                                <p class="card-text"><small class="text-muted">last update 2022/7/17</small>
+                                </p>
+                            </div>
+                            <img src="https://via.placeholder.com/1200x900?text=img" class="card-img-top" alt="...">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="bsa-component">
+                        <div class="card border-0 shadow-sm">
+                            <div class="row g-0">
+                                <div class="col-md-4 d-flex align-items-center bg-light">
+                                    <img src="https://via.placeholder.com/800x600?text=img" alt="..."
+                                         class="card-img">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">card-title-3</h5>
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur
+                                            dignissimos est minima natus nesciunt quo quod totam! Accusamus aperiam cum
+                                            dolorem ducimus ex modi officiis, sed sequi similique vel voluptatem.
+                                        </p>
+                                        <p class="card-text"><small class="text-muted">last update 2022/7/17</small>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col">
-                    <div class="card border-0 shadow-sm">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="static/images/012da8b2807ccac2de5cf210ec2521a1.jpeg" alt="..." class="card-img">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">贵州羊肉粉</h5>
-                                    <p class="card-text">
-                                        贵州羊肉粉是以羊肉、羊骨炖汤、米粉为主料的食品。基本上各大城市都有卖和广西螺蛳粉差不多一样普遍存在
-                                    </p>
-                                    <p class="card-text"><small class="text-muted">最后更新 2022/7/17</small>
-                                    </p>
+                    <div class="bsa-component">
+                        <div class="card border-0 shadow-sm">
+                            <div class="row g-0">
+                                <div class="col-md-4 d-flex align-items-center bg-light">
+                                    <img src="https://via.placeholder.com/800x800?text=img" alt="..."
+                                         class="card-img">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">card-title-4</h5>
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda
+                                            atque consequatur, corporis dolores earum explicabo illo illum labore molestiae
+                                            officiis provident ratione sed sint voluptas. Hic laborum nam voluptatum!
+                                        </p>
+                                        <p class="card-text"><small class="text-muted">last update 2022/7/17</small>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <h4 class="text-dark mt-4">图片当作卡片背景</h4>
             <hr>
             <div class="row row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
                 <div class="col">
-                    <div class="card bg-dark text-white border-0 shadow-sm">
-                        <img src="static/images/34b6450028a91b6835a759d2bd00db11.jpeg" class="card-img" alt="...">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title text-white">奥斯特洛夫斯基《钢铁是怎样炼成的》</h5>
-                            <p class="card-text">
-                                人最宝贵的是生命，生命对人来说只有一次。人的一生应当这样度过：当他回首往事时，不会因为碌碌无为，虚度年华而悔恨，也不会因为为人卑劣，生活庸俗而愧疚。
-                            </p>
-                            <p class="card-text">最后更新 2022/7/17</p>
+                    <div class="bsa-component">
+                        <div class="card bg-dark text-white border-0 shadow-sm">
+                            <img src="https://via.placeholder.com/1200x900?text=img" class="card-img" alt="...">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title text-white">card-title-1</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur aut dicta
+                                    dolorem ducimus facilis, harum illo minus modi nesciunt nihil non nostrum porro quidem
+                                    reiciendis rerum saepe soluta totam!
+                                </p>
+                                <p class="card-text">last update 2022/7/17</p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col">
-                    <div class="card bg-dark text-white border-0 shadow-sm">
-                        <img src="static/images/b7ee6444310c3f4f3559df4f30c1250d.jpeg" class="card-img" alt="...">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title text-white">加油,打工人</h5>
-                            <p class="card-text">如果今天不努力,明天也不努力,那么你的人生只是在重复而已</p>
-                            <p class="card-text">最后更新 2022/7/17</p>
+                    <div class="bsa-component">
+                        <div class="card bg-dark text-white border-0 shadow-sm">
+                            <img src="https://via.placeholder.com/1200x900?text=img" class="card-img" alt="...">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title text-white">card-title-2</h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cupiditate, expedita
+                                    illum iusto modi quam quidem rerum sint. Cupiditate, deserunt in laudantium modi nemo
+                                    repellendus! Atque expedita laborum numquam voluptate!
+                                </p>
+                                <p class="card-text">last update 2022/7/17</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <h4 class="text-dark mt-4">卡片组</h4>
             <hr>
-            <div class="card-group shadow-sm border-0">
-                <div class="card border-end shadow-none">
-                    <img src="static/images/c84bfe459da90cfc810c66908cfd3a5f.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">桃花</h5>
-                        <p class="card-text">
-                            每年桃花开的时候，我就会想起一个人，她曾经很喜欢我，从那年开始，我忘记了很多事情，唯一有印象的，就是我爱桃花，有些人离开了之后才发现，离开的人是自己的最爱
-                        </p>
+            <div class="bsa-component">
+                <div class="card-group shadow-sm border-0">
+                    <div class="card border-end shadow-none">
+                        <img src="https://via.placeholder.com/1200x900?text=img" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">card-title-1</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cum dolore enim
+                                eveniet iste laboriosam natus nihil quae quis recusandae, voluptatum. Architecto autem culpa
+                                cum nemo quae quas sequi!
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white"><small class="text-muted">last update 2022/7/17</small></div>
                     </div>
-                    <div class="card-footer bg-white"> <small class="text-muted">最后更新 2022/7/17</small>
+                    <div class="card border-end shadow-none">
+                        <img src="https://via.placeholder.com/1200x900?text=img" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">card-title-2</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dicta excepturi facilis
+                                maxime natus nesciunt perferendis perspiciatis placeat reprehenderit voluptates? Beatae
+                                cumque eius eum ipsum iure pariatur sequi temporibus veniam!
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white"><small class="text-muted">last update 2022/7/17</small>
+                        </div>
                     </div>
-                </div>
-                <div class="card border-end shadow-none">
-                    <img src="static/images/95d75c3e34264cdce8f60d10eb39c336.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">梅花</h5>
-                        <p class="card-text">
-                            墙角数枝梅，凌寒独自开。遥知不是雪，为有暗香来。
-                        </p>
-                    </div>
-                    <div class="card-footer bg-white"> <small class="text-muted">最后更新 2022/7/17</small>
-                    </div>
-                </div>
-                <div class="card shadow-none">
-                    <img src="static/images/ade6ebbb7f83ccab6d072aebbd84a852.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">爱莲说</h5>
-                        <p class="card-text">
-                            水陆草木之花，可爱者甚蕃。晋陶渊明独爱菊。自李唐来，世人甚爱牡丹。予独爱莲之出淤泥而不染，濯清涟而不妖，中通外直，不蔓不枝，香远益清，亭亭净植，可远观而不可亵玩焉
-                        </p>
-                    </div>
-                    <div class="card-footer bg-white"> <small class="text-muted">最后更新 2022/7/17</small>
+                    <div class="card shadow-none">
+                        <img src="https://via.placeholder.com/1200x900?text=img" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">card-title-3</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur corporis cupiditate ea
+                                facere ipsa iure, mollitia neque obcaecati pariatur placeat quas quasi qui quo recusandae
+                                saepe sit tempore vel voluptatibus.
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white"><small class="text-muted">last update 2022/7/17</small>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -803,9 +1112,10 @@
         </div>
     </div>
 </div>
-<script src="static/js/bootstrap.bundle.min.js"></script>
-<script src="static/js/bootstrap-admin.js"></script>
 
+<script src="lib/prismjs/prism.js"></script>
+<script src="static/js/bootstrap.bundle.min.js"></script>
+<script src="static/js/bootstrap-admin.min.js"></script>
 
 </body>
 </html>

@@ -6,8 +6,10 @@
     <link rel="icon" href="static/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="static/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="static/css/bootstrap.css">
-    <link rel="stylesheet" href="static/css/bootstrap-admin.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
+    <!--  代码高亮  -->
+    <link rel="stylesheet" href="lib/prismjs/themes/prism-okaidia.css">
     <title>bootstrap-admin</title>
 </head>
 <body>
@@ -369,270 +371,296 @@
                 <div class="col">
                     <h5 class="card-title">基本表单布局</h5>
                     <div class="dropdown-divider mb-3"></div>
-                    <div class="card border-top border-0 border-4 border-primary">
-                        <div class="card-body p-5">
-                            <div class="card-title d-flex align-items-center">
-                                <div><i class="bi bi-person me-1 bsa-font-20 text-primary"></i>
-                                </div>
-                                <h5 class="mb-0 text-primary">用户注册</h5>
-                            </div>
-                            <hr>
-                            <form class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="inputFirstName" class="form-label">First Name</label>
-                                    <input type="email" class="form-control" id="inputFirstName">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputLastName" class="form-label">Last Name</label>
-                                    <input type="password" class="form-control" id="inputLastName">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputPassword" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword">
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputAddress" class="form-label">Address</label>
-                                    <textarea class="form-control" id="inputAddress" placeholder="Address..."
-                                              rows="3"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputAddress2" class="form-label">Address 2</label>
-                                    <textarea class="form-control" id="inputAddress2" placeholder="Address 2..."
-                                              rows="3"></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputCity" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="inputCity">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="inputState" class="form-label">State</label>
-                                    <select id="inputState" class="form-select">
-                                        <option selected="">Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="inputZip" class="form-label">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip">
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                                        <label class="form-check-label" for="gridCheck">Check me out</label>
+                    <div class="bsa-component">
+                        <div class="card border-top border-0 border-4 border-primary">
+                            <div class="card-body p-5">
+                                <div class="card-title d-flex align-items-center">
+                                    <div><i class="bi bi-person me-1 bsa-font-20 text-primary"></i>
                                     </div>
+                                    <h5 class="mb-0 text-primary">用户注册</h5>
                                 </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary px-5">Register</button>
-                                </div>
-                            </form>
+                                <hr>
+                                <form class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="inputFirstName" class="form-label">First Name</label>
+                                        <input type="email" class="form-control" id="inputFirstName">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputLastName" class="form-label">Last Name</label>
+                                        <input type="password" class="form-control" id="inputLastName">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="inputEmail">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="inputPassword">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputAddress" class="form-label">Address</label>
+                                        <textarea class="form-control" id="inputAddress" placeholder="Address..."
+                                                  rows="3"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputAddress2" class="form-label">Address 2</label>
+                                        <textarea class="form-control" id="inputAddress2" placeholder="Address 2..."
+                                                  rows="3"></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputCity" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="inputCity">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="inputState" class="form-label">State</label>
+                                        <select id="inputState" class="form-select">
+                                            <option selected="">Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="inputZip" class="form-label">Zip</label>
+                                        <input type="text" class="form-control" id="inputZip">
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">Check me out</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary px-5">Register</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <h5 class="card-title">携带图标</h5>
                     <div class="dropdown-divider mb-3"></div>
-                    <div class="card border-top border-0 border-4 border-danger">
-                        <div class="card-body p-5">
-                            <div class="card-title d-flex align-items-center">
-                                <div><i class="bi bi-person me-1 bsa-font-20 text-danger"></i>
+                    <div class="bsa-component">
+                        <div class="card border-top border-0 border-4 border-danger">
+                            <div class="card-body p-5">
+                                <div class="card-title d-flex align-items-center">
+                                    <div><i class="bi bi-person me-1 bsa-font-20 text-danger"></i>
+                                    </div>
+                                    <h5 class="mb-0 text-danger">用户注册</h5>
                                 </div>
-                                <h5 class="mb-0 text-danger">用户注册</h5>
+                                <hr>
+                                <form class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="inputLastName1" class="form-label">First Name</label>
+                                        <div class="input-group"><span class="input-group-text bg-transparent"><i
+                                                class="bi bi-person"></i></span>
+                                            <input type="text" class="form-control border-start-0" id="inputLastName1"
+                                                   placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputLastName2" class="form-label">Last Name</label>
+                                        <div class="input-group"><span class="input-group-text bg-transparent"><i
+                                                class="bi bi-person"></i></span>
+                                            <input type="text" class="form-control border-start-0" id="inputLastName2"
+                                                   placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputPhoneNo" class="form-label">Phone No</label>
+                                        <div class="input-group"><span class="input-group-text bg-transparent"><i
+                                                class="bi bi-phone"></i></span>
+                                            <input type="text" class="form-control border-start-0" id="inputPhoneNo"
+                                                   placeholder="Phone No">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputEmailAddress" class="form-label">Email Address</label>
+                                        <div class="input-group"><span class="input-group-text bg-transparent"><i
+                                                class="bi bi-envelope"></i></span>
+                                            <input type="text" class="form-control border-start-0"
+                                                   id="inputEmailAddress"
+                                                   placeholder="Email Address">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputChoosePassword" class="form-label">Choose Password</label>
+                                        <div class="input-group"><span class="input-group-text bg-transparent"><i
+                                                class="bi bi-shield-lock"></i></span>
+                                            <input type="text" class="form-control border-start-0"
+                                                   id="inputChoosePassword"
+                                                   placeholder="Choose Password">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
+                                        <div class="input-group"><span class="input-group-text bg-transparent"><i
+                                                class="bi bi-shield-lock"></i></span>
+                                            <input type="text" class="form-control border-start-0"
+                                                   id="inputConfirmPassword"
+                                                   placeholder="Confirm Password">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputAddress3" class="form-label">Address</label>
+                                        <textarea class="form-control" id="inputAddress3" placeholder="Enter Address"
+                                                  rows="3"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck2">
+                                            <label class="form-check-label" for="gridCheck2">Check me out</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-danger px-5">Register</button>
+                                    </div>
+                                </form>
                             </div>
-                            <hr>
-                            <form class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="inputLastName1" class="form-label">First Name</label>
-                                    <div class="input-group"><span class="input-group-text bg-transparent"><i
-                                            class="bi bi-person"></i></span>
-                                        <input type="text" class="form-control border-start-0" id="inputLastName1"
-                                               placeholder="First Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputLastName2" class="form-label">Last Name</label>
-                                    <div class="input-group"><span class="input-group-text bg-transparent"><i
-                                            class="bi bi-person"></i></span>
-                                        <input type="text" class="form-control border-start-0" id="inputLastName2"
-                                               placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputPhoneNo" class="form-label">Phone No</label>
-                                    <div class="input-group"><span class="input-group-text bg-transparent"><i
-                                            class="bi bi-phone"></i></span>
-                                        <input type="text" class="form-control border-start-0" id="inputPhoneNo"
-                                               placeholder="Phone No">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputEmailAddress" class="form-label">Email Address</label>
-                                    <div class="input-group"><span class="input-group-text bg-transparent"><i
-                                            class="bi bi-envelope"></i></span>
-                                        <input type="text" class="form-control border-start-0" id="inputEmailAddress"
-                                               placeholder="Email Address">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputChoosePassword" class="form-label">Choose Password</label>
-                                    <div class="input-group"><span class="input-group-text bg-transparent"><i
-                                            class="bi bi-shield-lock"></i></span>
-                                        <input type="text" class="form-control border-start-0" id="inputChoosePassword"
-                                               placeholder="Choose Password">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
-                                    <div class="input-group"><span class="input-group-text bg-transparent"><i
-                                            class="bi bi-shield-lock"></i></span>
-                                        <input type="text" class="form-control border-start-0" id="inputConfirmPassword"
-                                               placeholder="Confirm Password">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputAddress3" class="form-label">Address</label>
-                                    <textarea class="form-control" id="inputAddress3" placeholder="Enter Address"
-                                              rows="3"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck2">
-                                        <label class="form-check-label" for="gridCheck2">Check me out</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-danger px-5">Register</button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <h5 class="card-title">登录布局示例</h5>
                     <div class="dropdown-divider mb-3"></div>
-                    <div class="card border-top border-0 border-4 border-dark">
-                        <div class="card-body p-5">
-                            <div class="card-title text-center"><i
-                                    class="bi bi-person-circle text-dark bsa-font-50"></i>
-                                <h5 class="mb-5 mt-2 text-dark">用户登录</h5>
-                            </div>
-                            <hr>
-                            <form class="row g-3">
-                                <div class="col-12">
-                                    <label for="inputLastEnterUsername" class="form-label">用户名</label>
-                                    <div class="input-group input-group-lg"><span
-                                            class="input-group-text bg-transparent"><i class="bi bi-person"></i></span>
-                                        <input type="text" class="form-control border-start-0"
-                                               id="inputLastEnterUsername" placeholder="请输入用户">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputLastEnterPassword" class="form-label">密码</label>
-                                    <div class="input-group input-group-lg"><span
-                                            class="input-group-text bg-transparent"><i
-                                            class="bi bi-shield-lock"></i></span>
-                                        <input type="text" class="form-control border-start-0"
-                                               id="inputLastEnterPassword" placeholder="请输入密码">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck3">
-                                        <label class="form-check-label" for="gridCheck3">记住我</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 text-end"><a href="javascript:">忘记密码</a>
-                                </div>
-                                <div class="col-12">
-                                    <div class="d-grid">
-                                        <button type="submit" class="btn btn-dark btn-lg px-5">
-                                            <i class="bi bi-shield-lock me-2"></i>登录
-                                        </button>
-                                    </div>
+                    <div class="bsa-component">
+                        <div class="card border-top border-0 border-4 border-dark">
+                            <div class="card-body p-5">
+                                <div class="card-title text-center"><i
+                                        class="bi bi-person-circle text-dark bsa-font-50"></i>
+                                    <h5 class="mb-5 mt-2 text-dark">用户登录</h5>
                                 </div>
                                 <hr>
-                                <div class="col-12 text-center">
-                                    <p class="mb-0">第三方账号登录 :</p>
-                                </div>
-                                <div class="col-12">
-                                    <div class="d-grid gap-2">
-                                        <button type="submit" class="btn btn-success btn-lg px-5"><i
-                                                class="bi bi-wechat"></i> 微信登录
-                                        </button>
-                                        <button type="submit" class="btn btn-light btn-lg px-5"><i
-                                                class="bi bi-github"></i> github登录
-                                        </button>
+                                <form class="row g-3">
+                                    <div class="col-12">
+                                        <label for="inputLastEnterUsername" class="form-label">用户名</label>
+                                        <div class="input-group input-group-lg"><span
+                                                class="input-group-text bg-transparent"><i
+                                                class="bi bi-person"></i></span>
+                                            <input type="text" class="form-control border-start-0"
+                                                   id="inputLastEnterUsername" placeholder="请输入用户">
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="col-12">
+                                        <label for="inputLastEnterPassword" class="form-label">密码</label>
+                                        <div class="input-group input-group-lg"><span
+                                                class="input-group-text bg-transparent"><i
+                                                class="bi bi-shield-lock"></i></span>
+                                            <input type="text" class="form-control border-start-0"
+                                                   id="inputLastEnterPassword" placeholder="请输入密码">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck3">
+                                            <label class="form-check-label" for="gridCheck3">记住我</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-end"><a href="javascript:">忘记密码</a>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-dark btn-lg px-5">
+                                                <i class="bi bi-shield-lock me-2"></i>登录
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="col-12 text-center">
+                                        <p class="mb-0">第三方账号登录 :</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-success btn-lg px-5"><i
+                                                    class="bi bi-wechat"></i> 微信登录
+                                            </button>
+                                            <button type="submit" class="btn btn-light btn-lg px-5"><i
+                                                    class="bi bi-github"></i> github登录
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <h5 class="card-title">水平布局表单</h5>
                     <div class="dropdown-divider mb-3"></div>
-                    <div class="card border-top border-0 border-4 border-info">
-                        <div class="card-body">
-                            <div class="border p-4 rounded">
-                                <div class="card-title d-flex align-items-center">
-                                    <div><i class="bi bi-person me-1 bsa-font-20 text-info"></i>
-                                    </div>
-                                    <h5 class="mb-0 text-info">用户注册</h5>
-                                </div>
-                                <hr>
-                                <div class="row mb-3">
-                                    <label for="inputEnterYourName" class="col-sm-3 col-form-label">Enter Your Name</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputEnterYourName" placeholder="Enter Your Name">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Phone No</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputPhoneNo2" placeholder="Phone No">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Email Address</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="inputEmailAddress2" placeholder="Email Address">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputChoosePassword2" class="col-sm-3 col-form-label">Choose Password</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="inputChoosePassword2" placeholder="Choose Password">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Confirm Password</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="inputConfirmPassword2" placeholder="Confirm Password">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputAddress4" class="col-sm-3 col-form-label">Address</label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control" id="inputAddress4" rows="3" placeholder="Address"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputAddress4" class="col-sm-3 col-form-label"></label>
-                                    <div class="col-sm-9">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="gridCheck4">
-                                            <label class="form-check-label" for="gridCheck4">Check me out</label>
+                    <div class="bsa-component">
+                        <div class="card border-top border-0 border-4 border-info">
+                            <div class="card-body">
+                                <div class="border p-4 rounded">
+                                    <div class="card-title d-flex align-items-center">
+                                        <div><i class="bi bi-person me-1 bsa-font-20 text-info"></i>
                                         </div>
+                                        <h5 class="mb-0 text-info">用户注册</h5>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-sm-3 col-form-label"></label>
-                                    <div class="col-sm-9">
-                                        <button type="submit" class="btn btn-info px-5">Register</button>
-                                    </div>
+                                    <hr>
+                                    <form action="#">
+                                        <div class="row mb-3">
+                                            <label for="inputEnterYourName" class="col-sm-3 col-form-label">Enter Your
+                                                Name</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="inputEnterYourName"
+                                                       placeholder="Enter Your Name">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Phone No</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="inputPhoneNo2"
+                                                       placeholder="Phone No">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Email
+                                                Address</label>
+                                            <div class="col-sm-9">
+                                                <input type="email" class="form-control" id="inputEmailAddress2"
+                                                       placeholder="Email Address">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputChoosePassword2" class="col-sm-3 col-form-label">Choose
+                                                Password</label>
+                                            <div class="col-sm-9">
+                                                <input type="email" class="form-control" id="inputChoosePassword2"
+                                                       placeholder="Choose Password">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Confirm
+                                                Password</label>
+                                            <div class="col-sm-9">
+                                                <input type="email" class="form-control" id="inputConfirmPassword2"
+                                                       placeholder="Confirm Password">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputAddress4" class="col-sm-3 col-form-label">Address</label>
+                                            <div class="col-sm-9">
+                                            <textarea class="form-control" id="inputAddress4" rows="3"
+                                                      placeholder="Address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputAddress4" class="col-sm-3 col-form-label"></label>
+                                            <div class="col-sm-9">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="gridCheck4">
+                                                    <label class="form-check-label" for="gridCheck4">Check me
+                                                        out</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-sm-3 col-form-label"></label>
+                                            <div class="col-sm-9">
+                                                <button type="submit" class="btn btn-info px-5">Register</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
@@ -728,8 +756,10 @@
         </div>
     </div>
 </div>
+
+<script src="lib/prismjs/prism.js"></script>
 <script src="static/js/bootstrap.bundle.min.js"></script>
-<script src="static/js/bootstrap-admin.js"></script>
+<script src="src/bootstrap-admin.js"></script>
 
 
 </body>

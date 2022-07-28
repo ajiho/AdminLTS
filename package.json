@@ -4,6 +4,46 @@
     "bootstrap-icons": "^1.9.1",
     "chart.js": "^3.8.0",
     "jquery": "^3.6.0",
-    "moment": "^2.29.4"
-  }
+    "moment": "^2.29.4",
+    "prismjs": "^1.28.0"
+  },
+  "name": "bootstrap-admin",
+  "description": "Open source responsive background management template based on bootstrap 5",
+  "version": "1.0.0",
+  "main": "src/bootstrap-admin.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-less": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-terser": "^2.1.0",
+    "gulp-uglify": "^3.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/ajiho/bootstrap-admin.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "bootstrap5",
+    "css",
+    "responsive",
+    "admin",
+    "template",
+    "control-panel",
+    "dashboard"
+  ],
+  "author": "ajiho",
+  "license": "MIT"
 }
