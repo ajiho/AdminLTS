@@ -789,7 +789,7 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 
 /*===========================bootstrap-admin组件复制相关样式=========================*/
 .bsa-component {
-    position: relative
+    position: relative;
 }
 
 .bsa-component .bsa-source-button {
@@ -848,22 +848,27 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 
 .bsa-radius-10 {
     border-radius: 10px !important;
+    overflow: hidden !important;
 }
 
 .bsa-radius-15 {
     border-radius: 15px !important;
+    overflow: hidden !important;
 }
 
 .bsa-radius-20 {
     border-radius: 30px !important;
+    overflow: hidden !important;
 }
 
 .bsa-radius-25 {
     border-radius: 30px !important;
+    overflow: hidden !important;
 }
 
 .bsa-radius-30 {
     border-radius: 30px !important;
+    overflow: hidden !important;
 }
 
 

@@ -6,8 +6,10 @@
     <link rel="icon" href="static/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="static/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="static/css/bootstrap.css">
-    <link rel="stylesheet" href="src/bootstrap-admin.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
+    <!--  代码高亮  -->
+    <link rel="stylesheet" href="lib/prismjs/themes/prism-okaidia.css">
     <title>bootstrap-admin</title>
 </head>
 <body>
@@ -373,187 +375,191 @@
                     <div class="col">
                         <h4>基本示例</h4>
                         <hr>
-                        <div class="alert alert-primary" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, perferendis.
+                        <div class="bsa-component">
+                            <div class="alert alert-primary" role="alert">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, nihil.
+                            </div>
+                            <div class="alert alert-secondary" role="alert">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, facere!
+                            </div>
+                            <div class="alert alert-success" role="alert">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, voluptate!
+                            </div>
+                            <div class="alert alert-danger" role="alert">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, modi?
+                            </div>
+                            <div class="alert alert-warning" role="alert">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, nobis.
+                            </div>
+                            <div class="alert alert-info" role="alert">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, nisi!
+                            </div>
+                            <div class="alert alert-light" role="alert">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, ducimus.
+                            </div>
+                            <div class="alert alert-dark" role="alert">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, natus?
+                            </div>
                         </div>
-                        <div class="alert alert-secondary" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, veritatis?
-                        </div>
-                        <div class="alert alert-success" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, itaque?
-                        </div>
-                        <div class="alert alert-danger" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, repudiandae.
-                        </div>
-                        <div class="alert alert-warning" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, quidem!
-                        </div>
-                        <div class="alert alert-info" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, praesentium.
-                        </div>
-                        <div class="alert alert-light" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, vitae!
-                        </div>
-                        <div class="alert alert-dark" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, ducimus.
-                        </div>
+
                     </div>
                     <div class="col">
                         <h4>带连接的警告框</h4>
                         <hr>
-                        <div class="alert alert-primary" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, est fugiat in iusto
-                            molestiae obcaecati praesentium repellat tempora vel voluptate. Dicta eveniet harum
-                            laboriosam officiis repellat repellendus tempore, voluptate
-                            <a href="javascript:" class="alert-link">voluptatum</a>.
+                        <div class="bsa-component">
+                            <div class="alert alert-primary" role="alert">
+                                <a href="javascript:" class="alert-link">Lorem</a> ipsum dolor sit amet, consectetur
+                                adipisicing elit. Cupiditate, non!
+                            </div>
+                            <div class="alert alert-secondary" role="alert">
+                                <a href="javascript:" class="alert-link">Lorem</a> ipsum dolor sit amet, consectetur
+                                adipisicing elit. Cupiditate, non!
+                            </div>
+                            <div class="alert alert-success" role="alert">
+                                <a href="javascript:" class="alert-link">Lorem</a> ipsum dolor sit amet, consectetur
+                                adipisicing elit. Cupiditate, non!
+                            </div>
+                            <div class="alert alert-danger" role="alert">
+                                <a href="javascript:" class="alert-link">Lorem</a> ipsum dolor sit amet, consectetur
+                                adipisicing elit. Cupiditate, non!
+                            </div>
+                            <div class="alert alert-warning" role="alert">
+                                <a href="javascript:" class="alert-link">Lorem</a> ipsum dolor sit amet, consectetur
+                                adipisicing elit. Cupiditate, non!
+                            </div>
+                            <div class="alert alert-info" role="alert">
+                                <a href="javascript:" class="alert-link">Lorem</a> ipsum dolor sit amet, consectetur
+                                adipisicing elit. Cupiditate, non!
+                            </div>
+                            <div class="alert alert-light" role="alert">
+                                <a href="javascript:" class="alert-link">Lorem</a> ipsum dolor sit amet, consectetur
+                                adipisicing elit. Cupiditate, non!
+                            </div>
+                            <div class="alert alert-dark" role="alert">
+                                <a href="javascript:" class="alert-link">Lorem</a> ipsum dolor sit amet, consectetur
+                                adipisicing elit. Cupiditate, non!
+                            </div>
                         </div>
-                        <div class="alert alert-secondary" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At consequuntur debitis eius enim
-                            eum, illum ipsa <a href="javascript:" class="alert-link">quidem</a> ipsam magnam minus nam
-                            neque nesciunt nihil quae quam quidem rem repudiandae
-                            sequi vitae!
-                        </div>
-                        <div class="alert alert-success" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eum ex facilis illum sequi
-                            ut, vel? Deleniti earum fugit, impedit
-                            <a href="javascript:" class="alert-link">explicabo</a> inventore itaque maxime nemo nihil
-                            praesentium ratione tempora temporibus.
-                        </div>
-                        <div class="alert alert-danger" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur delectus, eos fugiat,
-                            harum hic illum impedit minus, nulla omnis quibusdam sapiente similique unde voluptatem. Eos
-                            eveniet excepturi laudantium sapiente sint.<a href="javascript:"
-                                                                          class="alert-link">delectus</a>
-                        </div>
-                        <div class="alert alert-warning" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolorum enim error
-                            laboriosam maxime qui quis vero. <a href="javascript:" class="alert-link">Asperiores</a>
-                            cupiditate, exercitationem facilis nobis non
-                            optio, perferendis ratione repudiandae sed, sunt voluptatibus.
-                        </div>
-                        <div class="alert alert-info" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi aspernatur, at
-                            atque ex facere facilis ipsa, <a href="javascript:" class="alert-link">itaque</a> natus
-                            neque non, odio quae qui recusandae sapiente.
-                            Facilis molestiae nemo omnis!
-                        </div>
-                        <div class="alert alert-light" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus, ad aliquam, debitis,
-                            earum eveniet fuga id incidunt <a href="javascript:" class="alert-link">laudantium</a>
-                            libero maxime minus neque officia placeat
-                            possimus repellendus sequi sunt?
-                        </div>
-                        <div class="alert alert-dark" role="alert">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aperiam delectus ex id
-                            illum ipsa, ipsam, iste <a href="javascript:" class="alert-link">maiores</a> nisi nulla
-                            numquam obcaecati, placeat qui quibusdam sed
-                            sequi sint soluta ut.
-                        </div>
+
                     </div>
                     <div class="col">
                         <h4>拓展内容警告框</h4>
                         <hr>
-                        <div class="alert alert-success" role="alert">
-                            <h4 class="alert-heading">alert-heading</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                            <hr>
-                            <p class="mb-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, suscipit?
-                            </p>
+                        <div class="bsa-component">
+                            <div class="alert alert-success" role="alert">
+                                <h4 class="alert-heading">alert-heading</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                                <hr>
+                                <p class="mb-0">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto consectetur
+                                    cum dolorem ducimus error excepturi hic iste labore magnam minima, nobis optio possimus
+                                    provident repellat sit ut veniam vitae.
+                                </p>
+                            </div>
+                            <div class="alert alert-success" role="alert">
+                                <h4 class="alert-heading">alert-heading</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur.
+                                </p>
+                                <hr>
+                                <p class="mb-0">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, animi asperiores commodi
+                                    excepturi nam sed velit. Aliquam architecto corporis in labore omnis. Beatae error
+                                    labore pariatur quibusdam vitae! Dolore, exercitationem?
+                                </p>
+                            </div>
                         </div>
-                        <div class="alert alert-success" role="alert">
-                            <h4 class="alert-heading">alert-heading</h4>
-                            <p>
-                               Lorem ipsum dolor sit amet, consectetur.
-                            </p>
-                            <hr>
-                            <p class="mb-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, iusto!
-                            </p>
-                        </div>
+
                     </div>
                     <div class="col">
                         <h4>可关闭的携带图标的警告框</h4>
                         <hr>
+                        <div class="bsa-component">
+                            <div class="alert alert-primary border-0 bg-primary alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="fs-2 text-white"><i class="bi bi-bookmark-check"></i></div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">alert-title</h6>
+                                        <div class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
 
-                        <div class="alert alert-primary border-0 bg-primary alert-dismissible fade show py-2">
-                            <div class="d-flex align-items-center">
-                                <div class="fs-2 text-white"><i class="bi bi-bookmark-check"></i></div>
-                                <div class="ms-3">
-                                    <h6 class="mb-0 text-white">alert-title</h6>
-                                    <div class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+                            <div class="alert alert-secondary border-0 bg-secondary alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="fs-2 text-white"><i class="bi bi-arrow-right-square"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">alert-title</h6>
+                                        <div class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        </div>
+                                    </div>
                                 </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="fs-2 text-white"><i class="bi bi-check2"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">alert title</h6>
+                                        <div class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="fs-2 text-white"><i class="bi bi-x-lg"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">alert title</h6>
+                                        <div class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <div class="alert alert-warning border-0 bg-warning alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="fs-2 text-dark"><i class="bi bi-info"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-dark">alert title</h6>
+                                        <div class="text-dark">Lorem ipsum dolor sit amet, consectetur.</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <div class="alert alert-info border-0 bg-info alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="fs-2 text-dark"><i class="bi bi-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-dark">alert title</h6>
+                                        <div class="text-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <div class="alert alert-dark border-0 bg-dark alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="fs-2 text-white"><i class="bi bi-bell"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">alert title</h6>
+                                        <div class="text-white">Lorem ipsum dolor sit amet, consectetur.</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
                         </div>
 
-                        <div class="alert alert-secondary border-0 bg-secondary alert-dismissible fade show py-2">
-                            <div class="d-flex align-items-center">
-                                <div class="fs-2 text-white"><i class="bi bi-arrow-right-square"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h6 class="mb-0 text-white">alert-title</h6>
-                                    <div class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                            <div class="d-flex align-items-center">
-                                <div class="fs-2 text-white"><i class="bi bi-check2"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h6 class="mb-0 text-white">alert title</h6>
-                                    <div class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
-                            <div class="d-flex align-items-center">
-                                <div class="fs-2 text-white"><i class="bi bi-x-lg"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h6 class="mb-0 text-white">alert title</h6>
-                                    <div class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <div class="alert alert-warning border-0 bg-warning alert-dismissible fade show py-2">
-                            <div class="d-flex align-items-center">
-                                <div class="fs-2 text-dark"><i class="bi bi-info"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h6 class="mb-0 text-dark">alert title</h6>
-                                    <div class="text-dark">Lorem ipsum dolor sit amet, consectetur.</div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <div class="alert alert-info border-0 bg-info alert-dismissible fade show py-2">
-                            <div class="d-flex align-items-center">
-                                <div class="fs-2 text-dark"><i class="bi bi-exclamation-triangle"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h6 class="mb-0 text-dark">alert title</h6>
-                                    <div class="text-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <div class="alert alert-dark border-0 bg-dark alert-dismissible fade show py-2">
-                            <div class="d-flex align-items-center">
-                                <div class="fs-2 text-white"><i class="bi bi-bell"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h6 class="mb-0 text-white">alert title</h6>
-                                    <div class="text-white">Lorem ipsum dolor sit amet, consectetur.</div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                        </div>
                     </div>
 
                 </div>
@@ -645,6 +651,8 @@
         </div>
     </div>
 </div>
+
+<script src="lib/prismjs/prism.js"></script>
 <script src="static/js/bootstrap.bundle.min.js"></script>
 <script src="src/bootstrap-admin.js"></script>
 

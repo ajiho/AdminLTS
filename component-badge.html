@@ -6,8 +6,10 @@
     <link rel="icon" href="static/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="static/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="static/css/bootstrap.css">
-    <link rel="stylesheet" href="src/bootstrap-admin.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
+    <!--  代码高亮  -->
+    <link rel="stylesheet" href="lib/prismjs/themes/prism-okaidia.css">
     <title>bootstrap-admin</title>
 </head>
 <body>
@@ -371,56 +373,57 @@
                         <div class="card-body">
                             <h5 class="card-title">基础徽章</h5>
                             <div class="dropdown-divider mb-3"></div>
-
-                            <div class="row row-cols-auto g-3">
-                                <div class="col">
-                                    <span class="badge bg-primary">富强</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge bg-secondary">文明</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge bg-success">和谐</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge bg-danger">自由</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge bg-warning text-dark">平等</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge bg-info text-dark">诚信</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge bg-light text-dark">友善</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge bg-dark">公正</span>
-                                </div>
-                                <div class="w-100"></div>
-                                <div class="col">
-                                    <span class="badge rounded-pill bg-primary">富强</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge rounded-pill bg-secondary">文明</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge rounded-pill bg-success">和谐</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge rounded-pill bg-danger">自由</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge rounded-pill bg-warning text-dark">平等</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge rounded-pill bg-info text-dark">诚信</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge rounded-pill bg-light text-dark">友善</span>
-                                </div>
-                                <div class="col">
-                                    <span class="badge rounded-pill bg-dark">公正</span>
+                            <div class="bsa-component">
+                                <div class="row row-cols-auto g-3">
+                                    <div class="col">
+                                        <span class="badge bg-primary">富强</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-secondary">文明</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-success">和谐</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-danger">自由</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-warning text-dark">平等</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-info text-dark">诚信</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark">友善</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-dark">公正</span>
+                                    </div>
+                                    <div class="w-100"></div>
+                                    <div class="col">
+                                        <span class="badge rounded-pill bg-primary">富强</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge rounded-pill bg-secondary">文明</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge rounded-pill bg-success">和谐</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge rounded-pill bg-danger">自由</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge rounded-pill bg-warning text-dark">平等</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge rounded-pill bg-info text-dark">诚信</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge rounded-pill bg-light text-dark">友善</span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge rounded-pill bg-dark">公正</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -429,35 +432,37 @@
                         <div class="card-body">
                             <h5 class="card-title">按钮上的徽章</h5>
                             <div class="dropdown-divider mb-3"></div>
-                            <div class="row row-cols-auto g-3">
-                                <div class="col">
-                                    <button type="button" class="btn btn-primary">消息通知 <span
-                                            class="badge bg-dark">4</span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-danger">消息通知 <span
-                                            class="badge bg-dark">4</span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-success">消息通知 <span
-                                            class="badge bg-dark">4</span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-warning">消息通知 <span
-                                            class="badge bg-dark">4</span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-info">消息通知 <span class="badge bg-dark">4</span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-dark">消息通知 <span
-                                            class="badge bg-secondary">4</span>
-                                    </button>
+                            <div class="bsa-component">
+                                <div class="row row-cols-auto g-3">
+                                    <div class="col">
+                                        <button type="button" class="btn btn-primary">消息通知 <span
+                                                class="badge bg-dark">4</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-danger">消息通知 <span
+                                                class="badge bg-dark">4</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-success">消息通知 <span
+                                                class="badge bg-dark">4</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-warning">消息通知 <span
+                                                class="badge bg-dark">4</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-info">消息通知 <span class="badge bg-dark">4</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-dark">消息通知 <span
+                                                class="badge bg-secondary">4</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -466,76 +471,78 @@
                         <div class="card-body">
                             <h5 class="card-title">徽章定位</h5>
                             <div class="dropdown-divider mb-3"></div>
-                            <div class="row row-cols-auto gy-4">
-                                <div class="col">
-                                    <button type="button" class="btn btn-dark position-relative me-lg-5">
-                                        <i class="bi bi-chat-dots me-2 align-middle"></i>评论
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">+18</span>
-                                    </button>
-                                </div>
-
-                                <div class="col">
-                                    <button type="button" class="btn btn-primary position-relative me-lg-5"><i
-                                            class="bi bi-hand-thumbs-up me-2 align-middle"></i>喜欢
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">+22 </span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-outline-success position-relative me-lg-5"><i
-                                            class="bi bi-bell me-2 align-middle"></i> 消息通知
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">New </span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-danger position-relative me-lg-5">
-                                        <i class="bi bi-calendar4-event me-2 align-middle"></i>事件 <span
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">4</span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-warning position-relative me-lg-5">
-                                        <i class="bi bi-heart me-2 align-middle"></i>项目
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">8k</span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-info position-relative me-lg-5"><i
-                                            class="bi bi-people align-middle"></i> 成员 <span
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">24</span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-primary position-relative"><i
-                                            class="bi bi-bell align-middle"></i> 通知 <span
-                                            class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span
-                                            class="visually-hidden">New alerts</span></span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-secondary position-relative"><i class="bi bi-exclamation-triangle align-middle"></i> 警告
-                                        <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span
-                                            class="visually-hidden">unread messages</span></span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-secondary position-relative"><i
-                                            class="bi bi-bell align-middle"></i><span
-                                            class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span
-                                            class="visually-hidden">unread messages</span></span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <div class="bsa-icon-badge position-relative bg-dark me-3"><i
-                                            class="bi bi-bell align-middle bsa-font-15 text-white"></i><span
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">+18 <span
-                                            class="visually-hidden">unread messages</span></span>
+                            <div class="bsa-component">
+                                <div class="row row-cols-auto gy-4">
+                                    <div class="col">
+                                        <button type="button" class="btn btn-dark position-relative me-lg-5">
+                                            <i class="bi bi-chat-dots me-2 align-middle"></i>评论
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">+18</span>
+                                        </button>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="bsa-icon-badge position-relative bg-primary me-3"><i
-                                            class="bi bi-heart align-middle bsa-font-15 text-white"></i><span
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">+22 <span
-                                            class="visually-hidden">unread messages</span></span>
+
+                                    <div class="col">
+                                        <button type="button" class="btn btn-primary position-relative me-lg-5"><i
+                                                class="bi bi-hand-thumbs-up me-2 align-middle"></i>喜欢
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">+22 </span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-outline-success position-relative me-lg-5"><i
+                                                class="bi bi-bell me-2 align-middle"></i> 消息通知
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">New </span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-danger position-relative me-lg-5">
+                                            <i class="bi bi-calendar4-event me-2 align-middle"></i>事件 <span
+                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">4</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-warning position-relative me-lg-5">
+                                            <i class="bi bi-heart me-2 align-middle"></i>项目
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">8k</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-info position-relative me-lg-5"><i
+                                                class="bi bi-people align-middle"></i> 成员 <span
+                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">24</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-primary position-relative"><i
+                                                class="bi bi-bell align-middle"></i> 通知 <span
+                                                class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span
+                                                class="visually-hidden">New alerts</span></span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-secondary position-relative"><i class="bi bi-exclamation-triangle align-middle"></i> 警告
+                                            <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span
+                                                    class="visually-hidden">unread messages</span></span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-secondary position-relative"><i
+                                                class="bi bi-bell align-middle"></i><span
+                                                class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span
+                                                class="visually-hidden">unread messages</span></span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <div class="bsa-icon-badge position-relative bg-dark me-3"><i
+                                                class="bi bi-bell align-middle bsa-font-15 text-white"></i><span
+                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">+18 <span
+                                                class="visually-hidden">unread messages</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="bsa-icon-badge position-relative bg-primary me-3"><i
+                                                class="bi bi-heart align-middle bsa-font-15 text-white"></i><span
+                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">+22 <span
+                                                class="visually-hidden">unread messages</span></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -633,6 +640,8 @@
         </div>
     </div>
 </div>
+
+<script src="lib/prismjs/prism.js"></script>
 <script src="static/js/bootstrap.bundle.min.js"></script>
 <script src="src/bootstrap-admin.js"></script>
 

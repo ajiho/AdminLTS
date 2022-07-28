@@ -5,7 +5,7 @@
         // 给每一个组件div都增加一个查看源码的按钮
         const bsaComponents = document.querySelectorAll('.bsa-component');
         for (const element of bsaComponents) {
-            const button = `<button class="bsa-source-button btn btn-primary btn-xs" type="button" tabindex="0"><i class="bi bi-code"></i></button>`;
+            const button = `<button class="bsa-source-button btn btn-primary shadow btn-xs" type="button" tabindex="0"><i class="bi bi-code"></i></button>`;
             element.insertAdjacentHTML('beforeend', button);
         }
 
