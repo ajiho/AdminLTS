@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
+
+    <!--  插件css-->
+    <link rel="stylesheet" href="lib/croppie/croppie.css">
     <title>bootstrap-admin</title>
 </head>
 <body>
@@ -22,7 +25,7 @@
     <div class="bsa-sidebar-body">
         <ul class="bsa-menu">
             <li>
-                <a href="index.html" class="active">
+                <a href="index.html">
                     <i class="bi bi-house"></i>首页
                 </a>
             </li>
@@ -31,14 +34,6 @@
                     <i class="bi bi-columns-gap"></i>UI组件
                 </a>
                 <ul>
-                    <li>
-                        <a href="javascript:" class="has-children">表单</a>
-                        <ul>
-                            <li><a href="component-form-elements.html">基础元素</a></li>
-                            <li><a href="component-form-validations.html">表单验证</a></li>
-                            <li><a href="component-form-layouts.html">表单布局</a></li>
-                        </ul>
-                    </li>
                     <li>
                         <a href="component-card.html">卡片</a>
                     </li>
@@ -60,6 +55,14 @@
                     <li>
                         <a href="component-table.html">表格</a>
                     </li>
+                    <li>
+                        <a href="javascript:" class="has-children">表单</a>
+                        <ul>
+                            <li><a href="component-form-elements.html">基础元素</a></li>
+                            <li><a href="component-form-validations.html">表单验证</a></li>
+                            <li><a href="component-form-layouts.html">表单布局</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -67,9 +70,6 @@
                     <i class="bi bi-filetype-html"></i>页面
                 </a>
                 <ul>
-                    <li>
-                        <a href="page-products-details.html">商品详情页</a>
-                    </li>
                     <li>
                         <a href="page-profile.html">个人资料</a>
                     </li>
@@ -94,7 +94,7 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:" class="has-children">
+                <a href="javascript:" class="has-children open">
                     <i class="bi bi-filetype-js"></i>插件
                 </a>
                 <ul>
@@ -104,9 +104,8 @@
                     <li><a href="plugin-tempus-dominus.html">日期时间选择</a></li>
                     <li><a href="plugin-tinymce.html">富文本编辑器</a></li>
                     <li><a href="plugin-dropzone.html">文件上传</a></li>
-                    <li><a href="plugin-croppie.html">头像裁剪</a></li>
+                    <li><a href="plugin-croppie.html" class="active">头像裁剪</a></li>
                     <li><a href="plugin-ztree.html">树形组件</a></li>
-                    <li><a href="plugin-ztree.html">select2</a></li>
                 </ul>
             </li>
             <li>
@@ -368,304 +367,72 @@
 <!--内容区域-->
 <div class="bsa-main-wrapper">
     <div class="bsa-main-content">
-        <!-- 内容都应该写包裹在此-->
-        <div class="container-fluid">
-            <div class="row g-3 gy-4">
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color4 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">今日收入</h6>
-                                    <h4 class="mb-1">102,125.00</h4>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-currency-yen"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color3 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">用户总数</h6>
-                                    <h4 class="mb-1">1546</h4>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="card border-0 shadow-sm">
+            <div class="card-body py-4">
+                <h5 class="card-title">头像裁剪上传例子</h5>
+                <h6 class="card-subtitle mb-2 text-muted">这是一个非常常见的网页效果,点击头像查看效果</h6>
+                <hr>
 
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color1 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">订单总数</h6>
-                                    <h4 class="mb-1">2000</h4>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-cart"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color2 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">留言</h6>
-                                    <h4 class="mb-1">1000</h4>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-chat"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            近七天pv值
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-bar"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            年营业额走势
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-line"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="card bsa-radius-10 border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            项目完成情况
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <p>项目A</p>
-                                <div class="progress">
-                                    <div class="progress-bar  progress-bar-striped progress-bar-animated bg-danger"
-                                         style="width: 25%;">
-                                        25%
+                <div class="row row-cols-auto">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <img src="static/images/avatar.jpg" alt="Admin"
+                                         class="rounded-circle p-1 bsa-bg-color4 bsa-width-100" data-bs-toggle="modal"
+                                         data-bs-target="#exampleModal">
+                                    <div class="mt-3">
+                                        <h4>欲饮琵琶码上催</h4>
+                                        <p class="text-secondary mb-1">超级管理员</p>
+                                        <p class="text-muted font-size-sm">中国 贵州</p>
+                                        <button class="btn btn-primary">关注</button>
+                                        <button class="btn btn-outline-primary">消息</button>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目B</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                         style="width: 35%;">
-                                        35%
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目C</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
-                                         style="width: 45%;">
-                                        45%
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目D</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-                                         style="width: 55%;">
-                                        55%
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目E</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
-                                         style="width: 65%;">
-                                        65%
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            订单摘要
-                        </div>
-                        <div class="card-body">
-
-                            <div class="table-responsive">
-                                <table class="table align-middle mb-0">
-                                    <thead class="table-light">
-                                    <tr>
-                                        <th>订单号</th>
-                                        <th>商品</th>
-                                        <th>下单人</th>
-                                        <th>下单日期</th>
-                                        <th>价格</th>
-                                        <th>状态</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <hr class="my-4">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6 class="mb-0"><i class="bi bi-globe bsa-font-20"></i> 个人网址</h6>
+                                        <span class="text-secondary">https://xxxxxx.com</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6 class="mb-0"><i class="bi bi-github bsa-font-20"></i> Github</h6>
+                                        <span class="text-secondary">ajiho</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-
+                <!-- 头像裁剪Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">裁剪新的个人资料图片</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="my-croppie"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button data-deg="90" type="button" class="btn btn-outline-secondary rotate">
+                                    <i class="bi bi-arrow-counterclockwise"></i>
+                                </button>
+                                <button data-deg="-90" type="button" class="btn btn-outline-secondary rotate">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                </button>
+                                <button id="croppie-result" type="button" class="btn btn-secondary">
+                                    确定
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -678,10 +445,13 @@
             <i class="bi bi-gear"></i>
         </div>
     </div>
+
     <div class="bsa-switcher-header">
         <h5 class="bsa-switcher-header-title">自定义主题</h5>
         <button type="button" class="btn-close text-reset bsa-switcher-toggler-btn"></button>
     </div>
+
+
     <div class="bsa-switcher-body">
         <h6 class="text-dark">头部颜色</h6>
         <hr>
@@ -751,65 +521,71 @@
 
 <script src="static/js/bootstrap.bundle.min.js"></script>
 <script src="src/bootstrap-admin.js"></script>
-<script src="lib/chart.js/dist/chart.min.js"></script>
 
+<!--插件js-->
+<script src="lib/croppie/croppie.min.js"></script>
 <script>
-    new Chart(document.getElementById('chart-bar').getContext('2d'), {
-        type: 'bar',
-        data: {
-            labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
-            datasets: [{
-                label: 'pv值',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
+
+    //实例化头像裁剪插件
+    let myCroppie = new Croppie(document.querySelector('#my-croppie'), {
+        viewport: {width: 200, height: 200, type: 'circle'},
+        boundary: {width: 300, height: 300},
+        showZoomer: true,
+        enableOrientation: true
+    });
+
+    //必须监听模态框执行完毕再绑定图片
+    document.getElementById('exampleModal').addEventListener('shown.bs.modal', function (event) {
+        myCroppie.bind({
+            url: 'static/images/avatar.jpg',
+            orientation: 1,
+            //0:最小化现实 1:缩放显示
+            zoom: 0
+        });
     });
 
 
-    new Chart(document.getElementById('chart-line').getContext('2d'), {
-        type: 'line',
-        data: {
-            labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
-            datasets: [{
-                label: '营业额 单位/万元',
-                data: [65, 90, 60, 50, 40, 30, 20],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
+    //选择按钮操作
+    document.querySelectorAll('.rotate').forEach((el) => {
+        el.addEventListener('click', function (event) {
+            event.preventDefault();
+            let deg = this.dataset.deg;
+            myCroppie.rotate(parseInt(deg));
+        });
     });
+
+
+    //确定按钮裁剪图片
+    document.querySelector('#croppie-result').addEventListener('click',function (event){
+        myCroppie.result('blob', 'viewport').then(function (blob) {
+
+            alert("ajax上传开始");
+            //创建forData表单对象
+            let formData = new FormData();
+            //添加头像
+            formData.set('avatar', blob);
+
+            //jquery发送请求示例(这里看你自己要用什么发送ajax)
+            $.ajax({
+                url: "/upavatar.php",
+                type: 'POST',
+                data: formData,
+                //禁止数据序列化,不加这几个数据接收不到
+                processData: false,
+                contentType: false,
+                cache: false,
+            }).then(function (res) {
+                if (res.code === 200) {
+                    //上传成功
+                } else {
+                    //上传失败
+                }
+            })
+        });
+    });
+
+
+
 </script>
 
 </body>

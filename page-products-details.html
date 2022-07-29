@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
     <title>bootstrap-admin</title>
+
 </head>
 <body>
 
@@ -22,7 +23,7 @@
     <div class="bsa-sidebar-body">
         <ul class="bsa-menu">
             <li>
-                <a href="index.html" class="active">
+                <a href="index.html">
                     <i class="bi bi-house"></i>首页
                 </a>
             </li>
@@ -31,14 +32,6 @@
                     <i class="bi bi-columns-gap"></i>UI组件
                 </a>
                 <ul>
-                    <li>
-                        <a href="javascript:" class="has-children">表单</a>
-                        <ul>
-                            <li><a href="component-form-elements.html">基础元素</a></li>
-                            <li><a href="component-form-validations.html">表单验证</a></li>
-                            <li><a href="component-form-layouts.html">表单布局</a></li>
-                        </ul>
-                    </li>
                     <li>
                         <a href="component-card.html">卡片</a>
                     </li>
@@ -60,18 +53,23 @@
                     <li>
                         <a href="component-table.html">表格</a>
                     </li>
+                    <li>
+                        <a href="javascript:" class="has-children">表单</a>
+                        <ul>
+                            <li><a href="component-form-elements.html">基础元素</a></li>
+                            <li><a href="component-form-validations.html">表单验证</a></li>
+                            <li><a href="component-form-layouts.html">表单布局</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <li>
-                <a href="javascript:" class="has-children">
+                <a href="javascript:" class="has-children open">
                     <i class="bi bi-filetype-html"></i>页面
                 </a>
                 <ul>
                     <li>
-                        <a href="page-products-details.html">商品详情页</a>
-                    </li>
-                    <li>
-                        <a href="page-profile.html">个人资料</a>
+                        <a href="page-profile.html" class="active">个人资料</a>
                     </li>
                     <li>
                         <a href="page-timeline.html">时间轴</a>
@@ -106,7 +104,6 @@
                     <li><a href="plugin-dropzone.html">文件上传</a></li>
                     <li><a href="plugin-croppie.html">头像裁剪</a></li>
                     <li><a href="plugin-ztree.html">树形组件</a></li>
-                    <li><a href="plugin-ztree.html">select2</a></li>
                 </ul>
             </li>
             <li>
@@ -368,320 +365,177 @@
 <!--内容区域-->
 <div class="bsa-main-wrapper">
     <div class="bsa-main-content">
-        <!-- 内容都应该写包裹在此-->
-        <div class="container-fluid">
-            <div class="row g-3 gy-4">
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color4 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">今日收入</h6>
-                                    <h4 class="mb-1">102,125.00</h4>
+
+        <div class="card border-0 shadow-sm">
+            <div class="row g-0">
+                <div class="col-md-4 border-end">
+                    <img src="https://via.placeholder.com/400x400?text=shop-img" class="img-fluid" alt="...">
+                    <div class="row mb-3 row-cols-auto g-2 justify-content-center mt-3">
+                        <div class="col"><img src="https://via.placeholder.com/400x400?text=shop-img" width="70"
+                                              class="border rounded bsa-cursor-pointer" alt=""></div>
+                        <div class="col"><img src="https://via.placeholder.com/400x400?text=shop-img" width="70"
+                                              class="border rounded bsa-cursor-pointer" alt=""></div>
+                        <div class="col"><img src="https://via.placeholder.com/400x400?text=shop-img" width="70"
+                                              class="border rounded bsa-cursor-pointer" alt=""></div>
+                        <div class="col"><img src="https://via.placeholder.com/400x400?text=shop-img" width="70"
+                                              class="border rounded bsa-cursor-pointer" alt=""></div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea natus, nulla? Deserunt eum iste
+                            iure sapiente.
+                        </h4>
+                        <div class="row g-3 align-items-center">
+
+
+                            <div class="col-sm-3">价格</div>
+                            <div class="col-sm-9">
+                                <h4 class="fw-bold text-danger">￥191.00</h4>
+                            </div>
+                            <div class="col-sm-3">运费</div>
+                            <div class="col-sm-9">
+                                浙江杭州至 上海 卢湾区 快递: 0.00
+                            </div>
+                            <div class="col-12">
+                                <div class="dropdown-divider"></div>
+                                <div class="text-center">
+                                    <a href="javascript:" class="link-secondary text-decoration-none">
+                                        送某猫积分
+                                        <span class="fw-bold text-success">79</span>
+                                    </a>
                                 </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-currency-yen"></i>
+                                <div class="dropdown-divider"></div>
+                            </div>
+
+                            <div class="col-sm-3">尺码</div>
+                            <div class="col-sm-9">
+                                <div class="btn-group" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-outline-primary">S</button>
+                                    <button type="button" class="btn btn-outline-primary">M</button>
+                                    <button type="button" class="btn btn-outline-primary">L</button>
+                                    <button type="button" class="btn btn-outline-primary">XL</button>
+                                    <button type="button" class="btn btn-outline-primary">XXL</button>
+                                    <button type="button" class="btn btn-outline-primary">XXXL</button>
                                 </div>
                             </div>
+                            <div class="col-sm-3">颜色</div>
+                            <div class="col-sm-9">
+                                <div class="d-flex align-items-center gap-2">
+
+                                    <div class="bsa-color-indigator-item bg-primary"></div>
+                                    <div class="bsa-color-indigator-item bg-warning"></div>
+                                    <div class="bsa-color-indigator-item bg-dark"></div>
+                                    <div class="bsa-color-indigator-item bg-danger"></div>
+                                    <div class="bsa-color-indigator-item bg-success"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">数量</div>
+                            <div class="col-sm-9 col-md-4">
+                                <div class="input-group mb-3">
+                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                    <input type="text" class="form-control" aria-label="购买数量" value="10">
+                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 mt-3">
+                            <a href="#" class="btn btn-primary">立即购买</a>
+                            <a href="#" class="btn btn-outline-primary">
+                                <i class='bi bi-cart'></i>
+                                <span class="text">加入购物车</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color3 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">用户总数</h6>
-                                    <h4 class="mb-1">1546</h4>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color1 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">订单总数</h6>
-                                    <h4 class="mb-1">2000</h4>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-cart"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color2 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div style="flex-shrink: 0">
-                                    <h6 class="mb-1">留言</h6>
-                                    <h4 class="mb-1">1000</h4>
-                                </div>
-                                <div class="ms-auto fs-1" style="flex-shrink: 0">
-                                    <i class="bi bi-chat"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            近七天pv值
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-bar"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            年营业额走势
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-line"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="card bsa-radius-10 border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            项目完成情况
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <p>项目A</p>
-                                <div class="progress">
-                                    <div class="progress-bar  progress-bar-striped progress-bar-animated bg-danger"
-                                         style="width: 25%;">
-                                        25%
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目B</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                         style="width: 35%;">
-                                        35%
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目C</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
-                                         style="width: 45%;">
-                                        45%
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目D</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-                                         style="width: 55%;">
-                                        55%
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目E</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
-                                         style="width: 65%;">
-                                        65%
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            订单摘要
-                        </div>
-                        <div class="card-body">
-
-                            <div class="table-responsive">
-                                <table class="table align-middle mb-0">
-                                    <thead class="table-light">
-                                    <tr>
-                                        <th>订单号</th>
-                                        <th>商品</th>
-                                        <th>下单人</th>
-                                        <th>下单日期</th>
-                                        <th>价格</th>
-                                        <th>状态</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
             </div>
+            <hr/>
+
+            <div class="card-body">
+                <ul class="nav nav-tabs bsa-nav-primary" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                                type="button" role="tab" aria-controls="home" aria-selected="true">
+                            <i class='bi bi-card-text me-1'></i>商品详情
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                                type="button" role="tab" aria-controls="profile" aria-selected="false">
+                            <i class="bi bi-bookmark-check me-1"></i>规格参数
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                                type="button" role="tab" aria-controls="contact" aria-selected="false">
+                            <i class='bi bi-chat-right me-1'></i>评价
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content pt-3" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem commodi distinctio
+                            dolore dolores enim esse inventore laboriosam, laudantium molestiae nostrum obcaecati
+                            pariatur praesentium rem, repudiandae sequi sit, veritatis vitae.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem commodi distinctio
+                            dolore dolores enim esse inventore laboriosam, laudantium molestiae nostrum obcaecati
+                            pariatur praesentium rem, repudiandae sequi sit, veritatis vitae.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem commodi distinctio
+                            dolore dolores enim esse inventore laboriosam, laudantium molestiae nostrum obcaecati
+                            pariatur praesentium rem, repudiandae sequi sit, veritatis vitae.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
     </div>
 </div>
 
 <!--调色板-->
 <div class="bsa-switcher">
+
     <div class="bsa-switcher-toggler-btn">
         <div class="bsa-switcher-toggler-icon">
             <i class="bi bi-gear"></i>
         </div>
     </div>
+
+
     <div class="bsa-switcher-header">
         <h5 class="bsa-switcher-header-title">自定义主题</h5>
         <button type="button" class="btn-close text-reset bsa-switcher-toggler-btn"></button>
     </div>
+
+
     <div class="bsa-switcher-body">
         <h6 class="text-dark">头部颜色</h6>
         <hr>
@@ -751,66 +605,7 @@
 
 <script src="static/js/bootstrap.bundle.min.js"></script>
 <script src="src/bootstrap-admin.js"></script>
-<script src="lib/chart.js/dist/chart.min.js"></script>
 
-<script>
-    new Chart(document.getElementById('chart-bar').getContext('2d'), {
-        type: 'bar',
-        data: {
-            labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
-            datasets: [{
-                label: 'pv值',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-
-    new Chart(document.getElementById('chart-line').getContext('2d'), {
-        type: 'line',
-        data: {
-            labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
-            datasets: [{
-                label: '营业额 单位/万元',
-                data: [65, 90, 60, 50, 40, 30, 20],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
 
 </body>
 </html>
