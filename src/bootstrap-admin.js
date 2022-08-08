@@ -149,9 +149,13 @@
             // 兄弟节点处理
             siblings(el_a_has_children.parentNode).forEach((el_li) => {
                 Array.from(el_li.children).forEach((item) => {
+
+
                     if (item.matches('a.active')) {
-                        item.classList.remove('active');
-                    } else if (item.matches('a.has-children.open')) {
+                      item.classList.remove('active');
+                    }
+                    if (item.matches('a.has-children.open')) {
+
                         ulClose(item);
                     }
                 })
@@ -245,7 +249,7 @@
             ul.style.cssText = `display:block;height:${ulHeight};overflow: hidden;`;
             void dom.scrollHeight;
             ul.style.cssText = `display:block;height:0;overflow: hidden;`;
-            dom.classList.remove(...['open','active']);
+            dom.classList.remove('open');
         }
 
 
