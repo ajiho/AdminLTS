@@ -16,29 +16,37 @@
 <body>
 
 <!--头部导航-->
-<div class="bsa-header">
+<ul class="bsa-header">
     <!--   移动端侧边栏toggler(不可删除) -->
-    <div class="bsa-header-item bsa-mobile-sidebar-toggler-item">
-        <i class="bi bi-list bsa-cursor-pointer"></i>
-    </div>
+    <li>
+        <div class="bsa-nav-item bsa-mobile-sidebar-toggler-item">
+            <i class="bi bi-list"></i>
+        </div>
+    </li>
     <!--  搜索框表单部分  -->
-    <div class="bsa-header-item bsa-search-item">
-        <form class="bsa-search-form" action="#">
-            <input type="text" class="form-control bsa-search-form-control" name="keyword" aria-label="搜索关键词"
-                   placeholder="搜索关键词">
-            <button class="bsa-search-submit-btn" type="submit"><i class="bi bi-search"></i></button>
-            <button class="bsa-search-close-icon" type="button"><i class="bi bi-x-lg"></i></button>
-        </form>
-    </div>
+    <li>
+        <div class="bsa-nav-item bsa-cursor-default bsa-search-form-item">
+            <form class="bsa-search-form" action="#">
+                <input type="text" class="form-control bsa-search-form-control" name="keyword" aria-label="搜索关键词"
+                       placeholder="搜索关键词">
+                <button class="bsa-search-submit-btn" type="submit"><i class="bi bi-search"></i></button>
+                <button class="bsa-search-close-icon" type="button"><i class="bi bi-x-lg"></i></button>
+            </form>
+        </div>
+    </li>
     <!--  空白占位符(可以让.bsa-header-item左右分布)   -->
-    <div class="bsa-spacer"></div>
+    <li class="bsa-spacer"></li>
     <!--  移动端显示的搜索按钮(和搜索框是配套使用)      -->
-    <div class="bsa-header-item bsa-mobile-search-toggler-item">
-        <i class="bi bi-search bsa-cursor-pointer"></i>
-    </div>
+    <li>
+        <div class="bsa-nav-item bsa-mobile-search-toggler-item">
+            <i class="bi bi-search"></i>
+        </div>
+    </li>
     <!--   拓展应用(建议把拓展的连接放在这里,以免破坏头部的整体布局)  -->
-    <div class="bsa-header-item dropdown">
-        <i class="bi bi-grid bsa-cursor-pointer" data-bs-toggle="dropdown"></i>
+    <li class="dropdown">
+        <div class="bsa-nav-item" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+            <i class="bi bi-grid"></i>
+        </div>
         <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card border-0">
                 <div class="card-header bg-white d-flex align-items-center justify-content-between">
@@ -141,12 +149,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </li>
     <!--    通知    -->
-    <div class="bsa-header-item dropdown">
-        <div class="bsa-header-badge-wrapper bsa-cursor-pointer" data-bs-toggle="dropdown">
-            <span class="bsa-header-badge">99+</span>
-            <i class="bi bi-bell"></i>
+    <li class="dropdown">
+        <div class="bsa-nav-item" data-bs-toggle="dropdown">
+            <div class="bsa-header-badge-wrapper">
+                <span class="bsa-header-badge">99+</span>
+                <i class="bi bi-bell"></i>
+            </div>
         </div>
         <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card border-0">
@@ -221,12 +231,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </li>
     <!--    消息    -->
-    <div class="bsa-header-item dropdown">
-        <div class="bsa-header-badge-wrapper bsa-cursor-pointer" data-bs-toggle="dropdown">
-            <span class="bsa-header-badge">9</span>
-            <i class="bi bi-chat-left"></i>
+    <li class="dropdown">
+        <div class="bsa-nav-item" data-bs-toggle="dropdown">
+            <div class="bsa-header-badge-wrapper">
+                <span class="bsa-header-badge">9</span>
+                <i class="bi bi-chat-left"></i>
+            </div>
         </div>
         <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card border-0">
@@ -283,14 +295,16 @@
                 </div>
             </div>
         </div>
-    </div>
+    </li>
     <!--    用户信息    -->
-    <div class="bsa-header-item dropdown">
-        <div class="bsa-user-info bsa-cursor-pointer" data-bs-toggle="dropdown">
-            <img src="https://temp.im/120x120" class="bsa-user-avatar" alt="用户头像">
-            <div class="bsa-user-detail">
-                <div class="bsa-user-name">欲饮琵琶码上催</div>
-                <div class="bsa-user-role">超级管理员</div>
+    <li class="dropdown">
+        <div class="bsa-nav-item" data-bs-toggle="dropdown">
+            <div class="d-flex align-items-center mb-2">
+                <img src="https://temp.im/120x120" class="bsa-height-40 bsa-width-40 rounded-circle" alt="用户头像">
+                <div class="flex-shrink-0 ms-2 bsa-max-width-150 bsa-user-details">
+                    <div class="bsa-font-15 bsa-ellipsis">欲饮琵琶码上催</div>
+                    <div class="bsa-font-13 bsa-ellipsis">超级管理员</div>
+                </div>
             </div>
         </div>
         <ul class="dropdown-menu dropdown-menu-end">
@@ -299,10 +313,11 @@
             <li>
                 <div class="dropdown-divider"></div>
             </li>
-            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-box-arrow-right me-2"></i>退出登录</a></li>
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-box-arrow-right me-2"></i>退出登录</a>
+            </li>
         </ul>
-    </div>
-</div>
+    </li>
+</ul>
 <!--侧边栏-->
 <div class="bsa-sidebar">
     <div class="bsa-sidebar-header">
@@ -317,12 +332,12 @@
                 </a>
             </li>
             <li>
-                <a class="has-children">
+                <a href="javascript:" class="has-children">
                     <i class="bi bi-columns-gap"></i>UI组件
                 </a>
                 <ul>
                     <li>
-                        <a class="has-children">表单</a>
+                        <a href="javascript:" class="has-children">表单</a>
                         <ul>
                             <li><a href="component-form-elements.html">基础元素</a></li>
                             <li><a href="component-form-validations.html">表单验证</a></li>
@@ -330,7 +345,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="has-children">栏</a>
+                        <a href="javascript:" class="has-children">栏</a>
                         <ul>
                             <li><a href="component-navs.html">导航</a></li>
                             <li><a href="component-navbar.html">导航栏</a></li>
@@ -388,7 +403,7 @@
                         <a href="component-popovers.html">气泡</a>
                     </li>
                     <li>
-                        <a class="has-children">进度</a>
+                        <a href="javascript:" class="has-children">进度</a>
                         <ul>
                             <li><a href="component-progress.html">进度条</a></li>
                             <li><a href="component-spinners.html">进度环</a></li>
@@ -406,7 +421,7 @@
                 </ul>
             </li>
             <li>
-                <a class="has-children active open">
+                <a href="javascript:" class="has-children active open">
                     <i class="bi bi-filetype-html"></i>页面
                 </a>
                 <ul>
@@ -455,13 +470,13 @@
                 </ul>
             </li>
             <li>
-                <a class="has-children">
+                <a href="javascript:" class="has-children">
                     <i class="bi bi-filetype-js"></i>插件
                 </a>
                 <ul>
                     <li><a href="plugin-fullcalendar.html">日历</a></li>
                     <li>
-                        <a class="has-children">图表</a>
+                        <a href="javascript:" class="has-children">图表</a>
                         <ul>
                             <li><a href="plugin-chart.html">chart.js</a></li>
                             <li><a href="plugin-echarts.html">echart.js</a></li>
@@ -479,21 +494,21 @@
                 </ul>
             </li>
             <li>
-                <a class="has-children">
+                <a href="javascript:" class="has-children">
                     <i class="bi bi-list-nested"></i>多级菜单
                 </a>
                 <ul>
                     <li><a href="javascript:">一级菜单</a></li>
                     <li>
-                        <a class="has-children">一级菜单</a>
+                        <a href="javascript:" class="has-children">一级菜单</a>
                         <ul>
                             <li><a href="javascript:">二级菜单</a></li>
                             <li>
-                                <a class="has-children">二级菜单</a>
+                                <a href="javascript:" class="has-children">二级菜单</a>
                                 <ul>
                                     <li><a href="javascript:">三级菜单</a></li>
                                     <li>
-                                        <a class="has-children">三级菜单</a>
+                                        <a href="javascript:" class="has-children">三级菜单</a>
                                         <ul>
                                             <li><a href="javascript:">四级菜单</a></li>
                                             <li><a href="javascript:">四级菜单</a></li>
@@ -504,7 +519,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="has-children">一级菜单</a>
+                        <a href="javascript:" class="has-children">一级菜单</a>
                         <ul>
                             <li><a href="javascript:">二级菜单</a></li>
                         </ul>
@@ -517,7 +532,7 @@
 <!--内容区域-->
 <div class="bsa-main-wrapper">
     <div class="bsa-main-content">
-        <!-- 内容都应该写包裹在此-->
+        <!-- 内容都应该被包裹在此-->
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <div class="bsa-pricing-wrapper">

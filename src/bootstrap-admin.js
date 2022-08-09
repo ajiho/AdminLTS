@@ -5,14 +5,13 @@
         document.querySelectorAll('input').forEach((e, i) => {
             e.setAttribute("AutoComplete", "off");
         });
-
         //全选
         eventDelegate(document.body, 'change', '.check-all', function (event) {
             let target = event.target;
             let pTable = getParent(target, 'table')[0];
             let checkboxes = pTable.querySelectorAll("input[type='checkbox']");
             let status = target.checked;
-            checkboxes.forEach((el, index) => {
+            checkboxes.forEach((el) => {
                 el.checked = status;
             })
         });
@@ -88,7 +87,7 @@
         eventDelegate(document.body, 'click', '.bsa-search-close-icon', function (event) {
             event.preventDefault();
             event.stopPropagation();
-            document.querySelector('.bsa-search-item').classList.remove('open');
+            document.querySelector('.bsa-search-form-item').classList.remove('open');
         });
 
 
@@ -96,7 +95,7 @@
         eventDelegate(document.body, 'click', '.bsa-mobile-search-toggler-item', function (event) {
             event.preventDefault();
             event.stopPropagation();
-            document.querySelector('.bsa-search-item').classList.add('open');
+            document.querySelector('.bsa-search-form-item').classList.add('open');
         });
 
 
@@ -127,11 +126,6 @@
             }
         });
 
-
-        //修复a连接没有href值css聚焦不会触发问题
-        document.querySelectorAll(".bsa-menu a:not(a[href])").forEach(element => {
-            element.setAttribute("tabindex", "0")
-        });
 
         //左侧菜单展开折叠逻辑
         eventDelegate(document.body, 'click', '.bsa-menu a.has-children', function (event) {
