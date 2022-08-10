@@ -6,6 +6,153 @@ html, body {
     background: #f8f9fa;
 }
 
+/*============================头部开始============================*/
+.bsa-header {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    position: fixed;
+    top: 0;
+    left: 250px;
+    right: 0;
+    height: 80px;
+    background: #fff;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    z-index: 80;
+    list-style: none;
+    margin: 0;
+}
+
+.bsa-header > li {
+    background: inherit;
+}
+
+.bsa-header .bsa-nav-item {
+    background: inherit;
+    font-size: 24px;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0 18px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*下拉框样式*/
+.bsa-header .dropdown-menu {
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgb(0 0 0 / 8%);
+    max-width: 360px;
+}
+
+.bsa-header .dropdown-menu .dropdown-item {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 8px 20px;
+    color: #6c757d;
+}
+
+.bsa-header .dropdown-menu .dropdown-item.active,
+.bsa-header .dropdown-menu .dropdown-item:active,
+.bsa-header .dropdown-menu .dropdown-item:hover,
+.bsa-header .dropdown-menu .dropdown-item:focus {
+    background: #f9fafb;
+}
+
+.bsa-header .dropdown .card {
+    width: 360px;
+}
+
+.bsa-header .dropdown .card-body {
+    max-height: 320px;
+    overflow: auto;
+}
+
+
+.bsa-header .bsa-mobile-search-toggler-item {
+    display: none;
+}
+
+.bsa-header .bsa-mobile-sidebar-toggler-item {
+    display: none;
+}
+
+.bsa-nav-item .bsa-user-details {
+    display: block;
+}
+
+
+.bsa-nav-item .bsa-header-badge-wrapper {
+    position: relative;
+}
+
+.bsa-header-badge-wrapper .bsa-header-badge {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 12px;
+    transform: scale(.85);
+    font-weight: 500;
+    user-select: none;
+    color: #fff;
+    background: #f62718;
+    word-break: keep-all;
+}
+
+
+.bsa-search-form-item .bsa-search-form {
+    position: relative;
+    width: 300px;
+}
+
+.bsa-search-form-item .bsa-search-form .bsa-search-form-control {
+    background-color: #f6f5f5;
+    border: none;
+    padding-right: 2.5rem;
+    padding-left: 1.2rem;
+    border-radius: 30px;
+}
+
+.bsa-search-form-item .bsa-search-form .bsa-search-form-control:focus {
+    background-color: #fff;
+}
+
+
+.bsa-search-form-item .bsa-search-form .bsa-search-close-icon,
+.bsa-search-form-item .bsa-search-form .bsa-search-submit-btn {
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    color: #616161;
+}
+
+.bsa-search-form-item .bsa-search-form .bsa-search-close-icon {
+    display: none;
+}
+
+.bsa-search-form-item .bsa-search-form .bsa-search-submit-btn {
+    display: inline-block;
+}
+
+/*============================头部结束============================*/
+
+/*============================侧边栏开始============================*/
 
 .bsa-sidebar {
     position: fixed;
@@ -13,7 +160,7 @@ html, body {
     left: 0;
     bottom: 0;
     width: 250px;
-    z-index: 1050;
+    z-index: 100;
     transition: 0.3s transform;
     transform: translateX(0);
     background: #fff;
@@ -56,7 +203,7 @@ html, body {
 }
 
 
-.bsa-sidebar-body {
+.bsa-sidebar .bsa-sidebar-body {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -71,17 +218,15 @@ html, body {
     scrollbar-width: none;
 }
 
-.bsa-sidebar-body::-webkit-scrollbar {
+.bsa-sidebar .bsa-sidebar-body::-webkit-scrollbar {
     display: none;
 }
-
 
 .bsa-menu, .bsa-menu ul {
     padding: 0;
     margin: 0;
     list-style: none;
 }
-
 
 .bsa-menu li + li {
     margin-top: 5px;
@@ -95,7 +240,6 @@ html, body {
     margin-bottom: 5px;
 }
 
-
 .bsa-menu a {
     position: relative;
     padding-left: 16px;
@@ -108,8 +252,9 @@ html, body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    user-select: none;
+    cursor: pointer;
 }
-
 
 .bsa-menu > li > a > i {
     margin-right: 10px;
@@ -121,11 +266,9 @@ html, body {
     border: 1px solid #ededed;
 }
 
-
 .bsa-menu .has-children.open + ul {
     display: block;
 }
-
 
 .bsa-menu a.has-children.open,
 .bsa-menu a.active,
@@ -146,352 +289,50 @@ html, body {
     right: 24px;
 }
 
-
 .bsa-menu .has-children.open:after {
     transform: rotate(-90deg);
 }
-
 
 .bsa-menu ul a {
     padding-left: calc(16px + 1rem + 10px);
 }
 
-
 .bsa-menu ul ul a {
     padding-left: calc(16px + 2rem + 10px);
 }
-
 
 .bsa-menu ul ul ul a {
     padding-left: calc(16px + 3rem + 10px);
 }
 
-
 .bsa-menu ul ul ul ul a {
     padding-left: calc(16px + 4rem + 10px);
 }
 
+/*============================侧边栏结束============================*/
 
+
+/*============================内容区域开始============================*/
 .bsa-main-wrapper {
-    padding-top: 80px;
-    padding-left: 250px;
+    margin-top: 80px;
+    margin-left: 250px;
 }
 
 .bsa-main-content {
     padding: 12px 12px 4rem 12px
 }
 
-/*头部*/
-.bsa-header {
-    position: fixed;
-    top: 0;
-    left: 250px;
-    right: 0;
-    min-height: 80px;
-    background: #fff;
-    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
-    z-index: 1030;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    flex-wrap: nowrap;
-    padding: 0 12px;
-}
+/*============================内容区域结束============================*/
 
 
-.bsa-header .bsa-header-item {
-    margin-right: 2.5rem;
-    font-size: 22px;
-}
-
-.bsa-header .bsa-header-item:last-child {
-    margin-right: 0;
-}
-
-.bsa-header-item .bsa-user-info {
-    margin-bottom: 10px;
-}
-
-
-.bsa-user-info .bsa-user-img {
-    height: 48px;
-    border-radius: 50%;
-    width: 48px;
-    user-select: none;
-}
-
-.bsa-user-info .bsa-user-detail {
-    padding-left: 10px;
-    max-width: 150px;
-}
-
-.bsa-user-detail .bsa-user-name {
-    font-size: 15px;
-    font-weight: 500;
-    color: #413c3c;
-    margin-bottom: 0;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-
-.bsa-user-detail .bsa-user-role {
-    font-size: 13px;
-    color: #a9a8a8;
-    margin-bottom: 0;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-
-.bsa-header .bsa-search-bar-item {
-    flex-grow: 1;
-}
-
-
-.bsa-search-bar-item .bsa-search-box {
-    position: relative;
-    width: 60%;
-}
-
-.bsa-search-box .bsa-search-input {
-    background-color: #f6f5f5;
-    border: none;
-    padding-right: 2.5rem;
-    border-radius: 30px;
-}
-
-
-.bsa-search-box .bsa-search-btn {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    padding: 0;
-    border: 0;
-    background-color: transparent;
-    color: #616161;
-}
-
-
-.bsa-search-box .bsa-search-close-icon {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: #616161;
-}
-
-
-.bsa-search-box .bsa-search-btn {
-    display: block;
-}
-
-.bsa-search-box .bsa-search-close-icon {
-    display: none;
-}
-
-
-.bsa-header .bsa-user-info {
-    display: flex;
-    align-items: center;
-}
-
-
-.bsa-header .bsa-num-count {
-    position: absolute;
-    top: -10px;
-    right: -8px;
-    width: 26px;
-    height: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 12px;
-    transform: scale(0.80);
-    font-weight: 500;
-    user-select: none;
-    color: #fff;
-    background: #f62718;
-    word-break: keep-all;
-}
-
-.bsa-header .bsa-mobile-sidebar-item {
-    display: none;
-    cursor: pointer;
-}
-
-.bsa-header .bsa-mobile-search-item {
-    display: none;
-    cursor: pointer;
-}
-
-
-.bsa-header-item .dropdown-menu {
-    border: 0;
-    padding: 0;
-    border-radius: 10px;
-    box-shadow: 0 0 4px rgb(0 0 0 / 8%);
-    max-width: 360px;
-    overflow: hidden;
-}
-
-.bsa-header-item .dropdown-menu .dropdown-item {
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding: 8px 20px;
-    color: #5f5f5f;
-}
-
-.bsa-header-item .dropdown-menu .dropdown-item > i {
-    margin-right: 12px;
-}
-
-.bsa-header-item .dropdown-menu .dropdown-item.active,
-.bsa-header-item .dropdown-menu .dropdown-item:active,
-.bsa-header-item .dropdown-menu .dropdown-item:hover,
-.bsa-header-item .dropdown-menu .dropdown-item:focus {
-    background: #f9fafb;
-}
-
-
-.bsa-header .bsa-dropdown-menu {
-    width: 360px;
-}
-
-
-.bsa-dropdown-menu .bsa-dropdown-menu-header {
-    padding: .8rem 1rem;
-    border-bottom: 1px solid #ededed;
-    background-clip: border-box;
-    background: #fff;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px
-}
-
-.bsa-dropdown-menu .bsa-dropdown-menu-body {
-    position: relative;
-    max-height: 360px;
-    overflow: auto;
-}
-
-
-.bsa-dropdown-menu .bsa-dropdown-menu-footer {
-    padding: .8rem 1rem;
-    border-top: 1px solid #ededed;
-    background-clip: border-box;
-    background: 0 0;
-    font-size: 14px;
-    font-weight: 500;
-    border-bottom-left-radius: .25rem;
-    border-bottom-right-radius: .25rem
-}
-
-
-.bsa-dropdown-menu .bsa-dropdown-menu-title {
-    font-size: 15px;
-    color: #1c1b1b;
-    margin-bottom: 0;
-    font-weight: 500;
-}
-
-.bsa-dropdown-menu .bsa-dropdown-menu-all-read {
-    font-size: 12px;
-    color: #585858;
-    margin-bottom: 0;
-    text-decoration: none;
-}
-
-
-.bsa-dropdown-menu .bsa-dropdown-view-all {
-    color: #1c1b1b;
-    text-decoration: none;
-}
-
-
-.bsa-dropdown-menu .bsa-dropdown-menu-body .bsa-app-thumb {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    font-size: 26px;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 10px;
-    background-color: #f6f6f6
-}
-
-
-.bsa-dropdown-menu-body .bsa-media {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.bsa-media .bsa-media-thumb {
-    width: 45px;
-    height: 45px;
-    line-height: 45px;
-    font-size: 22px;
-    text-align: center;
-    border-radius: 50%;
-    background-color: #f1f1f1;
-    margin-right: 15px;
-    flex-shrink: 0;
-}
-
-
-.bsa-media-thumb .bsa-media-thumb-img {
-    width: 45px;
-    height: 45px;
-    line-height: 45px;
-    font-size: 22px;
-    text-align: center;
-    border-radius: 50%;
-    background-color: #f1f1f1;
-    margin-right: 15px;
-    flex-shrink: 0;
-}
-
-
-.bsa-media .bsa-media-body {
-    flex-grow: 1;
-    display: block;
-    overflow: hidden;
-}
-
-.bsa-media-body .bsa-media-title,
-.bsa-media-body .bsa-media-text,
-.bsa-media-body .bsa-media-time {
-    margin-bottom: 4px;
-    display: block;
-    /*没有出现省略号*/
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-
-/*调色*/
+/*=======================调色板开始==================================*/
 .bsa-switcher {
     width: 280px;
     position: fixed;
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: 2200;
+    z-index: 85;
     background: #fff;
     box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .13);
     transform: translateX(100%);
@@ -503,21 +344,21 @@ html, body {
     transform: translateX(0);
 }
 
-
 .bsa-switcher > .bsa-switcher-toggler-btn {
     width: 40px;
     height: 40px;
     line-height: 40px;
     font-size: 24px;
-    background-image: linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%);
-    box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .13);
+    background: #45b9dd;
     color: #fff;
-    text-align: center;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     position: absolute;
     top: 50%;
     right: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 
@@ -541,7 +382,6 @@ html, body {
     margin-bottom: 0;
     line-height: 1.5;
 }
-
 
 .bsa-switcher .bsa-switcher-body {
     position: absolute;
@@ -572,219 +412,283 @@ html, body {
     animation: spin 2s linear infinite;
 }
 
+/*=======================调色板END==================================*/
 
-/*头部颜色*/
 
-.bsa-headercolor-wrap {
-    margin-bottom: 16px;
+/*=======================对原有组件的拓展样式==================================*/
+.bsa-round-pagination.pagination .page-item:first-child .page-link {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px
+}
+
+.bsa-round-pagination.pagination .page-item:last-child .page-link {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px
 }
 
 
-.bsa-headercolor-wrap div[class^=headercolor],
-.bsa-sidebarcolor-wrap div[class^=sidebarcolor] {
-    width: 45px;
-    height: 45px;
-    background-color: #f4f2f2;
-    border-radius: 10px;
-    cursor: pointer;
+.bsa-nav-primary.nav-tabs .nav-link.active {
+    color: #0d6efd;
+    border-color: #0d6efd #0d6efd #fff
 }
 
-.bsa-headercolor-wrap .headercolor1 {
-    background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
-
+.bsa-nav-danger.nav-tabs .nav-link.active {
+    color: #f41127;
+    border-color: #f41127 #f41127 #fff
 }
 
-.bsa-headercolor-wrap .headercolor2 {
-    background-image: linear-gradient(135deg, #5EFCE8 10%, #736EFE 100%);
-
+.bsa-nav-success.nav-tabs .nav-link.active {
+    color: #17a00e;
+    border-color: #17a00e #17a00e #fff
 }
 
-.bsa-headercolor-wrap .headercolor3 {
-    background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);
-
+.bsa-nav-warning.nav-tabs .nav-link.active {
+    color: #ffc107;
+    border-color: #ffc107 #ffc107 #fff
 }
 
-.bsa-headercolor-wrap .headercolor4 {
-    background-image: linear-gradient(135deg, #FFF6B7 10%, #F6416C 100%);
+.bsa-nav-pills-danger.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: #f41127
 }
 
-.bsa-headercolor-wrap .headercolor5 {
-    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
-
+.bsa-nav-pills-success.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: #17a00e
 }
 
-.bsa-headercolor-wrap .headercolor6 {
-    background-image: linear-gradient(135deg, #A0FE65 10%, #FA016D 100%);
-
-}
-
-.bsa-headercolor-wrap .headercolor7 {
-    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
-
-}
-
-.bsa-headercolor-wrap .headercolor8 {
-    background-image: linear-gradient(135deg, #F05F57 10%, #360940 100%);
-
+.bsa-nav-pills-warning.nav-pills .nav-link.active {
+    color: #000;
+    background-color: #ffc107
 }
 
 
-html.headercolor1 .bsa-header {
-    background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
+.bsa-btn-primary {
+    color: #fff;
+    background-color: #008cff;
+    border-color: #008cff
 }
 
-html.headercolor2 .bsa-header {
-    background-image: linear-gradient(135deg, #5EFCE8 10%, #736EFE 100%);
-
+.bsa-btn-primary:hover {
+    color: #fff;
+    background-color: #037de2;
+    border-color: #037de2
 }
 
-html.headercolor3 .bsa-header {
-    background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);
+.bsa-btn-check:focus + .bsa-btn-primary, .bsa-btn-primary:focus {
+    color: #fff;
+    background-color: #037de2;
+    border-color: #037de2;
+    box-shadow: 0 0 0 .25rem rgba(49, 132, 253, .5)
 }
 
-html.headercolor4 .bsa-header {
-    background-image: linear-gradient(135deg, #FFF6B7 10%, #F6416C 100%);
+.bsa-btn-check:active + .bsa-btn-primary, .bsa-btn-check:checked + .bsa-btn-primary, .bsa-btn-primary.active, .bsa-btn-primary:active, .show > .bsa-btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #037de2;
+    border-color: #037de2
 }
 
-html.headercolor5 .bsa-header {
-    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
+.bsa-btn-check:active + .bsa-btn-primary:focus, .bsa-btn-check:checked + .bsa-btn-primary:focus, .bsa-btn-primary.active:focus, .bsa-btn-primary:active:focus, .show > .bsa-btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .25rem rgba(49, 132, 253, .5)
 }
 
-html.headercolor6 .bsa-header {
-    background-image: linear-gradient(135deg, #A0FE65 10%, #FA016D 100%);
-}
-
-html.headercolor7 .bsa-header {
-    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
-}
-
-html.headercolor8 .bsa-header {
-    background-image: linear-gradient(135deg, #F05F57 10%, #360940 100%);
-}
-
-
-/*其它的一些调整*/
-html.color-header .bsa-header .bsa-header-item {
-    color: #fff !important;
+.bsa-btn-primary.disabled, .bsa-btn-primary:disabled {
+    color: #fff;
+    background-color: #008cff;
+    border-color: #008cff
 }
 
 
-html.color-header .bsa-header .bsa-user-detail .bsa-user-name,
-html.color-header .bsa-header .bsa-user-detail .bsa-user-role {
+.bsa-btn-success {
+    color: #fff;
+    background-color: #17a00e;
+    border-color: #17a00e
+}
+
+.bsa-btn-success:hover {
+    color: #fff;
+    background-color: #0eb018;
+    border-color: #0eb018
+}
+
+.bsa-btn-check:focus + .bsa-btn-success, .bsa-btn-success:focus {
+    color: #fff;
+    background-color: #0eb018;
+    border-color: #0eb018;
+    box-shadow: 0 0 0 .25rem rgb(23 160 14 / 52%)
+}
+
+.bsa-btn-check:active + .bsa-btn-success, .bsa-btn-check:checked + .bsa-btn-success, .bsa-btn-success.active, .bsa-btn-success:active, .show > .bsa-btn-success.dropdown-toggle {
+    color: #fff;
+    background-color: #0eb018;
+    border-color: #0eb018
+}
+
+.bsa-btn-check:active + .bsa-btn-success:focus, .bsa-btn-check:checked + .bsa-btn-success:focus, .bsa-btn-success.active:focus, .bsa-btn-success:active:focus, .show > .bsa-btn-success.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .25rem rgb(23 160 14 / 52%)
+}
+
+.bsa-btn-success.disabled, .bsa-btn-success:disabled {
+    color: #fff;
+    background-color: #0f8107;
+    border-color: #146c43
+}
+
+
+.bsa-btn-danger {
+    color: #fff;
+    background-color: #f41127;
+    border-color: #f41127
+}
+
+.bsa-btn-danger:hover {
+    color: #fff;
+    background-color: #d10b1e;
+    border-color: #b02a37
+}
+
+.bsa-btn-check:focus + .bsa-btn-danger, .bsa-btn-danger:focus {
+    color: #fff;
+    background-color: #d10b1e;
+    border-color: #b02a37;
+    box-shadow: 0 0 0 .25rem rgba(225, 83, 97, .5)
+}
+
+.bsa-btn-check:active + .bsa-btn-danger, .bsa-btn-check:checked + .bsa-btn-danger, .bsa-btn-danger.active, .bsa-btn-danger:active, .show > .bsa-btn-danger.dropdown-toggle {
+    color: #fff;
+    background-color: #b02a37;
+    border-color: #a52834
+}
+
+.bsa-btn-check:active + .bsa-btn-danger:focus, .bsa-btn-check:checked + .bsa-btn-danger:focus, .bsa-btn-danger.active:focus, .bsa-btn-danger:active:focus, .show > .bsa-btn-danger.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .25rem rgba(225, 83, 97, .5)
+}
+
+.bsa-btn-danger.disabled, .bsa-btn-danger:disabled {
+    color: #fff;
+    background-color: #f41127;
+    border-color: #f41127
+}
+
+
+.bsa-btn-outline-primary {
+    color: #008cff;
+    border-color: #008cff
+}
+
+.bsa-btn-outline-primary:hover {
+    color: #fff;
+    background-color: #008cff;
+    border-color: #008cff
+}
+
+.bsa-btn-check:focus + .bsa-btn-outline-primary, .bsa-btn-outline-primary:focus {
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .5)
+}
+
+.bsa-btn-check:active + .bsa-btn-outline-primary, .bsa-btn-check:checked + .bsa-btn-outline-primary, .bsa-btn-outline-primary.active, .bsa-btn-outline-primary.dropdown-toggle.show, .bsa-btn-outline-primary:active {
+    color: #fff;
+    background-color: #008cff;
+    border-color: #008cff
+}
+
+.bsa-btn-check:active + .bsa-btn-outline-primary:focus, .bsa-btn-check:checked + .bsa-btn-outline-primary:focus, .bsa-btn-outline-primary.active:focus, .bsa-btn-outline-primary.dropdown-toggle.show:focus, .bsa-btn-outline-primary:active:focus {
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .5)
+}
+
+.bsa-btn-outline-primary.disabled, .bsa-btn-outline-primary:disabled {
+    color: #008cff;
+    background-color: transparent
+}
+
+
+.bsa-btn-outline-success {
+    color: #17a00e;
+    border-color: #17a00e
+}
+
+.bsa-btn-outline-success:hover {
+    color: #fff;
+    background-color: #17a00e;
+    border-color: #17a00e
+}
+
+.bsa-btn-check:focus + .bsa-btn-outline-success, .bsa-btn-outline-success:focus {
+    box-shadow: 0 0 0 .25rem rgb(23 160 14 / 52%)
+}
+
+.bsa-btn-check:active + .bsa-btn-outline-success, .bsa-btn-check:checked + .bsa-btn-outline-success, .bsa-btn-outline-success.active, .bsa-btn-outline-success.dropdown-toggle.show, .bsa-btn-outline-success:active {
+    color: #fff;
+    background-color: #17a00e;
+    border-color: #17a00e
+}
+
+.bsa-btn-check:active + .bsa-btn-outline-success:focus, .bsa-btn-check:checked + .bsa-btn-outline-success:focus, .bsa-btn-outline-success.active:focus, .bsa-btn-outline-success.dropdown-toggle.show:focus, .bsa-btn-outline-success:active:focus {
+    box-shadow: 0 0 0 .25rem rgb(23 160 14 / 52%)
+}
+
+.bsa-btn-outline-success.disabled, .bsa-btn-outline-success:disabled {
+    color: #17a00e;
+    background-color: transparent
+}
+
+
+.bsa-btn-outline-danger {
+    color: #f41127;
+    border-color: #f41127
+}
+
+.bsa-btn-outline-danger:hover {
+    color: #fff;
+    background-color: #f41127;
+    border-color: #f41127
+}
+
+.bsa-btn-check:focus + .bsa-btn-outline-danger, .bsa-btn-outline-danger:focus {
+    box-shadow: 0 0 0 .25rem rgba(220, 53, 69, .5)
+}
+
+.bsa-btn-check:active + .bsa-btn-outline-danger, .bsa-btn-check:checked + .bsa-btn-outline-danger, .bsa-btn-outline-danger.active, .bsa-btn-outline-danger.dropdown-toggle.show, .bsa-btn-outline-danger:active {
+    color: #fff;
+    background-color: #f41127;
+    border-color: #f41127
+}
+
+.bsa-btn-check:active + .bsa-btn-outline-danger:focus, .bsa-btn-check:checked + .bsa-btn-outline-danger:focus, .bsa-btn-outline-danger.active:focus, .bsa-btn-outline-danger.dropdown-toggle.show:focus, .bsa-btn-outline-danger:active:focus {
+    box-shadow: 0 0 0 .25rem rgba(220, 53, 69, .5)
+}
+
+.bsa-btn-outline-danger.disabled, .btn-outline-danger:disabled {
+    color: #f41127;
+    background-color: transparent
+}
+
+
+
+/*------------------导航栏的拓展----------------------------------*/
+.bsa-nav-search input.form-control {
+    background-color: rgb(255 255 255 / 20%);
+    border: 1px solid rgb(255 255 255 / 45%);
     color: #fff
 }
 
-html.color-header .bsa-search-box .bsa-search-input:focus {
-    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+.bsa-nav-search button[type=submit] {
+    background-color: rgb(255 255 255 / 20%);
+    border: 1px solid rgb(255 255 255 / 32%);
+    color: #fff
+}
+
+.bsa-nav-search input.form-control::placeholder {
+    opacity: .5 !important;
+    color: #fff !important
+}
+
+.bsa-nav-search input.form-control::-ms-input-placeholder {
+    color: #fff !important
 }
 
 
-/*侧边栏*/
-
-.bsa-sidebarcolor-wrap .sidebarcolor1 {
-    background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
-}
-
-.bsa-sidebarcolor-wrap .sidebarcolor2 {
-    background-image: linear-gradient(135deg, #5EFCE8 10%, #736EFE 100%);
-}
-
-.bsa-sidebarcolor-wrap .sidebarcolor3 {
-    background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);
-}
-
-.bsa-sidebarcolor-wrap .sidebarcolor4 {
-    background-image: linear-gradient(135deg, #FFF6B7 10%, #F6416C 100%);
-}
-
-.bsa-sidebarcolor-wrap .sidebarcolor5 {
-    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
-}
-
-.bsa-sidebarcolor-wrap .sidebarcolor6 {
-    background-image: linear-gradient(135deg, #A0FE65 10%, #FA016D 100%);
-}
-
-.bsa-sidebarcolor-wrap .sidebarcolor7 {
-    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
-}
-
-.bsa-sidebarcolor-wrap .sidebarcolor8 {
-    background-image: linear-gradient(135deg, #F05F57 10%, #360940 100%);
-}
-
-
-/*改变背景色*/
-html.color-sidebar.sidebarcolor1 .bsa-sidebar {
-    background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
-
-}
-
-html.color-sidebar.sidebarcolor2 .bsa-sidebar {
-    background-image: linear-gradient(135deg, #5EFCE8 10%, #736EFE 100%);
-}
-
-html.color-sidebar.sidebarcolor3 .bsa-sidebar {
-    background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);
-}
-
-html.color-sidebar.sidebarcolor4 .bsa-sidebar {
-    background-image: linear-gradient(135deg, #FFF6B7 10%, #F6416C 100%);
-}
-
-html.color-sidebar.sidebarcolor5 .bsa-sidebar {
-    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
-}
-
-html.color-sidebar.sidebarcolor6 .bsa-sidebar {
-    background-image: linear-gradient(135deg, #A0FE65 10%, #FA016D 100%);
-}
-
-html.color-sidebar.sidebarcolor7 .bsa-sidebar {
-    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
-}
-
-html.color-sidebar.sidebarcolor8 .bsa-sidebar {
-    background-image: linear-gradient(135deg, #F05F57 10%, #360940 100%);
-}
-
-
-/*logo颜色的改变*/
-html.color-sidebar .bsa-sidebar .bsa-logo-icon {
-    filter: invert(1) grayscale(100%) brightness(200%);
-}
-
-
-html.color-sidebar .bsa-sidebar .bsa-logo-text {
-    color: #fff;
-}
-
-
-html.color-sidebar .bsa-sidebar .bsa-sidebar-header {
-    border-bottom: 1px solid rgb(255 255 255 / 15%);
-}
-
-
-html.color-sidebar .bsa-sidebar .bsa-menu a.has-children.open,
-html.color-sidebar .bsa-sidebar .bsa-menu a.active,
-html.color-sidebar .bsa-sidebar .bsa-menu a:active,
-html.color-sidebar .bsa-sidebar .bsa-menu a:focus,
-html.color-sidebar .bsa-sidebar .bsa-menu a:hover {
-    color: #fff;
-    background: rgb(255 255 255 / 18%);
-}
-
-
-/*背景色*/
-html.color-sidebar .bsa-sidebar .bsa-menu ul {
-    border: 1px solid #ffffff00;
-    background: rgb(255 255 255 / 8%);
-}
-
-/*a链接色*/
-html.color-sidebar .bsa-sidebar .bsa-menu a {
-    color: rgb(255 255 255 / 85%);
-}
+/*=======================对原有组件的拓展样式END==================================*/
 
 
 /*===========================bootstrap-admin组件复制相关样式=========================*/
@@ -797,7 +701,7 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 100;
+    z-index: 70;
 }
 
 .bsa-component:hover .bsa-source-button {
@@ -810,41 +714,57 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 }
 
 
-
 /*===========================bootstrap-admin拓展助手工具=========================*/
-.bsa-bg-color1 {
-    background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
 
+
+/*空白占位*/
+.bsa-spacer {
+    flex-grow: 1 !important;
+}
+
+.bsa-bg-glass {
+    background: rgba(255, 255, 255, .175) !important;
+}
+
+.bsa-bg-color1 {
+    background: #348F50 !important;
 }
 
 .bsa-bg-color2 {
-    background-image: linear-gradient(135deg, #5EFCE8 10%, #736EFE 100%);
+    background: #45b9dd !important;
 }
 
 .bsa-bg-color3 {
-    background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);
+    background: #b96ee4 !important;
 }
 
 .bsa-bg-color4 {
-    background-image: linear-gradient(135deg, #FFF6B7 10%, #F6416C 100%);
+    background: #FC5C7D !important;
 }
 
 .bsa-bg-color5 {
-    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
+    background: #dd6400 !important;
 }
 
 .bsa-bg-color6 {
-    background-image: linear-gradient(135deg, #A0FE65 10%, #FA016D 100%);
+    background: #0ABFBC !important;
 }
 
 .bsa-bg-color7 {
-    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
+    background: #b64450 !important;
 }
 
-.bsa-bg-color8 {
-    background-image: linear-gradient(135deg, #F05F57 10%, #360940 100%);
+.bsa-bg-primary {
+    background-color: #008cff !important;
 }
 
+.bsa-bg-success {
+    background-color: #17a00e !important;
+}
+
+.bsa-bg-danger {
+    background-color: #f41127 !important;
+}
 
 .bsa-radius-10 {
     border-radius: 10px !important;
@@ -877,6 +797,7 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
+    word-break: break-all;
 }
 
 
@@ -885,6 +806,7 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+    word-break: break-all;
 }
 
 .bsa-ellipsis3 {
@@ -892,14 +814,50 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
+    word-break: break-all;
+
+}
+
+.bsa-ellipsis4 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    word-break: break-all;
 }
 
 
+.bsa-font-12 {
+    font-size: 12px
+}
+
+.bsa-font-13 {
+    font-size: 13px
+}
+
+.bsa-font-14 {
+    font-size: 14px
+}
 
 .bsa-font-15 {
     font-size: 15px
 }
 
+.bsa-font-16 {
+    font-size: 16px
+}
+
+.bsa-font-17 {
+    font-size: 17px
+}
+
+.bsa-font-18 {
+    font-size: 18px
+}
+
+.bsa-font-19 {
+    font-size: 19px
+}
 
 .bsa-font-20 {
     font-size: 20px
@@ -917,8 +875,20 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
     font-size: 35px
 }
 
+.bsa-font-40 {
+    font-size: 40px
+}
+
+.bsa-font-45 {
+    font-size: 45px
+}
+
 .bsa-font-50 {
     font-size: 50px
+}
+
+.bsa-font-55 {
+    font-size: 55px
 }
 
 .bsa-font-60 {
@@ -928,21 +898,141 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 .bsa-width-20 {
     width: 20px;
 }
+
+.bsa-width-30 {
+    width: 30px;
+}
+
+.bsa-width-38 {
+    width: 38px;
+}
+
 .bsa-width-40 {
     width: 40px;
 }
+
+.bsa-width-45 {
+    width: 45px;
+}
+
+.bsa-width-50 {
+    width: 50px;
+}
+
+.bsa-width-55 {
+    width: 55px;
+}
+
 .bsa-width-60 {
     width: 60px;
 }
+
 .bsa-width-80 {
     width: 80px;
 }
+
 .bsa-width-100 {
     width: 100px;
 }
 
+.bsa-max-width-150 {
+    max-width: 150px;
+}
+
+
+.bsa-height-20 {
+    height: 20px;
+}
+
+.bsa-height-30 {
+    height: 30px;
+}
+
+.bsa-height-38 {
+    height: 38px;
+}
+
+.bsa-height-40 {
+    height: 40px;
+}
+
+.bsa-height-45 {
+    height: 45px;
+}
+
+.bsa-height-50 {
+    height: 50px;
+}
+
+.bsa-height-55 {
+    height: 55px;
+}
+
+.bsa-height-60 {
+    height: 60px;
+}
+
+.bsa-height-80 {
+    height: 80px;
+}
+
+.bsa-height-100 {
+    height: 100px;
+}
+
+
+.bsa-cursor-pointer {
+    cursor: pointer !important;
+}
+
+.bsa-cursor-default {
+    cursor: default !important;
+}
+
+
+.bsa-hover:hover {
+    background: #f9fafb;
+}
+
+
+.bsa-opacity-10 {
+    opacity: .1;
+}
+
+.bsa-opacity-20 {
+    opacity: .2;
+}
+
+.bsa-opacity-30 {
+    opacity: .3;
+}
+
+.bsa-opacity-40 {
+    opacity: .4;
+}
+
+.bsa-opacity-50 {
+    opacity: .5;
+}
+
+.bsa-opacity-60 {
+    opacity: .6;
+}
+
+.bsa-opacity-70 {
+    opacity: .7;
+}
+
+.bsa-opacity-80 {
+    opacity: .8;
+}
+
+.bsa-opacity-90 {
+    opacity: .9;
+}
+
 /*==================================错误页面==================================*/
-.bsa-error-code{
+.bsa-error-code {
     font-size: 8rem;
     font-weight: 700;
     text-shadow: 4px 4px 0 #f5f6fa, 6px 6px 0 #5f5f5f;
@@ -990,65 +1080,297 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
     overflow: hidden;
 }
 
-@media (max-width: 575.98px) {
 
-    .bsa-error-code{
-        font-size: 5rem;
+/*==================================商品详情页面==================================*/
+.bsa-color-indigator-item {
+    width: 30px;
+    height: 30px;
+    background-color: #e6e0e0;
+    border-radius: 50%;
+    cursor: pointer
+}
+
+.bsa-nav-primary.nav-tabs .nav-link.active {
+    color: #0d6efd;
+    border-color: #0d6efd #0d6efd #fff;
+}
+
+/*==================================文章列表页面==================================*/
+.bsa-art-thumbs-wrapper:hover {
+    background-color: rgba(0, 0, 0, .15) !important;
+}
+
+/*==================================登录页面2==================================*/
+.bsa-bg-login2 {
+    background-image: url(../images/login-bg-5.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed
+}
+
+/*==================================产品定价页面==================================*/
+.bsa-pricing-wrapper .card {
+    transition: all .2s;
+    border-radius: 15px;
+}
+
+.bsa-pricing-wrapper .card .card-header {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px
+}
+
+.bsa-pricing-wrapper .card:hover {
+    margin-top: -.25rem;
+    margin-bottom: .25rem;
+    box-shadow: 0 .5rem 1rem 0 rgba(0, 0, 0, .3)
+}
+
+.bsa-pricing-wrapper .card .card-title {
+    font-size: 1rem;
+    letter-spacing: .2rem;
+    font-weight: 500
+}
+
+.bsa-pricing-wrapper .card ul li.list-group-item {
+    border-bottom: 1px solid rgb(0 0 0 / 0%);
+    color: #3b3b3b;
+    font-size: 16px
+}
+
+
+/*=======================调色板头部颜色示例==================================*/
+.bsa-headercolor-wrap div[class^=headercolor] {
+    width: 45px;
+    height: 45px;
+    background-color: #f4f2f2;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+/*默认白色需要加边框*/
+.bsa-headercolor-wrap div.headercolor0 {
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+
+.bsa-headercolor-wrap div.headercolor1 {
+    background: #348F50;
+}
+
+.bsa-headercolor-wrap div.headercolor2 {
+    background: #4286f4;
+
+}
+
+.bsa-headercolor-wrap div.headercolor3 {
+    background: #b96ee4;
+
+}
+
+.bsa-headercolor-wrap div.headercolor4 {
+    background: #FC5C7D;
+}
+
+.bsa-headercolor-wrap div.headercolor5 {
+    background: #dd6400;
+}
+
+.bsa-headercolor-wrap div.headercolor6 {
+    background: #0ABFBC;
+
+}
+
+.bsa-headercolor-wrap div.headercolor7 {
+    background: #b64450;
+}
+
+
+/*=======================调色板头部颜色示例END==================================*/
+
+
+/*=======================头部颜色实装==================================*/
+html.headercolor1 .bsa-header {
+    background: #348F50;
+}
+
+html.headercolor2 .bsa-header {
+    background: #4286f4;
+
+}
+
+html.headercolor3 .bsa-header {
+    background: #b96ee4;
+}
+
+html.headercolor4 .bsa-header {
+    background: #FC5C7D;
+}
+
+html.headercolor5 .bsa-header {
+    background: #dd6400;
+}
+
+html.headercolor6 .bsa-header {
+    background: #0ABFBC;
+}
+
+html.headercolor7 .bsa-header {
+    background: #b64450;
+}
+
+
+/*=======================头部颜色实装END==================================*/
+
+
+/*=======================头部颜色实装时对原本头部导航的微调==================================*/
+
+html.color-header .bsa-header .bsa-nav-item {
+    color: #fff !important;
+}
+
+html.color-header .bsa-search-form .bsa-search-form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+/*=======================头部颜色实装时对原本头部导航的微调END==================================*/
+
+
+/*=======================调色板侧边栏颜色示例==================================*/
+.bsa-sidebarcolor-wrap div[class^=sidebarcolor] {
+    width: 45px;
+    height: 45px;
+    background-color: #f4f2f2;
+    border-radius: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+
+/*默认白色需要加边框*/
+.bsa-sidebarcolor-wrap div.sidebarcolor0 {
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.bsa-sidebarcolor-wrap div.sidebarcolor1 {
+    background: #348F50;
+}
+
+.bsa-sidebarcolor-wrap div.sidebarcolor2 {
+    background: #4286f4;
+}
+
+.bsa-sidebarcolor-wrap div.sidebarcolor3 {
+    background: #b96ee4;
+}
+
+.bsa-sidebarcolor-wrap div.sidebarcolor4 {
+    background: #FC5C7D;
+}
+
+.bsa-sidebarcolor-wrap div.sidebarcolor5 {
+    background: #dd6400;
+}
+
+.bsa-sidebarcolor-wrap div.sidebarcolor6 {
+    background: #0ABFBC;
+}
+
+.bsa-sidebarcolor-wrap div.sidebarcolor7 {
+    background: #b64450;
+}
+
+
+/*=======================调色板侧边栏颜色示例END==================================*/
+
+
+/*=======================调色板侧边栏颜色实装==================================*/
+html.color-sidebar.sidebarcolor1 .bsa-sidebar {
+    background: #348F50;
+}
+
+html.color-sidebar.sidebarcolor2 .bsa-sidebar {
+
+    background: #4286f4;
+}
+
+html.color-sidebar.sidebarcolor3 .bsa-sidebar {
+    background: #b96ee4;
+}
+
+html.color-sidebar.sidebarcolor4 .bsa-sidebar {
+    background: #FC5C7D;
+}
+
+html.color-sidebar.sidebarcolor5 .bsa-sidebar {
+    background: #dd6400;
+}
+
+html.color-sidebar.sidebarcolor6 .bsa-sidebar {
+    background: #0ABFBC;
+}
+
+html.color-sidebar.sidebarcolor7 .bsa-sidebar {
+    background: #b64450;
+}
+
+/*=======================调色板侧边栏颜色实装END==================================*/
+
+
+/*=======================调色板侧边栏颜色实装对侧边栏的调整==================================*/
+html.color-sidebar .bsa-sidebar .bsa-logo-icon {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+
+html.color-sidebar .bsa-sidebar .bsa-logo-text {
+    color: #fff;
+}
+
+
+html.color-sidebar .bsa-sidebar .bsa-sidebar-header {
+    border-bottom: 1px solid rgb(255 255 255 / 15%);
+}
+
+
+html.color-sidebar .bsa-sidebar .bsa-menu a.has-children.open,
+html.color-sidebar .bsa-sidebar .bsa-menu a.active,
+html.color-sidebar .bsa-sidebar .bsa-menu a:active,
+html.color-sidebar .bsa-sidebar .bsa-menu a:focus,
+html.color-sidebar .bsa-sidebar .bsa-menu a:hover {
+    color: #fff;
+    background: rgb(255 255 255 / 18%);
+}
+
+
+/*背景色*/
+html.color-sidebar .bsa-sidebar .bsa-menu ul {
+    border: 1px solid #ffffff00;
+    background: rgb(255 255 255 / 8%);
+}
+
+/*a链接色*/
+html.color-sidebar .bsa-sidebar .bsa-menu a {
+    color: rgb(255 255 255 / 85%);
+}
+
+/*=======================调色板侧边栏颜色实装对侧边栏的调整END==================================*/
+
+
+/*=======================响应式调整==================================*/
+
+/*xl断点视口:小于等于1200时触发 */
+@media (max-width: 1199.98px) {
+    .bsa-nav-item .bsa-user-details {
+        display: none;
     }
 
 }
 
-@media (max-width: 767.98px) {
-
-}
-
+/*lg断点视口:小于等于992时触发 */
 @media (max-width: 991.98px) {
-
-    .bsa-header {
-        left: 0;
-        justify-content: space-between;
-    }
-
-    .bsa-header .dropdown {
-        position: static !important
-    }
-
-    .bsa-header .dropdown-menu {
-        width: 100% !important;
-        max-width: 100% !important
-    }
-
-    .bsa-header .bsa-mobile-search-item {
-        display: block;
-    }
-
-    .bsa-header .bsa-mobile-sidebar-item {
-        display: block;
-    }
-
-
-    .bsa-search-box .bsa-search-btn {
-        display: none;
-    }
-
-    .bsa-search-box .bsa-search-close-icon {
-        display: block;
-    }
-
-
-    .bsa-header .bsa-search-bar-item {
-        display: none;
-    }
-
-
-    .bsa-user-info .bsa-user-img {
-        height: 38px;
-        width: 38px;
-    }
-
-    .bsa-header .bsa-header-item {
-        margin-right: 1rem;
-    }
 
 
     .bsa-sidebar {
@@ -1062,11 +1384,11 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 
 
     .bsa-main-wrapper {
-        padding-left: 0;
+        margin-left: 0;
     }
 
     .bsa-mask {
-        z-index: 1035;
+        z-index: 90;
         border-radius: inherit;
         position: fixed;
         left: 0;
@@ -1080,41 +1402,126 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
         border-color: rgb(33, 33, 33);
     }
 
-    .bsa-lock-scroll {
+    /*滑动穿透解决方案*/
+    .bsa-lock-body {
         position: fixed;
         width: 100%;
     }
 
-
-    .bsa-search-bar-item.open {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        left: 0;
-        right: 0;
-        z-index: 2000;
-        background: inherit;
-        height: 80px;
-        padding: 0 1.4rem;
-        margin: 0;
+    .bsa-lock-body-has-scroll {
+        overflow-x: hidden !important;
+        overflow-y: scroll !important;
     }
 
-    .bsa-search-bar-item.open .bsa-search-box {
+    .bsa-lock-body-no-scroll {
+        overflow: hidden !important;
+    }
+
+
+
+    .bsa-header {
+        left: 0;
+    }
+
+
+    .bsa-header .dropdown {
+        position: static !important;
+    }
+
+    .bsa-header .dropdown-menu {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .bsa-header .dropdown .card {
         width: 100%;
     }
 
-    .bsa-switcher {
-        z-index: 1032;
+
+    .bsa-header .bsa-mobile-search-toggler-item {
+        display: flex;
     }
 
-}
+    .bsa-header .bsa-mobile-sidebar-toggler-item {
+        display: flex;
+    }
 
 
-@media (max-width: 1199.98px) {
-
-    .bsa-user-info .bsa-user-detail {
+    .bsa-header .bsa-search-form-item {
         display: none;
     }
+
+    .bsa-search-form-item .bsa-search-form .bsa-search-form-control{
+        padding-left: 2.5rem;
+    }
+
+    .bsa-search-form-item .bsa-search-form .bsa-search-close-icon {
+        display: inline-block;
+    }
+
+    .bsa-search-form-item .bsa-search-form .bsa-search-submit-btn {
+        left: 12px;
+        right: auto;
+    }
+
+    /*  移动端的搜索框展开显示样式  */
+    .bsa-header .bsa-search-form-item.open {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        padding: 0 12px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        background: inherit;
+    }
+
+    .bsa-header .bsa-search-form-item.open .bsa-search-form {
+        width: 100%;
+    }
+
+
+
 }
 
+
+/*md断点视口:小于等于768时触发 */
+@media (max-width: 767.98px) {
+
+    .bsa-header .bsa-nav-item {
+        padding: 0 14px;
+    }
+
+}
+
+
+/*sm断点视口:小于等于576时触发 */
+@media (max-width: 575.98px) {
+
+    .bsa-error-code {
+        font-size: 5rem;
+    }
+
+    .bsa-header .bsa-nav-item {
+        padding: 0 12px;
+    }
+
+}
+
+/*小于342时触发*/
+@media (max-width: 341.98px) {
+
+
+    .bsa-header .bsa-nav-item {
+        font-size: 18px;
+        padding: 0 10px;
+    }
+
+    .bsa-header-badge-wrapper .bsa-header-badge {
+        transform: scale(.7);
+        top: -12px;
+        right: -10px;
+    }
+}

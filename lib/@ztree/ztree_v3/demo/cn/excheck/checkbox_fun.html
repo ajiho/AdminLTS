@@ -140,14 +140,14 @@
 				<li><p>这里还演示了 checkNode / checkAllNodes 方法触发 beforeCheck / onCheck 事件回调函数的情况，试试看：<br/>
 					&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="autoCallbackTrigger" /> setting.check.autoCheckTrigger: <span id="autoCheckTriggerValue">false</span><br/>
 					&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="callbackTrigger" checked /> 执行勾选方法是否触发 callback <br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;单节点--[ <a id="checkTrue" href="#" title="不想勾选我就不勾选你..." onclick="return false;">勾选</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="checkFalse" href="#" title="不想取消勾选我就不取消你..." onclick="return false;">取消勾选</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="toggle" href="#" title="你想怎样？..." onclick="return false;">勾选 切换</a> ]<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;单节点 ( 影响父子 )--[ <a id="checkTruePS" href="#" title="不想勾选我就不勾选你..." onclick="return false;">勾选</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="checkFalsePS" href="#" title="不想取消勾选我就不取消你..." onclick="return false;">取消勾选</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="togglePS" href="#" title="你想怎样？..." onclick="return false;">勾选 切换</a> ]<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;全部节点--[ <a id="checkAllTrue" href="#" title="不管你有多NB，统统都要听我的！！" onclick="return false;">勾选</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="checkAllFalse" href="#" title="不管你有多NB，统统都要听我的！！" onclick="return false;">取消勾选</a> ]</p>
+					&nbsp;&nbsp;&nbsp;&nbsp;单节点--[ <a id="checkTrue" href="javascript:" title="不想勾选我就不勾选你..." onclick="return false;">勾选</a> ]
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="checkFalse" href="javascript:" title="不想取消勾选我就不取消你..." onclick="return false;">取消勾选</a> ]
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="toggle" href="javascript:" title="你想怎样？..." onclick="return false;">勾选 切换</a> ]<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;单节点 ( 影响父子 )--[ <a id="checkTruePS" href="javascript:" title="不想勾选我就不勾选你..." onclick="return false;">勾选</a> ]
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="checkFalsePS" href="javascript:" title="不想取消勾选我就不取消你..." onclick="return false;">取消勾选</a> ]
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="togglePS" href="javascript:" title="你想怎样？..." onclick="return false;">勾选 切换</a> ]<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;全部节点--[ <a id="checkAllTrue" href="javascript:" title="不管你有多NB，统统都要听我的！！" onclick="return false;">勾选</a> ]
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="checkAllFalse" href="javascript:" title="不管你有多NB，统统都要听我的！！" onclick="return false;">取消勾选</a> ]</p>
 				</li>
 				<li><p><span class="highlight_red">使用 zTreeObj.checkNode / checkAllNodes 方法，详细请参见 API 文档中的相关内容</span><br/>
 					beforeCheck / onCheck log:<br/>

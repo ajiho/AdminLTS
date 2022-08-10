@@ -5,19 +5,324 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="icon" href="static/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="static/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
-    <title>bootstrap-admin</title>
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
 <body>
 
+<!--头部导航-->
+<ul class="bsa-header">
+    <!--   移动端侧边栏toggler(不可删除) -->
+    <li>
+        <div class="bsa-nav-item bsa-mobile-sidebar-toggler-item">
+            <i class="bi bi-list"></i>
+        </div>
+    </li>
+    <!--  搜索框表单部分  -->
+    <li>
+        <div class="bsa-nav-item bsa-cursor-default bsa-search-form-item">
+            <form class="bsa-search-form" action="#">
+                <input type="text" class="form-control bsa-search-form-control" name="keyword" aria-label="搜索关键词"
+                       placeholder="搜索关键词">
+                <button class="bsa-search-submit-btn" type="submit"><i class="bi bi-search"></i></button>
+                <button class="bsa-search-close-icon" type="button"><i class="bi bi-x-lg"></i></button>
+            </form>
+        </div>
+    </li>
+    <!--  空白占位符(可以让.bsa-header-item左右分布)   -->
+    <li class="bsa-spacer"></li>
+    <!--  移动端显示的搜索按钮(和搜索框是配套使用)      -->
+    <li>
+        <div class="bsa-nav-item bsa-mobile-search-toggler-item">
+            <i class="bi bi-search"></i>
+        </div>
+    </li>
+    <!--   拓展应用(建议把拓展的连接放在这里,以免破坏头部的整体布局)  -->
+    <li class="dropdown">
+        <div class="bsa-nav-item" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+            <i class="bi bi-grid"></i>
+        </div>
+        <div class="dropdown-menu dropdown-menu-end p-0">
+            <div class="card border-0">
+                <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                    <span class="bsa-font-15">应用列表</span>
+                    <a href="javascript:" class="text-muted bsa-font-13 text-decoration-none">编辑</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="container-fluid">
+                        <div class="row row-cols-3 g-3 p-3">
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用1</div>
+                            </a>
 
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用2</div>
+                            </a>
+
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用3</div>
+                            </a>
+
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用4</div>
+                            </a>
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用5</div>
+                            </a>
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用6</div>
+                            </a>
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用7</div>
+                            </a>
+
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用8</div>
+                            </a>
+
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用9</div>
+                            </a>
+
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用10</div>
+                            </a>
+
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用11</div>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center bg-white">
+                    <a href="javascript:" class="text-muted bsa-font-14 text-decoration-none">查看更多应用</a>
+                </div>
+            </div>
+        </div>
+    </li>
+    <!--    通知    -->
+    <li class="dropdown">
+        <div class="bsa-nav-item" data-bs-toggle="dropdown">
+            <div class="bsa-header-badge-wrapper">
+                <span class="bsa-header-badge">99+</span>
+                <i class="bi bi-bell"></i>
+            </div>
+        </div>
+        <div class="dropdown-menu dropdown-menu-end p-0">
+            <div class="card border-0">
+                <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                    <span class="bsa-font-15">通知列表</span>
+                    <a href="javascript:" class="text-muted bsa-font-13 text-decoration-none">全部设为已读</a>
+                </div>
+                <div class="card-body p-0">
+                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
+                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-height-45 bsa-width-45 rounded-circle bsa-bg-color1 text-white">
+                            <i class="bi bi-cart"></i>
+                        </div>
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis">新订单</h5>
+                            <div class="text-secondary bsa-ellipsis2">
+                                您收到新的订单
+                            </div>
+                            <div class="small text-muted">10秒前</div>
+                        </div>
+                    </a>
+                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
+                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-height-45 bsa-width-45 rounded-circle bsa-bg-color2 text-white">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis">新增用户</h5>
+                            <div class="text-secondary bsa-ellipsis2">
+                                100个新用户注册
+                            </div>
+                            <div class="small text-muted">30分钟前</div>
+                        </div>
+                    </a>
+                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
+                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-height-45 bsa-width-45 rounded-circle bsa-bg-color3 text-white">
+                            <i class="bi bi-chat-square-dots"></i>
+                        </div>
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis">新的评论</h5>
+                            <div class="text-secondary bsa-ellipsis2">
+                                您收到客户新的评论
+                            </div>
+                            <div class="small text-muted">2天前</div>
+                        </div>
+                    </a>
+                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
+                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-height-45 bsa-width-45 rounded-circle bsa-bg-color4 text-white">
+                            <i class="bi bi-cart-check"></i>
+                        </div>
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis">订单已经发货</h5>
+                            <div class="text-secondary bsa-ellipsis2">
+                                您的商品已在运送途中
+                            </div>
+                            <div class="small text-muted">3天前</div>
+                        </div>
+                    </a>
+                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
+                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-height-45 bsa-width-45 rounded-circle bsa-bg-color4 text-white">
+                            <i class="bi bi-person-workspace"></i>
+                        </div>
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis">新的同事</h5>
+                            <div class="text-secondary bsa-ellipsis2">
+                                新增3位后台管理工作成员
+                            </div>
+                            <div class="small text-muted">1周前</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-footer text-center bg-white">
+                    <a href="javascript:" class="text-muted bsa-font-14 text-decoration-none">查看所有通知</a>
+                </div>
+            </div>
+        </div>
+    </li>
+    <!--    消息    -->
+    <li class="dropdown">
+        <div class="bsa-nav-item" data-bs-toggle="dropdown">
+            <div class="bsa-header-badge-wrapper">
+                <span class="bsa-header-badge">9</span>
+                <i class="bi bi-chat-left"></i>
+            </div>
+        </div>
+        <div class="dropdown-menu dropdown-menu-end p-0">
+            <div class="card border-0">
+                <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                    <span class="bsa-font-15">消息列表</span>
+                    <a href="javascript:" class="text-muted bsa-font-13 text-decoration-none">全部设为已读</a>
+                </div>
+                <div class="card-body p-0">
+                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
+                        <img src="https://temp.im/120x120" class="bsa-height-45 bsa-width-45 rounded-circle" alt="头像">
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis">Jack</h5>
+                            <div class="text-secondary bsa-ellipsis2">
+                                I'm fine
+                            </div>
+                            <div class="small text-muted">6分钟前</div>
+                        </div>
+                    </a>
+                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
+                        <img src="https://temp.im/120x120" class="bsa-height-45 bsa-width-45 rounded-circle" alt="头像">
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis">Rose</h5>
+                            <div class="text-secondary bsa-ellipsis2">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </div>
+                            <div class="small text-muted">3小时前</div>
+                        </div>
+                    </a>
+                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
+                        <img src="https://temp.im/120x120" class="bsa-height-45 bsa-width-45 rounded-circle" alt="头像">
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis">Ben</h5>
+                            <div class="text-secondary bsa-ellipsis2">
+                                Lorem ipsum dolor sit amet, consectetur.
+                            </div>
+                            <div class="small text-muted">1天前</div>
+                        </div>
+                    </a>
+                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
+                        <img src="https://temp.im/120x120" class="bsa-height-45 bsa-width-45 rounded-circle" alt="头像">
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis">Emily</h5>
+                            <div class="text-secondary bsa-ellipsis2">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium
+                                architecto autem corporis, eos illo illum itaque nemo nisi, optio sint vitae?
+                                Accusantium dolor eius enim iste laudantium perferendis porro!
+                            </div>
+                            <div class="small text-muted">3天前</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-footer text-center bg-white">
+                    <a href="javascript:" class="text-muted bsa-font-14 text-decoration-none">查看所有消息</a>
+                </div>
+            </div>
+        </div>
+    </li>
+    <!--    用户信息    -->
+    <li class="dropdown">
+        <div class="bsa-nav-item" data-bs-toggle="dropdown">
+            <div class="d-flex align-items-center mb-2">
+                <img src="https://temp.im/120x120" class="bsa-height-40 bsa-width-40 rounded-circle" alt="用户头像">
+                <div class="flex-shrink-0 ms-2 bsa-max-width-150 bsa-user-details">
+                    <div class="bsa-font-15 bsa-ellipsis">欲饮琵琶码上催</div>
+                    <div class="bsa-font-13 bsa-ellipsis">超级管理员</div>
+                </div>
+            </div>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-person me-2"></i>个人资料</a></li>
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-gear me-2"></i>设置</a></li>
+            <li>
+                <div class="dropdown-divider"></div>
+            </li>
+            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-box-arrow-right me-2"></i>退出登录</a>
+            </li>
+        </ul>
+    </li>
+</ul>
 <!--侧边栏-->
 <div class="bsa-sidebar">
     <div class="bsa-sidebar-header">
         <img src="static/images/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
-        <div class="bsa-logo-text">bootstrap-admin</div>
+        <div class="bsa-logo-text">Bootstrap-Admin</div>
     </div>
     <div class="bsa-sidebar-body">
         <ul class="bsa-menu">
@@ -31,6 +336,24 @@
                     <i class="bi bi-columns-gap"></i>UI组件
                 </a>
                 <ul>
+                    <li>
+                        <a href="javascript:" class="has-children">表单</a>
+                        <ul>
+                            <li><a href="component-form-elements.html">基础元素</a></li>
+                            <li><a href="component-form-validations.html">表单验证</a></li>
+                            <li><a href="component-form-layouts.html">表单布局</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="has-children">栏</a>
+                        <ul>
+                            <li><a href="component-navs.html">导航</a></li>
+                            <li><a href="component-navbar.html">导航栏</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="component-tabs.html">选项卡</a>
+                    </li>
                     <li>
                         <a href="component-card.html">卡片</a>
                     </li>
@@ -53,20 +376,88 @@
                         <a href="component-table.html">表格</a>
                     </li>
                     <li>
-                        <a href="javascript:" class="has-children">表单</a>
+                        <a href="component-carousel.html">幻灯片</a>
+                    </li>
+                    <li>
+                        <a href="component-collapse.html">折叠</a>
+                    </li>
+                    <li>
+                        <a href="component-dropdowns.html">下拉菜单</a>
+                    </li>
+                    <li>
+                        <a href="component-list-group.html">列表组</a>
+                    </li>
+                    <li>
+                        <a href="component-modal.html">模态框</a>
+                    </li>
+                    <li>
+                        <a href="component-offcanvas.html">抽屉</a>
+                    </li>
+                    <li>
+                        <a href="component-pagination.html">分页</a>
+                    </li>
+                    <li>
+                        <a href="component-placeholders.html">骨架屏</a>
+                    </li>
+                    <li>
+                        <a href="component-popovers.html">气泡</a>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="has-children">进度</a>
                         <ul>
-                            <li><a href="component-form-elements.html">基础元素</a></li>
-                            <li><a href="component-form-validations.html">表单验证</a></li>
-                            <li><a href="component-form-layouts.html">表单布局</a></li>
+                            <li><a href="component-progress.html">进度条</a></li>
+                            <li><a href="component-spinners.html">进度环</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="component-scrollspy.html">滚动监听</a>
+                    </li>
+                    <li>
+                        <a href="component-toasts.html">吐司</a>
+                    </li>
+                    <li>
+                        <a href="component-tooltips.html">提示</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="javascript:" class="has-children open">
+                <a href="javascript:" class="has-children active open">
                     <i class="bi bi-filetype-html"></i>页面
                 </a>
                 <ul>
+                    <li>
+                        <a href="page-blank.html">新页面</a>
+                    </li>
+                    <li>
+                        <a href="page-list.html">列表页面</a>
+                    </li>
+                    <li>
+                        <a href="page-add.html">表单新增</a>
+                    </li>
+                    <li>
+                        <a href="page-add2.html">表单新增2</a>
+                    </li>
+                    <li>
+                        <a href="page-login.html">登录页面</a>
+                    </li>
+                    <li>
+                        <a href="page-login2.html">登录页面2</a>
+                    </li>
+                    <li>
+                        <a href="page-comment.html">评论页</a>
+                    </li>
+                    <li>
+                        <a href="page-pricing.html">产品定价</a>
+                    </li>
+                    <li>
+                        <a href="page-lock-screen.html">锁屏页</a>
+                    </li>
+                    <li>
+                        <a href="page-article-list.html">文章列表页</a>
+                    </li>
+                    <li>
+                        <a href="page-products-details.html">商品详情页</a>
+                    </li>
                     <li>
                         <a href="page-profile.html">个人资料</a>
                     </li>
@@ -74,19 +465,7 @@
                         <a href="page-timeline.html">时间轴</a>
                     </li>
                     <li>
-                        <a href="page-error.html" class="active">错误页面</a>
-                    </li>
-                    <li>
-                        <a href="page-add.html">新增页面</a>
-                    </li>
-                    <li>
-                        <a href="page-list.html">列表页</a>
-                    </li>
-                    <li>
-                        <a href="page-blank.html">新页面</a>
-                    </li>
-                    <li>
-                        <a href="page-login.html">登录页</a>
+                        <a href="page-error.html" class="active">400/500页面</a>
                     </li>
                 </ul>
             </li>
@@ -95,6 +474,14 @@
                     <i class="bi bi-filetype-js"></i>插件
                 </a>
                 <ul>
+                    <li><a href="plugin-fullcalendar.html">日历</a></li>
+                    <li>
+                        <a href="javascript:" class="has-children">图表</a>
+                        <ul>
+                            <li><a href="plugin-chart.html">chart.js</a></li>
+                            <li><a href="plugin-echarts.html">echart.js</a></li>
+                        </ul>
+                    </li>
                     <li><a href="plugin-bootstrap-notify.html">通知插件</a></li>
                     <li><a href="plugin-bootstrap-dialog.html">弹层插件</a></li>
                     <li><a href="plugin-formvalidation.html">表单验证</a></li>
@@ -103,6 +490,7 @@
                     <li><a href="plugin-dropzone.html">文件上传</a></li>
                     <li><a href="plugin-croppie.html">头像裁剪</a></li>
                     <li><a href="plugin-ztree.html">树形组件</a></li>
+                    <li><a href="plugin-select2.html">select2</a></li>
                 </ul>
             </li>
             <li>
@@ -141,230 +529,10 @@
         </ul>
     </div>
 </div>
-<!--头部导航-->
-<div class="bsa-header">
-    <div class="bsa-header-item bsa-mobile-sidebar-item">
-        <i class="bi bi-list"></i>
-    </div>
-    <div class="bsa-header-item bsa-search-bar-item">
-        <form class="bsa-search-box" action="#">
-            <input type="text" class="form-control bsa-search-input" name="keyword" aria-label="搜索关键词"
-                   placeholder="搜索关键词">
-            <button class="bsa-search-btn" type="submit"><i class="bi bi-search"></i></button>
-            <i class="bi bi-x bsa-search-close-icon"></i>
-        </form>
-    </div>
-    <div class="bsa-header-item bsa-mobile-search-item">
-        <i class="bi bi-search"></i>
-    </div>
-    <div class="bsa-header-item dropdown">
-        <i class="bi bi-grid" data-bs-toggle="dropdown" role="button"></i>
-        <div class="dropdown-menu dropdown-menu-end bsa-dropdown-menu">
-            <div class="bsa-dropdown-menu-body">
-                <div class="container-fluid">
-                    <div class="row row-cols-3 g-3 p-3">
-                        <a class="col text-center text-decoration-none" href="javascript:">
-                            <div class="bsa-app-thumb mx-auto bg-primary text-white"><i class="bi bi-bank"></i></div>
-                            <div class="fs-6 mt-1 text-muted">银行</div>
-                        </a>
-                        <a class="col text-center text-decoration-none" href="javascript:">
-                            <div class="bsa-app-thumb mx-auto bg-info text-white"><i class="bi bi-link"></i></div>
-                            <div class="fs-6 mt-1 text-muted">拓展应用2</div>
-                        </a>
-                        <a class="col text-center text-decoration-none" href="javascript:">
-                            <div class="bsa-app-thumb mx-auto bg-danger text-white"><i class="bi bi-link"></i></div>
-                            <div class="fs-6 mt-1 text-muted">拓展应用3</div>
-                        </a>
-                        <a class="col text-center text-decoration-none" href="javascript:">
-                            <div class="bsa-app-thumb mx-auto bg-danger text-white"><i class="bi bi-link"></i></div>
-                            <div class="fs-6 mt-1 text-muted">拓展应用4</div>
-                        </a>
-                        <a class="col text-center text-decoration-none" href="javascript:">
-                            <div class="bsa-app-thumb mx-auto bg-danger text-white"><i class="bi bi-link"></i></div>
-                            <div class="fs-6 mt-1 text-muted">拓展应用5</div>
-                        </a>
-                        <a class="col text-center text-decoration-none" href="javascript:">
-                            <div class="bsa-app-thumb mx-auto bg-danger text-white"><i class="bi bi-link"></i></div>
-                            <div class="fs-6 mt-1 text-muted">拓展应用6</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bsa-header-item dropdown">
-        <div class="position-relative " data-bs-toggle="dropdown" role="button">
-            <span class="bsa-num-count">99+</span>
-            <i class="bi bi-bell"></i>
-        </div>
-        <div class="dropdown-menu dropdown-menu-end bsa-dropdown-menu">
-
-            <div class="bsa-dropdown-menu-header d-flex align-items-center justify-content-between">
-                <p class="bsa-dropdown-menu-title">通知列表</p>
-                <a href="javascript:" class="bsa-dropdown-menu-all-read">全部设为已读</a>
-            </div>
-
-            <div class="bsa-dropdown-menu-body">
-                <a class="dropdown-item" href="javascript:">
-                    <div class="bsa-media">
-                        <div class="bsa-media-thumb bg-danger text-white"><i class="bi bi-cart"></i></div>
-                        <div class="bsa-media-body">
-                            <h5 class="bsa-media-title">新订单</h5>
-                            <p class="bsa-media-text">您收到新的订单</p>
-                            <p class="bsa-media-time small">10秒前</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" href="javascript:">
-                    <div class="bsa-media">
-                        <div class="bsa-media-thumb bg-success text-white"><i class="bi bi-people"></i></div>
-                        <div class="bsa-media-body">
-                            <h5 class="bsa-media-title">新增用户</h5>
-                            <p class="bsa-media-text">100个新用户注册</p>
-                            <p class="bsa-media-time small">30分钟前</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" href="javascript:">
-                    <div class="bsa-media">
-                        <div class="bsa-media-thumb bg-warning text-white"><i class="bi bi-chat-square-dots"></i></div>
-                        <div class="bsa-media-body">
-                            <h5 class="bsa-media-title">新的评论</h5>
-                            <p class="bsa-media-text">您收到客户新的评论</p>
-                            <p class="bsa-media-time small">2天前</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" href="javascript:">
-                    <div class="bsa-media">
-                        <div class="bsa-media-thumb bg-primary text-white"><i class="bi bi-cart-check"></i></div>
-                        <div class="bsa-media-body">
-                            <h5 class="bsa-media-title">订单已经发货</h5>
-                            <p class="bsa-media-text">您的商品已在运送途中</p>
-                            <p class="bsa-media-time small">3天前</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" href="javascript:">
-                    <div class="bsa-media">
-                        <div class="bsa-media-thumb bg-secondary text-white"><i class="bi bi-person-workspace"></i>
-                        </div>
-                        <div class="bsa-media-body">
-                            <h5 class="bsa-media-title">新的同事</h5>
-                            <p class="bsa-media-text">新增3位后台管理工作成员</p>
-                            <p class="bsa-media-time small">1周前</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="bsa-dropdown-menu-footer d-flex align-items-center justify-content-center">
-                <a href="javascript:" class="bsa-dropdown-view-all">查看所有通知</a>
-            </div>
-
-        </div>
-    </div>
-    <div class="bsa-header-item dropdown">
-        <div class="position-relative " data-bs-toggle="dropdown" role="button">
-            <span class="bsa-num-count">9</span>
-            <i class="bi bi-chat-left"></i>
-        </div>
-        <div class="dropdown-menu dropdown-menu-end bsa-dropdown-menu">
-            <div class="bsa-dropdown-menu-header d-flex align-items-center justify-content-between">
-                <p class="bsa-dropdown-menu-title">消息列表</p>
-                <a href="javascript:" class="bsa-dropdown-menu-all-read">全部设为已读</a>
-            </div>
-            <div class="bsa-dropdown-menu-body">
-                <a class="dropdown-item" href="javascript:">
-                    <div class="bsa-media">
-                        <div class="bsa-media-thumb">
-                            <img src="static/images/tx/1-14122G11110-50.jpg" class="bsa-media-thumb-img" alt="avatar">
-                        </div>
-                        <div class="bsa-media-body">
-                            <h5 class="bsa-media-title">青蛙王子</h5>
-                            <p class="bsa-media-text">请给我开通新的角色权限~</p>
-                            <p class="bsa-media-time small">16秒前</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" href="javascript:">
-                    <div class="bsa-media">
-                        <div class="bsa-media-thumb">
-                            <img src="static/images/tx/1-14122G11131.jpg" class="bsa-media-thumb-img" alt="avatar">
-                        </div>
-                        <div class="bsa-media-body">
-                            <h5 class="bsa-media-title">骑着蜗牛看世界</h5>
-                            <p class="bsa-media-text">兄弟，晚上一起去喝几杯</p>
-                            <p class="bsa-media-time small">40分钟前</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" href="javascript:">
-                    <div class="bsa-media">
-                        <div class="bsa-media-thumb">
-                            <img src="static/images/tx/1-14122G11114.jpg" class="bsa-media-thumb-img" alt="avatar">
-                        </div>
-                        <div class="bsa-media-body">
-                            <h5 class="bsa-media-title">小刘</h5>
-                            <p class="bsa-media-text">订单已经发货完毕</p>
-                            <p class="bsa-media-time small">7天前</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" href="javascript:">
-                    <div class="bsa-media">
-                        <div class="bsa-media-thumb">
-                            <img src="static/images/tx/1-14122G11126-50.jpg" class="bsa-media-thumb-img" alt="avatar">
-                        </div>
-                        <div class="bsa-media-body">
-                            <h5 class="bsa-media-title">小王</h5>
-                            <p class="bsa-media-text">晚上一起去公园走走呀~</p>
-                            <p class="bsa-media-time small">8天前</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" href="javascript:">
-                    <div class="bsa-media">
-                        <div class="bsa-media-thumb">
-                            <img src="static/images/tx/1-14122G11112-50.jpg" class="bsa-media-thumb-img" alt="avatar">
-                        </div>
-                        <div class="bsa-media-body">
-                            <h5 class="bsa-media-title">人生如茶</h5>
-                            <p class="bsa-media-text">今天晚上大家留下来开个产品会议</p>
-                            <p class="bsa-media-time small">2周前</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="bsa-dropdown-menu-footer d-flex align-items-center justify-content-center">
-                <a href="javascript:" class="bsa-dropdown-view-all">查看所有消息</a>
-            </div>
-        </div>
-    </div>
-    <div class="bsa-header-item dropdown">
-        <div class="bsa-user-info" data-bs-toggle="dropdown" role="button">
-            <img src="static/images/avatar.jpg" class="bsa-user-img" alt="用户头像">
-            <div class="bsa-user-detail">
-                <div class="bsa-user-name">欲饮琵琶码上催</div>
-                <div class="bsa-user-role">超级管理员</div>
-            </div>
-        </div>
-        <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-person"></i>个人资料</a></li>
-            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-gear"></i>设置</a></li>
-            <li>
-                <div class="dropdown-divider"></div>
-            </li>
-            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-box-arrow-right"></i>退出登录</a></li>
-        </ul>
-    </div>
-</div>
-
-
 <!--内容区域-->
 <div class="bsa-main-wrapper">
     <div class="bsa-main-content">
-
+        <!-- 内容都应该被包裹在此-->
         <div class="d-flex align-items-center justify-content-center">
             <div class="container">
                 <div class="card py-5 border-0 shadow-sm">
@@ -394,95 +562,92 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
-
 <!--调色板-->
 <div class="bsa-switcher">
-
     <div class="bsa-switcher-toggler-btn">
         <div class="bsa-switcher-toggler-icon">
             <i class="bi bi-gear"></i>
         </div>
     </div>
-
-
     <div class="bsa-switcher-header">
         <h5 class="bsa-switcher-header-title">自定义主题</h5>
         <button type="button" class="btn-close text-reset bsa-switcher-toggler-btn"></button>
     </div>
-
-
     <div class="bsa-switcher-body">
-        <h6 class="text-dark">头部颜色</h6>
-        <hr>
-        <div class="bsa-headercolor-wrap">
-
-            <div class="row row-cols-auto g-3">
-                <div class="col">
-                    <div class="headercolor1"></div>
-                </div>
-                <div class="col">
-                    <div class="headercolor2"></div>
-                </div>
-                <div class="col">
-                    <div class="headercolor3"></div>
-                </div>
-                <div class="col">
-                    <div class="headercolor4"></div>
-                </div>
-                <div class="col">
-                    <div class="headercolor5"></div>
-                </div>
-                <div class="col">
-                    <div class="headercolor6"></div>
-                </div>
-                <div class="col">
-                    <div class="headercolor7"></div>
-                </div>
-                <div class="col">
-                    <div class="headercolor8"></div>
+        <div class="row row-cols-1 g-4">
+            <div class="col">
+                <h6>头部颜色</h6>
+                <hr>
+                <div class="bsa-headercolor-wrap">
+                    <div class="row row-cols-auto g-3">
+                        <div class="col">
+                            <div class="headercolor0"></div>
+                        </div>
+                        <div class="col">
+                            <div class="headercolor1"></div>
+                        </div>
+                        <div class="col">
+                            <div class="headercolor2"></div>
+                        </div>
+                        <div class="col">
+                            <div class="headercolor3"></div>
+                        </div>
+                        <div class="col">
+                            <div class="headercolor4"></div>
+                        </div>
+                        <div class="col">
+                            <div class="headercolor5"></div>
+                        </div>
+                        <div class="col">
+                            <div class="headercolor6"></div>
+                        </div>
+                        <div class="col">
+                            <div class="headercolor7"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <h6 class="text-dark">侧边栏颜色</h6>
-        <hr>
-        <div class="bsa-sidebarcolor-wrap">
-
-            <div class="row row-cols-auto g-3">
-                <div class="col">
-                    <div class="sidebarcolor1"></div>
-                </div>
-                <div class="col">
-                    <div class="sidebarcolor2"></div>
-                </div>
-                <div class="col">
-                    <div class="sidebarcolor3"></div>
-                </div>
-                <div class="col">
-                    <div class="sidebarcolor4"></div>
-                </div>
-                <div class="col">
-                    <div class="sidebarcolor5"></div>
-                </div>
-                <div class="col">
-                    <div class="sidebarcolor6"></div>
-                </div>
-                <div class="col">
-                    <div class="sidebarcolor7"></div>
-                </div>
-                <div class="col">
-                    <div class="sidebarcolor8"></div>
+            <div class="col">
+                <h6>侧边栏颜色</h6>
+                <hr>
+                <div class="bsa-sidebarcolor-wrap">
+                    <div class="row row-cols-auto g-3">
+                        <div class="col">
+                            <div class="sidebarcolor0"></div>
+                        </div>
+                        <div class="col">
+                            <div class="sidebarcolor1"></div>
+                        </div>
+                        <div class="col">
+                            <div class="sidebarcolor2"></div>
+                        </div>
+                        <div class="col">
+                            <div class="sidebarcolor3"></div>
+                        </div>
+                        <div class="col">
+                            <div class="sidebarcolor4"></div>
+                        </div>
+                        <div class="col">
+                            <div class="sidebarcolor5"></div>
+                        </div>
+                        <div class="col">
+                            <div class="sidebarcolor6"></div>
+                        </div>
+                        <div class="col">
+                            <div class="sidebarcolor7"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <script src="static/js/bootstrap.bundle.min.js"></script>
-<script src="src/bootstrap-admin.js"></script>
+<script src="static/js/bootstrap-admin.min.js"></script>
 
 
 </body>

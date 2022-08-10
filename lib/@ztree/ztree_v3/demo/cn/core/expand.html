@@ -154,13 +154,13 @@
 				<li>利用 collapse / expand 事件回调函数 可以控制父节点是否允许 展开 / 折叠，这里简单演示如何监控此事件</li>
 				<li><p>试试看：<br/>
 					&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="callbackTrigger" checked /> expandNode 方法是否触发 callback<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;单个节点--[ <a id="expandBtn" href="#" title="不想展开我就不展开你..." onclick="return false;">展开</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="collapseBtn" href="#" title="不想折叠我就不折叠你..." onclick="return false;">折叠</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="toggleBtn" href="#" title="你想怎样？..." onclick="return false;">展开 / 折叠 切换</a> ]<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;单个节点（包括子节点）--[ <a id="expandSonBtn" href="#" title="不想展开我就不展开你..." onclick="return false;">展开</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="collapseSonBtn" href="#" title="不想折叠我就不折叠你..." onclick="return false;">折叠</a> ]<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;全部节点--[ <a id="expandAllBtn" href="#" title="不管你有多NB，统统都要听我的！！" onclick="return false;">展开</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="collapseAllBtn" href="#" title="不管你有多NB，统统都要听我的！！" onclick="return false;">折叠</a> ]</p>
+					&nbsp;&nbsp;&nbsp;&nbsp;单个节点--[ <a id="expandBtn" href="javascript:" title="不想展开我就不展开你..." onclick="return false;">展开</a> ]
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="collapseBtn" href="javascript:" title="不想折叠我就不折叠你..." onclick="return false;">折叠</a> ]
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="toggleBtn" href="javascript:" title="你想怎样？..." onclick="return false;">展开 / 折叠 切换</a> ]<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;单个节点（包括子节点）--[ <a id="expandSonBtn" href="javascript:" title="不想展开我就不展开你..." onclick="return false;">展开</a> ]
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="collapseSonBtn" href="javascript:" title="不想折叠我就不折叠你..." onclick="return false;">折叠</a> ]<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;全部节点--[ <a id="expandAllBtn" href="javascript:" title="不管你有多NB，统统都要听我的！！" onclick="return false;">展开</a> ]
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="collapseAllBtn" href="javascript:" title="不管你有多NB，统统都要听我的！！" onclick="return false;">折叠</a> ]</p>
 				<li><p><span class="highlight_red">使用 zTreeObj.expandNode 方法，详细请参见 API 文档中的相关内容</span><br/>
 					collapse / expand log:<br/>
 					<ul id="log" class="log"></ul></p>
