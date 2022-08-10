@@ -665,6 +665,30 @@ html, body {
 }
 
 
+
+/*------------------导航栏的拓展----------------------------------*/
+.bsa-nav-search input.form-control {
+    background-color: rgb(255 255 255 / 20%);
+    border: 1px solid rgb(255 255 255 / 45%);
+    color: #fff
+}
+
+.bsa-nav-search button[type=submit] {
+    background-color: rgb(255 255 255 / 20%);
+    border: 1px solid rgb(255 255 255 / 32%);
+    color: #fff
+}
+
+.bsa-nav-search input.form-control::placeholder {
+    opacity: .5 !important;
+    color: #fff !important
+}
+
+.bsa-nav-search input.form-control::-ms-input-placeholder {
+    color: #fff !important
+}
+
+
 /*=======================对原有组件的拓展样式END==================================*/
 
 
