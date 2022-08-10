@@ -231,6 +231,7 @@
             return new bootstrap.Popover(popoverTriggerEl)
         });
 
+
         //bootstrap提示组件初始化
         [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
