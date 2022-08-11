@@ -284,13 +284,14 @@ html, body {
     font-family: bootstrap-icons, serif;
     content: "\F284";
     transition: transform 0.3s linear;
-    zoom: .5;
+    transform: scale(.5) rotate(0deg);
     position: absolute;
     right: 24px;
 }
 
+
 .bsa-menu .has-children.open:after {
-    transform: rotate(-90deg);
+    transform: scale(.5) rotate(-90deg);
 }
 
 .bsa-menu ul a {
