@@ -25,6 +25,7 @@ html, body {
 
 .bsa-header > li {
     background: inherit;
+    height: inherit;
 }
 
 .bsa-header .bsa-nav-item {
@@ -33,7 +34,7 @@ html, body {
     color: #6c757d;
     cursor: pointer;
     padding: 0 18px;
-    height: 80px;
+    height: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,6 +81,13 @@ html, body {
 
 .bsa-header .bsa-mobile-sidebar-toggler-item {
     display: none;
+}
+
+.bsa-nav-item .bsa-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .bsa-nav-item .bsa-user-details {
@@ -346,6 +354,7 @@ html, body {
 }
 
 .bsa-switcher > .bsa-switcher-toggler-btn {
+    overflow: hidden;
     width: 40px;
     height: 40px;
     line-height: 40px;
@@ -400,6 +409,11 @@ html, body {
     display: none;
 }
 
+
+/*=======================调色板END==================================*/
+
+
+/*=======================内置的动画==================================*/
 @keyframes spin {
     0% {
         transform: rotate(0)
@@ -408,12 +422,10 @@ html, body {
         transform: rotate(359deg)
     }
 }
-
-.bsa-switcher-toggler-btn .bsa-switcher-toggler-icon {
+.bsa-animation-spin {
     animation: spin 2s linear infinite;
 }
-
-/*=======================调色板END==================================*/
+/*=======================内置的动画END==================================*/
 
 
 /*=======================对原有组件的拓展样式==================================*/
@@ -663,7 +675,6 @@ html, body {
     color: #f41127;
     background-color: transparent
 }
-
 
 
 /*------------------导航栏的拓展----------------------------------*/
@@ -1235,6 +1246,7 @@ html.color-header .bsa-header .bsa-nav-item {
 html.color-header .bsa-search-form .bsa-search-form-control:focus {
     box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
 }
+
 /*=======================头部颜色实装时对原本头部导航的微调END==================================*/
 
 
@@ -1374,6 +1386,12 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 @media (max-width: 991.98px) {
 
 
+    .bsa-nav-item .bsa-avatar{
+        height: 35px;
+        width: 35px;
+    }
+
+
     .bsa-sidebar {
         transform: translateX(-101%);
         box-shadow: none;
@@ -1419,7 +1437,6 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
     }
 
 
-
     .bsa-header {
         left: 0;
     }
@@ -1452,7 +1469,7 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
         display: none;
     }
 
-    .bsa-search-form-item .bsa-search-form .bsa-search-form-control{
+    .bsa-search-form-item .bsa-search-form .bsa-search-form-control {
         padding-left: 2.5rem;
     }
 
@@ -1484,7 +1501,6 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
     }
 
 
-
 }
 
 
@@ -1514,6 +1530,11 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 /*小于342时触发*/
 @media (max-width: 341.98px) {
 
+
+    .bsa-nav-item .bsa-avatar{
+        height: 30px;
+        width: 30px;
+    }
 
     .bsa-header .bsa-nav-item {
         font-size: 18px;

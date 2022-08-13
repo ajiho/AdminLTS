@@ -1,9 +1,5 @@
 ;(function () {
     window.addEventListener("DOMContentLoaded", function () {
-
-
-
-        // form[action="#"]
         //禁止无效表单提交
         const invalidForms = document.querySelectorAll('form:not([action]),form[action="#"]');
         for (const form of invalidForms) {
@@ -12,13 +8,11 @@
             });
         }
 
-
-
-
         //禁止所有的input记忆
-        document.querySelectorAll('input').forEach((e, i) => {
+        document.querySelectorAll('input').forEach((e) => {
             e.setAttribute("AutoComplete", "off");
         });
+
         //全选
         eventDelegate(document.body, 'change', '.check-all', function (event) {
             let target = event.target;
@@ -32,16 +26,12 @@
 
         //调色板侧边栏
         eventDelegate(document.body, 'click', '.bsa-sidebarcolor-wrap div[class^=sidebarcolor]', function (event) {
-
             event.preventDefault();
             event.stopPropagation();
-
             let sidebarcolor = this.getAttribute('class');
-
             let sidebarcolorList = ["sidebarcolor1", "sidebarcolor2", "sidebarcolor3",
                 "sidebarcolor4", "sidebarcolor5", "sidebarcolor6",
-                "sidebarcolor7", "sidebarcolor8"];
-
+                "sidebarcolor7"];
             if (sidebarcolor === "sidebarcolor0") {
                 document.documentElement.classList.remove("color-sidebar");
                 sidebarcolorList.map(function (item) {
@@ -49,11 +39,9 @@
                 });
             } else {
                 document.documentElement.classList.add("color-sidebar", sidebarcolor);
-
                 sidebarcolorList.splice(sidebarcolorList.indexOf(sidebarcolor), 1);
                 document.documentElement.classList.remove(...sidebarcolorList);
             }
-
         });
 
         //调色板头部
@@ -64,22 +52,18 @@
             let headercolor = this.getAttribute('class');
             let headercolorList = ["headercolor1", "headercolor2", "headercolor3",
                 "headercolor4", "headercolor5", "headercolor6",
-                "headercolor7", "headercolor8"];
+                "headercolor7"];
 
             if (headercolor === "headercolor0") {
-
                 document.documentElement.classList.remove("color-header");
                 headercolorList.map(function (item) {
                     document.documentElement.classList.remove(item);
                 });
-
             } else {
                 document.documentElement.classList.add("color-header", headercolor);
                 headercolorList.splice(headercolorList.indexOf(headercolor), 1);
                 document.documentElement.classList.remove(...headercolorList);
             }
-
-
         });
 
 
@@ -87,7 +71,6 @@
         eventDelegate(document.body, 'click', '.bsa-switcher-toggler-btn', function (event) {
             event.preventDefault();
             event.stopPropagation();
-
             let bsaSwitcher = document.querySelector('.bsa-switcher');
             if (!bsaSwitcher.classList.contains('open')) {
                 bsaSwitcher.classList.add('open')
@@ -95,7 +78,6 @@
                 bsaSwitcher.classList.remove('open')
             }
         });
-
 
         //搜索框关闭
         eventDelegate(document.body, 'click', '.bsa-search-close-icon', function (event) {
@@ -146,21 +128,19 @@
             event.preventDefault();
             event.stopPropagation();
             let el_a_has_children = this;
-
             if (!el_a_has_children.classList.contains('open')) {//展开
                 el_a_has_children.classList.add('open');
                 ulOpen(el_a_has_children);
             } else {
                 ulClose(el_a_has_children);
             }
-
             // 兄弟节点处理
             siblings(el_a_has_children.parentNode).forEach((el_li) => {
                 Array.from(el_li.children).forEach((item) => {
 
 
                     if (item.matches('a.active')) {
-                      item.classList.remove('active');
+                        item.classList.remove('active');
                     }
                     if (item.matches('a.has-children.open')) {
 
