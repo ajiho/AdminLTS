@@ -905,16 +905,17 @@
         <button type="button" class="btn-close text-reset bsa-switcher-toggler-btn"></button>
     </div>
     <div class="bsa-switcher-body p-0">
-        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+        <div class="accordion" id="accordionExample">
             <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         头部设置
                     </button>
                 </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
-                     data-bs-parent="#accordionFlushExample">
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="mb-3">
                             <div class="form-check form-check-inline">
@@ -960,14 +961,14 @@
                 </div>
             </div>
             <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwo">
+                <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         侧边栏设置
                     </button>
                 </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
-                     data-bs-parent="#accordionFlushExample">
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="bsa-sidebarcolor-wrap">
                             <div class="row row-cols-auto g-3">
@@ -997,7 +998,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
