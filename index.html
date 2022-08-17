@@ -495,6 +495,21 @@
             </li>
             <li>
                 <a href="javascript:" class="has-children">
+                    <i class="bi bi-palette"></i>助手类
+                </a>
+                <ul>
+                    <li>
+                        <a href="javascript:" class="has-children">bootstrap</a>
+                        <ul>
+                            <li><a href="javascript:">背景</a></li>
+                            <li><a href="javascript:">边框</a></li>
+                            <li><a href="javascript:">间距</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:" class="has-children">
                     <i class="bi bi-list-nested"></i>多级菜单
                 </a>
                 <ul>
@@ -883,75 +898,106 @@
 <!--后台设置面板-->
 <div class="bsa-switcher">
     <div class="bsa-switcher-toggler-btn">
-            <i class="bi bi-gear bsa-animation-spin"></i>
+        <i class="bi bi-gear bsa-animation-spin"></i>
     </div>
     <div class="bsa-switcher-header">
         <h5 class="bsa-switcher-header-title">设置</h5>
         <button type="button" class="btn-close text-reset bsa-switcher-toggler-btn"></button>
     </div>
-    <div class="bsa-switcher-body">
-        <div class="row row-cols-1 g-4">
-            <div class="col">
-                <h6>头部颜色</h6>
-                <hr>
-                <div class="bsa-headercolor-wrap">
-                    <div class="row row-cols-auto g-3">
-                        <div class="col">
-                            <div class="headercolor0"></div>
+    <div class="bsa-switcher-body p-0">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        头部设置
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
+                     data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="mb-3">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                                       autocomplete="off">
+                                <label class="form-check-label" for="inlineCheckbox1">固定</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"
+                                       autocomplete="off">
+                                <label class="form-check-label" for="inlineCheckbox2">紧凑</label>
+                            </div>
                         </div>
-                        <div class="col">
-                            <div class="headercolor1"></div>
-                        </div>
-                        <div class="col">
-                            <div class="headercolor2"></div>
-                        </div>
-                        <div class="col">
-                            <div class="headercolor3"></div>
-                        </div>
-                        <div class="col">
-                            <div class="headercolor4"></div>
-                        </div>
-                        <div class="col">
-                            <div class="headercolor5"></div>
-                        </div>
-                        <div class="col">
-                            <div class="headercolor6"></div>
-                        </div>
-                        <div class="col">
-                            <div class="headercolor7"></div>
+                        <div class="bsa-headercolor-wrap">
+                            <div class="row row-cols-auto g-3">
+                                <div class="col">
+                                    <div class="headercolor0"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="headercolor1"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="headercolor2"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="headercolor3"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="headercolor4"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="headercolor5"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="headercolor6"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="headercolor7"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <h6>侧边栏颜色</h6>
-                <hr>
-                <div class="bsa-sidebarcolor-wrap">
-                    <div class="row row-cols-auto g-3">
-                        <div class="col">
-                            <div class="sidebarcolor0"></div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        侧边栏设置
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                     data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="bsa-sidebarcolor-wrap">
+                            <div class="row row-cols-auto g-3">
+                                <div class="col">
+                                    <div class="sidebarcolor0"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="sidebarcolor1"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="sidebarcolor2"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="sidebarcolor3"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="sidebarcolor4"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="sidebarcolor5"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="sidebarcolor6"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="sidebarcolor7"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
-                            <div class="sidebarcolor1"></div>
-                        </div>
-                        <div class="col">
-                            <div class="sidebarcolor2"></div>
-                        </div>
-                        <div class="col">
-                            <div class="sidebarcolor3"></div>
-                        </div>
-                        <div class="col">
-                            <div class="sidebarcolor4"></div>
-                        </div>
-                        <div class="col">
-                            <div class="sidebarcolor5"></div>
-                        </div>
-                        <div class="col">
-                            <div class="sidebarcolor6"></div>
-                        </div>
-                        <div class="col">
-                            <div class="sidebarcolor7"></div>
-                        </div>
+
                     </div>
                 </div>
             </div>

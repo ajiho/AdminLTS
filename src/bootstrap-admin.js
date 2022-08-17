@@ -1,12 +1,13 @@
 ;(function () {
     window.addEventListener("DOMContentLoaded", function () {
-        //禁止无效表单提交
+        //禁止无效表单提交()
         const invalidForms = document.querySelectorAll('form:not([action]),form[action="#"]');
         for (const form of invalidForms) {
             form.addEventListener('submit', event => {
                 event.preventDefault();
             });
         }
+
 
         //禁止所有的input记忆
         document.querySelectorAll('input').forEach((e) => {
@@ -217,7 +218,6 @@
         [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
-
 
         //============================助手函数============================
         function ulOpen(dom) {
