@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
+    <!--  代码高亮css  -->
+    <link rel="stylesheet" href="lib/prismjs/themes/prism-okaidia.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
 <body>
@@ -499,20 +501,14 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="javascript:" class="has-children">Bootstrap</a>
-                        <ul>
-                            <li><a href="helper-bs-background.html">背景</a></li>
-                            <li><a href="helper-bs-borders.html">边框</a></li>
-                            <li><a href="helper-bs-colors.html">颜色</a></li>
-                        </ul>
+                        <a href="helper-bs-background.html">背景</a>
                     </li>
                     <li>
-                        <a href="javascript:" class="has-children">BootStrap-Admin</a>
-                        <ul>
-                            <li><a href="helper-bsa-background.html">背景</a></li>
-                        </ul>
+                        <a href="helper-bs-borders.html">边框</a>
                     </li>
-
+                    <li>
+                        <a href="helper-bs-colors.html">颜色</a>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -555,345 +551,130 @@
 <div class="bsa-main-wrapper">
     <div class="bsa-main-content">
         <!-- 内容都应该被包裹在此-->
-        <div class="container-fluid">
-            <div class="row g-3">
-                <!-- 四个卡片 -->
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color4 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="me-1">
-                                    <h6 class="mb-2 bsa-ellipsis">今日收入</h6>
-                                    <h4 class="mb-1 bsa-ellipsis">13,145.20</h4>
-                                </div>
-                                <i class="bi bi-currency-yen fs-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color3 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="me-1">
-                                    <h6 class="mb-2 bsa-ellipsis">用户总数</h6>
-                                    <h4 class="mb-1 bsa-ellipsis">1546</h4>
-                                </div>
-                                <i class="bi bi-people fs-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-color1 bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="me-1">
-                                    <h6 class="mb-2 bsa-ellipsis">订单总数</h6>
-                                    <h4 class="mb-1 bsa-ellipsis">2000</h4>
-                                </div>
-                                <i class="bi bi-cart fs-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-primary bsa-radius-15">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="me-1">
-                                    <h6 class="mb-2 bsa-ellipsis">留言</h6>
-                                    <h4 class="mb-1 bsa-ellipsis">1000</h4>
-                                </div>
-                                <i class="bi bi-chat fs-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- 四个图表 -->
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            近七天pv值
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-bar"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            年营业额走势
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-line"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            博客后台各大数据走势
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-line2"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            房源出租情况
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-doughnut" height="300"></canvas>
-                        </div>
-                    </div>
-                </div>
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="row row-cols-1 g-2">
+                    <div class="col">
 
-                <!-- 项目进度           -->
-                <div class="col-md-8">
-                    <div class="card bsa-radius-10 border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            项目完成情况
+                        <h5 class="card-title">基本示例</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">快速设置背景色,同时和
+                            <code>.text-*</code>文本助手类结合使用
+                        </h6>
+                        <div class="dropdown-divider mb-3"></div>
+                        <div class="bsa-component">
+                            <div class="row row-cols-4 g-2">
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-primary text-white text-center">.bg-primary</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-secondary text-white text-center">.bg-secondary</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-success text-white text-center">.bg-success</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-danger text-white text-center">.bg-danger</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-warning text-dark text-center">.bg-warning</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-info text-dark text-center">.bg-info</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-light text-dark text-center">.bg-light</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-dark text-white text-center">.bg-dark</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-body text-dark text-center">.bg-body</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-white text-dark text-center">.bg-white</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-transparent text-dark text-center">.bg-transparent</div>
+                                </div>
+                            </div>
+
+
                         </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <p>项目A</p>
-                                <div class="progress">
-                                    <div class="progress-bar  progress-bar-striped progress-bar-animated bg-danger"
-                                         style="width: 25%;">
-                                        25%
+
+                    </div>
+                    <div class="col">
+
+                        <h5 class="card-title">背景渐变</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            可以添加<code>.bg-gradient</code>类,从一个半透明的白色开始，逐渐淡出到底部,注意:这个效果不太明显需要认真看
+                        </h6>
+                        <div class="dropdown-divider mb-3"></div>
+                        <div class="bsa-component">
+                            <div class="row row-cols-4 g-2">
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-primary bg-gradient text-white text-center">.bg-primary
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目B</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                         style="width: 35%;">
-                                        35%
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-secondary bg-gradient text-white text-center">
+                                        .bg-secondary
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目C</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
-                                         style="width: 45%;">
-                                        45%
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-success bg-gradient text-white text-center">.bg-success
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目D</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-                                         style="width: 55%;">
-                                        55%
-                                    </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-danger bg-gradient text-white text-center">.bg-danger</div>
                                 </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <p>项目E</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
-                                         style="width: 65%;">
-                                        65%
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-warning bg-gradient text-dark text-center">.bg-warning</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-info bg-gradient text-dark text-center">.bg-info</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-light bg-gradient text-dark text-center">.bg-light</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-dark bg-gradient text-white text-center">.bg-dark</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-body bg-gradient text-dark text-center">.bg-body</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-white bg-gradient text-dark text-center">.bg-white</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 mb-2 bg-transparent bg-gradient text-dark text-center">
+                                        .bg-transparent
                                     </div>
                                 </div>
                             </div>
 
 
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bsa-radius-10 border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            磁盘存储情况
-                        </div>
-                        <div class="card-body">
 
-                            <p>磁盘容量</p>
-                            <h4 class="mb-3">320/1000</h4>
-                            <hr>
-                            <div class="mb-4">
-                                <p>图片 <span class="float-right">10GB</span></p>
-                                <div class="progress" style="height:5px;">
-                                    <div class="progress-bar bg-danger" style="width:65%"></div>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <p>视频 <span class="float-right">12GB</span></p>
-                                <div class="progress" style="height:5px;">
-                                    <div class="progress-bar bg-success" style="width:70%"></div>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <p>音频 <span class="float-right">5GB</span></p>
-                                <div class="progress" style="height:5px;">
-                                    <div class="progress-bar bg-primary" style="width:35%"></div>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <p>文本 <span class="float-right">8GB</span></p>
-                                <div class="progress" style="height:5px;">
-                                    <div class="progress-bar bg-primary" style="width:60%"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <!-- 表格           -->
-                <div class="col-12">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
-                            订单摘要
+                    <div class="col">
+                        <h5 class="card-title">背景透明度</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            通过自定义样式或内联样式覆盖<code>--bs-bg-opacity</code>,或者使用内置透明度助手函数<code>.bg-opacity-*</code>
+                        </h6>
+                        <div class="bsa-component mb-3">
+                            <div class="bg-success p-2 text-white">This is default success background</div>
+                            <div class="bg-success p-2" style="--bs-bg-opacity: .5;">This is 50% opacity success background</div>
                         </div>
-                        <div class="card-body">
-
-                            <div class="table-responsive">
-                                <table class="table align-middle mb-0">
-                                    <thead class="table-light">
-                                    <tr>
-                                        <th>订单号</th>
-                                        <th>商品</th>
-                                        <th>下单人</th>
-                                        <th>下单日期</th>
-                                        <th>价格</th>
-                                        <th>状态</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#157444499</td>
-                                        <td>
-                                            Apple iPhone 13 (A2634) 512GB
-                                        </td>
-                                        <td>欲饮琵琶码上催</td>
-                                        <td>2022/7/16</td>
-                                        <td>￥100.00</td>
-                                        <td>
-                                            <span class="badge bg-success">交易成功</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:" class="btn btn-sm btn-light"><i
-                                                        class="bi bi-gear"></i></a>
-                                                <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                                                        class="bi bi-arrow-down"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                        <div class="bsa-component">
+                            <div class="bg-success p-2 text-white">This is default success background</div>
+                            <div class="bg-success p-2 text-white bg-opacity-75">This is 75% opacity success
+                                background
+                            </div>
+                            <div class="bg-success p-2 text-dark bg-opacity-50">This is 50% opacity success background
+                            </div>
+                            <div class="bg-success p-2 text-dark bg-opacity-25">This is 25% opacity success background
+                            </div>
+                            <div class="bg-success p-2 text-dark bg-opacity-10">This is 10% opacity success background
                             </div>
                         </div>
                     </div>
@@ -1011,136 +792,10 @@
     </div>
 </div>
 
+<!--代码高亮js-->
+<script src="lib/prismjs/prism.js"></script>
 <script src="static/js/bootstrap.bundle.min.js"></script>
 <script src="static/js/bootstrap-admin.min.js"></script>
-<script src="lib/chart.js/dist/chart.min.js"></script>
-<script>
-    new Chart(document.getElementById('chart-bar').getContext('2d'), {
-        type: 'bar',
-        data: {
-            labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
-            datasets: [{
-                label: 'pv值',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)'
-                ],
-                borderColor: [
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    new Chart(document.getElementById('chart-line').getContext('2d'), {
-        type: 'line',
-        data: {
-            labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
-            datasets: [{
-                label: '营业额 单位/万元',
-                data: [65, 90, 60, 50, 40, 30, 20],
-                fill: false,
-                borderColor: 'rgba(185,110,228,.5)',
-                tension: 0.1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    new Chart(document.getElementById('chart-line2').getContext('2d'), {
-        type: 'line',
-        data: {
-            labels: ['2022.8.3', '2022.8.4', '2022.8.5', '2022.8.6', '2022.8.7', '2022.8.9'],
-            datasets: [
-                {
-                    label: '粉丝',
-                    data: [65, 90, 60, 50, 40, 30, 120],
-                    fill: false,
-                    borderColor: 'rgba(252, 92, 125,.5)',
-                    tension: 0.1,
-                    cubicInterpolationMode: 'monotone',
-
-                },
-                {
-                    label: '被收藏',
-                    data: [30, 80, 70, 48, 64, 101, 10],
-                    fill: false,
-                    borderColor: 'rgba(10, 191, 188,.5)',
-                    tension: 0.1,
-                    cubicInterpolationMode: 'monotone',
-                },
-                {
-                    label: '获赞',
-                    data: [10, 37, 54, 68, 73, 98, 110],
-                    fill: false,
-                    borderColor: 'rgba(221, 100, 0,.5)',
-                    tension: 0.1,
-                    cubicInterpolationMode: 'monotone',
-                }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    new Chart(document.getElementById('chart-doughnut').getContext('2d'), {
-        type: 'doughnut',
-        data: {
-            labels: [
-                '已租',
-                '未租'
-            ],
-            datasets: [{
-                label: 'Dataset 1',
-                data: [300, 50],
-                backgroundColor: [
-                    '#0abfbc',
-                    '#348f50'
-                ],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: '已租未租房源占比图'
-                }
-            }
-        }
-    });
-
-</script>
 
 </body>
 </html>
