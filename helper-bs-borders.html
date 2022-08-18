@@ -11,7 +11,16 @@
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
+    <!--  代码高亮css  -->
+    <link rel="stylesheet" href="lib/prismjs/themes/prism-okaidia.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+
+    <style>
+        .bsa-example-subtractive [class^="border"] {
+            border: 1px solid #dee2e6;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -548,7 +557,168 @@
 <!--内容区域-->
 <div class="bsa-main-wrapper">
     <div class="bsa-main-content">
-        dsada
+        <!-- 内容都应该被包裹在此-->
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="row row-cols-1 g-3">
+                    <div class="col">
+                        <h5 class="card-title">添加边框</h5>
+                        <div class="dropdown-divider mb-3"></div>
+                        <div class="bsa-component">
+                            <div class="row row-cols-auto g-2">
+                                <div class="col">
+                                    <div class="p-4 border text-center bg-light">.border</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-4 border-top text-center bg-light">.border</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-4 border-end text-center bg-light">.border</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-4 border-bottom text-center bg-light">.border</div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-4 border-start text-center bg-light">.border</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col">
+                        <h5 class="card-title">取消边框</h5>
+                        <div class="dropdown-divider mb-3"></div>
+                        <div class="bsa-component bsa-example-subtractive">
+                            <div class="row row-cols-auto g-2">
+                                <div class="col">
+                                    <div class="border-0 p-4 text-center  bg-light">.border-0</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border-top-0 p-4 text-center bg-light">.border-top-0</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border-end-0 p-4 text-center bg-light">.border-end-0</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border-bottom-0 p-4 text-center bg-light">.border-bottom-0</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border-start-0 p-4 text-center bg-light">.border-start-0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5 class="card-title">添加不同颜色的边框</h5>
+                        <div class="dropdown-divider mb-3"></div>
+                        <div class="bsa-component">
+                            <div class="row row-cols-auto g-2">
+                                <div class="col">
+                                    <div class="border border-primary p-4 text-center  bg-light">.border-primary</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-secondary p-4 text-center  bg-light">.border-secondary</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-success p-4 text-center  bg-light">.border-success</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-danger p-4 text-center  bg-light">.border-danger</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-warning p-4 text-center  bg-light">.border-warning</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-info p-4 text-center  bg-light">.border-info</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-light p-4 text-center  bg-light">.border-light</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-dark p-4 text-center  bg-light">.border-dark</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-white p-4 text-center  bg-light">.border-white</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5 class="card-title">不同宽度的边框</h5>
+                        <div class="dropdown-divider mb-3"></div>
+                        <div class="bsa-component">
+                            <div class="row row-cols-auto g-2">
+                                <div class="col">
+                                    <div class="border border-1 p-4 text-center  bg-light">.border-1</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-2 p-4 text-center  bg-light">.border-2</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-3 p-4 text-center  bg-light">.border-3</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-4 p-4 text-center  bg-light">.border-4</div>
+                                </div>
+                                <div class="col">
+                                    <div class="border border-5 p-4 text-center  bg-light">.border-5</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5 class="card-title">边框圆角</h5>
+                        <div class="dropdown-divider mb-3"></div>
+                        <div class="bsa-component">
+                            <div class="row row-cols-auto g-2 align-items-center">
+                                <div class="col">
+                                    <div class="rounded  p-4 text-center text-white  bg-secondary">.rounded</div>
+                                </div>
+                                <div class="col">
+                                    <div class="rounded-top  p-4 text-center text-white  bg-secondary">.rounded-top</div>
+                                </div>
+                                <div class="col">
+                                    <div class="rounded-end  p-4 text-center text-white  bg-secondary">.rounded-end</div>
+                                </div>
+                                <div class="col">
+                                    <div class="rounded-bottom  p-4 text-center text-white  bg-secondary">.rounded-bottom</div>
+                                </div>
+                                <div class="col">
+                                    <div class="rounded-start  p-4 text-center text-white  bg-secondary">.rounded-start</div>
+                                </div>
+                                <div class="col">
+                                    <div style="height: 140px;width: 140px" class="rounded-circle  p-4 text-center text-white  bg-secondary">.rounded-circle</div>
+                                </div>
+                                <div class="col">
+                                    <div class="rounded-pill  p-4 text-center text-white  bg-secondary">.rounded-pill</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5 class="card-title">边框圆角大小</h5>
+                        <div class="dropdown-divider mb-3"></div>
+                        <div class="bsa-component">
+                            <div class="row row-cols-auto g-2">
+                                <div class="col">
+                                    <div class="rounded-0 p-4 text-center text-white  bg-secondary">.rounded-0</div>
+                                </div>
+                                <div class="col">
+                                    <div class="rounded-1 p-4 text-center text-white  bg-secondary">.rounded-1</div>
+                                </div>
+                                <div class="col">
+                                    <div class="rounded-2 p-4 text-center text-white  bg-secondary">.rounded-2</div>
+                                </div>
+                                <div class="col">
+                                    <div class="rounded-3 p-4 text-center text-white  bg-secondary">.rounded-3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!--后台设置面板-->
@@ -660,6 +830,9 @@
     </div>
 </div>
 
+
+<!--代码高亮js-->
+<script src="lib/prismjs/prism.js"></script>
 <script src="static/js/bootstrap.bundle.min.js"></script>
 <script src="static/js/bootstrap-admin.min.js"></script>
 
