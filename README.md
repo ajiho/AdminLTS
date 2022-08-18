@@ -41,11 +41,17 @@ not Explorer <= 11
 
 ## 下载
 
+生成环境请使用下面的方式下载
 
-### 仓库下载发行版
+### 下载发行版
 
-[发行版下载](https://gitee.com/ajiho/bootstrap-admin/releases)
+[发行版下载地址](https://gitee.com/ajiho/bootstrap-admin/releases)
 
+### 通过composer下载
+
+~~~
+composer require ajiho/bootstrap-admin
+~~~
 
 ## 反馈
 

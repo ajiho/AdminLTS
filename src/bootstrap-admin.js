@@ -1,17 +1,13 @@
 ;(function () {
     window.addEventListener("DOMContentLoaded", function () {
 
-
-
-        //禁止无效表单提交
-        const invalidForms = document.querySelectorAll('form:not(form[action]),form[action="#"]');
+        //禁止无效表单提交()
+        const invalidForms = document.querySelectorAll('form:not([action]),form[action="#"]');
         for (const form of invalidForms) {
             form.addEventListener('submit', event => {
                 event.preventDefault();
             });
         }
-
-
 
 
         //禁止所有的input记忆
