@@ -12,7 +12,7 @@
 基于bootstrap5.1.x设计的一个静态后台管理HTML模板，它是开源免费的,旨在快速让喜欢用bootstrap开发的后台程序员有个愉悦的起点。
 
 演示地址:
-[V1.0.1](https://ajiho.gitee.io/bootstrap-admin)
+[V1.0.2](https://ajiho.gitee.io/bootstrap-admin)
 
 > Tips:如果没变化请使用ctrl+F5强制刷新查看
 
