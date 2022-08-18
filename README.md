@@ -45,7 +45,7 @@ not Explorer <= 11
 
 ### 下载发行版
 
-[发行版下载地址](https://gitee.com/ajiho/bootstrap-admin/releases)
+[下载地址](https://gitee.com/ajiho/bootstrap-admin/releases)
 
 ### 通过composer下载
 

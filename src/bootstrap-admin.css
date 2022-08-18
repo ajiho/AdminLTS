@@ -229,15 +229,18 @@ html, body {
 }
 
 .bsa-menu li + li {
-    margin-top: 5px;
+    padding-top: 5px;
+
+
 }
 
 .bsa-menu li:first-child {
-    margin-top: 5px;
+    padding-top: 5px;
+
 }
 
 .bsa-menu li:last-child {
-    margin-bottom: 5px;
+    padding-bottom: 5px;
 }
 
 .bsa-menu a {
@@ -1340,14 +1343,14 @@ html.color-sidebar .bsa-sidebar .bsa-menu a.active,
 html.color-sidebar .bsa-sidebar .bsa-menu a:active,
 html.color-sidebar .bsa-sidebar .bsa-menu a:focus,
 html.color-sidebar .bsa-sidebar .bsa-menu a:hover {
-    color: #fff;
+    color: #ffffff;
     background: rgb(255 255 255 / 18%);
 }
 
 
 /*背景色*/
 html.color-sidebar .bsa-sidebar .bsa-menu ul {
-    border: 1px solid #ffffff00;
+    border: none;
     background: rgb(255 255 255 / 8%);
 }
 
@@ -1371,7 +1374,6 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
 
 /*lg断点视口:小于等于992时触发 */
 @media (max-width: 991.98px) {
-
 
     .bsa-sidebar {
         transform: translateX(-101%);
@@ -1481,8 +1483,6 @@ html.color-sidebar .bsa-sidebar .bsa-menu a {
     .bsa-header .bsa-search-form-item.open .bsa-search-form {
         width: 100%;
     }
-
-
 
 }
 
