@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
+    <!--  代码高亮css  -->
+    <link rel="stylesheet" href="lib/prismjs/themes/prism-okaidia.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
 <body>
@@ -548,7 +550,51 @@
 <!--内容区域-->
 <div class="bsa-main-wrapper">
     <div class="bsa-main-content">
-        dsada
+        <!-- 内容都应该被包裹在此-->
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="row row-cols-1 g-3">
+                    <div class="col">
+                        <h5 class="card-title"> <code>.text-*</code> 快速修改文本颜色</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">为了方便看到白色字体演示效果,结合<code>.bg-dark</code>一起使用演示  </h6>
+                        <hr>
+                        <div class="bsa-component">
+                            <p class="text-primary">.text-primary</p>
+                            <p class="text-secondary">.text-secondary</p>
+                            <p class="text-success">.text-success</p>
+                            <p class="text-danger">.text-danger</p>
+                            <p class="text-warning bg-dark">.text-warning</p>
+                            <p class="text-info bg-dark">.text-info</p>
+                            <p class="text-light bg-dark">.text-light</p>
+                            <p class="text-dark">.text-dark</p>
+                            <p class="text-body">.text-body</p>
+                            <p class="text-muted">.text-muted</p>
+                            <p class="text-white bg-dark">.text-white</p>
+                            <p class="text-black-50">.text-black-50</p>
+                            <p class="text-white-50 bg-dark">.text-white-50</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5 class="card-title">
+                            通过自定义样式或行内样式覆盖 <code>--bs-text-opacity</code> ,或者使用内置固定透明度助手函数 <code>.text-opacity-*</code>
+                        </h5>
+
+
+                        <hr>
+                        <div class="bsa-component mb-3">
+                            <div class="text-primary">This is default primary text</div>
+                            <div class="text-primary" style="--bs-text-opacity: .5;">This is 50% opacity primary text</div>
+                        </div>
+                        <div class="bsa-component">
+                            <div class="text-primary">This is default primary text</div>
+                            <div class="text-primary text-opacity-75">This is 75% opacity primary text</div>
+                            <div class="text-primary text-opacity-50">This is 50% opacity primary text</div>
+                            <div class="text-primary text-opacity-25">This is 25% opacity primary text</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!--后台设置面板-->
@@ -660,6 +706,8 @@
     </div>
 </div>
 
+<!--代码高亮js-->
+<script src="lib/prismjs/prism.js"></script>
 <script src="static/js/bootstrap.bundle.min.js"></script>
 <script src="static/js/bootstrap-admin.min.js"></script>
 
