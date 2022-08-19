@@ -236,16 +236,14 @@ html, body {
     list-style: none;
 }
 
-.bsa-menu li + li {
-    margin-top: 5px;
-}
-
-.bsa-menu li:first-child {
-    margin-top: 5px;
+.bsa-menu li + li,
+.bsa-menu li:first-child
+{
+    padding-top: 5px;
 }
 
 .bsa-menu li:last-child {
-    margin-bottom: 5px;
+    padding-bottom: 5px;
 }
 
 .bsa-menu a {
@@ -1114,7 +1112,7 @@ html, body {
 
 /*==================================登录页面2==================================*/
 .bsa-bg-login2 {
-    background-image: url(../images/login-bg-5.jpg);
+    background-image: url(../images/login-bg-1.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1360,7 +1358,7 @@ html.color-sidebar .bsa-sidebar .bsa-menu a:hover {
 
 /*背景色*/
 html.color-sidebar .bsa-sidebar .bsa-menu ul {
-    border: 1px solid #ffffff00;
+    border: none;
     background: rgb(255 255 255 / 8%);
 }
 
