@@ -3,142 +3,142 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="static/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="static/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/bootstrap-admin.min.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/bootstrap-admin.min.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
 <body>
 
 <!--头部导航-->
 <ul class="bsa-header">
-    <!--   移动端侧边栏toggler(不可删除) -->
+    <!--   移动端侧边栏toggler -->
     <li>
-        <div class="bsa-nav-item bsa-mobile-sidebar-toggler-item">
+        <div class="bsa-header-item bsa-sidebar-toggler">
             <i class="bi bi-list"></i>
         </div>
     </li>
     <!--  搜索框表单部分  -->
     <li>
-        <div class="bsa-nav-item bsa-cursor-default bsa-search-form-item">
+        <div class="bsa-header-item bsa-cursor-default bsa-search-form-wrapper">
             <form class="bsa-search-form" action="#">
-                <input type="text" class="form-control bsa-search-form-control" name="keyword" aria-label="搜索关键词"
-                       placeholder="搜索关键词">
-                <button class="bsa-search-submit-btn" type="submit"><i class="bi bi-search"></i></button>
-                <button class="bsa-search-close-icon" type="button"><i class="bi bi-x-lg"></i></button>
+                    <input type="text" class="form-control bsa-search-form-control" name="keyword" aria-label="搜索关键词"
+                           placeholder="搜索关键词">
+                    <button class="bsa-search-submit-btn" type="submit"><i class="bi bi-search"></i></button>
+                    <button class="bsa-search-close-btn" type="button"><i class="bi bi-x-lg"></i></button>
             </form>
         </div>
     </li>
-    <!--  空白占位符(可以让头部子项目左右分布)   -->
+    <!--  bsa提供的空白占位符助手类(可以让子项目左右分布)   -->
     <li class="bsa-spacer"></li>
     <!--  移动端显示的搜索按钮(和搜索框是配套使用)      -->
     <li>
-        <div class="bsa-nav-item bsa-mobile-search-toggler-item">
+        <div class="bsa-header-item bsa-search-form-toggler">
             <i class="bi bi-search"></i>
         </div>
     </li>
     <!--   拓展应用(建议把拓展的连接放在这里,以免破坏头部的整体布局)  -->
     <li class="dropdown">
-        <div class="bsa-nav-item" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+        <div class="bsa-header-item" data-bs-toggle="dropdown" data-bs-auto-close="outside">
             <i class="bi bi-grid"></i>
         </div>
         <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card border-0">
                 <div class="card-header bg-white d-flex align-items-center justify-content-between">
-                    <span class="bsa-font-15">应用列表</span>
-                    <a href="javascript:" class="text-muted bsa-font-13 text-decoration-none">编辑</a>
+                    <span class="bsa-fs-15">应用列表</span>
+                    <a href="javascript:" class="text-muted bsa-fs-13 text-decoration-none">编辑</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="container-fluid">
                         <div class="row row-cols-3 g-3 p-3">
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-link"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用1</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用1</div>
                             </a>
 
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-link"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用2</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用2</div>
                             </a>
 
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-link"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用3</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用3</div>
                             </a>
 
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-link"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用4</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用4</div>
                             </a>
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-link"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用5</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用5</div>
                             </a>
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-link"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用6</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用6</div>
                             </a>
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-link"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用7</div>
-                            </a>
-
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
-                               href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
-                                    <i class="bi bi-link"></i>
-                                </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用8</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用7</div>
                             </a>
 
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-link"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用9</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用8</div>
                             </a>
 
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-link"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用10</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用9</div>
                             </a>
 
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1 bsa-hover"
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
-                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-height-45 bsa-width-45 rounded-3">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-link"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis2">拓展应用11</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用10</div>
+                            </a>
+
+                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
+                               href="javascript:">
+                                <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
+                                    <i class="bi bi-link"></i>
+                                </div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用11</div>
                             </a>
 
                         </div>
@@ -152,8 +152,8 @@
     </li>
     <!--    通知    -->
     <li class="dropdown">
-        <div class="bsa-nav-item" data-bs-toggle="dropdown">
-            <div class="bsa-header-badge-wrapper">
+        <div class="bsa-header-item" data-bs-toggle="dropdown">
+            <div class="position-relative">
                 <span class="bsa-header-badge">99+</span>
                 <i class="bi bi-bell"></i>
             </div>
@@ -161,65 +161,70 @@
         <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card border-0">
                 <div class="card-header bg-white d-flex align-items-center justify-content-between">
-                    <span class="bsa-font-15">通知列表</span>
-                    <a href="javascript:" class="text-muted bsa-font-13 text-decoration-none">全部设为已读</a>
+                    <span class="bsa-fs-15">通知列表</span>
+                    <a href="javascript:" class="text-muted bsa-fs-13 text-decoration-none">全部设为已读</a>
                 </div>
                 <div class="card-body p-0">
-                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
-                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-height-45 bsa-width-45 rounded-circle bsa-bg-color1 text-white">
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-wh-45 rounded-circle bsa-bg-color1 text-white">
                             <i class="bi bi-cart"></i>
                         </div>
                         <div class="d-flex flex-column gap-1 ms-3">
-                            <h5 class="text-dark mb-0 bsa-ellipsis">新订单</h5>
-                            <div class="text-secondary bsa-ellipsis2">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">新订单</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
                                 您收到新的订单
                             </div>
                             <div class="small text-muted">10秒前</div>
                         </div>
                     </a>
-                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
-                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-height-45 bsa-width-45 rounded-circle bsa-bg-color2 text-white">
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-wh-45 rounded-circle bsa-bg-color2 text-white">
                             <i class="bi bi-people"></i>
                         </div>
                         <div class="d-flex flex-column gap-1 ms-3">
-                            <h5 class="text-dark mb-0 bsa-ellipsis">新增用户</h5>
-                            <div class="text-secondary bsa-ellipsis2">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">新增用户</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
                                 100个新用户注册
                             </div>
                             <div class="small text-muted">30分钟前</div>
                         </div>
                     </a>
-                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
-                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-height-45 bsa-width-45 rounded-circle bsa-bg-color3 text-white">
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-wh-45 rounded-circle bsa-bg-color3 text-white">
                             <i class="bi bi-chat-square-dots"></i>
                         </div>
                         <div class="d-flex flex-column gap-1 ms-3">
-                            <h5 class="text-dark mb-0 bsa-ellipsis">新的评论</h5>
-                            <div class="text-secondary bsa-ellipsis2">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">新的评论</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
                                 您收到客户新的评论
                             </div>
                             <div class="small text-muted">2天前</div>
                         </div>
                     </a>
-                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
-                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-height-45 bsa-width-45 rounded-circle bsa-bg-color4 text-white">
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-wh-45 rounded-circle bsa-bg-color4 text-white">
                             <i class="bi bi-cart-check"></i>
                         </div>
                         <div class="d-flex flex-column gap-1 ms-3">
-                            <h5 class="text-dark mb-0 bsa-ellipsis">订单已经发货</h5>
-                            <div class="text-secondary bsa-ellipsis2">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">订单已经发货</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
                                 您的商品已在运送途中
                             </div>
                             <div class="small text-muted">3天前</div>
                         </div>
                     </a>
-                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
-                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-height-45 bsa-width-45 rounded-circle bsa-bg-color4 text-white">
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <div class="d-flex align-items-center justify-content-center bsa-font-20 bsa-wh-45 rounded-circle bsa-bg-color4 text-white">
                             <i class="bi bi-person-workspace"></i>
                         </div>
                         <div class="d-flex flex-column gap-1 ms-3">
-                            <h5 class="text-dark mb-0 bsa-ellipsis">新的同事</h5>
-                            <div class="text-secondary bsa-ellipsis2">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">新的同事</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
                                 新增3位后台管理工作成员
                             </div>
                             <div class="small text-muted">1周前</div>
@@ -234,8 +239,8 @@
     </li>
     <!--    消息    -->
     <li class="dropdown">
-        <div class="bsa-nav-item" data-bs-toggle="dropdown">
-            <div class="bsa-header-badge-wrapper">
+        <div class="bsa-header-item" data-bs-toggle="dropdown">
+            <div class="position-relative">
                 <span class="bsa-header-badge">9</span>
                 <i class="bi bi-chat-left"></i>
             </div>
@@ -243,45 +248,49 @@
         <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card border-0">
                 <div class="card-header bg-white d-flex align-items-center justify-content-between">
-                    <span class="bsa-font-15">消息列表</span>
-                    <a href="javascript:" class="text-muted bsa-font-13 text-decoration-none">全部设为已读</a>
+                    <span class="bsa-fs-15">消息列表</span>
+                    <a href="javascript:" class="text-muted bsa-fs-13 text-decoration-none">全部设为已读</a>
                 </div>
                 <div class="card-body p-0">
-                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
-                        <img src="https://temp.im/120x120" class="bsa-height-45 bsa-width-45 rounded-circle" alt="头像">
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <img src="https://temp.im/120x120" class="bsa-wh-45 rounded-circle" alt="头像">
                         <div class="d-flex flex-column gap-1 ms-3">
-                            <h5 class="text-dark mb-0 bsa-ellipsis">Jack</h5>
-                            <div class="text-secondary bsa-ellipsis2">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">Jack</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
                                 I'm fine
                             </div>
                             <div class="small text-muted">6分钟前</div>
                         </div>
                     </a>
-                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
-                        <img src="https://temp.im/120x120" class="bsa-height-45 bsa-width-45 rounded-circle" alt="头像">
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <img src="https://temp.im/120x120" class="bsa-wh-45 rounded-circle" alt="头像">
                         <div class="d-flex flex-column gap-1 ms-3">
-                            <h5 class="text-dark mb-0 bsa-ellipsis">Rose</h5>
-                            <div class="text-secondary bsa-ellipsis2">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">Rose</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             </div>
                             <div class="small text-muted">3小时前</div>
                         </div>
                     </a>
-                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
-                        <img src="https://temp.im/120x120" class="bsa-height-45 bsa-width-45 rounded-circle" alt="头像">
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <img src="https://temp.im/120x120" class="bsa-wh-45 rounded-circle" alt="头像">
                         <div class="d-flex flex-column gap-1 ms-3">
-                            <h5 class="text-dark mb-0 bsa-ellipsis">Ben</h5>
-                            <div class="text-secondary bsa-ellipsis2">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">Ben</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
                                 Lorem ipsum dolor sit amet, consectetur.
                             </div>
                             <div class="small text-muted">1天前</div>
                         </div>
                     </a>
-                    <a href="javascript:" class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-hover">
-                        <img src="https://temp.im/120x120" class="bsa-height-45 bsa-width-45 rounded-circle" alt="头像">
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <img src="https://temp.im/120x120" class="bsa-wh-45 rounded-circle" alt="头像">
                         <div class="d-flex flex-column gap-1 ms-3">
-                            <h5 class="text-dark mb-0 bsa-ellipsis">Emily</h5>
-                            <div class="text-secondary bsa-ellipsis2">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">Emily</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium
                                 architecto autem corporis, eos illo illum itaque nemo nisi, optio sint vitae?
                                 Accusantium dolor eius enim iste laudantium perferendis porro!
@@ -298,12 +307,12 @@
     </li>
     <!--    用户信息    -->
     <li class="dropdown">
-        <div class="bsa-nav-item" data-bs-toggle="dropdown">
-            <div class="d-flex align-items-center mb-2">
-                <img src="https://temp.im/120x120" class="bsa-avatar" alt="用户头像">
-                <div class="flex-shrink-0 ms-2 bsa-max-width-150 bsa-user-details">
-                    <div class="bsa-font-15 bsa-ellipsis">欲饮琵琶码上催</div>
-                    <div class="bsa-font-13 bsa-ellipsis">超级管理员</div>
+        <div class="bsa-header-item" data-bs-toggle="dropdown">
+            <div class="d-flex align-items-center">
+                <img src="https://temp.im/120x120" class="bsa-user-avatar" alt="用户头像">
+                <div class="bsa-user-details">
+                    <div class="bsa-fs-15 bsa-ellipsis-1">欲饮琵琶码上催</div>
+                    <div class="bsa-fs-13 bsa-ellipsis-1 bsa-user-role">超级管理员</div>
                 </div>
             </div>
         </div>
@@ -321,11 +330,11 @@
 <!--侧边栏-->
 <div class="bsa-sidebar">
     <div class="bsa-sidebar-header">
-        <img src="static/images/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
+        <img src="dist/images/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
         <div class="bsa-logo-text">Bootstrap-Admin</div>
     </div>
     <div class="bsa-sidebar-body">
-        <ul class="bsa-menu">
+        <ul>
             <li>
                 <a href="index.html" class="active">
                     <i class="bi bi-house"></i>首页
@@ -533,7 +542,13 @@
                                         <a href="javascript:" class="has-children">三级菜单</a>
                                         <ul>
                                             <li><a href="javascript:">四级菜单</a></li>
-                                            <li><a href="javascript:">四级菜单</a></li>
+                                            <li>
+                                                <a href="javascript:" class="has-children">四级菜单</a>
+                                                <ul>
+                                                    <li><a href="javascript:">五级菜单</a></li>
+                                                    <li><a href="javascript:">五级菜单</a></li>
+                                                </ul>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -563,8 +578,8 @@
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="me-1">
-                                    <h6 class="mb-2 bsa-ellipsis">今日收入</h6>
-                                    <h4 class="mb-1 bsa-ellipsis">13,145.20</h4>
+                                    <h6 class="mb-2 bsa-ellipsis-1">今日收入</h6>
+                                    <h4 class="mb-1 bsa-ellipsis-1">13,145.20</h4>
                                 </div>
                                 <i class="bi bi-currency-yen fs-1"></i>
                             </div>
@@ -576,8 +591,8 @@
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="me-1">
-                                    <h6 class="mb-2 bsa-ellipsis">用户总数</h6>
-                                    <h4 class="mb-1 bsa-ellipsis">1546</h4>
+                                    <h6 class="mb-2 bsa-ellipsis-1">用户总数</h6>
+                                    <h4 class="mb-1 bsa-ellipsis-1">1546</h4>
                                 </div>
                                 <i class="bi bi-people fs-1"></i>
                             </div>
@@ -589,8 +604,8 @@
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="me-1">
-                                    <h6 class="mb-2 bsa-ellipsis">订单总数</h6>
-                                    <h4 class="mb-1 bsa-ellipsis">2000</h4>
+                                    <h6 class="mb-2 bsa-ellipsis-1">订单总数</h6>
+                                    <h4 class="mb-1 bsa-ellipsis-1">2000</h4>
                                 </div>
                                 <i class="bi bi-cart fs-1"></i>
                             </div>
@@ -598,12 +613,12 @@
                     </div>
                 </div>
                 <div class="col-xxl-3 col-xl-6">
-                    <div class="card border-0 shadow-sm text-white bsa-bg-primary bsa-radius-15">
+                    <div class="card border-0 shadow-sm text-white bsa-bg-color6 bsa-radius-15">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="me-1">
-                                    <h6 class="mb-2 bsa-ellipsis">留言</h6>
-                                    <h4 class="mb-1 bsa-ellipsis">1000</h4>
+                                    <h6 class="mb-2 bsa-ellipsis-1">留言</h6>
+                                    <h4 class="mb-1 bsa-ellipsis-1">1000</h4>
                                 </div>
                                 <i class="bi bi-chat fs-1"></i>
                             </div>
@@ -651,7 +666,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- 项目进度           -->
                 <div class="col-md-8">
                     <div class="card bsa-radius-10 border-0 shadow-sm">
@@ -904,12 +918,12 @@
 </div>
 <!--后台设置面板-->
 <div class="bsa-switcher">
-    <div class="bsa-switcher-toggler-btn">
-        <i class="bi bi-gear bsa-animation-spin"></i>
+    <div class="bsa-switcher-toggler">
+        <i class="bi bi-gear"></i>
     </div>
     <div class="bsa-switcher-header">
         <h5 class="bsa-switcher-header-title">设置</h5>
-        <button type="button" class="btn-close text-reset bsa-switcher-toggler-btn"></button>
+        <button type="button" class="btn-close text-reset bsa-switcher-toggler"></button>
     </div>
     <div class="bsa-switcher-body p-0">
         <div class="accordion accordion-flush" id="accordionExample">
@@ -923,20 +937,8 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                      data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <div class="mb-3">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
-                                       autocomplete="off">
-                                <label class="form-check-label" for="inlineCheckbox1">固定</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"
-                                       autocomplete="off">
-                                <label class="form-check-label" for="inlineCheckbox2">紧凑</label>
-                            </div>
-                        </div>
                         <div class="bsa-headercolor-wrap">
-                            <div class="row row-cols-auto g-3">
+                            <div class="row row-cols-3 g-3">
                                 <div class="col">
                                     <div class="headercolor0"></div>
                                 </div>
@@ -961,6 +963,9 @@
                                 <div class="col">
                                     <div class="headercolor7"></div>
                                 </div>
+                                <div class="col">
+                                    <div class="headercolor8"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -977,7 +982,7 @@
                      data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="bsa-sidebarcolor-wrap">
-                            <div class="row row-cols-auto g-3">
+                            <div class="row row-cols-3 g-3">
                                 <div class="col">
                                     <div class="sidebarcolor0"></div>
                                 </div>
@@ -1002,6 +1007,9 @@
                                 <div class="col">
                                     <div class="sidebarcolor7"></div>
                                 </div>
+                                <div class="col">
+                                    <div class="sidebarcolor8"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1011,8 +1019,9 @@
     </div>
 </div>
 
-<script src="static/js/bootstrap.bundle.min.js"></script>
-<script src="static/js/bootstrap-admin.min.js"></script>
+
+<script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="dist/js/bootstrap-admin.min.js"></script>
 <script src="lib/chart.js/dist/chart.min.js"></script>
 <script>
     new Chart(document.getElementById('chart-bar').getContext('2d'), {

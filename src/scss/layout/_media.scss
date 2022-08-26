@@ -1,0 +1,16 @@
+@media (max-width: 991.98px) {
+  .bsa-mask {
+    z-index: 90;
+    border-radius: inherit;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    transition: inherit;
+    will-change: opacity;
+    opacity: 0.46;
+    background-color: rgb(33, 33, 33);
+    border-color: rgb(33, 33, 33);
+  }
+}

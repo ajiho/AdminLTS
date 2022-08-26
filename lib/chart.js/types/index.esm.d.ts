@@ -808,7 +808,7 @@ export interface Plugin<TType extends ChartType = ChartType, O = AnyObject> exte
   id: string;
 
   /**
-   * @desc Called when plugin is installed for this chart instance. This hook is also invoked for disabled plugins (options === false).
+   * @desc Called when plugin is installed for this chart instance. This hook is also invoked for disabled lib (options === false).
    * @param {Chart} chart - The chart instance.
    * @param {object} args - The call arguments.
    * @param {object} options - The plugin options.
@@ -1066,7 +1066,7 @@ export interface Plugin<TType extends ChartType = ChartType, O = AnyObject> exte
    * @param {ChartEvent} args.event - The event object.
    * @param {boolean} args.replay - True if this event is replayed from `Chart.update`
    * @param {boolean} args.inChartArea - The event position is inside chartArea
-   * @param {boolean} [args.changed] - Set to true if the plugin needs a render. Should only be changed to true, because this args object is passed through all plugins.
+   * @param {boolean} [args.changed] - Set to true if the plugin needs a render. Should only be changed to true, because this args object is passed through all lib.
    * @param {object} options - The plugin options.
    */
   afterEvent?(chart: Chart, args: { event: ChartEvent, replay: boolean, changed?: boolean, cancelable: false, inChartArea: boolean }, options: O): void;
@@ -1101,7 +1101,7 @@ export interface Plugin<TType extends ChartType = ChartType, O = AnyObject> exte
    */
   afterDestroy?(chart: Chart, args: EmptyObject, options: O): void;
   /**
-   * Called after chart is destroyed on all plugins that were installed for that chart. This hook is also invoked for disabled plugins (options === false).
+   * Called after chart is destroyed on all lib that were installed for that chart. This hook is also invoked for disabled lib (options === false).
    * @param {Chart} chart - The chart instance.
    * @param {object} args - The call arguments.
    * @param {object} options - The plugin options.

@@ -1,0 +1,24 @@
+.bsa-spacer {
+  flex-grow: 1 !important;
+}
+
+
+@for $i from 1 through  20 {
+  .bsa-width-#{$i * 5}{
+    width: unquote($i * 5 + 'px') !important;
+  }
+}
+
+@for $i from 1 through  20 {
+  .bsa-height-#{$i * 5}{
+    height: unquote($i * 5 + 'px') !important;
+  }
+}
+
+@for $i from 1 through  20 {
+  .bsa-wh-#{$i * 5}{
+    height: unquote($i * 5 + 'px') !important;
+    width: unquote($i * 5 + 'px') !important;
+  }
+}
+

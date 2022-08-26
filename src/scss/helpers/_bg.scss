@@ -1,0 +1,6 @@
+@each $color in $color-list {
+  $index: index($color-list, $color);
+  .bsa-bg-color#{$index} {
+    background: $color !important;
+  }
+}

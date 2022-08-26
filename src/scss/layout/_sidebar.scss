@@ -1,0 +1,171 @@
+.bsa-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $sidebar-width;
+  z-index: 100;
+  transition: 0.3s transform;
+  transform: translateX(0);
+  background: #fff;
+  box-shadow: 0 .3rem .8rem rgba(0, 0, 0, .12);
+  will-change: transform;
+
+  .bsa-sidebar-header {
+    width: 100%;
+    height: $header-height;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0 15px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(127, 113, 113, 0.08);
+
+    .bsa-logo-icon {
+      width: 36px;
+      flex-shrink: 0;
+      margin-right: 8px;
+    }
+
+    .bsa-logo-text {
+      margin-left: 10px;
+      margin-bottom: 0;
+      letter-spacing: 1px;
+      color: #4d5259;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+  }
+
+  .bsa-sidebar-body {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    transform: translateX(-101%);
+    box-shadow: none;
+  }
+
+  &.open{
+    transform: translateX(0);
+  }
+
+}
+
+.bsa-sidebar-body {
+
+  > ul {
+
+    li + li, li:first-child {
+      padding-top: 5px;
+    }
+
+    li:last-child {
+      padding-bottom: 5px;
+    }
+
+    a {
+      position: relative;
+      padding-left: 16px;
+      padding-right: 24px;
+      color: #5f5f5f;
+      text-decoration: none;
+      height: 40px;
+      line-height: 40px;
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      user-select: none;
+      cursor: pointer;
+
+      &.active, &:active, &:focus, &:hover {
+        color: #0d6efd;
+        text-decoration: none;
+        background: rgb(13 110 253 / .12);
+      }
+
+      &.has-children {
+        &:after {
+          font-family: bootstrap-icons, serif;
+          content: "\F284";
+          transition: transform 0.3s linear;
+          transform: scale(.5) rotate(0deg);
+          position: absolute;
+          right: 24px;
+        }
+
+        &.open {
+          color: #0d6efd;
+          text-decoration: none;
+          background: rgb(13 110 253 / .12);
+
+          &:after {
+            transform: scale(.5) rotate(-90deg);
+          }
+
+          + ul {
+            display: block;
+          }
+        }
+      }
+    }
+
+    //一级的图标间隔
+    > li > a > i {
+      margin-right: 10px;
+    }
+
+    ul {
+      transition: height 150ms linear;
+      display: none;
+
+      a {
+        padding-left: calc(16px + 1rem + 10px);
+      }
+
+      ul a {
+        padding-left: calc(16px + 2rem + 10px);
+      }
+
+      ul ul a {
+        padding-left: calc(16px + 3rem + 10px);
+      }
+
+      ul ul ul a {
+        padding-left: calc(16px + 4rem + 10px);
+      }
+
+      ul ul ul ul a {
+        padding-left: calc(16px + 5rem + 10px);
+      }
+    }
+  }
+}
+

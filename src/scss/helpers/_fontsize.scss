@@ -1,0 +1,18 @@
+@for $i from 12 through 20 {
+  .bsa-fs-#{$i} {
+    font-size: #{$i}px !important;
+  }
+}
+
+
+$fs-start: 25;
+$fs-end: 60;
+@while $fs-start <= $fs-end {
+
+  .bsa-fs-#{$fs-start} {
+    font-size: #{$fs-start}px !important;
+  }
+
+  $fs-start: $fs-start + 5;
+}
+

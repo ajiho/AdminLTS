@@ -50,13 +50,13 @@ https://apalfrey.github.io/select2-bootstrap-5-theme/
 
 ```bash
 # npm
-$ npm install select2-bootstrap-5-theme
+$ npm install select2-bootstrap-5-themes
 
 # yarn
-$ yarn add select2-bootstrap-5-theme
+$ yarn add select2-bootstrap-5-themes
 
 # composer
-$ composer require apalfrey/select2-bootstrap-5-theme
+$ composer require apalfrey/select2-bootstrap-5-themes
 ```
 
 #### HTML

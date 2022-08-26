@@ -1,0 +1,43 @@
+@each $color in $color-list {
+  $index: index($color-list, $color);
+  html.color-sidebar.sidebarcolor#{$index} .bsa-sidebar {
+    background: $color;
+  }
+}
+
+
+html.color-sidebar .bsa-sidebar .bsa-logo-icon {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+
+html.color-sidebar .bsa-sidebar .bsa-logo-text {
+  color: #fff;
+}
+
+
+html.color-sidebar .bsa-sidebar .bsa-sidebar-header {
+  border-bottom: 1px solid rgb(255 255 255 / 15%);
+}
+
+
+html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul a.has-children.open,
+html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul a.active,
+html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul a:active,
+html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul a:focus,
+html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul a:hover {
+  color: #fff;
+  background: rgb(255 255 255 / 18%);
+}
+
+
+/*背景色*/
+html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul ul {
+  border: none;
+  background: rgb(255 255 255 / 8%);
+}
+
+/*a链接色*/
+html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul a {
+  color: rgb(255 255 255 / 85%);
+}

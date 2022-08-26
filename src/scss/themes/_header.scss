@@ -1,0 +1,18 @@
+@each $color in $color-list {
+  $index: index($color-list, $color);
+  html.headercolor#{$index} .bsa-header {
+    background: $color;
+  }
+}
+
+html.color-header .bsa-header .bsa-header-item {
+  color: #fff;
+}
+
+html.color-header .bsa-search-form .bsa-search-form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+html.color-header .bsa-header .bsa-user-details .bsa-user-role {
+  color: #fff;
+}
