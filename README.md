@@ -9,12 +9,12 @@
 
 ## 介绍
 
-基于bootstrap5.1.x设计的一个静态后台管理HTML模板，它是开源免费的,旨在快速让喜欢用bootstrap开发的后台程序员有个愉悦的起点。
+基于bootstrap5.x设计的一个响应式静态后台管理HTML模板，它是开源免费的,旨在快速让喜欢用bootstrap开发的后台程序员有个愉悦的起点。
 
 
-[演示地址V1.0.1](https://ajiho.gitee.io/bootstrap-admin)
+[演示地址V1.0.2](https://ajiho.gitee.io/bootstrap-admin)
 
-> Tips:如果没变化请使用ctrl+F5强制刷新查看
+
 
 
 ## 特性
@@ -52,7 +52,7 @@ not Explorer <= 11
 
 生成环境请使用下面的方式下载
 
-### 下载发行版
+### 仓库下载
 
 [下载地址](https://gitee.com/ajiho/bootstrap-admin/releases)
 
