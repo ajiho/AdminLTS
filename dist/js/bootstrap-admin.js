@@ -1,1 +1,347 @@
-window.addEventListener("DOMContentLoaded",(function(){const e=document.querySelectorAll('form:not([action]),form[action="#"]');for(const t of e)t.addEventListener("submit",(e=>{e.preventDefault()}));document.querySelectorAll("input").forEach((e=>{e.setAttribute("AutoComplete","off")})),n(document.body,"change",".check-all",(function(e){let t=e.target,o=function(e,t=""){let o=[],n=e.parentNode;for(;!(n instanceof Document);)n.matches(t)&&o.push(n),n=n.parentNode;return o}(t,"table")[0].querySelectorAll("input[type='checkbox']"),n=t.checked;o.forEach((e=>{e.checked=n}))})),n(document.body,"click",".bsa-sidebarcolor-wrap div[class^=sidebarcolor]",(function(e){e.preventDefault(),e.stopPropagation();let t=this.getAttribute("class"),o=[];for(let e=0;e<8;e++)o.push(`sidebarcolor${e+1}`);"sidebarcolor0"===t?(document.documentElement.classList.remove("color-sidebar"),o.map((function(e){document.documentElement.classList.remove(e)}))):(document.documentElement.classList.add("color-sidebar",t),o.splice(o.indexOf(t),1),document.documentElement.classList.remove(...o))})),n(document.body,"click",".bsa-headercolor-wrap div[class^=headercolor]",(function(e){e.preventDefault(),e.stopPropagation();let t=this.getAttribute("class"),o=[];for(let e=0;e<8;e++)o.push(`headercolor${e+1}`);console.log("3333"),"headercolor0"===t?(document.documentElement.classList.remove("color-header"),o.map((function(e){document.documentElement.classList.remove(e)}))):(document.documentElement.classList.add("color-header",t),o.splice(o.indexOf(t),1),document.documentElement.classList.remove(...o))})),n(document.body,"click",".bsa-switcher-toggler",(function(e){e.preventDefault(),e.stopPropagation();let t=document.querySelector(".bsa-switcher");t.classList.contains("open")?t.classList.remove("open"):t.classList.add("open")})),n(document.body,"click",".bsa-search-close-btn",(function(e){e.preventDefault(),e.stopPropagation(),document.querySelector(".bsa-search-form-wrapper").classList.remove("open")})),n(document.body,"click",".bsa-search-form-toggler",(function(e){e.preventDefault(),e.stopPropagation(),document.querySelector(".bsa-search-form-wrapper").classList.add("open")})),n(document.body,"click",".bsa-mask",(function(e){e.preventDefault(),e.stopPropagation(),this.remove(),document.body.classList.remove("bsa-lock-body","bsa-lock-body-has-scroll","bsa-lock-body-no-scroll"),document.scrollingElement.scrollTop=Number(window.localStorage.getItem("bsa-scroll-top")),document.querySelector(".bsa-sidebar").classList.remove("open")})),n(document.body,"click",".bsa-sidebar-toggler",(function(e){e.preventDefault(),e.stopPropagation(),document.querySelector(".bsa-sidebar").classList.add("open"),function(){var e,t;e=document.documentElement,("vertical"===(t="vertical")?e.scrollHeight>e.clientHeight:"horizontal"===t?e.scrollWidth>e.clientWidth:void 0)?document.body.classList.add("bsa-lock-body-has-scroll"):document.body.classList.add("bsa-lock-body-no-scroll");let o=document.scrollingElement.scrollTop;window.localStorage.setItem("bsa-scroll-top",o.toString()),document.body.classList.add("bsa-lock-body"),document.body.style.top=-o+"px"}(),document.body.insertAdjacentHTML("beforeEnd",'<div class="bsa-mask"></div>')})),n(document.body,"transitionend",".bsa-sidebar-body > ul",(function(e){let t=e.target;t.matches("ul")&&(t.style="")})),n(document.body,"click",".bsa-sidebar-body > ul a.has-children",(function(e){e.preventDefault(),e.stopPropagation();let t=this;t.classList.contains("open")?o(t):(t.classList.add("open"),function(e){let t=e.nextElementSibling,o=t.scrollHeight+"px";t.style.cssText="display:block;height:0;overflow: hidden;",e.scrollHeight,t.style.cssText=`display:block;height:${o};overflow: hidden;`}(t)),function(e){let t=[],o=e.parentNode.children;for(let n=0;n<o.length;n++)1===o[n].nodeType&&o[n]!==e&&t.push(o[n]);return t}(t.parentNode).forEach((e=>{Array.from(e.children).forEach((e=>{e.matches("a.active")&&e.classList.remove("active"),e.matches("a.has-children.open")&&o(e)}))}))}));const t=document.querySelectorAll(".bsa-component");for(const e of t){const t='<button class="bsa-source-button btn bsa-btn-success btn-xs"><i class="bi bi-code"></i></button>';e.insertAdjacentHTML("beforeend",t)}function o(e){let t=e.nextElementSibling,o=t.scrollHeight+"px";t.style.cssText=`display:block;height:${o};overflow: hidden;`,e.scrollHeight,t.style.cssText="display:block;height:0;overflow: hidden;",e.classList.remove("open")}function n(e,t,o,n){return e.addEventListener(t,(t=>{let c=t.target;for(;c instanceof HTMLElement&&!c.matches(o);){if(e===c){c=null;break}c=c.parentNode}c&&n.call(c,t,c)})),e}n(document.body,"click","#bsa-source-modal .bsa-btn-copy",(function(e){if(e.preventDefault(),navigator.clipboard){const e=document.querySelector("#bsa-source-modal").querySelector(".modal-body pre").innerText;navigator.clipboard.writeText(e).then((e=>console.log("复制失败")))}bootstrap.Modal.getOrCreateInstance(document.querySelector("#bsa-source-modal")).hide()})),n(document.body,"click",".bsa-source-button",(function(e){e.preventDefault(),e.stopPropagation(),document.querySelector("#bsa-source-modal")||document.body.insertAdjacentHTML("beforeend",'\n            <div id="bsa-source-modal" class="modal fade" tabindex="-1">\n                <div class="modal-dialog modal-dialog-centered  modal-lg">\n                    <div class="modal-content">\n                        <div class="modal-header">\n                            <h4 class="modal-title">源代码</h4>\n                            <div class="d-flex align-items-center flex-nowrap gap-2">\n                                <button type="button" class="btn bsa-btn-success bsa-btn-copy"><i class="bi bi-clipboard me-1"></i>复制</button>\n                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>\n                            </div>\n                        </div>\n                        <div class="modal-body">\n                            <pre class="language-html"><code></code></pre>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            ');let t=this.parentNode.innerHTML;t=Prism.highlight(function(e){let t=function(e){return e.replace(/×/g,"&times;").replace(/«/g,"&laquo;").replace(/»/g,"&raquo;").replace(/←/g,"&larr;").replace(/→/g,"&rarr;")}(e).split("\n").filter(Boolean).slice(0,-1);const o=t[0].length-t[0].trim().length,n=new RegExp(" {"+o+"}");return t=t.map((e=>n.test(e)?e.slice(Math.max(0,o)):e)),t.join("\n")}(t),Prism.languages.html,"html"),document.querySelector("#bsa-source-modal").querySelector("code").innerHTML=t,bootstrap.Modal.getOrCreateInstance(document.querySelector("#bsa-source-modal")).show()})),[].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]')).map((function(e){return new bootstrap.Popover(e)})),[].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map((function(e){return new bootstrap.Tooltip(e)}))}));
+;(function () {
+
+    window.addEventListener("DOMContentLoaded", function () {
+        //禁止无效表单提交()
+        const invalidForms = document.querySelectorAll('form:not([action]),form[action="#"]');
+        for (const form of invalidForms) {
+            form.addEventListener('submit', event => {
+                event.preventDefault();
+            });
+        }
+        //禁止所有的input记忆
+        document.querySelectorAll('input').forEach((e) => {
+            e.setAttribute("AutoComplete", "off");
+        });
+
+        //全选
+        eventDelegate(document.body, 'change', '.check-all', function (event) {
+            let target = event.target;
+            let pTable = getParent(target, 'table')[0];
+            let checkboxes = pTable.querySelectorAll("input[type='checkbox']");
+            let status = target.checked;
+            checkboxes.forEach((el) => {
+                el.checked = status;
+            })
+        });
+
+        //调色板侧边栏
+        eventDelegate(document.body, 'click', '.bsa-sidebarcolor-wrap div[class^=sidebarcolor]', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            let sidebarcolor = this.getAttribute('class');
+
+
+            let sidebarcolorList = [];
+            for(let i = 0; i<8;i++){
+                sidebarcolorList.push(`sidebarcolor${i+1}`);
+            }
+
+            if (sidebarcolor === "sidebarcolor0") {
+                document.documentElement.classList.remove("color-sidebar");
+                sidebarcolorList.map(function (item) {
+                    document.documentElement.classList.remove(item);
+                });
+            } else {
+                document.documentElement.classList.add("color-sidebar", sidebarcolor);
+                sidebarcolorList.splice(sidebarcolorList.indexOf(sidebarcolor), 1);
+                document.documentElement.classList.remove(...sidebarcolorList);
+            }
+        });
+
+        //调色板头部
+        eventDelegate(document.body, 'click', '.bsa-headercolor-wrap div[class^=headercolor]', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+
+
+            let headercolor = this.getAttribute('class');
+            let headercolorList = [];
+            for(let i = 0; i<8;i++){
+                headercolorList.push(`headercolor${i+1}`);
+            }
+
+            if (headercolor === "headercolor0") {
+                document.documentElement.classList.remove("color-header");
+                headercolorList.map(function (item) {
+                    document.documentElement.classList.remove(item);
+                });
+            } else {
+                document.documentElement.classList.add("color-header", headercolor);
+                headercolorList.splice(headercolorList.indexOf(headercolor), 1);
+                document.documentElement.classList.remove(...headercolorList);
+            }
+        });
+
+        //调色板打开
+        eventDelegate(document.body, 'click', '.bsa-switcher-toggler', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            let bsaSwitcher = document.querySelector('.bsa-switcher');
+            if (!bsaSwitcher.classList.contains('open')) {
+                bsaSwitcher.classList.add('open')
+            } else {
+                bsaSwitcher.classList.remove('open')
+            }
+        });
+
+        //搜索框关闭
+        eventDelegate(document.body, 'click', '.bsa-search-close-btn', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.querySelector('.bsa-search-form-wrapper').classList.remove('open');
+        });
+
+
+        //搜索框打开
+        eventDelegate(document.body, 'click', '.bsa-search-form-toggler', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.querySelector('.bsa-search-form-wrapper').classList.add('open');
+        });
+
+
+        //遮罩层点击
+        eventDelegate(document.body, 'click', '.bsa-mask', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            this.remove();
+            unLockScroll();
+            document.querySelector('.bsa-sidebar').classList.remove('open');
+        });
+
+
+        //移动端左侧菜单Toggler
+        eventDelegate(document.body, 'click', '.bsa-sidebar-toggler', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.querySelector('.bsa-sidebar').classList.add('open');
+            lockScroll();
+            document.body.insertAdjacentHTML('beforeEnd', `<div class="bsa-mask"></div>`);
+        });
+
+
+        eventDelegate(document.body, 'transitionend', '.bsa-sidebar-body > ul', function (event) {
+            let target = event.target;
+            if (target.matches('ul')) {
+                target.style = '';
+            }
+        });
+
+
+        //左侧菜单展开折叠逻辑
+        eventDelegate(document.body, 'click', '.bsa-sidebar-body > ul a.has-children', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            let el_a_has_children = this;
+            if (!el_a_has_children.classList.contains('open')) {//展开
+                el_a_has_children.classList.add('open');
+                ulOpen(el_a_has_children);
+            } else {
+                ulClose(el_a_has_children);
+            }
+            // 兄弟节点处理
+            siblings(el_a_has_children.parentNode).forEach((el_li) => {
+                Array.from(el_li.children).forEach((item) => {
+
+
+                    if (item.matches('a.active')) {
+                        item.classList.remove('active');
+                    }
+                    if (item.matches('a.has-children.open')) {
+
+                        ulClose(item);
+                    }
+                })
+            })
+        });
+
+        // 给每一个组件div都增加一个查看源码的按钮
+        const bsaComponents = document.querySelectorAll('.bsa-component');
+        for (const element of bsaComponents) {
+            const button = `<button class="bsa-source-button btn bsa-btn-success btn-xs"><i class="bi bi-code"></i></button>`;
+            element.insertAdjacentHTML('beforeend', button);
+        }
+
+        //复制代码按钮点击事件
+        eventDelegate(document.body, 'click', '#bsa-source-modal .bsa-btn-copy', function (event) {
+            event.preventDefault();
+            if (navigator.clipboard) {
+                const code = document.querySelector('#bsa-source-modal').querySelector('.modal-body pre').innerText;
+                navigator.clipboard.writeText(code).then(r => console.log('复制失败'));
+            }
+            bootstrap.Modal.getOrCreateInstance(document.querySelector('#bsa-source-modal')).hide();
+        });
+
+
+        //查看源码按钮点击事件
+        eventDelegate(document.body, 'click', '.bsa-source-button', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            //1.往body中插入展示代码的模态框，先判断是否存在这个模态框
+            const sourceModalHtml = `
+            <div id="bsa-source-modal" class="modal fade" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered  modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">源代码</h4>
+                            <div class="d-flex align-items-center flex-nowrap gap-2">
+                                <button type="button" class="btn bsa-btn-success bsa-btn-copy"><i class="bi bi-clipboard me-1"></i>复制</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <pre class="language-html"><code></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+            let bsaSourceModal = document.querySelector('#bsa-source-modal');
+            if (!bsaSourceModal) {
+                document.body.insertAdjacentHTML('beforeend', sourceModalHtml);
+            }
+            //2.获取html
+            let html = this.parentNode.innerHTML;
+            //3.处理html内容
+            html = Prism.highlight(cleanSource(html), Prism.languages.html, 'html');
+            //4.赋值给code标签
+            document.querySelector('#bsa-source-modal').querySelector('code').innerHTML = html;
+            //5.实例化bootstrap模态框并显示
+            bootstrap.Modal.getOrCreateInstance(document.querySelector('#bsa-source-modal')).show();
+
+        });
+
+
+        //bootstrap气泡组件初始化
+        [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]')).map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl)
+        });
+
+
+        //bootstrap提示组件初始化
+        [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+
+        //============================助手函数============================
+        function ulOpen(dom) {
+            //找到ul元素
+            let ul = dom.nextElementSibling;
+            //先计算得到ul它原本的高度
+            let ulHeight = ul.scrollHeight + 'px';
+            ul.style.cssText = `display:block;height:0;overflow: hidden;`;
+            void dom.scrollHeight;
+            ul.style.cssText = `display:block;height:${ulHeight};overflow: hidden;`;
+        }
+
+        function ulClose(dom) {
+            //找到ul元素
+            let ul = dom.nextElementSibling;
+            //先计算得到ul它原本的高度
+            let ulHeight = ul.scrollHeight + 'px';
+            ul.style.cssText = `display:block;height:${ulHeight};overflow: hidden;`;
+            void dom.scrollHeight;
+            ul.style.cssText = `display:block;height:0;overflow: hidden;`;
+            dom.classList.remove('open');
+        }
+
+
+        function lockScroll() {
+            if (hasScrolled(document.documentElement, 'vertical')) {//如果有滚动条就保持滚动条
+                document.body.classList.add('bsa-lock-body-has-scroll');
+            } else {
+                document.body.classList.add('bsa-lock-body-no-scroll');
+            }
+            let st = document.scrollingElement.scrollTop;
+            window.localStorage.setItem("bsa-scroll-top", st.toString())
+            document.body.classList.add('bsa-lock-body');
+            document.body.style.top = -st + 'px';
+
+
+        }
+
+
+        function unLockScroll() {
+            document.body.classList.remove(...['bsa-lock-body', 'bsa-lock-body-has-scroll', 'bsa-lock-body-no-scroll']);
+            document.scrollingElement.scrollTop = Number(window.localStorage.getItem("bsa-scroll-top"));
+        }
+
+        function siblings(el) {
+            let a = [];    //保存所有兄弟节点
+            let p = el.parentNode.children; //获取父级的所有子节点
+            for (let i = 0; i < p.length; i++) {  //循环
+                if (p[i].nodeType === 1 && p[i] !== el) {  //如果该节点是元素节点与不是这个节点本身
+                    a.push(p[i]);      // 添加到兄弟节点里
+                }
+            }
+            return a;
+        }
+
+        function eventDelegate(element, eventType, selector, fn) {
+            element.addEventListener(eventType, e => {
+                let el = e.target;
+                // 当点击的元素不为li本⾝的时候，⽐如说span，就找⽗级是否为li
+                while (el instanceof HTMLElement && !el.matches(selector)) {
+                    // 不断向上找⽗级元素，判断是否有li标签
+                    if (element === el) {
+                        // 直到找到代理元素就不执⾏委托
+                        el = null;
+                        break;
+                    }
+                    el = el.parentNode;
+                }
+                el && fn.call(el, e, el);
+            })
+            return element;
+        }
+
+        function getParent(el, selector = '') {
+            let rest = [];
+            let targetParent = el.parentNode;
+            while (!(targetParent instanceof Document)) {
+                if (targetParent.matches(selector)) {
+                    rest.push(targetParent);
+                }
+                targetParent = targetParent.parentNode;
+            }
+            return rest;
+        }
+
+        // 判断是否有滚动条
+        function hasScrolled(element, direction) {
+            if (direction === 'vertical') {
+                return element.scrollHeight > element.clientHeight;
+            } else if (direction === 'horizontal') {
+                return element.scrollWidth > element.clientWidth;
+            }
+        }
+
+
+        function escapeHtml(html) {
+            return html.replace(/×/g, '&times;')
+                .replace(/«/g, '&laquo;')
+                .replace(/»/g, '&raquo;')
+                .replace(/←/g, '&larr;')
+                .replace(/→/g, '&rarr;');
+        }
+
+        function cleanSource(html) {
+            //转义HTML,将行拆分为数组,删除空元素,并移除最后一个元素
+            let lines = escapeHtml(html).split('\n').filter(Boolean).slice(0, -1);
+            const indentSize = lines[0].length - lines[0].trim().length;
+            const re = new RegExp(' {' + indentSize + '}');
+
+            lines = lines.map(line => {
+                return re.test(line) ? line.slice(Math.max(0, indentSize)) : line;
+            });
+
+            return lines.join('\n');
+        }
+
+
+    });
+})();
+
+
+

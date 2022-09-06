@@ -25,7 +25,7 @@
 - 不依赖Jquery(集成的开源js插件目前还依赖Jquery的情况除外)
 
 
-# 版本对应
+## 版本对应
 
 |bootstrap-admin版本|bootstrap版本|
 |--|--|

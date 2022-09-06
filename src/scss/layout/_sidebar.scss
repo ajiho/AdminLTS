@@ -67,12 +67,13 @@
       list-style: none;
     }
   }
+
   @include media-breakpoint-down(lg) {
     transform: translateX(-101%);
     box-shadow: none;
   }
 
-  &.open{
+  &.open {
     transform: translateX(0);
   }
 
@@ -112,6 +113,7 @@
       }
 
       &.has-children {
+
         &:after {
           font-family: bootstrap-icons, serif;
           content: "\F284";
@@ -145,7 +147,7 @@
     ul {
       transition: height 150ms linear;
       display: none;
-
+      border-bottom: 1px solid rgba(127,113,113,.08);
       a {
         padding-left: calc(16px + 1rem + 10px);
       }

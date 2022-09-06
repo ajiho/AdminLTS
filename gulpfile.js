@@ -11,6 +11,7 @@ const sass = require('gulp-sass')(require('sass'));
 const imagemin = require('gulp-imagemin');
 
 
+//样式处理
 let scss_src = [
     'src/scss/bootstrap-admin.scss',
 ];
@@ -18,7 +19,7 @@ gulp.task('scss', function () {
     return gulp.src(scss_src)
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(autoprefixer({                           // 调用 gulp-autoprefixer 插件
-            overrideBrowserslist: ['last 2 versions', '> 5%'],         // 定义浏览器参数
+            overrideBrowserslist: ['last 2 versions', '>= 0.5%', 'not ie < 11'],         // 定义浏览器参数
             cascade: true,                                     // 是否添加浏览器前缀，默认：true
             remove: true                                       // 是否移除不必要的浏览器前缀，默认：true
         }))
@@ -29,17 +30,20 @@ gulp.task('scss', function () {
 });
 
 
+//javascript脚本处理
 let js_src = [
     "src/js/bootstrap-admin.js"
 ];
 gulp.task('js', function () {
     return gulp.src(js_src)
-        .pipe(terser())
         .pipe(gulp.dest('dist/js'))
+        .pipe(terser())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('dist/js'));
 });
 
+
+//静态资源处理
 let img_src = [
     'src/images/*',
     'src/images/favicons/*',
@@ -61,13 +65,12 @@ gulp.task("img", (cb) => {
 gulp.task('default', gulp.series(['scss', 'js', 'img']));
 
 
+//监听-目标文件
 let watch_files = [
     './src/js/**/*.js',
     './src/scss/**/*.scss',
 ];
-
-//监听-自动化，目标文件被修改自动执行任务
-gulp.watch(watch_files, gulp.series('default'));
+gulp.watch(watch_files, gulp.series('default'));//目标文件被修改则执行series里面的任务default
 
 
 

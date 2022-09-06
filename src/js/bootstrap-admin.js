@@ -1,4 +1,5 @@
 ;(function () {
+
     window.addEventListener("DOMContentLoaded", function () {
         //禁止无效表单提交()
         const invalidForms = document.querySelectorAll('form:not([action]),form[action="#"]');
@@ -7,8 +8,6 @@
                 event.preventDefault();
             });
         }
-
-
         //禁止所有的input记忆
         document.querySelectorAll('input').forEach((e) => {
             e.setAttribute("AutoComplete", "off");
@@ -61,8 +60,6 @@
             for(let i = 0; i<8;i++){
                 headercolorList.push(`headercolor${i+1}`);
             }
-
-            console.log("3333");
 
             if (headercolor === "headercolor0") {
                 document.documentElement.classList.remove("color-header");

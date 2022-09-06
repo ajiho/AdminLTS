@@ -8,7 +8,6 @@
 $fs-start: 25;
 $fs-end: 60;
 @while $fs-start <= $fs-end {
-
   .bsa-fs-#{$fs-start} {
     font-size: #{$fs-start}px !important;
   }
