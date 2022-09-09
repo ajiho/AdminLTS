@@ -9,9 +9,11 @@
 //布局
 @import "layout";
 
-
 //主题
 @import "themes";
 
 //bsa自定义的助手类
 @import "helpers";
+
+//bsa方便复制组件的相关样式
+@import "copy";

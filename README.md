@@ -29,10 +29,12 @@
 
 |bootstrap-admin版本|bootstrap版本|
 |--|--|
-|v1.x|5.1.x|
-|v2.x(todo)|5.2.x|
+|v1.x|v5.1.3|
+|v2.x(todo)|v5.2.0|
+|v3.x(todo)|v5.2.1|
 
 ## 设备支持
+
 
 ~~~
 # https://github.com/browserslist/browserslist#readme
@@ -50,20 +52,20 @@ not Explorer <= 11
 
 ## 下载
 
-生成环境请使用下面的方式下载
+生产环境请使用下面的方式下载
 
 ### 仓库下载
 
 [下载地址](https://gitee.com/ajiho/bootstrap-admin/releases)
 
-### 通过composer下载
+### composer下载
 
 ~~~
 composer require ajiho/bootstrap-admin
 ~~~
 
 
-### 通过npm下载
+### npm下载
 ~~~
 
 ~~~

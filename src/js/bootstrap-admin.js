@@ -159,16 +159,17 @@
         // 给每一个组件div都增加一个查看源码的按钮
         const bsaComponents = document.querySelectorAll('.bsa-component');
         for (const element of bsaComponents) {
-            const button = `<button class="bsa-source-button btn bsa-btn-success btn-xs"><i class="bi bi-code"></i></button>`;
+            const button = `<button class="bsa-source-button btn btn-success btn-xs"><i class="bi bi-code"></i></button>`;
             element.insertAdjacentHTML('beforeend', button);
         }
+
 
         //复制代码按钮点击事件
         eventDelegate(document.body, 'click', '#bsa-source-modal .bsa-btn-copy', function (event) {
             event.preventDefault();
             if (navigator.clipboard) {
                 const code = document.querySelector('#bsa-source-modal').querySelector('.modal-body pre').innerText;
-                navigator.clipboard.writeText(code).then(r => console.log('复制失败'));
+                navigator.clipboard.writeText(code).then(r => {});
             }
             bootstrap.Modal.getOrCreateInstance(document.querySelector('#bsa-source-modal')).hide();
         });
@@ -186,8 +187,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title">源代码</h4>
                             <div class="d-flex align-items-center flex-nowrap gap-2">
-                                <button type="button" class="btn bsa-btn-success bsa-btn-copy"><i class="bi bi-clipboard me-1"></i>复制</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                                <button type="button" class="btn btn-success bsa-btn-copy"><i class="bi bi-clipboard me-1"></i>复制</button>
                             </div>
                         </div>
                         <div class="modal-body">

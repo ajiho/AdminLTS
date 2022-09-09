@@ -1,0 +1,20 @@
+.bsa-component {
+  position: relative;
+}
+
+.bsa-component .bsa-source-button {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 70;
+}
+
+.bsa-component:hover .bsa-source-button {
+  display: inline-block;
+}
+
+
+#bsa-source-modal pre {
+  max-height: calc(100vh - 11rem)
+}

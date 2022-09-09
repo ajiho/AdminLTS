@@ -1,0 +1,26 @@
+{
+  "name": "ajiho/bootstrap-admin",
+  "description": "Bootstrap-Admin - Open source free background HTML template based on bootstrap 5",
+  "keywords": [
+    "bootstrap5",
+    "css",
+    "js",
+    "less",
+    "responsive",
+    "back-end",
+    "template",
+    "theme",
+    "web",
+    "admin"
+  ],
+  "homepage": "https://gitee.com/ajiho/bootstrap-admin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ajiho",
+      "email": "lujiahao@88.com",
+      "homepage": "https://gitee.com/ajiho",
+      "role": "Developer"
+    }
+  ]
+}
