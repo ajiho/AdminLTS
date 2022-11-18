@@ -26,8 +26,6 @@
 |bootstrap-admin版本|bootstrap版本|
 |--|--|
 |v1.x|v5.1.3|
-|v2.x(todo)|v5.2.0|
-|v3.x(todo)|v5.2.1|
 
 ## 设备支持
 

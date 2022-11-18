@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "@ztree/ztree_v3": "^3.5.48",
-    "bootstrap": "5.1.x",
     "bootstrap-icons": "^1.9.1",
     "chart.js": "^3.8.0",
     "fullcalendar": "^5.11.2",
