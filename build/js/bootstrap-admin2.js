@@ -158,25 +158,7 @@
         })
     });
 
-    function generateRandom() {
-        return Math.random().toString(16).slice(2);
-    }
 
-    // 随机数
-    function mathNum() {
-        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    }
-
-
-    // Generate four random hex digits.
-    function S4() {
-        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    }
-
-    // Generate a pseudo-GUID by concatenating random hexadecimal.
-    function guid() {
-        return (S4() + S4() + S4() + S4() + S4() + S4() + S4() + S4());
-    }
 
 
     //给每个a链接都绑定一个自己的id

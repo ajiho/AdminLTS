@@ -12,8 +12,30 @@
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="dist/css/bootstrap-admin.min.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+
+    <style>
+        .tab-container {
+            /* 可以使窗口平稳滚动 */
+            scroll-behavior: smooth !important;
+            overflow: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        /*谷歌浏览器*/
+        .tab-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .closetab:hover {
+            color: #dc3545;
+        }
+
+    </style>
+
 </head>
 <body>
+
 
 <!--头部导航-->
 <ul class="bsa-header">
@@ -49,7 +71,7 @@
         </div>
         <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card border-0">
-                <div class="card-header  d-flex align-items-center justify-content-between">
+                <div class="card-header bg-white d-flex align-items-center justify-content-between">
                     <span class="bsa-fs-15">应用列表</span>
                     <a href="javascript:" class="text-muted bsa-fs-13 text-decoration-none">编辑</a>
                 </div>
@@ -144,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-center ">
+                <div class="card-footer text-center bg-white">
                     <a href="javascript:" class="text-muted bsa-font-14 text-decoration-none">查看更多应用</a>
                 </div>
             </div>
@@ -160,7 +182,7 @@
         </div>
         <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card border-0">
-                <div class="card-header  d-flex align-items-center justify-content-between">
+                <div class="card-header bg-white d-flex align-items-center justify-content-between">
                     <span class="bsa-fs-15">通知列表</span>
                     <a href="javascript:" class="text-muted bsa-fs-13 text-decoration-none">全部设为已读</a>
                 </div>
@@ -231,7 +253,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="card-footer text-center">
+                <div class="card-footer text-center bg-white">
                     <a href="javascript:" class="text-muted bsa-font-14 text-decoration-none">查看所有通知</a>
                 </div>
             </div>
@@ -247,7 +269,7 @@
         </div>
         <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card border-0">
-                <div class="card-header  d-flex align-items-center justify-content-between">
+                <div class="card-header bg-white d-flex align-items-center justify-content-between">
                     <span class="bsa-fs-15">消息列表</span>
                     <a href="javascript:" class="text-muted bsa-fs-13 text-decoration-none">全部设为已读</a>
                 </div>
@@ -299,53 +321,73 @@
                         </div>
                     </a>
                 </div>
-                <div class="card-footer text-center ">
+                <div class="card-footer text-center bg-white">
                     <a href="javascript:" class="text-muted bsa-font-14 text-decoration-none">查看所有消息</a>
                 </div>
             </div>
         </div>
     </li>
-    <!--    颜色    -->
+    <!--    消息    -->
     <li class="dropdown">
-        <div class="bsa-header-item" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-            <i class="bi bi-palette"></i>
+        <div class="bsa-header-item" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left"></i>
         </div>
         <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card border-0">
-                <div class="card-header  d-flex align-items-center justify-content-between">
-                    <span class="bsa-fs-15">主题色列表</span>
+                <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                    <span class="bsa-fs-15">消息列表</span>
+                    <a href="javascript:" class="text-muted bsa-fs-13 text-decoration-none">全部设为已读</a>
                 </div>
-                <div class="card-body">
-
-                    <h6>头部</h6>
-                    <hr>
-                    <div class="d-flex flex-wrap justify-content-start gap-3">
-                        <div class="headercolor0"></div>
-                        <div class="headercolor1"></div>
-                        <div class="headercolor2"></div>
-                        <div class="headercolor3"></div>
-                        <div class="headercolor4"></div>
-                        <div class="headercolor5"></div>
-                        <div class="headercolor6"></div>
-                        <div class="headercolor7"></div>
-                        <div class="headercolor8"></div>
-                    </div>
-
-                    <h6 class="mt-4">侧边栏</h6>
-                    <hr>
-                    <div class="d-flex flex-wrap justify-content-start gap-3">
-                        <div class="sidebarcolor0"></div>
-                        <div class="sidebarcolor1"></div>
-                        <div class="sidebarcolor2"></div>
-                        <div class="sidebarcolor3"></div>
-                        <div class="sidebarcolor4"></div>
-                        <div class="sidebarcolor5"></div>
-                        <div class="sidebarcolor6"></div>
-                        <div class="sidebarcolor7"></div>
-                        <div class="sidebarcolor8"></div>
-                    </div>
-
-
+                <div class="card-body p-0">
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <img src="https://temp.im/120x120" class="bsa-wh-45 rounded-circle" alt="头像">
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">Jack</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
+                                I'm fine
+                            </div>
+                            <div class="small text-muted">6分钟前</div>
+                        </div>
+                    </a>
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <img src="https://temp.im/120x120" class="bsa-wh-45 rounded-circle" alt="头像">
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">Rose</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </div>
+                            <div class="small text-muted">3小时前</div>
+                        </div>
+                    </a>
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <img src="https://temp.im/120x120" class="bsa-wh-45 rounded-circle" alt="头像">
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">Ben</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
+                                Lorem ipsum dolor sit amet, consectetur.
+                            </div>
+                            <div class="small text-muted">1天前</div>
+                        </div>
+                    </a>
+                    <a href="javascript:"
+                       class="d-flex align-items-center text-decoration-none py-2 px-3 bsa-cursor-hover">
+                        <img src="https://temp.im/120x120" class="bsa-wh-45 rounded-circle" alt="头像">
+                        <div class="d-flex flex-column gap-1 ms-3">
+                            <h5 class="text-dark mb-0 bsa-ellipsis-1">Emily</h5>
+                            <div class="text-secondary bsa-ellipsis-2">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium
+                                architecto autem corporis, eos illo illum itaque nemo nisi, optio sint vitae?
+                                Accusantium dolor eius enim iste laudantium perferendis porro!
+                            </div>
+                            <div class="small text-muted">3天前</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-footer text-center bg-white">
+                    <a href="javascript:" class="text-muted bsa-font-14 text-decoration-none">查看所有消息</a>
                 </div>
             </div>
         </div>
@@ -385,6 +427,7 @@
                     <i class="bi bi-house"></i>首页
                 </a>
             </li>
+
             <li>
                 <a href="javascript:" class="has-children">
                     <i class="bi bi-columns-gap"></i>UI组件
@@ -489,7 +532,10 @@
                         <a href="pages/page-add.html">表单新增</a>
                     </li>
                     <li>
-                        <a href="pages/page-login.html" target="_blank">登录页面</a>
+                        <a href="pages/page-add2.html">表单新增2</a>
+                    </li>
+                    <li>
+                        <a href="pages/page-login.html">登录页面</a>
                     </li>
                     <li>
                         <a href="pages/page-login2.html">登录页面2</a>
@@ -525,9 +571,11 @@
                     <i class="bi bi-filetype-js"></i>插件
                 </a>
                 <ul>
+                    <li><a href="pages/plugin-fullcalendar.html">日历</a></li>
                     <li><a href="pages/plugin-chart.html">chart.js</a></li>
                     <li><a href="pages/plugin-echarts.html">echart.js</a></li>
                     <li><a href="pages/plugin-bootstrap-notify.html">通知插件</a></li>
+                    <li><a href="pages/plugin-bootstrap-layer.html">弹层插件</a></li>
                     <li><a href="pages/plugin-formvalidation.html">表单验证</a></li>
                     <li><a href="pages/plugin-tempus-dominus.html">日期时间选择</a></li>
                     <li><a href="pages/plugin-tinymce.html">富文本编辑器</a></li>
@@ -536,11 +584,6 @@
                     <li><a href="pages/plugin-ztree.html">树形组件</a></li>
                     <li><a href="pages/plugin-select2.html">select2</a></li>
                 </ul>
-            </li>
-            <li>
-                <a href="javascript:">
-                    <i class="bi bi-filetype-js"></i>弹层(内置)
-                </a>
             </li>
             <li>
                 <a href="javascript:" class="has-children">
@@ -600,9 +643,147 @@
         </ul>
     </div>
 </div>
+<!--设置面板-->
+<div class="bsa-switcher">
+    <div class="bsa-switcher-toggler">
+        <i class="bi bi-gear"></i>
+    </div>
+    <div class="bsa-switcher-header">
+        <h5 class="bsa-switcher-header-title">设置</h5>
+        <button type="button" class="btn-close text-reset bsa-switcher-toggler"></button>
+    </div>
+    <div class="bsa-switcher-body">
+
+        <h6>头部颜色</h6>
+        <hr>
+        <div class="bsa-headercolor-wrap">
+            <div class="row row-cols-3 g-3">
+                <div class="col d-flex justify-content-center">
+                    <div class="headercolor0"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="headercolor1"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="headercolor2"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="headercolor3"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="headercolor4"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="headercolor5"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="headercolor6"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="headercolor7"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="headercolor8"></div>
+                </div>
+            </div>
+        </div>
+        <h6 class="mt-4">侧边栏颜色</h6>
+        <hr>
+        <div class="bsa-sidebarcolor-wrap">
+            <div class="row row-cols-3 g-3">
+                <div class="col d-flex justify-content-center">
+                    <div class="sidebarcolor0"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="sidebarcolor1"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="sidebarcolor2"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="sidebarcolor3"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="sidebarcolor4"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="sidebarcolor5"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="sidebarcolor6"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="sidebarcolor7"></div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="sidebarcolor8"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!--内容区域-->
 <div class="bsa-page-wrapper">
-    <div class="bsa-main"></div>
+    <!--已经完美弄好的布局-->
+    <div class="h-100 d-flex flex-column">
+        <!--tab区域-->
+        <ul class="nav nav-pills border flex-nowrap">
+
+            <!--左侧按钮-->
+            <li class="nav-item border-end flex-shrink-0">
+                <button class="nav-link leftbtn" type="button" role="tab"><i class="bi bi-caret-left"></i>
+                </button>
+            </li>
+
+            <!--tab区域-->
+            <li class="nav-item flex-grow-1   overflow-hidden">
+
+                <ul class="nav  nav-pills position-relative flex-nowrap  tab-container"
+                    id="pills-tab" role="tablist">
+
+                </ul>
+
+
+            </li>
+
+            <!--操作区域-->
+            <li class="nav-item border-start flex-shrink-0">
+                <div class="dropdown">
+                    <button class="nav-link" data-bs-toggle="dropdown" type="button" role="tab">
+                        <i class="bi bi-caret-down"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end actions">
+                        <li>
+                            <button class="dropdown-item rollback-current" type="button">回到当前</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item refresh-current" type="button">刷新当前</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item close-current" type="button">关闭当前</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item close-other" type="button">关闭其他</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item close-all" type="button">关闭全部</button>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!--向右滑动按钮-->
+            <li class="nav-item border-start flex-shrink-0">
+                <button class="nav-link rightbtn" type="button" role="tab"><i class="bi bi-caret-right"></i>
+                </button>
+            </li>
+        </ul>
+
+        <!--tab内容区域-->
+        <div class="tab-content h-100 " id="pills-tabContent">
+
+        </div>
+    </div>
 </div>
 <!--版权信息-->
 <div class="bsa-footer">
@@ -610,21 +791,25 @@
 </div>
 
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="build/test/util.js"></script>
-<script src="build/test/bootstrap-tabs.js"></script>
-<script src="build/test/bsa.js"></script>
-
+<script src="dist/js/bootstrap-admin.min.js"></script>
+<script src="src/js/tab.js"></script>
 <script>
+    addTabs({
+        id: 999,
+        title: '首页',
+        close: false,
+        url: 'pages/welcome.html',
+    });
 
-    // BSA.tabs.addTabs({
-    //     id: 999,
-    //     title: '首页',
-    //     close: false,
-    //     url: 'pages/welcome.html',
-    // });
-
-    //设置主题
-
+    // for (let i = 1; i < 30; i++) {
+    //     // 添加默认首页
+    //     addTabs({
+    //         id: i,
+    //         title: '首页' + i,
+    //         close: true,
+    //         url: `pages/welcome.html`,
+    //     });
+    // }
 
 </script>
 

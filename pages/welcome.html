@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+</head>
+<body class="bg-light pt-2 pb-5">
+
+<div class="container-fluid">
+
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-2 g-2 mb-3">
+        <div class="col">
+            <div class="card border-0 shadow-sm   ">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="me-1">
+                            <h6 class="mb-2 bsa-ellipsis-1">今日收入</h6>
+                            <h4 class="mb-1 bsa-ellipsis-1">13,145.20</h4>
+                        </div>
+                        <i class="bi bi-currency-yen fs-1 text-danger"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-0 shadow-sm   ">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="me-1">
+                            <h6 class="mb-2 bsa-ellipsis-1">用户总数</h6>
+                            <h4 class="mb-1 bsa-ellipsis-1">1546</h4>
+                        </div>
+                        <i class="bi bi-people fs-1 text-info"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-0 shadow-sm   ">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="me-1">
+                            <h6 class="mb-2 bsa-ellipsis-1">订单总数</h6>
+                            <h4 class="mb-1 bsa-ellipsis-1">2000</h4>
+                        </div>
+                        <i class="bi bi-cart fs-1 text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-0 shadow-sm   ">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="me-1">
+                            <h6 class="mb-2 bsa-ellipsis-1">留言</h6>
+                            <h4 class="mb-1 bsa-ellipsis-1">1000</h4>
+                        </div>
+                        <i class="bi bi-chat fs-1 text-success"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white">
+                    Gitee开源
+                </div>
+                <div class="card-body">
+
+                    <p>
+                        bootstrap-admin(BSA)基于bootstrap强力的新版本5.x设计的一个开源免费的纯静态后台模板</p>
+
+                    <p>码云地址：
+                        <a href="https://gitee.com/ajiho/bootstrap-admin" target="_blank" class="text-success">https://gitee.com/ajiho/bootstrap-admin</a>
+                    </p>
+                    <p>我知道你的选择有很多,但是这绝对是我用心的作品,一个小小的star将会是我更新的动力</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-2 g-2 mb-3">
+        <div class="col">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white">
+                    近七天pv值
+                </div>
+                <div class="card-body">
+                    <canvas id="chart-bar"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white">
+                    年营业额走势
+                </div>
+                <div class="card-body">
+                    <canvas id="chart-line"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white">
+                    订单摘要
+                </div>
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead class="table-light">
+                            <tr>
+                                <th>订单号</th>
+                                <th>商品</th>
+                                <th>下单人</th>
+                                <th>下单日期</th>
+                                <th>价格</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>#157444499</td>
+                                <td>
+                                    Apple iPhone 13 (A2634) 512GB
+                                </td>
+                                <td>欲饮琵琶码上催</td>
+                                <td>2022/7/16</td>
+                                <td>￥100.00</td>
+                                <td>
+                                    <span class="badge bg-success">交易成功</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <a href="javascript:" class="btn btn-sm btn-light"><i
+                                                class="bi bi-gear"></i></a>
+                                        <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
+                                                class="bi bi-arrow-down"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#157444499</td>
+                                <td>
+                                    Apple iPhone 13 (A2634) 512GB
+                                </td>
+                                <td>欲饮琵琶码上催</td>
+                                <td>2022/7/16</td>
+                                <td>￥100.00</td>
+                                <td>
+                                    <span class="badge bg-success">交易成功</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <a href="javascript:" class="btn btn-sm btn-light"><i
+                                                class="bi bi-gear"></i></a>
+                                        <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
+                                                class="bi bi-arrow-down"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#157444499</td>
+                                <td>
+                                    Apple iPhone 13 (A2634) 512GB
+                                </td>
+                                <td>欲饮琵琶码上催</td>
+                                <td>2022/7/16</td>
+                                <td>￥100.00</td>
+                                <td>
+                                    <span class="badge bg-success">交易成功</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <a href="javascript:" class="btn btn-sm btn-light"><i
+                                                class="bi bi-gear"></i></a>
+                                        <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
+                                                class="bi bi-arrow-down"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#157444499</td>
+                                <td>
+                                    Apple iPhone 13 (A2634) 512GB
+                                </td>
+                                <td>欲饮琵琶码上催</td>
+                                <td>2022/7/16</td>
+                                <td>￥100.00</td>
+                                <td>
+                                    <span class="badge bg-success">交易成功</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <a href="javascript:" class="btn btn-sm btn-light"><i
+                                                class="bi bi-gear"></i></a>
+                                        <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
+                                                class="bi bi-arrow-down"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#157444499</td>
+                                <td>
+                                    Apple iPhone 13 (A2634) 512GB
+                                </td>
+                                <td>欲饮琵琶码上催</td>
+                                <td>2022/7/16</td>
+                                <td>￥100.00</td>
+                                <td>
+                                    <span class="badge bg-success">交易成功</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <a href="javascript:" class="btn btn-sm btn-light"><i
+                                                class="bi bi-gear"></i></a>
+                                        <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
+                                                class="bi bi-arrow-down"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#157444499</td>
+                                <td>
+                                    Apple iPhone 13 (A2634) 512GB
+                                </td>
+                                <td>欲饮琵琶码上催</td>
+                                <td>2022/7/16</td>
+                                <td>￥100.00</td>
+                                <td>
+                                    <span class="badge bg-success">交易成功</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <a href="javascript:" class="btn btn-sm btn-light"><i
+                                                class="bi bi-gear"></i></a>
+                                        <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
+                                                class="bi bi-arrow-down"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../plugins/chart.js/chart.min.js"></script>
+<script>
+    new Chart(document.getElementById('chart-bar').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
+            datasets: [{
+                label: 'pv值',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(52,143,80, 0.6)',
+                    'rgba(52,143,80, 0.6)',
+                    'rgba(52,143,80, 0.6)',
+                    'rgba(52,143,80, 0.6)',
+                    'rgba(52,143,80, 0.6)',
+                    'rgba(52,143,80, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(52,143,80, 0.6)',
+                    'rgba(52,143,80, 0.6)',
+                    'rgba(52,143,80, 0.6)',
+                    'rgba(52,143,80, 0.6)',
+                    'rgba(52,143,80, 0.6)',
+                    'rgba(52,143,80, 0.6)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    new Chart(document.getElementById('chart-line').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
+            datasets: [{
+                label: '营业额 单位/万元',
+                data: [65, 90, 60, 50, 40, 30, 20],
+                fill: false,
+                borderColor: 'rgba(185,110,228,.5)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    // new Chart(document.getElementById('chart-line2').getContext('2d'), {
+    //     type: 'line',
+    //     data: {
+    //         labels: ['2022.8.3', '2022.8.4', '2022.8.5', '2022.8.6', '2022.8.7', '2022.8.9'],
+    //         datasets: [
+    //             {
+    //                 label: '粉丝',
+    //                 data: [65, 90, 60, 50, 40, 30, 120],
+    //                 fill: false,
+    //                 borderColor: 'rgba(252, 92, 125,.5)',
+    //                 tension: 0.1,
+    //                 cubicInterpolationMode: 'monotone',
+    //
+    //             },
+    //             {
+    //                 label: '被收藏',
+    //                 data: [30, 80, 70, 48, 64, 101, 10],
+    //                 fill: false,
+    //                 borderColor: 'rgba(10, 191, 188,.5)',
+    //                 tension: 0.1,
+    //                 cubicInterpolationMode: 'monotone',
+    //             },
+    //             {
+    //                 label: '获赞',
+    //                 data: [10, 37, 54, 68, 73, 98, 110],
+    //                 fill: false,
+    //                 borderColor: 'rgba(221, 100, 0,.5)',
+    //                 tension: 0.1,
+    //                 cubicInterpolationMode: 'monotone',
+    //             }
+    //         ]
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true
+    //             }
+    //         }
+    //     }
+    // });
+    // new Chart(document.getElementById('chart-doughnut').getContext('2d'), {
+    //     type: 'doughnut',
+    //     data: {
+    //         labels: [
+    //             '已租',
+    //             '未租'
+    //         ],
+    //         datasets: [{
+    //             label: 'Dataset 1',
+    //             data: [300, 50],
+    //             backgroundColor: [
+    //                 '#0abfbc',
+    //                 '#348f50'
+    //             ],
+    //             hoverOffset: 4
+    //         }]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         plugins: {
+    //             legend: {
+    //                 position: 'top',
+    //             },
+    //             title: {
+    //                 display: true,
+    //                 text: '已租未租房源占比图'
+    //             }
+    //         }
+    //     }
+    // });
+
+</script>
+</body>
+</html>

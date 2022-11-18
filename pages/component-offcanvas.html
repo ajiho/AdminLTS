@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-2">
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">基本示例</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <div class="row row-cols-auto g-3">
+                        <div class="col">
+                            <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample"
+                               role="button" aria-controls="offcanvasExample">
+                                Link with href
+                            </a>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                                Button with data-bs-target
+                            </button>
+                        </div>
+                    </div>
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                         aria-labelledby="offcanvasExampleLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div>
+                                Some text as placeholder. In real life you can have the elements you have
+                                chosen. Like, text, images, lists, etc.
+                            </div>
+                            <div class="dropdown mt-3">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-bs-toggle="dropdown">
+                                    Dropdown button
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="javascript:">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">不同方位抽出抽屉</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <div class="row row-cols-auto g-3">
+                        <div class="col">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+                                上
+                            </button>
+
+                            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop"
+                                 aria-labelledby="offcanvasTopLabel" style="min-height: 300px">
+                                <div class="offcanvas-header">
+                                    <h5 id="offcanvasTopLabel">Offcanvas top</h5>
+                                    <button type="button" class="btn-close text-reset"
+                                            data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                                    consequatur
+                                    dicta doloribus est et illo inventore ipsam necessitatibus neque
+                                    odit,
+                                    quod reiciendis sunt vero! Accusantium aperiam dicta labore
+                                    obcaecati
+                                    quasi.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">右
+                            </button>
+
+                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                                 aria-labelledby="offcanvasRightLabel">
+                                <div class="offcanvas-header">
+                                    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+                                    <button type="button" class="btn-close text-reset"
+                                            data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
+                                    asperiores aut, commodi eaque error, et fuga fugiat harum hic magnam
+                                    modi nostrum odio possimus repellendus reprehenderit rerum sunt tempore
+                                    voluptas.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+
+                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">下
+                            </button>
+
+                            <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
+                                 aria-labelledby="offcanvasBottomLabel" style="min-height: 300px">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas
+                                        bottom</h5>
+                                    <button type="button" class="btn-close text-reset"
+                                            data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body small">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Accusantium nisi ratione suscipit veniam veritatis! Cumque deserunt
+                                    dolore ex expedita harum illum velit? Deserunt dicta harum, itaque
+                                    pariatur repellat repellendus sed.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+
+                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasStart" aria-controls="offcanvasStart">左
+                            </button>
+
+                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasStart"
+                                 aria-labelledby="offcanvasBottomLabel">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasStartLabel">Offcanvas
+                                        bottom</h5>
+                                    <button type="button" class="btn-close text-reset"
+                                            data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body small">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Accusantium nisi ratione suscipit veniam veritatis! Cumque deserunt
+                                    dolore ex expedita harum illum velit? Deserunt dicta harum, itaque
+                                    pariatur repellat repellendus sed.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">无遮罩层同时body可以滑动</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Offcanvas Button
+                    </button>
+
+                    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false"
+                         tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with
+                                scrolling</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eos explicabo
+                            odit omnis quaerat reprehenderit similique tenetur. Distinctio expedita facere
+                            odio officiis placeat quo ratione sed temporibus, tenetur velit voluptas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">有遮罩层同时body可以滑动</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasWithBothOptions"
+                            aria-controls="offcanvasWithBothOptions">
+                        Offcanvas Button
+                    </button>
+                    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1"
+                         id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with
+                                scrolling</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti
+                            dicta, itaque iure laboriosam officia voluptas? Alias aliquid, aperiam
+                            architecto beatae culpa deserunt doloremque eligendi enim nam nihil quisquam
+                            sunt.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

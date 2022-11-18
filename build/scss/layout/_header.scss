@@ -1,0 +1,247 @@
+.bsa-header {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  position: fixed;
+  top: 0;
+  left: $sidebar-width;
+  right: 0;
+  height: $header-height;
+  background: #fff;
+  border-bottom: 1px solid rgba(127, 113, 113, 0.08);
+  z-index: 80;
+  list-style: none;
+
+  margin: 0;
+
+  > li {
+    background: inherit;
+    height: inherit;
+  }
+
+  .bsa-header-item {
+    background: inherit;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 20px;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5f5f5f;
+
+    @include media-breakpoint-down(lg) {
+      padding: 0 20px;
+    }
+    @include media-breakpoint-down(md) {
+      padding: 0 16px;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 0 12px;
+    }
+    @include media-breakpoint-down(bsa-sm) {
+      padding: 0 8px;
+    }
+
+    .bsa-user-avatar {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      user-select: none;
+      @include media-breakpoint-down(lg) {
+        height: 35px;
+        width: 35px;
+      }
+      @include media-breakpoint-down(sm) {
+        height: 35px;
+        width: 35px;
+      }
+
+      @include media-breakpoint-down(bsa-sm) {
+        height: 30px;
+        width: 30px;
+      }
+
+    }
+
+
+    .bsa-user-details {
+      margin-left: 8px;
+      flex-shrink: 0;
+      display: block;
+      max-width: 150px;
+      @include media-breakpoint-down(xl) {
+        display: none;
+      }
+
+      .bsa-user-role {
+        color: #a9a8a8;
+      }
+
+    }
+
+    .bsa-header-badge {
+      position: absolute;
+      top: -10px;
+      right: -8px;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 12px;
+      transform: scale(.8);
+      font-weight: 500;
+      user-select: none;
+      color: #fff;
+      background: #f62718;
+      word-break: keep-all;
+    }
+
+
+  }
+
+  .dropdown {
+    @include media-breakpoint-down(lg) {
+      position: static !important;
+    }
+  }
+
+  .dropdown-menu {
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgb(0 0 0 / 8%);
+    max-width: 360px;
+    @include media-breakpoint-down(lg) {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .dropdown-item {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding: 8px 20px;
+      color: #6c757d;
+
+      &.active, &:active, &:hover, &:focus {
+        background: $hover-color;
+      }
+    }
+
+  }
+
+  .card {
+    width: 360px;
+
+    @include media-breakpoint-down(lg) {
+      width: 100%;
+    }
+
+    .card-body {
+      max-height: 320px;
+      overflow: auto;
+    }
+  }
+
+
+  //移动端侧边栏唤出按钮
+  .bsa-sidebar-toggler {
+    display: none;
+    @include media-breakpoint-down(lg) {
+      display: flex;
+    }
+  }
+
+  //移动端搜索菜单唤出按钮
+  .bsa-search-form-toggler {
+    display: none;
+    @include media-breakpoint-down(lg) {
+      display: flex;
+    }
+  }
+
+  //搜索表单默认给显示flex布局
+  .bsa-search-form-wrapper {
+    display: flex;
+    @include media-breakpoint-down(lg) {
+      display: none;
+
+      &.open {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        padding: 0 12px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        background: inherit;
+
+        .bsa-search-form {
+          width: 100%;
+        }
+      }
+
+    }
+
+  }
+
+  .bsa-search-form {
+    position: relative;
+    width: 300px;
+
+    .bsa-search-form-control {
+      background-color: #f6f5f5;
+      border: none;
+      padding-right: 44px;
+      padding-left: 20px;
+      border-radius: 30px;
+
+      &:focus {
+        background-color: #fff;
+      }
+    }
+
+    .bsa-search-close-btn, .bsa-search-submit-btn {
+      font-size: 18px;
+      padding: 0;
+      border: 0;
+      height: inherit;
+      width: 24px;
+      background-color: transparent;
+      color: #616161;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+    }
+
+    .bsa-search-submit-btn{
+      @include media-breakpoint-down(lg) {
+        display: none;
+      }
+    }
+
+    .bsa-search-close-btn {
+      display: none;
+      @include media-breakpoint-down(lg) {
+        display: inline-block;
+      }
+    }
+
+
+  }
+
+  @include media-breakpoint-down(lg) {
+    left: 0;
+  }
+}
+
+
+

@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
+        <div class="col">
+            <h5 class="card-title">基本表单布局</h5>
+            <div class="dropdown-divider mb-3"></div>
+            <div class="bsa-component">
+                <div class="card border-top border-0 border-4 border-primary">
+                    <div class="card-body p-5">
+                        <div class="card-title d-flex align-items-center">
+                            <div><i class="bi bi-person me-1 bsa-font-20 text-primary"></i>
+                            </div>
+                            <h5 class="mb-0 text-primary">用户注册</h5>
+                        </div>
+                        <hr>
+                        <form action="#" class="row g-3">
+                            <div class="col-md-6">
+                                <label for="username" class="form-label">用户名</label>
+                                <input type="text" class="form-control" id="username">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">姓名</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">邮箱</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">密码</label>
+                                <input type="password" class="form-control" id="password">
+                            </div>
+                            <div class="col-12">
+                                <label for="address" class="form-label">地址</label>
+                                <textarea class="form-control" id="address" placeholder="请输入长期居住地址"
+                                          rows="3"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label for="bio" class="form-label">个人介绍</label>
+                                <textarea class="form-control" id="bio" placeholder="一句话认识你"
+                                          rows="3"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nativeplace" class="form-label">籍贯</label>
+                                <input type="text" class="form-control" id="nativeplace" value="贵州">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="sex" class="form-label">性别</label>
+                                <select id="sex" class="form-select" name="sex">
+                                    <option selected="">选择您的性别...</option>
+                                    <option value="1">男</option>
+                                    <option value="0">女</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="age" class="form-label">年龄</label>
+                                <input type="text" class="form-control" id="age">
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="reme">
+                                    <label class="form-check-label" for="reme">记住我</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary px-5">注册</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h5 class="card-title">携带图标</h5>
+            <div class="dropdown-divider mb-3"></div>
+            <div class="bsa-component">
+                <div class="card border-top border-0 border-4 border-danger">
+                    <div class="card-body p-5">
+                        <div class="card-title d-flex align-items-center">
+                            <div><i class="bi bi-person me-1 bsa-font-20 text-danger"></i>
+                            </div>
+                            <h5 class="mb-0 text-danger">用户注册</h5>
+                        </div>
+                        <hr>
+                        <form class="row g-3">
+                            <div class="col-md-6">
+                                <label for="username2" class="form-label">用户名</label>
+                                <div class="input-group">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="bi bi-person"></i>
+                                            </span>
+                                    <input type="text" class="form-control border-start-0" id="username2"
+                                           placeholder="请输入用户名" name="username2">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="name2" class="form-label">姓名</label>
+                                <div class="input-group">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="bi bi-person"></i>
+                                            </span>
+                                    <input type="text" class="form-control border-start-0" id="name2"
+                                           placeholder="请输入姓名" name="name2">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="phone2" class="form-label">手机号</label>
+                                <div class="input-group">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="bi bi-phone"></i>
+                                            </span>
+                                    <input type="text" class="form-control border-start-0" id="phone2"
+                                           placeholder="请输入手机号" name="phone2">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="email2" class="form-label">邮箱</label>
+                                <div class="input-group">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="bi bi-envelope"></i>
+                                            </span>
+                                    <input type="text" class="form-control border-start-0"
+                                           id="email2"
+                                           name="email2"
+                                           placeholder="请输入邮箱">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="password2" class="form-label">密码</label>
+                                <div class="input-group">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="bi bi-shield-lock"></i>
+                                            </span>
+                                    <input type="text" class="form-control border-start-0"
+                                           id="password2"
+                                           name="password2"
+                                           placeholder="请输入密码">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="confirm_password" class="form-label">确认密码</label>
+                                <div class="input-group"><span class="input-group-text bg-transparent"><i
+                                        class="bi bi-shield-lock"></i></span>
+                                    <input type="text" class="form-control border-start-0"
+                                           id="confirm_password"
+                                           name="confirm_password"
+                                           placeholder="请输入确认密码">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="address2" class="form-label">地址</label>
+                                <textarea class="form-control" id="address2" name="address2"
+                                          placeholder="请输入地址"
+                                          rows="3"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="reme2" name="reme2">
+                                    <label class="form-check-label" for="reme2">记住我</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-danger px-5">注册</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h5 class="card-title">登录布局示例</h5>
+            <div class="dropdown-divider mb-3"></div>
+            <div class="bsa-component">
+                <div class="card border-top border-0 border-4 border-dark">
+                    <div class="card-body p-5">
+                        <div class="card-title text-center"><i
+                                class="bi bi-person-circle text-dark bsa-font-50"></i>
+                            <h5 class="mb-5 mt-2 text-dark">用户登录</h5>
+                        </div>
+                        <hr>
+                        <form class="row g-3">
+                            <div class="col-12">
+                                <label for="username3" class="form-label">用户名</label>
+                                <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="bi bi-person"></i>
+                                            </span>
+                                    <input type="text" class="form-control border-start-0"
+                                           id="username3" placeholder="请输入用户" name="username3">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="password3" class="form-label">密码</label>
+                                <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="bi bi-shield-lock"></i>
+                                            </span>
+                                    <input type="text" class="form-control border-start-0"
+                                           id="password3" placeholder="请输入密码" name="password3">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="reme3" name="reme3">
+                                    <label class="form-check-label" for="reme3">记住我</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <a href="javascript:" class="text-decoration-none text-muted">忘记密码</a>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-dark btn-lg px-5">
+                                        <i class="bi bi-shield-lock me-2"></i>登录
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="col-12 text-center">
+                                <p class="mb-0">第三方账号登录 :</p>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-success btn-lg px-5"><i
+                                            class="bi bi-wechat"></i> 微信登录
+                                    </button>
+                                    <button type="submit" class="btn btn-secondary btn-lg px-5"><i
+                                            class="bi bi-github"></i> github登录
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h5 class="card-title">水平布局表单</h5>
+            <div class="dropdown-divider mb-3"></div>
+            <div class="bsa-component">
+                <div class="card border-top border-0 border-4 border-info">
+                    <div class="card-body">
+                        <div class="border p-4 rounded">
+                            <div class="card-title d-flex align-items-center">
+                                <div><i class="bi bi-person me-1 bsa-font-20 text-info"></i>
+                                </div>
+                                <h5 class="mb-0 text-info">用户注册</h5>
+                            </div>
+                            <hr>
+                            <form>
+                                <div class="row mb-3">
+                                    <label for="username4" class="col-sm-3 col-form-label">
+                                        用户名
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="username4"
+                                               placeholder="请输入用户名" name="username4">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="phone4" class="col-sm-3 col-form-label">
+                                        手机号
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="phone4"
+                                               placeholder="请输入手机号" name="phone4">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="email4" class="col-sm-3 col-form-label">
+                                        邮箱
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="email4"
+                                               placeholder="请输入邮箱" name="email4">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="password4" class="col-sm-3 col-form-label">
+                                        密码
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="password4"
+                                               placeholder="请输入密码" name="password4">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="confirm_password4" class="col-sm-3 col-form-label">
+                                        确认密码
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="confirm_password4"
+                                               placeholder="请输入确认密码" name="confirm_password4">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="address4" class="col-sm-3 col-form-label">
+                                        地址
+                                    </label>
+                                    <div class="col-sm-9">
+                                            <textarea class="form-control" id="address4" rows="3"
+                                                      placeholder="请输入地址" name="address4"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-9 offset-sm-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="reme4"
+                                                   name="reme4">
+                                            <label class="form-check-label" for="reme4">
+                                                记住我
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <button type="submit" class="btn btn-info px-5">注册</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

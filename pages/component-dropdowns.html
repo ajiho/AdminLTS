@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-2">
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">基本示例</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+
+                    <div class="row row-cols-auto gap-2">
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                    Dropdown button
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="Javascript:" role="button"
+                                   id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown link
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">和不同样式的按钮使用</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <div class="row row-cols-auto gap-2">
+                        <div class="col">
+                            <!-- Example single danger button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Action
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="Javascript:">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Example split danger button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger">Action</button>
+                                <button type="button"
+                                        class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="Javascript:">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Large button
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="Javascript:">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary btn-lg" type="button">
+                                    Large split button
+                                </button>
+                                <button type="button"
+                                        class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="Javascript:">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Small button
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="Javascript:">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary btn-sm" type="button">
+                                    Small split button
+                                </button>
+                                <button type="button"
+                                        class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="Javascript:">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">黑暗模式的下拉框</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                            <li><a class="dropdown-item active" href="Javascript:">Action</a></li>
+                            <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                            <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="Javascript:">Separated link</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">子项目的各种状态(文本、激活、禁用)</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <div class="row row-cols-auto gap-2">
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    .dropdown-item-text类
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><span class="dropdown-item-text">.dropdown-item-text类</span></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false">
+                                    激活
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Regular link</a></li>
+                                    <li><a class="dropdown-item active" href="Javascript:" aria-current="true">Active
+                                        link</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenu4" data-bs-toggle="dropdown" aria-expanded="false">
+                                    禁用
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Regular link</a></li>
+                                    <li><a class="dropdown-item disabled">Disabled link</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">和导航栏一起使用</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="Javascript:">Navbar</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarNavDarkDropdown"
+                                    aria-controls="navbarNavDarkDropdown" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="Javascript:"
+                                           id="navbarDarkDropdownMenuLink" role="button"
+                                           data-bs-toggle="dropdown" aria-expanded="false">
+                                            Dropdown
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark"
+                                            aria-labelledby="navbarDarkDropdownMenuLink">
+                                            <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                            <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                            <li><a class="dropdown-item" href="Javascript:">Something else here</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">不同方向弹出菜单</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <div class="row row-cols-auto gap-2">
+                        <div class="col">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                    Dropdown
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Right-aligned menu
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown" data-bs-display="static"
+                                        aria-expanded="false">
+                                    Left-aligned, right-aligned lg
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-lg-end">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown" data-bs-display="static"
+                                        aria-expanded="false">
+                                    Right-aligned, left-aligned lg
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group dropstart">
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropstart
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group dropend">
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropend
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group dropup">
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropup
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">响应式对齐</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <div class="row row-cols-auto gap-2">
+                        <div class="col">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown" data-bs-display="static"
+                                        aria-expanded="false">
+                                    Left-aligned but right aligned when large screen
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-lg-end">
+                                    <li>
+                                        <button class="dropdown-item" type="button">Action</button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">Another action</button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">Something else here
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown" data-bs-display="static"
+                                        aria-expanded="false">
+                                    Right-aligned but left aligned when large screen
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                                    <li>
+                                        <button class="dropdown-item" type="button">Action</button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">Another action</button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">Something else here
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">自定义下拉菜单布局(头部、分割线、文本、表单)</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <div class="row row-cols-auto gap-2">
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    .dropdown-header类
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><h6 class="dropdown-header">.dropdown-header类</h6></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    分割线
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Javascript:">Action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Something else here</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="Javascript:">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    dropdown-menu为纯文本
+                                </button>
+                                <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
+                                    <p>
+                                        Some example text that's free-flowing within the dropdown menu.
+                                    </p>
+                                    <p class="mb-0">
+                                        And this is more example text.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    表单布局
+                                </button>
+                                <div class="dropdown-menu" style="width: 18rem">
+                                    <form class="px-4 py-3">
+                                        <div class="mb-3">
+                                            <label for="exampleDropdownFormEmail1" class="form-label">Email
+                                                address</label>
+                                            <input type="email" class="form-control"
+                                                   id="exampleDropdownFormEmail1"
+                                                   placeholder="email@example.com">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
+                                            <input type="password" class="form-control"
+                                                   id="exampleDropdownFormPassword1" placeholder="Password">
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input"
+                                                       id="dropdownCheck">
+                                                <label class="form-check-label" for="dropdownCheck">
+                                                    Remember me
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                    </form>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="Javascript:">New around here? Sign up</a>
+                                    <a class="dropdown-item" href="Javascript:">Forgot password?</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    表单布局2
+                                </button>
+                                <form class="dropdown-menu p-4" style="width: 18rem">
+                                    <div class="mb-3">
+                                        <label for="exampleDropdownFormEmail2" class="form-label">Email
+                                            address</label>
+                                        <input type="email" class="form-control"
+                                               id="exampleDropdownFormEmail2"
+                                               placeholder="email@example.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+                                        <input type="password" class="form-control"
+                                               id="exampleDropdownFormPassword2" placeholder="Password">
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                   id="dropdownCheck2">
+                                            <label class="form-check-label" for="dropdownCheck2">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">自动关闭下拉菜单的方式</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <div class="row row-cols-auto gap-2">
+
+                        <div class="col">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                                    默认方式
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    默认点击外部区域关闭
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+                                    点击菜单区域关闭
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableOutside">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="btn-group">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
+                                    点击toggler关闭
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable">
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                    <li><a class="dropdown-item" href="Javascript:">Menu item</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

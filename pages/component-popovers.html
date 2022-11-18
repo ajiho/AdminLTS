@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-2">
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">基础示例</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover"
+                            title="Popover title"
+                            data-bs-content="And here's some amazing content. It's very engaging. Right?">
+                        Click to toggle popover
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">不同的方向</h5>
+                <div class="dropdown-divider mb-3"></div>
+
+                <div class="row row-cols-auto g-3">
+                    <div class="col">
+                        <div class="position-relative">
+                            <button type="button" class="btn btn-secondary" data-bs-container="body"
+                                    data-bs-toggle="popover" data-bs-placement="top"
+                                    data-bs-content="Top popover">
+                                上
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary" data-bs-container="body"
+                                data-bs-toggle="popover" data-bs-placement="right"
+                                data-bs-content="Right popover">
+                            右
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary" data-bs-container="body"
+                                data-bs-toggle="popover" data-bs-placement="bottom"
+                                data-bs-content="Bottom popover">
+                            下
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary" data-bs-container="body"
+                                data-bs-toggle="popover" data-bs-placement="left"
+                                data-bs-content="Left popover">
+                            左
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">点击其它区域可关闭</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                    <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover"
+                       data-bs-trigger="focus" title="Dismissible popover"
+                       data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible
+                        popover</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">禁用元素触发</h5>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="bsa-component">
+                               <span class="d-inline-block" tabindex="0" data-bs-toggle="popover"
+                                     data-bs-trigger="hover focus" data-bs-content="Disabled popover">
+                                  <button class="btn btn-primary" type="button" disabled>Disabled button</button>
+                                </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

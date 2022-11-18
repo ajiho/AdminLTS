@@ -4,7 +4,10 @@
 }
 
 html, body {
-  background: #f8f9fa;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .bsa-header {
@@ -21,8 +24,7 @@ html, body {
   right: 0;
   height: 80px;
   background: #fff;
-  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-          box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border-bottom: 1px solid rgba(127, 113, 113, 0.08);
   z-index: 80;
   list-style: none;
   margin: 0;
@@ -462,188 +464,115 @@ html, body {
     border-color: rgb(33, 33, 33);
   }
 }
-.bsa-main-wrapper {
-  margin-top: 80px;
-  margin-left: 250px;
+.bsa-page-wrapper {
+  padding-top: 80px;
+  padding-left: 250px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: calc(100% - 38px);
 }
 @media (max-width: 991.98px) {
-  .bsa-main-wrapper {
-    margin-left: 0;
+  .bsa-page-wrapper {
+    padding-left: 0;
   }
 }
 
-.bsa-main-content {
-  padding: 12px 12px 4rem 12px;
-}
-
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0);
-            transform: rotate(0);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-            transform: rotate(359deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    -webkit-transform: rotate(0);
-            transform: rotate(0);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-            transform: rotate(359deg);
-  }
-}
-.bsa-switcher {
-  width: 250px;
+.bsa-footer {
+  background: #fff;
+  left: 250px;
+  right: 0;
+  bottom: 0;
   position: fixed;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 85;
-  background: #fff;
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.13);
-          box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.13);
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
-  -webkit-transition: 0.3s -webkit-transform;
-  transition: 0.3s -webkit-transform;
-  transition: 0.3s transform;
-  transition: 0.3s transform, 0.3s -webkit-transform;
-  will-change: transform;
+  text-align: center;
+  padding: 7px;
+  font-size: 14px;
+  border-top: 1px solid #e4e4e4;
+  z-index: 3;
+  height: 38px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
-.bsa-switcher.open {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
+@media (max-width: 991.98px) {
+  .bsa-footer {
+    left: 0;
+  }
 }
-.bsa-switcher > .bsa-switcher-toggler {
-  overflow: hidden;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 24px;
-  background: #348f50;
-  color: #fff;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+
+div[class^=headercolor], div[class^=sidebarcolor] {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ccc;
   cursor: pointer;
 }
-.bsa-switcher > .bsa-switcher-toggler > i {
-  -webkit-animation: spin 2s linear infinite;
-          animation: spin 2s linear infinite;
-}
-.bsa-switcher .bsa-switcher-header {
-  height: 80px;
-  background: #fff;
-  background-clip: padding-box;
-  border-bottom: 1px solid #e4e4e4;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  color: #4d5259;
-  padding: 0 16px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.bsa-switcher .bsa-switcher-header .bsa-switcher-header-title {
-  margin-bottom: 0;
-  line-height: 1.5;
-}
-.bsa-switcher .bsa-switcher-body {
-  position: absolute;
-  top: 80px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  padding: 20px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  /*默认白色需要加边框*/
-}
-.bsa-switcher .bsa-switcher-body::-webkit-scrollbar {
-  display: none;
-}
-.bsa-switcher .bsa-switcher-body .bsa-headercolor-wrap div[class^=headercolor], .bsa-switcher .bsa-switcher-body .bsa-sidebarcolor-wrap div[class^=sidebarcolor] {
-  width: 45px;
-  height: 45px;
-  background-color: #f4f2f2;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.bsa-switcher .bsa-switcher-body .bsa-headercolor-wrap div.headercolor0, .bsa-switcher .bsa-switcher-body .bsa-sidebarcolor-wrap div.sidebarcolor0 {
-  background-color: #fff;
+
+/*默认白色需要加边框*/
+div.headercolor0, div.sidebarcolor0 {
   border: 1px solid #ccc;
+  background: #fff;
 }
-.bsa-switcher .bsa-switcher-body .bsa-headercolor-wrap div.headercolor1 {
+
+div.headercolor1 {
   background: #348F50;
 }
-.bsa-switcher .bsa-switcher-body .bsa-headercolor-wrap div.headercolor2 {
+
+div.headercolor2 {
   background: #4286f4;
 }
-.bsa-switcher .bsa-switcher-body .bsa-headercolor-wrap div.headercolor3 {
+
+div.headercolor3 {
   background: #b96ee4;
 }
-.bsa-switcher .bsa-switcher-body .bsa-headercolor-wrap div.headercolor4 {
+
+div.headercolor4 {
   background: #FC5C7D;
 }
-.bsa-switcher .bsa-switcher-body .bsa-headercolor-wrap div.headercolor5 {
+
+div.headercolor5 {
   background: #dd6400;
 }
-.bsa-switcher .bsa-switcher-body .bsa-headercolor-wrap div.headercolor6 {
+
+div.headercolor6 {
   background: #0ABFBC;
 }
-.bsa-switcher .bsa-switcher-body .bsa-headercolor-wrap div.headercolor7 {
+
+div.headercolor7 {
   background: #b64450;
 }
-.bsa-switcher .bsa-switcher-body .bsa-headercolor-wrap div.headercolor8 {
+
+div.headercolor8 {
   background: #757F9A;
 }
-.bsa-switcher .bsa-switcher-body .bsa-sidebarcolor-wrap div.sidebarcolor1 {
+
+div.sidebarcolor1 {
   background: #348F50;
 }
-.bsa-switcher .bsa-switcher-body .bsa-sidebarcolor-wrap div.sidebarcolor2 {
+
+div.sidebarcolor2 {
   background: #4286f4;
 }
-.bsa-switcher .bsa-switcher-body .bsa-sidebarcolor-wrap div.sidebarcolor3 {
+
+div.sidebarcolor3 {
   background: #b96ee4;
 }
-.bsa-switcher .bsa-switcher-body .bsa-sidebarcolor-wrap div.sidebarcolor4 {
+
+div.sidebarcolor4 {
   background: #FC5C7D;
 }
-.bsa-switcher .bsa-switcher-body .bsa-sidebarcolor-wrap div.sidebarcolor5 {
+
+div.sidebarcolor5 {
   background: #dd6400;
 }
-.bsa-switcher .bsa-switcher-body .bsa-sidebarcolor-wrap div.sidebarcolor6 {
+
+div.sidebarcolor6 {
   background: #0ABFBC;
 }
-.bsa-switcher .bsa-switcher-body .bsa-sidebarcolor-wrap div.sidebarcolor7 {
+
+div.sidebarcolor7 {
   background: #b64450;
 }
-.bsa-switcher .bsa-switcher-body .bsa-sidebarcolor-wrap div.sidebarcolor8 {
+
+div.sidebarcolor8 {
   background: #757F9A;
 }
 
