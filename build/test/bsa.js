@@ -21,6 +21,12 @@
 
     }
 
+
+    //bsa初始化方法
+    BSA.prototype.runSetup = function (options) {
+        console.log("hello");
+    }
+
     //设置头部颜色
     BSA.prototype.hello = function (options) {
         console.log("hello");
@@ -30,7 +36,6 @@
     BSA.prototype.setTheme = function (options) {
         console.log("hello");
     }
-
 
     //bsa其它插件事件处理
     BSA.prototype._addEventListener = function () {
@@ -43,21 +48,20 @@
                 target.removeAttribute('style');
             }
         });
-        delegate(document.body, 'click', '.bsa-sidebar-body > ul a.has-children', function (event) {
+        delegate(document.body, 'click', '.bsa-sidebar-body > ul a', function (event) {
             event.preventDefault();
-
-            let a_has_children = this;
-
-            if (!(a_has_children.classList.contains('open'))) {//展开
-                a_has_children.classList.add('open');
-                self._menuToggle(a_has_children, 1);
-            } else {
-                self._menuToggle(a_has_children, 0);
-                a_has_children.classList.remove('open');
+            let a = this;
+            if (a.matches('.has-children')) {
+                if (!(a.classList.contains('open'))) {//展开
+                    a.classList.add('open');
+                    self._menuToggle(a, 1);
+                } else {
+                    self._menuToggle(a, 0);
+                    a.classList.remove('open');
+                }
             }
-
             // 兄弟节点处理
-            siblings(a_has_children.parentNode).forEach((li) => {
+            siblings(a.parentNode).forEach((li) => {
                 Array.from(li.children).forEach((item) => {
                     if (item.matches('a.active')) {
                         item.classList.remove('active');
@@ -68,9 +72,7 @@
                     }
                 })
             })
-
         });
-
         //调色板侧边栏
         delegate(document.body, 'click', 'div[class^=sidebarcolor]', function (event) {
             event.preventDefault();
@@ -120,6 +122,7 @@
             event.preventDefault();
             document.querySelector('.bsa-search-form-wrapper').classList.remove('open');
         });
+
         //搜索框打开
         delegate(document.body, 'click', '.bsa-search-form-toggler', function (event) {
             event.preventDefault();
@@ -140,7 +143,6 @@
             this.remove();
             document.querySelector('.bsa-sidebar').classList.remove('open');
         });
-
 
 
     }
