@@ -2,39 +2,62 @@
     "use strict"
     var _global;
 
-    //构造函数
+
+    //单例模式
+    var instance;
+
+    //对象字面量创建一个对象
+    var BootstrapAdmin = {
+        init: function (options) {
+            if (!instance) instance = new BSA(options);
+            return instance;
+        }
+    };
+
+    //BSA构造函数
     function BSA(options) {
         this._init(options);
     }
 
     BSA.prototype._init = function (options) {
-        //插件初始化
-        this.tabs = new BootstrapTabs({
-            selector: '.bsa-main'
-        });
+
+        //默认选项
+        this.options = {
+            //是否关闭控制台的广告输出
+            consoleAdvert: true,
+
+            //是否禁用所有的input自动记忆功能
+
+            //是否禁用无效表单提交
+
+            //是否全局开启bootstrap的气泡组件功能
+
+            //是否全局开启bootstrap的提示组件功能
+
+            //移动端时点击左侧菜单后是否立马关闭菜单
+        };
+
+        //参数合并
+        for (let option in options) {
+            this.options[option] = options[option]
+        }
+        //规定tab插件实例名称为tabs
+        this.tabs = null;
         //系统初始化
         this._systemInit()
         //bsa的事件监听初始化
         this._addEventListener();
-        //bsa模板适配tab插件
-        this._tabPluginInit();
-
+        //tab插件初始化
+        this._tabPluginInit('.bsa-main');
     }
 
-
-    //bsa初始化方法
-    BSA.prototype.runSetup = function (options) {
-        console.log("hello");
+    //初始化方法
+    BSA.prototype.init = function (options) {
+        console.log(options);
     }
-
-    //设置头部颜色
-    BSA.prototype.hello = function (options) {
-        console.log("hello");
-    }
-
     //设置侧边栏颜色
     BSA.prototype.setTheme = function (options) {
-        console.log("hello");
+        console.log("我也可以直接调用setTheme");
     }
 
     //bsa其它插件事件处理
@@ -48,10 +71,11 @@
                 target.removeAttribute('style');
             }
         });
+
         delegate(document.body, 'click', '.bsa-sidebar-body > ul a', function (event) {
-            event.preventDefault();
             let a = this;
             if (a.matches('.has-children')) {
+                event.preventDefault();
                 if (!(a.classList.contains('open'))) {//展开
                     a.classList.add('open');
                     self._menuToggle(a, 1);
@@ -175,49 +199,74 @@
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
 
+        if (this.options.consoleAdvert === true) {
+            this._advertLog();
+        }
+
     }
+
+
+    BSA.prototype._advertLog = function () {
+        console.log(".______     ______     ______   .___________.    _______.___________..______          ___      .______             ___       _______  .___  ___.  __  .__   __. \n" +
+            "|   _  \\   /  __  \\   /  __  \\  |           |   /       |           ||   _  \\        /   \\     |   _  \\           /   \\     |       \\ |   \\/   | |  | |  \\ |  | \n" +
+            "|  |_)  | |  |  |  | |  |  |  | `---|  |----`  |   (----`---|  |----`|  |_)  |      /  ^  \\    |  |_)  |  ______ /  ^  \\    |  .--.  ||  \\  /  | |  | |   \\|  | \n" +
+            "|   _  <  |  |  |  | |  |  |  |     |  |        \\   \\       |  |     |      /      /  /_\\  \\   |   ___/  |______/  /_\\  \\   |  |  |  ||  |\\/|  | |  | |  . `  | \n" +
+            "|  |_)  | |  `--'  | |  `--'  |     |  |    .----)   |      |  |     |  |\\  \\----./  _____  \\  |  |            /  _____  \\  |  '--'  ||  |  |  | |  | |  |\\   | \n" +
+            "|______/   \\______/   \\______/      |__|    |_______/       |__|     | _| `._____/__/     \\__\\ | _|           /__/     \\__\\ |_______/ |__|  |__| |__| |__| \\__| \n" +
+            "\n作者:ajiho\n" + "描述:基于bootstrap5.x设计的一个纯静态开源免费的响应式后台管理HTML模板，旨在快速让喜欢用bootstrap开发后台的程序员有个轻松愉悦的起点。\n无论您是用于项目开发、学习、还是教学演示、希望能给个star，这将会是我最大的动力!\n" + "Gitee开源地址:https://gitee.com/ajiho/bootstrap-admin\n");
+    }
+
 
     /**
      * tab插件适配bsa模板相关逻辑
      * @private
      */
-    BSA.prototype._tabPluginInit = function () {
+    BSA.prototype._tabPluginInit = function (selector) {
 
         let self = this;
-
-        //必须每个a链接都绑定一个自己的id
-        document.querySelectorAll('.bsa-sidebar-body > ul a:not(.has-children):not([target])').forEach(function (aEl) {
-            aEl.dataset.pageid = guid();
-        });
-
-        //给带有.active的添加到右边的tab
-        document.querySelectorAll('.bsa-sidebar-body > ul a.active:not(.has-children):not([target])').forEach((el) => {
-            //得到当前a链接的href
-            let url = el.getAttribute('href');
-            let title = el.innerText;
-            let pageId = el.dataset.pageid;
-            self.tabs.addTabs({
-                id: pageId,
-                title: title,
-                close: true,
-                url: url,
+        let tabEl = document.querySelector(selector);
+        if (tabEl instanceof HTMLElement) {
+            //tab插件初始化
+            this.tabs = new BootstrapTabs({
+                selector: selector
             });
-        });
-
-        //a链接不带有target属性的才匹配
-        delegate(document.body, 'click', '.bsa-sidebar-body > ul a:not(.has-children):not([target])', function (event) {
-            event.preventDefault();
-            //得到当前a链接的href
-            let url = this.getAttribute('href');
-            let title = this.innerText;
-            let pageId = this.dataset.pageid;
-            self.tabs.addTabs({
-                id: pageId,
-                title: title,
-                close: true,
-                url: url,
+            //必须每个a链接都绑定一个自己的id
+            document.querySelectorAll('.bsa-sidebar-body > ul a:not(.has-children):not([target])').forEach(function (aEl) {
+                let pageid = aEl.dataset.pageid;
+                if (pageid === undefined) {//如果自己设置pageid就不再自动设置
+                    aEl.dataset.pageid = guid();
+                }
             });
-        });
+
+            //给带有.active的添加到右边的tab
+            document.querySelectorAll('.bsa-sidebar-body > ul a.active:not(.has-children):not([target])').forEach((el) => {
+                //得到当前a链接的href
+                let url = el.getAttribute('href');
+                let title = el.innerText;
+                let pageId = el.dataset.pageid;
+                self.tabs.addTabs({
+                    id: pageId,
+                    title: title,
+                    close: true,
+                    url: url,
+                });
+            });
+
+            //a链接不带有target属性的才匹配
+            delegate(document.body, 'click', '.bsa-sidebar-body > ul a:not(.has-children):not([target])', function (event) {
+                event.preventDefault();
+                //得到当前a链接的href
+                let url = this.getAttribute('href');
+                let title = this.innerText;
+                let pageId = this.dataset.pageid;
+                self.tabs.addTabs({
+                    id: pageId,
+                    title: title,
+                    close: true,
+                    url: url,
+                });
+            });
+        }
 
 
     }
@@ -251,12 +300,12 @@
         return this || (0, eval)('this');
     }());
     if (typeof module !== "undefined" && module.exports) {
-        module.exports = new BSA();
+        module.exports = BootstrapAdmin;
     } else if (typeof define === "function" && define.amd) {
         define(function () {
-            return new BSA();
+            return BootstrapAdmin;
         });
     } else {
-        !('BSA' in _global) && (_global.BSA = new BSA());
+        !('BootstrapAdmin' in _global) && (_global.BootstrapAdmin = BootstrapAdmin);
     }
 }());

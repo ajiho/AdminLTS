@@ -381,7 +381,7 @@
     <div class="bsa-sidebar-body">
         <ul>
             <li>
-                <a href="pages/welcome.html" class="active">
+                <a href="pages/welcome.html" class="active" data-pageid="78945647">
                     <i class="bi bi-house"></i>首页
                 </a>
             </li>
@@ -393,7 +393,7 @@
                     <li>
                         <a href="javascript:" class="has-children">表单</a>
                         <ul>
-                            <li><a href="pages/component-form-elements.html">基础元素</a></li>
+                            <li><a href="pages/UI/form-elements.html">基础元素</a></li>
                             <li><a href="pages/component-form-validations.html">表单验证</a></li>
                             <li><a href="pages/component-form-layouts.html">表单布局</a></li>
                         </ul>
@@ -464,7 +464,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="pages/component-scrollspy.html">滚动监听</a>
+                        <a href="pages/UI/scrollspy.html">滚动监听</a>
                     </li>
                     <li>
                         <a href="pages/component-toasts.html">吐司</a>
@@ -609,22 +609,17 @@
     <p class="mb-0">Copyright © 2022. All right reserved.</p>
 </div>
 
+
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="build/test/util.js"></script>
-<script src="build/test/bootstrap-tabs.js"></script>
-<script src="build/test/bsa.js"></script>
+<script src="build/js/util.js"></script>
+<script src="build/js/tabs.js"></script>
+<script src="build/js/bsa.js"></script>
 
 <script>
 
-    // BSA.tabs.addTabs({
-    //     id: 999,
-    //     title: '首页',
-    //     close: false,
-    //     url: 'pages/welcome.html',
-    // });
-
-    //设置主题
-
+    var BSA = BootstrapAdmin.init({
+        consoleAdvert:false
+    });
 
 </script>
 

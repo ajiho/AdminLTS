@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../../plugins/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+
+
+    <style>
+
+        .aaa {
+            border: 1px solid red;
+            position: sticky;
+            top: 0;
+            min-height: 10px;
+            /*height: 100%;*/
+            overflow: auto;
+        }
+
+        @media (max-width: 991.98px) {
+            .aaa {
+                z-index: 4;
+                position: fixed;
+                left: 0;
+                width: 250px;
+                top: 0;
+                bottom: 0;
+                height: auto;
+                border-right: 1px solid rgba(127, 113, 113, .08);
+                will-change: transform;
+                transform: translateX(-100%);
+                transition: .3s transform;
+            }
+
+            .aaa.open {
+                transform: translateX(0);
+            }
+        }
+    </style>
+
+</head>
+
+<body class="position-relative bg-light pt-3" data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0">
+
+<div class="container-fluid">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link disabled">Disabled</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-success"><i class="bi bi-menu-button-wide-fill"></i></button>
+                </div>
+                <div class="card-body">
+
+
+                    <h4 id="list-item-1">Item 1</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <h4 id="list-item-2">Item 2</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <h4 id="list-item-3">Item 3</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <h4 id="list-item-4">Item 4</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque
+                        corporis cum delectus, dolore dolores eum fuga id incidunt, ipsam iste
+                        laborum nihil porro quos sint sunt suscipit, velit voluptatibus.
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="aaa ">
+                <div id="list-example" class="list-group">
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Item
+                        1</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Item
+                        2</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-3">Item
+                        3</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-4">Item
+                        4</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
