@@ -16,6 +16,112 @@
     }
 
 
+    //初始化
+    BootstrapTabs.prototype._init = function (options) {
+
+
+        //插件默认参数
+        this.options = {
+            selector: null,
+            default: [],
+        }
+
+
+        for (let option in options) {
+            this.options[option] = options[option]
+        }
+
+
+        //命名空间
+        this.namespace = 'BootstrapTabs';
+
+        //缓存tab的key
+        this.tabsCacheKey = 'bstabs';
+
+
+        //id,保证实例化多个对象的时候不冲突
+        this.id = this.namespace + i;
+        i++;
+
+        //检测选择器必须传递
+        if (this.options.selector === null) {
+            throw new Error('Selector is required');
+        }
+
+
+        //获取当前容器
+        let containerEl = document.querySelector(this.options.selector);
+        if (!containerEl instanceof HTMLElement) {
+            throw new Error('Invalid selector');
+        }
+
+        //容器
+        this.container = containerEl;
+        this._buildStyle();
+        //构建容器内容
+        this._buildContainer();
+        //事件监听
+        this._addEventListener();
+        //tab回显
+        this._restoreTabs();
+
+    }
+
+
+    //回显tabs
+    BootstrapTabs.prototype._restoreTabs = function () {
+
+
+        let self = this;
+
+        //从缓存里面读
+        let cacheTabs = this._getTabsFromCache();
+
+
+        if (cacheTabs.length !== 0) { //从缓存里echo
+
+            let activeTemp = null;
+
+            cacheTabs.forEach(function (item) {
+                // self.addTabs(item)
+                //这里应该仅仅是添加tab
+                self._addLazyTabs(item);
+
+                //滚动到指定区域
+                // self.scrollToTab(self.findTab(item.id));
+
+                //找到特定选项卡
+                if (item.hasOwnProperty('active') && item.active === true) {
+
+                    activeTemp = item;
+
+                }
+                //滚动到指定区域
+                self.scrollToTab(self.findTab(item.id));
+
+
+            });
+
+            if (activeTemp !== null) {
+                //激活特定选项卡
+                let tab = self.tabWraper.querySelector(`li[data-pageid="${activeTemp.id}"]`);
+                tab.children[0].classList.add('active');
+                //滚动到激活区域
+                self.scrollToTab(self.findTab(activeTemp.id));
+
+
+                //激活惰性tab的面板
+                self._activeLazyTab(activeTemp.id, activeTemp.url);
+
+
+            }
+
+        } else {
+            console.log('初始化默认数据')
+        }
+    }
+
+
     //addTabs
     BootstrapTabs.prototype.addTabs = function (options, refreshPage) {
 
@@ -56,21 +162,40 @@
         `
             }
 
+
             //加入tab
             this.tabWraper.insertAdjacentHTML("beforeEnd", tabTemplate);
-
             let tabPanelTemplate = `
                      <div class="h-100 tab-pane" data-pageid="${options.id}" role="tabpanel" tabindex="0">
                         <iframe src="${options.url}" class="w-100 h-100"></iframe>
                     </div>
         `;
             this.tabContentWraper.insertAdjacentHTML("beforeEnd", tabPanelTemplate);
+
+
         }
 
-        //箭头是否激活
-        this._highlightCaret();
+
+        //同步存缓存里面
+        if (this._inCache(options.id) === null) {
+
+            //先取
+            let cacheTabs = this._getTabsFromCache();
+
+            //追加属性 active
+            options.active = false;
+            cacheTabs.push(options)
+
+            //重新设置回去
+            this._setTabsCache(cacheTabs);
+        }
+
         //激活tab
         this.activeTabByPageId(options.id);
+
+        //激活缓存里对应的tab
+        this._activeCaCheTabByPageId(options.id);
+
         if (refreshPage === true) {
             this.refreshTabById(options.id, options.url);
         }
@@ -78,21 +203,111 @@
     }
 
 
-    //判断是否高亮箭头
-    BootstrapTabs.prototype._highlightCaret = function () {
-        //判断是否有滚动条
-        if (hasScrolled(this.tabWraper, 'horizontal')) {
-            this.leftBtn.classList.remove('disabled');
-            this.rightBtn.classList.remove('disabled');
-        } else {
-            this.leftBtn.classList.add('disabled');
-            this.rightBtn.classList.add('disabled');
+    //激活惰性tab的面板
+    BootstrapTabs.prototype._activeLazyTab = function (pageID, url) {
+        let self = this;
+        let tabPanel = self.findTabPanel(pageID);
+        let iframe = tabPanel.querySelector('iframe');
+
+        if (!(iframe instanceof HTMLElement)) {//不存在就添加
+
+            let iframeTemplate = `<iframe src="${url}" class="w-100 h-100"></iframe>`;
+            tabPanel.insertAdjacentHTML("beforeEnd", iframeTemplate);
+            //激活样式
+            tabPanel.classList.add(...['active', 'show']);
         }
+    }
+
+
+    //激活缓存里面的项目
+    BootstrapTabs.prototype._activeCaCheTabByPageId = function (pageID) {
+
+
+        //激活前删除所有的激活样式
+        let cacheTabs = this._getTabsFromCache();
+        cacheTabs.forEach(function (tab) {
+            tab.active = tab.id === pageID;
+        });
+
+        //再重新设置回去
+        this._setTabsCache(cacheTabs);
+
+
+    }
+
+
+    //从缓存里取菜单
+    BootstrapTabs.prototype._getTabsFromCache = function () {
+        let tabsData = JSON.parse(localStorage.getItem(this.tabsCacheKey));
+        if (tabsData === null) {
+            tabsData = [];
+        }
+        return tabsData;
+    }
+
+
+    //设置tabs缓存
+    BootstrapTabs.prototype._setTabsCache = function (tabsArr) {
+        localStorage.setItem(this.tabsCacheKey, JSON.stringify(tabsArr));
+    }
+
+
+    //添加lazy的tab
+    BootstrapTabs.prototype._addLazyTabs = function (options) {
+
+        let tabTemplate = `
+        <li class="nav-item  flex-shrink-0" role="presentation" data-pageid="${options.id}" >
+                                <button class="nav-link border" type="button" role="tab">
+                                        ${options.title}
+                                </button>
+                            </li>
+        `
+        //是否允许关闭
+        if (options.close) {
+            tabTemplate = `
+                    <li class="nav-item  flex-shrink-0" role="presentation" data-pageid="${options.id}">
+                                <button class="nav-link border" type="button" role="tab">
+                                        ${options.title}
+                                    <i class="bi bi-x ms-2 closetab"></i>
+                                </button>
+                            </li>
+        `
+        }
+
+        //加入tab
+        this.tabWraper.insertAdjacentHTML("beforeEnd", tabTemplate);
+
+        let tabPanelTemplate = `
+                     <div class="h-100 tab-pane" data-pageid="${options.id}" role="tabpanel" tabindex="0" data-url="${options.url}">
+                 
+                    </div>
+        `;
+        this.tabContentWraper.insertAdjacentHTML("beforeEnd", tabPanelTemplate);
+
+
+    }
+
+
+    //判断缓存里是否已经存在这个tab
+    BootstrapTabs.prototype._inCache = function (pageid) {
+
+        let ret = null;
+        let ss = JSON.parse(localStorage.getItem('menus'));
+        if (ss !== null) {
+            ss.forEach(function (item) {
+                if (item.id === pageid) {
+                    ret = item;
+                }
+            })
+        }
+        return ret;
     }
 
 
     //激活当前tab
     BootstrapTabs.prototype.activeTabByPageId = function (pageId) {
+
+        let self = this;
 
         //激活前删除所有的激活样式
         this.tabWraper.querySelectorAll('li button').forEach(function (btnEl) {
@@ -108,10 +323,21 @@
         tab.children[0].classList.add('active');
 
         //激活面板
-        this.tabContentWraper.querySelector(`div[data-pageid="${pageId}"]`).classList.add(...['active', 'show']);
+        let tabPanel = self.findTabPanel(pageId);
+        //获取url
+        let url = tabPanel.dataset.url;
+        let iframe = tabPanel.querySelector('iframe');
+        if (!(iframe instanceof HTMLElement)) {//不存在就添加
+            let iframeTemplate = `<iframe src="${url}" class="w-100 h-100"></iframe>`;
+            tabPanel.insertAdjacentHTML("beforeEnd", iframeTemplate);
+        }
+        //激活样式
+        tabPanel.classList.add(...['active', 'show']);
 
         //滚动到指定tab
         this.scrollToTab(tab);
+
+
     }
 
 
@@ -149,48 +375,6 @@
     //根据tab(就是每个li元素)
     BootstrapTabs.prototype.getPageId = function (element) {
         return element.dataset.pageid;
-    }
-
-
-    //初始化
-    BootstrapTabs.prototype._init = function (options) {
-
-        //插件默认参数
-        this.options = {
-            selector: null,
-        }
-
-        for (let option in options) {
-            this.options[option] = options[option]
-        }
-
-
-        //命名空间
-        this.namespace = 'BootstrapTabs';
-
-        //id,保证实例化多个对象的时候不冲突
-        this.id = this.namespace + i;
-        i++;
-
-        //检测选择器必须传递
-        if (this.options.selector === null) {
-            throw new Error('Selector is required');
-        }
-
-
-        //获取当前容器
-        let containerEl = document.querySelector(this.options.selector);
-        if (!containerEl instanceof HTMLElement) {
-            throw new Error('Invalid selector');
-        }
-
-        //容器
-        this.container = containerEl;
-        this._buildStyle();
-        //构建容器内容
-        this._buildContainer();
-        //事件监听
-        this._addEventListener();
     }
 
 
@@ -235,7 +419,7 @@
 
                     <!--左侧按钮-->
                     <li class="nav-item border-end flex-shrink-0">
-                        <button class="nav-link leftbtn disabled" type="button" role="tab"><i class="bi bi-caret-left"></i>
+                        <button class="nav-link leftbtn" type="button" role="tab"><i class="bi bi-caret-left"></i>
                         </button>
                     </li>
 
@@ -274,7 +458,7 @@
 
                     <!--向右滑动按钮-->
                     <li class="nav-item border-start flex-shrink-0">
-                        <button class="nav-link rightbtn disabled" type="button" role="tab"><i class="bi bi-caret-right"></i>
+                        <button class="nav-link rightbtn" type="button" role="tab"><i class="bi bi-caret-right"></i>
                         </button>
                     </li>
                 </ul>
@@ -310,6 +494,7 @@
         //事件监听点击tab触发
         delegate(self.tabWraper, 'click', 'li button.nav-link', function () {
             self.activeTabByPageId(self.getPageId(this.parentNode));
+            self._activeCaCheTabByPageId(self.getPageId(this.parentNode));
         }, '.closetab');
 
 
@@ -317,7 +502,6 @@
         delegate(self.tabWraper, 'click', '.closetab', function () {
             let pageid = self.getPageId(this.parentNode.parentNode);
             self.closeTabByPageId(pageid);
-            self._highlightCaret();
         });
 
 
@@ -376,19 +560,16 @@
         //关闭当前
         delegate(self.container, 'click', '.close-current', function () {
             self.closeCurrentTab();
-            self._highlightCaret();
         });
 
         //关闭其它
         delegate(self.container, 'click', '.close-other', function () {
             self.closeExceptByPageid(self.getActivePageId());
-            self._highlightCaret();
         });
 
         //关闭全部
         delegate(self.container, 'click', '.close-all', function () {
             self.closeAllTabs();
-            self._highlightCaret();
         });
     }
 
@@ -398,14 +579,28 @@
         let self = this;
         self.tabWraper.querySelectorAll('li.nav-item').forEach(function (tab) {
             if (tab.querySelector('.bi-x') instanceof HTMLElement) {
-                self.closeTabOnly(self.getPageId(tab));
+
+                let pageid = self.getPageId(tab);
+                self.closeTabOnly(pageid);
+
+                //从缓存中删除
+                self._closeCacheTabByPageId(pageid);
+
             }
         });
 
         //选中那些禁止删除的取第一个,将其激活
         let willActiveTab = self.tabWraper.querySelectorAll('li')[0];
         if (willActiveTab instanceof HTMLElement) {
-            self.activeTabByPageId(self.getPageId(willActiveTab));
+
+            let pageid = self.getPageId(willActiveTab);
+
+            self.activeTabByPageId(pageid);
+
+            //从缓存中激活某项
+            self._activeCaCheTabByPageId(pageid)
+
+
         }
     }
 
@@ -417,6 +612,7 @@
             let pid = self.getPageId(tab);
             if (pid !== pageId) {
                 self.closeTabOnly(pid);
+                self._closeCacheTabByPageId(pid);
             }
         })
     }
@@ -434,6 +630,7 @@
         let pageId = this.getActivePageId();
         if (this.canRemoveTab(pageId)) {//判断能不能删除
             this.closeTabByPageId(pageId);
+
         }
     }
 
@@ -505,12 +702,37 @@
                 //先删除再滚动
                 tab.remove();
                 tabPanel.remove();
+
+                //从缓存中关闭
+                this._closeCacheTabByPageId(pageid);
                 this.activeTabByPageId(willPageId);
+                //激活特定项目
+                this._activeCaCheTabByPageId(willPageId);
+
             }
         }
 
         tab.remove();
         tabPanel.remove();
+
+        this._closeCacheTabByPageId(pageid);
+
+
+    }
+
+
+    //从缓存中删除tab菜单
+    BootstrapTabs.prototype._closeCacheTabByPageId = function (pageid) {
+        //删除缓存中对应的tab
+        let cacheTabs = this._getTabsFromCache();
+
+        for (let i = 0; i < cacheTabs.length; i++) {
+            if (cacheTabs[i].id === pageid) {
+                cacheTabs.splice(i, 1)
+            }
+        }
+        //存入缓存
+        this._setTabsCache(cacheTabs);
     }
 
 

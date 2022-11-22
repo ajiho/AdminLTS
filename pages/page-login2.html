@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+</head>
+<body>
+
+<div class="min-vh-100 d-flex justify-content-center align-items-center py-3 bsa-bg-login2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12  col-sm-7 col-xl-6 mx-auto p-2 bsa-bg-glass">
+                <div class="row g-0">
+                    <div class="col d-none d-lg-block">
+                        <div class="card border-0 h-100 bg-secondary text-white bsa-opacity-80">
+                            <div class="card-body">
+                                <h5 class="card-title">Bootstrap-Admin</h5>
+                                <p class="card-text mt-3">
+                                    基于bootstrap5.1.x设计的一个静态后台管理HTML模板，旨在快速让喜欢用bootstrap开发的后台程序员有个愉悦的起点。
+                                </p>
+                                <p class="card-text mt-3">
+                                    Copyright © 2022 欲饮琵琶码上催 All right reserved.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border-0 h-100">
+                            <div class="card-body">
+                                <form id="form" class="form">
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">账号</label>
+                                        <input type="text" class="form-control" id="username" name="username"
+                                               placeholder="邮箱/用户名/手机号">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">密码</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                               placeholder="请输入密码">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="captcha" class="form-label">验证码</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" id="captcha" name="captcha"
+                                                   placeholder="请输入验证码">
+                                            <img src="../dist/images/captcha.png" alt="验证码" class="bsa-cursor-pointer"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1"
+                                                   name="remember" value="1">
+                                            <label class="form-check-label" for="exampleCheck1">十天内免登录</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 d-grid gap-2">
+                                        <button id="login-btn" type="submit" class="btn btn-secondary">登录</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../plugins/jquery/jquery.js"></script>
+<script src="../plugins/formvalidation/js/formValidation.js"></script>
+<script src="../plugins/formvalidation/js/framework/bootstrap.js"></script>
+<script src="../plugins/formvalidation/js/language/zh_CN.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    //前端表单验证
+    $('#form').formValidation({
+        fields: {
+            username: {
+                validators: {
+                    notEmpty: true,
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: true,
+                }
+            },
+            captcha: {
+                validators: {
+                    notEmpty: true,
+                }
+            }
+        }
+    }).on('success.form.fv', function (e) {
+        //阻止表单提交
+        e.preventDefault();
+        //得到表单对象
+        let $form = $(e.target);
+        let data = $form.serialize();
+
+        alert('表单验证通过,即将发起ajax');
+        //得到序列化数据
+        $.ajax({
+            url: "/login.php",
+            method: 'POST',
+            data
+        }).then(function (res) {
+            if (res.code === 200) {
+                //登录成功
+            } else {
+                //登录失败
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
