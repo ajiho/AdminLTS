@@ -3,31 +3,135 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/BSA.css">
+
+    <!--  插件css-->
+    <link rel="stylesheet" href="../plugins/ztree_v3/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="../plugins/ztree_v3/css/zTreeStyle-bsaex.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
-
-<body class="bg-light p-2">
-
+<body class="bg-light pt-2">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
-        <div class="card-header">
+        <div class="card-header bg-white">
             新页面标题
         </div>
         <div class="card-body">
-            新页面内容区域
+            <h5 class="card-title">树形组件</h5>
+            <h6 class="card-subtitle mb-2 text-muted">这在开发中也是一个很重要的角色</h6>
+            <hr>
+
+            <button class="btn btn-outline-warning expandAll">展开所有</button>
+            <button class="btn btn-outline-success collapseAll">折叠所有</button>
+
+            <ul id="treeDemo" class="ztree"></ul>
         </div>
     </div>
 </div>
 
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/js/BSA.js"></script>
+<script src="../plugins/jquery/jquery.js"></script>
+<script src="../plugins/ztree_v3/js/jquery.ztree.all.min.js"></script>
+<script>
 
+    document.querySelector('.expandAll').addEventListener('click',function (){
+        $.fn.zTree.getZTreeObj("treeDemo").expandAll(true);
+    });
+
+
+    document.querySelector('.collapseAll').addEventListener('click',function (){
+        $.fn.zTree.getZTreeObj("treeDemo").expandAll(false);
+    });
+
+    function addDiyDom(treeId, treeNode) {
+
+        let aObj = $("#" + treeNode.tId + "_a");
+        if ($("#diyBtn_" + treeNode.id).length > 0) return;
+
+        let editStr = `
+            <i class="bi bi-pencil-square ms-2" role=button id="editBtn_${treeNode.id}"></i><i class="bi bi-x-lg ms-3" role="button" id="delBtn_${treeNode.id}"></i>
+            `;
+
+        aObj.after(editStr);
+
+        //编辑按钮
+        $("#editBtn_" + treeNode.id).bind("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            let name = treeNode.name;
+            let id = treeNode.id;
+
+            alert("你点击了编辑按钮-" + name + '-ID:' + id);
+
+        });
+
+        //删除按钮
+        $("#delBtn_" + treeNode.id).bind("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            let name = treeNode.name;
+            let id = treeNode.id;
+            alert("你点击了删除按钮-" + name + '-ID:' + id);
+        });
+
+    }
+
+    let setting = {
+
+        view: {
+            dblClickExpand: false,
+            addHoverDom: false,
+            removeHoverDom: false,
+            selectedMulti: false,
+            showIcon: false,
+            addDiyDom: addDiyDom,
+            nameIsHTML: true
+        },
+        check: {
+            //是否开启选择框
+            enable: false
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        edit: {
+            enable: false
+        }
+    };
+
+    let zNodes = [
+        {id: 1, pId: 0, name: '角色管理', open: true},
+        {id: 2, pId: 1, name: "角色添加", open: true},
+        {id: 3, pId: 1, name: "角色编辑", open: true},
+        {id: 4, pId: 0, name: "节点管理", open: false},
+        {id: 5, pId: 4, name: "节点添加", open: true},
+        {id: 6, pId: 4, name: "节点编辑", open: true},
+        {id: 7, pId: 0, name: "多级菜单", open: false},
+        {id: 8, pId: 7, name: "二级菜单", open: false},
+        {id: 9, pId: 8, name: "三级菜单", open: false},
+        {id: 10, pId: 9, name: "四级菜单", open: false},
+        {id: 11, pId: 7, name: "二级菜单2", open: false},
+    ];
+
+
+    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+
+
+
+
+
+
+</script>
 
 </body>
 </html>

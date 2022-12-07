@@ -192,7 +192,7 @@ var $b657c03155fc27e2$var$defaultOptions = {
    * Dropzone will append `[]` to the name.
    */ paramName: "file",
     /**
-   * Whether thumbnails for images should be generated
+   * Whether thumbnails for img should be generated
    */ createImageThumbnails: true,
     /**
    * In MB. When the filename exceeds this limit, the thumbnail will not be generated.
@@ -201,14 +201,14 @@ var $b657c03155fc27e2$var$defaultOptions = {
    * If `null`, the ratio of the image will be used to calculate it.
    */ thumbnailWidth: 120,
     /**
-   * The same as `thumbnailWidth`. If both are null, images will not be resized.
+   * The same as `thumbnailWidth`. If both are null, img will not be resized.
    */ thumbnailHeight: 120,
     /**
-   * How the images should be scaled down in case both, `thumbnailWidth` and `thumbnailHeight` are provided.
+   * How the img should be scaled down in case both, `thumbnailWidth` and `thumbnailHeight` are provided.
    * Can be either `contain` or `crop`.
    */ thumbnailMethod: "crop",
     /**
-   * If set, images will be resized to these dimensions before being **uploaded**.
+   * If set, img will be resized to these dimensions before being **uploaded**.
    * If only one, `resizeWidth` **or** `resizeHeight` is provided, the original aspect
    * ratio of the file will be preserved.
    *
@@ -224,10 +224,10 @@ var $b657c03155fc27e2$var$defaultOptions = {
    * See `resizeWidth` for more information.
    */ resizeMimeType: null,
     /**
-   * The quality of the resized images. See `resizeWidth`.
+   * The quality of the resized img. See `resizeWidth`.
    */ resizeQuality: 0.8,
     /**
-   * How the images should be scaled down in case both, `resizeWidth` and `resizeHeight` are provided.
+   * How the img should be scaled down in case both, `resizeWidth` and `resizeHeight` are provided.
    * Can be either `contain` or `crop`.
    */ resizeMethod: "contain",
     /**
@@ -504,7 +504,7 @@ var $b657c03155fc27e2$var$defaultOptions = {
             height = info.srcHeight;
         } else if (width == null) width = height * srcRatio;
         else if (height == null) height = width / srcRatio;
-        // Make sure images aren't upscaled
+        // Make sure img aren't upscaled
         width = Math.min(width, info.srcWidth);
         height = Math.min(height, info.srcHeight);
         var trgRatio = width / height;
@@ -534,7 +534,7 @@ var $b657c03155fc27e2$var$defaultOptions = {
    * Can be used to transform the file (for example, resize an image if necessary).
    *
    * The default implementation uses `resizeWidth` and `resizeHeight` (if provided) and resizes
-   * images according to those dimensions.
+   * img according to those dimensions.
    *
    * Gets the `file` as the first parameter, and a `done()` function as the second, that needs
    * to be invoked with the file when the transformation is done.
@@ -1689,7 +1689,7 @@ var $a601ff30f483e917$export$2e2bcd8739ae039 = /*#__PURE__*/ function(Emitter) {
                 var fileReader = new FileReader();
                 fileReader.onload = function() {
                     file.dataURL = fileReader.result;
-                    // Don't bother creating a thumbnail for SVG images since they're vector
+                    // Don't bother creating a thumbnail for SVG img since they're vector
                     if (file.type === "image/svg+xml") {
                         if (callback != null) callback(fileReader.result);
                         return;
@@ -2825,7 +2825,7 @@ $a601ff30f483e917$export$2e2bcd8739ae039.SUCCESS = "success";
  based on the work of https://github.com/stomita/ios-imagefile-megapixel
 
  */ // Detecting vertical squash in loaded image.
-// Fixes a bug which squash image vertically while drawing into canvas for some images.
+// Fixes a bug which squash image vertically while drawing into canvas for some img.
 // This is a bug in iOS6 devices. This function from https://github.com/stomita/ios-imagefile-megapixel
 var $a601ff30f483e917$var$detectVerticalSquash = function $a601ff30f483e917$var$detectVerticalSquash(img) {
     var iw = img.naturalWidth;

@@ -3,31 +3,175 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/BSA.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
-
-<body class="bg-light p-2">
-
+<body class="bg-light pt-2">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
-        <div class="card-header">
+        <div class="card-header bg-white">
             新页面标题
         </div>
         <div class="card-body">
-            新页面内容区域
+            <div class="row g-0">
+                <div class="col-md-4 border-end">
+                    <img src="https://temp.im/800x800?text=shop-img" class="img-fluid" alt="...">
+                    <div class="row mb-3 row-cols-auto g-2 justify-content-center mt-3">
+                        <div class="col"><img src="https://temp.im/400x400?text=shop-img" width="70"
+                                              class="border rounded bsa-cursor-pointer" alt=""></div>
+                        <div class="col"><img src="https://temp.im/400x400?text=shop-img" width="70"
+                                              class="border rounded bsa-cursor-pointer" alt=""></div>
+                        <div class="col"><img src="https://temp.im/400x400?text=shop-img" width="70"
+                                              class="border rounded bsa-cursor-pointer" alt=""></div>
+                        <div class="col"><img src="https://temp.im/400x400?text=shop-img" width="70"
+                                              class="border rounded bsa-cursor-pointer" alt=""></div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea natus, nulla? Deserunt eum iste
+                            iure sapiente.
+                        </h4>
+                        <div class="row g-3 align-items-center">
+
+
+                            <div class="col-sm-3">价格</div>
+                            <div class="col-sm-9">
+                                <h4 class="fw-bold text-danger">￥191.00</h4>
+                            </div>
+                            <div class="col-sm-3">运费</div>
+                            <div class="col-sm-9">
+                                浙江杭州至 上海 卢湾区 快递: 0.00
+                            </div>
+                            <div class="col-12">
+                                <div class="dropdown-divider"></div>
+                                <div class="text-center">
+                                    <a href="javascript:" class="link-secondary text-decoration-none">
+                                        送某猫积分
+                                        <span class="fw-bold text-success">79</span>
+                                    </a>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                            </div>
+
+                            <div class="col-sm-3">尺码</div>
+                            <div class="col-sm-9">
+                                <div class="btn-group" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-outline-primary">S</button>
+                                    <button type="button" class="btn btn-outline-primary">M</button>
+                                    <button type="button" class="btn btn-outline-primary">L</button>
+                                    <button type="button" class="btn btn-outline-primary">XL</button>
+                                    <button type="button" class="btn btn-outline-primary">XXL</button>
+                                    <button type="button" class="btn btn-outline-primary">XXXL</button>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">颜色</div>
+                            <div class="col-sm-9">
+                                <div class="d-flex align-items-center gap-2">
+
+                                    <div class="bsa-color-indigator-item bg-primary"></div>
+                                    <div class="bsa-color-indigator-item bg-warning"></div>
+                                    <div class="bsa-color-indigator-item bg-dark"></div>
+                                    <div class="bsa-color-indigator-item bg-danger"></div>
+                                    <div class="bsa-color-indigator-item bg-success"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">数量</div>
+                            <div class="col-sm-9 col-md-4">
+                                <div class="input-group mb-3">
+                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                    <input type="text" class="form-control" aria-label="购买数量" value="10">
+                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 mt-3">
+                            <a href="javascript:" class="btn btn-primary">立即购买</a>
+                            <a href="javascript:" class="btn btn-outline-primary">
+                                <i class='bi bi-cart'></i>
+                                <span class="text">加入购物车</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="card-body">
+                <ul class="nav nav-tabs bsa-nav-primary" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                                type="button" role="tab" aria-controls="home" aria-selected="true">
+                            <i class='bi bi-card-text me-1'></i>商品详情
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                                type="button" role="tab" aria-controls="profile" aria-selected="false">
+                            <i class="bi bi-bookmark-check me-1"></i>规格参数
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                                type="button" role="tab" aria-controls="contact" aria-selected="false">
+                            <i class='bi bi-chat-right me-1'></i>评价
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content pt-3" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem commodi distinctio
+                            dolore dolores enim esse inventore laboriosam, laudantium molestiae nostrum obcaecati
+                            pariatur praesentium rem, repudiandae sequi sit, veritatis vitae.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem commodi distinctio
+                            dolore dolores enim esse inventore laboriosam, laudantium molestiae nostrum obcaecati
+                            pariatur praesentium rem, repudiandae sequi sit, veritatis vitae.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem commodi distinctio
+                            dolore dolores enim esse inventore laboriosam, laudantium molestiae nostrum obcaecati
+                            pariatur praesentium rem, repudiandae sequi sit, veritatis vitae.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa cum
+                            dignissimos et excepturi facere id in incidunt laborum maiores nisi, numquam odit
+                            perferendis porro possimus quo vero.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
+<script src="../dist/js/BSA.js"></script>
 </body>
 </html>

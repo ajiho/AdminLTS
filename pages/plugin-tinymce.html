@@ -3,31 +3,127 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/BSA.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
-
-<body class="bg-light p-2">
-
+<body class="bg-light pt-2">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
-        <div class="card-header">
+        <div class="card-header bg-white">
             新页面标题
         </div>
         <div class="card-body">
-            新页面内容区域
+            <form>
+                <div class="mb-3">
+                    <label for="title" class="form-label">文章标题</label>
+                    <input type="email" class="form-control" id="title" name="title">
+                </div>
+
+                <div class="mb-3">
+                    <label for="content" class="form-label">文章内容</label>
+                    <textarea id="content" class="form-control" name="content"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">提交文章</button>
+            </form>
         </div>
     </div>
 </div>
 
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/js/BSA.js"></script>
+<script src="../plugins/jquery/jquery.js"></script>
+<script src="../plugins/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        language: 'zh-Hans',
+        selector: '#content',
+        plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+        editimage_cors_hosts: ['picsum.photos'],
+        menubar: 'file edit view insert format tools table help',
+        toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
 
+        toolbar_sticky: false,
+        //当toolbar_sticky设置为true时生效
+        toolbar_sticky_offset: 108,
+        //如果写了内容页面刷新前询问是否退出
+        autosave_ask_before_unload: false,
+        autosave_interval: '30s',
+        autosave_prefix: '{path}{query}-{id}-',
+        autosave_restore_when_empty: false,
+        autosave_retention: '2m',
+        image_advtab: true,
+        branding: false,
+        link_list: [
+            {title: 'My page 1', value: 'https://www.tiny.cloud'},
+            {title: 'My page 2', value: 'http://www.moxiecode.com'}
+        ],
+        image_list: [
+            {title: 'My page 1', value: 'https://www.tiny.cloud'},
+            {title: 'My page 2', value: 'http://www.moxiecode.com'}
+        ],
+        image_class_list: [
+            {title: 'None', value: ''},
+            {title: 'Some class', value: 'class-name'}
+        ],
+        importcss_append: true,
+        file_picker_callback: (callback, value, meta) => {
+            /* Provide file and text for the link dialog */
+            if (meta.filetype === 'file') {
+                callback('https://www.google.com/logos/google.jpg', {text: 'My text'});
+            }
 
+            /* Provide image and alt text for the image dialog */
+            if (meta.filetype === 'image') {
+                callback('https://www.google.com/logos/google.jpg', {alt: 'My alt text'});
+            }
+
+            /* Provide alternative source and posted for the media dialog */
+            if (meta.filetype === 'media') {
+                callback('movie.mp4', {source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg'});
+            }
+        },
+        templates: [
+            {
+                title: 'New Table',
+                description: 'creates a new table',
+                content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>'
+            },
+            {title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...'},
+            {
+                title: 'New list with dates',
+                description: 'New List with dates',
+                content: '<div class="mceTmpl"><span class="cdate">cdate</span><br><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>'
+            }
+        ],
+        template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+        template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+        height: 300,
+        image_caption: true,
+        quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+        noneditable_class: 'mceNonEditable',
+        toolbar_mode: 'sliding',
+        contextmenu: 'link image table',
+        skin: 'oxide', //oxide  oxide-dark
+        content_css: 'default', //dark default
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
+        setup: (editor) => {
+            editor.on('init', (e) => {
+                console.log('tinymce-init');
+            });
+        },
+        init_instance_callback: (editor) => {
+            editor.on('input paste ExecCommand', (e) => {
+                $('#fang_content_temp').val(tinyMCE.activeEditor.getContent()).trigger('input');
+            });
+        }
+    });
+</script>
 </body>
 </html>

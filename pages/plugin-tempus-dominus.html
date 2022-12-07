@@ -3,31 +3,127 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/BSA.css">
+
+    <link rel="stylesheet" href="../plugins/tempus-dominus/css/tempus-dominus.min.css"/>
+
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
-
-<body class="bg-light p-2">
-
+<body class="bg-light pt-2">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
-        <div class="card-header">
+        <div class="card-header bg-white">
             新页面标题
         </div>
         <div class="card-body">
-            新页面内容区域
+            <div class="row row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
+                <div class="col">
+                    <h5 class="card-title">单选年</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">吐槽一下,感觉这个作者把这个插件更新得越来越难用(注意:该插件的演示并不完善)</h6>
+                    <hr>
+                    <div class="mb-3">
+                        <label for="customIconsInput" class="form-label">建筑年代</label>
+                        <div class='input-group'
+                             id='customIcons'
+                             data-td-target-input='nearest'
+                             data-td-target-toggle='nearest'>
+                            <input id='customIconsInput'
+                                   readonly
+                                   type='text'
+                                   class='form-control'
+                                   data-td-target='#customIcons'
+                                   name="fang_year"/>
+                            <span class='input-group-text'
+                                  data-td-target='#customIcons'
+                                  data-td-toggle='datetimepicker'>
+                                        <span class='bi bi-calendar'></span>
+                                    </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <h5 class="card-title">更多演示标题</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">更多演示描述</h6>
+                    <hr>
+                    更多演示内容
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/js/BSA.js"></script>
+<!--插件js-->
+
+<script src="../plugins/moment/moment.min.js"></script>
+<script src="../plugins/popperjs/umd/popper.min.js"></script>
+<script src="../plugins/tempus-dominus/js/tempus-dominus.min.js"></script>
+<script>
+    var minDate = new tempusDominus.DateTime(); //2021-03-13
+    minDate.setYear(1900); //2021-03-21
 
 
+    var maxDate = new tempusDominus.DateTime(); //2021-03-13
+    maxDate.manipulate(1, 'date'); //2021-03-14
+
+    const picker = new tempusDominus.TempusDominus(document.getElementById('customIcons'), {
+        restrictions: {
+            minDate: minDate,
+            maxDate: maxDate,
+        },
+        display: {
+            //'clock' | 'calendar' | 'months' | 'years' | 'decades'
+            viewMode: 'years',
+            components: {
+                calendar: true,
+                year: true,
+                month: false,
+                date: false,
+                //是否启用时刻 hours minutes seconds 在 clock为true时有效
+                clock: false,
+                hours: true,
+                minutes: true,
+                seconds: true,
+
+                useTwentyfourHour: false,
+            },
+
+
+            //是否显示星期
+            calendarWeeks: true,
+            //图标
+            icons: {
+                time: 'bi bi-clock',
+                date: 'bi bi-calendar',
+                up: 'bi bi-arrow-up',
+                down: 'bi bi-arrow-down',
+                previous: 'bi bi-chevron-left',
+                next: 'bi bi-chevron-right',
+                today: 'bi bi-calendar-check',
+                clear: 'bi bi-trash',
+                close: 'bi bi-x',
+            },
+            buttons: {
+                today: true,
+                clear: true,
+                close: true,
+            },
+        }
+    });
+    //格式化input框得值
+    picker.dates.formatInput = function (date) {
+        return moment(date).format('YYYY');
+    }
+</script>
 </body>
 </html>

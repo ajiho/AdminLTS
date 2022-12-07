@@ -1,0 +1,81 @@
+.bsa-tabs .nav-pills li.flex-grow-1 {
+  /* 可以使窗口平稳滚动 */
+  scroll-behavior: smooth;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/*谷歌浏览器*/
+.bsa-tabs .nav-pills li.flex-grow-1::-webkit-scrollbar {
+  display: none;
+}
+
+
+@keyframes bsa-tabs-fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.bsa-tabs .fadeIn {
+  animation: bsa-tabs-fadeIn 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+.bsa-tabs .out {
+  position: absolute;
+  transform:translateX(-200%);
+}
+
+/*阻止默认的鼠标事件*/
+.bsa-tabs.pen iframe {
+  pointer-events: none;
+}
+
+
+.bsa-tabs.pen2 iframe {
+  pointer-events: none;
+}
+
+.bsa-tabs .nav-pills .nav-link {
+  position: relative;
+}
+
+
+.bsa-tabs .nav-pills .nav-link .closetab {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  display: none;
+}
+
+//固定宽度，否则滚动会不准确
+.bsa-tabs .caret-btn {
+  width: 50px;
+}
+
+
+.bsa-tabs .nav-pills .nav-link .closetab:hover {
+  color: red;
+}
+
+
+.bsa-tabs .nav-pills .nav-link:hover .closetab {
+  display: inline-block;
+}
+
+.bsa-contextmenu {
+  display: none;
+  position: fixed;
+  width: 100px;
+  background: #fff;
+  z-index: 1050;
+}

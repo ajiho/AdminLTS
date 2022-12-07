@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="plugins/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dist/css/bootstrap-admin.min.css">
+    <link rel="stylesheet" href="dist/css/BSA.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
 <body>
@@ -56,12 +56,12 @@
                 <div class="card-body p-0">
                     <div class="container-fluid">
                         <div class="row row-cols-3 g-3 p-3">
-                            <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
+                            <a  data-bsa-tab-url="pages/welcome.html" data-bsa-tab-title="邮箱"  class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
                                 <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
-                                    <i class="bi bi-link"></i>
+                                    <i class="bi bi-envelope"></i>
                                 </div>
-                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">拓展应用1</div>
+                                <div class="bsa-font-14 text-muted bsa-ellipsis-2">邮箱</div>
                             </a>
 
                             <a class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
@@ -375,7 +375,7 @@
 <!--侧边栏-->
 <div class="bsa-sidebar">
     <div class="bsa-sidebar-header">
-        <img src="dist/images/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
+        <img src="dist/img/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
         <div class="bsa-logo-text">Bootstrap-Admin</div>
     </div>
     <div class="bsa-sidebar-body">
@@ -383,6 +383,11 @@
             <li>
                 <a href="pages/welcome.html" class="active">
                     <i class="bi bi-house"></i>首页
+                </a>
+            </li>
+            <li>
+                <a href="docs/index.html" target="_blank">
+                    <i class="bi bi-files"></i>文档
                 </a>
             </li>
             <li>
@@ -409,7 +414,7 @@
                         <a href="pages/page-pricing.html">产品定价</a>
                     </li>
                     <li>
-                        <a href="pages/page-lock-screen.html">锁屏页</a>
+                        <a href="pages/page-lock-screen.html" target="_blank">锁屏页</a>
                     </li>
                     <li>
                         <a href="pages/page-article-list.html">文章列表页</a>
@@ -424,7 +429,7 @@
                         <a href="pages/page-timeline.html">时间轴</a>
                     </li>
                     <li>
-                        <a href="pages/page-error.html">400/500页面</a>
+                        <a href="pages/page-error.html">错误页面</a>
                     </li>
                 </ul>
             </li>
@@ -433,7 +438,6 @@
                     <i class="bi bi-filetype-js"></i>插件
                 </a>
                 <ul>
-                    <li><a href="pages/plugin-chart.html">弹层</a></li>
                     <li><a href="pages/plugin-chart.html">chart.js</a></li>
                     <li><a href="pages/plugin-echarts.html">echart.js</a></li>
                     <li><a href="pages/plugin-bootstrap-notify.html">对话框/通知</a></li>
@@ -451,24 +455,24 @@
                     <i class="bi bi-list-nested"></i>多级菜单
                 </a>
                 <ul>
-                    <li><a href="javascript:">一级菜单</a></li>
+                    <li><a href="pages/welcome.html?id=1">一级菜单</a></li>
                     <li>
                         <a href="javascript:" class="has-children">一级菜单</a>
                         <ul>
-                            <li><a href="javascript:">二级菜单</a></li>
+                            <li><a href="pages/welcome.html?id=2">二级菜单</a></li>
                             <li>
                                 <a href="javascript:" class="has-children">二级菜单</a>
                                 <ul>
-                                    <li><a href="javascript:">三级菜单</a></li>
+                                    <li><a href="pages/welcome.html?id=3">三级菜单</a></li>
                                     <li>
                                         <a href="javascript:" class="has-children">三级菜单</a>
                                         <ul>
-                                            <li><a href="javascript:">四级菜单</a></li>
+                                            <li><a href="pages/welcome.html?id=4">四级菜单</a></li>
                                             <li>
                                                 <a href="javascript:" class="has-children">四级菜单</a>
                                                 <ul>
-                                                    <li><a href="javascript:">五级菜单</a></li>
-                                                    <li><a href="javascript:">五级菜单</a></li>
+                                                    <li><a href="pages/welcome.html?id=5">五级菜单</a></li>
+                                                    <li><a href="pages/welcome.html?id=6">五级菜单</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -477,18 +481,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:" class="has-children">一级菜单</a>
-                        <ul>
-                            <li><a href="javascript:">二级菜单</a></li>
-                        </ul>
-                    </li>
                 </ul>
-            </li>
-            <li>
-                <a href="docs/index.html" target="_blank">
-                    <i class="bi bi-files"></i>文档
-                </a>
             </li>
         </ul>
     </div>
@@ -502,18 +495,34 @@
     <p class="mb-0">Copyright © 2022. All right reserved.</p>
 </div>
 
-
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="build/js/util.js"></script>
-<script src="build/js/tabs.js"></script>
-<script src="build/js/bsa.js"></script>
-
+<script src="dist/js/BSA.js"></script>
 <script>
-
-    //初始化
-    var BSA = BootstrapAdmin.init({
-        consoleAdvert: true
+    var main = new BSA.Main({
+        //控制台广告
+        consoleLog: false,
+        tabEl: '.bsa-main',
+        //侧边栏点击关闭
+        sideMenuClickClose: false,
+        //淡入动画
+        tabFadein: true,
+        defaultTabs: [
+            {
+                title: '首页',
+                url: 'pages/welcome.html',
+                close: true
+            }
+        ],
+        //开启缓存
+        tabCache: true
     });
+
+
+    // main.addTab({
+    //     title: '首页',
+    //     url: 'pages/welcome.html',
+    //     close: true
+    // })
 
 </script>
 

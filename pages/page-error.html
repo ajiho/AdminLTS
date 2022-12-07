@@ -3,31 +3,53 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/BSA.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
-
-<body class="bg-light p-2">
-
+<body class="bg-light pt-2">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
-        <div class="card-header">
+        <div class="card-header bg-white">
             新页面标题
         </div>
         <div class="card-body">
-            新页面内容区域
+            <div class="card py-5 border-0 shadow-sm">
+                <div class="row g-0">
+                    <div class="col text-center">
+                        <div class="card-body p-2">
+                            <h1 class="bsa-error-code">
+                                404
+                            </h1>
+                            <p class="text-secondary">
+                                您的请求没有找到<br>
+                                请联系管理员<br>
+                                或者您可以返回上一页<br>
+                            </p>
+                            <div class="row row-cols-auto g-3 justify-content-center">
+                                <div class="col">
+                                    <a href="javascript:" class="btn btn-lg btn-secondary">回到首页</a>
+                                </div>
+                                <div class="col">
+                                    <a href="javascript:" class="btn btn-lg btn-outline-secondary">返回</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
         </div>
     </div>
 </div>
 
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
+<script src="../dist/js/BSA.js"></script>
 </body>
 </html>

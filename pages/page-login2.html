@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="../dist/images/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../dist/images/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/BSA.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
 <body>
@@ -51,7 +52,7 @@
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" id="captcha" name="captcha"
                                                    placeholder="请输入验证码">
-                                            <img src="../dist/images/captcha.png" alt="验证码" class="bsa-cursor-pointer"/>
+                                            <img src="../dist/img/captcha.png" alt="验证码" class="bsa-cursor-pointer"/>
                                         </div>
                                     </div>
 
@@ -74,13 +75,14 @@
         </div>
     </div>
 </div>
-
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/js/BSA.js"></script>
 
 <script src="../plugins/jquery/jquery.js"></script>
 <script src="../plugins/formvalidation/js/formValidation.js"></script>
 <script src="../plugins/formvalidation/js/framework/bootstrap.js"></script>
 <script src="../plugins/formvalidation/js/language/zh_CN.js"></script>
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 <script>
     //前端表单验证
     $('#form').formValidation({
