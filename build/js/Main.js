@@ -673,7 +673,7 @@ class Main {
             option.id = md5(option.url);
 
 
-            if (this.findIframeById(option.id) === null) {//如果没有则添加
+            if (this.findTabById(option.id) === null) {//如果没有则添加
 
                 //添加tab
                 let tabHTML = option.close ? this._formatString(TAB_ITEM_CLOSE, option) : this._formatString(TAB_ITEM, option);
