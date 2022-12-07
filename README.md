@@ -9,7 +9,7 @@
 
 ## 介绍
 
-基于bootstrap5.x设计的一个响应式静态后台管理HTML模板，它是开源免费的,旨在快速让喜欢用bootstrap开发的后台程序员有个愉悦的起点。
+Bootstrap-Admin(以下简称BSA)基于bootstrap5.x设计的一个响应式静态后台管理HTML模板，它是开源免费的,旨在快速让喜欢用bootstrap开发的后台程序员有个愉悦的起点。
 
 [演示地址V1.0.2](https://ajiho.gitee.io/bootstrap-admin)
 
@@ -20,9 +20,9 @@
 - 集成开发中常用的优秀的开源js插件
 - BSA不依赖Jquery(集成的开源js插件目前还依赖Jquery的情况除外)
 - 符合国情的iframe多tab选项卡(1.1+)
-- 严格区分bootstrap-admin和bootstrap的样式,bootstrap-admin的样式都是`bsa`开头
-- 没有修改bootstrap底层样式,享受原汁原味的bootstrap5默认样式,bsa只提供一个后台的架子
-- 紧跟bootstrap官方更新的步伐
+- 严格区分BSA和Bootstrap的样式,BSA的样式都是`bsa`开头
+- 没有修改Bootstrap底层样式,享受原汁原味的Bootstrap5默认样式,BSA只提供一个后台的架子
+- 紧跟Bootstrap官方更新的步伐
 
 
 ## 版本对应
@@ -30,6 +30,7 @@
 |bootstrap-admin版本|bootstrap版本|
 |--|--|
 |v1.x|v5.1.3|
+|v2.x|v5.3.0(todo)|
 
 ## 设备支持
 
