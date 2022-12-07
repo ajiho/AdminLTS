@@ -19,7 +19,7 @@
 - 界面整体白色为基调、简约、大气、流畅不卡顿
 - 集成开发中常用的优秀的开源js插件
 - BSA不依赖Jquery(集成的开源js插件目前还依赖Jquery的情况除外)
-- iframe多标签和普通单页模式可以随意选择
+- 符合国情的iframe多tab选项卡(1.1+)
 - 严格区分bootstrap-admin和bootstrap的样式,bootstrap-admin的样式都是`bsa`开头
 - 没有修改bootstrap底层样式,享受原汁原味的bootstrap5默认样式,bsa只提供一个后台的架子
 - 紧跟bootstrap官方更新的步伐
