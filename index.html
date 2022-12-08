@@ -56,7 +56,8 @@
                 <div class="card-body p-0">
                     <div class="container-fluid">
                         <div class="row row-cols-3 g-3 p-3">
-                            <a  data-bsa-tab-url="pages/welcome.html" data-bsa-tab-title="邮箱"  class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
+                            <a data-bsa-tab-url="pages/welcome.html?id=789456123" data-bsa-tab-title="邮箱"
+                               class="col text-decoration-none d-flex flex-column align-items-center p-2 gap-1"
                                href="javascript:">
                                 <div class="d-flex align-items-center justify-content-center bsa-font-25 bg-info text-white bsa-wh-45 rounded-3">
                                     <i class="bi bi-envelope"></i>
@@ -362,8 +363,9 @@
             </div>
         </div>
         <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-person me-2"></i>个人资料</a></li>
+            <li><a class="dropdown-item" href="javascript:" data-bsa-tab-url="pages/page-profile.html" data-bsa-tab-title="个人资料"><i class="bi bi-person me-2"></i>个人资料</a></li>
             <li><a class="dropdown-item" href="javascript:"><i class="bi bi-gear me-2"></i>设置</a></li>
+            <li><a class="dropdown-item bsa-clear-cache" href="javascript:"><i class="bi bi-trash me-2"></i>清空缓存</a></li>
             <li>
                 <div class="dropdown-divider"></div>
             </li>
@@ -440,7 +442,7 @@
                 <ul>
                     <li><a href="pages/plugin-chart.html">chart.js</a></li>
                     <li><a href="pages/plugin-echarts.html">echart.js</a></li>
-                    <li><a href="pages/plugin-bootstrap-notify.html">对话框/通知</a></li>
+                    <li><a href="pages/plugin-sweetalert2.html">对话框/通知</a></li>
                     <li><a href="pages/plugin-formvalidation.html">表单验证</a></li>
                     <li><a href="pages/plugin-tempus-dominus.html">日期时间选择</a></li>
                     <li><a href="pages/plugin-tinymce.html">富文本编辑器</a></li>
@@ -455,9 +457,9 @@
                     <i class="bi bi-list-nested"></i>多级菜单
                 </a>
                 <ul>
-                    <li><a href="pages/welcome.html?id=1">一级菜单</a></li>
+                    <li><a href="pages/welcome.html?id=1">一级菜单-1</a></li>
                     <li>
-                        <a href="javascript:" class="has-children">一级菜单</a>
+                        <a href="javascript:" class="has-children">一级菜单-2</a>
                         <ul>
                             <li><a href="pages/welcome.html?id=2">二级菜单</a></li>
                             <li>
@@ -481,6 +483,12 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="pages/welcome.html?id=789" class="has-children">一级菜单-3</a>
+                        <ul>
+                            <li><a href="pages/welcome.html?id=31">二级菜单-3-1</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -501,28 +509,24 @@
     var main = new BSA.Main({
         //控制台广告
         consoleLog: false,
+        //tab组件挂载元素
         tabEl: '.bsa-main',
-        //侧边栏点击关闭
-        sideMenuClickClose: false,
-        //淡入动画
-        tabFadein: true,
         defaultTabs: [
             {
                 title: '首页',
                 url: 'pages/welcome.html',
-                close: true
+                close: false
             }
         ],
+        //是否开启左侧菜单和右侧tab的联动
+        tabActiveOpenInSideMenuLocation: true,
+        //侧边栏点击关闭(仅在左侧菜单可以开关的情况下有效)
+        sideMenuClickClose: true,
+        //淡入动画
+        tabFadein: true,
         //开启缓存
         tabCache: true
     });
-
-
-    // main.addTab({
-    //     title: '首页',
-    //     url: 'pages/welcome.html',
-    //     close: true
-    // })
 
 </script>
 

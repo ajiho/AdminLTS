@@ -1,0 +1,27 @@
+.bsa-pricing-wrapper .card {
+  transition: all .2s;
+  border-radius: 15px;
+}
+
+.bsa-pricing-wrapper .card .card-header {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px
+}
+
+.bsa-pricing-wrapper .card:hover {
+  margin-top: -.25rem;
+  margin-bottom: .25rem;
+  box-shadow: 0 .5rem 1rem 0 rgba(0, 0, 0, .3)
+}
+
+.bsa-pricing-wrapper .card .card-title {
+  font-size: 1rem;
+  letter-spacing: .2rem;
+  font-weight: 500
+}
+
+.bsa-pricing-wrapper .card ul li.list-group-item {
+  border-bottom: 1px solid rgb(0 0 0 / 0%);
+  color: #3b3b3b;
+  font-size: 16px
+}

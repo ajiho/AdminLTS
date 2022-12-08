@@ -1,3 +1,13 @@
+import Util from "./Util";
+
+Util.delegate(document.body, 'change', '.bsa-check-all', function (event) {
+    let target = event.target;
+
+    document.querySelectorAll("input[type='checkbox']").forEach((input) => {
+        input.checked = target.checked;
+    })
+});
+
 
 //bootstrap气泡组件初始化
 [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]')).map(function (popoverTriggerEl) {

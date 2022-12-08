@@ -18,6 +18,9 @@ const TAB_ID_KEY = 'data-tab-id';
 const TAB_URL_KEY = 'data-tab-url';
 const TAB_CACHE_KEY = 'tabs';
 
+const SIDEBARCOLOR_CACHE_KEY = 'sidebarcolor';
+const HEADERCOLOR_CACHE_KEY = 'headercolor';
+
 
 const TAB_LEFT = `<li class="nav-item caret-btn caret-btn-left  border-end" role="presentation"><button class="nav-link"><i class="bi bi-caret-left"></i></button></li>`;
 const TAB_ROLL_AREA = `<li class="nav-item flex-grow-1 d-flex flex-nowrap align-items-center position-relative" role="presentation"></li>`;
@@ -74,7 +77,9 @@ const Default = {
     //tab缓存
     tabCache: true,
     //点击左侧菜单项后是否立马关闭(仅在iframe模式下有效)
-    sideMenuClickClose: false
+    sideMenuClickClose: false,
+    //tab激活展开侧边栏导航对应的位置
+    tabActiveOpenInSideMenuLocation: true,
 }
 
 
@@ -109,8 +114,24 @@ class Main {
         //事件处理
         this._addEventListener();
 
+        //主题色回显
+        this.restoreColor();
+
         //tab初始化
         this._tabInit();
+    }
+
+
+    restoreColor() {
+
+        let sidebarcolor = localStorage.getItem(SIDEBARCOLOR_CACHE_KEY);
+        let headercolor = localStorage.getItem(HEADERCOLOR_CACHE_KEY);
+        if (sidebarcolor !== null) {
+            document.documentElement.classList.add("color-sidebar", sidebarcolor);
+        }
+        if (headercolor !== null) {
+            document.documentElement.classList.add("color-header", headercolor);
+        }
     }
 
 
@@ -207,6 +228,14 @@ class Main {
 
     }
 
+
+    // 清除缓存
+    clearCache() {
+        localStorage.removeItem(TAB_CACHE_KEY);
+        localStorage.removeItem(HEADERCOLOR_CACHE_KEY);
+        localStorage.removeItem(SIDEBARCOLOR_CACHE_KEY);
+    }
+
     /**
      * 判断是否开启缓存
      * @private
@@ -275,11 +304,21 @@ class Main {
             //得到当前a链接的href
             let url = a.getAttribute('href');
             let title = a.innerText;
+
+
             _this.addTab({
                 title,
                 url,
                 close: true,
             });
+
+            if (_this._config.sideMenuClickClose === true) {
+                if (screen.availWidth < 992) {
+                    _this.closeSideMenu();
+                }
+            }
+
+
         });
 
 
@@ -838,6 +877,46 @@ class Main {
 
         //滚动到指定tab
         this.scrollToTabById(id);
+
+        let tabId = tab.getAttribute(TAB_ID_KEY);
+
+        //展开左侧指定区域
+        if (this._config.tabActiveOpenInSideMenuLocation === true) {
+            //先把所有的激活状态移除和闭合掉
+            document.querySelectorAll('.bsa-sidebar-body > ul a').forEach((a) => {
+                a.classList.remove(...['open', 'active'])
+            })
+
+
+            //找到当前tab的左侧菜单项目,激活、展开
+            document.querySelectorAll('.bsa-sidebar-body > ul a').forEach((a) => {
+                let url = md5(a.getAttribute('href'));
+                if (url === tabId) {
+                    a.classList.add('active');
+                    this._openMenu(a);
+
+                    document.querySelector('.bsa-sidebar-body').scrollTo({
+                        top: a.offsetTop,
+                        behavior: "smooth"
+                    })
+                }
+            })
+
+        }
+
+
+    }
+
+
+    _openMenu(a) {
+        let ul = a.parentNode.parentNode
+        let aHasChildren = Util.siblings(ul, 'a.has-children')[0];
+        if (!(aHasChildren instanceof HTMLElement)) {
+            return;
+        }
+        aHasChildren.classList.add('open');
+        return this._openMenu(aHasChildren);
+
     }
 
 
@@ -905,6 +984,14 @@ class Main {
     _addEventListener() {
         let _this = this;
 
+
+        //清空缓存
+        Util.delegate(document.body, 'click', '.bsa-clear-cache', function (e) {
+            e.preventDefault();
+            _this.clearCache();
+        });
+
+
         //左侧菜单展开必须移除style
         Util.delegate(document.body, 'transitionend', '.bsa-sidebar-body > ul', function (event) {
             let target = event.target;
@@ -954,11 +1041,15 @@ class Main {
             }
 
             if (sidebarcolor === "sidebarcolor0") {
+                //从缓存中移除
+                localStorage.removeItem(SIDEBARCOLOR_CACHE_KEY);
                 document.documentElement.classList.remove("color-sidebar");
                 sidebarcolorList.map(function (item) {
                     document.documentElement.classList.remove(item);
                 });
             } else {
+                //存入缓存
+                localStorage.setItem(SIDEBARCOLOR_CACHE_KEY, sidebarcolor);
                 document.documentElement.classList.add("color-sidebar", sidebarcolor);
                 sidebarcolorList.splice(sidebarcolorList.indexOf(sidebarcolor), 1);
                 document.documentElement.classList.remove(...sidebarcolorList);
@@ -977,11 +1068,15 @@ class Main {
             }
 
             if (headercolor === "headercolor0") {
+                //删除缓存
+                localStorage.removeItem(HEADERCOLOR_CACHE_KEY);
                 document.documentElement.classList.remove("color-header");
                 headercolorList.map(function (item) {
                     document.documentElement.classList.remove(item);
                 });
             } else {
+                //存入缓存
+                localStorage.setItem(HEADERCOLOR_CACHE_KEY, headercolor);
                 document.documentElement.classList.add("color-header", headercolor);
                 headercolorList.splice(headercolorList.indexOf(headercolor), 1);
                 document.documentElement.classList.remove(...headercolorList);
@@ -1011,11 +1106,20 @@ class Main {
         //遮罩层点击
         Util.delegate(document.body, 'click', '.bsa-mask', function (event) {
             event.preventDefault();
-            this.remove();
-            document.querySelector('.bsa-sidebar').classList.remove('open');
+            _this.closeSideMenu();
         });
 
 
+    }
+
+
+    /**
+     * 关闭侧边栏的菜单
+     * @private
+     */
+    closeSideMenu() {
+        document.querySelector('.bsa-mask').remove();
+        document.querySelector('.bsa-sidebar').classList.remove('open');
     }
 
     _menuToggle(element, type) {
