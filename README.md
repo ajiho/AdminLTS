@@ -11,7 +11,7 @@
 
 Bootstrap-Admin(以下简称BSA)基于bootstrap5.x设计的一个响应式静态后台管理HTML模板，它是开源免费的,旨在快速让喜欢用bootstrap开发的后台程序员有个愉悦的起点。
 
-[演示地址V1.0.2](https://ajiho.gitee.io/bootstrap-admin)
+[演示地址V1.1.0](https://ajiho.gitee.io/bootstrap-admin)
 
 ## 特性
 
@@ -65,7 +65,7 @@ composer require ajiho/bootstrap-admin
 ### npm下载
 
 ~~~
-
+npm i bootstrap-admin
 ~~~
 
 ## 反馈
