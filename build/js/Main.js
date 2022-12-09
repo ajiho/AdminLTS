@@ -55,7 +55,7 @@ const TAB_LOWER_HALF_TPL = `<div class="flex-grow-1 position-relative"></div>`;
 const TAB_ITEM = `<button class="nav-link border flex-shrink-0" ${TAB_URL_KEY}="{{url}}"  ${TAB_ID_KEY}="{{id}}" type="button">{{title}}</button>`
 const TAB_ITEM_CLOSE = `<button class="nav-link border flex-shrink-0" ${TAB_URL_KEY}="{{url}}" ${TAB_ID_KEY}="{{id}}" type="button">{{title}}<i class="bi bi-x  closetab"></i></button>`
 
-const TAB_IFRAME = `<iframe src="{{url}}" class="w-100 h-100 d-block  ${TAB_IFRAME_LEAVE_CLASS}" ${TAB_ID_KEY}="{{id}}"></iframe>`;
+const TAB_IFRAME = `<iframe src="{{url}}" class="w-100 h-100 d-inline-block  ${TAB_IFRAME_LEAVE_CLASS}" ${TAB_ID_KEY}="{{id}}"></iframe>`;
 
 
 //右键菜单的容器
