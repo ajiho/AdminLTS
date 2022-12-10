@@ -50,6 +50,7 @@
     "control-panel",
     "dashboard"
   ],
+  "homepage": "https://gitee.com/ajiho/bootstrap-admin",
   "author": "ajiho",
   "license": "MIT"
 }

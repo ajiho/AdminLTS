@@ -1,3 +1,8 @@
+/*!
+ * bootstrap-admin v1.1.0 (https://gitee.com/ajiho/bootstrap-admin)
+ * Copyright 2021-2022 ajiho
+ * license MIT (https://gitee.com/ajiho/bootstrap-admin/blob/master/LICENSE)
+ */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -492,6 +497,8 @@
   var Default = {
     //控制台广告
     consoleLog: true,
+    //tab组件挂载元素
+    tabEl: '.bsa-main',
     //默认初始化的tab
     defaultTabs: [],
     //淡入动画
@@ -1457,7 +1464,7 @@
 
   /**
    * --------------------------------------------
-   * bsa Main.js
+   * Main.js
    * License MIT
    * --------------------------------------------
    */
@@ -1477,4 +1484,4 @@
   exports.Toast = Toast;
 
 }));
-//# sourceMappingURL=Bsa.js.map
+//# sourceMappingURL=bootstrap-admin.js.map

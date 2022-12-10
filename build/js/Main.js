@@ -70,6 +70,8 @@ const TBA_CONTEXTMENU_TPL = `
 const Default = {
     //控制台广告
     consoleLog: true,
+    //tab组件挂载元素
+    tabEl: '.bsa-main',
     //默认初始化的tab
     defaultTabs: [],
     //淡入动画
