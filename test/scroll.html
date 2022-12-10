@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../plugins/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <style>
+        #wrapper{
+            height: 100px;
+            border: 1px solid red;
+            width: 90%;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wrapper" class="overflow-hidden">
+    <div class="d-inline-block">
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+        <div class="d-inline-block px-3 border">dsada</div>
+    </div>
+    <!-- 这里可以放一些其它的 DOM，但不会影响滚动 -->
+</div>
+
+
+<script src="../plugins/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="https://unpkg.com/@better-scroll/core@latest/dist/core.min.js"></script>
+
+<script>
+    let wrapper = document.getElementById("wrapper")
+
+    let bs = new BScroll(wrapper, {
+        scrollY:false,
+        scrollX:true,
+        probeType: 3 // listening scroll event
+    })
+
+</script>
+</body>
+</html>

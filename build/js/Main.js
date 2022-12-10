@@ -897,7 +897,7 @@ class Main {
 
                     document.querySelector('.bsa-sidebar-body').scrollTo({
                         top: a.offsetTop,
-                        behavior: "smooth"
+                        behavior: "auto"
                     })
                 }
             })

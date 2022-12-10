@@ -1,4 +1,4 @@
-import '../scss/bootstrap-admin.scss'
+import '../scss/bsa.scss'
 
 import './Reboot'
 import Main from './Main'
