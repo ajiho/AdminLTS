@@ -3,3 +3,9 @@ node_modules
 /.vscode
 *.DS_Store
 *.log
+
+
+#plugins
+/plugins/**/*.ts
+/plugins/**/*.md
+/plugins/**/package.json

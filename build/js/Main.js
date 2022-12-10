@@ -361,6 +361,7 @@ class Main {
         Util.delegate(_this._tab_wraper, 'click', 'button.nav-link', function () {
 
             let id = this.getAttribute(TAB_ID_KEY);
+            _this.scrollToTabById(id);
             _this.activeTabById(id);
             _this._openLeftMenuByid(id);
 
@@ -746,10 +747,11 @@ class Main {
                     this._addTabToCache(option);
                 }
             }
-            //激活tab
-            this.activeTabById(option.id);
+
             //滚动到该位置
             this.scrollToTabById(option.id)
+            //激活tab
+            this.activeTabById(option.id);
 
         }
     }

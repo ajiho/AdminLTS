@@ -1,9 +1,10 @@
-@use "sass:math";
+
+
 //bootstrap-admin拓展的透明助手函数
+
 @for $i from 1 through 9 {
   .bsa-opacity-#{$i * 10} {
-    //opacity: #{$i / 10} !important;
-    opacity: #{math.div($i,10)} !important;
+    opacity: $i / 10 !important;
   }
 }
 
