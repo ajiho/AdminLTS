@@ -208,23 +208,15 @@ class Main {
             let tabHTML = option.close ? this._formatString(TAB_ITEM_CLOSE, option) : this._formatString(TAB_ITEM, option);
             tabFrag.appendChild(Util.createNode(tabHTML));
 
-            // //添加iframe
-            // let iframeHTML = this._formatString(TAB_IFRAME, option)
-            // let iframeDom = util.createNode(iframeHTML);
-            // //判断是否需要加淡入动画
-            // if (this._config.tabFadein === true) {
-            //     iframeDom.classList.add(TAB_IFRAME_FADEIN_CLASS);
-            // }
-            // iframeFrag.appendChild(iframeDom);
-
         });
 
         this._tab_wraper.appendChild(tabFrag);
-        // this._tab_content_wraper.appendChild(iframeFrag);
 
 
         //激活tab
-        this.activeTabById(this._getActivatedCacheTabId());
+        let id = this._getActivatedCacheTabId();
+        this.activeTabById(id);
+        this._openLeftMenuByid(id);
 
     }
 
@@ -275,6 +267,42 @@ class Main {
         //找到这个容器
         this._contextmenu_wraper = document.querySelector(`.bsa-contextmenu`);
 
+    }
+
+
+    /**
+     * 通过id同时激活和展开左侧的菜单
+     * @param id
+     * @private
+     */
+    _openLeftMenuByid(id) {
+
+        if (this._config.tabActiveOpenInSideMenuLocation === true) {
+
+            //展开左侧指定区域
+            let tabId = id;
+
+            //先把所有的激活状态移除和闭合掉
+            document.querySelectorAll('.bsa-sidebar-body > ul a').forEach((a) => {
+                a.classList.remove(...['open', 'active'])
+            })
+
+
+            //找到当前tab的左侧菜单项目,激活、展开
+            document.querySelectorAll('.bsa-sidebar-body > ul a').forEach((a) => {
+                let url = md5(a.getAttribute('href'));
+                if (url === tabId) {
+                    a.classList.add('active');
+                    this._openMenu(a);
+
+                    document.querySelector('.bsa-sidebar-body').scrollTo({
+                        top: a.offsetTop,
+                        behavior: "auto"
+                    })
+                }
+            })
+
+        }
     }
 
     //tab的事件监听
@@ -350,7 +378,11 @@ class Main {
 
         //点击tab处理
         Util.delegate(_this._tab_wraper, 'click', 'button.nav-link', function () {
-            _this.activeTabById(this.getAttribute(TAB_ID_KEY));
+
+            let id = this.getAttribute(TAB_ID_KEY);
+            _this.activeTabById(id);
+            _this._openLeftMenuByid(id);
+
         }, '.closetab');
 
 
@@ -849,7 +881,6 @@ class Main {
             this._activeCacheTabById(id);
         }
 
-
         //激活前删除所有的激活样式
         this._tab_wraper.querySelectorAll('button.nav-link').forEach(function (btnEl) {
             btnEl.classList.remove('active');
@@ -877,32 +908,6 @@ class Main {
 
         //滚动到指定tab
         this.scrollToTabById(id);
-
-        let tabId = tab.getAttribute(TAB_ID_KEY);
-
-        //展开左侧指定区域
-        if (this._config.tabActiveOpenInSideMenuLocation === true) {
-            //先把所有的激活状态移除和闭合掉
-            document.querySelectorAll('.bsa-sidebar-body > ul a').forEach((a) => {
-                a.classList.remove(...['open', 'active'])
-            })
-
-
-            //找到当前tab的左侧菜单项目,激活、展开
-            document.querySelectorAll('.bsa-sidebar-body > ul a').forEach((a) => {
-                let url = md5(a.getAttribute('href'));
-                if (url === tabId) {
-                    a.classList.add('active');
-                    this._openMenu(a);
-
-                    document.querySelector('.bsa-sidebar-body').scrollTo({
-                        top: a.offsetTop,
-                        behavior: "auto"
-                    })
-                }
-            })
-
-        }
 
 
     }

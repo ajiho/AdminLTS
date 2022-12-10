@@ -614,22 +614,13 @@
         //添加tab
         var tabHTML = option.close ? _this3._formatString(TAB_ITEM_CLOSE, option) : _this3._formatString(TAB_ITEM, option);
         tabFrag.appendChild(Util.createNode(tabHTML));
-
-        // //添加iframe
-        // let iframeHTML = this._formatString(TAB_IFRAME, option)
-        // let iframeDom = util.createNode(iframeHTML);
-        // //判断是否需要加淡入动画
-        // if (this._config.tabFadein === true) {
-        //     iframeDom.classList.add(TAB_IFRAME_FADEIN_CLASS);
-        // }
-        // iframeFrag.appendChild(iframeDom);
       });
-
       this._tab_wraper.appendChild(tabFrag);
-      // this._tab_content_wraper.appendChild(iframeFrag);
 
       //激活tab
-      this.activeTabById(this._getActivatedCacheTabId());
+      var id = this._getActivatedCacheTabId();
+      this.activeTabById(id);
+      this._openLeftMenuByid(id);
     }
 
     // 清除缓存
@@ -676,6 +667,38 @@
       document.body.insertAdjacentHTML("beforeEnd", TBA_CONTEXTMENU_TPL);
       //找到这个容器
       this._contextmenu_wraper = document.querySelector(".bsa-contextmenu");
+    }
+
+    /**
+     * 通过id同时激活和展开左侧的菜单
+     * @param id
+     * @private
+     */;
+    _proto._openLeftMenuByid = function _openLeftMenuByid(id) {
+      var _this4 = this;
+      if (this._config.tabActiveOpenInSideMenuLocation === true) {
+        //展开左侧指定区域
+        var tabId = id;
+
+        //先把所有的激活状态移除和闭合掉
+        document.querySelectorAll('.bsa-sidebar-body > ul a').forEach(function (a) {
+          var _a$classList;
+          (_a$classList = a.classList).remove.apply(_a$classList, ['open', 'active']);
+        });
+
+        //找到当前tab的左侧菜单项目,激活、展开
+        document.querySelectorAll('.bsa-sidebar-body > ul a').forEach(function (a) {
+          var url = md5.exports(a.getAttribute('href'));
+          if (url === tabId) {
+            a.classList.add('active');
+            _this4._openMenu(a);
+            document.querySelector('.bsa-sidebar-body').scrollTo({
+              top: a.offsetTop,
+              behavior: "auto"
+            });
+          }
+        });
+      }
     }
 
     //tab的事件监听
@@ -739,7 +762,9 @@
 
       //点击tab处理
       Util.delegate(_this._tab_wraper, 'click', 'button.nav-link', function () {
-        _this.activeTabById(this.getAttribute(TAB_ID_KEY));
+        var id = this.getAttribute(TAB_ID_KEY);
+        _this.activeTabById(id);
+        _this._openLeftMenuByid(id);
       }, '.closetab');
 
       //tab关闭
@@ -906,11 +931,11 @@
      * 关闭所有的tab
      */;
     _proto.closeAllTabs = function closeAllTabs() {
-      var _this4 = this;
+      var _this5 = this;
       this._tab_wraper.querySelectorAll('button.nav-link').forEach(function (tab) {
         var id = tab.getAttribute(TAB_ID_KEY);
-        if (_this4._canRemoveTabById(id)) {
-          _this4._removeTabById(id);
+        if (_this5._canRemoveTabById(id)) {
+          _this5._removeTabById(id);
         }
       });
 
@@ -927,12 +952,12 @@
      * @private
      */;
     _proto._closeAllTabExceptForId = function _closeAllTabExceptForId(id) {
-      var _this5 = this;
+      var _this6 = this;
       this._tab_wraper.querySelectorAll('button.nav-link').forEach(function (tab) {
         var forEachId = tab.getAttribute(TAB_ID_KEY);
-        if (forEachId !== id && _this5._canRemoveTabById(forEachId)) {
+        if (forEachId !== id && _this6._canRemoveTabById(forEachId)) {
           //如果不相等，且tab可以被删除的情况下
-          _this5._removeTabById(forEachId);
+          _this6._removeTabById(forEachId);
         }
       });
     }
@@ -1181,7 +1206,6 @@
      * @param id
      */;
     _proto.activeTabById = function activeTabById(id) {
-      var _this6 = this;
       //同时激活缓存中的tab选项
       if (this._isOpenCacheTab()) {
         this._activeCacheTabById(id);
@@ -1212,29 +1236,6 @@
 
       //滚动到指定tab
       this.scrollToTabById(id);
-      var tabId = tab.getAttribute(TAB_ID_KEY);
-
-      //展开左侧指定区域
-      if (this._config.tabActiveOpenInSideMenuLocation === true) {
-        //先把所有的激活状态移除和闭合掉
-        document.querySelectorAll('.bsa-sidebar-body > ul a').forEach(function (a) {
-          var _a$classList;
-          (_a$classList = a.classList).remove.apply(_a$classList, ['open', 'active']);
-        });
-
-        //找到当前tab的左侧菜单项目,激活、展开
-        document.querySelectorAll('.bsa-sidebar-body > ul a').forEach(function (a) {
-          var url = md5.exports(a.getAttribute('href'));
-          if (url === tabId) {
-            a.classList.add('active');
-            _this6._openMenu(a);
-            document.querySelector('.bsa-sidebar-body').scrollTo({
-              top: a.offsetTop,
-              behavior: "auto"
-            });
-          }
-        });
-      }
     };
     _proto._openMenu = function _openMenu(a) {
       var ul = a.parentNode.parentNode;

@@ -20,7 +20,7 @@ module.exports = {
             file: 'dist/js/Bsa.min.js',
             format: 'umd',
             name: 'BSA',
-            plugins: [terser({compress: {drop_console: true}})]
+            plugins: [terser({compress: {drop_console: false}})]
         }
     ],
     //使用json插件
