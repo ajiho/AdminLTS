@@ -22,11 +22,11 @@ const SIDEBARCOLOR_CACHE_KEY = 'sidebarcolor';
 const HEADERCOLOR_CACHE_KEY = 'headercolor';
 
 
-const TAB_LEFT = `<li class="nav-item caret-btn caret-btn-left  border-end" role="presentation"><button class="nav-link"><i class="bi bi-caret-left"></i></button></li>`;
+const TAB_LEFT = `<li class="nav-item caret-btn caret-btn-left  border-end" role="presentation"><button class="nav-link" style="width: 50px"><i class="bi bi-caret-left"></i></button></li>`;
 const TAB_ROLL_AREA = `<li class="nav-item flex-grow-1 d-flex flex-nowrap align-items-center position-relative" role="presentation"></li>`;
 const TAB_ACTIONS = `
                     <li class="nav-item caret-btn border-start dropdown" role="presentation">
-                        <button class="nav-link" data-bs-toggle="dropdown"><i class="bi bi-caret-down"></i></button>
+                        <button class="nav-link" style="width: 50px" data-bs-toggle="dropdown"><i class="bi bi-caret-down"></i></button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
                                 <button class="dropdown-item rollback-current" type="button">回到当前</button>
@@ -46,13 +46,13 @@ const TAB_ACTIONS = `
                         </ul>
                     </li>
 `;
-const TAB_RIGHT = `<li class="nav-item caret-btn caret-btn-right  border-start" role="presentation"><button class="nav-link"><i class="bi bi-caret-right"></i></button></li>`;
+const TAB_RIGHT = `<li class="nav-item caret-btn caret-btn-right  border-start" role="presentation"><button class="nav-link" style="width: 50px"><i class="bi bi-caret-right"></i></button></li>`;
 
 const TAB_UPPER_HALF_TPL = `<ul class="nav nav-pills border flex-nowrap" role="tablist">${TAB_LEFT}${TAB_ROLL_AREA}${TAB_ACTIONS}${TAB_RIGHT}</ul>`;
 const TAB_LOWER_HALF_TPL = `<div class="flex-grow-1 position-relative"></div>`;
 
 
-const TAB_ITEM = `<button class="nav-link border flex-shrink-0" ${TAB_URL_KEY}="{{url}}"  ${TAB_ID_KEY}="{{id}}" type="button">{{title}}</button>`
+const TAB_ITEM = `<button class="nav-link  border flex-shrink-0" ${TAB_URL_KEY}="{{url}}"  ${TAB_ID_KEY}="{{id}}" type="button">{{title}}</button>`
 const TAB_ITEM_CLOSE = `<button class="nav-link border flex-shrink-0" ${TAB_URL_KEY}="{{url}}" ${TAB_ID_KEY}="{{id}}" type="button">{{title}}<i class="bi bi-x  closetab"></i></button>`
 
 const TAB_IFRAME = `<iframe src="{{url}}" class="w-100 h-100 d-inline-block  ${TAB_IFRAME_LEAVE_CLASS}" ${TAB_ID_KEY}="{{id}}"></iframe>`;
@@ -165,6 +165,7 @@ class Main {
     }
 
     _restoreTabs() {
+
         //判断选项是否开启缓存
         if (this._isOpenCacheTab()) {
             //从缓存里面读
@@ -217,8 +218,12 @@ class Main {
 
         //激活tab
         let id = this._getActivatedCacheTabId();
+        //激活tab
         this.activeTabById(id);
+        //展开对应的左侧区域
         this._openLeftMenuByid(id);
+        //滚动到指定的位置
+        this.scrollToTabById(id);
 
     }
 
@@ -352,32 +357,6 @@ class Main {
         });
 
 
-        //监听滚动事件,让鼠标滚动也能左右切换
-        this._tab_wraper.addEventListener("wheel", Util.debounce(function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            let activeTab = _this.getActivatedTab();
-            let deltaY = e.deltaY;
-            if (deltaY < 0) {//向左滚动
-
-                //获取它前一个tab
-                let preTab = activeTab.previousElementSibling;
-                if (preTab instanceof HTMLElement) {
-                    _this.activeTabById(preTab.getAttribute(TAB_ID_KEY))
-                }
-
-            } else if (deltaY > 0) {//向右滚动
-                let nextTab = activeTab.nextElementSibling;
-                if (nextTab instanceof HTMLElement) {
-                    _this.activeTabById(nextTab.getAttribute(TAB_ID_KEY))
-                }
-
-            }
-
-        }, 100));
-
-
         //点击tab处理
         Util.delegate(_this._tab_wraper, 'click', 'button.nav-link', function () {
 
@@ -508,7 +487,7 @@ class Main {
 
         //回到当前
         Util.delegate(_this._tab_container, 'click', '.rollback-current', function () {
-            _this.activeTabById(_this.getActivatedTabId());
+            _this.scrollToTabById(_this.getActivatedTabId());
         });
 
 
@@ -766,11 +745,11 @@ class Main {
                 if (this._isOpenCacheTab()) {
                     this._addTabToCache(option);
                 }
-
             }
-
             //激活tab
             this.activeTabById(option.id);
+            //滚动到该位置
+            this.scrollToTabById(option.id)
 
         }
     }
@@ -909,8 +888,7 @@ class Main {
         this.findIframeById(id).classList.remove(TAB_IFRAME_LEAVE_CLASS)
 
         //滚动到指定tab
-        this.scrollToTabById(id);
-
+        // this.scrollToTabById(id);
 
     }
 

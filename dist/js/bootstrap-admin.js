@@ -482,13 +482,13 @@
   var TAB_CACHE_KEY = 'tabs';
   var SIDEBARCOLOR_CACHE_KEY = 'sidebarcolor';
   var HEADERCOLOR_CACHE_KEY = 'headercolor';
-  var TAB_LEFT = "<li class=\"nav-item caret-btn caret-btn-left  border-end\" role=\"presentation\"><button class=\"nav-link\"><i class=\"bi bi-caret-left\"></i></button></li>";
+  var TAB_LEFT = "<li class=\"nav-item caret-btn caret-btn-left  border-end\" role=\"presentation\"><button class=\"nav-link\" style=\"width: 50px\"><i class=\"bi bi-caret-left\"></i></button></li>";
   var TAB_ROLL_AREA = "<li class=\"nav-item flex-grow-1 d-flex flex-nowrap align-items-center position-relative\" role=\"presentation\"></li>";
-  var TAB_ACTIONS = "\n                    <li class=\"nav-item caret-btn border-start dropdown\" role=\"presentation\">\n                        <button class=\"nav-link\" data-bs-toggle=\"dropdown\"><i class=\"bi bi-caret-down\"></i></button>\n                        <ul class=\"dropdown-menu dropdown-menu-end\">\n                            <li>\n                                <button class=\"dropdown-item rollback-current\" type=\"button\">\u56DE\u5230\u5F53\u524D</button>\n                            </li>\n                            <li>\n                                <button class=\"dropdown-item refresh-current\" type=\"button\">\u5237\u65B0\u5F53\u524D</button>\n                            </li>\n                            <li>\n                                <button class=\"dropdown-item close-current\" type=\"button\">\u5173\u95ED\u5F53\u524D</button>\n                            </li>\n                            <li>\n                                <button class=\"dropdown-item close-other\" type=\"button\">\u5173\u95ED\u5176\u4ED6</button>\n                            </li>\n                            <li>\n                                <button class=\"dropdown-item close-all\" type=\"button\">\u5173\u95ED\u5168\u90E8</button>\n                            </li>\n                        </ul>\n                    </li>\n";
-  var TAB_RIGHT = "<li class=\"nav-item caret-btn caret-btn-right  border-start\" role=\"presentation\"><button class=\"nav-link\"><i class=\"bi bi-caret-right\"></i></button></li>";
+  var TAB_ACTIONS = "\n                    <li class=\"nav-item caret-btn border-start dropdown\" role=\"presentation\">\n                        <button class=\"nav-link\" style=\"width: 50px\" data-bs-toggle=\"dropdown\"><i class=\"bi bi-caret-down\"></i></button>\n                        <ul class=\"dropdown-menu dropdown-menu-end\">\n                            <li>\n                                <button class=\"dropdown-item rollback-current\" type=\"button\">\u56DE\u5230\u5F53\u524D</button>\n                            </li>\n                            <li>\n                                <button class=\"dropdown-item refresh-current\" type=\"button\">\u5237\u65B0\u5F53\u524D</button>\n                            </li>\n                            <li>\n                                <button class=\"dropdown-item close-current\" type=\"button\">\u5173\u95ED\u5F53\u524D</button>\n                            </li>\n                            <li>\n                                <button class=\"dropdown-item close-other\" type=\"button\">\u5173\u95ED\u5176\u4ED6</button>\n                            </li>\n                            <li>\n                                <button class=\"dropdown-item close-all\" type=\"button\">\u5173\u95ED\u5168\u90E8</button>\n                            </li>\n                        </ul>\n                    </li>\n";
+  var TAB_RIGHT = "<li class=\"nav-item caret-btn caret-btn-right  border-start\" role=\"presentation\"><button class=\"nav-link\" style=\"width: 50px\"><i class=\"bi bi-caret-right\"></i></button></li>";
   var TAB_UPPER_HALF_TPL = "<ul class=\"nav nav-pills border flex-nowrap\" role=\"tablist\">" + TAB_LEFT + TAB_ROLL_AREA + TAB_ACTIONS + TAB_RIGHT + "</ul>";
   var TAB_LOWER_HALF_TPL = "<div class=\"flex-grow-1 position-relative\"></div>";
-  var TAB_ITEM = "<button class=\"nav-link border flex-shrink-0\" " + TAB_URL_KEY + "=\"{{url}}\"  " + TAB_ID_KEY + "=\"{{id}}\" type=\"button\">{{title}}</button>";
+  var TAB_ITEM = "<button class=\"nav-link  border flex-shrink-0\" " + TAB_URL_KEY + "=\"{{url}}\"  " + TAB_ID_KEY + "=\"{{id}}\" type=\"button\">{{title}}</button>";
   var TAB_ITEM_CLOSE = "<button class=\"nav-link border flex-shrink-0\" " + TAB_URL_KEY + "=\"{{url}}\" " + TAB_ID_KEY + "=\"{{id}}\" type=\"button\">{{title}}<i class=\"bi bi-x  closetab\"></i></button>";
   var TAB_IFRAME = "<iframe src=\"{{url}}\" class=\"w-100 h-100 d-inline-block  " + TAB_IFRAME_LEAVE_CLASS + "\" " + TAB_ID_KEY + "=\"{{id}}\"></iframe>";
 
@@ -626,8 +626,12 @@
 
       //激活tab
       var id = this._getActivatedCacheTabId();
+      //激活tab
       this.activeTabById(id);
+      //展开对应的左侧区域
       this._openLeftMenuByid(id);
+      //滚动到指定的位置
+      this.scrollToTabById(id);
     }
 
     // 清除缓存
@@ -744,29 +748,6 @@
         }
       });
 
-      //监听滚动事件,让鼠标滚动也能左右切换
-      this._tab_wraper.addEventListener("wheel", Util.debounce(function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var activeTab = _this.getActivatedTab();
-        var deltaY = e.deltaY;
-        if (deltaY < 0) {
-          //向左滚动
-
-          //获取它前一个tab
-          var preTab = activeTab.previousElementSibling;
-          if (preTab instanceof HTMLElement) {
-            _this.activeTabById(preTab.getAttribute(TAB_ID_KEY));
-          }
-        } else if (deltaY > 0) {
-          //向右滚动
-          var nextTab = activeTab.nextElementSibling;
-          if (nextTab instanceof HTMLElement) {
-            _this.activeTabById(nextTab.getAttribute(TAB_ID_KEY));
-          }
-        }
-      }, 100));
-
       //点击tab处理
       Util.delegate(_this._tab_wraper, 'click', 'button.nav-link', function () {
         var id = this.getAttribute(TAB_ID_KEY);
@@ -878,7 +859,7 @@
 
       //回到当前
       Util.delegate(_this._tab_container, 'click', '.rollback-current', function () {
-        _this.activeTabById(_this.getActivatedTabId());
+        _this.scrollToTabById(_this.getActivatedTabId());
       });
 
       //刷新当前
@@ -1110,9 +1091,10 @@
             this._addTabToCache(option);
           }
         }
-
         //激活tab
         this.activeTabById(option.id);
+        //滚动到该位置
+        this.scrollToTabById(option.id);
       }
     }
 
@@ -1242,7 +1224,7 @@
       this.findIframeById(id).classList.remove(TAB_IFRAME_LEAVE_CLASS);
 
       //滚动到指定tab
-      this.scrollToTabById(id);
+      // this.scrollToTabById(id);
     };
     _proto._openMenu = function _openMenu(a) {
       var ul = a.parentNode.parentNode;
