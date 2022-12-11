@@ -9,7 +9,7 @@
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="../plugins/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
@@ -33,14 +33,15 @@
     </div>
 </div>
 
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
-<script src="../plugins/jquery/jquery.js"></script>
+<script src="../plugins/jquery/dist/jquery.min.js"></script>
 <script src="../plugins/tinymce/tinymce.min.js"></script>
 <script>
     tinymce.init({
         language: 'zh-Hans',
         selector: '#content',
+        promotion: false,
         plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
         editimage_cors_hosts: ['picsum.photos'],
         menubar: 'file edit view insert format tools table help',
