@@ -8,9 +8,9 @@
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
-    <link rel="stylesheet" href="plugins/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="plugins/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dist/css/bootstrap-admin.css">
+    <link rel="stylesheet" href="dist/css/bootstrap-admin.min.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
 <body>
@@ -389,35 +389,69 @@
             </li>
             <li>
                 <a href="javascript:" class="has-children">
-                    <i class="bi bi-filetype-html"></i>页面
+                    <i class="bi bi-person"></i>会员管理
                 </a>
                 <ul>
                     <li>
-                        <a href="pages/page-blank.html">新页面</a>
+                        <a href="pages/page-list.html">会员列表</a>
                     </li>
                     <li>
-                        <a href="pages/page-list.html">用户列表</a>
+                        <a href="pages/page-login.html">下载管理</a>
                     </li>
+                    <li>
+                        <a href="pages/page-login2.html">积分管理</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:" class="has-children">
+                    <i class="bi bi-person-gear"></i>管理员管理
+                </a>
+                <ul>
+                    <li>
+                        <a href="pages/page-list.html">管理员列表</a>
+                    </li>
+                    <li>
+                        <a href="pages/page-login.html">角色管理</a>
+                    </li>
+                    <li>
+                        <a href="pages/page-login2.html">权限管理</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:" class="has-children">
+                    <i class="bi bi-gear"></i>系统管理
+                </a>
+                <ul>
+                    <li>
+                        <a href="pages/page-list.html">系统设置</a>
+                    </li>
+                    <li>
+                        <a href="pages/page-login.html">栏目管理</a>
+                    </li>
+                    <li>
+                        <a href="pages/page-login2.html">数据字典</a>
+                    </li>
+                    <li>
+                        <a href="pages/page-login2.html">屏蔽词</a>
+                    </li>
+                    <li>
+                        <a href="pages/page-login2.html">系统日志</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:" class="has-children">
+                    <i class="bi bi-filetype-html"></i>其它页面
+                </a>
+                <ul>
+
                     <li>
                         <a href="pages/page-login.html" target="_blank">登录页面</a>
                     </li>
                     <li>
                         <a href="pages/page-login2.html" target="_blank">登录页面2</a>
-                    </li>
-                    <li>
-                        <a href="pages/page-comment.html">评论页</a>
-                    </li>
-                    <li>
-                        <a href="pages/page-pricing.html">产品定价</a>
-                    </li>
-                    <li>
-                        <a href="pages/page-lock-screen.html" target="_blank">锁屏页</a>
-                    </li>
-                    <li>
-                        <a href="pages/page-article-list.html">文章列表页</a>
-                    </li>
-                    <li>
-                        <a href="pages/page-products-details.html">商品详情页</a>
                     </li>
                     <li>
                         <a href="pages/page-profile.html">个人资料</a>
@@ -452,24 +486,24 @@
                     <i class="bi bi-list-nested"></i>多级菜单
                 </a>
                 <ul>
-                    <li><a href="pages/welcome.html?id=1">一级菜单-1</a></li>
+                    <li><a href="pages/page-multilevel.html?id=1">一级菜单</a></li>
                     <li>
-                        <a href="javascript:" class="has-children">一级菜单-2</a>
+                        <a href="javascript:" class="has-children">一级菜单</a>
                         <ul>
-                            <li><a href="pages/welcome.html?id=2">二级菜单</a></li>
+                            <li><a href="pages/page-multilevel.html?id=2">二级菜单</a></li>
                             <li>
                                 <a href="javascript:" class="has-children">二级菜单</a>
                                 <ul>
-                                    <li><a href="pages/welcome.html?id=3">三级菜单</a></li>
+                                    <li><a href="pages/page-multilevel.html?id=3">三级菜单</a></li>
                                     <li>
                                         <a href="javascript:" class="has-children">三级菜单</a>
                                         <ul>
-                                            <li><a href="pages/welcome.html?id=4">四级菜单</a></li>
+                                            <li><a href="pages/page-multilevel.html?id=4">四级菜单</a></li>
                                             <li>
                                                 <a href="javascript:" class="has-children">四级菜单</a>
                                                 <ul>
-                                                    <li><a href="pages/welcome.html?id=5">五级菜单</a></li>
-                                                    <li><a href="pages/welcome.html?id=6">五级菜单</a></li>
+                                                    <li><a href="pages/page-multilevel.html?id=5">五级菜单</a></li>
+                                                    <li><a href="pages/page-multilevel.html?id=6">五级菜单</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -479,9 +513,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="pages/welcome.html?id=789" class="has-children">一级菜单-3</a>
+                        <a href="pages/welcome.html?id=789" class="has-children">一级菜单</a>
                         <ul>
-                            <li><a href="pages/welcome.html?id=31">二级菜单-3-1</a></li>
+                            <li><a href="pages/page-multilevel.html?id=1011">二级菜单</a></li>
                         </ul>
                     </li>
                 </ul>

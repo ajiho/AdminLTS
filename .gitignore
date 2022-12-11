@@ -5,7 +5,6 @@ node_modules
 *.log
 
 
-#plugins
-/plugins/**/*.ts
-/plugins/**/*.md
-/plugins/**/package.json
+#plugins只保留生成环境所需文件
+!/plugins/select2-bootstrap-5-theme/dist
+!/plugins/bootstrap-icons/font
