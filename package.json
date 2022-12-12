@@ -1,8 +1,11 @@
 {
   "dependencies": {
+    "@eonasdan/tempus-dominus": "^6.2.7",
+    "@popperjs/core": "^2.11.6",
     "@ztree/ztree_v3": "^3.5.48",
     "better-scroll": "^2.5.0",
     "bootstrap-icons": "^1.9.1",
+    "bootstrap-table": "^1.21.1",
     "chart.js": "^3.8.0",
     "croppie": "^2.6.5",
     "dropzone": "^6.0.0-beta.2",

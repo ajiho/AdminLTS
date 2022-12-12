@@ -7,6 +7,20 @@ node_modules
 
 #plugins
 
+#moment
+plugins/moment/*
+!/plugins/moment/dist
+!/plugins/moment/locale
+!/plugins/moment/min
+
+#@popperjs
+plugins/@popperjs/core/*
+!/plugins/@popperjs/core/dist
+
+#tempus-dominus
+plugins/@eonasdan/tempus-dominus/*
+!/plugins/@eonasdan/tempus-dominus/dist
+
 #bootstrap-icons
 plugins/bootstrap-icons/*
 !/plugins/bootstrap-icons/font

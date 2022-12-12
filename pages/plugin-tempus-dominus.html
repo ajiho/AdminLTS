@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
 
-    <link rel="stylesheet" href="../plugins/tempus-dominus/css/tempus-dominus.min.css"/>
+
+    <link rel="stylesheet" href="../plugins/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css"/>
 
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
@@ -20,84 +21,104 @@
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
         <div class="card-body">
-            <div class="row row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
-                <div class="col">
-                    <h5 class="card-title">单选年</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">吐槽一下,感觉这个作者把这个插件更新得越来越难用(注意:该插件的演示并不完善)</h6>
-                    <hr>
-                    <div class="mb-3">
-                        <label for="customIconsInput" class="form-label">建筑年代</label>
-                        <div class='input-group'
-                             id='customIcons'
-                             data-td-target-input='nearest'
-                             data-td-target-toggle='nearest'>
-                            <input id='customIconsInput'
-                                   readonly
-                                   type='text'
-                                   class='form-control'
-                                   data-td-target='#customIcons'
-                                   name="fang_year"/>
-                            <span class='input-group-text'
-                                  data-td-target='#customIcons'
-                                  data-td-toggle='datetimepicker'>
-                                        <span class='bi bi-calendar'></span>
-                                    </span>
-                        </div>
-                    </div>
+            <h5 class="card-title">年份选择</h5>
+            <div class="input-group mb-3" id="datetimepicker1">
+                <input type="text" class="form-control" readonly>
+                <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+            </div>
 
+
+            <h5 class="card-title">年月选择</h5>
+            <div class="input-group mb-3" id="datetimepicker2">
+                <input type="text" class="form-control" readonly>
+                <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+            </div>
+
+            <h5 class="card-title">年月日选择</h5>
+            <div class="input-group mb-3" id="datetimepicker3">
+                <input type="text" class="form-control" readonly>
+                <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+            </div>
+
+            <h5 class="card-title">年月日时分秒选择</h5>
+            <div class="input-group mb-3" id="datetimepicker4">
+                <input type="text" class="form-control" readonly>
+                <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+            </div>
+
+            <h5 class="card-title">时刻选择</h5>
+            <div class="input-group mb-3" id="datetimepicker5">
+                <input type="text" class="form-control" readonly>
+                <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+            </div>
+
+
+            <h5 class="card-title">区间选择</h5>
+
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3" id="datetimepicker6">
+                        <input type="text" class="form-control" readonly>
+                        <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                    </div>
                 </div>
                 <div class="col">
-                    <h5 class="card-title">更多演示标题</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">更多演示描述</h6>
-                    <hr>
-                    更多演示内容
-
+                    <div class="input-group mb-3" id="datetimepicker7">
+                        <input type="text" class="form-control" readonly>
+                        <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                    </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>
 
 <script src="../plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
+
 <!--插件js-->
+<script src="../plugins/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="../plugins/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js"></script>
+<script src="../plugins/@eonasdan/tempus-dominus/dist/plugins/customDateFormat.js"></script>
+<script src="../plugins/moment/min/moment.min.js"></script>
 
-<script src="../plugins/moment/moment.min.js"></script>
-<script src="../plugins/popperjs/umd/popper.min.js"></script>
-<script src="../plugins/tempus-dominus/js/tempus-dominus.min.js"></script>
+
 <script>
-    var minDate = new tempusDominus.DateTime(); //2021-03-13
-    minDate.setYear(1900); //2021-03-21
+    //自定义日期格式插件
+    tempusDominus.extend(window.tempusDominus.plugins.customDateFormat);
 
-
-    var maxDate = new tempusDominus.DateTime(); //2021-03-13
-    maxDate.manipulate(1, 'date'); //2021-03-14
-
-    const picker = new tempusDominus.TempusDominus(document.getElementById('customIcons'), {
-        restrictions: {
-            minDate: minDate,
-            maxDate: maxDate,
+    //年份选择
+    new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {
+        //本地化控制
+        localization: {
+            format: 'yyyy',
         },
+        //布局控制
         display: {
-            //'clock' | 'calendar' | 'months' | 'years' | 'decades'
+            //视图模式(选择年份视图最先开始)
             viewMode: 'years',
             components: {
+                //是否开启日历，false:则是时刻模式
                 calendar: true,
+                //支持年份选择
                 year: true,
+                //是否开启月份选择
                 month: false,
+                //支持日期选择
                 date: false,
-                //是否启用时刻 hours minutes seconds 在 clock为true时有效
+                //底部按钮中那个时刻选择是否启用，false则表示隐藏，下面三个需要该选项为true时有效
                 clock: false,
+                //时
                 hours: true,
+                //分
                 minutes: true,
-                seconds: true,
-
-                useTwentyfourHour: false,
+                //秒
+                seconds: false,
+                //是否使用24小时制,比如3.15分会变成15.15
+                useTwentyfourHour: true,
             },
-
-
-            //是否显示星期
-            calendarWeeks: true,
             //图标
             icons: {
                 time: 'bi bi-clock',
@@ -110,6 +131,7 @@
                 clear: 'bi bi-trash',
                 close: 'bi bi-x',
             },
+            //视图底部按钮
             buttons: {
                 today: true,
                 clear: true,
@@ -117,10 +139,318 @@
             },
         }
     });
-    //格式化input框得值
-    picker.dates.formatInput = function (date) {
-        return moment(date).format('YYYY');
-    }
+
+    //年月选择
+    new tempusDominus.TempusDominus(document.getElementById('datetimepicker2'), {
+        //本地化控制
+        localization: {
+            format: 'yyyy-MM',
+        },
+        //布局控制
+        display: {
+            //视图模式(选择年份视图最先开始)
+            viewMode: 'years',
+            components: {
+                //是否开启日历，false:则是时刻模式
+                calendar: true,
+                //支持年份选择
+                year: true,
+                //是否开启月份选择
+                month: true,
+                //支持日期选择
+                date: false,
+                //底部按钮中那个时刻选择是否启用，false则表示隐藏，下面三个需要该选项为true时有效
+                clock: false,
+                //时
+                hours: true,
+                //分
+                minutes: true,
+                //秒
+                seconds: false,
+                //是否使用24小时制,比如3.15分会变成15.15
+                useTwentyfourHour: true,
+            },
+            //图标
+            icons: {
+                time: 'bi bi-clock',
+                date: 'bi bi-calendar',
+                up: 'bi bi-arrow-up',
+                down: 'bi bi-arrow-down',
+                previous: 'bi bi-chevron-left',
+                next: 'bi bi-chevron-right',
+                today: 'bi bi-calendar-check',
+                clear: 'bi bi-trash',
+                close: 'bi bi-x',
+            },
+            //视图底部按钮
+            buttons: {
+                today: true,
+                clear: true,
+                close: true,
+            },
+        }
+    });
+
+    //年月日
+    new tempusDominus.TempusDominus(document.getElementById('datetimepicker3'), {
+        //本地化控制
+        localization: {
+            format: 'yyyy-MM-dd',
+        },
+        //布局控制
+        display: {
+            //视图模式(选择年份视图最先开始)
+            viewMode: 'years',
+            components: {
+                //是否开启日历，false:则是时刻模式
+                calendar: true,
+                //支持年份选择
+                year: true,
+                //是否开启月份选择
+                month: true,
+                //支持日期选择
+                date: true,
+                //底部按钮中那个时刻选择是否启用，false则表示隐藏，下面三个需要该选项为true时有效
+                clock: false,
+                //时
+                hours: true,
+                //分
+                minutes: true,
+                //秒
+                seconds: false,
+                //是否使用24小时制,比如3.15分会变成15.15
+                useTwentyfourHour: true,
+            },
+            //图标
+            icons: {
+                time: 'bi bi-clock',
+                date: 'bi bi-calendar',
+                up: 'bi bi-arrow-up',
+                down: 'bi bi-arrow-down',
+                previous: 'bi bi-chevron-left',
+                next: 'bi bi-chevron-right',
+                today: 'bi bi-calendar-check',
+                clear: 'bi bi-trash',
+                close: 'bi bi-x',
+            },
+            //视图底部按钮
+            buttons: {
+                today: true,
+                clear: true,
+                close: true,
+            },
+        }
+    });
+
+    //年月日时分秒
+    new tempusDominus.TempusDominus(document.getElementById('datetimepicker4'), {
+        //本地化控制
+        localization: {
+            format: 'yyyy-MM-dd HH:mm:ss',
+        },
+        //布局控制
+        display: {
+            //视图模式(选择年份视图最先开始)
+            viewMode: 'calendar',
+            components: {
+                //是否开启日历，false:则是时刻模式
+                calendar: true,
+                //支持年份选择
+                year: true,
+                //是否开启月份选择
+                month: true,
+                //支持日期选择
+                date: true,
+                //底部按钮中那个时刻选择是否启用，false则表示隐藏，下面三个需要该选项为true时有效
+                clock: true,
+                //时
+                hours: true,
+                //分
+                minutes: true,
+                //秒
+                seconds: true,
+                //是否使用24小时制,比如3.15分会变成15.15
+                useTwentyfourHour: true,
+            },
+            //图标
+            icons: {
+                time: 'bi bi-clock',
+                date: 'bi bi-calendar',
+                up: 'bi bi-arrow-up',
+                down: 'bi bi-arrow-down',
+                previous: 'bi bi-chevron-left',
+                next: 'bi bi-chevron-right',
+                today: 'bi bi-calendar-check',
+                clear: 'bi bi-trash',
+                close: 'bi bi-x',
+            },
+            //视图底部按钮
+            buttons: {
+                today: true,
+                clear: true,
+                close: true,
+            },
+        }
+    });
+
+    //时刻选择
+    new tempusDominus.TempusDominus(document.getElementById('datetimepicker5'), {
+        //本地化控制
+        localization: {
+            format: 'HH:mm',
+        },
+        //布局控制
+        display: {
+            //视图模式(选择年份视图最先开始)
+            viewMode: 'clock',
+            components: {
+                decades: false,
+                //是否开启日历，false:则是时刻模式
+                calendar: false,
+                //支持年份选择
+                year: false,
+                //是否开启月份选择
+                month: false,
+                //支持日期选择
+                date: false,
+                //底部按钮中那个时刻选择是否启用，false则表示隐藏，下面三个需要该选项为true时有效
+                clock: true,
+                //时
+                hours: true,
+                //分
+                minutes: true,
+                //秒
+                seconds: false,
+                //是否使用24小时制,比如3.15分会变成15.15
+                useTwentyfourHour: true,
+            },
+            //图标
+            icons: {
+                time: 'bi bi-clock',
+                date: 'bi bi-calendar',
+                up: 'bi bi-arrow-up',
+                down: 'bi bi-arrow-down',
+                previous: 'bi bi-chevron-left',
+                next: 'bi bi-chevron-right',
+                today: 'bi bi-calendar-check',
+                clear: 'bi bi-trash',
+                close: 'bi bi-x',
+            },
+        }
+    });
+
+    let td6 = new tempusDominus.TempusDominus(document.getElementById('datetimepicker6'), {
+        //本地化控制
+        localization: {
+            format: 'yyyy-MM-dd HH:mm:ss',
+        },
+        //布局控制
+        display: {
+            //视图模式(选择年份视图最先开始)
+            viewMode: 'calendar',
+            components: {
+                //是否开启日历，false:则是时刻模式
+                calendar: true,
+                //支持年份选择
+                year: true,
+                //是否开启月份选择
+                month: true,
+                //支持日期选择
+                date: true,
+                //底部按钮中那个时刻选择是否启用，false则表示隐藏，下面三个需要该选项为true时有效
+                clock: true,
+                //时
+                hours: true,
+                //分
+                minutes: true,
+                //秒
+                seconds: true,
+                //是否使用24小时制,比如3.15分会变成15.15
+                useTwentyfourHour: true,
+            },
+            //图标
+            icons: {
+                time: 'bi bi-clock',
+                date: 'bi bi-calendar',
+                up: 'bi bi-arrow-up',
+                down: 'bi bi-arrow-down',
+                previous: 'bi bi-chevron-left',
+                next: 'bi bi-chevron-right',
+                today: 'bi bi-calendar-check',
+                clear: 'bi bi-trash',
+                close: 'bi bi-x',
+            },
+            //视图底部按钮
+            buttons: {
+                today: true,
+                clear: true,
+                close: true,
+            },
+        }
+    });
+    let td7 = new tempusDominus.TempusDominus(document.getElementById('datetimepicker7'), {
+        //本地化控制
+        localization: {
+            format: 'yyyy-MM-dd HH:mm:ss',
+        },
+        //布局控制
+        display: {
+            //视图模式(选择年份视图最先开始)
+            viewMode: 'calendar',
+            components: {
+                //是否开启日历，false:则是时刻模式
+                calendar: true,
+                //支持年份选择
+                year: true,
+                //是否开启月份选择
+                month: true,
+                //支持日期选择
+                date: true,
+                //底部按钮中那个时刻选择是否启用，false则表示隐藏，下面三个需要该选项为true时有效
+                clock: true,
+                //时
+                hours: true,
+                //分
+                minutes: true,
+                //秒
+                seconds: true,
+                //是否使用24小时制,比如3.15分会变成15.15
+                useTwentyfourHour: true,
+            },
+            //图标
+            icons: {
+                time: 'bi bi-clock',
+                date: 'bi bi-calendar',
+                up: 'bi bi-arrow-up',
+                down: 'bi bi-arrow-down',
+                previous: 'bi bi-chevron-left',
+                next: 'bi bi-chevron-right',
+                today: 'bi bi-calendar-check',
+                clear: 'bi bi-trash',
+                close: 'bi bi-x',
+            },
+            //视图底部按钮
+            buttons: {
+                today: true,
+                clear: true,
+                close: true,
+            },
+        }
+    });
+    td6.subscribe(tempusDominus.Namespace.events.change, (e) => {
+        td7.updateOptions({
+            restrictions: {
+                minDate: e.date,
+            },
+        });
+    });
+    td7.subscribe(tempusDominus.Namespace.events.change, (e) => {
+        td6.updateOptions({
+            restrictions: {
+                maxDate: e.date,
+            },
+        });
+    });
 </script>
 </body>
 </html>
