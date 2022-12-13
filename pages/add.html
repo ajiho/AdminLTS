@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../plugins/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+</head>
+<body class="bg-white">
+<div class="container">
+
+    <form action="#" id="form2" class="mt-2">
+        <div class="mb-3 row">
+            <label for="title" class="col-sm-3 col-form-label">事项名称</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="completedRadio2" class="col-sm-3 col-form-label">待办状态</label>
+            <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="completed"
+                           id="completedRadio1" value="true">
+                    <label class="form-check-label" for="completedRadio1">已完成</label>
+
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="completed"
+                           id="completedRadio2" value="false">
+                    <label class="form-check-label" for="completedRadio2">未完成</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mb-3 row">
+            <div class="col-sm-9 offset-sm-3">
+                <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<script src="../plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/js/bootstrap-admin.min.js"></script>
+<script src="../plugins/jquery/dist/jquery.min.js"></script>
+<script src="../plugins/formvalidation/js/formValidation.js"></script>
+<script src="../plugins/formvalidation/js/framework/bootstrap.js"></script>
+<script src="../plugins/formvalidation/js/language/zh_CN.js"></script>
+<script>
+
+
+    $("#form2").formValidation({
+        //验证字段
+        fields: {
+            title: {
+                validators: {
+                    notEmpty: true
+                }
+            },
+            completed: {
+                validators: {
+                    notEmpty: true
+                }
+            },
+        }
+    }).on('success.form.fv', function (e) {
+        //阻止表单提交
+        e.preventDefault();
+        //得到表单对象
+        var $form = $(e.target);
+        var data = $form.serialize();
+
+        console.log(data);
+
+        //得到序列化数据
+        $.ajax({
+            url: "http://jsonplaceholder.typicode.com/todos",
+            method: 'post',
+            data: data,
+            success:function (res){
+               //添加成功
+
+            }
+        })
+
+    });
+
+
+</script>
+
+</body>
+</html>

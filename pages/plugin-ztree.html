@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
 
     <!--  插件css-->
-    <link rel="stylesheet" href="../plugins/@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css">
-    <link rel="stylesheet" href="../plugins/@ztree/ztree_v3/css/bsa-ztree_v3.css">
+    <link rel="stylesheet" href="../plugins/@ztree/ztree_v3/css/metroStyle/bsa-metroStyle.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
 <body class="bg-light pt-2">
@@ -22,11 +21,13 @@
     <div class="card border-0 shadow-sm">
         <div class="card-body">
             <h5 class="card-title">树形组件</h5>
-            <h6 class="card-subtitle mb-2 text-muted">这在开发中也是一个很重要的角色</h6>
+            <h6 class="card-subtitle mb-2 text-muted">树形组件在开发中也是一个非常非常很重要的角色</h6>
             <hr>
 
-            <button class="btn btn-outline-warning expandAll">展开所有</button>
-            <button class="btn btn-outline-success collapseAll">折叠所有</button>
+            <div class="mb-2">
+                <button class="btn btn-outline-warning" onclick="expandAll()">展开所有</button>
+                <button class="btn btn-outline-success" onclick="collapseAll()">折叠所有</button>
+            </div>
 
             <ul id="treeDemo" class="ztree"></ul>
         </div>
@@ -35,79 +36,45 @@
 
 <script src="../plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
-<script src="../plugins/jquery/dist/jquery.min.js"></script>
 
+<!--jquery-->
+<script src="../plugins/jquery/dist/jquery.min.js"></script>
+<!--插件-->
 <script src="../plugins/@ztree/ztree_v3/js/jquery.ztree.all.min.js"></script>
 <script>
 
-    document.querySelector('.expandAll').addEventListener('click',function (){
-        $.fn.zTree.getZTreeObj("treeDemo").expandAll(true);
-    });
-
-
-    document.querySelector('.collapseAll').addEventListener('click',function (){
-        $.fn.zTree.getZTreeObj("treeDemo").expandAll(false);
-    });
-
-    function addDiyDom(treeId, treeNode) {
-
-        let aObj = $("#" + treeNode.tId + "_a");
-        if ($("#diyBtn_" + treeNode.id).length > 0) return;
-
-        let editStr = `
-            <i class="bi bi-pencil-square ms-2" role=button id="editBtn_${treeNode.id}"></i><i class="bi bi-x-lg ms-3" role="button" id="delBtn_${treeNode.id}"></i>
-            `;
-
-        aObj.after(editStr);
-
-        //编辑按钮
-        $("#editBtn_" + treeNode.id).bind("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            let name = treeNode.name;
-            let id = treeNode.id;
-
-            alert("你点击了编辑按钮-" + name + '-ID:' + id);
-
-        });
-
-        //删除按钮
-        $("#delBtn_" + treeNode.id).bind("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            let name = treeNode.name;
-            let id = treeNode.id;
-            alert("你点击了删除按钮-" + name + '-ID:' + id);
-        });
-
-    }
-
-    let setting = {
-
+    //设置
+    var setting = {
         view: {
+            //是否双击展开
             dblClickExpand: false,
             addHoverDom: false,
             removeHoverDom: false,
+            //是否多选
             selectedMulti: false,
-            showIcon: false,
+            // showIcon: false,
+            //添加自定义的dom
             addDiyDom: addDiyDom,
             nameIsHTML: true
         },
+
         check: {
             //是否开启选择框
-            enable: false
+            enable: true
         },
+
         data: {
             simpleData: {
                 enable: true
             }
         },
+
         edit: {
-            enable: false
+            enable: true
         }
     };
 
-    let zNodes = [
+    var zNodes = [
         {id: 1, pId: 0, name: '角色管理', open: true},
         {id: 2, pId: 1, name: "角色添加", open: true},
         {id: 3, pId: 1, name: "角色编辑", open: true},
@@ -122,11 +89,48 @@
     ];
 
 
+    //ztree初始化
     $.fn.zTree.init($("#treeDemo"), setting, zNodes);
 
 
+    function expandAll() {
+        $.fn.zTree.getZTreeObj("treeDemo").expandAll(true);
+    }
 
+    function collapseAll() {
+        $.fn.zTree.getZTreeObj("treeDemo").expandAll(false);
 
+    }
+
+    function addDiyDom(treeId, treeNode) {
+
+        let aObj = $("#" + treeNode.tId + "_a");
+        if ($("#diyBtn_" + treeNode.id).length > 0) return;
+
+        let editStr = `
+            <i class="bi bi-pencil-square me-2" role=button id="editBtn_${treeNode.id}"></i>
+            <i class="bi bi-x-lg" role="button" id="delBtn_${treeNode.id}"></i>
+            `;
+        aObj.after(editStr);
+
+        //编辑按钮
+        $("#editBtn_" + treeNode.id).on('click',function (e){
+            e.preventDefault();
+            e.stopPropagation();
+            let name = treeNode.name;
+            let id = treeNode.id;
+            alert("你点击了编辑按钮-" + name + '-ID:' + id);
+        })
+
+        //删除按钮
+        $("#delBtn_" + treeNode.id).on("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            let name = treeNode.name;
+            let id = treeNode.id;
+            alert("你点击了删除按钮-" + name + '-ID:' + id);
+        });
+    }
 
 
 </script>

@@ -109,7 +109,7 @@
       &.active, &:active, &:focus, &:hover {
         color: #0d6efd;
         text-decoration: none;
-        background: rgba(13, 110, 253, 0.12);
+        background: rgba(13,110,253,.12);
       }
 
       &.has-children {
@@ -126,7 +126,7 @@
         &.open {
           color: #0d6efd;
           text-decoration: none;
-          background: rgba(13, 110, 253, 0.12);
+          background: rgba(13,110,253,.12);
 
           &:after {
             transform: scale(.5) rotate(-90deg);
@@ -147,8 +147,7 @@
     ul {
       transition: height 150ms linear;
       display: none;
-      border-bottom: 1px solid rgba(127, 113, 113, 0.08);
-
+      border-bottom: 1px solid rgba(127,113,113,.08);
       a {
         padding-left: calc(16px + 1rem + 10px);
       }

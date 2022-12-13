@@ -21,11 +21,11 @@ Bootstrap-Admin(以下简称BSA)基于bootstrap5.x设计的一个响应式静态
 
 - 高度响应式、一站匹配手机、平板、pc
 - 界面整体白色为基调、简约、大气、流畅不卡顿
-- 集成开发中常用的优秀的开源js插件
+- 集成开发中常用的优秀的开源js插件(基本上全是还有在维护的)
 - BSA不依赖Jquery(集成的开源js插件目前还依赖Jquery的情况除外)
-- 符合国情的iframe多tab选项卡(1.1+)
+- 支持符合国情的iframe多tab选项卡模式(1.1+)
 - 严格区分BSA和Bootstrap的样式,BSA的样式都是`bsa`开头
-- 没有修改Bootstrap底层样式,享受原汁原味的Bootstrap5默认样式,BSA只提供一个后台的架子
+- 没有修改Bootstrap底层样式(去官方文档复制粘贴一模一样的效果)
 - 紧跟Bootstrap官方更新的步伐
 
 

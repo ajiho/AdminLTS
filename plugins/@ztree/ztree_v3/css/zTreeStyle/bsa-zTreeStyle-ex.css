@@ -1,0 +1,19 @@
+.ztree * {
+	font-size: 1rem;
+}
+
+.ztree li,
+.ztree li a {
+	line-height: 2rem;
+	text-decoration: none !important;
+}
+
+.ztree li a:hover {
+	color: #9b9b9b;
+}
+
+/* 选中节点的背景色*/
+.ztree li a.curSelectedNode {
+	background: none;
+	border: none;
+}

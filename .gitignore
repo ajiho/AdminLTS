@@ -5,7 +5,20 @@ node_modules
 *.log
 
 
+/.cache/
+
+
 #plugins
+
+#sweetalert2
+plugins/sweetalert2/*
+!/plugins/sweetalert2/dist
+
+
+#bootstrap-table
+plugins/bootstrap-table/*
+!/plugins/bootstrap-table/dist
+
 
 #moment
 plugins/moment/*

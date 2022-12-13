@@ -17,7 +17,7 @@ html.color-sidebar .bsa-sidebar .bsa-logo-text {
 
 
 html.color-sidebar .bsa-sidebar .bsa-sidebar-header {
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(255,255,255,.15);
 }
 
 
@@ -27,17 +27,17 @@ html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul a:active,
 html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul a:focus,
 html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul a:hover {
   color: #fff;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255,255,255 ,.18);
 }
 
 
 /*背景色*/
 html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul ul {
   border: none;
-  background: rgba(255,255,255 ,0.08);
+  background: rgba(255,255,255,.08);
 }
 
 /*a链接色*/
 html.color-sidebar .bsa-sidebar .bsa-sidebar-body > ul a {
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,.85);
 }
