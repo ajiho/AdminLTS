@@ -1,4 +1,4 @@
-<h1 align="center">Bootstrap-Admin(BSA)</h1> 
+<h1 align="center">Bootstrap-Admin</h1> 
 
 <p align="center">    
     <b>无论您是用于项目开发、学习、还是教学演示、希望能给个star，这将会是我最大的动力!</b>
@@ -9,7 +9,7 @@
 
 ## 简介
 
-Bootstrap-Admin(以下简称BSA)基于Bootstrap5.x设计的一个响应式静态后台管理HTML模板,旨在让喜欢用bootstrap的程序员有个愉悦的起点。
+Bootstrap-Admin基于Bootstrap5.x设计的一个响应式静态后台管理HTML模板,旨在让喜欢用bootstrap的程序员有个愉悦的起点。
 
 [演示地址](https://ajiho.gitee.io/bootstrap-admin)
 
@@ -24,9 +24,9 @@ Bootstrap-Admin(以下简称BSA)基于Bootstrap5.x设计的一个响应式静态
 - 高度响应式、一站匹配手机、平板、pc
 - 界面整体简约、大气、流畅不卡顿
 - 集成开发中常用的优秀的开源js插件
-- 严格区分BSA和Bootstrap的样式,BSA的样式都是以`bsa`开头
+- 严格区分Bootstrap-Admin和Bootstrap的样式,Bootstrap-Admin的样式都是以`bsa`开头
 - 没有修改Bootstrap底层样式,体验原汁原味的Bootstrap
-- 紧跟Bootstrap官方更新的步伐
+
 
 
 ## 版本对应
@@ -34,7 +34,7 @@ Bootstrap-Admin(以下简称BSA)基于Bootstrap5.x设计的一个响应式静态
 |bootstrap-admin版本|bootstrap版本|
 |--|--|
 |v1.x|v5.1.3|
-|v2.x|v5.3.0(todo)|
+|v2.x|v5.3.0|
 
 ## 请我喝杯咖啡
 
@@ -50,7 +50,7 @@ Bootstrap-Admin(以下简称BSA)基于Bootstrap5.x设计的一个响应式静态
 
 ### 手动下载
 
-使用[发布页面](https://gitee.com/ajiho/bootstrap-admin/releases)
+使用[发布页面](https://gitee.com/ajiho/bootstrap-admin/releases)或[源码下载](https://gitee.com/ajiho/bootstrap-admin/repository/archive/2.x.zip)
 
 
 ### composer下载
@@ -67,7 +67,7 @@ npm i bootstrap-admin
 
 ### yarn
 ```
-yarn add bootstrap-quicktab
+yarn add bootstrap-admin
 ```
 
 ### git
