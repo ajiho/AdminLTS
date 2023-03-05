@@ -38,7 +38,11 @@ Bootstrap-Admin(以下简称BSA)基于Bootstrap5.x设计的一个响应式静态
 
 ## 请我喝杯咖啡
 
-![请我喝杯咖啡](https://gitee.com/ajiho/bootstrap-admin/raw/2.x/pay.png)
+
+
+<div align="left">
+<img alt="请我喝杯咖啡" src="https://gitee.com/ajiho/bootstrap-admin/raw/2.x/pay.png" height="300" />
+</div>
 
 
 ## 下载
@@ -80,19 +84,8 @@ git clone https://gitee.com/ajiho/bootstrap-admin.git
 
 ## 设备支持
 
-~~~
-# https://github.com/browserslist/browserslist#readme
+同bootstrap5.x相同的浏览器支持,你可以查看[官方地址](https://getbootstrap.com/docs/5.3/getting-started/browsers-devices/)，也可以查看仓库里的[.browserslistrc](https://gitee.com/ajiho/bootstrap-admin/blob/2.x/.browserslistrc)文件
 
->= 0.5%
-last 2 major versions
-not dead
-Chrome >= 60
-Firefox >= 60
-Firefox ESR
-iOS >= 12
-Safari >= 12
-not Explorer <= 11
-~~~
 
 ## 反馈
 
