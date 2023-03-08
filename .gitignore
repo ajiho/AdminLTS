@@ -5,90 +5,73 @@ node_modules
 *.log
 
 
-/.cache/
-
-
-#plugins
-
 #sweetalert2
-plugins/sweetalert2/*
-!/plugins/sweetalert2/dist
+static/lib/sweetalert2/*
+!static/lib/sweetalert2/dist
 
 
 #bootstrap-table
-plugins/bootstrap-table/*
-!/plugins/bootstrap-table/dist
+static/lib/bootstrap-table/*
+!static/lib/bootstrap-table/dist
 
 
 #moment
-plugins/moment/*
-!/plugins/moment/dist
-!/plugins/moment/locale
-!/plugins/moment/min
+static/lib/moment/*
+!static/lib/moment/dist
+!static/lib/moment/locale
+!static/lib/moment/min
 
-#@popperjs
-plugins/@popperjs/core/*
-!/plugins/@popperjs/core/dist
 
-#tempus-dominus
-plugins/@eonasdan/tempus-dominus/*
-!/plugins/@eonasdan/tempus-dominus/dist
-
-#bootstrap-icons
-plugins/bootstrap-icons/*
-!/plugins/bootstrap-icons/font
 
 
 #select2-bootstrap-5-theme
-plugins/select2-bootstrap-5-theme/*
-!/plugins/select2-bootstrap-5-theme/dist
+static/lib/select2-bootstrap-5-theme/*
+!static/lib/select2-bootstrap-5-theme/dist
 
 
 #bootstrap
-plugins/bootstrap/*
-!/plugins/bootstrap/dist
+static/lib/bootstrap/*
+!static/lib/bootstrap/dist
 
 #echart.js
-plugins/echarts/*
-!/plugins/echarts/dist
+static/lib/echarts/*
+!static/lib/echarts/dist
 
 #chart.js
-plugins/chart.js/*
-!/plugins/chart.js/dist
+static/lib/chart.js/*
+!static/lib/chart.js/dist
 
 #jquery
-plugins/jquery/*
-!/plugins/jquery/dist
+static/lib/jquery/*
+!static/lib/jquery/dist
+
 
 #tinymce
-plugins/tinymce/*
-!/plugins/tinymce/icons
-!/plugins/tinymce/langs
-!/plugins/tinymce/models
-!/plugins/tinymce/plugins
-!/plugins/tinymce/skins
-!/plugins/tinymce/themes
-!/plugins/tinymce/tinymce.js
-!/plugins/tinymce/tinymce.min.js
+static/lib/tinymce/*
+!static/lib/tinymce/icons
+!static/lib/tinymce/langs
+!static/lib/tinymce/models
+!static/lib/tinymce/plugins
+!static/lib/tinymce/skins
+!static/lib/tinymce/themes
+!static/lib/tinymce/tinymce.js
+!static/lib/tinymce/tinymce.min.js
 
 #croppie
-plugins/croppie/*
-!/plugins/croppie/croppie.css
-!/plugins/croppie/croppie.js
-!/plugins/croppie/croppie.min.js
+static/lib/croppie/*
+!static/lib/croppie/croppie.css
+!static/lib/croppie/croppie.js
+!static/lib/croppie/croppie.min.js
 
 
-#ztree
-plugins/@ztree/ztree_v3/*
-!/plugins/@ztree/ztree_v3/css
-!/plugins/@ztree/ztree_v3/js
+
 
 #select2
-plugins/select2/*
-!/plugins/select2/dist
+static/lib/select2/*
+!static/lib/select2/dist
 
 #dropzone
-plugins/dropzone/*
-!/plugins/dropzone/dist
+static/lib/dropzone/*
+!static/lib/dropzone/dist
 
 

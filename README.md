@@ -7,16 +7,16 @@
     <b>如果对您有所帮助，您可以点右上角 "Star" 收藏一下 ，获取第一时间更新，谢谢！</b>
 </p>
 
-## 简介
+## 介绍
 
-Bootstrap-Admin基于Bootstrap5.x设计的一个响应式静态后台管理HTML模板,旨在让喜欢用bootstrap的程序员有个愉悦的起点。
+Bootstrap-Admin基于bootstrap5.x设计的一个响应式静态后台管理HTML模板，它是开源免费的,旨在快速让喜欢用bootstrap开发后台的程序员有个愉悦的起点。
 
-[演示地址](https://ajiho.gitee.io/bootstrap-admin)
+## 演示地址
 
-## 交流QQ群
+[演示地址V1.1.0](https://ajiho.gitee.io/bootstrap-admin)
 
-- [群1:284169647](https://jq.qq.com/?_wv=1027&k=WmCK50m5)
-- [群2:719667795](https://jq.qq.com/?_wv=1027&k=aQ5vUuVC)
+## 交流群
+![在这里插入图片描述](https://img-blog.csdnimg.cn/b033fec832c940548c033b2854b78e59.png)
 
 
 ## 特性
@@ -25,8 +25,8 @@ Bootstrap-Admin基于Bootstrap5.x设计的一个响应式静态后台管理HTML�
 - 界面整体简约、大气、流畅不卡顿
 - 集成开发中常用的优秀的开源js插件
 - 严格区分Bootstrap-Admin和Bootstrap的样式,Bootstrap-Admin的样式都是以`bsa`开头
-- 没有修改Bootstrap底层样式,体验原汁原味的Bootstrap
-
+- 没有修改Bootstrap底层样式,体验原汁原味的bootstrap
+- 紧跟Bootstrap官方更新的步伐
 
 
 ## 版本对应
@@ -34,24 +34,18 @@ Bootstrap-Admin基于Bootstrap5.x设计的一个响应式静态后台管理HTML�
 |bootstrap-admin版本|bootstrap版本|
 |--|--|
 |v1.x|v5.1.3|
-|v2.x|v5.3.0|
-
-## 请我喝杯咖啡
+|v2.x|v5.3.0(todo)|
 
 
-
-<div align="left">
-<img alt="请我喝杯咖啡" src="https://gitee.com/ajiho/bootstrap-admin/raw/2.x/pay.png" height="300" />
-</div>
 
 
 ## 下载
 
+生产环境请使用下面的方式下载
 
-### 手动下载
+### 仓库下载
 
-使用[发布页面](https://gitee.com/ajiho/bootstrap-admin/releases)或[源码下载](https://gitee.com/ajiho/bootstrap-admin/repository/archive/2.x.zip)
-
+[下载地址](https://gitee.com/ajiho/bootstrap-admin/releases)
 
 ### composer下载
 
@@ -65,27 +59,22 @@ composer require ajiho/bootstrap-admin
 npm i bootstrap-admin
 ~~~
 
-### yarn
-```
-yarn add bootstrap-admin
-```
-
-### git
-
-```
-git clone https://gitee.com/ajiho/bootstrap-admin.git
-```
-
-### CDN
-
-```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-admin/dist/css/bootstrap-admin.min.css">
-```
 
 ## 设备支持
 
-同bootstrap5.x相同的浏览器支持,你可以查看[官方地址](https://getbootstrap.com/docs/5.3/getting-started/browsers-devices/)，也可以查看仓库里的[.browserslistrc](https://gitee.com/ajiho/bootstrap-admin/blob/2.x/.browserslistrc)文件
+~~~
+# https://github.com/browserslist/browserslist#readme
 
+>= 0.5%
+last 2 major versions
+not dead
+Chrome >= 60
+Firefox >= 60
+Firefox ESR
+iOS >= 12
+Safari >= 12
+not Explorer <= 11
+~~~
 
 ## 反馈
 

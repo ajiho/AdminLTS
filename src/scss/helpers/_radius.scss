@@ -1,0 +1,11 @@
+$radius-start: 10;
+$radius-end: 30;
+
+@while $radius-start <= $radius-end {
+
+  .bsa-radius-#{$radius-start} {
+    border-radius: $radius-start * 1px !important;
+  }
+
+  $radius-start: $radius-start + 5;
+}

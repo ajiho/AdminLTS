@@ -1,0 +1,12 @@
+.bsa-content {
+  position: fixed;
+  top: var(--bsa-header-height);
+  bottom: var(--bsa-footer-height);
+  left: var(--bsa-sidebar-width);
+  right: 0;
+  overflow: hidden;
+
+  @include media-breakpoint-down(lg) {
+    left: 0;
+  }
+}

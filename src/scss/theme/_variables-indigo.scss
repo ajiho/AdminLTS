@@ -1,0 +1,69 @@
+@use "sass:color";
+
+$primary-text-indigo: $blue-300 !default;
+$secondary-text-indigo: $gray-300 !default;
+$success-text-indigo: $green-300 !default;
+$info-text-indigo: $cyan-300 !default;
+$warning-text-indigo: $yellow-300 !default;
+$danger-text-indigo: $red-300 !default;
+$light-text-indigo: $indigo-100 !default;
+$dark-text-indigo: $indigo-300 !default;
+
+// a
+$primary-bg-subtle-indigo: $blue-900 !default;
+$secondary-bg-subtle-indigo: $indigo-900 !default;
+$success-bg-subtle-indigo: $green-900 !default;
+$info-bg-subtle-indigo: $cyan-900 !default;
+$warning-bg-subtle-indigo: $yellow-900 !default;
+$danger-bg-subtle-indigo: $red-900 !default;
+$light-bg-subtle-indigo: $indigo-800 !default;
+$dark-bg-subtle-indigo: color.mix($indigo-800, $indigo) !default;
+
+// b
+$primary-border-subtle-indigo: $blue-700 !default;
+$secondary-border-subtle-indigo: $indigo-700 !default;
+$success-border-subtle-indigo: $green-700 !default;
+$info-border-subtle-indigo: $cyan-800 !default;
+$warning-border-subtle-indigo: $yellow-800 !default;
+$danger-border-subtle-indigo: $red-700 !default;
+$light-border-subtle-indigo: $indigo-700 !default;
+$dark-border-subtle-indigo: $indigo-800 !default;
+
+// c
+$body-color-indigo: $indigo-500 !default;
+$body-bg-indigo: $indigo-900 !default;
+$body-emphasis-color-indigo: $indigo-100 !default;
+$body-secondary-color-indigo: rgba($body-color-indigo, .75) !default;
+$body-secondary-bg-indigo: $indigo-800 !default;
+$body-tertiary-color-indigo: rgba($body-color-indigo, .5) !default;
+$body-tertiary-bg-indigo: color.mix($indigo-800, $indigo-900, 50%) !default;
+
+// 强调色
+$emphasis-color-indigo: $indigo-200 !default;
+$border-color-indigo: $indigo-700 !default;
+
+// 模态框的边框需要用到
+$border-color-translucent-indigo: rgba($indigo, .15) !default;
+$headings-color-indigo: #fff !default;
+$link-color-indigo: $blue-300 !default;
+$link-hover-color-indigo: $blue-200 !default;
+$code-color-indigo: $pink-300 !default;
+
+
+
+// Forms
+
+
+$form-select-indicator-color-indigo: $body-color-indigo !default;
+$form-select-indicator-indigo: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color-indigo}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !default;
+$form-switch-color-indigo: rgba($yellow, .25) !default;
+$form-switch-bg-image-indigo: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$form-switch-color-indigo}'/></svg>") !default;
+
+
+
+// Accordion
+
+
+$accordion-button-icon-indigo: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$primary-text-indigo}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$accordion-button-active-icon-indigo: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$primary-text-indigo}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh">
+<html lang="zh" data-bs-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -8,19 +8,20 @@
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
-    <link rel="stylesheet" href="../plugins/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
+    <link rel="stylesheet" href="../dist/lib/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../dist/lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../dist/css/bootstrap-admin.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
-<body class="bg-light pt-2">
+
+<body class="bg-body-tertiary py-3">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
         <div class="card-body">
             <div class="row row-cols-1 row-cols-lg-2 g-3">
                 <div class="col">
                     <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
+                        <div class="card-header ">
                             条形图
                         </div>
                         <div class="card-body">
@@ -30,7 +31,7 @@
                 </div>
                 <div class="col">
                     <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
+                        <div class="card-header ">
                             折线图
                         </div>
                         <div class="card-body">
@@ -40,7 +41,7 @@
                 </div>
                 <div class="col">
                     <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
+                        <div class="card-header ">
                             空心饼图
                         </div>
                         <div class="card-body">
@@ -50,7 +51,7 @@
                 </div>
                 <div class="col">
                     <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white">
+                        <div class="card-header ">
                             实心饼图
                         </div>
                         <div class="card-body">
@@ -63,9 +64,8 @@
     </div>
 </div>
 
-<script src="../plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../dist/js/bootstrap-admin.min.js"></script>
-<script src="../plugins/chart.js/dist/chart.min.js"></script>
+<script src="../dist/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/lib/chart.js/dist/chart.min.js"></script>
 <script>
     new Chart(document.getElementById('chart1').getContext('2d'), {
         type: 'bar',

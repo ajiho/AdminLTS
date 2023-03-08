@@ -1,0 +1,267 @@
+@use "sass:list";
+
+.bsa-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: fixed;
+  top: 0;
+  left: var(--bsa-sidebar-width);
+  right: 0;
+  height: var(--bsa-header-height);
+
+  // background: var(--bsa-header-bg);
+  background-color: var(--#{$prefix}body-bg);
+  border-bottom: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
+  z-index: 80;
+  list-style: none;
+  margin: 0;
+  padding: 0 12px;
+
+  // 移动端的时候left为0
+  @include media-breakpoint-down(lg) {
+    left: 0;
+    padding: 0;
+
+    .bsa-search-form-wrapper {
+      display: none;
+
+      &.open {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--bsa-header-height);
+        padding: 0 12px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        background-color: var(--#{$prefix}body-bg);
+        width: 100%;
+
+        .bsa-search-form {
+          width: 100%;
+        }
+
+      }
+    }
+  }
+
+
+  // 每个li
+  > li {
+    height: inherit;
+  }
+
+
+  .dropdown {
+    // lg屏幕下取消定位否则无法全屏
+    @include media-breakpoint-down(lg) {
+      position: static !important;
+    }
+  }
+
+  // 头部导航的下拉菜单
+  .dropdown-menu {
+    border: 0;
+    border-radius: 10px;
+
+    // 引用bs官方的阴影效果
+    box-shadow: var(--#{$prefix}box-shadow-sm);
+    max-width: 360px;
+
+    @include media-breakpoint-down(lg) {
+      min-width: 100%;
+    }
+
+    // 下拉菜单的卡片
+    .card {
+      border: 0;
+      min-width: 300px;
+      height: 280px;
+
+      @include media-breakpoint-down(lg) {
+        min-width: 100%;
+      }
+    }
+
+    // 下拉菜单的item项目
+    .dropdown-item {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding: 8px 20px;
+    }
+
+  }
+
+  // 侧边栏的触发按器
+  .bsa-sidebar-toggler {
+    display: none;
+
+    // lg屏幕下显示toggler
+    @include media-breakpoint-down(lg) {
+      display: block;
+    }
+  }
+
+  // 搜索的表单的触发器
+  .bsa-search-form-toggler {
+    display: none;
+
+    // lg屏幕下显示放大镜图标
+    @include media-breakpoint-down(lg) {
+      display: inline;
+    }
+  }
+
+
+  // 搜索表单
+  .bsa-search-form {
+    position: relative;
+    width: 240px;
+
+    // 表单样式覆盖
+    .form-control {
+      padding-right: 44px;
+      padding-left: 20px;
+      border-radius: 30px;
+
+      &:focus {
+        box-shadow: none;
+        border-color: var(--#{$prefix}border-color);
+      }
+    }
+
+    // 搜索图标和关闭图标
+    .bsa-search-close-btn, .bsa-search-submit-btn {
+      font-size: 18px;
+      padding: 0;
+      border: 0;
+      height: inherit;
+      width: 24px;
+      background-color: transparent;
+      color: var(--#{$prefix}body-color);
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+    }
+
+    // 放大镜图标
+    .bsa-search-submit-btn {
+      // lg屏幕下隐藏
+      @include media-breakpoint-down(lg) {
+        display: none;
+      }
+    }
+
+    // 关闭图标默认pc状态下是隐藏的
+    .bsa-search-close-btn {
+      display: none;
+
+      // lg屏幕下显示
+      @include media-breakpoint-down(lg) {
+        display: inline;
+      }
+    }
+
+  }
+
+  // 主题色
+  div[class^="bsa-theme-color"] {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+  }
+
+
+  // 主题色循环
+  @each $color in ($white,$dark,$indigo) {
+    $index: list.index(($white,$dark,$indigo), $color);
+    div.bsa-theme-color#{$index} {
+      background-color: $color;
+    }
+  }
+}
+
+.bsa-header-item {
+  cursor: pointer;
+  background: inherit;
+  font-size: 24px;
+  padding: 0 20px;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // color: var(--bsa-header-item-color);
+  color: var(--#{$prefix}body-color);
+
+  // lg屏幕下每个item的字体和间距再小一点，保证可以展示头部所有的项目
+  @include media-breakpoint-down(lg) {
+    padding: 0 20px;
+    font-size: 18px;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding: 0 16px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding: 0 12px;
+  }
+
+
+  @include media-breakpoint-down(three-four-two) {
+    padding: 0 8px;
+  }
+
+
+  // 用户区域
+  .bsa-user-area {
+    display: flex;
+    align-items: center;
+
+    // 用户头像
+    .bsa-user-avatar {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      user-select: none;
+
+      // lg屏幕下用户头像再放小一点
+      @include media-breakpoint-down(lg) {
+        height: 35px;
+        width: 35px;
+      }
+
+      // 小于342像素时
+      @include media-breakpoint-down(three-four-two) {
+        height: 30px;
+        width: 30px;
+      }
+
+    }
+
+
+    // 用户详情
+    .bsa-user-details {
+      margin-left: 8px;
+      flex-shrink: 0;
+      display: block;
+      max-width: 150px;
+
+      // xl设备下直接隐藏用户详情只展示头像
+      @include media-breakpoint-down(xl) {
+        display: none;
+      }
+    }
+  }
+}
