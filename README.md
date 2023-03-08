@@ -45,6 +45,27 @@ Bootstrap-Admin基于Bootstrap5.x设计的一个响应式静态后台管理HTML�
 </div>
 
 
+## 目录结构
+
+开发项目时,只需要保留`dist`、`lib`即可
+
+```
+├─dist                生产文件目录
+├─lib                 外部依赖目录
+├─pages               示例页面目录
+├─src                 源码目录
+│  ├─img                 图片资源
+│  ├─js                  js目录
+│  └─scss                scss样式目录
+├─.browserslistrc     共用目标浏览器配置文件
+├─.stylelintrc.json   stylelint配置文件
+├─composer.json       composer 定义文件
+├─gulpfile.mjs        gulpfile打包配置文件
+├─LICENSE.txt         授权说明文件
+├─package.json        npm 定义文件
+├─README.md           README 文件
+```
+
 ## 下载
 
 注意:生产环境请使用下面的方式获取bootstrap-admin
@@ -84,6 +105,9 @@ _**重要提示**: bootstrap-admin的依赖插件也可以使用cdn_
 
 ```
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/plugins/bootstrap/js/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/plugins/bootstrap/js/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/plugins/bootstrap/js/bootstrap.js"></script>
+...
 ```
 
 ## 设备支持
