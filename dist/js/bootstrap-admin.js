@@ -11,6 +11,64 @@ $(function () {
         e.preventDefault();
     })
 
+
+    //tab插件初始化
+    if ($('.qtab').length !== 0) {
+        var qtab = new Quicktab({
+            selector: '.qtab',
+            minHeight: '',
+            //不设置默认自适应容器高度
+            height: '100%',
+            //不设置默认自适应容器宽度
+            width: '',
+            //"sessionStorage","localStorage",null:不缓存每次刷新都会只展示选项tabs里面的tab
+            cache: "localStorage",
+            //初始化的tab
+            tabs: [],
+            //全屏功能
+            fullscreen: {
+                enable:true,
+                fullscreen:function (){
+                    $('.bsa-content').addClass('fullscreen');
+                },
+                exitFullscreen:function (){
+                    $('.bsa-content').removeClass('fullscreen');
+                },
+            },
+            //启用tab的右键菜单功能
+            enableContextmenu: true,
+            //启用鼠标滚动切换tab
+            enableMouseWheelToggleTab: false
+        }).on('loadingTransitionend', function (e) {
+            // console.log("加载层淡出过度完毕");
+            //loading层关闭
+            $(".bsa-preloader").fadeOut(800);
+        }).on('iframeLoaded', function (e) {
+
+            var localTheme = localStorage.getItem('theme');
+            $('html').attr('data-bs-theme', localTheme);
+            e.ifContentWindow.document.querySelector('html').setAttribute('data-bs-theme', localTheme);
+        });
+
+
+        $(document).on('click', '.bsa-menu a:not(.has-children):not([target])', function (e) {
+            e.preventDefault();
+            var url = this.getAttribute('href');
+            var title = this.innerText;
+
+            qtab.addTab({
+                title,
+                url,
+                close: true,
+            });
+
+        });
+
+
+    }
+
+
+
     //左侧导航过度结束事件
     $(document).on('transitionend', '.bsa-menu ul', function (e) {
         var $targetUl = $(e.target);
@@ -139,64 +197,6 @@ $(function () {
         $(this).remove();
         $('.bsa-sidebar').toggleClass('open');
     });
-
-
-    //tab插件初始化
-    if ($('.qtab').length !== 0) {
-        var qtab = new Quicktab({
-            selector: '.qtab',
-            minHeight: '',
-            //不设置默认自适应容器高度
-            height: '100%',
-            //不设置默认自适应容器宽度
-            width: '',
-            //"sessionStorage","localStorage",null:不缓存每次刷新都会只展示选项tabs里面的tab
-            cache: "localStorage",
-            //初始化的tab
-            tabs: [],
-            //全屏功能
-            fullscreen: {
-                enable:true,
-                fullscreen:function (){
-                    $('.bsa-content').addClass('fullscreen');
-                },
-                exitFullscreen:function (){
-                    $('.bsa-content').removeClass('fullscreen');
-                },
-            },
-            //启用tab的右键菜单功能
-            enableContextmenu: true,
-            //启用鼠标滚动切换tab
-            enableMouseWheelToggleTab: false
-        }).on('loadingTransitionend', function (e) {
-            // console.log("加载层淡出过度完毕");
-            //loading层关闭
-            $(".bsa-preloader").fadeOut(800);
-        }).on('iframeLoaded', function (e) {
-
-            var localTheme = localStorage.getItem('theme');
-            $('html').attr('data-bs-theme', localTheme);
-            e.ifContentWindow.document.querySelector('html').setAttribute('data-bs-theme', localTheme);
-        });
-
-
-        $(document).on('click', '.bsa-menu a:not(.has-children):not([target])', function (e) {
-            e.preventDefault();
-            var url = this.getAttribute('href');
-            var title = this.innerText;
-
-            qtab.addTab({
-                title,
-                url,
-                close: true,
-            });
-
-        });
-
-
-    }
-
-
 
 
 });
