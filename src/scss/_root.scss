@@ -3,15 +3,34 @@
 }
 
 
-
 :root,
-[data-bs-theme="light"]{
+[data-bs-theme="light"] {
   // bsa自定义变量
   --bsa-header-height: #{$header-height};
   --bsa-sidebar-width: #{$sidebar-width};
   --bsa-footer-height: #{$footer-height};
+}
 
+//明亮主题
+@include color-mode("light", true) {
+  .bsa-menu {
+    li {
+      a {
+        + ul {
+          background-color: rgba(var(--bs-tertiary-color-rgb), .008);
+        }
 
+        &.active, &:active, &:focus, &:hover {
+          background-color: rgba(var(--bs-tertiary-color-rgb), .018);
+        }
+        &.has-children {
+          &.open {
+            background-color: rgba(var(--bs-tertiary-color-rgb), .018);
+          }
+        }
+      }
+    }
+  }
 }
 
 
@@ -94,9 +113,9 @@
   }
 
   // 手风琴
-  .accordion{
-    --bs-accordion-active-bg:#{rgba($body-color-indigo, 0.15)};
-    --bs-accordion-btn-focus-box-shadow:0 0 0 0.25rem rgb(148 62 255 / 25%);
+  .accordion {
+    --bs-accordion-active-bg: #{rgba($body-color-indigo, 0.15)};
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgb(148 62 255 / 25%);
   }
 
 

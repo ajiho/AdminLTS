@@ -1,18 +1,3 @@
-// 遮罩层处理
-@include media-breakpoint-down(lg) {
-  .bsa-mask {
-    z-index: 90;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    top: 0;
-    transition: all 0.2s ease-out;
-    background-color: rgb(0 0 0 / 60%);
-    cursor: move;
-  }
-}
-
 // 侧边栏
 .bsa-sidebar {
   position: fixed;
@@ -51,7 +36,7 @@
     border-bottom: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
 
     // 用于多主题时隐藏logo原始图标
-    .bsa-logo-wrapper{
+    .bsa-logo-wrapper {
       width: 36px;
       height: 36px;
       overflow: hidden;
@@ -131,16 +116,17 @@
       }
 
       + ul {
+
         padding: 0;
         margin: 0;
         list-style: none;
         overflow: hidden;
         transition: height 150ms linear;
         display: none;
-        border-bottom: var(--#{$prefix}border-width) solid var(--bs-border-color);
 
-        // 背景颜色不设置
-        // background: var(--bsa-menu-ul-bg);
+        //设置后有层级感
+        background-color: rgba(var(--bs-tertiary-color-rgb), .08);
+
 
         // 二级菜单距离左侧的间距
         a {
@@ -177,9 +163,9 @@
 
       // a链接的伪类效果
       &.active, &:active, &:focus, &:hover {
-        color: var(--bs-dark-text);
+        //color: var(--bs-dark-text);
         text-decoration: none;
-        background-color: var(--bs-tertiary-bg);
+        background-color: rgba(var(--bs-tertiary-color-rgb), .18);
       }
 
 
@@ -196,10 +182,9 @@
 
         // 添加有.open类名的也实现和.active a:active a:focus a:hover 相同的效果
         &.open {
-          color: var(--bs-dark-text);
+          //color: var(--bs-dark-text);
           text-decoration: none;
-          background-color: var(--bs-tertiary-bg);
-
+          background-color: rgba(var(--bs-tertiary-color-rgb), .18);
           // 并让它的小箭头图标旋转90度
           &::after {
             transform: scale(0.5) rotate(-90deg);
