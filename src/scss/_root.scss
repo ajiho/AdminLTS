@@ -13,24 +13,44 @@
 
 //明亮主题
 @include color-mode("light", true) {
+
+
+
   .bsa-menu {
     li {
       a {
         + ul {
-          background-color: rgba(var(--bs-tertiary-color-rgb), .008);
+          background-color: transparent;
         }
 
         &.active, &:active, &:focus, &:hover {
-          background-color: rgba(var(--bs-tertiary-color-rgb), .018);
+          color: #0d6efd;
+          background-color: rgb(13 110 253 / 12%);
         }
         &.has-children {
           &.open {
-            background-color: rgba(var(--bs-tertiary-color-rgb), .018);
+            color: #0d6efd;
+            background-color: rgb(13 110 253 / 12%);
           }
         }
       }
     }
   }
+
+
+  .quicktab {
+    .nav {
+      --bs-nav-link-color: var(--bs-body-color);
+      --bs-nav-link-hover-color: var(--bs-body-color);
+      --bs-nav-link-disabled-color: var(--bs-secondary-color);
+    }
+
+    .nav-pills {
+      --bs-nav-pills-link-active-color: #0d6efd;
+      --bs-nav-pills-link-active-bg: rgb(13 110 253 / 12%);
+    }
+  }
+
 }
 
 

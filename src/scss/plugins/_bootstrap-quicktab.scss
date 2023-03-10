@@ -1,11 +1,24 @@
-.quicktab > ul {
-  border-top: 0 !important;
-  border-left: 0 !important;
-  border-right: 0 !important;
+.quicktab {
+  > ul {
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+
+  div.flex-grow-1 {
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+  }
+  .nav {
+    --bs-nav-link-color: var(--bs-body-color);
+    --bs-nav-link-hover-color: var(--bs-body-color);
+    --bs-nav-link-disabled-color: var(--bs-secondary-color);
+  }
+
+  .nav-pills {
+    --bs-nav-pills-link-active-color: var(--bs-light-text);
+    --bs-nav-pills-link-active-bg: var(--bs-light-bg-subtle);
+  }
 }
 
-.quicktab div.flex-grow-1 {
-  border-left: 0 !important;
-  border-right: 0 !important;
-  border-bottom: 0 !important;
-}

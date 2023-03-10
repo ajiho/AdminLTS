@@ -10,13 +10,24 @@
 }
 
 [data-bs-theme=light] .bsa-menu li a + ul {
-  background-color: rgba(var(--bs-tertiary-color-rgb), 0.008);
+  background-color: transparent;
 }
 [data-bs-theme=light] .bsa-menu li a.active, [data-bs-theme=light] .bsa-menu li a:active, [data-bs-theme=light] .bsa-menu li a:focus, [data-bs-theme=light] .bsa-menu li a:hover {
-  background-color: rgba(var(--bs-tertiary-color-rgb), 0.018);
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.12);
 }
 [data-bs-theme=light] .bsa-menu li a.has-children.open {
-  background-color: rgba(var(--bs-tertiary-color-rgb), 0.018);
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.12);
+}
+[data-bs-theme=light] .quicktab .nav {
+  --bs-nav-link-color: var(--bs-body-color);
+  --bs-nav-link-hover-color: var(--bs-body-color);
+  --bs-nav-link-disabled-color: var(--bs-secondary-color);
+}
+[data-bs-theme=light] .quicktab .nav-pills {
+  --bs-nav-pills-link-active-color: #0d6efd;
+  --bs-nav-pills-link-active-bg: rgb(13 110 253 / 12%);
 }
 
 [data-bs-theme=dark] .dropdown-menu {
@@ -101,11 +112,19 @@
   border-left: 0 !important;
   border-right: 0 !important;
 }
-
 .quicktab div.flex-grow-1 {
   border-left: 0 !important;
   border-right: 0 !important;
   border-bottom: 0 !important;
+}
+.quicktab .nav {
+  --bs-nav-link-color: var(--bs-body-color);
+  --bs-nav-link-hover-color: var(--bs-body-color);
+  --bs-nav-link-disabled-color: var(--bs-secondary-color);
+}
+.quicktab .nav-pills {
+  --bs-nav-pills-link-active-color: var(--bs-light-text);
+  --bs-nav-pills-link-active-bg: var(--bs-light-bg-subtle);
 }
 
 .scrollbar-track {
@@ -364,7 +383,6 @@
   padding-left: calc(16px + 5rem + 10px);
 }
 .bsa-menu li a.active, .bsa-menu li a:active, .bsa-menu li a:focus, .bsa-menu li a:hover {
-  text-decoration: none;
   background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
 }
 .bsa-menu li a.has-children::after {
@@ -376,7 +394,6 @@
   right: 24px;
 }
 .bsa-menu li a.has-children.open {
-  text-decoration: none;
   background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
 }
 .bsa-menu li a.has-children.open::after {
