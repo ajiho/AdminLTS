@@ -235,6 +235,21 @@ $(function () {
 
     }
 
+    $(".bsa-show_hide_password span").on('click', function (event) {
+        event.preventDefault();
+        var $input = $('.bsa-show_hide_password input');
+        var $i = $('.bsa-show_hide_password i');
+        if ($input.attr("type") === "text") {
+            $input.attr('type', 'password');
+            $i.removeClass("bi-eye");
+            $i.addClass("bi-eye-slash");
+        } else if ($input.attr("type") === "password") {
+            $input.attr('type', 'text');
+            $i.addClass("bi-eye");
+            $i.removeClass("bi-eye-slash");
+        }
+    });
+
 
     function _openMenu(a) {
         var $ul = $(a).parent().parent();

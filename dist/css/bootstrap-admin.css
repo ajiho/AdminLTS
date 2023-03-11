@@ -469,6 +469,24 @@
 .bsa-login-outer-wrapper.bsa-login-bg-4 {
   background-image: url("../img/login-bg-4.jpg");
 }
+.bsa-login-outer-wrapper.bsa-login-bg-5 {
+  background-image: url("../img/login-bg-5.jpg");
+}
+.bsa-login-outer-wrapper.bsa-login-bg-6 {
+  background-image: url("../img/login-bg-6.jpg");
+}
+.bsa-login-outer-wrapper.bsa-login-bg-7 {
+  background-image: url("../img/login-bg-7.jpg");
+}
+.bsa-login-outer-wrapper.bsa-login-bg-8 {
+  background-image: url("../img/login-bg-8.jpg");
+}
+.bsa-login-outer-wrapper.bsa-login-bg-9 {
+  background-image: url("../img/login-bg-9.jpg");
+}
+.bsa-login-outer-wrapper.bsa-login-bg-10 {
+  background-image: url("../img/login-bg-10.jpg");
+}
 .bsa-login-outer-wrapper .bsa-login-inner-wrapper {
   width: 320px;
 }
@@ -477,12 +495,17 @@
   border: none;
   color: rgba(255, 255, 255, 0.5);
 }
+.bsa-login-outer-wrapper .bsa-login-inner-wrapper .input-group-text {
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.15);
+}
 .bsa-login-outer-wrapper .bsa-login-inner-wrapper .form-check-label {
   color: rgba(255, 255, 255, 0.5);
 }
 .bsa-login-outer-wrapper .bsa-login-inner-wrapper .form-check-input {
   background-color: transparent;
-  border-color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
 }
 .bsa-login-outer-wrapper .bsa-login-inner-wrapper .form-control::-moz-placeholder {
   color: rgba(255, 255, 255, 0.5);
