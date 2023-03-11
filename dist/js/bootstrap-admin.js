@@ -180,7 +180,7 @@ $(function () {
             e.preventDefault();
             var $a = $(this);
 
-            if($a.hasClass('has-children')){
+            if ($a.hasClass('has-children')) {
                 var $siblingsUl = $a.siblings('ul');
 
                 //兄弟节点处理
@@ -214,7 +214,7 @@ $(function () {
                     $a.removeClass('open');
 
                 }
-            }else{//没有子集
+            } else {//没有子集
 
                 //移除所有的激活类
                 $('.bsa-menu a').each(function (index, a) {
@@ -232,9 +232,9 @@ $(function () {
                 });
             }
         });
-
     }
 
+    //登录页面密码框的显示和隐藏
     $(".bsa-show_hide_password span").on('click', function (event) {
         event.preventDefault();
         var $input = $('.bsa-show_hide_password input');
@@ -250,6 +250,27 @@ $(function () {
         }
     });
 
+
+    $('.bsa-input-search').on('keydown', function (event) {
+
+        if (event.keyCode === 13) {
+            event.preventDefault();
+
+
+            var $val = $.trim($(this).val());
+            var $action = $(this).attr('data-bsa-search-action')
+
+            if ($val !== '') {
+                Quicktab.get('.qtab').addTab({
+                    title: '<i class="bi bi-search"></i><span class="text-danger ms-2">'+$val+'</span>',
+                    url: $action + $val,
+                    close: true,
+                });
+            }
+
+
+        }
+    })
 
     function _openMenu(a) {
         var $ul = $(a).parent().parent();

@@ -28,12 +28,13 @@
     <li>
         <div class="bsa-header-item bsa-cursor-default">
             <div class="bsa-search-form-wrapper">
-                <form class="bsa-search-form" action="#">
-                    <input type="text" class="form-control" name="keyword" aria-label="搜索关键词"
+                <div class="bsa-search-form">
+                    <input type="text" class="form-control bsa-input-search"
+                           data-bsa-search-action="search.html?keywords=" name="keyword" aria-label="搜索关键词"
                            placeholder="搜索关键词">
                     <button class="bsa-search-submit-btn" type="submit"><i class="bi bi-search"></i></button>
                     <button class="bsa-search-close-btn" type="button"><i class="bi bi-x-lg"></i></button>
-                </form>
+                </div>
             </div>
             <!--    移动端会显示该搜索图标用于弹出搜索框        -->
             <i class="bi bi-search bsa-search-form-toggler"></i>
@@ -195,7 +196,8 @@
         </div>
 
         <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="javascript:" data-qt-tab='{"title":"首页4","url":"welcome.html?a=4"}' data-qt-target=".qtab"><i class="bi bi-person me-2"></i>个人资料</a></li>
+            <li><a class="dropdown-item" href="javascript:" data-qt-tab='{"title":"首页4","url":"welcome.html?a=4"}'
+                   data-qt-target=".qtab"><i class="bi bi-person me-2"></i>个人资料</a></li>
             <li><a class="dropdown-item bsa-clear-cache" href="javascript:"><i class="bi bi-key me-2"></i>修改密码</a>
             </li>
             <li>
