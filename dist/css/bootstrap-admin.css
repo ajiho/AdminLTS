@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   scroll-behavior: auto !important;
 }
@@ -142,6 +143,37 @@
 .scrollbar-thumb {
   width: 4px !important;
   background: var(--bs-tertiary-color) !important;
+}
+
+.dropzone {
+  border: none !important;
+  background: var(--bs-light-bg-subtle) !important;
+  min-height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /*默认提示文本*/
+}
+.dropzone .dz-default {
+  color: var(--bs-light-text) !important;
+}
+.dropzone .dz-preview {
+  background: var(--bs-light-bg-subtle) !important;
+}
+.dropzone .dz-preview .dz-image {
+  background-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.dropzone .dz-preview .dz-error-message {
+  margin-top: 1.3rem;
+  background: #dc3545 !important;
+}
+.dropzone .dz-preview .dz-error-message:after {
+  border-bottom-color: #dc3545 !important;
+}
+.dropzone .dz-preview .dz-remove {
+  text-decoration: none !important;
 }
 
 .bsa-header {

@@ -1,0 +1,43 @@
+.dropzone {
+  border: none !important;
+  background: var(--bs-light-bg-subtle) !important;
+  min-height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  /*默认提示文本*/
+  .dz-default {
+    color: var(--bs-light-text) !important;
+  }
+
+  .dz-preview {
+    background: var(--bs-light-bg-subtle) !important;
+
+    .dz-image {
+      background-color: rgba(0, 0, 0, .08);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .dz-error-message {
+      margin-top: 1.3rem;
+      background: #dc3545 !important;
+
+      &:after {
+        border-bottom-color: #dc3545 !important;
+      }
+
+    }
+
+    .dz-remove {
+      text-decoration: none !important;
+    }
+  }
+
+}
+
+
+.dz-hide-default {
+  //display: none;
+}
