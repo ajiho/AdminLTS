@@ -1,0 +1,393 @@
+.ztree * {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.ztree {
+  margin: 0;
+  padding: 0;
+}
+
+.ztree li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  line-height: 23px;
+  text-align: left;
+  white-space: nowrap;
+  outline: 0;
+}
+
+.ztree li ul {
+  margin: 0;
+  padding: 0 0 0 18px;
+}
+
+.ztree li a {
+  padding-right: 10px;
+  margin: 0;
+  cursor: pointer;
+  height: 23px;
+  color: #4d5259;
+  background-color: transparent;
+  text-decoration: none;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.ztree li a input.rename {
+  border: none;
+  outline: none;
+  height: 19px;
+  width: 120px;
+  padding: 0;
+  margin: 0;
+  color: #4d5259;
+  background-color: #ffffff;
+}
+
+.ztree li a:hover {
+  text-decoration: underline;
+}
+
+.ztree li a.curSelectedNode {
+  padding-top: 0;
+  background-color: #f5f6fa;
+  height: 23px;
+  opacity: 0.8;
+}
+
+.ztree li a.curSelectedNode_Edit {
+  padding-top: 0;
+  background-color: #e4e7ea;
+  color: #383B41;
+  height: 23px;
+  opacity: 0.8;
+}
+
+.ztree li a.tmpTargetNode_inner {
+  padding-top: 0;
+  background-color: #ebebeb;
+  height: 23px;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+.ztree li span {
+  line-height: 23px;
+  margin-right: 5px;
+  background-color: transparent;
+}
+
+.ztree li span.button {
+  line-height: 23px;
+  margin: 0;
+  padding: 0;
+  width: 23px;
+  height: 23px;
+  display: inline-block;
+  vertical-align: top;
+  border: 0 solid;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
+.ztree li span.button::before {
+  color: #4d5259;
+  font-family: "bootstrap-icons", serif;
+  font-size: 15px;
+}
+
+.ztree li span.button.chk {
+  margin: 0;
+  cursor: auto;
+  width: 23px;
+  line-height: 23px;
+  display: inline-block;
+}
+
+.ztree li span.button.chk.checkbox_false_full::before {
+  content: "\f584";
+}
+
+.ztree li span.button.chk.checkbox_false_full_focus::before {
+  content: "\f584";
+  color: #383B41;
+}
+
+.ztree li span.button.chk.checkbox_false_part::before {
+  content: "\f12e";
+  color: #a5b3c7;
+}
+
+.ztree li span.button.chk.checkbox_false_part_focus::before {
+  content: "\f12e";
+  color: #4d5259;
+}
+
+.ztree li span.button.chk.checkbox_false_disable::before {
+  content: "\f584";
+  color: #a5b3c7;
+}
+
+.ztree li span.button.chk.checkbox_true_full::before {
+  content: "\f26d";
+}
+
+.ztree li span.button.chk.checkbox_true_full_focus::before {
+  content: "\f26d";
+}
+
+.ztree li span.button.chk.checkbox_true_part::before {
+  content: "\f26d";
+}
+
+.ztree li span.button.chk.checkbox_true_part_focus::before {
+  content: "\f26d";
+  color: #383B41;
+}
+
+.ztree li span.button.chk.checkbox_true_full_focus::before {
+  content: "\f26d";
+  color: #383B41;
+}
+
+.ztree li span.button.chk.checkbox_true_part::before {
+  content: "\f26d";
+  color: #a5b3c7;
+}
+
+.ztree li span.button.chk.checkbox_true_part_focus::before {
+  content: "\f26d";
+  color: #4d5259;
+}
+
+.ztree li span.button.chk.checkbox_true_disable::before {
+  content: "\f26d";
+  color: #a5b3c7;
+}
+
+.ztree li span.button.chk.radio_false_full::before {
+  content: "\f130";
+}
+
+.ztree li span.button.chk.radio_false_full_focus::before {
+  content: "\f130";
+  color: #383B41;
+}
+
+.ztree li span.button.chk.radio_false_part::before {
+  content: "\f12f";
+  color: #a5b3c7;
+}
+
+.ztree li span.button.chk.radio_false_part_focus::before {
+  content: "\f12f";
+  color: #383B41;
+}
+
+.ztree li span.button.chk.radio_false_disable::before {
+  content: "\f130";
+  color: #a5b3c7;
+}
+
+.ztree li span.button.chk.radio_true_full::before {
+  content: "\f43e";
+}
+
+.ztree li span.button.chk.radio_true_full_focus::before {
+  content: "\f43e";
+  color: #383B41;
+}
+
+.ztree li span.button.chk.radio_true_part::before {
+  content: "\f133";
+  color: #a5b3c7;
+}
+
+.ztree li span.button.chk.radio_true_part_focus::before {
+  content: "\f133";
+  color: #a5b3c7;
+}
+
+.ztree li span.button.chk.radio_true_disable::before {
+  content: "\f43e";
+  color: #a5b3c7;
+}
+
+.ztree li span.button.switch {
+  width: 23px;
+  height: 23px;
+  line-height: 23px;
+}
+
+.ztree li span.button.root_open::before {
+  content: "\f140";
+}
+
+.ztree li span.button.root_close::before {
+  content: "\f3d8";
+}
+
+.ztree li span.button.roots_open::before,
+.ztree li span.button.roots_close::before,
+.ztree li span.button.center_open::before,
+.ztree li span.button.center_close::before,
+.ztree li span.button.bottom_open::before,
+.ztree li span.button.bottom_close::before {
+  display: inline-block;
+}
+
+.ztree li span.button.roots_open::before {
+  content: "\f2e9";
+}
+
+.ztree li span.button.roots_close::before {
+  content: "\f4fd";
+}
+
+.ztree li span.button.center_open::before {
+  content: "\f2e9";
+}
+
+.ztree li span.button.center_close::before {
+  content: "\f4fd";
+}
+
+.ztree li span.button.bottom_open::before {
+  content: "\f2e9";
+}
+
+.ztree li span.button.bottom_close::before {
+  content: "\f4fd";
+}
+
+.ztree li span.button.root_docu,
+.ztree li span.button.noline_docu {
+  background: none;
+}
+
+.ztree li span.button.roots_docu::before {
+  /*content: "\F3C0";*/
+  padding-left: 2px;
+}
+
+.ztree li span.button.roots_docu::before,
+.ztree li span.button.center_docu::before,
+.ztree li span.button.bottom_docu::before,
+.ztree li span.button.ico_open::before,
+.ztree li span.button.ico_close::before,
+.ztree li span.button.ico_docu::before {
+  display: inline-block;
+  color: #4d5259;
+}
+
+.ztree li span.button.ico_open::before,
+.ztree li span.button.ico_close::before,
+.ztree li span.button.ico_docu::before,
+.ztree li span.button.edit::before,
+.ztree li span.button.remove::before,
+.ztree li span.button.add::before,
+span.tmpzTreeMove_arrow::before {
+  font-family: "bootstrap-icons", serif;
+  font-size: 15px;
+}
+
+.ztree li span.button.ico_open::before {
+  content: "\f3d8";
+}
+
+.ztree li span.button.ico_close::before {
+  content: "\f3d9";
+}
+
+.ztree li span.button.ico_docu::before {
+  content: "\f3c0";
+}
+
+.ztree li span.button.edit {
+  margin-left: 4px;
+  margin-right: -1px;
+  vertical-align: top;
+  *vertical-align: middle;
+}
+
+.ztree li span.button.edit::before {
+  content: "\f4c8";
+}
+
+.ztree li span.button.remove {
+  margin-left: 4px;
+  margin-right: -1px;
+  vertical-align: top;
+  *vertical-align: middle;
+}
+
+.ztree li span.button.remove::before {
+  content: "\f5de";
+}
+
+.ztree li span.button.add {
+  margin-left: 4px;
+  margin-right: -1px;
+  vertical-align: top;
+  *vertical-align: middle;
+}
+
+.ztree li span.button.add::before {
+  content: "\f415";
+}
+
+.ztree li span.button.ico_loading {
+  margin-right: 2px;
+  background: url(./img/loading.gif) no-repeat scroll 0 0 transparent;
+  vertical-align: top;
+  *vertical-align: middle;
+}
+
+ul.tmpTargetzTree {
+  background-color: #FFE6B0;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+span.tmpzTreeMove_arrow {
+  width: 16px;
+  height: 17px;
+  display: inline-block;
+  padding: 0;
+  margin: 2px 0 0 1px;
+  border: 0 none;
+  position: absolute;
+  background-color: transparent;
+  background-attachment: scroll;
+}
+
+span.tmpzTreeMove_arrow::before {
+  content: "\f054";
+  color: #383B41;
+}
+
+ul.ztree.zTreeDragUL {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-color: #e4e7ea;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+.ztreeMask {
+  z-index: 10000;
+  background-color: #e4e7ea;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  position: absolute;
+}

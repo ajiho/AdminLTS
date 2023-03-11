@@ -29,10 +29,26 @@ gulp.task('css', function lintCssTask() {
         .pipe(gulp.dest('dist/css'));
 });
 
+gulp.task('css:plugins', function lintCssTask() {
+
+    //插件
+    let plugins = [
+        //根据.browserslistrc文件自动给css添加浏览器前缀
+        autoprefixer(),
+        //媒体查询合并处理,解决大量的媒体查询标签问题
+        cmq()
+    ];
+
+    return gulp.src('src/scss/plugins/*.scss')
+        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(postcss(plugins))
+        .pipe(gulp.dest('dist/css/plugins'));
+});
+
+
 
 //处理lib目录多余的文件
 gulp.task('cleanLib', async function (cb) {
-
 
 
     const deletedFilePaths = await deleteAsync([
