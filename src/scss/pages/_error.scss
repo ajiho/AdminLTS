@@ -6,3 +6,11 @@
   word-break: break-all;
   text-align: center;
 }
+
+.bsa-error-text{
+  border-top: 5px solid var(--bs-light-text);
+  margin-bottom: 30px;
+  padding-top: 20px;
+  text-align: center;
+  color: var(--bs-light-text);
+}
