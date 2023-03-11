@@ -16,118 +16,92 @@
 <body class="bg-body-tertiary py-3">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
+
         <div class="card-body">
+            <div class="border-bottom py-2 mb-3">设置我的资料</div>
             <div class="row">
+                <div class="col-md-5">
+                    <form id="form">
+                        <div class="row mb-3">
+                            <label for="role" class="col-sm-3 col-form-label text-sm-end">我的角色</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" name="role" aria-label="role" id="role">
+                                    <option value="1" selected>超级管理员</option>
+                                    <option value="2" disabled>普通管理员</option>
+                                    <option value="3" disabled>审核员</option>
+                                    <option value="4" disabled>编辑员</option>
+                                </select>
+                                <div class="form-text">当前角色不可更改为其它角色</div>
+                            </div>
 
-                <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <form action="#" id="form2">
-                                <div class="mb-3 row">
-                                    <label for="username2" class="col-sm-3 col-form-label">用户名</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="username2" name="username2" value="admin">
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="email2" class="col-sm-3 col-form-label">邮箱</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="email2" name="email2" value="lujiahao@88.com">
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="phone" class="col-sm-3 col-form-label">手机号</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="phone" name="phone" value="13784561032">
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="gender2Radio1" class="col-sm-3 col-form-label">性别</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender2"
-                                                   id="gender2Radio1" value="先生" checked>
-                                            <label class="form-check-label" for="gender2Radio1">先生</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender2"
-                                                   id="gender2Radio2" value="女士">
-                                            <label class="form-check-label" for="gender2Radio2">女士</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3 row">
-                                    <label for="age2" class="col-sm-3 col-form-label">年龄</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="age2" name="age2" value="100">
-                                    </div>
-                                </div>
-
-
-                                <div class="mb-3 row">
-                                    <div class="col-sm-9 offset-sm-3">
-                                        <button type="submit" class="btn btn-primary">保存更改</button>
-                                    </div>
-                                </div>
-
-                            </form>
                         </div>
-                    </div>
-                    <div class="card mt-3">
-                        <div class="card-body">
-                            <h5 class="d-flex align-items-center mb-3">技能熟练程度</h5>
-                            <p>html</p>
-                            <div class="progress mb-3" style="height: 5px">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p>css</p>
-                            <div class="progress mb-3" style="height: 5px">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p>js</p>
-                            <div class="progress mb-3" style="height: 5px">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p>php</p>
-                            <div class="progress mb-3" style="height: 5px">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p>mysql</p>
-                            <div class="progress" style="height: 5px">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="row mb-3">
+                            <label for="username" class="col-sm-3 col-form-label text-sm-end">用户名</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="username" name="username" readonly value="admin88" disabled>
+                                <div class="form-text">不可修改。一般用于后台登入名</div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row mb-3">
+                            <label for="nickname" class="col-sm-3 col-form-label text-sm-end">昵称</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nickname" name="nickname" value="欲饮琵琶码上催" >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="nickname" class="col-sm-3 col-form-label text-sm-end">性别</label>
+                            <div class="col-sm-9">
+                                <div class="d-flex align-items-center h-100">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                        <label class="form-check-label" for="inlineRadio1">男</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        <label class="form-check-label" for="inlineRadio2">女</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="nickname" class="col-sm-3 col-form-label text-sm-end">头像</label>
+                            <div class="col-sm-9">
+                                <div class="input-group mb-3">
+                                    <input type="file" class="form-control" id="avatar" name="avatar" >
+                                    <label class="input-group-text" for="avatar"><i class="bi bi-cloud-upload"></i> 上传图片</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="phone" class="col-sm-3 col-form-label text-sm-end">手机</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="phone" name="phone" value="19978451354" >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-sm-3 col-form-label text-sm-end">邮箱</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="email" name="email" value="lujiahao@88.com" >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="desc" class="col-sm-3 col-form-label text-sm-end">备注</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="desc" rows="3" name="desc"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button type="submit" class="btn btn-primary">确认修改</button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://temp.im/120x120"  alt="Admin" class="rounded-circle p-1 bsa-bg-color4 bsa-width-100">
-                                <div class="mt-3">
-                                    <h4>欲饮琵琶码上催</h4>
-                                    <p class="text-secondary mb-1">超级管理员</p>
-                                    <p class="text-muted font-size-sm">中国 贵州</p>
-                                    <button class="btn btn-primary">关注</button>
-                                    <button class="btn btn-outline-primary">消息</button>
-                                </div>
-                            </div>
-                            <hr class="my-4">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <h6 class="mb-0"><i class="bi bi-globe bsa-font-20"></i> 个人网址</h6>
-                                    <span class="text-secondary">https://xxxxxx.com</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <h6 class="mb-0"><i class="bi bi-github bsa-font-20"></i> Github</h6>
-                                    <span class="text-secondary">ajiho</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
+
         </div>
     </div>
 </div>
@@ -135,5 +109,44 @@
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
 <script src="../dist/js/bootstrap-admin.js"></script>
+
+<!--表单验证相关依赖-->
+<script src="../lib/formvalidation/js/formValidation.js"></script>
+<script src="../lib/formvalidation/js/framework/bootstrap.js"></script>
+<script src="../lib/formvalidation/js/language/zh_CN.js"></script>
+
+<script>
+    //前端表单验证
+    $('#form').formValidation({
+        fields: {
+            desc: {
+                validators: {
+                    notEmpty: true,
+                }
+            }
+        }
+    }).on('success.form.fv', function (e) {
+        //阻止表单提交
+        e.preventDefault();
+        //得到表单对象
+        let $form = $(e.target);
+        let data = $form.serialize();
+
+        alert('表单验证通过,即将发起ajax');
+        //得到序列化数据
+        $.ajax({
+            url: "/login.php",
+            method: 'POST',
+            data
+        }).then(function (res) {
+            if (res.code === 200) {
+                //登录成功
+            } else {
+                //登录失败
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
