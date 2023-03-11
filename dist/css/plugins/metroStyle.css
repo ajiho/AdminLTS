@@ -29,9 +29,9 @@
   margin: 0;
   cursor: pointer;
   height: 23px;
-  color: #4d5259;
+  color: var(--bs-body-color);
   background-color: transparent;
-  text-decoration: none;
+  text-decoration: none !important;
   vertical-align: top;
   display: inline-block;
 }
@@ -43,8 +43,8 @@
   width: 120px;
   padding: 0;
   margin: 0;
-  color: #4d5259;
-  background-color: #ffffff;
+  color: var(--bs-body-color);
+  background-color: transparent;
 }
 
 .ztree li a:hover {
@@ -53,22 +53,22 @@
 
 .ztree li a.curSelectedNode {
   padding-top: 0;
-  background-color: #f5f6fa;
+  background-color: var(--bs-light-bg-subtle);
   height: 23px;
   opacity: 0.8;
 }
 
 .ztree li a.curSelectedNode_Edit {
   padding-top: 0;
-  background-color: #e4e7ea;
-  color: #383B41;
+  background-color: var(--bs-light-bg-subtle);
+  color: var(--bs-light-text);
   height: 23px;
   opacity: 0.8;
 }
 
 .ztree li a.tmpTargetNode_inner {
   padding-top: 0;
-  background-color: #ebebeb;
+  background-color: red;
   height: 23px;
   opacity: 0.8;
   filter: alpha(opacity=80);
@@ -97,7 +97,7 @@
 }
 
 .ztree li span.button::before {
-  color: #4d5259;
+  color: var(--bs-body-color);
   font-family: "bootstrap-icons", serif;
   font-size: 15px;
 }
@@ -116,7 +116,7 @@
 
 .ztree li span.button.chk.checkbox_false_full_focus::before {
   content: "\f584";
-  color: #383B41;
+  color: var(--bs-body-color);
 }
 
 .ztree li span.button.chk.checkbox_false_part::before {
@@ -126,7 +126,7 @@
 
 .ztree li span.button.chk.checkbox_false_part_focus::before {
   content: "\f12e";
-  color: #4d5259;
+  color: var(--bs-body-color);
 }
 
 .ztree li span.button.chk.checkbox_false_disable::before {
@@ -142,28 +142,19 @@
   content: "\f26d";
 }
 
-.ztree li span.button.chk.checkbox_true_part::before {
-  content: "\f26d";
-}
-
 .ztree li span.button.chk.checkbox_true_part_focus::before {
   content: "\f26d";
-  color: #383B41;
+  color: var(--bs-body-color);
 }
 
 .ztree li span.button.chk.checkbox_true_full_focus::before {
   content: "\f26d";
-  color: #383B41;
+  color: var(--bs-body-color);
 }
 
 .ztree li span.button.chk.checkbox_true_part::before {
   content: "\f26d";
-  color: #a5b3c7;
-}
-
-.ztree li span.button.chk.checkbox_true_part_focus::before {
-  content: "\f26d";
-  color: #4d5259;
+  color: var(--bs-body-color);
 }
 
 .ztree li span.button.chk.checkbox_true_disable::before {
@@ -177,7 +168,7 @@
 
 .ztree li span.button.chk.radio_false_full_focus::before {
   content: "\f130";
-  color: #383B41;
+  color: var(--bs-body-color);
 }
 
 .ztree li span.button.chk.radio_false_part::before {
@@ -187,7 +178,7 @@
 
 .ztree li span.button.chk.radio_false_part_focus::before {
   content: "\f12f";
-  color: #383B41;
+  color: var(--bs-body-color);
 }
 
 .ztree li span.button.chk.radio_false_disable::before {
@@ -201,7 +192,7 @@
 
 .ztree li span.button.chk.radio_true_full_focus::before {
   content: "\f43e";
-  color: #383B41;
+  color: var(--bs-body-color);
 }
 
 .ztree li span.button.chk.radio_true_part::before {
@@ -272,7 +263,7 @@
 }
 
 .ztree li span.button.roots_docu::before {
-  /*content: "\F3C0";*/
+  /*content: "\F392";*/
   padding-left: 2px;
 }
 
@@ -283,7 +274,7 @@
 .ztree li span.button.ico_close::before,
 .ztree li span.button.ico_docu::before {
   display: inline-block;
-  color: #4d5259;
+  color: var(--bs-body-color);
 }
 
 .ztree li span.button.ico_open::before,
@@ -306,7 +297,7 @@ span.tmpzTreeMove_arrow::before {
 }
 
 .ztree li span.button.ico_docu::before {
-  content: "\f3c0";
+  content: "\f392";
 }
 
 .ztree li span.button.edit {
@@ -344,7 +335,7 @@ span.tmpzTreeMove_arrow::before {
 
 .ztree li span.button.ico_loading {
   margin-right: 2px;
-  background: url(./img/loading.gif) no-repeat scroll 0 0 transparent;
+  background: url("./img/loading.gif") no-repeat scroll 0 0 transparent;
   vertical-align: top;
   *vertical-align: middle;
 }
@@ -369,7 +360,7 @@ span.tmpzTreeMove_arrow {
 
 span.tmpzTreeMove_arrow::before {
   content: "\f054";
-  color: #383B41;
+  color: var(--bs-body-color);
 }
 
 ul.ztree.zTreeDragUL {
@@ -379,14 +370,14 @@ ul.ztree.zTreeDragUL {
   width: auto;
   height: auto;
   overflow: hidden;
-  background-color: #e4e7ea;
+  background-color: var(--bs-light-bg-subtle);
   opacity: 0.8;
   filter: alpha(opacity=80);
 }
 
 .ztreeMask {
   z-index: 10000;
-  background-color: #e4e7ea;
+  background-color: var(--bs-light-bg-subtle);
   opacity: 0;
   filter: alpha(opacity=0);
   position: absolute;
