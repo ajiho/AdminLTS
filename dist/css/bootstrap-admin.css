@@ -445,6 +445,15 @@
   height: 100vh;
   background: #f4f6f9;
 }
+.bsa-error-code {
+  font-size: 7rem;
+  font-weight: 700;
+  text-shadow: 4px 4px 0 var(--bs-light-bg-subtle), 6px 6px 0 var(--bs-light-text);
+  color: var(--bs-light-text);
+  word-break: break-all;
+  text-align: center;
+}
+
 .bsa-login-outer-wrapper {
   background-size: cover;
   background-position: center;
