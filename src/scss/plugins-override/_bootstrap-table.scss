@@ -1,0 +1,33 @@
+//loading时的背景色
+.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading {
+  background-color: var(--bs-light-bg-subtle) !important;
+}
+
+
+// 左右两边的白线
+.bootstrap-table .fixed-table-container.fixed-height .fixed-table-border {
+  border-left: var(--bs-border-width) solid var(--bs-border-color) !important;
+  border-right: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+
+// 底部的白线
+.bootstrap-table .fixed-table-container.fixed-height:not(.has-footer) {
+  border-bottom: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+// 头部的白线
+.bootstrap-table .fixed-table-container.fixed-height .table thead th {
+  border-bottom: none !important;
+}
+
+
+//加载器的小黑点
+.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .animation-dot,
+.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .animation-wrap::after,
+.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .animation-wrap::before {
+  background-color: var(--bs-light-text) !important;
+}
+.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .loading-text{
+  color: var(--bs-light-text) !important;
+}

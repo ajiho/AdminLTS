@@ -48,9 +48,11 @@
 
             <div class="d-flex  gap-1 my-3">
                 <button class="btn btn-danger"><i class="bi bi-trash"></i> 批量删除</button>
-                <button class="btn btn-success"
-                        onclick="BSA.Modal.show({title: '添加xx',body:'ewqweq',modalDialogClass:'modal-dialog-centered modal-lg',url:'add.html'})">
+                <button class="btn btn-success">
                     <i class="bi bi-plus"></i> 添加xx
+                </button>
+                <button class="btn btn-success btn-10">
+                    <i class="bi bi-plus"></i> 显示
                 </button>
             </div>
 
@@ -87,6 +89,8 @@
         locale: 'zh-CN',
         //设置高度，就可以固定表头，用户体验良好
         height: 380,
+
+
         //jsonplaceholder提供的api服务模拟请求，开发时大家换成自己的接口
         url: 'http://jsonplaceholder.typicode.com/todos',
         //是否开启分页
@@ -132,6 +136,12 @@
             }
         ]
     });
+
+
+    $('.btn-10').on('click',function (){
+        $('#table').bootstrapTable('showLoading')
+    })
+
 
     //格式化列数据演示 val:当前数据 rows:当前整行数据
     function formatCompleted(val, rows) {
