@@ -15,56 +15,41 @@
 </head>
 <body>
 
-<div class="min-vh-100 d-flex justify-content-center align-items-center py-3 bg-light">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-sm-8 col-lg-6 col-xl-4 mx-auto">
-                <div class="card shadow border-0 bg-white">
-                    <div class="card-header bg-white border-bottom p-4 text-center">
-                        <a href="javascript:" class="fs-4 text-dark text-decoration-none">
-                            Bootstrap-Admin
-                        </a>
+<!--.bsa-login-bg-1~4 :可以切换自己喜欢的背景图片 -->
+<div class="bsa-login-outer-wrapper bsa-login-bg-1">
+        <div class="bsa-login-inner-wrapper">
+            <div class="container-fluid">
+                <form id="form" class="form">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="username" name="username" aria-label="username"
+                               placeholder="邮箱/用户名/手机号">
                     </div>
-                    <div class="card-body">
-                        <form id="form" class="form">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">账号</label>
-                                <input type="text" class="form-control" id="username" name="username"
-                                       placeholder="邮箱/用户名/手机号">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">密码</label>
-                                <input type="password" class="form-control" id="password" name="password"
-                                       placeholder="请输入密码">
-                            </div>
-                            <div class="mb-3">
-                                <label for="captcha" class="form-label">验证码</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="captcha" name="captcha"
-                                           placeholder="请输入验证码">
-                                    <img src="../dist/img/captcha.png" alt="验证码" class="bsa-cursor-pointer"/>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember"
-                                           value="1">
-                                    <label class="form-check-label" for="exampleCheck1">十天内免登录</label>
-                                </div>
-                                <button id="login-btn" type="submit" class="btn btn-primary">立即登录</button>
-                            </div>
-                        </form>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="password" name="password" aria-label="password"
+                               placeholder="请输入密码">
                     </div>
-
-                    <div class="card-footer bg-white">
-                        <div class="text-center p-2 text-muted">
-                            Copyright © 2022 欲饮琵琶码上催 All right reserved.
+                    <div class="mb-3">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="captcha" name="captcha" aria-label="captcha"
+                                   placeholder="请输入验证码">
+                            <img src="../dist/img/captcha.png" alt="验证码" class="bsa-cursor-pointer"/>
                         </div>
                     </div>
-                </div>
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember"
+                                   value="1">
+                            <label class="form-check-label" for="exampleCheck1">十天内免登录</label>
+                        </div>
+                        <button id="login-btn" type="submit" class="btn btn-primary">立即登录</button>
+                    </div>
+                </form>
             </div>
+
         </div>
-    </div>
+
+
+
 </div>
 
 
@@ -76,6 +61,7 @@
 <script src="../lib/formvalidation/js/formValidation.js"></script>
 <script src="../lib/formvalidation/js/framework/bootstrap.js"></script>
 <script src="../lib/formvalidation/js/language/zh_CN.js"></script>
+
 
 <script>
     //前端表单验证

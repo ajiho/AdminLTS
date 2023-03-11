@@ -445,6 +445,52 @@
   height: 100vh;
   background: #f4f6f9;
 }
+.bsa-login-outer-wrapper {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.bsa-login-outer-wrapper.bsa-login-bg-1 {
+  background-image: url("../img/login-bg-1.jpg");
+}
+.bsa-login-outer-wrapper.bsa-login-bg-2 {
+  background-image: url("../img/login-bg-2.jpg");
+}
+.bsa-login-outer-wrapper.bsa-login-bg-3 {
+  background-image: url("../img/login-bg-3.jpg");
+}
+.bsa-login-outer-wrapper.bsa-login-bg-4 {
+  background-image: url("../img/login-bg-4.jpg");
+}
+.bsa-login-outer-wrapper .bsa-login-inner-wrapper {
+  width: 320px;
+}
+.bsa-login-outer-wrapper .bsa-login-inner-wrapper .form-control {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+}
+.bsa-login-outer-wrapper .bsa-login-inner-wrapper .form-check-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+.bsa-login-outer-wrapper .bsa-login-inner-wrapper .form-check-input {
+  background-color: transparent;
+  border-color: #fff;
+}
+.bsa-login-outer-wrapper .bsa-login-inner-wrapper .form-control::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.bsa-login-outer-wrapper .bsa-login-inner-wrapper .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 @keyframes tada {
   0% {
     transform: scale3d(1, 1, 1);
