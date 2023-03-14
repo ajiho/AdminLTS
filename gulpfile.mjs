@@ -136,8 +136,12 @@ gulp.task('cleanLib', async function (cb) {
             '!lib/tinymce/tinymce.js',
             '!lib/tinymce/tinymce.min.js',
         ],
+        ...[
+            'lib/@fonticonpicker/fonticonpicker/*',
+            '!lib/@fonticonpicker/fonticonpicker/dist',
+        ],
     ]);
-    console.log('Deleted files:\n', deletedFilePaths.join('\n'));
+    console.log('lib依赖目录脏目录删除:\n', deletedFilePaths.join('\n'));
 });
 
 
