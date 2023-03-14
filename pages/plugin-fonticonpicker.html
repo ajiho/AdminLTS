@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/bootstrap-admin.css">
+    <!--  插件css  -->
+    <link rel="stylesheet" href="../lib/@fonticonpicker/fonticonpicker/dist/css/base/jquery.fonticonpicker.min.css">
+    <link rel="stylesheet"
+          href="../lib/@fonticonpicker/fonticonpicker/dist/css/themes/bootstrap-theme/jquery.fonticonpicker.bootstrap.min.css">
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+</head>
+<body class="bg-body-tertiary py-3">
+<div class="container-fluid">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label for="title" class="form-label">权限名称</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+
+                <div class="mb-3">
+                    <label for="icon-example" class="form-label">权限图标</label>
+                    <div>
+                        <input type="text" id="icon-example" name="icon-example" class="form-control"/>
+                    </div>
+                    <div id="select-icon" class="form-text"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">添加</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/jquery/dist/jquery.min.js"></script>
+<script src="../dist/js/bootstrap-admin.js"></script>
+
+
+<script type="text/javascript"
+        src="../lib/@fonticonpicker/fonticonpicker/dist/js/jquery.fonticonpicker.min.js"></script>
+<script>
+    $(function () {
+        var font_element = $('#icon-example').fontIconPicker({
+            theme: 'fip-bootstrap',
+            searchPlaceholder:'搜索图标'
+        });
+
+        $.ajax({
+            url: '../lib/bootstrap-icons/font/bootstrap-icons.json',
+            type: 'GET',
+            dataType: 'json'
+        }).done(function (response) {
+            var fontello_json_icons = [];
+            $.each(response, function (i, v) {
+                fontello_json_icons.push('bi bi-' + i);
+            });
+            font_element.setIcons(fontello_json_icons);
+        }).fail(function () {
+            console.error('字体图标配置加载失败');
+        });
+
+        $(document).on('change', '#icon-example', function () {
+            $('#select-icon').html($(this).val());
+        });
+    })
+</script>
+
+
+</body>
+</html>
