@@ -251,27 +251,6 @@ $(function () {
     });
 
 
-    $('.bsa-input-search').on('keydown', function (event) {
-
-        if (event.keyCode === 13) {
-            event.preventDefault();
-
-
-            var $val = $.trim($(this).val());
-            var $action = $(this).attr('data-bsa-search-action')
-
-            if ($val !== '') {
-                Quicktab.get('.qtab').addTab({
-                    title: '<i class="bi bi-search"></i><span class="text-danger ms-2">'+$val+'</span>',
-                    url: $action + $val,
-                    close: true,
-                });
-            }
-
-
-        }
-    })
-
     function _openMenu(a) {
         var $ul = $(a).parent().parent();
         let $canOpena = $ul.siblings(a);

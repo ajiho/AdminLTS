@@ -17,7 +17,8 @@
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
         <div class="card-body">
-            多级菜单演示页面<br> 当前url地址: <span class="url"></span>
+            <div class="border-bottom py-2 mb-3">多级菜单演示页面</div>
+            当前url地址: <span class="url"></span>
         </div>
     </div>
 </div>
@@ -27,8 +28,7 @@
 <script src="../lib/jquery/dist/jquery.min.js"></script>
 <script src="../dist/js/bootstrap-admin.js"></script>
 <script>
-    let url = window.location.href;
-    document.querySelector('.url').innerHTML = url;
+    $(".url").text(window.location.href.substring(window.location.href.lastIndexOf("\/") + 1, window.location.href.length))
 </script>
 </body>
 </html>

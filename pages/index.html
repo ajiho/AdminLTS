@@ -275,7 +275,7 @@
                     <li><a href="plugin-croppie.html">头像裁剪</a></li>
                     <li><a href="plugin-ztree.html">树形组件</a></li>
                     <li><a href="plugin-select2.html">select2</a></li>
-                    <li><a href="plugin-fontIconPicker.html">图标选择器</a></li>
+                    <li><a href="plugin-fonticonpicker.html">图标选择器</a></li>
                 </ul>
             </li>
             <li>
@@ -353,5 +353,24 @@
 <script src="../lib/jquery/dist/jquery.min.js"></script>
 <script src="../lib/bootstrap-quicktab/dist/js/bootstrap-quicktab.min.js"></script>
 <script src="../dist/js/bootstrap-admin.js"></script>
+<script>
+    //头部搜索框逻辑(不需要可以删除)
+    $('.bsa-input-search').on('keydown', function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+
+            var $val = $.trim($(this).val());
+            var $action = $(this).attr('data-bsa-search-action')
+
+            if ($val !== '') {
+                Quicktab.get('.qtab').addTab({
+                    title: '<i class="bi bi-search"></i><span class="text-danger ms-2">'+$val+'</span>',
+                    url: $action + $val,
+                    close: true,
+                });
+            }
+        }
+    })
+</script>
 </body>
 </html>

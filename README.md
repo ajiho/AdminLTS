@@ -9,7 +9,7 @@
 
 ## 简介
 
-Bootstrap-Admin基于Bootstrap5.x设计的一个响应式静态后台管理HTML模板,旨在让喜欢用bootstrap的程序员有个愉悦的起点。
+Bootstrap-Admin基于Bootstrap5.x设计的一个响应式静态后台管理HTML模板,旨在让喜欢用bootstrap开发后台管理系统的程序员有个愉悦的起点。
 
 [演示地址](https://ajiho.gitee.io/bootstrap-admin)
 
