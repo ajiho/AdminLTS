@@ -20,15 +20,12 @@
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
         <div class="card-body">
-            <h6 class="mb-2 text-muted">
-                下拉框的强化版,我们在mvc开发中假如后端有成千上万的数据直接通过模板引擎赋值那是不明智的
-            </h6>
-            <hr>
+            <div class="border-bottom py-2 mb-3">select2插件演示</div>
             <div class="row row-cols-1 row-cols-md-2 ">
                 <!-- 本地数据单选-->
                 <div class="col">
                     <h5 class="card-title">select2本地数据(单选)</h5>
-                    <hr>
+
                     <form>
                         <div class="mb-3">
                             <label for="fruit" class="form-label">水果</label>
@@ -40,7 +37,7 @@
                 <!-- 本地数据单选回显-->
                 <div class="col">
                     <h5 class="card-title">select2本地数据(单选)-回显</h5>
-                    <hr>
+
                     <form>
                         <div class="mb-3">
                             <label for="fruit2" class="form-label">水果</label>
@@ -52,7 +49,7 @@
                 <!-- 本地数据多选-->
                 <div class="col">
                     <h5 class="card-title">select2本地数据(多选)</h5>
-                    <hr>
+
                     <form>
                         <div class="mb-3">
                             <label for="fruit3" class="form-label">水果</label>
@@ -63,7 +60,6 @@
                 </div>
                 <div class="col">
                     <h5 class="card-title">select2本地数据(多选)-回显</h5>
-                    <hr>
                     <form>
                         <div class="mb-3">
                             <label for="fruit4" class="form-label">水果</label>
@@ -75,7 +71,7 @@
 
                 <div class="col">
                     <h5 class="card-title">select2-服务端(单选+分页+搜索)</h5>
-                    <hr>
+
                     <form>
                         <div class="mb-3">
                             <label for="article" class="form-label">文章</label>
@@ -85,7 +81,7 @@
                 </div>
                 <div class="col">
                     <h5 class="card-title">select2-服务端(单选+分页+搜索)-回显</h5>
-                    <hr>
+
                     <form>
                         <div class="mb-3">
                             <label for="article2" class="form-label">文章</label>
@@ -96,7 +92,7 @@
                 </div>
                 <div class="col">
                     <h5 class="card-title">select2-服务端(多选+分页+搜索+自定义模板+选中回调添加图标)</h5>
-                    <hr>
+
                     <form>
                         <div class="mb-3">
                             <label for="user" class="form-label">用户</label>
@@ -106,7 +102,7 @@
                 </div>
                 <div class="col">
                     <h5 class="card-title">select2-服务端(多选+分页+搜索+自定义模板+选中回调添加图标)-回显</h5>
-                    <hr>
+
                     <form>
                         <div class="mb-3">
                             <label for="user2" class="form-label">用户</label>
@@ -624,7 +620,6 @@
         {'username': 'Bret', 'id': 1},
         {'username': 'Antonette', 'id': 2}
     ];
-
 
 
     $.each(data3, function (index, value) {
