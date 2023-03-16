@@ -203,6 +203,73 @@
   color: var(--bs-light-text) !important;
 }
 
+.icons-selector.fip-bootstrap .selector-button {
+  background-color: var(--bs-tertiary-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+  background-image: none !important;
+}
+
+.icons-selector.fip-bootstrap .selected-icon {
+  background-color: var(--bs-body-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+  border-right: none !important;
+}
+
+.icons-selector.fip-bootstrap .selected-icon i {
+  color: var(--bs-body-color) !important;
+}
+
+.icons-selector.fip-bootstrap span.current-icon,
+.icons-selector.fip-bootstrap span.current-icon:hover {
+  color: var(--bs-light-text) !important;
+  background-color: var(--bs-light-bg-subtle) !important;
+  border: none !important;
+}
+
+/*var(--bs-body-bg)*/
+.icons-selector.fip-bootstrap .selector-popup {
+  background-color: var(--bs-body-bg) !important;
+  color: var(--bs-body-color) !important;
+}
+
+.icons-selector.fip-bootstrap .selector-category select,
+.icons-selector.fip-bootstrap .selector-search input[type=text] {
+  background-color: var(--bs-body-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+  color: var(--bs-body-color) !important;
+}
+
+.icons-selector.fip-bootstrap .selector-search input[type=text]::-webkit-input-placeholder {
+  color: var(--bs-body-color) !important;
+}
+
+.icons-selector.fip-bootstrap .selector-search i {
+  color: var(--bs-body-color) !important;
+}
+
+.icons-selector.fip-bootstrap .fip-icons-container {
+  background-color: var(--bs-body-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+.icons-selector.fip-bootstrap .fip-box {
+  background-color: var(--bs-body-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+.icons-selector.fip-bootstrap .fip-box:hover {
+  background-color: var(--bs-body-bg) !important;
+}
+
+.icons-selector.fip-bootstrap .selector-button:hover {
+  background-color: var(--bs-body-bg) !important;
+}
+
+.icons-selector.fip-bootstrap .selector-footer,
+.icons-selector.fip-bootstrap .selector-footer i {
+  color: var(--bs-body-color) !important;
+}
+
 .bsa-header {
   display: flex;
   align-items: center;
