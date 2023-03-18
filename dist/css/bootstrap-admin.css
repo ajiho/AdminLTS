@@ -10,29 +10,23 @@
   --bsa-footer-height: 38px;
 }
 
-[data-bs-theme=light] .bsa-menu li a + ul {
-  background-color: transparent;
-}
-[data-bs-theme=light] .bsa-menu li a.active, [data-bs-theme=light] .bsa-menu li a:active, [data-bs-theme=light] .bsa-menu li a:focus, [data-bs-theme=light] .bsa-menu li a:hover {
-  color: #0d6efd;
-  background-color: rgba(13, 110, 253, 0.12);
-}
-[data-bs-theme=light] .bsa-menu li a.has-children.open {
-  color: #0d6efd;
-  background-color: rgba(13, 110, 253, 0.12);
-}
-[data-bs-theme=light] .quicktab .nav {
-  --bs-nav-link-color: var(--bs-body-color);
-  --bs-nav-link-hover-color: var(--bs-body-color);
-  --bs-nav-link-disabled-color: var(--bs-secondary-color);
-}
-[data-bs-theme=light] .quicktab .nav-pills {
-  --bs-nav-pills-link-active-color: #0d6efd;
-  --bs-nav-pills-link-active-bg: rgb(13 110 253 / 12%);
-}
-
 [data-bs-theme=dark] .dropdown-menu {
   --bs-dropdown-link-active-bg: #495057;
+}
+[data-bs-theme=dark] .quicktab .nav-pills {
+  --bs-nav-pills-link-active-color: var(--bs-light-text);
+  --bs-nav-pills-link-active-bg: var(--bs-light-bg-subtle);
+}
+[data-bs-theme=dark] .bsa-menu li a + ul {
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.08);
+}
+[data-bs-theme=dark] .bsa-menu li a.active, [data-bs-theme=dark] .bsa-menu li a:active, [data-bs-theme=dark] .bsa-menu li a:focus, [data-bs-theme=dark] .bsa-menu li a:hover {
+  color: unset;
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
+}
+[data-bs-theme=dark] .bsa-menu li a.has-children.open {
+  color: unset;
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
 }
 
 [data-bs-theme=indigo] {
@@ -107,6 +101,21 @@
 [data-bs-theme=indigo] .dropdown-menu {
   --bs-dropdown-link-active-bg: #3d0a91;
 }
+[data-bs-theme=indigo] .quicktab .nav-pills {
+  --bs-nav-pills-link-active-color: var(--bs-light-text);
+  --bs-nav-pills-link-active-bg: var(--bs-light-bg-subtle);
+}
+[data-bs-theme=indigo] .bsa-menu li a + ul {
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.08);
+}
+[data-bs-theme=indigo] .bsa-menu li a.active, [data-bs-theme=indigo] .bsa-menu li a:active, [data-bs-theme=indigo] .bsa-menu li a:focus, [data-bs-theme=indigo] .bsa-menu li a:hover {
+  color: unset;
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
+}
+[data-bs-theme=indigo] .bsa-menu li a.has-children.open {
+  color: unset;
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
+}
 
 .quicktab > ul {
   border-top: 0 !important;
@@ -124,8 +133,8 @@
   --bs-nav-link-disabled-color: var(--bs-secondary-color);
 }
 .quicktab .nav-pills {
-  --bs-nav-pills-link-active-color: var(--bs-light-text);
-  --bs-nav-pills-link-active-bg: var(--bs-light-bg-subtle);
+  --bs-nav-pills-link-active-color: #0d6efd;
+  --bs-nav-pills-link-active-bg: rgb(13 110 253 / 12%);
 }
 
 .scrollbar-track {
@@ -551,7 +560,6 @@
   overflow: hidden;
   transition: height 150ms linear;
   display: none;
-  background-color: rgba(var(--bs-tertiary-color-rgb), 0.08);
 }
 .bsa-menu li a + ul a {
   padding-left: calc(16px + 1rem + 10px);
@@ -569,7 +577,8 @@
   padding-left: calc(16px + 5rem + 10px);
 }
 .bsa-menu li a.active, .bsa-menu li a:active, .bsa-menu li a:focus, .bsa-menu li a:hover {
-  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.12);
 }
 .bsa-menu li a.has-children::after {
   font-family: bootstrap-icons, serif;
@@ -580,7 +589,8 @@
   right: 24px;
 }
 .bsa-menu li a.has-children.open {
-  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.12);
 }
 .bsa-menu li a.has-children.open::after {
   transform: scale(0.5) rotate(-90deg);

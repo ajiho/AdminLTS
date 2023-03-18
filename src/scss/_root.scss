@@ -11,58 +11,25 @@
   --bsa-footer-height: #{$footer-height};
 }
 
-//明亮主题
-@include color-mode("light", true) {
-
-
-
-  .bsa-menu {
-    li {
-      a {
-        + ul {
-          background-color: transparent;
-        }
-
-        &.active, &:active, &:focus, &:hover {
-          color: #0d6efd;
-          background-color: rgb(13 110 253 / 12%);
-        }
-        &.has-children {
-          &.open {
-            color: #0d6efd;
-            background-color: rgb(13 110 253 / 12%);
-          }
-        }
-      }
-    }
-  }
-
-
-  .quicktab {
-    .nav {
-      --bs-nav-link-color: var(--bs-body-color);
-      --bs-nav-link-hover-color: var(--bs-body-color);
-      --bs-nav-link-disabled-color: var(--bs-secondary-color);
-    }
-
-    .nav-pills {
-      --bs-nav-pills-link-active-color: #0d6efd;
-      --bs-nav-pills-link-active-bg: rgb(13 110 253 / 12%);
-    }
-  }
-
-}
-
 
 // 官方默认黑色主题适配
 @include color-mode("dark", true) {
+
   .dropdown-menu {
     // --#{$prefix}-dropdown-bg: #{mix($blue-500, $blue-600)};
     --#{$prefix}dropdown-link-active-bg: #{$gray-700};
   }
+
+
+  @include quicktab-nav-pill;
+
+
+  @include sidebar-menu;
+
 }
 
 @include color-mode("indigo", true) {
+
   --#{$prefix}body-color: #{$body-color-indigo};
   --#{$prefix}body-color-rgb: #{to-rgb($body-color-indigo)};
   --#{$prefix}body-bg: #{$body-bg-indigo};
@@ -151,6 +118,12 @@
     --#{$prefix}dropdown-link-active-bg: #{$indigo-700};
   }
 
+
+
+  @include quicktab-nav-pill;
+
+
+  @include sidebar-menu;
 
 }
 

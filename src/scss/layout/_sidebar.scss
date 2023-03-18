@@ -125,7 +125,7 @@
         display: none;
 
         //设置后有层级感
-        background-color: rgba(var(--bs-tertiary-color-rgb), .08);
+        //background-color: rgba(var(--bs-tertiary-color-rgb), .08);
 
 
         // 二级菜单距离左侧的间距
@@ -164,7 +164,8 @@
       // a链接的伪类效果
       &.active, &:active, &:focus, &:hover {
         //color: #0d6efd;
-        background-color: rgba(var(--bs-tertiary-color-rgb), .18);
+        color: #0d6efd;
+        background-color: rgb(13 110 253 / 12%);
       }
 
 
@@ -181,7 +182,8 @@
 
         // 添加有.open类名的也实现和.active a:active a:focus a:hover 相同的效果
         &.open {
-          background-color: rgba(var(--bs-tertiary-color-rgb), .18);
+          color: #0d6efd;
+          background-color: rgb(13 110 253 / 12%);
           // 并让它的小箭头图标旋转90度
           &::after {
             transform: scale(0.5) rotate(-90deg);
