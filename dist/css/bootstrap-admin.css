@@ -468,7 +468,6 @@
   bottom: 0;
   width: var(--bsa-sidebar-width);
   z-index: 100;
-  transition: 0.3s transform;
   transform: translateX(0);
   background-color: var(--bs-body-bg);
   border-right: var(--bs-border-width) solid var(--bs-border-color);
@@ -510,10 +509,7 @@
   margin: 0;
   list-style: none;
   position: absolute;
-  top: var(--bsa-header-height);
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: var(--bsa-header-height) 0 0 0;
 }
 .bsa-sidebar.open {
   transform: translateX(0);
@@ -558,7 +554,6 @@
   margin: 0;
   list-style: none;
   overflow: hidden;
-  transition: height 150ms linear;
   display: none;
 }
 .bsa-menu li a + ul a {
@@ -601,17 +596,11 @@
 
 .bsa-content {
   position: fixed;
-  top: var(--bsa-header-height);
-  bottom: var(--bsa-footer-height);
-  left: var(--bsa-sidebar-width);
-  right: 0;
+  inset: var(--bsa-header-height) 0 var(--bsa-footer-height) var(--bsa-sidebar-width);
   overflow: hidden;
 }
 .bsa-content.fullscreen {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   z-index: 9999;
 }
 
@@ -1283,3 +1272,4 @@
     display: none;
   }
 }
+/*# sourceMappingURL=bootstrap-admin.css.map */

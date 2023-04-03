@@ -1,13 +1,25 @@
 {
+  "name": "bootstrap-admin",
+  "description": "Open source responsive background management template based on bootstrap 5",
+  "version": "1.1.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "js": "rollup --config rollup.config.js --sourcemap",
+    "css": "gulp css",
+    "dist": "npm-run-all js css"
+  },
   "dependencies": {
     "@eonasdan/tempus-dominus": "^6.2.7",
     "@fonticonpicker/fonticonpicker": "^3.1.1",
     "@popperjs/core": "^2.11.6",
     "@ztree/ztree_v3": "^3.5.48",
     "bootstrap": "^5.3.0-alpha1",
+    "bootstrap-fileinput": "^5.5.2",
     "bootstrap-icons": "^1.9.1",
+    "bootstrap-quicktab": "^1.1.0",
     "bootstrap-table": "^1.21.1",
     "chart.js": "^3.8.0",
+    "core-js": "^3.29.1",
     "croppie": "^2.6.5",
     "dropzone": "^6.0.0-beta.2",
     "echarts": "^5.4.1",
@@ -18,12 +30,6 @@
     "smooth-scrollbar": "^8.8.1",
     "sweetalert2": "^11.6.15",
     "tinymce": "^6.3.1"
-  },
-  "name": "bootstrap-admin",
-  "description": "Open source responsive background management template based on bootstrap 5",
-  "version": "1.1.0",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -43,14 +49,29 @@
   "author": "ajiho",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-eslint": "^9.0.3",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
     "autoprefixer": "^10.4.13",
+    "babel-eslint": "^10.1.0",
     "del": "^7.0.0",
     "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
     "gulp-imagemin": "^8.0.0",
     "gulp-postcss": "^9.0.1",
+    "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "lodash-es": "^4.17.21",
     "node-css-mqpacker": "^9.0.0",
     "postcss": "^8.4.21",
+    "rollup": "^3.20.2",
     "sass": "^1.57.1",
     "stylelint": "^15.1.0",
     "stylelint-config-standard-scss": "^7.0.1"

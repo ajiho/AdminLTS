@@ -3,23 +3,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
-    <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../dist/css/bootstrap-admin.css">
+    <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="dist/css/bootstrap-admin.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
-<body>
 
+<body data-scrollbar-auto-hide="true" data-theme-on-tab-page="true">
 
 <!--头部导航-->
 <ul class="bsa-header">
     <!-- 侧边栏触发按钮(移动端时显示) -->
-    <li class="bsa-sidebar-toggler">
+    <li class="bsa-sidebar-toggler" data-bsa-toggle="pushmenu">
         <div class="bsa-header-item">
             <i class="bi bi-list"></i>
         </div>
@@ -27,16 +27,20 @@
     <!--  搜索组件(不需要可删除)  -->
     <li>
         <div class="bsa-header-item bsa-cursor-default">
-            <div class="bsa-search-form-wrapper">
+            <!--    搜索表单包裹区域        -->
+            <div class="bsa-search-form-wrapper"
+                 data-bsa-toggle="navbar-search"
+                 data-close-reset="false"
+                 data-action="pages/search.html"
+                 data-params='{"type":"article","user":"admin2"}'>
                 <div class="bsa-search-form">
-                    <input type="text" class="form-control bsa-input-search"
-                           data-bsa-search-action="search.html?keywords=" name="keyword" aria-label="搜索关键词"
+                    <input type="text" class="form-control bsa-input-search" aria-label="搜索关键词"
                            placeholder="搜索关键词">
                     <button class="bsa-search-submit-btn" type="submit"><i class="bi bi-search"></i></button>
                     <button class="bsa-search-close-btn" type="button"><i class="bi bi-x-lg"></i></button>
                 </div>
             </div>
-            <!--    移动端会显示该搜索图标用于弹出搜索框        -->
+            <!--    移动端搜索表单触发器(移动端会显示)        -->
             <i class="bi bi-search bsa-search-form-toggler"></i>
         </div>
     </li>
@@ -49,7 +53,7 @@
         </div>
     </li>
     <!--  拓展应用(建议把拓展放在此处,以免破坏头部整体布局,不需要可以直接删除)  -->
-    <li>
+    <li class="dropdown">
         <div class="bsa-header-item" data-bs-toggle="dropdown" data-bs-auto-close="outside">
             <i class="bi bi-grid"></i>
         </div>
@@ -78,16 +82,18 @@
                                 <div class="bsa-fs-14 bsa-ellipsis-2 text-center">拓展应用2</div>
                             </a>
 
-                            <a class="col text-decoration-none text-body-secondary d-flex flex-column align-items-center p-2 gap-1"
-                               href="javascript:">
+                            <a
+                                    class="col text-decoration-none text-body-secondary d-flex flex-column align-items-center p-2 gap-1"
+                                    href="javascript:">
                                 <div class="d-flex align-items-center justify-content-center bsa-fs-25 bg-body-secondary bsa-wh-45 rounded-circle">
                                     <i class="bi bi-link"></i>
                                 </div>
                                 <div class="bsa-fs-14 bsa-ellipsis-2 text-center">拓展应用3</div>
                             </a>
 
-                            <a class="col text-decoration-none text-body-secondary d-flex flex-column align-items-center p-2 gap-1"
-                               href="javascript:">
+                            <a
+                                    class="col text-decoration-none text-body-secondary d-flex flex-column align-items-center p-2 gap-1"
+                                    href="javascript:">
                                 <div class="d-flex align-items-center justify-content-center bsa-fs-25 bg-body-secondary bsa-wh-45 rounded-circle">
                                     <i class="bi bi-link"></i>
                                 </div>
@@ -163,7 +169,7 @@
         </div>
     </li>
     <!--  主题配色  -->
-    <li>
+    <li class="dropdown">
         <div class="bsa-header-item" data-bs-toggle="dropdown" data-bs-auto-close="outside">
             <i class="bi bi-palette"></i>
         </div>
@@ -186,7 +192,7 @@
     <li class="dropdown">
         <div class="bsa-header-item" data-bs-toggle="dropdown">
             <div class="bsa-user-area">
-                <img src="../dist/img/avatar.jpg" class="bsa-user-avatar" alt="用户头像">
+                <img src="dist/img/avatar.jpg" class="bsa-user-avatar" alt="用户头像">
                 <div class="bsa-user-details">
                     <div class="bsa-ellipsis-1 bsa-fs-15">欲饮琵琶码上催</div>
                     <!-- 管理员角色RBAC权限设计时可用(不需要可删除,上面的用户名可自动垂直居中)  -->
@@ -198,14 +204,14 @@
         <ul class="dropdown-menu dropdown-menu-end">
             <li>
                 <a class="dropdown-item" href="javascript:"
-                   data-qt-tab='{"title":"个人资料","url":"profile.html"}'
+                   data-qt-tab='{"title":"个人资料","url":"pages/profile.html"}'
                    data-qt-target=".qtab">
                     <i class="bi bi-person me-2"></i>个人资料
                 </a>
             </li>
             <li>
                 <a class="dropdown-item bsa-clear-cache" href="javascript:"
-                   data-qt-tab='{"title":"修改密码","url":"password.html"}'
+                   data-qt-tab='{"title":"修改密码","url":"pages/password.html"}'
                    data-qt-target=".qtab">
                     <i class="bi bi-key me-2"></i>修改密码
                 </a>
@@ -223,14 +229,14 @@
 <div class="bsa-sidebar">
     <div class="bsa-sidebar-header">
         <div class="bsa-logo-wrapper">
-            <img src="../dist/img/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
+            <img src="dist/img/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
         </div>
         <div class="bsa-logo-text ms-2 bsa-ellipsis-2">bootstrap-admin</div>
     </div>
     <div class="bsa-sidebar-body">
-        <ul class="bsa-menu">
+        <ul class="bsa-menu" data-bsa-toggle="sidebar" data-accordion="true" data-animation-speed="150">
             <li>
-                <a href="welcome.html">
+                <a href="pages/welcome.html">
                     <i class="bi bi-house"></i>首页
                 </a>
             </li>
@@ -240,11 +246,10 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="list.html">xx列表</a>
+                        <a href="pages/list.html">xx列表</a>
                     </li>
                 </ul>
             </li>
-
             <li>
                 <a href="javascript:" class="has-children">
                     <i class="bi bi-filetype-html"></i>示例页面
@@ -252,10 +257,10 @@
                 <ul>
 
                     <li>
-                        <a href="login.html" target="_blank">登录页面</a>
+                        <a href="pages/login.html" target="_blank">登录页面</a>
                     </li>
                     <li>
-                        <a href="error.html">错误页面</a>
+                        <a href="pages/error.html">错误页面</a>
                     </li>
                 </ul>
             </li>
@@ -264,18 +269,19 @@
                     <i class="bi bi-filetype-js"></i>插件
                 </a>
                 <ul>
-                    <li><a href="plugin-bootstrap-table.html">bootstrap-table</a></li>
-                    <li><a href="plugin-chart.html">chart.js</a></li>
-                    <li><a href="plugin-echarts.html">echart.js</a></li>
-                    <li><a href="plugin-sweetalert2.html">sweetalert2</a></li>
-                    <li><a href="plugin-formvalidation.html">表单验证</a></li>
-                    <li><a href="plugin-tempus-dominus.html">日期时间</a></li>
-                    <li><a href="plugin-tinymce.html">tinymce</a></li>
-                    <li><a href="plugin-dropzone.html">文件上传</a></li>
-                    <li><a href="plugin-croppie.html">头像裁剪</a></li>
-                    <li><a href="plugin-ztree.html">树形组件</a></li>
-                    <li><a href="plugin-select2.html">select2</a></li>
-                    <li><a href="plugin-fonticonpicker.html">图标选择器</a></li>
+                    <li><a href="pages/plugin-bootstrap-table.html">bootstrap-table</a></li>
+                    <li><a href="pages/plugin-chart.html">chart.js</a></li>
+                    <li><a href="pages/plugin-echarts.html">echart.js</a></li>
+                    <li><a href="pages/plugin-sweetalert2.html">sweetalert2</a></li>
+                    <li><a href="pages/plugin-formvalidation.html">表单验证</a></li>
+                    <li><a href="pages/plugin-tempus-dominus.html">日期时间</a></li>
+                    <li><a href="pages/plugin-tinymce.html">tinymce</a></li>
+                    <li><a href="pages/plugin-dropzone.html">文件上传</a></li>
+                    <li><a href="pages/plugin-croppie.html">头像裁剪</a></li>
+                    <li><a href="pages/plugin-ztree.html">树形组件</a></li>
+                    <li><a href="pages/plugin-select2.html">select2</a></li>
+                    <li><a href="pages/plugin-fonticonpicker.html">图标选择器</a></li>
+                    <li><a href="pages/plugin-bootstrap-fileinput.html">bootstrap-fileinput</a></li>
                 </ul>
             </li>
             <li>
@@ -283,33 +289,38 @@
                     <i class="bi bi-gear"></i>设置
                 </a>
                 <ul>
-                    <li><a href="sys_website.html">网站设置</a></li>
-                    <li><a href="sys_email.html">邮件服务</a></li>
+                    <li><a href="pages/sys_website.html">网站设置</a></li>
+                    <li><a href="pages/sys_email.html">邮件服务</a></li>
                 </ul>
+            </li>
+            <li>
+                <a href="docs/index.html" target="_blank">
+                    <i class="bi bi-filetype-doc"></i>文档
+                </a>
             </li>
             <li>
                 <a href="javascript:" class="has-children">
                     <i class="bi bi-list-nested"></i>多级菜单
                 </a>
                 <ul>
-                    <li><a href="multilevel.html?id=1">一级菜单</a></li>
+                    <li><a href="pages/multilevel.html?id=1">一级菜单</a></li>
                     <li>
                         <a href="javascript:" class="has-children">一级菜单</a>
                         <ul>
-                            <li><a href="multilevel.html?id=2">二级菜单</a></li>
+                            <li><a href="pages/multilevel.html?id=2">二级菜单</a></li>
                             <li>
                                 <a href="javascript:" class="has-children">二级菜单</a>
                                 <ul>
-                                    <li><a href="multilevel.html?id=3">三级菜单</a></li>
+                                    <li><a href="pages/multilevel.html?id=3">三级菜单</a></li>
                                     <li>
                                         <a href="javascript:" class="has-children">三级菜单</a>
                                         <ul>
-                                            <li><a href="multilevel.html?id=4">四级菜单</a></li>
+                                            <li><a href="pages/multilevel.html?id=4">四级菜单</a></li>
                                             <li>
                                                 <a href="javascript:" class="has-children">四级菜单</a>
                                                 <ul>
-                                                    <li><a href="multilevel.html?id=5">五级菜单</a></li>
-                                                    <li><a href="multilevel.html?id=6">五级菜单</a></li>
+                                                    <li><a href="pages/multilevel.html?id=5">五级菜单</a></li>
+                                                    <li><a href="pages/multilevel.html?id=6">五级菜单</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -319,9 +330,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="welcome.html?id=789" class="has-children">一级菜单</a>
+                        <a href="pages/welcome.html?id=789" class="has-children">一级菜单</a>
                         <ul>
-                            <li><a href="multilevel.html?id=1011">二级菜单</a></li>
+                            <li><a href="pages/multilevel.html?id=1011">二级菜单</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -332,7 +343,7 @@
 
 <!--内容区域(用于tab选项卡插件)-->
 <div class="bsa-content">
-    <div class="qtab" data-qt-tabs='[{"title":"首页","url":"welcome.html","close":false}]'></div>
+    <div class="qtab" data-qt-tabs='[{"title":"首页","url":"pages/welcome.html","close":false}]'></div>
 </div>
 
 <!--版权信息-->
@@ -348,29 +359,30 @@
 </div>
 
 
-<script src="../lib/smooth-scrollbar/dist/smooth-scrollbar.js"></script>
-<script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../lib/jquery/dist/jquery.min.js"></script>
-<script src="../lib/bootstrap-quicktab/dist/js/bootstrap-quicktab.min.js"></script>
-<script src="../dist/js/bootstrap-admin.js"></script>
+<script src="lib/smooth-scrollbar/dist/smooth-scrollbar.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script src="lib/bootstrap-quicktab/dist/js/bootstrap-quicktab.min.js"></script>
+<script src="dist/js/bootstrap-admin.min.js"></script>
 <script>
-    //头部搜索框逻辑(不需要可以删除)
-    $('.bsa-input-search').on('keydown', function (event) {
-        if (event.keyCode === 13) {
-            event.preventDefault();
+    $(function () {
+        //头部搜索框处理(不需要可以删除)
+        $(document).on('search.bsa.navbar-search', function (e, config, keyword) {
+            //先得到请求地址
+            var url = config.action;
+            //这里是拼接其它参数
+            url += '?keyword=' + keyword + '&' + $.param(config.params);
+            Quicktab.get('.qtab').addTab({
+                title: '<i class="bi bi-search"></i><span class="text-danger ms-2">' + keyword + '</span>',
+                url: url,
+                close: true,
+            })
+        })
 
-            var $val = $.trim($(this).val());
-            var $action = $(this).attr('data-bsa-search-action')
 
-            if ($val !== '') {
-                Quicktab.get('.qtab').addTab({
-                    title: '<i class="bi bi-search"></i><span class="text-danger ms-2">'+$val+'</span>',
-                    url: $action + $val,
-                    close: true,
-                });
-            }
-        }
-    })
+    });
+
+
 </script>
 </body>
 </html>

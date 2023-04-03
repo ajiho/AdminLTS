@@ -51,6 +51,10 @@ Bootstrap-Admin基于Bootstrap5.x设计的一个响应式静态后台管理HTML�
 
 ```
 ├─dist                生产文件目录
+│  ├─css                 生产css目录
+│  ├───plugins              第三方插件的重写样式目录
+│  ├─img                 生产img目录
+│  └─js                  生产js目录
 ├─lib                 外部依赖目录
 ├─pages               示例页面目录
 ├─src                 源码目录
@@ -99,20 +103,35 @@ yarn add bootstrap-admin
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-admin/dist/css/bootstrap-admin.min.css">
 ```
 ```
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/dist/js/bootstrap-admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/dist/js/bootstrap-admin.min.js"></script>
 ```
-_**重要提示**: bootstrap-admin的依赖插件也可以使用cdn_
+_**重要提示**: bootstrap-admin的依赖和插件也可以使用cdn,你可以根据bootstrap-admin的目录来找到对应的路径,部分例子如下_
 
+```html
+<!--bootstrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-admin/lib/bootstrap/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!--jquery-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/lib/jquery/dist/jquery.min.js"></script>
+
+
+<!--ztree-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-admin/dist/css/plugins/metroStyle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/lib/@ztree/ztree_v3/js/jquery.ztree.all.min.js"></script>
 ```
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/plugins/bootstrap/js/bootstrap.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/plugins/bootstrap/js/bootstrap.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/plugins/bootstrap/js/bootstrap.js"></script>
-...
-```
+
 
 ## 设备支持
 
-[https://getbootstrap.com/docs/5.3/getting-started/browsers-devices/](https://getbootstrap.com/docs/5.3/getting-started/browsers-devices/)
+`bootstrap-admin`具有与Bootstrap5相同的浏览器支持,你可以在bootstrap官方文档[browsers-devices](https://getbootstrap.com/docs/5.3/getting-started/browsers-devices/)处查看
+
+
+
+|Internet Explorer| Chrome |Firefox |Microsoft Edge |Opera |Safari |
+|:--:|--|--|--|--|--|
+|不支持  |last 2 versions  |last 2 versions  |last 2 versions  |last 2 versions  |last 2 versions  |
 
 ## 反馈
 

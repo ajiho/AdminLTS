@@ -1,16 +1,10 @@
 .bsa-content {
   position: fixed;
-  top: var(--bsa-header-height);
-  bottom: var(--bsa-footer-height);
-  left: var(--bsa-sidebar-width);
-  right: 0;
+  inset: var(--bsa-header-height) 0 var(--bsa-footer-height) var(--bsa-sidebar-width);
   overflow: hidden;
 
   &.fullscreen{
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    inset: 0;
     z-index: 9999;
   }
 

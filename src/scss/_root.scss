@@ -14,7 +14,6 @@
 
 // 官方默认黑色主题适配
 @include color-mode("dark", true) {
-
   .dropdown-menu {
     // --#{$prefix}-dropdown-bg: #{mix($blue-500, $blue-600)};
     --#{$prefix}dropdown-link-active-bg: #{$gray-700};
@@ -22,14 +21,11 @@
 
 
   @include quicktab-nav-pill;
-
-
   @include sidebar-menu;
 
 }
 
 @include color-mode("indigo", true) {
-
   --#{$prefix}body-color: #{$body-color-indigo};
   --#{$prefix}body-color-rgb: #{to-rgb($body-color-indigo)};
   --#{$prefix}body-bg: #{$body-bg-indigo};
@@ -121,8 +117,6 @@
 
 
   @include quicktab-nav-pill;
-
-
   @include sidebar-menu;
 
 }

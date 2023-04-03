@@ -10,7 +10,7 @@
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../dist/css/bootstrap-admin.css">
+    <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
     <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
 </head>
 <body class="bg-body-tertiary py-3">
@@ -282,62 +282,70 @@
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/chart.js/dist/chart.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
-<script src="../dist/js/bootstrap-admin.js"></script>
+<script src="../dist/js/bootstrap-admin.min.js"></script>
 <script>
-    new Chart(document.getElementById('chart-bar').getContext('2d'), {
-        type: 'bar',
-        data: {
-            labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
-            datasets: [{
-                label: 'pv值',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)'
-                ],
-                borderColor: [
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)',
-                    'rgba(52,143,80, 0.6)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+
+    $(function (){
+
+
+        new Chart(document.getElementById('chart-bar').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
+                datasets: [{
+                    label: 'pv值',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(52,143,80, 0.6)',
+                        'rgba(52,143,80, 0.6)',
+                        'rgba(52,143,80, 0.6)',
+                        'rgba(52,143,80, 0.6)',
+                        'rgba(52,143,80, 0.6)',
+                        'rgba(52,143,80, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(52,143,80, 0.6)',
+                        'rgba(52,143,80, 0.6)',
+                        'rgba(52,143,80, 0.6)',
+                        'rgba(52,143,80, 0.6)',
+                        'rgba(52,143,80, 0.6)',
+                        'rgba(52,143,80, 0.6)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
-    new Chart(document.getElementById('chart-line').getContext('2d'), {
-        type: 'line',
-        data: {
-            labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
-            datasets: [{
-                label: '营业额 单位/万元',
-                data: [65, 90, 60, 50, 40, 30, 20],
-                fill: false,
-                borderColor: 'rgba(185,110,228,.5)',
-                tension: 0.1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        });
+        new Chart(document.getElementById('chart-line').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
+                datasets: [{
+                    label: '营业额 单位/万元',
+                    data: [65, 90, 60, 50, 40, 30, 20],
+                    fill: false,
+                    borderColor: 'rgba(185,110,228,.5)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
+    })
+
+
+
     // new Chart(document.getElementById('chart-line2').getContext('2d'), {
     //     type: 'line',
     //     data: {

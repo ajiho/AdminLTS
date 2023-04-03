@@ -6,7 +6,9 @@
   bottom: 0;
   width: var(--bsa-sidebar-width);
   z-index: 100;
-  transition: 0.3s transform;
+
+  // 交给js插件部分来实现
+  // transition: 0.3s transform;
   transform: translateX(0);
   background-color: var(--#{$prefix}body-bg);
 
@@ -64,10 +66,7 @@
     margin: 0;
     list-style: none;
     position: absolute;
-    top: var(--bsa-header-height);
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: var(--bsa-header-height) 0 0 0;
   }
 
   &.open {
@@ -116,16 +115,17 @@
       }
 
       + ul {
-
         padding: 0;
         margin: 0;
         list-style: none;
         overflow: hidden;
-        transition: height 150ms linear;
+
+        // 过渡
+        // transition: height 150ms linear;
         display: none;
 
-        //设置后有层级感
-        //background-color: rgba(var(--bs-tertiary-color-rgb), .08);
+        // 设置后有层级感
+        // background-color: rgba(var(--bs-tertiary-color-rgb), .08);
 
 
         // 二级菜单距离左侧的间距
@@ -163,7 +163,7 @@
 
       // a链接的伪类效果
       &.active, &:active, &:focus, &:hover {
-        //color: #0d6efd;
+        // color: #0d6efd;
         color: #0d6efd;
         background-color: rgb(13 110 253 / 12%);
       }
@@ -184,6 +184,7 @@
         &.open {
           color: #0d6efd;
           background-color: rgb(13 110 253 / 12%);
+
           // 并让它的小箭头图标旋转90度
           &::after {
             transform: scale(0.5) rotate(-90deg);

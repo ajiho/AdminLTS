@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
+    <!--  插件css  -->
+    <link rel="stylesheet" href="../lib/bootstrap-fileinput/css/fileinput.min.css">
+    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+</head>
+<body class="bg-body-tertiary py-3">
+<div class="container-fluid">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">文件上传</h5>
+            <h6 class="card-subtitle mb-2 text-muted">bootstrap-fileinput是基于bootstrap的插件效果不错</h6>
+            <hr>
+            <input id="input-id" name="file-data" type="file">
+
+        </div>
+    </div>
+</div>
+
+<script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/jquery/dist/jquery.min.js"></script>
+
+<script src="../lib/bootstrap-fileinput/js/plugins/buffer.min.js"></script>
+<script src="../lib/bootstrap-fileinput/js/plugins/filetype.min.js"></script>
+<script src="../lib/bootstrap-fileinput/js/plugins/piexif.min.js"></script>
+<script src="../lib/bootstrap-fileinput/js/plugins/sortable.min.js"></script>
+<script src="../lib/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script src="../lib/bootstrap-fileinput/js/locales/zh.js"></script>
+<script src="../dist/js/bootstrap-admin.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#input-id").fileinput({
+            language: 'zh',
+            uploadUrl: '/path/to/your-upload-api',
+            previewFileType: 'any'
+        });
+    });
+</script>
+
+
+</body>
+</html>
