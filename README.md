@@ -11,8 +11,8 @@
 
 Bootstrap-Admin基于Bootstrap5.x设计的一个响应式静态后台管理HTML模板,旨在让喜欢用bootstrap开发后台管理系统的程序员有个愉悦的起点。
 
-[演示地址](https://ajiho.gitee.io/bootstrap-admin)
-
+- [演示](https://ajiho.gitee.io/bootstrap-admin)
+- [文档](https://ajiho.gitee.io/bootstrap-admin/docs)
 ## 交流QQ群
 
 - [群1:284169647](https://jq.qq.com/?_wv=1027&k=WmCK50m5)
@@ -124,10 +124,6 @@ _**重要提示**: bootstrap-admin的依赖和插件也可以使用cdn,你可以
 
 
 ## 设备支持
-
-`bootstrap-admin`具有与Bootstrap5相同的浏览器支持,你可以在bootstrap官方文档[browsers-devices](https://getbootstrap.com/docs/5.3/getting-started/browsers-devices/)处查看
-
-
 
 |Internet Explorer| Chrome |Firefox |Microsoft Edge |Opera |Safari |
 |:--:|--|--|--|--|--|
