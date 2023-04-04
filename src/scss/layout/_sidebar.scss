@@ -174,8 +174,8 @@
         &::after {
           font-family: bootstrap-icons, serif;
           content: "\f284";
-          transition: transform 0.3s linear;
-          transform: scale(0.5) rotate(0deg);
+          transition: transform .3s linear;
+          transform: scale(.5) rotate(0deg);
           position: absolute;
           right: 24px;
         }
@@ -187,11 +187,11 @@
 
           // 并让它的小箭头图标旋转90度
           &::after {
-            transform: scale(0.5) rotate(-90deg);
+            transform: scale(.5) rotate(-90deg);
           }
 
           // 并让有a.open类的兄弟节点也展开
-          & + ul {
+          + ul {
             display: block;
           }
         }

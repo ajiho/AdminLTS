@@ -20,8 +20,8 @@
   }
 
 
-  @include quicktab-nav-pill;
-  @include sidebar-menu;
+  @include quicktab-nav-pill ();
+  @include sidebar-menu ();
 
 }
 
@@ -80,14 +80,14 @@
   // 这里是表单触发背景阴影
   .form-control:focus {
     border-color: $body-color-indigo;
-    box-shadow: 0 0 0 0.25rem rgba($body-color-indigo, .25);
+    box-shadow: 0 0 0 .25rem rgba($body-color-indigo, .25);
   }
 
 
   // 多选框和单选框
   .form-check-input:focus {
     border-color: $body-color-indigo;
-    box-shadow: 0 0 0 0.25rem rgba($body-color-indigo, 0.25);
+    box-shadow: 0 0 0 .25rem rgba($body-color-indigo, .25);
   }
 
   .form-check-input:checked {
@@ -97,15 +97,15 @@
 
   // 手风琴
   .accordion {
-    --bs-accordion-active-bg: #{rgba($body-color-indigo, 0.15)};
-    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgb(148 62 255 / 25%);
+    --bs-accordion-active-bg: #{rgba($body-color-indigo, .15)};
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 .25rem rgb(148 62 255 / 25%);
   }
 
 
   // 下拉选择框
   .form-select:focus {
     border-color: $body-color-indigo;
-    box-shadow: 0 0 0 0.25rem rgba($body-color-indigo, 0.25);
+    box-shadow: 0 0 0 .25rem rgba($body-color-indigo, .25);
   }
 
 
@@ -115,9 +115,8 @@
   }
 
 
-
-  @include quicktab-nav-pill;
-  @include sidebar-menu;
+  @include quicktab-nav-pill ();
+  @include sidebar-menu ();
 
 }
 
