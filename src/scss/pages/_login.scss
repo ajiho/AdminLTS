@@ -21,27 +21,28 @@
     width: 320px;
 
     .form-control {
-      background-color: rgba(255, 255, 255, .15);
+      background-color: rgb(255 255 255 / 15%);
       border: none;
-      color: rgba(255, 255, 255, .5);
+      color: rgb(255 255 255 / 50%);
     }
 
     .input-group-text{
       border: none;
-      color: rgba(255, 255, 255, .5);
-      background-color: rgba(255, 255, 255, .15);
+      color: rgb(255 255 255 / 50%);
+      background-color: rgb(255 255 255 / 15%);
     }
+
     .form-check-label {
-      color: rgba(255, 255, 255, .5);
+      color: rgb(255 255 255 / 50%);
     }
 
     .form-check-input {
       background-color: transparent;
-      border-color:rgba(255, 255, 255, .5);
+      border-color:rgb(255 255 255 / 50%);
     }
 
     .form-control::placeholder {
-      color: rgba(255, 255, 255, .5);
+      color: rgb(255 255 255 / 50%);
     }
   }
 }

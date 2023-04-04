@@ -21,7 +21,7 @@
 !> 您可以像这样通过数据属性使用任何选项。
 
 ```html
-<body data-scrollbar-auto-hide="true" data-theme-on-tab-page="true">...</body>>
+<body data-scrollbar-auto-hide="true" data-theme-on-tab-page="true">...</body>
 ```
 
 

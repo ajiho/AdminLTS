@@ -9,30 +9,30 @@
 
 ### composer
 
-~~~
+~~~bash
 composer require ajiho/bootstrap-admin
 ~~~
 
 ### npm
 
-~~~
+~~~bash
 npm i bootstrap-admin
 ~~~
 
 ### yarn
-```
+
+```bash
 yarn add bootstrap-admin
 ```
 
 
 ### CDN
 
-```
+```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-admin/dist/css/bootstrap-admin.min.css">
-```
-```
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/dist/js/bootstrap-admin.min.js"></script>
 ```
+
 _**重要提示**: bootstrap-admin的依赖和插件也可以使用cdn,你可以根据bootstrap-admin的目录来找到对应的路径,部分例子如下_
 
 ```html

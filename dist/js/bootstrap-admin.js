@@ -12,6 +12,7 @@
     const NAME$4 = 'Layout';
     const DATA_KEY$4 = 'bsa.layout';
     const JQUERY_NO_CONFLICT$4 = $.fn[NAME$4];
+
     //用于实现密码点击显示/隐藏
     const SELECTOR_LOGIN_PASSWORD = '.bsa-show_hide_password span';
     const Default$4 = {
@@ -318,7 +319,7 @@
       //请求地址
       action: '',
       //额外参数
-      params: null
+      params: ''
     };
     class NavbarSearch {
       constructor(_element, _options) {

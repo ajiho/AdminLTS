@@ -2,8 +2,13 @@ import gulp from 'gulp';
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 
+
 const sass = gulpSass(dartSass);
 import postcss from 'gulp-postcss';
+
+import gulpStylelint from '@ronilaukkarinen/gulp-stylelint';
+
+
 import autoprefixer from "autoprefixer";
 import cmq from 'node-css-mqpacker';
 import imagemin from 'gulp-imagemin';
@@ -12,8 +17,22 @@ import cleanCss from 'gulp-clean-css'
 import sourcemaps from 'gulp-sourcemaps'
 import rename from 'gulp-rename'
 
+gulp.task('lint-css', function () {
+    return gulp.src('src/scss/**/*.scss')
+        .pipe(gulpStylelint({
+            //打印错误堆栈跟踪
+            debug: false,
+            //报错后是否直接终止程序
+            failAfterError: true,
+            //报错类型和格式处理
+            reporters: [
+                {formatter: 'string', console: true}
+            ]
+        }))
+})
 
-gulp.task('expanded', function lintCssTask() {
+
+gulp.task('css', function () {
     let postcssPlugins = [
         autoprefixer(),
         cmq()
@@ -28,7 +47,8 @@ gulp.task('expanded', function lintCssTask() {
         .pipe(gulp.dest('dist/css'))
 });
 
-gulp.task('compressed', function lintCssTask() {
+
+gulp.task('css_min', function () {
     let postcssPlugins = [
         autoprefixer(),
         cmq()
@@ -46,37 +66,22 @@ gulp.task('compressed', function lintCssTask() {
 });
 
 
-gulp.task('expanded-plugins', function lintCssTask() {
-    let postcssPlugins = [
-        autoprefixer(),
-        cmq()
-    ];
-    return gulp.src('src/scss/plugins/*.scss')
-        .pipe(sourcemaps.init({debug: true}))
-        .pipe(sass.sync({
-            outputStyle: "expanded"
-        }).on('error', sass.logError))
-        .pipe(postcss(postcssPlugins))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/css/plugins'))
-});
+gulp.task('lint-css', gulp.series(['lint-css', 'css']));
+gulp.task('lint-css-min', gulp.series(['lint-css', 'css_min']));
 
+gulp.task('fix-css', function () {
 
-gulp.task('compressed-plugins', function lintCssTask() {
-    let postcssPlugins = [
-        autoprefixer(),
-        cmq()
-    ];
-    return gulp.src('src/scss/plugins/*.scss')
-        .pipe(sourcemaps.init({debug: true}))
-        .pipe(sass.sync({
-            outputStyle: "expanded"
-        }).on('error', sass.logError))
-        .pipe(postcss(postcssPlugins))
-        .pipe(cleanCss())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/css/plugins'))
+    return gulp
+        .src([
+            'src/scss/**/*.scss',
+            //除了plugins-override不需要修复
+            '!src/scss/plugins-override/*.scss',
+        ])
+        .pipe(gulpStylelint({
+            fix: true,
+        }))
+        .pipe(gulp.dest('src/scss'));
+
 });
 
 
@@ -186,14 +191,15 @@ let files = [
     ],
 ];
 
+
 gulp.task('lib', async function (cb) {
     const deletedFilePaths = await deleteAsync(files, {dot: true});
     console.log('lib依赖目录脏目录删除:\n', deletedFilePaths.join('\n'));
 });
 
+gulp.task('style', gulp.series(['lint-css', 'lint-css-min']));
 
-gulp.task('css', gulp.series(['expanded', 'compressed', 'expanded-plugins', 'compressed-plugins']));
-gulp.task('default', gulp.series(['css','img', 'lib']));
+gulp.task('default', gulp.series(['style','img', 'lib']));
 
 gulp.task("dev", function (cb) {
     gulp.watch(['src/scss/**/*.scss'], gulp.series('css'));
