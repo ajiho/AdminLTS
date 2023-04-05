@@ -22,32 +22,32 @@
         <div class="card-body">
             <h5 class="card-title">年份选择</h5>
             <div class="input-group mb-3" id="datetimepicker1">
-                <input type="text" class="form-control" readonly>
+                <input type="text" class="form-control" readonly aria-label="">
                 <span class="input-group-text"><i class="bi bi-calendar"></i></span>
             </div>
 
 
             <h5 class="card-title">年月选择</h5>
             <div class="input-group mb-3" id="datetimepicker2">
-                <input type="text" class="form-control" readonly>
+                <input type="text" class="form-control" readonly aria-label="">
                 <span class="input-group-text"><i class="bi bi-calendar"></i></span>
             </div>
 
             <h5 class="card-title">年月日选择</h5>
             <div class="input-group mb-3" id="datetimepicker3">
-                <input type="text" class="form-control" readonly>
+                <input type="text" class="form-control" readonly aria-label="">
                 <span class="input-group-text"><i class="bi bi-calendar"></i></span>
             </div>
 
             <h5 class="card-title">年月日时分秒选择</h5>
             <div class="input-group mb-3" id="datetimepicker4">
-                <input type="text" class="form-control" readonly>
+                <input type="text" class="form-control" readonly aria-label="">
                 <span class="input-group-text"><i class="bi bi-calendar"></i></span>
             </div>
 
             <h5 class="card-title">时刻选择</h5>
             <div class="input-group mb-3" id="datetimepicker5">
-                <input type="text" class="form-control" readonly>
+                <input type="text" class="form-control" readonly aria-label="">
                 <span class="input-group-text"><i class="bi bi-calendar"></i></span>
             </div>
 
@@ -55,18 +55,12 @@
             <h5 class="card-title">区间选择</h5>
 
             <div class="row">
-                <div class="col">
-                    <div class="input-group mb-3" id="datetimepicker6">
-                        <input type="text" class="form-control" readonly>
-                        <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-                    </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="开始时间" name="begintime" aria-label="begintime" id="datetimepicker6">
+                    <span class="input-group-text"><i class="bi bi-arrow-left-right"></i></span>
+                    <input type="text" class="form-control" placeholder="结束时间" name="endtime" aria-label="endtime" id="datetimepicker7">
                 </div>
-                <div class="col">
-                    <div class="input-group mb-3" id="datetimepicker7">
-                        <input type="text" class="form-control" readonly>
-                        <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-                    </div>
-                </div>
+
             </div>
 
 
@@ -80,21 +74,19 @@
 <!--/插件放置区域-->
 <script src="../lib/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="../lib/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js"></script>
-<script src="../lib/@eonasdan/tempus-dominus/dist/plugins/customDateFormat.js"></script>
 <script src="../lib/moment/min/moment.min.js"></script>
 <!--插件放置区域/-->
 
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 
 <script>
-    //自定义日期格式插件
-    tempusDominus.extend(window.tempusDominus.plugins.customDateFormat);
-
     //年份选择
     new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {
         //本地化控制
         localization: {
             format: 'yyyy',
+            //是否使用24小时制,比如3.15分会变成15.15
+            hourCycle: 'h24'
         },
         //布局控制
         display: {
@@ -116,9 +108,7 @@
                 //分
                 minutes: true,
                 //秒
-                seconds: false,
-                //是否使用24小时制,比如3.15分会变成15.15
-                useTwentyfourHour: true,
+                seconds: false
             },
             //图标
             icons: {
@@ -146,6 +136,8 @@
         //本地化控制
         localization: {
             format: 'yyyy-MM',
+            //是否使用24小时制,比如3.15分会变成15.15
+            hourCycle: 'h24'
         },
         //布局控制
         display: {
@@ -167,9 +159,7 @@
                 //分
                 minutes: true,
                 //秒
-                seconds: false,
-                //是否使用24小时制,比如3.15分会变成15.15
-                useTwentyfourHour: true,
+                seconds: false
             },
             //图标
             icons: {
@@ -197,6 +187,8 @@
         //本地化控制
         localization: {
             format: 'yyyy-MM-dd',
+            //是否使用24小时制,比如3.15分会变成15.15
+            hourCycle: 'h24'
         },
         //布局控制
         display: {
@@ -218,9 +210,7 @@
                 //分
                 minutes: true,
                 //秒
-                seconds: false,
-                //是否使用24小时制,比如3.15分会变成15.15
-                useTwentyfourHour: true,
+                seconds: false
             },
             //图标
             icons: {
@@ -248,6 +238,8 @@
         //本地化控制
         localization: {
             format: 'yyyy-MM-dd HH:mm:ss',
+            //是否使用24小时制,比如3.15分会变成15.15
+            hourCycle: 'h24'
         },
         //布局控制
         display: {
@@ -269,9 +261,7 @@
                 //分
                 minutes: true,
                 //秒
-                seconds: true,
-                //是否使用24小时制,比如3.15分会变成15.15
-                useTwentyfourHour: true,
+                seconds: true
             },
             //图标
             icons: {
@@ -299,6 +289,8 @@
         //本地化控制
         localization: {
             format: 'HH:mm',
+            //是否使用24小时制,比如3.15分会变成15.15
+            hourCycle: 'h24'
         },
         //布局控制
         display: {
@@ -321,9 +313,7 @@
                 //分
                 minutes: true,
                 //秒
-                seconds: false,
-                //是否使用24小时制,比如3.15分会变成15.15
-                useTwentyfourHour: true,
+                seconds: false
             },
             //图标
             icons: {
@@ -344,6 +334,8 @@
         //本地化控制
         localization: {
             format: 'yyyy-MM-dd HH:mm:ss',
+            //是否使用24小时制,比如3.15分会变成15.15
+            hourCycle: 'h24'
         },
         //布局控制
         display: {
@@ -365,9 +357,7 @@
                 //分
                 minutes: true,
                 //秒
-                seconds: true,
-                //是否使用24小时制,比如3.15分会变成15.15
-                useTwentyfourHour: true,
+                seconds: true
             },
             //图标
             icons: {
@@ -389,10 +379,13 @@
             },
         }
     });
+
     let td7 = new tempusDominus.TempusDominus(document.getElementById('datetimepicker7'), {
         //本地化控制
         localization: {
             format: 'yyyy-MM-dd HH:mm:ss',
+            //是否使用24小时制,比如3.15分会变成15.15
+            hourCycle: 'h24'
         },
         //布局控制
         display: {
@@ -414,9 +407,7 @@
                 //分
                 minutes: true,
                 //秒
-                seconds: true,
-                //是否使用24小时制,比如3.15分会变成15.15
-                useTwentyfourHour: true,
+                seconds: true
             },
             //图标
             icons: {
@@ -438,6 +429,7 @@
             },
         }
     });
+    
     td6.subscribe(tempusDominus.Namespace.events.change, (e) => {
         td7.updateOptions({
             restrictions: {

@@ -27,9 +27,11 @@
                 </div>
                 <div class="col-12">
                     <div class="input-group">
-                        <input type="text" readonly class="form-control" aria-label="q" placeholder="开始时间" name="beginTime" id="beginTime">
+                        <input type="text" readonly class="form-control" aria-label="q" placeholder="开始时间"
+                               name="beginTime" id="beginTime">
                         <span class="input-group-text"><i class="bi bi-arrow-left-right"></i> </span>
-                        <input type="text" readonly class="form-control" aria-label="q" placeholder="结束时间" name="endTime" id="endTime">
+                        <input type="text" readonly class="form-control" aria-label="q" placeholder="结束时间"
+                               name="endTime" id="endTime">
                     </div>
                 </div>
                 <div class="col-12">
@@ -37,7 +39,8 @@
                            placeholder="事项名称、xx">
                 </div>
                 <div class="col-12">
-                    <button type="button" class="btn btn-primary" onclick="return querySearch()"><i class="bi bi-search"></i>
+                    <button type="button" class="btn btn-primary" onclick="return querySearch()"><i
+                            class="bi bi-search"></i>
                         搜xx
                     </button>
                     <button type="button" class="btn btn-primary" onclick="restSearch()"><i class="bi bi-x-circle"></i>
@@ -51,7 +54,8 @@
             <div class="d-flex  gap-1 my-3">
                 <button class="btn btn-danger"><i class="bi bi-trash"></i> 批量删除</button>
                 <!--    暂时通过此方式打开页面        -->
-                <button class="btn btn-success" onclick="parent.Quicktab.get('.qtab').addTab({title:'添加用户',url:'add.html'})">
+                <button class="btn btn-success"
+                        onclick="parent.Quicktab.get('.qtab').addTab({title:'添加用户',url:'add.html'})">
                     <i class="bi bi-plus"></i> 添加xx
                 </button>
                 <button class="btn btn-success btn-10">
@@ -72,7 +76,6 @@
 <!--日期时间-->
 <script src="../lib/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="../lib/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js"></script>
-<script src="../lib/@eonasdan/tempus-dominus/dist/plugins/customDateFormat.js"></script>
 
 <!--bootstrap-table-->
 <script src="../lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
@@ -80,7 +83,6 @@
 
 <!--插件放置区域/-->
 <script src="../dist/js/bootstrap-admin.min.js"></script>
-
 
 
 <script>
@@ -110,8 +112,8 @@
         //params是一个对象
         queryParams: function (params) {
             params.q = $('input[name=keyword]').val();//因为jsonplaceholder的搜索必须是q
-            params.beginTime= $('#beginTime').val();
-            params.endTime =  $('#endTime').val();//还有什么参数以此类推
+            params.beginTime = $('#beginTime').val();
+            params.endTime = $('#endTime').val();//还有什么参数以此类推
             return params;
         },
         //列
@@ -146,7 +148,7 @@
     });
 
 
-    $('.btn-10').on('click',function (){
+    $('.btn-10').on('click', function () {
         $('#table').bootstrapTable('showLoading')
     })
 
@@ -174,7 +176,7 @@
     }
 
     //重置
-    function restSearch(){
+    function restSearch() {
 
         $('input[name=keyword]').val('');
         $('#beginTime').val('');
@@ -185,17 +187,16 @@
     }
 
 
-
-
 </script>
 
 <script>
     //自定义日期格式插件
-    tempusDominus.extend(window.tempusDominus.plugins.customDateFormat);
-    let td6 = new tempusDominus.TempusDominus(document.getElementById('beginTime'), {
+    var td6 = new tempusDominus.TempusDominus(document.getElementById('beginTime'), {
         //本地化控制
         localization: {
             format: 'yyyy-MM-dd HH:mm:ss',
+            //是否使用24小时制,比如3.15分会变成15.15
+            hourCycle: 'h24'
         },
         //布局控制
         display: {
@@ -217,9 +218,7 @@
                 //分
                 minutes: true,
                 //秒
-                seconds: true,
-                //是否使用24小时制,比如3.15分会变成15.15
-                useTwentyfourHour: true,
+                seconds: true
             },
             //图标
             icons: {
@@ -241,10 +240,13 @@
             },
         }
     });
-    let td7 = new tempusDominus.TempusDominus(document.getElementById('endTime'), {
+
+    var td7 = new tempusDominus.TempusDominus(document.getElementById('endTime'), {
         //本地化控制
         localization: {
             format: 'yyyy-MM-dd HH:mm:ss',
+            //是否使用24小时制,比如3.15分会变成15.15
+            hourCycle: 'h24'
         },
         //布局控制
         display: {
@@ -266,9 +268,7 @@
                 //分
                 minutes: true,
                 //秒
-                seconds: true,
-                //是否使用24小时制,比如3.15分会变成15.15
-                useTwentyfourHour: true,
+                seconds: true
             },
             //图标
             icons: {
@@ -290,6 +290,8 @@
             },
         }
     });
+
+    //事件监听设定起始时间为td7实例的选中时间
     td6.subscribe(tempusDominus.Namespace.events.change, (e) => {
         td7.updateOptions({
             restrictions: {
@@ -297,6 +299,7 @@
             },
         });
     });
+    //事件监听设定起始时间为td6实例的选中时间
     td7.subscribe(tempusDominus.Namespace.events.change, (e) => {
         td6.updateOptions({
             restrictions: {
