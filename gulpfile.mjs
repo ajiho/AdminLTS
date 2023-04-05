@@ -9,6 +9,9 @@ import postcss from 'gulp-postcss';
 import gulpStylelint from '@ronilaukkarinen/gulp-stylelint';
 
 
+
+import concat from "gulp-concat";
+import terser from "gulp-terser";
 import autoprefixer from "autoprefixer";
 import cmq from 'node-css-mqpacker';
 import imagemin from 'gulp-imagemin';
@@ -192,6 +195,62 @@ let files = [
 ];
 
 
+//压缩文档样式
+gulp.task('docs_css', function () {
+    return gulp.src([
+        'node_modules/docsify-sidebar-collapse/dist/sidebar-folder.min.css',
+        'node_modules/docsify/lib/themes/vue.css',
+        'node_modules/purecss/build/buttons-min.css',
+        'node_modules/docsify-plugin-toc/dist/light.css',
+        'docs/src/css/style.css',
+    ])
+        .pipe(concat('docsify.css'))
+        .pipe(cleanCss({level: {1: {specialComments: 0}}}))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('docs/dist/css'));
+});
+
+
+//压缩文档js
+gulp.task('docs_js', function () {
+    return gulp.src([
+        'node_modules/docsify/lib/docsify.min.js',
+        'node_modules/prismjs/components/prism-bash.min.js',
+        'node_modules/prismjs/components/prism-php.min.js',
+        'node_modules/prismjs/components/prism-python.min.js',
+        'node_modules/prismjs/components/prism-cmake.min.js',
+        'node_modules/prismjs/components/prism-java.min.js',
+        'node_modules/prismjs/components/prism-csharp.min.js',
+        'node_modules/prismjs/components/prism-docker.min.js',
+        'node_modules/prismjs/components/prism-powershell.min.js',
+        'node_modules/docsify-tabs/dist/docsify-tabs.min.js',
+        'node_modules/docsify-copy-code/dist/docsify-copy-code.min.js',
+        'node_modules/docsify-pagination/dist/docsify-pagination.min.js',
+        'node_modules/docsify/lib/plugins/external-script.min.js',
+        'node_modules/docsify/lib/plugins/search.min.js',
+        'node_modules/docsify/lib/plugins/zoom-image.min.js',
+        'node_modules/docsify-count/dist/countable.min.js',
+        'node_modules/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js',
+        'node_modules/docsify-plugin-toc/dist/docsify-plugin-toc.min.js',
+        'node_modules/jquery/dist/jquery.min.js',
+        'docs/src/js/index.js',
+    ])
+        .pipe(concat('docsify.js'))
+        .pipe(terser())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('docs/dist/js'));
+});
+
+
+gulp.task('docs_img', function (cb) {
+    gulp.src('docs/src/img/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('docs/dist/img'))
+    cb();
+})
+
+
+
 gulp.task('lib', async function (cb) {
     const deletedFilePaths = await deleteAsync(files, {dot: true});
     console.log('lib依赖目录脏目录删除:\n', deletedFilePaths.join('\n'));
@@ -199,7 +258,7 @@ gulp.task('lib', async function (cb) {
 
 gulp.task('style', gulp.series(['lint-css', 'lint-css-min']));
 
-gulp.task('default', gulp.series(['style','img', 'lib']));
+gulp.task('default', gulp.series(['style', 'img', 'lib']));
 
 gulp.task("dev", function (cb) {
     gulp.watch(['src/scss/**/*.scss'], gulp.series('css'));
