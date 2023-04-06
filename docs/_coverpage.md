@@ -1,15 +1,22 @@
 <!-- _coverpage.md -->
 
 
-# [bootstrap-admin](README.md)
+# [bootstrap-admin<small>2.0.0(开发中)</small>](README.md)
 
-    
+
 > 让开发后台管理系统的愉悦从这里开始
 
+- 零门槛 / 响应式 / 清爽 / 极简
+- IFrame+多tab
+- 众多主题
+- 基于最新的bootstrap框架
+- 集成常用的优秀开源项目
 
-[![欲饮琵琶码上催/bootstrap-admin](https://gitee.com/ajiho/bootstrap-admin/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/ajiho/bootstrap-admin)
 
 
 
-[演示地址](https://ajiho.gitee.io/bootstrap-admin/)
+
+
+
+[演示地址V2.0.0](https://ajiho.gitee.io/bootstrap-admin/)
 [快速开始](README.md)

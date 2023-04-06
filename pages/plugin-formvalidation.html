@@ -33,15 +33,15 @@
                                 <input type="text" class="form-control" id="username" name="username">
                             </div>
                             <div class="mb-3">
-                                <label for="password"  class="form-label">密码</label>
-                                <input type="text"   class="form-control" id="password" name="password">
+                                <label for="password" class="form-label">密码</label>
+                                <input type="text" class="form-control" id="password" name="password">
                                 <div id="emailHelp" class="form-text">密码不填写默认为123456</div>
 
                             </div>
 
                             <div class="mb-3">
                                 <label for="password_confirm" class="form-label">确认密码</label>
-                                <input type="text"   class="form-control" id="password_confirm"
+                                <input type="text" class="form-control" id="password_confirm"
                                        name="password_confirm">
                             </div>
 
@@ -89,7 +89,8 @@
                             <div class="mb-3 row">
                                 <label for="password2" class="col-sm-3 col-form-label">密码</label>
                                 <div class="col-sm-9">
-                                    <input type="password" autocomplete class="form-control" id="password2" name="password2">
+                                    <input type="password" autocomplete class="form-control" id="password2"
+                                           name="password2">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -129,7 +130,8 @@
                             </div>
 
                             <div class="mb-3 row">
-                                <label for="captchaAnswer" id="captchaProblems" class="col-sm-3 col-form-label">70+115=</label>
+                                <label for="captchaAnswer" id="captchaProblems"
+                                       class="col-sm-3 col-form-label">70+115=</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="captchaAnswer"
                                            name="captchaAnswer">
@@ -222,7 +224,8 @@
                             <div class="mb-3 row">
                                 <label for="languages-net" class="col-sm-3 col-form-label">编辑器</label>
                                 <div class="col-sm-9">
-                                    <select class="form-select"  aria-label="编辑器列表" name="editors[]" multiple="multiple"
+                                    <select class="form-select" aria-label="编辑器列表" name="editors[]"
+                                            multiple="multiple"
                                             style="height: 200px;">
                                         <option value="atom">Atom</option>
                                         <option value="eclipse">Eclipse</option>
@@ -258,232 +261,235 @@
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 
 <script>
-    //前端表单验证
-    $('#form').formValidation({
-        fields: {
-            truename: {
-                validators: {
-                    notEmpty: true,
-                }
-            },
-            username: {
-                validators: {
-                    notEmpty: true,
-                    remote: {
-                        type: 'post',
-                        url: '/check_username.php',
-                        data: {
-                            type: 'save',
-                        },
-                        //请求失败的消息
-                        message: "系统繁忙,请稍后再试",
-                        delay: 1000
-                    }
-                }
-            },
-            password: {},
-            password_confirm: {
-                validators: {
-                    identical: {
-                        field: 'password',
-                        message: '和密码不一致'
-                    }
-                }
-            },
-            sex: {
-                validators: {
-                    notEmpty: true,
-                }
-            },
-            phone: {
-                validators: {
-                    notEmpty: true,
-                    callback: {
-                        callback: function (value, validator, $field) {
-                            var reg1 = /^\+86-1[3-9]\d{9}$/;
-                            var reg2 = /^1[3-9]\d{9}$/;
-                            return reg1.test(value) || reg2.test(value);
-                        },
-                        message: '手机号错误'
+    $(function () {
+
+        //前端表单验证
+        $('#form').formValidation({
+            fields: {
+                truename: {
+                    validators: {
+                        notEmpty: true,
                     }
                 },
-            },
-            email: {
-                validators: {
-                    notEmpty: true,
-                    emailAddress: {
-                        message: "email格式错误"
+                username: {
+                    validators: {
+                        notEmpty: true,
+                        remote: {
+                            type: 'post',
+                            url: '/check_username.php',
+                            data: {
+                                type: 'save',
+                            },
+                            //请求失败的消息
+                            message: "系统繁忙,请稍后再试",
+                            delay: 1000
+                        }
                     }
+                },
+                password: {},
+                password_confirm: {
+                    validators: {
+                        identical: {
+                            field: 'password',
+                            message: '和密码不一致'
+                        }
+                    }
+                },
+                sex: {
+                    validators: {
+                        notEmpty: true,
+                    }
+                },
+                phone: {
+                    validators: {
+                        notEmpty: true,
+                        callback: {
+                            callback: function (value, validator, $field) {
+                                var reg1 = /^\+86-1[3-9]\d{9}$/;
+                                var reg2 = /^1[3-9]\d{9}$/;
+                                return reg1.test(value) || reg2.test(value);
+                            },
+                            message: '手机号错误'
+                        }
+                    },
+                },
+                email: {
+                    validators: {
+                        notEmpty: true,
+                        emailAddress: {
+                            message: "email格式错误"
+                        }
 
-                }
-            },
-        }
-    }).on('success.form.fv', function (e) {
-        //阻止表单提交
-        e.preventDefault();
-        //得到表单对象
-        var $form = $(e.target);
-        let data = $form.serialize();
-
-        //得到序列化数据
-        $.ajax({
-            url: "/reg.php",
-            method: 'post',
-            data: data,
-        }).then(function (res) {
-            if (res.code === 200) {
-                //注册成功
-            } else {
-                //注册失败
+                    }
+                },
             }
+        }).on('success.form.fv', function (e) {
+            //阻止表单提交
+            e.preventDefault();
+            //得到表单对象
+            var $form = $(e.target);
+            let data = $form.serialize();
+
+            //得到序列化数据
+            $.ajax({
+                url: "/reg.php",
+                method: 'post',
+                data: data,
+            }).then(function (res) {
+                if (res.code === 200) {
+                    //注册成功
+                } else {
+                    //注册失败
+                }
+            });
         });
-    });
 
 
-    //案例2
-    function randomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    }
+        //案例2
+        function randomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
 
-    $("#captchaProblems").html(
-        [randomNumber(1, 100), "+", randomNumber(1, 200), "="].join(" ") + "?"
-    );
+        $("#captchaProblems").html(
+            [randomNumber(1, 100), "+", randomNumber(1, 200), "="].join(" ") + "?"
+        );
 
-    $("#form2").formValidation({
-        //验证字段
-        fields: {
-            username2: {
-                validators: {
-                    notEmpty: true, //也可以像下面那样用
-                    stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: "用户名的长度为6-30个字符（这是限制长度的）"
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_\.]+$/,
-                        message: "用户名只能由字母、数字、点和下划线组成"
+        $("#form2").formValidation({
+            //验证字段
+            fields: {
+                username2: {
+                    validators: {
+                        notEmpty: true, //也可以像下面那样用
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: "用户名的长度为6-30个字符（这是限制长度的）"
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_\.]+$/,
+                            message: "用户名只能由字母、数字、点和下划线组成"
+                        }
                     }
-                }
-            },
-            password2: {
-                validators: {
-                    notEmpty: {
-                        message: "密码不能为空"
-                    },
-                    different: {
-                        field: "username",
-                        message: "密码不能和用户名相同"
+                },
+                password2: {
+                    validators: {
+                        notEmpty: {
+                            message: "密码不能为空"
+                        },
+                        different: {
+                            field: "username",
+                            message: "密码不能和用户名相同"
+                        }
                     }
-                }
-            },
-            confirmPassword2: {
-                validators: {
-                    notEmpty: true,
-                    identical: {
-                        field: "password",
-                        message: "密码不一致"
+                },
+                confirmPassword2: {
+                    validators: {
+                        notEmpty: true,
+                        identical: {
+                            field: "password",
+                            message: "密码不一致"
+                        }
                     }
-                }
-            },
-            email2: {
-                validators: {
-                    notEmpty: {
-                        message: "电子邮件不能为空"
-                    },
-                    //验证正确的邮箱
-                    emailAddress: true
-                }
-            },
-            gender2: {
-                validators: {
-                    notEmpty: {
-                        message: "必须选择一个性别"
+                },
+                email2: {
+                    validators: {
+                        notEmpty: {
+                            message: "电子邮件不能为空"
+                        },
+                        //验证正确的邮箱
+                        emailAddress: true
                     }
-                }
-            },
-            age2: {
-                validators: {
-                    notEmpty: {
-                        message: "必须填写真实年龄"
-                    },
-                    lessThan: {
-                        value: 100,
-                        inclusive: true,
-                        message: '您是百岁老人'
-                    },
-                    greaterThan: {
-                        value: 18,
-                        inclusive: false,
-                        message: '未成年人不能进行用户注册'
+                },
+                gender2: {
+                    validators: {
+                        notEmpty: {
+                            message: "必须选择一个性别"
+                        }
                     }
-                }
-            },
-            // 前端验证码
-            captchaAnswer: {
-                validators: {
-                    callback: {
-                        message: "计算错误，请重新验证",
-                        callback: function (value, validator, $field) {
-                            let items = $("#captchaProblems").html().split(" ");
-                            let result = parseInt(items[0]) + parseInt(items[2]);
-                            return parseInt(value) === result;
+                },
+                age2: {
+                    validators: {
+                        notEmpty: {
+                            message: "必须填写真实年龄"
+                        },
+                        lessThan: {
+                            value: 100,
+                            inclusive: true,
+                            message: '您是百岁老人'
+                        },
+                        greaterThan: {
+                            value: 18,
+                            inclusive: false,
+                            message: '未成年人不能进行用户注册'
+                        }
+                    }
+                },
+                // 前端验证码
+                captchaAnswer: {
+                    validators: {
+                        callback: {
+                            message: "计算错误，请重新验证",
+                            callback: function (value, validator, $field) {
+                                let items = $("#captchaProblems").html().split(" ");
+                                let result = parseInt(items[0]) + parseInt(items[2]);
+                                return parseInt(value) === result;
+                            }
+                        }
+                    }
+                },
+                agree2: {
+                    validators: {
+                        notEmpty: {
+                            message: "您必须同意我们的条款和条件"
                         }
                     }
                 }
-            },
-            agree2: {
-                validators: {
-                    notEmpty: {
-                        message: "您必须同意我们的条款和条件"
+            }
+        }).on('success.form.fv', function (e) {
+            //阻止表单提交
+            e.preventDefault();
+            //得到表单对象
+            var $form = $(e.target);
+            let data = $form.serialize();
+
+            //得到序列化数据
+            $.ajax({
+                url: "/reg.php",
+                method: 'post',
+                data: data,
+            }).then(function (res) {
+                if (res.code === 200) {
+                    //注册成功
+                } else {
+                    //注册失败
+                }
+            });
+        });
+
+
+        //案例3
+        $('#form3').formValidation({
+            fields: {
+                'languages[]': {
+                    validators: {
+                        choice: {
+                            min: 2,
+                            max: 4,
+                            message: '请选择 %s - %s 个你比较擅长的语言'
+                        }
+                    }
+                },
+                'editors[]': {
+                    validators: {
+                        choice: {
+                            min: 2,
+                            max: 3,
+                            message: '请选择 %s - %s 个你比较喜欢的编辑器'
+                        }
                     }
                 }
-            }
-        }
-    }).on('success.form.fv', function (e) {
-        //阻止表单提交
-        e.preventDefault();
-        //得到表单对象
-        var $form = $(e.target);
-        let data = $form.serialize();
-
-        //得到序列化数据
-        $.ajax({
-            url: "/reg.php",
-            method: 'post',
-            data: data,
-        }).then(function (res) {
-            if (res.code === 200) {
-                //注册成功
-            } else {
-                //注册失败
             }
         });
-    });
-
-
-    //案例3
-    $('#form3').formValidation({
-        fields: {
-            'languages[]': {
-                validators: {
-                    choice: {
-                        min: 2,
-                        max: 4,
-                        message: '请选择 %s - %s 个你比较擅长的语言'
-                    }
-                }
-            },
-            'editors[]': {
-                validators: {
-                    choice: {
-                        min: 2,
-                        max: 3,
-                        message: '请选择 %s - %s 个你比较喜欢的编辑器'
-                    }
-                }
-            }
-        }
     });
 
 

@@ -1,3 +1,4 @@
+import 'default-passive-events'
 import Layout from './layout'
 import NavbarSearch from './navbar-search'
 import Toasts from './toasts'

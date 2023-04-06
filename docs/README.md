@@ -53,6 +53,7 @@ bootstrap-admin是基于Bootstrap5.x设计的一个响应式纯静态后台管�
 ├─.stylelintrc.json   stylelint配置文件
 ├─composer.json       composer 定义文件
 ├─gulpfile.mjs        gulpfile打包配置文件
+├─index.html          主页面
 ├─LICENSE.txt         授权说明文件
 ├─package.json        npm 定义文件
 ├─README.md           README 文件

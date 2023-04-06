@@ -60,7 +60,7 @@ class Layout {
 
 
         //禁止action为#的无效表单提交
-        $(document).on('submit', 'form[action="#"', function (e) {
+        $(document).on('submit', 'form[action="#"]', function (e) {
             e.preventDefault();
         })
 
