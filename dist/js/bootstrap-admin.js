@@ -240,10 +240,13 @@
             },
             //tab遮罩层加载完毕的事件
             onTabMaskTransitionend: function () {
-              $('.bsa-preloader').fadeOut(_this._config.preloadDuration);
+              //这样会导致有时候无法去除遮罩层
             }
           });
         }
+        setTimeout(() => {
+          $('.bsa-preloader').fadeOut(_this._config.preloadDuration);
+        }, this._config.preloadDuration);
       }
       _openMenu(a) {
         let $ul = $(a).parent().parent();
