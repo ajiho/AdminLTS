@@ -12,5 +12,5 @@
 
 .scrollbar-thumb {
   width: 4px !important;
-  background: var(--#{$prefix}tertiary-color) !important;
+  background: rgba(var(--bs-tertiary-color-rgb), .18) !important;
 }

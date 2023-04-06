@@ -151,7 +151,7 @@
 
 .scrollbar-thumb {
   width: 4px !important;
-  background: var(--bs-tertiary-color) !important;
+  background: rgba(var(--bs-tertiary-color-rgb), 0.18) !important;
 }
 
 .dropzone {

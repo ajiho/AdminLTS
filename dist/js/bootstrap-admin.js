@@ -9,6 +9,7 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.BootstrapAdmin = {}, global.Scrollbar, global.Quicktab, global.jQuery));
 })(this, (function (exports, Scrollbar, Quicktab, $) { 'use strict';
 
+    /* global bootstrap */
     const NAME$4 = 'Layout';
     const DATA_KEY$4 = 'bsa.layout';
     const JQUERY_NO_CONFLICT$4 = $.fn[NAME$4];
@@ -47,6 +48,16 @@
 
       _init() {
         let _this = this;
+
+        //启用提示
+        $('[data-bs-toggle="tooltip"]').each(function (i, el) {
+          new bootstrap.Tooltip(el);
+        });
+
+        //启用弹出层工具
+        $('[data-bs-toggle="popover"]').each(function (i, el) {
+          new bootstrap.Popover(el);
+        });
 
         //禁止所有的input框记忆
         $('input').each(function (index, element) {

@@ -1,3 +1,5 @@
+/* global bootstrap */
+
 import Scrollbar from 'smooth-scrollbar';
 import Quicktab from 'bootstrap-quicktab';
 import $ from 'jquery'
@@ -52,6 +54,20 @@ class Layout {
     _init() {
 
         let _this = this;
+
+
+        //启用提示
+        $('[data-bs-toggle="tooltip"]').each(function (i,el){
+            new bootstrap.Tooltip(el)
+        })
+
+        //启用弹出层工具
+        $('[data-bs-toggle="popover"]').each(function (i,el){
+            new bootstrap.Popover(el)
+        })
+
+
+
 
         //禁止所有的input框记忆
         $('input').each(function (index, element) {
