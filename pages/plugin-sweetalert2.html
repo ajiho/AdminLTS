@@ -17,14 +17,95 @@
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
         <div class="card-body">
-           的撒大
+            <div class="border-bottom py-2 mb-3">sweetalert2插件演示</div>
+           <button class="btn btn-success btn1">成功通知</button>
+           <button class="btn btn-success btn2">警报通知</button>
+           <button class="btn btn-success btn3">细小的错误toast通知</button>
+           <button class="btn btn-success btn4">敏感操作时的对话框</button>
         </div>
     </div>
 </div>
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
+<!--/插件放置区域-->
+<script src="../lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<!--插件放置区域/-->
 <script src="../dist/js/bootstrap-admin.min.js"></script>
+<script>
+    $(function (){
+        $('.btn1').on('click',function (){
+            Swal.fire(
+                '登录成功!',
+                '欢迎登录!',
+                'success'
+            )
+        })
 
+        $('.btn2').on('click',function (){
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: '系统内存不足!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        })
+
+        $('.btn3').on('click',function (){
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: '该角色正在被占用,无法删除'
+            })
+        })
+
+        $('.btn4').on('click',function (){
+            Swal.fire({
+                title: '确定删除该用户吗？',
+                // text: "是否确定要批量添加选中文章？",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#198754',
+                cancelButtonColor: '#d93444',
+                confirmButtonText: '确定',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    Swal.fire({
+                        icon: "success",
+                        title: '删除成功',
+                        timer: 1500000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        //确定 取消 背景都会触发
+                        if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer || result.dismiss === Swal.DismissReason.backdrop) {
+
+                            //刷新页面
+                            //location.reload();
+                        }
+                    });
+                }
+            })
+
+        })
+    })
+</script>
 </body>
 </html>

@@ -1,7 +1,9 @@
-// 这里全是第三方插件样式覆盖
+// 这里全是第三方插件样式覆盖,为了适配bootstrap5.3的主题
 @import "plugins-override/bootstrap-quicktab";
 @import "plugins-override/smooth-scrollbar";
 @import "plugins-override/dropzone";
 @import "plugins-override/bootstrap-table";
 @import "plugins-override/fonticonpicker";
 @import "plugins-override/select2";
+@import "plugins-override/ztree_v3-metroStyle";
+@import "plugins-override/sweetalert2";
