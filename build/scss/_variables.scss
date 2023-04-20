@@ -1,0 +1,21 @@
+// 覆盖bootstrap的栅格变量,以便于添加自己的变量
+$grid-breakpoints: (
+  xs: 0,
+  three-four-two:342px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+
+// 头部菜单的高度
+$header-height: 60px !default;
+
+// 侧边栏宽度
+$sidebar-width: 240px !default;
+
+// 底部版权高度
+$footer-height: 38px !default;
+

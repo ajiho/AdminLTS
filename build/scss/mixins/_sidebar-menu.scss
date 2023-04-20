@@ -1,0 +1,35 @@
+// 侧边栏
+@mixin sidebar-menu {
+  .bsa-menu {
+    li {
+      a {
+        + ul {
+          // background-color: rgba(var(--bs-tertiary-color-rgb), .08);
+          background-color: rgba(var(--bs-tertiary-color-rgb), .08);
+        }
+
+        &.active,
+        &:active,
+        &:focus,
+        &:hover {
+          color: unset;
+
+          // background-color: rgb(173,181,189 / 18%);
+          background-color: rgba(var(--bs-tertiary-color-rgb), .18);
+
+          // background-color: #{'rgba(var(--bs-tertiary-color-rgb), .18)'};
+        }
+
+        &.has-children {
+          &.open {
+            color: unset;
+            background-color: rgba(var(--bs-tertiary-color-rgb), .18);
+
+            // background-color: rgba(var(--bs-tertiary-color-rgb), .18);
+            // background-color: #{'rgba(var(--bs-tertiary-color-rgb), .18)'};
+          }
+        }
+      }
+    }
+  }
+}

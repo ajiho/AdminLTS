@@ -13,26 +13,35 @@
 
 
 <body>
+
+
+
 <div id="app"></div>
 <script>
     window.$docsify = {
-        name: "bootstrap-admin",
+        name: "",
         repo: 'https://gitee.com/ajiho/bootstrap-admin',
         // 侧边栏文档目录
         loadSidebar: true,
         //开启导航栏
         loadNavbar: true,
         subMaxLevel: 4,
-        alias: {
-            "/.*/_sidebar.md": "/_sidebar.md",
-            '/.*/_navbar.md': '/_navbar.md'
-        },
+        // basePath:'/docs/',
+        // themeColor: '#3F51B5',
+        autoHeader: true,
+        executeScript: true,
+        mergeNavbar: true,
+
+        // alias: {
+        //     // '/.*/_sidebar.md': '/_sidebar.md',
+        // },
+
         // 跳转后自动到顶部
         auto2top: true,
         // 只显示封面
         onlyCover: true,
         // 开启封面
-        coverpage: ['/', '/en/'],
+        coverpage: true,
         // coverpage: true,
         // PLUGINS
         // ----------------------------------------------------------------

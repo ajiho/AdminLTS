@@ -1,0 +1,208 @@
+// 侧边栏
+.bsa-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--bsa-sidebar-width);
+  z-index: 100;
+
+  // 交给js插件部分来实现
+  // transition: 0.3s transform;
+  transform: translateX(0);
+  background-color: var(--#{$prefix}body-bg);
+
+  // background: var(--bsa-sidebar-bg);
+  border-right: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
+  will-change: transform;
+
+
+  @include media-breakpoint-down(lg) {
+    transform: translateX(-101%);
+    box-shadow: none;
+  }
+
+  // 侧边栏头部
+  .bsa-sidebar-header {
+    width: 100%;
+    height: var(--bsa-header-height);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0 15px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-clip: padding-box;
+    border-bottom: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
+
+    // 用于多主题时隐藏logo原始图标
+    .bsa-logo-wrapper {
+      width: 36px;
+      height: 36px;
+      overflow: hidden;
+    }
+
+    .bsa-logo-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      filter: drop-shadow(36px 0 0 var(--bs-body-color));
+      transform: translateX(-36px);
+    }
+
+    .bsa-logo-text {
+      margin-bottom: 0;
+      letter-spacing: 1px;
+      color: var(--#{$prefix}body-color);
+    }
+
+  }
+
+  // 侧边栏内容
+  .bsa-sidebar-body {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: absolute;
+    inset: var(--bsa-header-height) 0 0 0;
+  }
+
+  &.open {
+    transform: translateX(0);
+  }
+
+}
+
+
+// 左侧导航菜单
+.bsa-menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    + li {
+      padding-top: 5px;
+    }
+
+    &:first-child {
+      padding-top: 5px;
+    }
+
+    &:last-child {
+      padding-bottom: 5px;
+    }
+
+    a {
+      position: relative;
+      padding-left: 16px;
+      padding-right: 24px;
+      color: var(--#{$prefix}body-color);
+      text-decoration: none;
+      height: 40px;
+      line-height: 40px;
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      user-select: none;
+      cursor: pointer;
+
+      > i {
+        margin-right: 10px;
+      }
+
+      + ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        overflow: hidden;
+
+        // 过渡
+        // transition: height 150ms linear;
+        display: none;
+
+        // 设置后有层级感
+        // background-color: rgba(var(--bs-tertiary-color-rgb), .08);
+
+
+        // 二级菜单距离左侧的间距
+        a {
+          padding-left: calc(16px + 1rem + 10px);
+
+          + ul {
+            a {
+              padding-left: calc(16px + 2rem + 10px);
+
+              + ul {
+                // 三级菜单距离左侧的间距
+                a {
+                  padding-left: calc(16px + 3rem + 10px);
+
+                  + ul {
+                    // 四级菜单距离左侧的间距
+                    a {
+                      padding-left: calc(16px + 4rem + 10px);
+
+                      + ul {
+                        // 五级菜单距离左侧的间距
+                        a {
+                          padding-left: calc(16px + 5rem + 10px);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // a链接的伪类效果
+      &.active,
+      &:active,
+      &:focus,
+      &:hover {
+        // color: #0d6efd;
+        color: #0d6efd;
+        background-color: rgb(13 110 253 / 12%);
+      }
+
+
+      &.has-children {
+        // 有包含.has-children的a链接后面通过after伪类实现一个箭头
+        &::after {
+          font-family: bootstrap-icons, serif;
+          content: "\f284";
+          transition: transform .3s linear;
+          transform: scale(.5) rotate(0deg);
+          position: absolute;
+          right: 24px;
+        }
+
+        // 添加有.open类名的也实现和.active a:active a:focus a:hover 相同的效果
+        &.open {
+          color: #0d6efd;
+          background-color: rgb(13 110 253 / 12%);
+
+          // 并让它的小箭头图标旋转90度
+          &::after {
+            transform: scale(.5) rotate(-90deg);
+          }
+
+          // 并让有a.open类的兄弟节点也展开
+          + ul {
+            display: block;
+          }
+        }
+
+      }
+
+    }
+  }
+
+
+}

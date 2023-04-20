@@ -12,6 +12,8 @@
     /* global bootstrap */
     const NAME$4 = 'Layout';
     const DATA_KEY$4 = 'bsa.layout';
+    const THEME_CACHE_KEY = 'theme';
+    const SELECTOR_QUICKTAB = '.qtab';
     const JQUERY_NO_CONFLICT$4 = $.fn[NAME$4];
 
     //用于实现密码点击显示/隐藏
@@ -21,8 +23,10 @@
       scrollbarAutoHide: true,
       //加载器持续时间
       preloadDuration: 800,
-      //子页面是否适配主题
-      themeOnTabPage: true
+      //tab页面是否适配主题
+      tabPageEnableTheme: true,
+      //主题的保存方式  sessionStorage,localStorage
+      themeCacheType: 'localStorage'
     };
     class Layout {
       constructor(element, config) {
@@ -42,6 +46,15 @@
             document.exitFullscreen();
           }
         }
+      }
+      getTheme() {
+        let themeVal = '';
+        if (this._config.themeCacheType === 'localStorage') {
+          themeVal = localStorage.getItem(THEME_CACHE_KEY);
+        } else if (this._config.themeCacheType === 'sessionStorage') {
+          themeVal = sessionStorage.getItem(THEME_CACHE_KEY);
+        }
+        return themeVal;
       }
 
       // Private
@@ -97,7 +110,6 @@
           document.head.appendChild(styleEl);
         }
         if ($(SELECTOR_LOGIN_PASSWORD).length !== 0) {
-          console.log('的撒大');
           //登录页面密码框的显示和隐藏
           $(SELECTOR_LOGIN_PASSWORD).on('click', function (event) {
             event.preventDefault();
@@ -152,17 +164,30 @@
             let themeVal = Array.from(this.classList).at(-1);
 
             //存入缓存
-            localStorage.setItem('theme', String(themeVal));
+            if (_this._config.themeCacheType === 'localStorage') {
+              localStorage.setItem(THEME_CACHE_KEY, String(themeVal));
+            } else if (_this._config.themeCacheType === 'sessionStorage') {
+              sessionStorage.setItem(THEME_CACHE_KEY, String(themeVal));
+            }
 
             //修改主题
             $('html').attr('data-bs-theme', themeVal);
 
             //tab内部也需要修改主题
-            if ($('.qtab').length !== 0 && _this._config.themeOnTabPage === true) {
-              Quicktab.get('.qtab').setTab(function (tabs) {
+            if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
+              Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
                 for (let tab of tabs) {
                   if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                    $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', themeVal);
+                    let $doc = $(tab.tabIFrame.el.contentDocument);
+                    $doc.find('html').attr('data-bs-theme', themeVal);
+                    //同时我们还得在iframe的子文档中再次查找iframe元素
+                    let $iframes = $doc.find('iframe');
+                    $iframes.each(function (index, item) {
+                      if (Quicktab.canAccessIFrame(item)) {
+                        let $doc = $(item.contentDocument);
+                        $doc.find('html').attr('data-bs-theme', themeVal);
+                      }
+                    });
                   }
                 }
               });
@@ -171,16 +196,16 @@
         }
 
         //tab插件初始化
-        if ($('.qtab').length !== 0) {
+        if ($(SELECTOR_QUICKTAB).length !== 0) {
           new Quicktab({
-            selector: '.qtab',
+            selector: SELECTOR_QUICKTAB,
             minHeight: '',
             //不设置默认自适应容器高度
             height: '100%',
             //不设置默认自适应容器宽度
             width: '',
             //"sessionStorage","localStorage",null:不缓存每次刷新都会只展示选项tabs里面的tab
-            cache: 'localStorage',
+            cache: 'sessionStorage',
             //初始化的tab
             tabs: [],
             toolbar: {
@@ -211,19 +236,25 @@
               $('.bsa-menu a').each(function (index, a) {
                 if ($(a).attr('href') === Quicktab.getTabUrl(e.target.getActiveTab())) {
                   _this._scrollToA(a);
+
+                  //结束循环，避免左侧菜单有重复的测试地址时会展开多个菜单
+                  return false;
                 }
               });
             },
             //tab被单击事件
             onTabClick: function (e) {
               let $allA = $('.bsa-menu a');
-              //移除所有的展开和激活状态
               $allA.each(function (index, a) {
-                $(a).removeClass('open active');
-              });
-              $allA.each(function (index, a) {
+                //如果找到这个tab的地址
                 if ($(a).attr('href') === e.tabUrl) {
+                  //移除所有的展开和激活状态
+                  $allA.each(function (index, a) {
+                    $(a).removeClass('open active');
+                  });
                   _this._scrollToA(a);
+                  //结束循环，避免左侧菜单有重复的测试地址时会展开多个菜单
+                  return false;
                 }
               });
             },
@@ -231,19 +262,18 @@
             onTabLoaded: function (tab) {
               let themeVal = localStorage.getItem('theme');
               $('html').attr('data-bs-theme', themeVal);
-              if (_this._config.themeOnTabPage === true) {
-                //是否启用主题适配子页面
+
+              //是否启用主题适配子页面
+              if (_this._config.tabPageEnableTheme === true) {
                 if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
                   $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', themeVal);
                 }
               }
-            },
-            //tab遮罩层加载完毕的事件
-            onTabMaskTransitionend: function () {
-              //这样会导致有时候无法去除遮罩层
             }
           });
         }
+
+        //遮罩层关闭
         setTimeout(() => {
           $('.bsa-preloader').fadeOut(_this._config.preloadDuration);
         }, this._config.preloadDuration);
@@ -267,27 +297,31 @@
 
       // Static
       static _jQueryInterface(config) {
-        return this.each(function () {
-          let data = $(this).data(DATA_KEY$4);
-          const _config = $.extend({}, Default$4, typeof config === 'object' ? config : $(this).data());
+        for (const element of this) {
+          let $element = $(element);
+          let data = $element.data(DATA_KEY$4);
+          const _config = $.extend({}, Default$4, typeof config === 'object' ? config : $element.data());
           if (!data) {
             //没有就new
-            data = new Layout($(this), _config);
+            data = new Layout($element, _config);
 
-            //赋值给$(this);
-            $(this).data(DATA_KEY$4, data);
+            //赋值给data,供给下次调用
+            $element.data(DATA_KEY$4, data);
 
-            //调用内部的私有方法
-            data._init();
-          } else if (typeof config === 'string') {
-            if (typeof data[config] === 'undefined') {
-              throw new TypeError(`No method named "${config}"`);
-            }
-            data[config]();
-          } else if (typeof config === 'undefined') {
+            //调用内部的私有方法,初始化，执行必须执行的方法
             data._init();
           }
-        });
+          if (typeof config === 'string') {
+            if (typeof data[config] === 'undefined') {
+              throw new TypeError(`方法 "${config}" 不存在`);
+            }
+            let execRt = data[config]();
+            if (typeof execRt !== 'undefined') {
+              return execRt;
+            }
+          }
+        }
+        return this;
       }
     }
 

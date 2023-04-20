@@ -1,4 +1,4 @@
-有多种安装`bootstrap-admin`的方法,始终建议从gitee下载最新版本,以获得无错误和最新功能。
+有多种安装`bootstrap-admin`的方法,始终建议从开源仓库发布页面下载最新版本,以获得无错误和最新功能。
 
 !> 注意:生产环境请使用下面的方式获取bootstrap-admin
 
@@ -44,8 +44,4 @@ _**重要提示**: bootstrap-admin的依赖和插件也可以使用cdn,你可以
 <!--jquery-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/lib/jquery/dist/jquery.min.js"></script>
 
-
-<!--ztree-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-admin/dist/css/plugins/metroStyle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-admin/lib/@ztree/ztree_v3/js/jquery.ztree.all.min.js"></script>
 ```

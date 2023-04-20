@@ -1,7 +1,7 @@
 <!-- _coverpage.md -->
 
 
-# [bootstrap-admin<small>2.0.0(开发中)</small>](README.md)
+# [bootstrap-admin<small>2.0.0-dev</small>](README.md)
 
 
 > 让开发后台管理系统的愉悦从这里开始
@@ -15,8 +15,5 @@
 
 
 
-
-
-
-[演示地址V2.0.0](https://ajiho.gitee.io/bootstrap-admin/)
+[演示地址V2.0.0-dev](https://ajiho.gitee.io/bootstrap-admin/)
 [快速开始](README.md)

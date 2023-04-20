@@ -1,0 +1,15 @@
+.bsa-content {
+  position: fixed;
+  inset: var(--bsa-header-height) 0 var(--bsa-footer-height) var(--bsa-sidebar-width);
+  overflow: hidden;
+
+  &.fullscreen{
+    inset: 0;
+    z-index: 9999;
+  }
+
+
+  @include media-breakpoint-down(lg) {
+    left: 0;
+  }
+}

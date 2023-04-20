@@ -10,25 +10,6 @@
   --bsa-footer-height: 38px;
 }
 
-[data-bs-theme=dark] .dropdown-menu {
-  --bs-dropdown-link-active-bg: #495057;
-}
-[data-bs-theme=dark] .quicktab .nav-pills {
-  --bs-nav-pills-link-active-color: var(--bs-light-text);
-  --bs-nav-pills-link-active-bg: var(--bs-light-bg-subtle);
-}
-[data-bs-theme=dark] .bsa-menu li a + ul {
-  background-color: rgba(var(--bs-tertiary-color-rgb), 0.08);
-}
-[data-bs-theme=dark] .bsa-menu li a.active, [data-bs-theme=dark] .bsa-menu li a:active, [data-bs-theme=dark] .bsa-menu li a:focus, [data-bs-theme=dark] .bsa-menu li a:hover {
-  color: unset;
-  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
-}
-[data-bs-theme=dark] .bsa-menu li a.has-children.open {
-  color: unset;
-  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
-}
-
 [data-bs-theme=indigo] {
   --bs-body-color: #6610f2;
   --bs-body-color-rgb: 102, 16, 242;
@@ -78,6 +59,26 @@
   --bs-border-color: #3d0a91;
   --bs-border-color-translucent: rgba(102, 16, 242, 0.15);
 }
+
+[data-bs-theme=dark] .dropdown-menu {
+  --bs-dropdown-link-active-bg: #495057;
+}
+[data-bs-theme=dark] .quicktab .nav-pills {
+  --bs-nav-pills-link-active-color: var(--bs-light-text);
+  --bs-nav-pills-link-active-bg: var(--bs-light-bg-subtle);
+}
+[data-bs-theme=dark] .bsa-menu li a + ul {
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.08);
+}
+[data-bs-theme=dark] .bsa-menu li a.active, [data-bs-theme=dark] .bsa-menu li a:active, [data-bs-theme=dark] .bsa-menu li a:focus, [data-bs-theme=dark] .bsa-menu li a:hover {
+  color: unset;
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
+}
+[data-bs-theme=dark] .bsa-menu li a.has-children.open {
+  color: unset;
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18);
+}
+
 [data-bs-theme=indigo] .form-control:focus {
   border-color: #6610f2;
   box-shadow: 0 0 0 0.25rem rgba(102, 16, 242, 0.25);
@@ -367,6 +368,202 @@
   background-color: var(--bs-secondary-bg) !important;
 }
 
+.trumbowyg-editor[contenteditable=true]:empty::before {
+  content: attr(placeholder) !important;
+  color: var(--bs-secondary-color) !important;
+}
+
+/*顶部工具条背景颜色*/
+.w-e-bar {
+  background-color: var(--bs-body-bg) !important;
+}
+
+.w-e-bar-item .disabled {
+  color: var(--bs-tertiary-color) !important;
+}
+
+.w-e-bar-item .disabled svg {
+  fill: var(--bs-tertiary-color) !important;
+}
+
+/*在编辑器中选中文字后的颜色*/
+.w-e-hover-bar {
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+/*这个是删除线-行内代码-上标-下表-清除格式*/
+.w-e-bar-item-group .w-e-bar-item-menus-container {
+  background-color: var(--bs-body-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+/*颜色下拉菜单*/
+.w-e-drop-panel {
+  background-color: var(--bs-body-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+.w-e-panel-content-color li .color-block {
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+.w-e-panel-content-color li {
+  border: var(--bs-border-width) solid var(--bs-body-bg) !important;
+}
+
+.w-e-panel-content-color li:hover {
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+/*修改每个按钮的颜色*/
+.w-e-bar-item button {
+  color: var(--bs-body-color) !important;
+}
+
+/*鼠标滑过时的颜色*/
+.w-e-bar-item button:hover {
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.08) !important;
+}
+
+/*工具条上的项目被激活时的背景色*/
+.w-e-bar-item .active {
+  background-color: var(--bs-secondary-bg) !important;
+}
+
+/*表格*/
+.w-e-panel-content-table {
+  background-color: var(--bs-body-bg) !important;
+  color: var(--bs-body-color) !important;
+}
+
+/*表格里面每个td*/
+.w-e-panel-content-table td {
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+/*修改每个svg的言饿死*/
+.w-e-bar svg {
+  fill: var(--bs-body-color) !important;
+}
+
+/*修改分割线的颜色*/
+.w-e-bar-divider {
+  background-color: var(--bs-secondary-bg) !important;
+}
+
+/*背景色*/
+.w-e-select-list {
+  background-color: var(--bs-body-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+/*被选中的*/
+.w-e-select-list ul .selected {
+  background-color: var(--bs-secondary-bg) !important;
+}
+
+/*鼠标移过*/
+.w-e-select-list ul li:hover {
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.08) !important;
+}
+
+.w-e-select-list ul li {
+  color: var(--bs-body-color) !important;
+}
+
+.w-e-text-container [data-slate-editor] {
+  background-color: var(--bs-body-bg) !important;
+  color: var(--bs-body-color) !important;
+}
+
+/*链接、图片、视频*/
+.w-e-modal {
+  background-color: var(--bs-body-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+  color: var(--bs-body-color) !important;
+}
+
+/*链接、图片、视频里面的输入框*/
+.w-e-modal input[type=number], .w-e-modal input[type=text], .w-e-modal textarea {
+  background-color: var(--bs-body-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+  color: var(--bs-body-color) !important;
+}
+
+.w-e-text-container {
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+  border-top: none !important;
+}
+
+.w-e-toolbar {
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+/*提示框保持和bootstrap风格主题一致*/
+.w-e-menu-tooltip-v5:before {
+  background-color: var(--bs-emphasis-color) !important;
+  color: var(--bs-body-bg) !important;
+  opacity: 0.9 !important;
+}
+
+/*编辑内容时表格外层包裹的的一个大容器*/
+.w-e-text-container [data-slate-editor] [data-selected=true] {
+  box-shadow: 0 0 0 2px var(--bs-border-color) !important;
+}
+
+/*表格的包裹虚线边框*/
+.w-e-text-container [data-slate-editor] .table-container {
+  border: 1px dashed var(--bs-border-color) !important;
+}
+
+/*编辑区域表格的表头*/
+.w-e-text-container [data-slate-editor] table th {
+  background-color: var(--bs-secondary-bg) !important;
+}
+
+/*编辑区域表格的td，th所有的边框*/
+.w-e-text-container [data-slate-editor] table td,
+.w-e-text-container [data-slate-editor] table th {
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+/*代码区域的背景色*/
+.w-e-text-container [data-slate-editor] pre > code {
+  background-color: var(--bs-secondary-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+  text-shadow: 0 1px var(--bs-body-color) !important;
+  color: var(--bs-body-color) !important;
+}
+
+/*工具栏表情选择的配色*/
+.w-e-panel-content-emotion li:hover {
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.08) !important;
+}
+
+/*模态框的按钮背景色*/
+.w-e-modal button {
+  background-color: var(--bs-tertiary-bg) !important;
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+  color: var(--bs-body-color) !important;
+}
+
+/*placehoder提示信息的颜色*/
+.w-e-max-length-info, .w-e-text-placeholder {
+  color: var(--bs-secondary-color) !important;
+}
+
+.w-e-modal .btn-close {
+  background: unset !important;
+}
+
+.w-e-text-container {
+  background-color: var(--bs-body-bg) !important;
+}
+
+.w-e-textarea-divider hr {
+  background-color: var(--bs-secondary-color) !important;
+}
+
 .bsa-header {
   display: flex;
   align-items: center;
@@ -389,7 +586,7 @@
 .bsa-header .dropdown-menu {
   border: 0;
   border-radius: 10px;
-  box-shadow: var(--bs-box-shadow-sm);
+  box-shadow: 0 0.125rem 0.25rem rgba(var(--bs-secondary-color-rgb), 0.075);
   max-width: 360px;
 }
 .bsa-header .dropdown-menu .card {
@@ -423,7 +620,8 @@
   box-shadow: none;
   border-color: var(--bs-border-color);
 }
-.bsa-header .bsa-search-form .bsa-search-close-btn, .bsa-header .bsa-search-form .bsa-search-submit-btn {
+.bsa-header .bsa-search-form .bsa-search-close-btn,
+.bsa-header .bsa-search-form .bsa-search-submit-btn {
   font-size: 18px;
   padding: 0;
   border: 0;
@@ -661,18 +859,18 @@
 .bsa-error-code {
   font-size: 7rem;
   font-weight: 700;
-  text-shadow: 4px 4px 0 var(--bs-light-bg-subtle), 6px 6px 0 var(--bs-light-text);
-  color: var(--bs-light-text);
+  text-shadow: 4px 4px 0 var(--bs-light-bg-subtle), 6px 6px 0 var(--bs-secondary-color);
+  color: var(--bs-secondary-color);
   word-break: break-all;
   text-align: center;
 }
 
 .bsa-error-text {
-  border-top: 5px solid var(--bs-light-text);
+  border-top: 5px solid var(--bs-secondary-color);
   margin-bottom: 30px;
   padding-top: 20px;
   text-align: center;
-  color: var(--bs-light-text);
+  color: var(--bs-secondary-color);
 }
 
 .bsa-login-outer-wrapper {

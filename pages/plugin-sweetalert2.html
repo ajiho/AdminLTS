@@ -11,17 +11,18 @@
     <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
-    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+    <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
 </head>
 <body class="bg-body-tertiary py-3">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
         <div class="card-body">
-            <div class="border-bottom py-2 mb-3">sweetalert2插件演示</div>
-           <button class="btn btn-success btn1">成功通知</button>
-           <button class="btn btn-success btn2">警报通知</button>
-           <button class="btn btn-success btn3">细小的错误toast通知</button>
-           <button class="btn btn-success btn4">敏感操作时的对话框</button>
+            <h5 class="card-title">sweetalert2插件演示</h5>
+            <hr>
+            <button class="btn btn-success btn1">成功通知</button>
+            <button class="btn btn-success btn2">警报通知</button>
+            <button class="btn btn-success btn3">细小的错误toast通知</button>
+            <button class="btn btn-success btn4">敏感操作时的对话框</button>
         </div>
     </div>
 </div>
@@ -29,20 +30,28 @@
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
 <!--/插件放置区域-->
+
+<!--推荐:axios专门用于发送网络请求的一个库-->
+<script src="../lib/axios/dist/axios.min.js"></script>
 <script src="../lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!--插件放置区域/-->
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script>
-    $(function (){
-        $('.btn1').on('click',function (){
+    $(function () {
+        $('.btn1').on('click', function () {
             Swal.fire(
                 '登录成功!',
                 '欢迎登录!',
                 'success'
-            )
+            ).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('您点击了确定')
+
+                }
+            })
         })
 
-        $('.btn2').on('click',function (){
+        $('.btn2').on('click', function () {
             Swal.fire({
                 position: 'top-end',
                 icon: 'warning',
@@ -52,7 +61,7 @@
             })
         })
 
-        $('.btn3').on('click',function (){
+        $('.btn3').on('click', function () {
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -71,7 +80,8 @@
             })
         })
 
-        $('.btn4').on('click',function (){
+        $('.btn4').on('click', function () {
+
             Swal.fire({
                 title: '确定删除该用户吗？',
                 // text: "是否确定要批量添加选中文章？",

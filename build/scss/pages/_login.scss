@@ -1,0 +1,48 @@
+.bsa-login-outer-wrapper {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  @for $i from 1 through  10 {
+    &.bsa-login-bg-#{$i} {
+      background-image: url("../img/login-bg-#{$i}.jpg");
+    }
+  }
+
+  .bsa-login-inner-wrapper {
+    width: 320px;
+
+    .form-control {
+      background-color: rgb(255 255 255 / 15%);
+      border: none;
+      color: rgb(255 255 255 / 50%);
+    }
+
+    .input-group-text{
+      border: none;
+      color: rgb(255 255 255 / 50%);
+      background-color: rgb(255 255 255 / 15%);
+    }
+
+    .form-check-label {
+      color: rgb(255 255 255 / 50%);
+    }
+
+    .form-check-input {
+      background-color: transparent;
+      border-color: rgb(255 255 255 / 50%);
+    }
+
+    .form-control::placeholder {
+      color: rgb(255 255 255 / 50%);
+    }
+  }
+}
+

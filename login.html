@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/bootstrap-admin.min.css">
+    <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
+</head>
+<body>
+
+<!-- .bsa-login-bg-1~10 :可以切换自己喜欢的背景图片-->
+<div class="bsa-login-outer-wrapper bsa-login-bg-5">
+    <div class="bsa-login-inner-wrapper">
+        <div class="container-fluid">
+            <form id="form" class="form">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="username" name="username" aria-label="username"
+                           placeholder="邮箱/用户名/手机号">
+                </div>
+                <div class="mb-3">
+                    <div class="input-group bsa-show_hide_password">
+                        <input type="password" class="form-control" id="password" autocomplete name="password"
+                               placeholder="请输入密码"
+                               aria-label="password">
+                        <span class="input-group-text bsa-cursor-pointer"><i class="bi bi-eye-slash"></i></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="captcha" name="captcha" aria-label="captcha"
+                               placeholder="请输入验证码">
+                        <img src="dist/img/captcha.png" alt="验证码" class="bsa-cursor-pointer"/>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember"
+                               value="1">
+                        <label class="form-check-label" for="exampleCheck1">十天内免登录</label>
+                    </div>
+                    <button id="login-btn" type="submit" class="btn btn-primary">立即登录</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<!--/插件放置区域-->
+
+<!--推荐:axios专门用于发送网络请求的一个库-->
+<script src="lib/axios/dist/axios.min.js"></script>
+
+<!--表单验证插件-->
+<script src="lib/formvalidation/js/formValidation.js"></script>
+<script src="lib/formvalidation/js/framework/bootstrap.js"></script>
+<script src="lib/formvalidation/js/language/zh_CN.js"></script>
+
+<!--一个漂亮的消息通知插件-->
+<script src="lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+<!--插件放置区域/-->
+<script src="dist/js/bootstrap-admin.min.js"></script>
+<script>
+    //前端表单验证
+    $('#form').formValidation({
+        fields: {
+            username: {
+                validators: {
+                    notEmpty: true,
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: true,
+                }
+            },
+            captcha: {
+                validators: {
+                    notEmpty: true,
+                }
+            }
+        }
+    }).on('success.form.fv', function (e) {
+        //阻止表单提交
+        e.preventDefault();
+
+        //得到表单对象
+        let $form = $(e.target);
+        let data = $form.serialize();
+
+        //jquery发送请求示例代码,推荐统一使用axios库来发送,jquery推荐统一用来当作dom操作的库
+        // $.ajax({
+        //     url: "/login.php",
+        //     method: 'POST',
+        //     data
+        // }).then(function (res) {
+        //     if (res.code === 200) {
+        //         //登录成功
+        //     } else {
+        //         //登录失败
+        //     }
+        // });
+
+        //假设发送请求成功我们要跳转到后台首页
+        Swal.fire(
+            '登录成功!',
+            '欢迎登录!',
+            'success'
+        ).then((result) => {
+            if (result.isConfirmed) {
+                //重定向到后台首页
+                location.replace('index.html');
+            }
+        })
+    });
+</script>
+
+</body>
+</html>

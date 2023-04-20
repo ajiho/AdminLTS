@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+    <!--/插件放置区域-->
+    <link rel="stylesheet" href="../lib/@wangeditor/editor/dist/css/style.css">
+    <style>
+        #editor-container {
+            height: 310px;
+        }
+    </style>
+    <!--插件放置区域/-->
+    <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
+    <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
+</head>
+<body class="bg-body-tertiary py-3">
+<div class="container-fluid">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label for="title" class="form-label">文章标题</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">文章内容</label>
+                    <div>
+                        <div id="editor—wrapper">
+                            <div id="toolbar-container"><!-- 工具栏 --></div>
+                            <div id="editor-container"><!-- 编辑器 --></div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">提交文章</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/jquery/dist/jquery.min.js"></script>
+<!--/插件放置区域-->
+
+<!--推荐:axios专门用于发送网络请求的一个库-->
+<script src="../lib/axios/dist/axios.min.js"></script>
+<script src="../lib/@wangeditor/editor/dist/index.js"></script>
+<!--插件放置区域/-->
+<script src="../dist/js/bootstrap-admin.min.js"></script>
+<script>
+
+
+    const {createEditor, createToolbar, Boot} = window.wangEditor
+
+    const editorConfig = {
+        placeholder: '开始你的创作!',
+        onChange(editor) {
+            const html = editor.getHtml()
+            console.log('editor content', html)
+            // 也可以同步到 <textarea>
+        }
+    }
+
+    let isHTML = false;
+
+    class MyButtonMenu {                       // JS 语法
+
+        constructor() {
+            this.title = '源码' // 自定义菜单标题
+            // this.iconSvg = '<svg>...</svg>' // 可选
+            this.tag = 'button'
+            this.tooltip = 'ewqew'
+
+        }
+
+        // 获取菜单执行时的 value ，用不到则返回空 字符串或 false
+        getValue(editor) {                              // JS 语法
+            return false
+        }
+
+        // 菜单是否需要激活（如选中加粗文本，“加粗”菜单会激活），用不到则返回 false
+        isActive(editor) {                    // JS 语法
+            return false
+        }
+
+        // 菜单是否需要禁用（如选中 H1 ，“引用”菜单被禁用），用不到则返回 false
+
+        isDisabled(editor) {                     // JS 语法
+            return false
+        }
+
+        // 点击菜单时触发的函数
+
+        exec(editor, value) {                              // JS 语法
+            if (this.isDisabled(editor)) return
+            let source = editor.getHtml();
+
+            console.log(source);
+
+            if (source) {
+                isHTML = !isHTML;
+            }
+            if (isHTML) {
+                source = source.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/ /g, "&nbsp;");
+                // console.log(source);
+            } else {
+                source = editor.getText().replace(/&lt;/ig, "<").replace(/&gt;/ig, ">").replace(/&nbsp;/ig, " ")
+                // console.log(2);
+            }
+
+            // editor.setHtml('<p>hello</p>')
+
+            // console.log(source);
+
+
+            // editor.insertText(value) // value 即 this.value(editor) 的返回值
+        }
+
+    }
+
+    const menu1Conf = {
+        key: 'menu1', // 定义 menu key ：要保证唯一、不重复（重要）
+        factory() {
+            return new MyButtonMenu() // 把 `YourMenuClass` 替换为你菜单的 class
+        },
+    }
+
+    Boot.registerMenu(menu1Conf)
+
+
+    const editor = createEditor({
+        selector: '#editor-container',
+        html: '<p><br></p>',
+        config: editorConfig,
+        mode: 'default', // or 'simple'
+    })
+
+
+    const toolbarConfig = {
+        insertKeys: {
+            index: 0, // 插入的位置，基于当前的 toolbarKeys
+            keys: ['menu1']
+        },
+    }
+
+    const toolbar = createToolbar({
+        editor,
+        selector: '#toolbar-container',
+        config: toolbarConfig,
+        mode: 'default', // or 'simple'
+    })
+
+
+</script>
+</body>
+</html>

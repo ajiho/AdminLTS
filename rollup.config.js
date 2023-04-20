@@ -18,7 +18,7 @@ const banner = `/*!
 
 //注意：每次修改配置都要重新开启监听
 module.exports = {
-    input: 'src/js/bootstrap-admin.js',
+    input: 'build/js/bootstrap-admin.js',
     output: [
         {
             banner,
@@ -55,13 +55,13 @@ module.exports = {
         eslint({
             throwOnError: true,
             throwOnWarning: true,
-            include: ['src/**'],
+            include: ['build/**'],
             exclude: ['node_modules/**'],
             fix: true
         }),
         babel({
             exclude: 'node_modules/**',
-            // Include the helpers in the bundle, at most one copy of each
+            // 用于指定 Babel 在转换 ES6+ 代码时使用的辅助函数的路径
             babelHelpers: 'bundled'
         }),
 

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="dist/css/bootstrap-admin.min.css">
-    <title>Bootstrap-Admin - 开源免费响应式后台管理系统模板</title>
+    <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
 </head>
 
 <body data-scrollbar-auto-hide="true" data-theme-on-tab-page="true">
@@ -54,10 +54,10 @@
     </li>
     <!--  拓展应用(建议把拓展放在此处,以免破坏头部整体布局,不需要可以直接删除)  -->
     <li class="dropdown">
-        <div class="bsa-header-item" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+        <div class="bsa-header-item" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="aaa">
             <i class="bi bi-grid"></i>
         </div>
-        <div class="dropdown-menu dropdown-menu-end p-0">
+        <div class="dropdown-menu dropdown-menu-end p-0" id="bbb">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <span class="bsa-fs-15">应用列表</span>
@@ -219,7 +219,8 @@
             <li>
                 <div class="dropdown-divider"></div>
             </li>
-            <li><a class="dropdown-item" href="javascript:"><i class="bi bi-box-arrow-right me-2"></i>退出登录</a>
+            <li class="bsa-logout"><a class="dropdown-item" href="javascript:"><i
+                    class="bi bi-box-arrow-right me-2"></i>退出登录</a>
             </li>
         </ul>
     </li>
@@ -242,11 +243,11 @@
             </li>
             <li>
                 <a href="javascript:" class="has-children">
-                    <i class="bi bi-pencil-square"></i>xx管理
+                    <i class="bi bi-pencil-square"></i>权限管理
                 </a>
                 <ul>
                     <li>
-                        <a href="pages/list.html">xx列表</a>
+                        <a href="pages/user.html">用户管理</a>
                     </li>
                 </ul>
             </li>
@@ -255,12 +256,15 @@
                     <i class="bi bi-filetype-html"></i>示例页面
                 </a>
                 <ul>
-
                     <li>
-                        <a href="pages/login.html" target="_blank">登录页面</a>
+                        <!-- target="_self":添加该属性可以让该页面不从tab页面里打开  -->
+                        <a href="pages/page-lockscreen.html" target="_self">锁屏页</a>
                     </li>
                     <li>
-                        <a href="pages/error.html">错误页面</a>
+                        <a href="pages/page-gallery.html">图库列表</a>
+                    </li>
+                    <li>
+                        <a href="404.html">404页面</a>
                     </li>
                 </ul>
             </li>
@@ -270,18 +274,39 @@
                 </a>
                 <ul>
                     <li><a href="pages/plugin-bootstrap-table.html">bootstrap-table</a></li>
-                    <li><a href="pages/plugin-chart.html">chart.js</a></li>
-                    <li><a href="pages/plugin-echarts.html">echart.js</a></li>
                     <li><a href="pages/plugin-sweetalert2.html">sweetalert2</a></li>
                     <li><a href="pages/plugin-formvalidation.html">表单验证</a></li>
                     <li><a href="pages/plugin-tempus-dominus.html">日期时间</a></li>
-                    <li><a href="pages/plugin-tinymce.html">tinymce</a></li>
-                    <li><a href="pages/plugin-dropzone.html">文件上传</a></li>
                     <li><a href="pages/plugin-croppie.html">头像裁剪</a></li>
-                    <li><a href="pages/plugin-ztree.html">树形组件</a></li>
+                    <li>
+                        <a href="javascript:" class="has-children">树形组件</a>
+                        <ul>
+                            <li><a href="pages/plugin-ztree.html">ztree</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="has-children">图表</a>
+                        <ul>
+                            <li><a href="pages/plugin-chart.html">chart.js</a></li>
+                            <li><a href="pages/plugin-echarts.html">echart.js</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="has-children">编辑器</a>
+                        <ul>
+                            <li><a href="pages/plugin-wangeditor.html">wangeditor</a></li>
+                            <li><a href="pages/plugin-trumbowyg.html">trumbowyg</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="has-children">文件上传</a>
+                        <ul>
+                            <li><a href="pages/plugin-bootstrap-fileinput.html">bootstrap-fileinput</a></li>
+                            <li><a href="pages/plugin-dropzone.html">dropzone</a></li>
+                        </ul>
+                    </li>
                     <li><a href="pages/plugin-select2.html">select2</a></li>
                     <li><a href="pages/plugin-fonticonpicker.html">图标选择器</a></li>
-                    <li><a href="pages/plugin-bootstrap-fileinput.html">bootstrap-fileinput</a></li>
                 </ul>
             </li>
             <li>
@@ -351,24 +376,35 @@
     <p class="mb-0">Copyright © 2023. All right reserved.</p>
 </div>
 
-<!--loading层-->
+<!--加载层-->
 <div class="bsa-preloader">
     <div class="spinner-border text-secondary" role="status">
         <span class="visually-hidden">Loading...</span>
     </div>
 </div>
 
-
+<!--必须的依赖-->
 <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="lib/jquery/dist/jquery.min.js"></script>
 <!--/插件放置区域-->
+
+<!--推荐:axios专门用于发送网络请求的一个库-->
+<script src="lib/axios/dist/axios.min.js"></script>
+<!--滚动条插件-->
 <script src="lib/smooth-scrollbar/dist/smooth-scrollbar.js"></script>
+<!--iframe多tab选项卡插件-->
 <script src="lib/bootstrap-quicktab/dist/js/bootstrap-quicktab.min.js"></script>
+<!--一个漂亮的消息通知插件-->
+<script src="lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!--插件放置区域/-->
+
+<!--bootstrap-admin的js文件-->
 <script src="dist/js/bootstrap-admin.min.js"></script>
+
 <script>
     $(function () {
-        //头部搜索框处理(不需要可以删除)
+
+        //头部搜索框处理(不需要可以删除,不明白的可以看bootstrap-admin官方文档)
         $(document).on('search.bsa.navbar-search', function (e, config, keyword) {
             //先得到请求地址
             var url = config.action;
@@ -382,9 +418,43 @@
         })
 
 
+        $(document).on('click', '.bsa-logout', function (e) {
+            //退出登录
+            Swal.fire({
+                title: '确定退出登录吗？',
+                text: "请仔细确认您的工作是否完成哦",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#198754',
+                cancelButtonColor: '#d93444',
+                confirmButtonText: '确定',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //这里应该发起ajax,这里假设请求成功
+                    Swal.fire({
+                        icon: "success",
+                        title: '退出成功',
+                        timer: 800,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        //确定 取消 背景都会触发
+                        if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer || result.dismiss === Swal.DismissReason.backdrop) {
+                            //跳转前同时也可以关闭所有的tab(可选)
+                            Quicktab.get('.qtab').closeAllTabs();
+                            //重定向到登录页
+                            location.replace('login.html');
+
+                        }
+                    });
+                }
+            })
+        });
     });
-
-
 </script>
 </body>
 </html>
