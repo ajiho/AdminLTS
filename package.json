@@ -7,7 +7,7 @@
     "js": "rollup --config rollup.config.js --sourcemap",
     "css": "gulp style",
     "css-fix": "gulp fix-css",
-    "dist": "npm-run-all js css",
+    "production": "npm-run-all js css",
     "docs-dev": "docsify serve docs"
   },
   "dependencies": {
