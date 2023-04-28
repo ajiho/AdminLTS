@@ -6,6 +6,7 @@ const NAME = 'Sidebar'
 const DATA_KEY = 'bsa.sidebar'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
+const HEADER_SELECTER = '.bsa-sidebar'
 
 
 const EVENT_EXPANDED = `expanded${EVENT_KEY}`
@@ -34,38 +35,62 @@ class Sidebar {
 
     expand($menuLink) {
 
+        let _this = this;
 
-        //得到兄弟节点ul
-        let $siblingsUl = $menuLink.siblings('ul');
+        $menuLink.siblings('ul').each(function (index, element) {
 
-        $siblingsUl.data('isOpen', true);
-        $siblingsUl.css({'transition': `height ${this._config.animationSpeed}ms linear`});
-        $siblingsUl.css({'height': 0});
-        $siblingsUl.prop('scrollHeight');
-        $siblingsUl.css({'height': $siblingsUl.prop('scrollHeight')});
+            //变成jquery对象
+            let $element = $(element);
 
+            //获取真实的滚动高度
+            let scrollHeight = _this._getRealHeight(element);
 
+            //设置一个展开标志属性,用于监听过渡结束时判断是展开还是折叠
+            $element.data('isOpen', true);
+
+            $element.css({'height': 0});
+
+            //触发重绘
+            void element.scrollHeight;
+
+            $element.css({
+                'transition-timing-function': 'ease',
+                'transition-duration': `${_this._config.animationSpeed}ms`,
+                'transition-property': 'height',
+                'display': 'block',
+                'height': scrollHeight
+            })
+
+        })
     }
 
 
     collapse($menuLink) {
-        // const collapsedEvent = $.Event(EVENT_COLLAPSED)
+        let _this = this;
 
-        //得到兄弟节点ul
-        let $siblingsUl = $menuLink.siblings('ul');
+        $menuLink.siblings('ul').each(function (index, element) {
 
-        $siblingsUl.data('isOpen', false);
-        $siblingsUl.css({'transition': `height ${this._config.animationSpeed}ms linear`});
-        $siblingsUl.css({'height': $siblingsUl.prop('scrollHeight')});
-        $siblingsUl.prop('scrollHeight');
-        $siblingsUl.css({'height': 0, 'display': 'block'});
+            let $element = $(element);
 
+            let scrollHeight = _this._getRealHeight(element);
+
+            $element.data('isOpen', false);
+
+            $element.css({
+                'transition-timing-function': 'ease',
+                'transition-duration': `${_this._config.animationSpeed}ms`,
+                'transition-property': 'height',
+                'display': 'block',
+                'height': scrollHeight
+            })
+            void element.scrollHeight;
+            $element.css({'height': 0});
+
+        })
     }
 
     // Private
-
     _init() {
-
 
         let _this = this;
 
@@ -79,15 +104,13 @@ class Sidebar {
                 $(e.target).removeAttr('style');
                 //判断是展开还是折叠
                 if ($(e.target).data('isOpen')) {
-
-
                     $(_this._element).trigger(expandedEvent)
                 } else {
                     $(_this._element).trigger(collapsedEvent)
                 }
             }
-
         });
+
 
         //侧边栏点击事件,有子集的且没有target属性
         $(document).on('click', '.bsa-menu a.has-children:not([target])', function (e) {
@@ -95,36 +118,31 @@ class Sidebar {
             let $a = $(this);
 
 
-            // console.log($a);
-
-
             //是否开启手风琴模式
             if (_this._config.accordion) {
-
 
                 let $pSiblingsLi = $a.parent().siblings('li');
                 let $pSiblingsOpenA = $pSiblingsLi.children('a.has-children.open');
 
+
                 //调用折叠类
                 _this.collapse($pSiblingsOpenA)
 
-                $pSiblingsOpenA.removeClass('open');
 
-                //同时给折叠的ul下面的子集中a链接有激活的给移除激活效果
+                $pSiblingsOpenA.removeClass('open');
+                //
+                // //同时给折叠的ul下面的子集中a链接有激活的给移除激活效果
                 $pSiblingsLi.children('a.active').removeClass('active');
 
             }
 
-
             if (!$a.hasClass('open')) {
-
                 $a.addClass('open');
                 _this.expand($a);
 
             } else {
-
-                _this.collapse($a);
                 $a.removeClass('open');
+                _this.collapse($a);
             }
         });
 
@@ -148,33 +166,68 @@ class Sidebar {
                 url: this.getAttribute('href'),
                 close: true,
             });
+
         });
 
 
     }
 
 
+    //获取display:none元素的真实高度
+    _getRealHeight(element) {
+        let $element = $(element);
+        let $clone = $element.clone();
+        $clone.css({
+            visibility: 'hidden',
+            display: 'block',
+            position: 'absolute',
+            zIndex: '-999'
+        })
+        $element.after($clone);
+        let nx = $element.next();
+        //获取滚动高度
+        let nxsh = nx.prop('scrollHeight');
+        nx.remove();
+        return nxsh;
+    }
+
+
     // Static
     static _jQueryInterface(config) {
-        return this.each(function () {
-            let data = $(this).data(DATA_KEY)
-            const _config = $.extend({}, Default, typeof config === 'object' ? config : $(this).data())
 
-            // console.log(_config);
+        for (const element of this) {
+
+
+            let $element = $(element);
+
+            let data = $element.data(DATA_KEY);
+
+            const _config = $.extend({}, Default, typeof config === 'object' ? config : $element.data());
 
             if (!data) {
-                data = new Sidebar($(this), _config)
-                $(this).data(DATA_KEY, data)
-                data._init()
-            } else if (typeof config === 'string') {
-                if (typeof data[config] === 'undefined') {
-                    throw new TypeError(`No method named "${config}"`)
-                }
-                data[config]()
-            } else if (typeof config === 'undefined') {
+                //没有就new
+                data = new Sidebar($element, _config)
+
+                //赋值给data,供给下次调用
+                $element.data(DATA_KEY, data)
+
+                //调用内部的私有方法,初始化，执行必须执行的方法
                 data._init()
             }
-        })
+
+            if (typeof config === 'string') {
+
+                if (typeof data[config] === 'undefined') {
+                    throw new TypeError(`方法 "${config}" 不存在`)
+                }
+
+                let execRt = data[config]();
+                if (typeof execRt !== 'undefined') {
+                    return execRt;
+                }
+            }
+        }
+        return this;
     }
 }
 
@@ -183,14 +236,13 @@ class Sidebar {
  * ====================================================
  */
 
-
-if ($('.bsa-sidebar').length !== 0) {
-    $(window).on('load', () => {
+$(window).on('load', () => {
+    if ($(HEADER_SELECTER).length !== 0) {//如果有才执行
         $(SELECTOR_DATA_TOGGLE).each(function () {
-            Sidebar._jQueryInterface.call($(this), 'init')
+            Sidebar._jQueryInterface.call($(this))
         })
-    })
-}
+    }
+})
 
 
 /**

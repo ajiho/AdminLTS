@@ -4,12 +4,19 @@
  * license MIT (https://gitee.com/ajiho/bootstrap-admin/blob/2.x/LICENSE)
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('smooth-scrollbar'), require('bootstrap-quicktab'), require('jquery')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'smooth-scrollbar', 'bootstrap-quicktab', 'jquery'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.BootstrapAdmin = {}, global.Scrollbar, global.Quicktab, global.jQuery));
-})(this, (function (exports, Scrollbar, Quicktab, $) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery'), require('bootstrap-quicktab')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'bootstrap-quicktab'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.BootstrapAdmin = {}, global.jQuery, global.Quicktab));
+})(this, (function (exports, $, Quicktab) { 'use strict';
 
-    /* global bootstrap */
+    var helper = {
+      //判断是否为主页面
+      isIndex() {
+        return $('.bsa-header').length !== 0 && $('.bsa-sidebar').length !== 0;
+      }
+    };
+
+    /* global bootstrap OverlayScrollbarsGlobal  */
     const NAME$4 = 'Layout';
     const DATA_KEY$4 = 'bsa.layout';
     const THEME_CACHE_KEY = 'theme';
@@ -19,8 +26,10 @@
     //用于实现密码点击显示/隐藏
     const SELECTOR_LOGIN_PASSWORD = '.bsa-show_hide_password span';
     const Default$4 = {
-      //滚动条自动隐藏
-      scrollbarAutoHide: true,
+      //滚动条自动隐藏 never scroll leave move  #https://kingsora.github.io/OverlayScrollbars/
+      scrollbarAutoHide: 'leave',
+      //滚动条隐藏时间
+      scrollbarAutoHideDelay: 1300,
       //加载器持续时间
       preloadDuration: 800,
       //tab页面是否适配主题
@@ -28,6 +37,10 @@
       //主题的保存方式  sessionStorage,localStorage
       themeCacheType: 'localStorage'
     };
+
+    //滚动条插件对象
+    let OverlayScrollbars = null;
+    let sidebarOsInstance = null;
     class Layout {
       constructor(element, config) {
         this._config = config;
@@ -58,10 +71,16 @@
       }
 
       // Private
-
       _init() {
-        let _this = this;
+        this._common();
+        if (helper.isIndex()) {
+          //如果是index.html页面
+          this._index();
+        }
+      }
 
+      // 所有页面都要执行的
+      _common() {
         //启用提示
         $('[data-bs-toggle="tooltip"]').each(function (i, el) {
           new bootstrap.Tooltip(el);
@@ -82,33 +101,7 @@
           e.preventDefault();
         });
 
-        //滚动条自动隐藏
-        if (_this._config.scrollbarAutoHide === true) {
-          let style = `
-                  [data-scrollbar] .scrollbar-track {
-                        visibility: hidden;
-                    }
-            
-                    @keyframes fadeIn {
-                        from {
-                            opacity: 0;
-                        }
-            
-                        to {
-                            opacity: 1;
-                        }
-                    }
-            
-            
-                    [data-scrollbar]:hover .scrollbar-track {
-                        visibility: unset;
-                        animation: fadeIn 3s !important;
-                    }
-            `;
-          let styleEl = document.createElement('style');
-          styleEl.textContent = style;
-          document.head.appendChild(styleEl);
-        }
+        //登录页面的密码切换
         if ($(SELECTOR_LOGIN_PASSWORD).length !== 0) {
           //登录页面密码框的显示和隐藏
           $(SELECTOR_LOGIN_PASSWORD).on('click', function (event) {
@@ -126,77 +119,114 @@
             }
           });
         }
+      }
+
+      // 首页需要执行的方法
+      _index() {
+        let _this = this;
+
+        //给滚动条注册插件
+        if (typeof OverlayScrollbarsGlobal !== 'undefined') {
+          OverlayScrollbars = OverlayScrollbarsGlobal.OverlayScrollbars;
+
+          //给滚动条对象注册插件
+          OverlayScrollbars.plugin([OverlayScrollbarsGlobal.ScrollbarsHidingPlugin, OverlayScrollbarsGlobal.SizeObserverPlugin, OverlayScrollbarsGlobal.ClickScrollPlugin]);
+        }
+        //侧边栏滚动条插件的示例对象
 
         //导航菜单滚动条插件
-        if ($('.bsa-sidebar-body').length !== 0) {
-          Scrollbar.init(document.querySelector('.bsa-sidebar-body'));
-        }
+        sidebarOsInstance = OverlayScrollbars(document.querySelector('.bsa-sidebar-body'), {
+          overflow: {
+            x: 'hidden',
+            y: 'scroll'
+          },
+          scrollbars: {
+            //never scroll leave move
+            autoHide: _this._config.scrollbarAutoHide,
+            //是否可以点击轨道滚动
+            clickScroll: true,
+            //隐藏滚动条的时间
+            autoHideDelay: _this._config.scrollbarAutoHideDelay
+          }
+        });
 
-        //有头部,说明是index.html
-        if ($('.bsa-header').length !== 0) {
-          //头部下拉菜单滚动条
-          $('.bsa-header .card-body').each(function (index, element) {
-            Scrollbar.init(element);
-          });
+        // console.log(sidebarOsInstance)
 
-          // 监听全屏事件
-          $(document).on('fullscreenchange', function () {
-            if (document.fullscreenElement == null) {
-              //退出全屏
-              $('.bsa-fullscreen-toggler').find('i.bi').removeClass('bi-fullscreen-exit').addClass('bi-arrows-fullscreen');
-            } else {
-              $('.bsa-fullscreen-toggler').find('i.bi').removeClass('bi-arrows-fullscreen').addClass('bi-fullscreen-exit');
+        //头部下拉菜单滚动条
+        $('.bsa-header .card-body').each(function (index, element) {
+          OverlayScrollbars(element, {
+            overflow: {
+              x: 'hidden',
+              y: 'scroll'
+            },
+            scrollbars: {
+              //never scroll leave move
+              autoHide: 'leave',
+              clickScroll: true,
+              //隐藏滚动条的时间
+              autoHideDelay: 1300
             }
           });
+        });
 
-          //全屏
-          $('.bsa-fullscreen-toggler').on('click', function () {
-            if ($(this).find('.bi-arrows-fullscreen').length > 0) {
-              document.documentElement.requestFullscreen();
-            } else {
-              document.exitFullscreen();
-            }
-          });
+        // 监听全屏事件
+        $(document).on('fullscreenchange', function () {
+          if (document.fullscreenElement == null) {
+            //退出全屏
+            $('.bsa-fullscreen-toggler').find('i.bi').removeClass('bi-fullscreen-exit').addClass('bi-arrows-fullscreen');
+          } else {
+            $('.bsa-fullscreen-toggler').find('i.bi').removeClass('bi-arrows-fullscreen').addClass('bi-fullscreen-exit');
+          }
+        });
 
-          //主题切换
-          $(document).on('click', 'div[class^=bsa-theme-color]', function (e) {
-            e.preventDefault();
-            let themeVal = Array.from(this.classList).at(-1);
+        //全屏
+        $('.bsa-fullscreen-toggler').on('click', function () {
+          if ($(this).find('.bi-arrows-fullscreen').length > 0) {
+            document.documentElement.requestFullscreen();
+          } else {
+            document.exitFullscreen();
+          }
+        });
 
-            //存入缓存
-            if (_this._config.themeCacheType === 'localStorage') {
-              localStorage.setItem(THEME_CACHE_KEY, String(themeVal));
-            } else if (_this._config.themeCacheType === 'sessionStorage') {
-              sessionStorage.setItem(THEME_CACHE_KEY, String(themeVal));
-            }
+        //主题切换
+        $(document).on('click', 'div[class^=bsa-theme-color]', function (e) {
+          e.preventDefault();
+          let themeVal = Array.from(this.classList).at(-1);
 
-            //修改主题
-            $('html').attr('data-bs-theme', themeVal);
+          //存入缓存
+          if (_this._config.themeCacheType === 'localStorage') {
+            localStorage.setItem(THEME_CACHE_KEY, String(themeVal));
+          } else if (_this._config.themeCacheType === 'sessionStorage') {
+            sessionStorage.setItem(THEME_CACHE_KEY, String(themeVal));
+          }
 
-            //tab内部也需要修改主题
-            if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
-              Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
-                for (let tab of tabs) {
-                  if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                    let $doc = $(tab.tabIFrame.el.contentDocument);
-                    $doc.find('html').attr('data-bs-theme', themeVal);
-                    //同时我们还得在iframe的子文档中再次查找iframe元素
-                    let $iframes = $doc.find('iframe');
-                    $iframes.each(function (index, item) {
-                      if (Quicktab.canAccessIFrame(item)) {
-                        let $doc = $(item.contentDocument);
-                        $doc.find('html').attr('data-bs-theme', themeVal);
-                      }
-                    });
-                  }
+          //修改主题
+          $('html').attr('data-bs-theme', themeVal);
+
+          //tab内部也需要修改主题
+          if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
+            Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
+              for (let tab of tabs) {
+                if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
+                  let $doc = $(tab.tabIFrame.el.contentDocument);
+                  $doc.find('html').attr('data-bs-theme', themeVal);
+
+                  //同时我们还得在iframe的子文档中再次查找iframe元素
+                  let $iframes = $doc.find('iframe');
+                  $iframes.each(function (index, item) {
+                    if (Quicktab.canAccessIFrame(item)) {
+                      let $doc = $(item.contentDocument);
+                      $doc.find('html').attr('data-bs-theme', themeVal);
+                    }
+                  });
                 }
-              });
-            }
-          });
-        }
+              }
+            });
+          }
+        });
 
         //tab插件初始化
-        if ($(SELECTOR_QUICKTAB).length !== 0) {
+        if ($(SELECTOR_QUICKTAB).length !== 0 && typeof Quicktab !== 'undefined') {
           new Quicktab({
             selector: SELECTOR_QUICKTAB,
             minHeight: '',
@@ -225,8 +255,11 @@
               }
             },
             tabConfig: {
+              //拖动排序
               dragSort: true,
+              //点击tab时自动居中
               clickRollback: true,
+              //右键菜单功能启用
               contextmenu: {
                 enable: true
               }
@@ -236,7 +269,6 @@
               $('.bsa-menu a').each(function (index, a) {
                 if ($(a).attr('href') === Quicktab.getTabUrl(e.target.getActiveTab())) {
                   _this._scrollToA(a);
-
                   //结束循环，避免左侧菜单有重复的测试地址时会展开多个菜单
                   return false;
                 }
@@ -251,6 +283,11 @@
                   //移除所有的展开和激活状态
                   $allA.each(function (index, a) {
                     $(a).removeClass('open active');
+                  });
+
+                  //移除所有ul正在执行的动画,并且移除掉行内style样式
+                  $('.bsa-menu ul').each(function (index, ul) {
+                    $(ul).removeAttr('style');
                   });
                   _this._scrollToA(a);
                   //结束循环，避免左侧菜单有重复的测试地址时会展开多个菜单
@@ -291,8 +328,9 @@
         let $a = $(a);
         $a.addClass('active');
         this._openMenu(a);
-        Scrollbar.get(document.querySelector('.bsa-sidebar-body')).update();
-        Scrollbar.get(document.querySelector('.bsa-sidebar-body')).scrollTo(0, $a.position().top, 500);
+        sidebarOsInstance.elements().viewport.scrollTo({
+          top: $a.position().top
+        });
       }
 
       // Static
@@ -333,8 +371,6 @@
     $(window).on('load', () => {
       Layout._jQueryInterface.call($('body'));
     });
-
-    //code
 
     /**
      * jQuery API
@@ -748,6 +784,7 @@
     const DATA_KEY = 'bsa.sidebar';
     const EVENT_KEY = `.${DATA_KEY}`;
     const JQUERY_NO_CONFLICT = $.fn[NAME];
+    const HEADER_SELECTER = '.bsa-sidebar';
     const EVENT_EXPANDED = `expanded${EVENT_KEY}`;
     const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`;
     const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="sidebar"]';
@@ -766,41 +803,52 @@
       // Public
 
       expand($menuLink) {
-        //得到兄弟节点ul
-        let $siblingsUl = $menuLink.siblings('ul');
-        $siblingsUl.data('isOpen', true);
-        $siblingsUl.css({
-          'transition': `height ${this._config.animationSpeed}ms linear`
-        });
-        $siblingsUl.css({
-          'height': 0
-        });
-        $siblingsUl.prop('scrollHeight');
-        $siblingsUl.css({
-          'height': $siblingsUl.prop('scrollHeight')
+        let _this = this;
+        $menuLink.siblings('ul').each(function (index, element) {
+          //变成jquery对象
+          let $element = $(element);
+
+          //获取真实的滚动高度
+          let scrollHeight = _this._getRealHeight(element);
+
+          //设置一个展开标志属性,用于监听过渡结束时判断是展开还是折叠
+          $element.data('isOpen', true);
+          $element.css({
+            'height': 0
+          });
+
+          //触发重绘
+          void element.scrollHeight;
+          $element.css({
+            'transition-timing-function': 'ease',
+            'transition-duration': `${_this._config.animationSpeed}ms`,
+            'transition-property': 'height',
+            'display': 'block',
+            'height': scrollHeight
+          });
         });
       }
       collapse($menuLink) {
-        // const collapsedEvent = $.Event(EVENT_COLLAPSED)
-
-        //得到兄弟节点ul
-        let $siblingsUl = $menuLink.siblings('ul');
-        $siblingsUl.data('isOpen', false);
-        $siblingsUl.css({
-          'transition': `height ${this._config.animationSpeed}ms linear`
-        });
-        $siblingsUl.css({
-          'height': $siblingsUl.prop('scrollHeight')
-        });
-        $siblingsUl.prop('scrollHeight');
-        $siblingsUl.css({
-          'height': 0,
-          'display': 'block'
+        let _this = this;
+        $menuLink.siblings('ul').each(function (index, element) {
+          let $element = $(element);
+          let scrollHeight = _this._getRealHeight(element);
+          $element.data('isOpen', false);
+          $element.css({
+            'transition-timing-function': 'ease',
+            'transition-duration': `${_this._config.animationSpeed}ms`,
+            'transition-property': 'height',
+            'display': 'block',
+            'height': scrollHeight
+          });
+          void element.scrollHeight;
+          $element.css({
+            'height': 0
+          });
         });
       }
 
       // Private
-
       _init() {
         let _this = this;
 
@@ -824,8 +872,6 @@
           e.preventDefault();
           let $a = $(this);
 
-          // console.log($a);
-
           //是否开启手风琴模式
           if (_this._config.accordion) {
             let $pSiblingsLi = $a.parent().siblings('li');
@@ -834,16 +880,16 @@
             //调用折叠类
             _this.collapse($pSiblingsOpenA);
             $pSiblingsOpenA.removeClass('open');
-
-            //同时给折叠的ul下面的子集中a链接有激活的给移除激活效果
+            //
+            // //同时给折叠的ul下面的子集中a链接有激活的给移除激活效果
             $pSiblingsLi.children('a.active').removeClass('active');
           }
           if (!$a.hasClass('open')) {
             $a.addClass('open');
             _this.expand($a);
           } else {
-            _this.collapse($a);
             $a.removeClass('open');
+            _this.collapse($a);
           }
         });
 
@@ -869,27 +915,51 @@
         });
       }
 
+      //获取display:none元素的真实高度
+      _getRealHeight(element) {
+        let $element = $(element);
+        let $clone = $element.clone();
+        $clone.css({
+          visibility: 'hidden',
+          display: 'block',
+          position: 'absolute',
+          zIndex: '-999'
+        });
+        $element.after($clone);
+        let nx = $element.next();
+        //获取滚动高度
+        let nxsh = nx.prop('scrollHeight');
+        nx.remove();
+        return nxsh;
+      }
+
       // Static
       static _jQueryInterface(config) {
-        return this.each(function () {
-          let data = $(this).data(DATA_KEY);
-          const _config = $.extend({}, Default, typeof config === 'object' ? config : $(this).data());
-
-          // console.log(_config);
-
+        for (const element of this) {
+          let $element = $(element);
+          let data = $element.data(DATA_KEY);
+          const _config = $.extend({}, Default, typeof config === 'object' ? config : $element.data());
           if (!data) {
-            data = new Sidebar($(this), _config);
-            $(this).data(DATA_KEY, data);
-            data._init();
-          } else if (typeof config === 'string') {
-            if (typeof data[config] === 'undefined') {
-              throw new TypeError(`No method named "${config}"`);
-            }
-            data[config]();
-          } else if (typeof config === 'undefined') {
+            //没有就new
+            data = new Sidebar($element, _config);
+
+            //赋值给data,供给下次调用
+            $element.data(DATA_KEY, data);
+
+            //调用内部的私有方法,初始化，执行必须执行的方法
             data._init();
           }
-        });
+          if (typeof config === 'string') {
+            if (typeof data[config] === 'undefined') {
+              throw new TypeError(`方法 "${config}" 不存在`);
+            }
+            let execRt = data[config]();
+            if (typeof execRt !== 'undefined') {
+              return execRt;
+            }
+          }
+        }
+        return this;
       }
     }
 
@@ -898,13 +968,14 @@
      * ====================================================
      */
 
-    if ($('.bsa-sidebar').length !== 0) {
-      $(window).on('load', () => {
+    $(window).on('load', () => {
+      if ($(HEADER_SELECTER).length !== 0) {
+        //如果有才执行
         $(SELECTOR_DATA_TOGGLE).each(function () {
-          Sidebar._jQueryInterface.call($(this), 'init');
+          Sidebar._jQueryInterface.call($(this));
         });
-      });
-    }
+      }
+    });
 
     /**
      * jQuery API

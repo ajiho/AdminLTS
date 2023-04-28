@@ -1,0 +1,11 @@
+.os-scrollbar .os-scrollbar-handle {
+  background-color: rgba(var(--bs-tertiary-color-rgb), .08) !important;
+}
+
+.os-scrollbar .os-scrollbar-handle:hover{
+  background-color: rgba(var(--bs-tertiary-color-rgb), .18) !important;
+}
+
+.os-scrollbar .os-scrollbar-handle:active{
+  background-color: rgba(var(--bs-tertiary-color-rgb), .28) !important;
+}

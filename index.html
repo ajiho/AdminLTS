@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="icon" href="dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
-    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,bootstrap5后台管理系统模板">
     <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
-    <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <!--  滚动条插件样式  -->
+    <link rel="stylesheet" href="lib/overlayscrollbars/styles/overlayscrollbars.min.css">
     <link rel="stylesheet" href="dist/css/bootstrap-admin.min.css">
     <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
 </head>
 
-<body data-scrollbar-auto-hide="true" data-theme-on-tab-page="true">
+
+<body data-scrollbar-auto-hide="leave" data-tab-page-enable-theme="true" data-scrollbar-auto-hide-delay="1300">
 
 <!--头部导航-->
 <ul class="bsa-header">
@@ -54,10 +57,11 @@
     </li>
     <!--  拓展应用(建议把拓展放在此处,以免破坏头部整体布局,不需要可以直接删除)  -->
     <li class="dropdown">
-        <div class="bsa-header-item" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="aaa">
+        <div class="bsa-header-item" data-bs-toggle="dropdown" data-bs-auto-close="outside">
             <i class="bi bi-grid"></i>
         </div>
-        <div class="dropdown-menu dropdown-menu-end p-0" id="bbb">
+
+        <div class="dropdown-menu dropdown-menu-end p-0">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <span class="bsa-fs-15">应用列表</span>
@@ -228,13 +232,15 @@
 
 <!--侧边栏-->
 <div class="bsa-sidebar">
+    <!--  侧边栏头部部分(展示品牌logo)  -->
     <div class="bsa-sidebar-header">
         <div class="bsa-logo-wrapper">
             <img src="dist/img/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
         </div>
         <div class="bsa-logo-text ms-2 bsa-ellipsis-2">bootstrap-admin</div>
     </div>
-    <div class="bsa-sidebar-body">
+    <!--  侧边栏的身体部分(展示侧边栏菜单)  -->
+    <div class="bsa-sidebar-body" data-overlayscrollbars-initialize>
         <ul class="bsa-menu" data-bsa-toggle="sidebar" data-accordion="true" data-animation-speed="150">
             <li>
                 <a href="pages/welcome.html">
@@ -295,7 +301,6 @@
                         <a href="javascript:" class="has-children">编辑器</a>
                         <ul>
                             <li><a href="pages/plugin-wangeditor.html">wangeditor</a></li>
-                            <li><a href="pages/plugin-trumbowyg.html">trumbowyg</a></li>
                         </ul>
                     </li>
                     <li>
@@ -366,10 +371,12 @@
     </div>
 </div>
 
+
 <!--内容区域(用于tab选项卡插件)-->
 <div class="bsa-content">
     <div class="qtab" data-qt-tabs='[{"title":"首页","url":"pages/welcome.html","close":false}]'></div>
 </div>
+
 
 <!--版权信息-->
 <div class="bsa-footer">
@@ -386,30 +393,39 @@
 <!--必须的依赖-->
 <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="lib/jquery/dist/jquery.min.js"></script>
+
 <!--/插件放置区域-->
+
 
 <!--推荐:axios专门用于发送网络请求的一个库-->
 <script src="lib/axios/dist/axios.min.js"></script>
+
 <!--滚动条插件-->
-<script src="lib/smooth-scrollbar/dist/smooth-scrollbar.js"></script>
+<script src="lib/overlayscrollbars/browser/overlayscrollbars.browser.es6.min.js"></script>
+
 <!--iframe多tab选项卡插件-->
 <script src="lib/bootstrap-quicktab/dist/js/bootstrap-quicktab.min.js"></script>
+
 <!--一个漂亮的消息通知插件-->
 <script src="lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
 <!--插件放置区域/-->
+
 
 <!--bootstrap-admin的js文件-->
 <script src="dist/js/bootstrap-admin.min.js"></script>
 
-<script>
-    $(function () {
 
+<script>
+
+    $(function () {
         //头部搜索框处理(不需要可以删除,不明白的可以看bootstrap-admin官方文档)
         $(document).on('search.bsa.navbar-search', function (e, config, keyword) {
             //先得到请求地址
             var url = config.action;
             //这里是拼接其它参数
             url += '?keyword=' + keyword + '&' + $.param(config.params);
+
             Quicktab.get('.qtab').addTab({
                 title: '<i class="bi bi-search"></i><span class="text-danger ms-2">' + keyword + '</span>',
                 url: url,
@@ -417,9 +433,10 @@
             })
         })
 
-
+        //退出登录
         $(document).on('click', '.bsa-logout', function (e) {
-            //退出登录
+            e.preventDefault();
+
             Swal.fire({
                 title: '确定退出登录吗？',
                 text: "请仔细确认您的工作是否完成哦",
@@ -444,11 +461,9 @@
                     }).then((result) => {
                         //确定 取消 背景都会触发
                         if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer || result.dismiss === Swal.DismissReason.backdrop) {
-                            //跳转前同时也可以关闭所有的tab(可选)
-                            Quicktab.get('.qtab').closeAllTabs();
+
                             //重定向到登录页
                             location.replace('login.html');
-
                         }
                     });
                 }

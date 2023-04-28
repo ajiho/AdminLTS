@@ -1,13 +1,13 @@
-'use strict'
+import json from '@rollup/plugin-json';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import {babel} from '@rollup/plugin-babel';
+import terser from '@rollup/plugin-terser';
+import eslint from '@rollup/plugin-eslint';
 
-const json = require('@rollup/plugin-json')
-const resolve = require('@rollup/plugin-node-resolve')
-const commonjs = require('@rollup/plugin-commonjs')
-const {babel} = require('@rollup/plugin-babel')
-const terser = require('@rollup/plugin-terser')
-const eslint = require('@rollup/plugin-eslint')
 
-const pkg = require('./package')
+import pkg from './package.json'
+
 const year = new Date().getFullYear()
 const banner = `/*!
  * bootstrap-admin v${pkg.version} (${pkg.homepage})
@@ -15,9 +15,7 @@ const banner = `/*!
  * license ${pkg.license} (https://gitee.com/ajiho/bootstrap-admin/blob/2.x/LICENSE)
  */`
 
-
-//注意：每次修改配置都要重新开启监听
-module.exports = {
+export default {
     input: 'build/js/bootstrap-admin.js',
     output: [
         {
@@ -26,7 +24,6 @@ module.exports = {
             format: 'umd',
             globals: {
                 jquery: 'jQuery',
-                'smooth-scrollbar': 'Scrollbar',
                 'bootstrap-quicktab': 'Quicktab',
             },
             name: 'BootstrapAdmin'
@@ -37,7 +34,6 @@ module.exports = {
             format: 'umd',
             globals: {
                 jquery: 'jQuery',
-                'smooth-scrollbar': 'Scrollbar',
                 'bootstrap-quicktab': 'Quicktab',
             },
             name: 'BootstrapAdmin',
@@ -46,7 +42,7 @@ module.exports = {
             ]
         }
     ],
-    external: ['jquery','smooth-scrollbar','bootstrap-quicktab'],
+    external: ['jquery','bootstrap-quicktab'],
     //使用json插件
     plugins: [
         json(),
@@ -63,7 +59,6 @@ module.exports = {
             exclude: 'node_modules/**',
             // 用于指定 Babel 在转换 ES6+ 代码时使用的辅助函数的路径
             babelHelpers: 'bundled'
-        }),
-
+        })
     ]
-}
+};

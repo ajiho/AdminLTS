@@ -12,6 +12,5 @@ export {
     Toasts,
     PushMenu,
     Sidebar
-
 }
 

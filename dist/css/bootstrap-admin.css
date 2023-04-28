@@ -564,6 +564,18 @@
   background-color: var(--bs-secondary-color) !important;
 }
 
+.os-scrollbar .os-scrollbar-handle {
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.08) !important;
+}
+
+.os-scrollbar .os-scrollbar-handle:hover {
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.18) !important;
+}
+
+.os-scrollbar .os-scrollbar-handle:active {
+  background-color: rgba(var(--bs-tertiary-color-rgb), 0.28) !important;
+}
+
 .bsa-header {
   display: flex;
   align-items: center;
@@ -593,6 +605,9 @@
   border: 0;
   min-width: 300px;
   height: 280px;
+}
+.bsa-header .dropdown-menu .card .card-body {
+  overflow: hidden;
 }
 .bsa-header .dropdown-menu .dropdown-item {
   display: block;

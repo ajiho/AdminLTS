@@ -13,7 +13,7 @@
 
 ## 💡  简介
 
-bootstrap-admin是基于bootstrap(5.1.3+)设计的一个响应式纯静态通用后台管理HTML模板,它可以适用于任何后端语言,只要你有bootstrap的一点点基础就可以轻松上手。旨在让喜欢用bootstrap开发后台管理系统的程序员有个愉悦的起点。
+bootstrap-admin是基于bootstrap(5.1.3+)设计的一个响应式纯静态通用后台管理HTML模板,它可以适用于任何后端语言,任何项目的后台管理、只要你有bootstrap的一点点基础就可以轻松上手。旨在让喜欢用bootstrap开发后台管理系统的程序员有个愉悦的起点。
 
 
 ## 🗺️  背景
@@ -81,6 +81,9 @@ bootstrap-admin是基于bootstrap(5.1.3+)设计的一个响应式纯静态通用
 
 ## 🛠️ 安装
 
+### 发布页面
+
+[下载地址](https://gitee.com/ajiho/bootstrap-admin/releases)
 
 ### composer
 

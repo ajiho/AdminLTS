@@ -18,7 +18,8 @@ export let libIgnore = [
     ],
     ...[
         'lib/bootstrap-icons/*',
-        '!lib/bootstrap-icons/font'
+        '!lib/bootstrap-icons/font',
+        'lib/bootstrap-icons/font/bootstrap-icons.scss',
     ],
     ...[
         'lib/bootstrap-quicktab/*',
@@ -65,23 +66,8 @@ export let libIgnore = [
         '!lib/select2-bootstrap-5-theme/dist',
     ],
     ...[
-        'lib/smooth-scrollbar/*',
-        '!lib/smooth-scrollbar/dist',
-    ],
-    ...[
         'lib/sweetalert2/*',
         '!lib/sweetalert2/dist',
-    ],
-    ...[
-        'lib/tinymce/*',
-        '!lib/tinymce/icons',
-        '!lib/tinymce/langs',
-        '!lib/tinymce/models',
-        '!lib/tinymce/plugins',
-        '!lib/tinymce/skins',
-        '!lib/tinymce/themes',
-        '!lib/tinymce/tinymce.js',
-        '!lib/tinymce/tinymce.min.js',
     ],
     ...[
         'lib/@fonticonpicker/fonticonpicker/*',
@@ -108,15 +94,14 @@ export let libIgnore = [
         '!lib/@wangeditor/editor/dist/index.js.map',
     ],
     ...[
-        'lib/trumbowyg/**',
-        '!lib/trumbowyg/dist',
-        '!lib/trumbowyg/plugins',
-    ],
-    ...[
         'lib/axios/**',
         '!lib/axios/dist',
     ],
-
+    ...[
+        'lib/overlayscrollbars/**',
+        '!lib/overlayscrollbars/browser',
+        '!lib/overlayscrollbars/styles',
+    ],
 
 
 ]

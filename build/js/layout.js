@@ -1,8 +1,9 @@
-/* global bootstrap */
-
-import Scrollbar from 'smooth-scrollbar';
-import Quicktab from 'bootstrap-quicktab';
+/* global bootstrap OverlayScrollbarsGlobal  */
 import $ from 'jquery'
+
+import helper from './helper'
+
+import Quicktab from 'bootstrap-quicktab';
 
 
 const NAME = 'Layout'
@@ -15,8 +16,10 @@ const JQUERY_NO_CONFLICT = $.fn[NAME]
 const SELECTOR_LOGIN_PASSWORD = '.bsa-show_hide_password span'
 
 const Default = {
-    //滚动条自动隐藏
-    scrollbarAutoHide: true,
+    //滚动条自动隐藏 never scroll leave move  #https://kingsora.github.io/OverlayScrollbars/
+    scrollbarAutoHide: 'leave',
+    //滚动条隐藏时间
+    scrollbarAutoHideDelay: 1300,
     //加载器持续时间
     preloadDuration: 800,
     //tab页面是否适配主题
@@ -25,14 +28,16 @@ const Default = {
     themeCacheType: 'localStorage'
 }
 
+
+//滚动条插件对象
+let OverlayScrollbars = null
+
+let sidebarOsInstance = null
+
 class Layout {
     constructor(element, config) {
-
-
         this._config = config
         this._element = element
-
-
     }
 
 
@@ -64,12 +69,20 @@ class Layout {
 
 
     // Private
-
     _init() {
 
-        let _this = this;
+
+        this._common();
+
+        if (helper.isIndex()) {//如果是index.html页面
+            this._index();
+        }
+
+    }
 
 
+    // 所有页面都要执行的
+    _common(){
         //启用提示
         $('[data-bs-toggle="tooltip"]').each(function (i, el) {
             new bootstrap.Tooltip(el)
@@ -92,36 +105,7 @@ class Layout {
             e.preventDefault();
         })
 
-        //滚动条自动隐藏
-        if (_this._config.scrollbarAutoHide === true) {
-
-            let style = `
-                  [data-scrollbar] .scrollbar-track {
-                        visibility: hidden;
-                    }
-            
-                    @keyframes fadeIn {
-                        from {
-                            opacity: 0;
-                        }
-            
-                        to {
-                            opacity: 1;
-                        }
-                    }
-            
-            
-                    [data-scrollbar]:hover .scrollbar-track {
-                        visibility: unset;
-                        animation: fadeIn 3s !important;
-                    }
-            `;
-            let styleEl = document.createElement('style');
-            styleEl.textContent = style;
-            document.head.appendChild(styleEl);
-        }
-
-
+        //登录页面的密码切换
         if ($(SELECTOR_LOGIN_PASSWORD).length !== 0) {
             //登录页面密码框的显示和隐藏
             $(SELECTOR_LOGIN_PASSWORD).on('click', function (event) {
@@ -140,83 +124,125 @@ class Layout {
             });
         }
 
+    }
+
+
+    // 首页需要执行的方法
+    _index(){
+
+        let _this = this;
+
+        //给滚动条注册插件
+        if (typeof OverlayScrollbarsGlobal !== 'undefined') {
+            OverlayScrollbars = OverlayScrollbarsGlobal.OverlayScrollbars;
+
+            //给滚动条对象注册插件
+            OverlayScrollbars.plugin([
+                OverlayScrollbarsGlobal.ScrollbarsHidingPlugin,
+                OverlayScrollbarsGlobal.SizeObserverPlugin,
+                OverlayScrollbarsGlobal.ClickScrollPlugin
+            ]);
+
+        }
+        //侧边栏滚动条插件的示例对象
 
         //导航菜单滚动条插件
-        if ($('.bsa-sidebar-body').length !== 0) {
-            Scrollbar.init(document.querySelector('.bsa-sidebar-body'));
-        }
+        sidebarOsInstance = OverlayScrollbars(document.querySelector('.bsa-sidebar-body'), {
+            overflow: {
+                x: 'hidden',
+                y: 'scroll',
+            },
+            scrollbars: {
+                //never scroll leave move
+                autoHide: _this._config.scrollbarAutoHide,
+                //是否可以点击轨道滚动
+                clickScroll: true,
+                //隐藏滚动条的时间
+                autoHideDelay: _this._config.scrollbarAutoHideDelay,
+            }
+        });
+
+        // console.log(sidebarOsInstance)
 
 
-        //有头部,说明是index.html
-        if ($('.bsa-header').length !== 0) {
-
-            //头部下拉菜单滚动条
-            $('.bsa-header .card-body').each(function (index, element) {
-                Scrollbar.init(element);
-            })
-
-            // 监听全屏事件
-            $(document).on('fullscreenchange', function () {
-                if (document.fullscreenElement == null) {//退出全屏
-                    $('.bsa-fullscreen-toggler').find('i.bi').removeClass('bi-fullscreen-exit').addClass('bi-arrows-fullscreen');
-                } else {
-                    $('.bsa-fullscreen-toggler').find('i.bi').removeClass('bi-arrows-fullscreen').addClass('bi-fullscreen-exit');
-                }
-            })
-
-            //全屏
-            $('.bsa-fullscreen-toggler').on('click', function () {
-                if ($(this).find('.bi-arrows-fullscreen').length > 0) {
-                    document.documentElement.requestFullscreen();
-                } else {
-                    document.exitFullscreen()
-                }
-            })
-
-
-            //主题切换
-            $(document).on('click', 'div[class^=bsa-theme-color]', function (e) {
-                e.preventDefault();
-                let themeVal = Array.from(this.classList).at(-1);
-
-                //存入缓存
-                if (_this._config.themeCacheType === 'localStorage') {
-                    localStorage.setItem(THEME_CACHE_KEY, String(themeVal));
-                } else if (_this._config.themeCacheType === 'sessionStorage') {
-                    sessionStorage.setItem(THEME_CACHE_KEY, String(themeVal));
-                }
-
-                //修改主题
-                $('html').attr('data-bs-theme', themeVal);
-
-
-                //tab内部也需要修改主题
-                if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
-                    Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
-                        for (let tab of tabs) {
-                            if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                                let $doc = $(tab.tabIFrame.el.contentDocument);
-                                $doc.find('html').attr('data-bs-theme', themeVal);
-                                //同时我们还得在iframe的子文档中再次查找iframe元素
-                                let $iframes = $doc.find('iframe');
-                                $iframes.each(function (index, item) {
-                                    if (Quicktab.canAccessIFrame(item)) {
-                                        let $doc = $(item.contentDocument);
-                                        $doc.find('html').attr('data-bs-theme', themeVal);
-                                    }
-                                })
-                            }
-                        }
-                    });
-
+        //头部下拉菜单滚动条
+        $('.bsa-header .card-body').each(function (index, element) {
+            OverlayScrollbars(element, {
+                overflow: {
+                    x: 'hidden',
+                    y: 'scroll',
+                },
+                scrollbars: {
+                    //never scroll leave move
+                    autoHide: 'leave',
+                    clickScroll: true,
+                    //隐藏滚动条的时间
+                    autoHideDelay: 1300,
                 }
             });
+        })
 
-        }
+        // 监听全屏事件
+        $(document).on('fullscreenchange', function () {
+            if (document.fullscreenElement == null) {//退出全屏
+                $('.bsa-fullscreen-toggler').find('i.bi').removeClass('bi-fullscreen-exit').addClass('bi-arrows-fullscreen');
+            } else {
+                $('.bsa-fullscreen-toggler').find('i.bi').removeClass('bi-arrows-fullscreen').addClass('bi-fullscreen-exit');
+            }
+        })
+
+        //全屏
+        $('.bsa-fullscreen-toggler').on('click', function () {
+            if ($(this).find('.bi-arrows-fullscreen').length > 0) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen()
+            }
+        })
+
+
+        //主题切换
+        $(document).on('click', 'div[class^=bsa-theme-color]', function (e) {
+            e.preventDefault();
+            let themeVal = Array.from(this.classList).at(-1);
+
+            //存入缓存
+            if (_this._config.themeCacheType === 'localStorage') {
+                localStorage.setItem(THEME_CACHE_KEY, String(themeVal));
+            } else if (_this._config.themeCacheType === 'sessionStorage') {
+                sessionStorage.setItem(THEME_CACHE_KEY, String(themeVal));
+            }
+
+            //修改主题
+            $('html').attr('data-bs-theme', themeVal);
+
+
+            //tab内部也需要修改主题
+            if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
+                Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
+                    for (let tab of tabs) {
+                        if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
+                            let $doc = $(tab.tabIFrame.el.contentDocument);
+                            $doc.find('html').attr('data-bs-theme', themeVal);
+
+                            //同时我们还得在iframe的子文档中再次查找iframe元素
+                            let $iframes = $doc.find('iframe');
+                            $iframes.each(function (index, item) {
+                                if (Quicktab.canAccessIFrame(item)) {
+                                    let $doc = $(item.contentDocument);
+                                    $doc.find('html').attr('data-bs-theme', themeVal);
+                                }
+                            })
+                        }
+                    }
+                });
+
+            }
+        });
 
 
         //tab插件初始化
-        if ($(SELECTOR_QUICKTAB).length !== 0) {
+        if ($(SELECTOR_QUICKTAB).length !== 0 && typeof Quicktab !== 'undefined') {
 
             new Quicktab({
                 selector: SELECTOR_QUICKTAB,
@@ -246,8 +272,11 @@ class Layout {
                     },
                 },
                 tabConfig: {
+                    //拖动排序
                     dragSort: true,
+                    //点击tab时自动居中
                     clickRollback: true,
+                    //右键菜单功能启用
                     contextmenu: {
                         enable: true
                     }
@@ -259,12 +288,12 @@ class Layout {
 
                         if ($(a).attr('href') === Quicktab.getTabUrl(e.target.getActiveTab())) {
                             _this._scrollToA(a);
-
                             //结束循环，避免左侧菜单有重复的测试地址时会展开多个菜单
                             return false;
                         }
                     });
                 },
+
                 //tab被单击事件
                 onTabClick: function (e) {
                     let $allA = $('.bsa-menu a');
@@ -278,6 +307,12 @@ class Layout {
                             $allA.each(function (index, a) {
                                 $(a).removeClass('open active');
                             });
+
+                            //移除所有ul正在执行的动画,并且移除掉行内style样式
+                            $('.bsa-menu ul').each(function (index, ul) {
+                                $(ul).removeAttr('style');
+                            });
+
                             _this._scrollToA(a);
                             //结束循环，避免左侧菜单有重复的测试地址时会展开多个菜单
                             return false;
@@ -305,8 +340,8 @@ class Layout {
         setTimeout(() => {
             $('.bsa-preloader').fadeOut(_this._config.preloadDuration);
         }, this._config.preloadDuration)
-
     }
+
 
     _openMenu(a) {
         let $ul = $(a).parent().parent();
@@ -322,13 +357,14 @@ class Layout {
         let $a = $(a);
 
         $a.addClass('active');
-
         this._openMenu(a);
 
-        Scrollbar.get(document.querySelector('.bsa-sidebar-body')).update();
-        Scrollbar.get(document.querySelector('.bsa-sidebar-body')).scrollTo(0, $a.position().top, 500);
+
+        sidebarOsInstance.elements().viewport.scrollTo({ top: $a.position().top });
+
 
     }
+
 
 
     // Static
@@ -372,6 +408,7 @@ class Layout {
     }
 }
 
+
 /**
  * Data API
  * ====================================================
@@ -380,8 +417,6 @@ class Layout {
 $(window).on('load', () => {
     Layout._jQueryInterface.call($('body'));
 })
-
-//code
 
 
 /**

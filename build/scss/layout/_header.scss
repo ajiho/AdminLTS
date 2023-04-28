@@ -80,8 +80,13 @@
       min-width: 300px;
       height: 280px;
 
+
       @include media-breakpoint-down(lg) {
         min-width: 100%;
+      }
+
+      .card-body{
+        overflow: hidden;
       }
     }
 

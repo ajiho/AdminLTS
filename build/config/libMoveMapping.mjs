@@ -59,10 +59,7 @@ export let libMoveMapping = [
         form: 'node_modules/select2-bootstrap-5-theme/**/*',
         to: 'lib/select2-bootstrap-5-theme'
     },
-    {
-        form: 'node_modules/smooth-scrollbar/**/*',
-        to: 'lib/smooth-scrollbar'
-    },
+
     {
         form: 'node_modules/sweetalert2/**/*',
         to: 'lib/sweetalert2'
@@ -80,15 +77,11 @@ export let libMoveMapping = [
         to: 'lib/@wangeditor'
     },
     {
-        form: 'node_modules/trumbowyg/**/*',
-        to: 'lib/trumbowyg'
-    },
-    {
         form: 'node_modules/axios/**/*',
         to: 'lib/axios'
     },
     {
-        form: 'node_modules/prismjs/**/*',
-        to: 'lib/prismjs'
+        form: 'node_modules/overlayscrollbars/**/*',
+        to: 'lib/overlayscrollbars'
     }
 ]
