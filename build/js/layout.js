@@ -1,7 +1,8 @@
 /* global bootstrap OverlayScrollbarsGlobal  */
 import $ from 'jquery'
 
-import helper from './helper'
+import Helper from './helper'
+import Storage from './storage'
 
 import Quicktab from 'bootstrap-quicktab';
 
@@ -32,6 +33,7 @@ const Default = {
 //滚动条插件对象
 let OverlayScrollbars = null
 
+//侧边栏滚动条插件的示例对象
 let sidebarOsInstance = null
 
 class Layout {
@@ -58,13 +60,7 @@ class Layout {
 
 
     getTheme() {
-        let themeVal = '';
-        if (this._config.themeCacheType === 'localStorage') {
-            themeVal = localStorage.getItem(THEME_CACHE_KEY);
-        } else if (this._config.themeCacheType === 'sessionStorage') {
-            themeVal = sessionStorage.getItem(THEME_CACHE_KEY)
-        }
-        return themeVal;
+       return this.Storge.get(THEME_CACHE_KEY);
     }
 
 
@@ -74,7 +70,7 @@ class Layout {
 
         this._common();
 
-        if (helper.isIndex()) {//如果是index.html页面
+        if (Helper.isIndex()) {//如果是index.html页面
             this._index();
         }
 
@@ -132,6 +128,20 @@ class Layout {
 
         let _this = this;
 
+        let cacheType = 1;
+        //换成实例化
+        if(_this._config.themeCacheType==='localStorage'){
+            cacheType = 2
+        }else if(_this._config.themeCacheType==='sessionStorage'){
+            cacheType = 1
+        }
+
+        _this.Storge  =  new Storage(cacheType)
+
+
+
+
+
         //给滚动条注册插件
         if (typeof OverlayScrollbarsGlobal !== 'undefined') {
             OverlayScrollbars = OverlayScrollbarsGlobal.OverlayScrollbars;
@@ -144,7 +154,7 @@ class Layout {
             ]);
 
         }
-        //侧边栏滚动条插件的示例对象
+
 
         //导航菜单滚动条插件
         sidebarOsInstance = OverlayScrollbars(document.querySelector('.bsa-sidebar-body'), {
@@ -207,11 +217,7 @@ class Layout {
             let themeVal = Array.from(this.classList).at(-1);
 
             //存入缓存
-            if (_this._config.themeCacheType === 'localStorage') {
-                localStorage.setItem(THEME_CACHE_KEY, String(themeVal));
-            } else if (_this._config.themeCacheType === 'sessionStorage') {
-                sessionStorage.setItem(THEME_CACHE_KEY, String(themeVal));
-            }
+            _this.Storge.set(THEME_CACHE_KEY, String(themeVal))
 
             //修改主题
             $('html').attr('data-bs-theme', themeVal);
@@ -297,8 +303,6 @@ class Layout {
                 //tab被单击事件
                 onTabClick: function (e) {
                     let $allA = $('.bsa-menu a');
-
-
                     $allA.each(function (index, a) {
                         //如果找到这个tab的地址
                         if ($(a).attr('href') === e.tabUrl) {
@@ -321,14 +325,10 @@ class Layout {
                 },
                 //tab加载完毕事件
                 onTabLoaded: function (tab) {
-
-                    let themeVal = localStorage.getItem('theme');
-                    $('html').attr('data-bs-theme', themeVal);
-
                     //是否启用主题适配子页面
                     if (_this._config.tabPageEnableTheme === true) {
                         if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                            $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', themeVal);
+                            $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', _this.Storge.get(THEME_CACHE_KEY));
                         }
                     }
                 }
@@ -338,6 +338,7 @@ class Layout {
 
         //遮罩层关闭
         setTimeout(() => {
+            $('html').attr('data-bs-theme',_this.Storge.get(THEME_CACHE_KEY))
             $('.bsa-preloader').fadeOut(_this._config.preloadDuration);
         }, this._config.preloadDuration)
     }

@@ -30,9 +30,23 @@ class Storage {
      */
     get(name) {
         if (this.type === 1) {
-            return JSON.parse(sessionStorage.getItem(name))
+
+            let value = sessionStorage.getItem(name)
+            try {
+                return JSON.parse(value)
+            } catch (e) {
+                return value;
+            }
+
         } else if (this.type === 2) {
-            return JSON.parse(localStorage.getItem(name))
+            let value = localStorage.getItem(name);
+
+            try {
+                return JSON.parse(value)
+            } catch (e) {
+                return value;
+            }
+
         }
     }
 

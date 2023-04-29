@@ -3,32 +3,67 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
-    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
-    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,bootstrap5后台管理系统模板">
+    <meta name="description" content="bootstrap-admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
-    <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dist/css/bootstrap-admin.min.css">
     <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container{
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .cursor{
+            animation: cursor .3s infinite;
+        }
+
+        @keyframes cursor{
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
+
 <body>
-
-<div class="min-vh-100 d-flex justify-content-center align-items-center bg-body-tertiary py-3 ">
-    <div class="px-2">
-        <div class="container-fluid">
-
-            <div class="bsa-error-code">
-                404
-            </div>
-            <div class="bsa-error-text">好像出问题了呢</div>
-        </div>
-    </div>
+<div class="container">
+    <span class="status">4 0 4</span>
+    <span class="cursor">|</span>
 </div>
 
-<script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="lib/jquery/dist/jquery.min.js"></script>
-<script src="dist/js/bootstrap-admin.min.js"></script>
+<script>
+    function sleep(duration) {
+        return new Promise(resolve => setTimeout(resolve, duration));
+    }
+
+    async function updateMsgBox() {
+        const msgBox = document.querySelector('.status');
+        while (true) {
+            await sleep(3000);
+            msgBox.innerHTML = '';
+            await sleep(700);
+            msgBox.innerHTML = '4';
+            await sleep(700);
+            msgBox.innerHTML = '4 0';
+            await sleep(700);
+            msgBox.innerHTML = '4 0 4';
+        }
+    }
+
+    updateMsgBox();
+</script>
 </body>
 </html>

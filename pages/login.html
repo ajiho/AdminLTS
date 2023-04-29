@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="icon" href="dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
-    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="description" content="bootstrap-admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
-    <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dist/css/bootstrap-admin.min.css">
+    <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
     <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
 </head>
 <body>
@@ -36,7 +36,7 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="captcha" name="captcha" aria-label="captcha"
                                placeholder="请输入验证码">
-                        <img src="dist/img/captcha.png" alt="验证码" class="bsa-cursor-pointer"/>
+                        <img src="../dist/img/captcha.png" alt="验证码" class="bsa-cursor-pointer"/>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
@@ -56,23 +56,24 @@
 </div>
 
 
-<script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="lib/jquery/dist/jquery.min.js"></script>
+<script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/jquery/dist/jquery.min.js"></script>
 <!--/插件放置区域-->
 
 <!--推荐:axios专门用于发送网络请求的一个库-->
-<script src="lib/axios/dist/axios.min.js"></script>
+<script src="../lib/axios/dist/axios.min.js"></script>
 
 <!--表单验证插件-->
-<script src="lib/formvalidation/js/formValidation.js"></script>
-<script src="lib/formvalidation/js/framework/bootstrap.js"></script>
-<script src="lib/formvalidation/js/language/zh_CN.js"></script>
+<script src="../lib/formvalidation/js/formValidation.js"></script>
+<script src="../lib/formvalidation/js/framework/bootstrap.js"></script>
+<script src="../lib/formvalidation/js/language/zh_CN.js"></script>
 
 <!--一个漂亮的消息通知插件-->
-<script src="lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="../lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
 <!--插件放置区域/-->
-<script src="dist/js/bootstrap-admin.min.js"></script>
+<script src="../dist/js/bootstrap-admin.min.js"></script>
+
 <script>
     //前端表单验证
     $('#form').formValidation({
@@ -122,7 +123,7 @@
         ).then((result) => {
             if (result.isConfirmed) {
                 //重定向到后台首页
-                location.replace('index.html');
+                location.replace('/index.html');
             }
         })
     });

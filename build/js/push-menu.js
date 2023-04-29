@@ -1,5 +1,5 @@
 import $ from 'jquery'
-
+import Helper from './helper'
 
 const NAME = 'PushMenu'
 const DATA_KEY = 'bsa.pushmenu'
@@ -161,11 +161,12 @@ class PushMenu {
  * ====================================================
  */
 
-if ($('.bsa-header').length !== 0) {
-    $(window).on('load', () => {
+
+$(window).on('load', () => {
+    if (Helper.isIndex()) {
         PushMenu._jQueryInterface.call($(SELECTOR_TOGGLE_BUTTON))
-    })
-}
+    }
+})
 
 
 /**

@@ -5,10 +5,10 @@
   "scripts": {
     "js": "rollup --config rollup.config.js --sourcemap --bundleConfigAsCjs",
     "css": "gulp style",
+    "img": "gulp img",
     "css-fix": "gulp fix-css",
-    "production": "npm-run-all js css",
-    "docs-dev": "docsify serve docs",
-    "serve": "http-server . -p 8000 -c-1"
+    "production": "npm-run-all js css img",
+    "serve": "http-server . -p 9999 -c-1"
   },
   "dependencies": {
     "@eonasdan/tempus-dominus": "^6.2.7",

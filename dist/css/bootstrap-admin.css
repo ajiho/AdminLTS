@@ -138,23 +138,6 @@
   --bs-nav-pills-link-active-bg: rgb(13 110 253 / 12%);
 }
 
-.scrollbar-track {
-  background: var(--bs-secondary-bg) !important;
-}
-
-.scrollbar-track-y {
-  width: 4px !important;
-}
-
-.scrollbar-track-x {
-  width: 4px !important;
-}
-
-.scrollbar-thumb {
-  width: 4px !important;
-  background: rgba(var(--bs-tertiary-color-rgb), 0.18) !important;
-}
-
 .dropzone {
   border: none !important;
   background: var(--bs-light-bg-subtle) !important;
@@ -366,11 +349,6 @@
 
 .swal2-timer-progress-bar {
   background-color: var(--bs-secondary-bg) !important;
-}
-
-.trumbowyg-editor[contenteditable=true]:empty::before {
-  content: attr(placeholder) !important;
-  color: var(--bs-secondary-color) !important;
 }
 
 /*顶部工具条背景颜色*/

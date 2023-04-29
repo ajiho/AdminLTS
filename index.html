@@ -6,7 +6,7 @@
     <link rel="icon" href="dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
     <meta name="keywords" content="响应式后台模板,开源免费后台模板,bootstrap5后台管理系统模板">
-    <meta name="description" content="Bootstrap-Admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="description" content="bootstrap-admin基于bootstrap5的免费开源的响应式后台管理模板">
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
@@ -237,7 +237,7 @@
         <div class="bsa-logo-wrapper">
             <img src="dist/img/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
         </div>
-        <div class="bsa-logo-text ms-2 bsa-ellipsis-2">bootstrap-admin</div>
+        <div class="bsa-logo-text ms-2 bsa-ellipsis-2">bootstrap-admin1</div>
     </div>
     <!--  侧边栏的身体部分(展示侧边栏菜单)  -->
     <div class="bsa-sidebar-body" data-overlayscrollbars-initialize>
@@ -264,13 +264,16 @@
                 <ul>
                     <li>
                         <!-- target="_self":添加该属性可以让该页面不从tab页面里打开  -->
-                        <a href="pages/page-lockscreen.html" target="_self">锁屏页</a>
+                        <a href="pages/lockscreen.html" target="_self">锁屏页</a>
                     </li>
                     <li>
-                        <a href="pages/page-gallery.html">图库列表</a>
+                        <a href="pages/gallery1.html">图库列表</a>
                     </li>
                     <li>
-                        <a href="404.html">404页面</a>
+                        <a href="pages/errors.html">错误页面</a>
+                    </li>
+                    <li>
+                        <a href="pages/login.html" target="_self">登录页面</a>
                     </li>
                 </ul>
             </li>
@@ -360,9 +363,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="pages/welcome.html?id=789" class="has-children">一级菜单</a>
+                        <a href="pages/multilevel.html?id=7" class="has-children">一级菜单</a>
                         <ul>
-                            <li><a href="pages/multilevel.html?id=1011">二级菜单</a></li>
+                            <li><a href="pages/multilevel.html?id=8">二级菜单</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -463,7 +466,7 @@
                         if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer || result.dismiss === Swal.DismissReason.backdrop) {
 
                             //重定向到登录页
-                            location.replace('login.html');
+                            location.replace('pages/login.html');
                         }
                     });
                 }

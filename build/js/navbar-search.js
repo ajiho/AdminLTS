@@ -1,5 +1,5 @@
 import $ from 'jquery'
-
+import Helper from './helper';
 
 const NAME = 'NavbarSearch'
 const DATA_KEY = 'bsa.navbar-search'
@@ -135,11 +135,12 @@ class NavbarSearch {
  * ====================================================
  */
 
-if ($('.bsa-header').length !== 0) {
-    $(window).on('load', () => {
+$(window).on('load', () => {
+    if (Helper.isIndex()) {
         NavbarSearch._jQueryInterface.call($(SELECTOR_DATA_TOGGLE))
-    })
-}
+    }
+})
+
 
 /**
  * jQuery API

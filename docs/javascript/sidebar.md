@@ -14,7 +14,7 @@
 
 <ul class="bsa-menu" data-bsa-toggle="sidebar">
     <li>
-        <a href="pages/welcome.html">
+        <a href="welcome.html">
             <i class="bi bi-house"></i>首页
         </a>
     </li>
@@ -24,7 +24,7 @@
         </a>
         <ul>
             <li>
-                <a href="pages/list.html">xx列表</a>
+                <a href="list.html">xx列表</a>
             </li>
         </ul>
     </li>

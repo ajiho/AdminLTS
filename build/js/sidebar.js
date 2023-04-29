@@ -1,12 +1,11 @@
 import $ from 'jquery'
 import Quicktab from 'bootstrap-quicktab';
-
+import Helper from './helper'
 
 const NAME = 'Sidebar'
 const DATA_KEY = 'bsa.sidebar'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
-const HEADER_SELECTER = '.bsa-sidebar'
 
 
 const EVENT_EXPANDED = `expanded${EVENT_KEY}`
@@ -237,7 +236,7 @@ class Sidebar {
  */
 
 $(window).on('load', () => {
-    if ($(HEADER_SELECTER).length !== 0) {//如果有才执行
+    if(Helper.isIndex()){
         $(SELECTOR_DATA_TOGGLE).each(function () {
             Sidebar._jQueryInterface.call($(this))
         })

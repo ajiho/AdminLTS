@@ -1,4 +1,4 @@
-<h1 align="center">Bootstrap-Admin</h1> 
+<h1 align="center">bootstrap-admin</h1> 
 
 <p align="center">    
     <b>无论您是用于项目开发、学习、毕设、还是教学视频演示、希望能给个star，这将会是我最大的动力!</b>

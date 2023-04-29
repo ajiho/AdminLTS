@@ -9,12 +9,79 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.BootstrapAdmin = {}, global.jQuery, global.Quicktab));
 })(this, (function (exports, $, Quicktab) { 'use strict';
 
-    var helper = {
+    var Helper = {
       //判断是否为主页面
       isIndex() {
         return $('.bsa-header').length !== 0 && $('.bsa-sidebar').length !== 0;
       }
     };
+
+    class Storage {
+      /**
+       * @param type 1:sessionStorage 2:localStorage
+       */
+      constructor(type = 1) {
+        this.type = type;
+      }
+
+      /**
+       * 设置缓存
+       * @param name 缓存的key
+       * @param data 缓存数据
+       */
+      set(name, data) {
+        this.remove(name);
+        if (this.type === 1) {
+          sessionStorage.setItem(name, JSON.stringify(data));
+        } else if (this.type === 2) {
+          localStorage.setItem(name, JSON.stringify(data));
+        }
+      }
+
+      /**
+       * 获取缓存
+       * @param name 缓存的key
+       * @returns {any}
+       */
+      get(name) {
+        if (this.type === 1) {
+          let value = sessionStorage.getItem(name);
+          try {
+            return JSON.parse(value);
+          } catch (e) {
+            return value;
+          }
+        } else if (this.type === 2) {
+          let value = localStorage.getItem(name);
+          try {
+            return JSON.parse(value);
+          } catch (e) {
+            return value;
+          }
+        }
+      }
+
+      /**
+       * 删除缓存
+       * @param name
+       */
+      remove(name) {
+        if (this.type === 1) {
+          sessionStorage.removeItem(name);
+        } else if (this.type === 2) {
+          localStorage.removeItem(name);
+        }
+      }
+
+      /**
+       * 同时删除 sessionStorage和localStorage缓存
+       * @param name
+       */
+      static removeBoth(name) {
+        sessionStorage.removeItem(name);
+        localStorage.removeItem(name);
+      }
+    }
 
     /* global bootstrap OverlayScrollbarsGlobal  */
     const NAME$4 = 'Layout';
@@ -40,6 +107,8 @@
 
     //滚动条插件对象
     let OverlayScrollbars = null;
+
+    //侧边栏滚动条插件的示例对象
     let sidebarOsInstance = null;
     class Layout {
       constructor(element, config) {
@@ -61,19 +130,13 @@
         }
       }
       getTheme() {
-        let themeVal = '';
-        if (this._config.themeCacheType === 'localStorage') {
-          themeVal = localStorage.getItem(THEME_CACHE_KEY);
-        } else if (this._config.themeCacheType === 'sessionStorage') {
-          themeVal = sessionStorage.getItem(THEME_CACHE_KEY);
-        }
-        return themeVal;
+        return this.Storge.get(THEME_CACHE_KEY);
       }
 
       // Private
       _init() {
         this._common();
-        if (helper.isIndex()) {
+        if (Helper.isIndex()) {
           //如果是index.html页面
           this._index();
         }
@@ -124,6 +187,14 @@
       // 首页需要执行的方法
       _index() {
         let _this = this;
+        let cacheType = 1;
+        //换成实例化
+        if (_this._config.themeCacheType === 'localStorage') {
+          cacheType = 2;
+        } else if (_this._config.themeCacheType === 'sessionStorage') {
+          cacheType = 1;
+        }
+        _this.Storge = new Storage(cacheType);
 
         //给滚动条注册插件
         if (typeof OverlayScrollbarsGlobal !== 'undefined') {
@@ -132,7 +203,6 @@
           //给滚动条对象注册插件
           OverlayScrollbars.plugin([OverlayScrollbarsGlobal.ScrollbarsHidingPlugin, OverlayScrollbarsGlobal.SizeObserverPlugin, OverlayScrollbarsGlobal.ClickScrollPlugin]);
         }
-        //侧边栏滚动条插件的示例对象
 
         //导航菜单滚动条插件
         sidebarOsInstance = OverlayScrollbars(document.querySelector('.bsa-sidebar-body'), {
@@ -194,11 +264,7 @@
           let themeVal = Array.from(this.classList).at(-1);
 
           //存入缓存
-          if (_this._config.themeCacheType === 'localStorage') {
-            localStorage.setItem(THEME_CACHE_KEY, String(themeVal));
-          } else if (_this._config.themeCacheType === 'sessionStorage') {
-            sessionStorage.setItem(THEME_CACHE_KEY, String(themeVal));
-          }
+          _this.Storge.set(THEME_CACHE_KEY, String(themeVal));
 
           //修改主题
           $('html').attr('data-bs-theme', themeVal);
@@ -297,13 +363,10 @@
             },
             //tab加载完毕事件
             onTabLoaded: function (tab) {
-              let themeVal = localStorage.getItem('theme');
-              $('html').attr('data-bs-theme', themeVal);
-
               //是否启用主题适配子页面
               if (_this._config.tabPageEnableTheme === true) {
                 if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                  $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', themeVal);
+                  $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', _this.Storge.get(THEME_CACHE_KEY));
                 }
               }
             }
@@ -312,6 +375,7 @@
 
         //遮罩层关闭
         setTimeout(() => {
+          $('html').attr('data-bs-theme', _this.Storge.get(THEME_CACHE_KEY));
           $('.bsa-preloader').fadeOut(_this._config.preloadDuration);
         }, this._config.preloadDuration);
       }
@@ -497,11 +561,11 @@
      * ====================================================
      */
 
-    if ($('.bsa-header').length !== 0) {
-      $(window).on('load', () => {
+    $(window).on('load', () => {
+      if (Helper.isIndex()) {
         NavbarSearch._jQueryInterface.call($(SELECTOR_DATA_TOGGLE$1));
-      });
-    }
+      }
+    });
 
     /**
      * jQuery API
@@ -762,11 +826,11 @@
      * ====================================================
      */
 
-    if ($('.bsa-header').length !== 0) {
-      $(window).on('load', () => {
+    $(window).on('load', () => {
+      if (Helper.isIndex()) {
         PushMenu._jQueryInterface.call($(SELECTOR_TOGGLE_BUTTON));
-      });
-    }
+      }
+    });
 
     /**
      * jQuery API
@@ -784,7 +848,6 @@
     const DATA_KEY = 'bsa.sidebar';
     const EVENT_KEY = `.${DATA_KEY}`;
     const JQUERY_NO_CONFLICT = $.fn[NAME];
-    const HEADER_SELECTER = '.bsa-sidebar';
     const EVENT_EXPANDED = `expanded${EVENT_KEY}`;
     const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`;
     const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="sidebar"]';
@@ -969,8 +1032,7 @@
      */
 
     $(window).on('load', () => {
-      if ($(HEADER_SELECTER).length !== 0) {
-        //如果有才执行
+      if (Helper.isIndex()) {
         $(SELECTOR_DATA_TOGGLE).each(function () {
           Sidebar._jQueryInterface.call($(this));
         });

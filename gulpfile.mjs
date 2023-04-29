@@ -18,6 +18,8 @@ import gulpIf from 'gulp-if'
 import * as fs from 'fs';
 
 
+
+
 //文档加速压缩处理
 import {docsStyle} from './build/config/docsStyle.mjs';
 import {docsJS} from "./build/config/docsJS.mjs";
@@ -26,11 +28,6 @@ import {docsJS} from "./build/config/docsJS.mjs";
 //lib目录自动化
 import {libIgnore} from './build/config/libIgnore.mjs';
 import {libMoveMapping} from "./build/config/libMoveMapping.mjs";
-
-
-
-
-
 
 
 gulp.task('lint-css', function () {
@@ -76,6 +73,8 @@ gulp.task('css_min', function () {
 
 gulp.task('lint-css', gulp.series(['lint-css', 'css']));
 gulp.task('lint-css-min', gulp.series(['lint-css', 'css_min']));
+
+
 gulp.task('fix-css', function () {
     return gulp
         .src([
@@ -174,11 +173,13 @@ gulp.task('move_formvalidation_to_lib', function () {
 
 gulp.task('style', gulp.series(['lint-css', 'lint-css-min']));
 
+
 //文档统一指令
 gulp.task('docs', gulp.series(['docs_css', 'docs_js', 'docs_img', 'docs_fonts']));
 
 //lib目录统一指令
 gulp.task('lib', gulp.series(['move_lib', 'clean_lib', 'move_formvalidation_to_lib']));
+
 
 gulp.task('default', gulp.series(['style', 'img', 'lib']));
 
