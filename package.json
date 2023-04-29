@@ -91,6 +91,6 @@
     "rollup": "^3.20.2",
     "sass": "^1.57.1",
     "stylelint": "^15.4.0",
-    "stylelint-config-twbs-bootstrap": "^9.0.1"
+    "stylelint-config-twbs-bootstrap": "^10.0.0"
   }
 }
