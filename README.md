@@ -1,6 +1,8 @@
-<h1 align="center">bootstrap-admin</h1> 
+<p align="center"><h1>bootstrap-admin</h1></p>
 
-<h4 align="center"><font color=grey> 一个轻量的纯静态后台管理HTML模板</font></h4>
+<p align="center">    
+    <b>一个轻量的纯静态后台管理HTML模板</b>
+</p>
 
 <p align="center">    
     <b>无论您是用于项目开发、学习、毕设、还是教学视频演示、希望能给个star，这将会是我最大的动力!</b>
