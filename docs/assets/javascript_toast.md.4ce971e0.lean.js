@@ -1,0 +1,1 @@
+import{_ as t,c as a,o as e}from"./chunks/framework.2d5e76c0.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"javascript/toast.md","filePath":"javascript/toast.md"}'),s={name:"javascript/toast.md"};function o(r,c,n,p,i,_){return e(),a("div")}const f=t(s,[["render",o]]);export{m as __pageData,f as default};

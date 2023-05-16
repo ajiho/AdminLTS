@@ -1,12 +1,9 @@
 import gulp from 'gulp';
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
-const sass = gulpSass(dartSass);
 import postcss from 'gulp-postcss';
 import gulpStylelint from '@ronilaukkarinen/gulp-stylelint';
 import gulpCopy from "gulp-copy";
-import concat from "gulp-concat";
-import terser from "gulp-terser";
 import autoprefixer from "autoprefixer";
 import cmq from 'node-css-mqpacker';
 import imagemin from 'gulp-imagemin';
@@ -16,19 +13,29 @@ import sourcemaps from 'gulp-sourcemaps'
 import rename from 'gulp-rename'
 import gulpIf from 'gulp-if'
 import * as fs from 'fs';
-
-
-
-
-//文档加速压缩处理
-import {docsStyle} from './build/config/docsStyle.mjs';
-import {docsJS} from "./build/config/docsJS.mjs";
-
-
-//lib目录自动化
+//lib目录自动化(可以避免手动把插件从node_modules里面复制出来)
 import {libIgnore} from './build/config/libIgnore.mjs';
 import {libMoveMapping} from "./build/config/libMoveMapping.mjs";
 
+
+//sass
+const sass = gulpSass(dartSass);
+//postcss插件
+const postcssPlugins = [
+    autoprefixer(), cmq({
+        sort: function (a, b) {
+            var aMax = a.match(/\d+/)[0];
+            var bMax = b.match(/\d+/)[0];
+            return bMax - aMax;
+        }
+    })
+];
+
+
+//负责把build/js/app.js移动到dist/js目录
+gulp.task('app.js', function () {
+    return gulp.src('build/js/app.js').pipe(gulp.dest('dist/js'))
+})
 
 gulp.task('lint-css', function () {
     return gulp.src('build/scss/**/*.scss')
@@ -45,13 +52,16 @@ gulp.task('lint-css', function () {
 })
 
 
+
+
+
 gulp.task('css', function () {
     return gulp.src('build/scss/**/*.scss')
         .pipe(sourcemaps.init({debug: true}))
         .pipe(sass.sync({
             outputStyle: "expanded"
         }).on('error', sass.logError))
-        .pipe(postcss([autoprefixer(), cmq()]))
+        .pipe(postcss(postcssPlugins))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/css'))
 });
@@ -63,7 +73,7 @@ gulp.task('css_min', function () {
         .pipe(sass.sync({
             outputStyle: "expanded"
         }).on('error', sass.logError))
-        .pipe(postcss([autoprefixer(), cmq()]))
+        .pipe(postcss(postcssPlugins))
         .pipe(cleanCss())
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
@@ -97,64 +107,27 @@ gulp.task('img', function (cb) {
 })
 
 
-//压缩文档样式
-gulp.task('docs_css', function () {
-    return gulp.src(docsStyle)
-        .pipe(concat('docsify.css'))
-        .pipe(cleanCss({level: {1: {specialComments: 0}}}))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('docs/dist/css'));
-});
-
-
-//压缩文档js
-gulp.task('docs_js', function () {
-    return gulp.src(docsJS)
-        .pipe(concat('docsify.js'))
-        .pipe(terser())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('docs/dist/js'));
-});
-
-
-gulp.task('docs_img', function (cb) {
-    gulp.src('docs/build/img/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('docs/dist/img'))
-    cb();
-})
-
-
-gulp.task('docs_fonts', function () {
-    return gulp.src([
-        'node_modules/bootstrap-icons/font/fonts/*'
-    ]).pipe(gulpCopy('docs/dist', {prefix: 3}))
-});
-
-
-
-gulp.task('move_lib', function(cb) {
+gulp.task('move_lib', function (cb) {
     return gulp.series(
-        function(done) {
+        function (done) {
             console.log('-------依赖复制任务耗时较长，请耐心等待------')
             done();
         },
         gulp.parallel(
-            libMoveMapping.map(function(file) {
-                return function() {
+            libMoveMapping.map(function (file) {
+                return function () {
                     return gulp.src(file.form)
                         .pipe(gulpIf(!fs.existsSync(file.to), gulpCopy('lib', {prefix: 1})))
                 };
             })
         ),
-        function(done) {
+        function (done) {
             console.log('-------依赖复制任务结束------')
             done();
             cb();
         }
     )();
 });
-
 
 
 gulp.task('clean_lib', async function (cb) {
@@ -173,9 +146,6 @@ gulp.task('move_formvalidation_to_lib', function () {
 
 gulp.task('style', gulp.series(['lint-css', 'lint-css-min']));
 
-
-//文档统一指令
-gulp.task('docs', gulp.series(['docs_css', 'docs_js', 'docs_img', 'docs_fonts']));
 
 //lib目录统一指令
 gulp.task('lib', gulp.series(['move_lib', 'clean_lib', 'move_formvalidation_to_lib']));

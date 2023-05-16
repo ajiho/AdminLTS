@@ -10,15 +10,13 @@
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
-    <!--  滚动条插件样式  -->
     <link rel="stylesheet" href="lib/overlayscrollbars/styles/overlayscrollbars.min.css">
     <link rel="stylesheet" href="dist/css/bootstrap-admin.min.css">
     <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
 </head>
 
 
-<body data-scrollbar-auto-hide="leave" data-tab-page-enable-theme="true" data-scrollbar-auto-hide-delay="1300">
-
+<body>
 <!--头部导航-->
 <ul class="bsa-header">
     <!-- 侧边栏触发按钮(移动端时显示) -->
@@ -204,7 +202,6 @@
                 </div>
             </div>
         </div>
-
         <ul class="dropdown-menu dropdown-menu-end">
             <li>
                 <a class="dropdown-item" href="javascript:"
@@ -230,18 +227,17 @@
     </li>
 </ul>
 
+
 <!--侧边栏-->
 <div class="bsa-sidebar">
     <!--  侧边栏头部部分(展示品牌logo)  -->
     <div class="bsa-sidebar-header">
-        <div class="bsa-logo-wrapper">
-            <img src="dist/img/logo-icon.png" class="bsa-logo-icon" alt="logo-icon">
-        </div>
-        <div class="bsa-logo-text ms-2 bsa-ellipsis-2">bootstrap-admin1</div>
+        <img src="dist/img/favicon-32x32.png" class="bsa-logo-icon" alt="logo-icon">
+        <div class="bsa-logo-text ms-2 bsa-ellipsis-2">bootstrap-admin</div>
     </div>
     <!--  侧边栏的身体部分(展示侧边栏菜单)  -->
     <div class="bsa-sidebar-body" data-overlayscrollbars-initialize>
-        <ul class="bsa-menu" data-bsa-toggle="sidebar" data-accordion="true" data-animation-speed="150">
+        <ul class="bsa-menu" data-bsa-toggle="sidebar">
             <li>
                 <a href="pages/welcome.html">
                     <i class="bi bi-house"></i>首页
@@ -393,39 +389,20 @@
     </div>
 </div>
 
-<!--必须的依赖-->
 <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="lib/jquery/dist/jquery.min.js"></script>
-
-<!--/插件放置区域-->
-
-
-<!--推荐:axios专门用于发送网络请求的一个库-->
-<script src="lib/axios/dist/axios.min.js"></script>
-
-<!--滚动条插件-->
 <script src="lib/overlayscrollbars/browser/overlayscrollbars.browser.es6.min.js"></script>
-
-<!--iframe多tab选项卡插件-->
 <script src="lib/bootstrap-quicktab/dist/js/bootstrap-quicktab.min.js"></script>
-
-<!--一个漂亮的消息通知插件-->
-<script src="lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
-
-<!--插件放置区域/-->
-
-
-<!--bootstrap-admin的js文件-->
 <script src="dist/js/bootstrap-admin.min.js"></script>
-
-
+<script src="dist/js/app.js"></script>
+<script src="dist/js/bootstrap-admin.mock.js"></script>
 <script>
 
     $(function () {
         //头部搜索框处理(不需要可以删除,不明白的可以看bootstrap-admin官方文档)
         $(document).on('search.bsa.navbar-search', function (e, config, keyword) {
             //先得到请求地址
-            var url = config.action;
+            let url = config.action;
             //这里是拼接其它参数
             url += '?keyword=' + keyword + '&' + $.param(config.params);
 
@@ -440,37 +417,27 @@
         $(document).on('click', '.bsa-logout', function (e) {
             e.preventDefault();
 
-            Swal.fire({
-                title: '确定退出登录吗？',
-                text: "请仔细确认您的工作是否完成哦",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#198754',
-                cancelButtonColor: '#d93444',
-                confirmButtonText: '确定',
-                cancelButtonText: '取消'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    //这里应该发起ajax,这里假设请求成功
-                    Swal.fire({
-                        icon: "success",
-                        title: '退出成功',
-                        timer: 800,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    }).then((result) => {
-                        //确定 取消 背景都会触发
-                        if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer || result.dismiss === Swal.DismissReason.backdrop) {
+            $.modal({
+                body: '确定要退出吗？',
+                cancelBtn: true,
+                ok: function () {
 
-                            //重定向到登录页
-                            location.replace('pages/login.html');
+                    //请求退出路由
+                    $.ajax({
+                        method: 'post',
+                        url: '/logout',
+                        //不建议在这里使用success,因为它会比 ajaxSuccess(见app.js) 先执行
+                    }).then(response => {
+
+                        //推荐在这里统一处理逻辑(注意：成功和错误提示都已经在ajaxSuccess中处理了,这里只需要判断是否是200跳转即可)
+                        if (response.code === 200) {//跳转到后台首页
+                            top.window.location.replace('/pages/login.html');
                         }
                     });
+
                 }
             })
+
         });
     });
 </script>

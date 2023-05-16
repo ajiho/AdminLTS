@@ -1,0 +1,118 @@
+.bsa-modal {
+  .iframe-wrapper {
+    height: calc(100vh - 12rem) !important;
+  }
+
+  .modal-header i:hover {
+    color: var(--bs-tertiary-color);
+  }
+
+  .modal-title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .modal-dialog {
+
+    &.modal-fullscreen {
+      .iframe-wrapper {
+        height: 100% !important;
+      }
+    }
+
+    // sm屏幕下全屏
+    &.modal-fullscreen-sm-down {
+      .iframe-wrapper {
+
+        @include media-breakpoint-down(sm) {
+          height: 100% !important;
+        }
+
+      }
+
+      .btn-fullscreen {
+        @include media-breakpoint-down(sm) {
+          display: none !important;
+        }
+      }
+    }
+
+
+    // md屏幕下全屏
+    &.modal-fullscreen-md-down {
+      .iframe-wrapper {
+
+        @include media-breakpoint-down(md) {
+          height: 100% !important;
+        }
+
+
+      }
+
+      .btn-fullscreen {
+        @include media-breakpoint-down(md) {
+          display: none !important;
+        }
+      }
+    }
+
+    // lg屏幕下全屏
+    &.modal-fullscreen-lg-down {
+      .iframe-wrapper {
+
+        @include media-breakpoint-down(lg) {
+          height: 100% !important;
+        }
+
+
+      }
+
+      .btn-fullscreen {
+        @include media-breakpoint-down(lg) {
+          display: none !important;
+        }
+      }
+    }
+
+
+    // xl屏幕下全屏
+    &.modal-fullscreen-xl-down {
+      .iframe-wrapper {
+
+        @include media-breakpoint-down(xl) {
+          height: 100% !important;
+        }
+
+
+      }
+
+      .btn-fullscreen {
+        @include media-breakpoint-down(xl) {
+          display: none !important;
+        }
+      }
+    }
+
+
+    // xxl屏幕下全屏
+    &.modal-fullscreen-xxl-down {
+      .iframe-wrapper {
+
+        @include media-breakpoint-down(xxl) {
+          height: 100% !important;
+        }
+
+
+      }
+
+      .btn-fullscreen {
+        @include media-breakpoint-down(xxl) {
+          display: none !important;
+        }
+      }
+    }
+
+  }
+}
+

@@ -1,4 +1,5 @@
 node_modules
 **/lib/
-/dist/js/bootstrap-admin.js
 /docs/
+build/js/app.js
+/dist/

@@ -37,19 +37,9 @@
     background-clip: padding-box;
     border-bottom: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
 
-    // 用于多主题时隐藏logo原始图标
-    .bsa-logo-wrapper {
-      width: 36px;
-      height: 36px;
-      overflow: hidden;
-    }
-
     .bsa-logo-icon {
-      width: 36px;
-      height: 36px;
-      flex-shrink: 0;
-      filter: drop-shadow(36px 0 0 var(--bs-body-color));
-      transform: translateX(-36px);
+      max-width: 36px;
+      max-height: 36px;
     }
 
     .bsa-logo-text {

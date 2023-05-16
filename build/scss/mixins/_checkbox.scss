@@ -1,0 +1,84 @@
+@mixin bs-checkbox {
+  --#{$prefix}form-check-bg: #{$form-check-input-bg};
+
+  width: $form-check-input-width;
+  height: $form-check-input-width;
+  margin-top: ($line-height-base - $form-check-input-width) * .5; // line-height minus check height
+  vertical-align: top;
+  background-color: var(--#{$prefix}form-check-bg);
+  background-image: var(--#{$prefix}form-check-bg-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: $form-check-input-border;
+  appearance: none;
+  print-color-adjust: exact; // Keep themed appearance for print
+  @include transition($form-check-transition);
+
+  &[type="checkbox"] {
+    @include border-radius($form-check-input-border-radius);
+  }
+
+  &[type="radio"] {
+    // stylelint-disable-next-line property-disallowed-list
+    border-radius: $form-check-radio-border-radius;
+  }
+
+  &:active {
+    filter: $form-check-input-active-filter;
+  }
+
+  &:focus {
+    border-color: $form-check-input-focus-border;
+    outline: 0;
+    box-shadow: $form-check-input-focus-box-shadow;
+  }
+
+  &:checked {
+    background-color: $form-check-input-checked-bg-color;
+    border-color: $form-check-input-checked-border-color;
+
+    &[type="checkbox"] {
+      @if $enable-gradients {
+        --#{$prefix}form-check-bg-image: #{escape-svg($form-check-input-checked-bg-image)}, var(--#{$prefix}gradient);
+      } @else {
+        --#{$prefix}form-check-bg-image: #{escape-svg($form-check-input-checked-bg-image)};
+      }
+    }
+
+    &[type="radio"] {
+      @if $enable-gradients {
+        --#{$prefix}form-check-bg-image: #{escape-svg($form-check-radio-checked-bg-image)}, var(--#{$prefix}gradient);
+      } @else {
+        --#{$prefix}form-check-bg-image: #{escape-svg($form-check-radio-checked-bg-image)};
+      }
+    }
+  }
+
+  &[type="checkbox"]:indeterminate {
+    background-color: $form-check-input-indeterminate-bg-color;
+    border-color: $form-check-input-indeterminate-border-color;
+
+    @if $enable-gradients {
+      --#{$prefix}form-check-bg-image: #{escape-svg($form-check-input-indeterminate-bg-image)}, var(--#{$prefix}gradient);
+    } @else {
+      --#{$prefix}form-check-bg-image: #{escape-svg($form-check-input-indeterminate-bg-image)};
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+    filter: none;
+    opacity: $form-check-input-disabled-opacity;
+  }
+
+  // Use disabled attribute in addition of :disabled pseudo-class
+  // See: https://github.com/twbs/bootstrap/issues/28247
+  &[disabled],
+  &:disabled {
+    ~ .form-check-label {
+      cursor: default;
+      opacity: $form-check-label-disabled-opacity;
+    }
+  }
+}

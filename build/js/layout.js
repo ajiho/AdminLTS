@@ -1,8 +1,8 @@
 /* global bootstrap OverlayScrollbarsGlobal  */
 import $ from 'jquery'
 
-import Helper from './helper'
-import Storage from './storage'
+import Helper from './util/helper'
+import Storage from './util/storage'
 
 import Quicktab from 'bootstrap-quicktab';
 
@@ -15,6 +15,8 @@ const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 //用于实现密码点击显示/隐藏
 const SELECTOR_LOGIN_PASSWORD = '.bsa-show_hide_password span'
+//装载器
+const SELECTOR_PRELOADER = '.bsa-preloader'
 
 const Default = {
     //滚动条自动隐藏 never scroll leave move  #https://kingsora.github.io/OverlayScrollbars/
@@ -45,22 +47,25 @@ class Layout {
 
     // Public
     fullscreen() {
-        if ($('.bsa-header').length !== 0) {
+        if (Helper.isIndex()) {
             document.documentElement.requestFullscreen();
         }
+
     }
 
     exitFullscreen() {
-        if ($('.bsa-header').length !== 0) {
+
+        if (Helper.isIndex()) {
             if (document.fullscreenElement !== null) {
                 document.exitFullscreen();
             }
         }
+
     }
 
 
     getTheme() {
-       return this.Storge.get(THEME_CACHE_KEY);
+        return this.Storge.get(THEME_CACHE_KEY);
     }
 
 
@@ -70,7 +75,7 @@ class Layout {
 
         this._common();
 
-        if (Helper.isIndex()) {//如果是index.html页面
+        if (Helper.isIndex()) {
             this._index();
         }
 
@@ -78,7 +83,11 @@ class Layout {
 
 
     // 所有页面都要执行的
-    _common(){
+    _common() {
+
+        this._cacheInit();
+
+
         //启用提示
         $('[data-bs-toggle="tooltip"]').each(function (i, el) {
             new bootstrap.Tooltip(el)
@@ -90,11 +99,8 @@ class Layout {
         })
 
 
-        //禁止所有的input框记忆
-        $('input').each(function (index, element) {
-            $(element).attr('AutoComplete', 'off');
-        });
-
+        //禁止所有的input框记忆,优化体验，否则会有烦人提示
+        $('input').attr('AutoComplete', 'off');
 
         //禁止action为#的无效表单提交
         $(document).on('submit', 'form[action="#"]', function (e) {
@@ -123,23 +129,23 @@ class Layout {
     }
 
 
-    // 首页需要执行的方法
-    _index(){
-
-        let _this = this;
+    _cacheInit() {
 
         let cacheType = 1;
         //换成实例化
-        if(_this._config.themeCacheType==='localStorage'){
+        if (this._config.themeCacheType === 'localStorage') {
             cacheType = 2
-        }else if(_this._config.themeCacheType==='sessionStorage'){
+        } else if (this._config.themeCacheType === 'sessionStorage') {
             cacheType = 1
         }
 
-        _this.Storge  =  new Storage(cacheType)
+        this.Storge = new Storage(cacheType)
+    }
 
+    // 首页需要执行的方法
+    _index() {
 
-
+        let _this = this;
 
 
         //给滚动条注册插件
@@ -228,17 +234,23 @@ class Layout {
                 Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
                     for (let tab of tabs) {
                         if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                            let $doc = $(tab.tabIFrame.el.contentDocument);
-                            $doc.find('html').attr('data-bs-theme', themeVal);
 
-                            //同时我们还得在iframe的子文档中再次查找iframe元素
-                            let $iframes = $doc.find('iframe');
-                            $iframes.each(function (index, item) {
-                                if (Quicktab.canAccessIFrame(item)) {
-                                    let $doc = $(item.contentDocument);
-                                    $doc.find('html').attr('data-bs-theme', themeVal);
-                                }
-                            })
+
+                            _this._setIframeTheme(tab.tabIFrame.el, themeVal)
+
+
+                            // $doc.find('html').attr('data-bs-theme', themeVal);
+                            //
+                            // //同时我们还得在iframe的子文档中再次查找iframe元素
+                            // let $iframes = $doc.find('iframe');
+                            // $iframes.each(function (index, item) {
+                            //     if (Quicktab.canAccessIFrame(item)) {
+                            //         let $doc = $(item.contentDocument);
+                            //         $doc.find('html').attr('data-bs-theme', themeVal);
+                            //     }
+                            // })
+
+
                         }
                     }
                 });
@@ -291,7 +303,6 @@ class Layout {
                 onInit: function (e) {
 
                     $('.bsa-menu a').each(function (index, a) {
-
                         if ($(a).attr('href') === Quicktab.getTabUrl(e.target.getActiveTab())) {
                             _this._scrollToA(a);
                             //结束循环，避免左侧菜单有重复的测试地址时会展开多个菜单
@@ -338,9 +349,27 @@ class Layout {
 
         //遮罩层关闭
         setTimeout(() => {
-            $('html').attr('data-bs-theme',_this.Storge.get(THEME_CACHE_KEY))
-            $('.bsa-preloader').fadeOut(_this._config.preloadDuration);
+            $('html').attr('data-bs-theme', _this.Storge.get(THEME_CACHE_KEY))
+            $(SELECTOR_PRELOADER).fadeOut(_this._config.preloadDuration);
         }, this._config.preloadDuration)
+    }
+
+
+    _setIframeTheme(iframe, theme) {
+
+        let _this = this;
+
+        if (Helper.canAccessIFrame(iframe)) {
+
+            let $doc = $(iframe.contentDocument);
+            //先给自己设置主题
+            $doc.find('html').attr('data-bs-theme', theme);
+            //再给内部的所有iframe设置主题
+            $doc.find('iframe').each(function (index, iframeEl) {
+                //递归调用，给所有的iframe设置主题
+                _this._setIframeTheme(iframeEl,theme)
+            })
+        }
     }
 
 
@@ -360,12 +389,10 @@ class Layout {
         $a.addClass('active');
         this._openMenu(a);
 
-
-        sidebarOsInstance.elements().viewport.scrollTo({ top: $a.position().top });
+        sidebarOsInstance.elements().viewport.scrollTo({top: $a.position().top});
 
 
     }
-
 
 
     // Static

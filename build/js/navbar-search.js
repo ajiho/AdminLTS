@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import Helper from './helper';
+import Helper from './util/helper'
 
 const NAME = 'NavbarSearch'
 const DATA_KEY = 'bsa.navbar-search'

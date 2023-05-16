@@ -77,10 +77,6 @@ export let libMoveMapping = [
         to: 'lib/@wangeditor'
     },
     {
-        form: 'node_modules/axios/**/*',
-        to: 'lib/axios'
-    },
-    {
         form: 'node_modules/overlayscrollbars/**/*',
         to: 'lib/overlayscrollbars'
     }

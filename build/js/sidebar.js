@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import Quicktab from 'bootstrap-quicktab';
-import Helper from './helper'
+import Helper from './util/helper'
 
 const NAME = 'Sidebar'
 const DATA_KEY = 'bsa.sidebar'
@@ -201,7 +201,12 @@ class Sidebar {
 
             let data = $element.data(DATA_KEY);
 
-            const _config = $.extend({}, Default, typeof config === 'object' ? config : $element.data());
+            let _config = $.extend({}, Default, typeof config === 'object' ? config : $element.data());
+
+
+            if (_config.animationSpeed < 150) {
+                _config.animationSpeed = 150;
+            }
 
             if (!data) {
                 //没有就new
@@ -236,7 +241,7 @@ class Sidebar {
  */
 
 $(window).on('load', () => {
-    if(Helper.isIndex()){
+    if (Helper.isIndex()) {
         $(SELECTOR_DATA_TOGGLE).each(function () {
             Sidebar._jQueryInterface.call($(this))
         })

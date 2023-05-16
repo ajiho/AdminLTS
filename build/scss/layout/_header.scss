@@ -85,7 +85,7 @@
         min-width: 100%;
       }
 
-      .card-body{
+      .card-body {
         overflow: hidden;
       }
     }
@@ -187,8 +187,8 @@
 
 
   // 主题色循环
-  @each $color in ($white,$dark,$indigo) {
-    $index: list.index(($white,$dark,$indigo), $color);
+  @each $color in ($white, $dark, $indigo) {
+    $index: list.index(($white, $dark, $indigo), $color);
     div.bsa-theme-color#{$index} {
       background-color: $color;
     }
