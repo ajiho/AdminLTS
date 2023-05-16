@@ -1,4 +1,5 @@
-<p align="center"><h1>bootstrap-admin</h1></p>
+<h1 align="center">bootstrap-admin</h1> 
+
 
 <p align="center">    
     <b>一个轻量的纯静态后台管理HTML模板</b>
