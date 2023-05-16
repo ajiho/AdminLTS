@@ -1,1 +1,0 @@
-import{_ as a,c as s,o as n,V as o}from"./chunks/framework.2d5e76c0.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/Install.md","filePath":"guide/Install.md"}'),e={name:"guide/Install.md"},t=o("",11),l=[t];function p(r,c,i,d,h,y){return n(),s("div",null,l)}const F=a(e,[["render",p]]);export{m as __pageData,F as default};

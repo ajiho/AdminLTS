@@ -1,1 +1,0 @@
-import{_ as a,c as t,o as e,V as i}from"./chunks/framework.2d5e76c0.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/License.md","filePath":"guide/License.md"}'),o={name:"guide/License.md"},r=i("",6),n=[r];function s(l,d,c,_,p,h){return e(),t("div",null,n)}const b=a(o,[["render",s]]);export{u as __pageData,b as default};
