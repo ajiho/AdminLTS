@@ -38,7 +38,7 @@ $.ajaxSetup({
 $(document).ajaxSend(function (event, xhr, options) {
     // 这里可以处理请求发送前的操作
     //开启遮罩层
-    $.loading.show({delay: 400});
+    $.loading.show();
 });
 
 

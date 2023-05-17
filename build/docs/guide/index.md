@@ -44,9 +44,10 @@ bootstrap-admin的iframe+多tab效果的驱动来源于bootstrap-admin的官方�
 
 
 
-| bootstrap-admin版本   | bootstrap版本| 
-| ---------------- |-----------------------|
-| v2.x(开发中)	 | v5.3.0-alpha3| 
+| bootstrap-admin版本 | bootstrap版本   | 
+|-------------------|---------------|
+| v1.x	             | v5.1.3        | 
+| v2.x(开发中)	        | v5.3.0-alpha3 | 
 
 
 
@@ -89,7 +90,7 @@ bootstrap-admin的iframe+多tab效果的驱动来源于bootstrap-admin的官方�
 
 
 - npm install
-- npm run production(编译css/js文件、以及压缩img文件)
+- npm run build(编译css/js文件、以及压缩img文件)
 - npm run serve(默认开启一个服务可以访问页面,端口默认9999)
 
 <img src="/npm-run-serve.png">

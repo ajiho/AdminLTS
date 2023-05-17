@@ -2,6 +2,9 @@
   "name": "bootstrap-admin",
   "description": "Open source responsive background management template based on bootstrap 5",
   "version": "1.1.0",
+  "engines": {
+    "node": ">=18.14.2"
+  },
   "scripts": {
     "docs:dev": "vitepress dev build/docs",
     "docs:build": "vitepress build build/docs",
@@ -12,7 +15,7 @@
     "css": "gulp style",
     "img": "gulp img",
     "css-fix": "gulp fix-css",
-    "production": "npm-run-all js css img",
+    "build": "npm-run-all js css img",
     "serve": "http-server . -p 9999 -c-1"
   },
   "dependencies": {
@@ -23,7 +26,7 @@
     "@ztree/ztree_v3": "^3.5.48",
     "bootstrap": "^5.3.0-alpha1",
     "bootstrap-fileinput": "^5.5.2",
-    "bootstrap-icons": "^1.9.1",
+    "bootstrap-icons": "^1.10.0",
     "bootstrap-quicktab": "^1.1.0",
     "bootstrap-table": "^1.21.1",
     "chart.js": "^3.8.0",
@@ -66,7 +69,6 @@
     "@rollup/plugin-terser": "^0.4.0",
     "@ronilaukkarinen/gulp-stylelint": "^14.1.1",
     "autoprefixer": "^10.4.13",
-    "babel-eslint": "^10.1.0",
     "del": "^7.0.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
@@ -78,6 +80,10 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "http-server": "^14.1.1",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^10.0.1",
     "lodash-es": "^4.17.21",
     "mockjs": "^1.1.0",
     "node-css-mqpacker": "^9.0.0",

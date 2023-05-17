@@ -2,7 +2,7 @@
 
 
 <p align="center">    
-    <b>一个轻量的纯静态后台管理HTML模板</b>
+    <b>基于bootstrap(5.1.3+)的纯静态通用后台管理HTML模板</b>
 </p>
 
 <p align="center">    

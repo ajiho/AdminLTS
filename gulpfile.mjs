@@ -52,9 +52,6 @@ gulp.task('lint-css', function () {
 })
 
 
-
-
-
 gulp.task('css', function () {
     return gulp.src('build/scss/**/*.scss')
         .pipe(sourcemaps.init({debug: true}))
@@ -99,11 +96,10 @@ gulp.task('fix-css', function () {
 });
 
 
-gulp.task('img', function (cb) {
+gulp.task('img', async function () {
     gulp.src('build/img/*')
-        .pipe(imagemin())
+        .pipe(await imagemin())
         .pipe(gulp.dest('dist/img'))
-    cb();
 })
 
 
