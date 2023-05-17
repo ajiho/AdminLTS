@@ -89,7 +89,7 @@ bootstrap-admin的iframe+多tab效果的驱动来源于bootstrap-admin的官方�
 您需要 Node.js/npm，然后克隆/下载 repo：
 
 
-- npm install
+- npm ci
 - npm run build(编译css/js文件、以及压缩img文件)
 - npm run serve(默认开启一个服务可以访问页面,端口默认9999)
 

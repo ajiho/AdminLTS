@@ -15,7 +15,7 @@
     "css": "gulp style",
     "img": "gulp img",
     "css-fix": "gulp fix-css",
-    "build": "npm-run-all js css img",
+    "build": "npm-run-all js css img docs:build",
     "serve": "http-server . -p 9999 -c-1"
   },
   "dependencies": {
