@@ -1,21 +1,25 @@
 version: '1.0'
+# 流水线标识，支持数字、字母(小写)、中划线、下划线，仓库内唯一
 name: master-pipeline
+# 流水线名称，支持中文、数字、字母、通用符号等，最大128个字符
 displayName: MasterPipeline
 triggers:
   trigger: auto
   push:
     # 分支匹配
     branches:
-      include:
-        - master
-    # git 提交信息匹配，匹配 build: xxxx 这样的格式
+      # 分支精准匹配
+      precise:
+        - 2.x
+    # 开启提交注释监听 只要检测到 build:xxx 这样的提交信息就触发流水线
     commitMessages:
       include:
         - '^build\:.*'
 # 引用仓库变量
 variables:
   global:
-    - TEST_VAR
+    - NPM_TOKEN
+    - VERCEL_PUBLISH
 stages:
   - name: compile
     displayName: 编译
@@ -30,4 +34,8 @@ stages:
           - '# 设置NPM源，提升安装速度'
           - npm config set registry https://registry.npmmirror.com
           - npm install -g @jsdevtools/npm-publish@1
-          - npm-publish --token=${TEST_VAR} ./package.json
+          - npm install -g vercel
+          - '# npm版本发布'
+          - npm-publish --token=${NPM_TOKEN} ./package.json
+          - '# 同时部署到vercel'
+          - ${VERCEL_PUBLISH}
