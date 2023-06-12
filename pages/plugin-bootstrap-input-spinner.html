@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+    <meta name="description" content="bootstrap-admin基于bootstrap5的免费开源的响应式后台管理模板">
+    <meta name="author" content="ajiho">
+    <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
+    <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
+</head>
+<body class="bg-body-tertiary py-3">
+<div class="container-fluid">
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    基本示例
+                </div>
+                <div class="card-body">
+                    <input type="number"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    整数演示
+                </div>
+                <div class="card-body">
+                    <input type="number" value="500" min="0" max="1000" step="10"/>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    浮点
+                </div>
+                <div class="card-body">
+                    <input type="number" value="4.5" data-decimals="2" min="0" max="9" step="0.1"/>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    键入一个数字以查看事件change和input事件之间的区别
+                </div>
+                <div class="card-body">
+                    <p>
+                        <input type="number" id="changedInput" value="2500" min="0" max="5000000" data-decimals="2"/>
+                    </p>
+                    <p>
+                        input: <span id="valueOnInput"></span><br/>
+                        change: <span id="valueOnChange"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    以编程方式更改值val()
+                </div>
+                <div class="card-body">
+                    <p>
+                        <input type="number" id="inputNet" value="100" min="0" max="10000" step="0.01"
+                               data-decimals="2"/>
+                    </p>
+                    <p>
+                        <label for="inputGross">(+19%)</label>
+                        <input type="number" id="inputGross" value="100" min="0" max="11900" step="0.01"
+                               data-decimals="2"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    属性placeholder和required
+                </div>
+                <div class="card-body">
+                    <input placeholder="Enter a number" required type="number" value="" min="-100" max="100"/>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    禁用的
+                </div>
+                <div class="card-body">
+                    <p>
+                        <input id="inputDisabled" disabled type="number" value="50"/>
+                    </p>
+                    <div class="form-check">
+                        <input type="checkbox" checked class="form-check-input" id="disabledSwitch">
+                        <label class="form-check-label" for="disabledSwitch">禁用</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    buttonsOnly模式和禁用autoInterval
+                </div>
+                <div class="card-body">
+                    <input class="buttons-only" value="5" min="1" max="10"/>
+                    <p>
+                        在buttonsOnly不允许直接文本输入的模式下，文本输入获取属性readonly。但是加号和减号按钮仍然允许更改值。
+                        autoInterval: undefined当您按住按钮时，还会禁用自动增加/减少。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    动态处理class属性
+                </div>
+                <div class="card-body">
+                    <p>
+                        <input id="inputChangeClass" class="is-valid" type="number" value="50"/>
+                    </p>
+                    <p>
+                        <label for="classInput">CSS类名</label>
+                        <input id="classInput" type="text" class="form-control test-value-input" value="is-valid"/>
+                        尝试将类名更改为 "is-invalid" 或者 "text-info".
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    尺寸
+                </div>
+                <div class="card-body">
+                    <p>
+                        <label for="inputSmall">Small</label>
+                        <input id="inputSmall" class="form-control-sm" type="number" value="0.0" data-decimals="4"
+                               min="-1" max="1" step="0.0001"/>
+                    </p>
+                    <p>
+                        <label for="inputLarge">Large</label>
+                        <input id="inputLarge" class="form-control-lg" type="number" value="1000000" data-decimals="0"
+                               min="0" max="2000000" step="1"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    动态处理min, max, step和data-decimals
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <p>
+                                <label for="minInput">min</label>
+                                <input id="minInput" type="text" class="form-control test-value-input" value="0"/>
+                            </p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>
+                                <label for="maxInput">max</label>
+                                <input id="maxInput" type="text" class="form-control test-value-input" value="100"/>
+                            </p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>
+                                <label for="stepInput">step</label>
+                                <input id="stepInput" type="text" class="form-control test-value-input" value="0.05"/>
+                            </p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>
+                                <label for="dataDecimalsInput">data-decimals</label>
+                                <input id="dataDecimalsInput" type="text" class="form-control test-value-input"
+                                       value="2"/>
+                            </p>
+                        </div>
+                    </div>
+                    <p>
+                        <label for="minMaxTester">尝试</label>
+                        <input id="minMaxTester" type="number" value="50" min="0" max="100" step="0.05"
+                               data-decimals="2"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    前缀和后缀
+                </div>
+                <div class="card-body">
+                    <p>
+                        <label for="inputPrefix">前缀</label>
+                        <input id="inputPrefix" data-prefix="$" value="100.0" data-decimals="2" min="0" max="1000"
+                               step="0.1" type="number"/>
+                    </p>
+                    <p>
+                        <label for="inputSuffix">后缀</label>
+                        <input id="inputSuffix" data-suffix="°C" value="50" min="0" max="100" type="number"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    循环值
+                </div>
+                <div class="card-body">
+                    <input type="number" id="inputLoop" value="0" data-decimals="0" min="-10" max="360" step="10"/>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    自定义编辑器
+                </div>
+                <div class="card-body">
+                    <h4>RawEditor</h4>
+
+                    <p>
+                        最简单的自定义编辑器是RawEditor，它只呈现值并只解析值，没有任何更改，就像本机数字输入一样。没有国际化，没有数字分组。
+                    <p>
+                        <input id="rawEditor" value="1000"/>
+                    </p>
+                    <h4>TimeEditor</h4>
+
+                    <p>
+                        将TimeEditor数字呈现为以小时和分钟为单位的时间，以冒号分隔。
+                    </p>
+                    <input id="timeEditor" value="60" step="5"/>
+                    <div class="mt-1">value: <span id="timeValue"></span></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    自定义模板
+                </div>
+                <div class="card-body">
+                    <input data-prefix="¥" id="templateButtonsRight" value="1000"/>
+
+                    <p>你可以在模板中使用以下变量</p>
+                    <ul>
+                        <li>${groupClass}</li>
+                        <li>${textAlign}</li>
+                        <li>${buttonsWidth}</li>
+                        <li>${buttonsClass}</li>
+                        <li>${decrementButton}</li>
+                        <li>${incrementButton}</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--回到顶部开始-->
+    <a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+    <!--回到顶部结束-->
+
+</div>
+
+<script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/jquery/dist/jquery.min.js"></script>
+<script src="../lib/bootstrap-input-spinner/src/bootstrap-input-spinner.js"></script>
+<script src="../lib/bootstrap-input-spinner/src/custom-editors.js"></script>
+<script src="../dist/js/bootstrap-admin.min.js"></script>
+<script src="../dist/js/app.js"></script>
+<script>
+    $(document).ready(function (e) {
+        $("input[type='number']").inputSpinner();
+
+
+        //======================================
+        let $changedInput = $("#changedInput")
+        let $valueOnInput = $("#valueOnInput")
+        let $valueOnChange = $("#valueOnChange")
+        $changedInput.on("input", function (event) {
+            console.log("on input", event)
+            $valueOnInput.html($(event.target).val())
+            // or $valueOnInput.html(event.target.value) // 在原生js里
+            // or $valueOnInput.html($changedInput.val())
+        })
+        $changedInput.on("change", function (event) {
+            console.log("on change", event)
+            $valueOnChange.html($(event.target).val())
+        })
+
+
+        //===============================
+        let $inputNet = $("#inputNet")
+        let $inputGross = $("#inputGross")
+        $inputNet.on("input", function (event) {
+            $inputGross.val($(event.target).val() * 1.19)
+        })
+        $inputGross.on("input", function (event) {
+            $inputNet.val($(event.target).val() / 1.19)
+        })
+        $inputGross.val($inputNet.val() * 1.19)
+
+
+        //==============================
+        let $inputDisabled = $("#inputDisabled")
+        let $disabledSwitch = $("#disabledSwitch")
+        $disabledSwitch.on("change", function () {
+            $inputDisabled.prop("disabled", $(this).prop("checked"))
+        })
+
+
+        //=====================
+        $(".buttons-only").inputSpinner({buttonsOnly: true, autoInterval: undefined})
+
+
+        //======================
+        let $inputChangeClass = $("#inputChangeClass")
+        let $classInput = $("#classInput")
+        $classInput.on("input", function () {
+            $inputChangeClass.prop("class", this.value)
+        })
+
+
+        //===============================
+        let $minInput = $("#minInput")
+        let $maxInput = $("#maxInput")
+        let $stepInput = $("#stepInput")
+        let $dataDecimalsInput = $("#dataDecimalsInput")
+        let $minMaxTester = $("#minMaxTester")
+        $minInput.on("change", function (event) {
+            console.log("on change", event)
+            $minMaxTester.attr("min", $minInput.val())
+        })
+        $maxInput.on("change", function (event) {
+            console.log("on change", event)
+            $minMaxTester.attr("max", $maxInput.val())
+        })
+        $stepInput.on("change", function (event) {
+            console.log("on change", event)
+            $minMaxTester.attr("step", $stepInput.val())
+        })
+        $dataDecimalsInput.on("change", function (event) {
+            console.log("on change", event)
+            $minMaxTester.attr("data-decimals", $dataDecimalsInput.val())
+        })
+
+
+        //===============================
+        let $inputLoop = $("#inputLoop")
+        $inputLoop.on("input", function (ignored) {
+            let value = $inputLoop.val()
+            value = (value < 0) ? 360 + parseInt(value, 10) : value % 360
+            $inputLoop.val(value)
+        })
+
+
+        //======================
+        $("#rawEditor").inputSpinner({editor: customEditors.RawEditor})
+
+        let $timeEditorInput = $("#timeEditor")
+        $timeEditorInput.inputSpinner({editor: customEditors.TimeEditor})
+        $("#timeValue").text($timeEditorInput.val())
+        $timeEditorInput.on("input", function () {
+            $("#timeValue").text($timeEditorInput.val())
+        })
+
+
+        //=====================
+        $("#templateButtonsRight").inputSpinner({
+            template:
+                '<div class="input-group ${groupClass}">' +
+                '<input type="text" inputmode="decimal" style="text-align: ${textAlign}" class="form-control"/>' +
+                '<button style="min-width: ${buttonsWidth}" class="btn btn-decrement ${buttonsClass}" type="button">${decrementButton}</button>' +
+                '<button style="min-width: ${buttonsWidth}" class="btn btn-increment ${buttonsClass}" type="button">${incrementButton}</button>' +
+                '</div>'
+        })
+
+    })
+
+</script>
+</body>
+</html>

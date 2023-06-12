@@ -16,22 +16,30 @@
 <body class="bg-body-tertiary py-3">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
+        <div class="card-header bg-body">
+            sweetalert2插件演示
+        </div>
         <div class="card-body">
-            <h5 class="card-title">sweetalert2插件演示</h5>
-            <hr>
-            <button class="btn btn-success btn1">成功通知</button>
-            <button class="btn btn-success btn2">警报通知</button>
-            <button class="btn btn-success btn3">细小的错误toast通知</button>
-            <button class="btn btn-success btn4">敏感操作时的对话框</button>
+            <div class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-success btn1">成功通知</button>
+                <button class="btn btn-success btn2">警报通知</button>
+                <button class="btn btn-success btn3">细小的错误toast通知</button>
+                <button class="btn btn-success btn4">敏感操作时的对话框</button>
+            </div>
         </div>
     </div>
 </div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
+
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
 <script src="../lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
     $(function () {
@@ -63,7 +71,7 @@
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 30000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)

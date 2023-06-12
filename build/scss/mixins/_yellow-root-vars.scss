@@ -1,0 +1,55 @@
+@mixin yellow-root-vars {
+
+  @include color-mode("yellow", true) {
+
+    // scss-docs-start root-dark-mode-vars
+    --#{$prefix}body-color: #{$body-color-yellow};
+    --#{$prefix}body-color-rgb: #{to-rgb($body-color-yellow)};
+    --#{$prefix}body-bg: #{$body-bg-yellow};
+    --#{$prefix}body-bg-rgb: #{to-rgb($body-bg-yellow)};
+
+    --#{$prefix}emphasis-color: #{$body-emphasis-color-yellow};
+    --#{$prefix}emphasis-color-rgb: #{to-rgb($body-emphasis-color-yellow)};
+
+    --#{$prefix}secondary-color: #{$body-secondary-color-yellow};
+    --#{$prefix}secondary-color-rgb: #{to-rgb($body-secondary-color-yellow)};
+    --#{$prefix}secondary-bg: #{$body-secondary-bg-yellow};
+    --#{$prefix}secondary-bg-rgb: #{to-rgb($body-secondary-bg-yellow)};
+
+    --#{$prefix}tertiary-color: #{$body-tertiary-color-yellow};
+    --#{$prefix}tertiary-color-rgb: #{to-rgb($body-tertiary-color-yellow)};
+    --#{$prefix}tertiary-bg: #{$body-tertiary-bg-yellow};
+    --#{$prefix}tertiary-bg-rgb: #{to-rgb($body-tertiary-bg-yellow)};
+
+    @each $color, $value in $theme-colors-text-yellow {
+      --#{$prefix}#{$color}-text-emphasis: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-bg-subtle-yellow {
+      --#{$prefix}#{$color}-bg-subtle: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-border-subtle-yellow {
+      --#{$prefix}#{$color}-border-subtle: #{$value};
+    }
+
+    --#{$prefix}heading-color: #{$headings-color-yellow};
+
+    --#{$prefix}link-color: #{$link-color-yellow};
+    --#{$prefix}link-hover-color: #{$link-hover-color-yellow};
+    --#{$prefix}link-color-rgb: #{to-rgb($link-color-yellow)};
+    --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover-color-yellow)};
+
+    --#{$prefix}code-color: #{$code-color-yellow};
+
+    --#{$prefix}border-color: #{$border-color-yellow};
+    --#{$prefix}border-color-translucent: #{$border-color-translucent-yellow};
+
+    --#{$prefix}form-valid-color: #{$form-valid-color-yellow};
+    --#{$prefix}form-valid-border-color: #{$form-valid-border-color-yellow};
+    --#{$prefix}form-invalid-color: #{$form-invalid-color-yellow};
+    --#{$prefix}form-invalid-border-color: #{$form-invalid-border-color-yellow};
+    // scss-docs-end root-dark-mode-vars
+  }
+
+}

@@ -1,0 +1,30 @@
+@mixin scrollbar {
+  * {
+    scrollbar-color: rgba(var(--bs-tertiary-color-rgb), .18) var(--bs-light-bg-subtle);
+    scrollbar-width: thin;
+  }
+
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+  }
+
+  // 滑块的颜色
+  ::-webkit-scrollbar-thumb {
+    background: rgba(var(--bs-tertiary-color-rgb), .18);
+  }
+
+  // 轨道的颜色
+  ::-webkit-scrollbar-track {
+    background: var(--bs-light-bg-subtle);
+  }
+
+  // 拐角的背景色
+  ::-webkit-scrollbar-corner {
+    background-color: var(--bs-light-bg-subtle);
+  }
+
+}
+

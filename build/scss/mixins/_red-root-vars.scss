@@ -1,0 +1,55 @@
+@mixin red-root-vars {
+
+  @include color-mode("red", true) {
+
+    // scss-docs-start root-dark-mode-vars
+    --#{$prefix}body-color: #{$body-color-red};
+    --#{$prefix}body-color-rgb: #{to-rgb($body-color-red)};
+    --#{$prefix}body-bg: #{$body-bg-red};
+    --#{$prefix}body-bg-rgb: #{to-rgb($body-bg-red)};
+
+    --#{$prefix}emphasis-color: #{$body-emphasis-color-red};
+    --#{$prefix}emphasis-color-rgb: #{to-rgb($body-emphasis-color-red)};
+
+    --#{$prefix}secondary-color: #{$body-secondary-color-red};
+    --#{$prefix}secondary-color-rgb: #{to-rgb($body-secondary-color-red)};
+    --#{$prefix}secondary-bg: #{$body-secondary-bg-red};
+    --#{$prefix}secondary-bg-rgb: #{to-rgb($body-secondary-bg-red)};
+
+    --#{$prefix}tertiary-color: #{$body-tertiary-color-red};
+    --#{$prefix}tertiary-color-rgb: #{to-rgb($body-tertiary-color-red)};
+    --#{$prefix}tertiary-bg: #{$body-tertiary-bg-red};
+    --#{$prefix}tertiary-bg-rgb: #{to-rgb($body-tertiary-bg-red)};
+
+    @each $color, $value in $theme-colors-text-red {
+      --#{$prefix}#{$color}-text-emphasis: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-bg-subtle-red {
+      --#{$prefix}#{$color}-bg-subtle: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-border-subtle-red {
+      --#{$prefix}#{$color}-border-subtle: #{$value};
+    }
+
+    --#{$prefix}heading-color: #{$headings-color-red};
+
+    --#{$prefix}link-color: #{$link-color-red};
+    --#{$prefix}link-hover-color: #{$link-hover-color-red};
+    --#{$prefix}link-color-rgb: #{to-rgb($link-color-red)};
+    --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover-color-red)};
+
+    --#{$prefix}code-color: #{$code-color-red};
+
+    --#{$prefix}border-color: #{$border-color-red};
+    --#{$prefix}border-color-translucent: #{$border-color-translucent-red};
+
+    --#{$prefix}form-valid-color: #{$form-valid-color-red};
+    --#{$prefix}form-valid-border-color: #{$form-valid-border-color-red};
+    --#{$prefix}form-invalid-color: #{$form-invalid-color-red};
+    --#{$prefix}form-invalid-border-color: #{$form-invalid-border-color-red};
+    // scss-docs-end root-dark-mode-vars
+  }
+
+}

@@ -11,7 +11,10 @@ const NAME = 'Layout'
 const DATA_KEY = 'bsa.layout'
 const THEME_CACHE_KEY = 'theme'
 const SELECTOR_QUICKTAB = '.qtab'
+
+const SELECTOR_BACK_TO_TOP = '.bsa-back-to-top'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
+
 
 //用于实现密码点击显示/隐藏
 const SELECTOR_LOGIN_PASSWORD = '.bsa-show_hide_password span'
@@ -27,6 +30,8 @@ const Default = {
     preloadDuration: 800,
     //tab页面是否适配主题
     tabPageEnableTheme: true,
+    //默认主题
+    theme: 'light',
     //主题的保存方式  sessionStorage,localStorage
     themeCacheType: 'localStorage'
 }
@@ -50,7 +55,6 @@ class Layout {
         if (Helper.isIndex()) {
             document.documentElement.requestFullscreen();
         }
-
     }
 
     exitFullscreen() {
@@ -126,8 +130,68 @@ class Layout {
             });
         }
 
-    }
 
+        //布局1的js逻辑
+        $(document).on('click', '.bsa-layout1-left .bsa-chevron-toggle', function (e) {
+            e.preventDefault();
+            let w = $(window).width();
+            if (w < 992) {
+                $('.bsa-layout1-left').toggleClass('open')
+            } else {
+                $('.bsa-layout1').toggleClass('collapsed')
+            }
+        })
+
+        // 布局2的左侧js逻辑
+        $(document).on('click', '.bsa-layout2-left .bsa-chevron-toggle', function (e) {
+            e.preventDefault();
+            let w = $(window).width();
+            if (w < 992) {
+                $('.bsa-layout2-right').removeClass('right-open')
+                $('.bsa-layout2-left').toggleClass('left-open')
+            } else {
+                $('.bsa-layout2').toggleClass('left-collapsed')
+            }
+        })
+
+        // 布局2的右侧js逻辑
+        $(document).on('click', '.bsa-layout2-right .bsa-chevron-toggle', function (e) {
+            e.preventDefault();
+            let w = $(window).width();
+            if (w < 992) {
+                $('.bsa-layout2-left').removeClass('left-open')
+                $('.bsa-layout2-right').toggleClass('right-open')
+            } else {
+                $('.bsa-layout2').toggleClass('right-collapsed')
+            }
+        })
+
+
+        // 布局3的逻辑部分
+        $(document).on('click', '.bsa-layout3-right .bsa-chevron-toggle', function (e) {
+            e.preventDefault();
+            let w = $(window).width();
+            if (w < 992) {
+                $('.bsa-layout3-right').toggleClass('open')
+            } else {
+                $('.bsa-layout3').toggleClass('collapsed')
+            }
+        })
+
+
+        //回到顶部逻辑部分
+        $(window).on('scroll', function () {
+            $(this).scrollTop() > 300 ? $(SELECTOR_BACK_TO_TOP).fadeIn() : $(SELECTOR_BACK_TO_TOP).fadeOut();
+        })
+
+        $(SELECTOR_BACK_TO_TOP).on('click', function () {
+            $('html').animate({
+                scrollTop: 0
+            }, 600)
+        })
+
+
+    }
 
     _cacheInit() {
 
@@ -158,7 +222,6 @@ class Layout {
                 OverlayScrollbarsGlobal.SizeObserverPlugin,
                 OverlayScrollbarsGlobal.ClickScrollPlugin
             ]);
-
         }
 
 
@@ -177,8 +240,6 @@ class Layout {
                 autoHideDelay: _this._config.scrollbarAutoHideDelay,
             }
         });
-
-        // console.log(sidebarOsInstance)
 
 
         //头部下拉菜单滚动条
@@ -217,44 +278,50 @@ class Layout {
         })
 
 
-        //主题切换
-        $(document).on('click', 'div[class^=bsa-theme-color]', function (e) {
-            e.preventDefault();
-            let themeVal = Array.from(this.classList).at(-1);
+        //处理主题色的复选框
+        $('.bsa-theme-switcher-wrapper input[type="checkbox"]').click(function () {
+            // 如果当前复选框被选中
+            if ($(this).is(':checked')) {
 
-            //存入缓存
-            _this.Storge.set(THEME_CACHE_KEY, String(themeVal))
+                let theme = $(this).attr('value');
 
-            //修改主题
-            $('html').attr('data-bs-theme', themeVal);
+                // 取消其他复选框的选中状态
+                $('.bsa-theme-switcher-wrapper input[type="checkbox"]').not(this).prop('checked', false);
 
+                //存入缓存
+                _this.Storge.set(THEME_CACHE_KEY, theme)
 
-            //tab内部也需要修改主题
-            if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
-                Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
-                    for (let tab of tabs) {
-                        if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
+                //修改主题
+                $('html').attr('data-bs-theme', theme);
 
 
-                            _this._setIframeTheme(tab.tabIFrame.el, themeVal)
-
-
-                            // $doc.find('html').attr('data-bs-theme', themeVal);
-                            //
-                            // //同时我们还得在iframe的子文档中再次查找iframe元素
-                            // let $iframes = $doc.find('iframe');
-                            // $iframes.each(function (index, item) {
-                            //     if (Quicktab.canAccessIFrame(item)) {
-                            //         let $doc = $(item.contentDocument);
-                            //         $doc.find('html').attr('data-bs-theme', themeVal);
-                            //     }
-                            // })
-
-
+                //tab内部也需要修改主题
+                if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
+                    Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
+                        for (let tab of tabs) {
+                            if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
+                                _this._setIframeTheme(tab.tabIFrame.el, theme)
+                            }
                         }
-                    }
-                });
+                    });
+                }
 
+
+            } else {
+
+
+                _this.Storge.remove(THEME_CACHE_KEY);
+                $('html').attr('data-bs-theme', _this._config.theme)
+                //tab内部也需要修改主题
+                if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
+                    Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
+                        for (let tab of tabs) {
+                            if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
+                                _this._setIframeTheme(tab.tabIFrame.el, _this._config.theme)
+                            }
+                        }
+                    });
+                }
             }
         });
 
@@ -338,20 +405,63 @@ class Layout {
                 onTabLoaded: function (tab) {
                     //是否启用主题适配子页面
                     if (_this._config.tabPageEnableTheme === true) {
+
                         if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                            $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', _this.Storge.get(THEME_CACHE_KEY));
+
+                            let theme = _this.Storge.get(THEME_CACHE_KEY)
+
+                            if (theme === null) {
+                                $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', _this._config.theme);
+                            } else {
+                                $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', theme);
+                            }
                         }
+
                     }
                 }
             });
         }
 
 
+        // 监听头部几个下拉菜单的事件
+        const myDropdown = document.querySelectorAll('.bsa-header [data-bs-toggle="dropdown"]');
+        myDropdown.forEach(function (el) {
+            el.addEventListener('hidden.bs.dropdown', event => {
+                _this._hasShowMenu();
+            })
+
+            el.addEventListener('shown.bs.dropdown', event => {
+                _this._hasShowMenu();
+            })
+
+
+        })
+
         //遮罩层关闭
         setTimeout(() => {
-            $('html').attr('data-bs-theme', _this.Storge.get(THEME_CACHE_KEY))
+
+            let theme = _this.Storge.get(THEME_CACHE_KEY)
+            if (theme === null) {
+                //设置主题
+                $('html').attr('data-bs-theme', _this._config.theme)
+            } else {
+                //让主题色选中
+                $(`.bsa-theme-switcher-wrapper input[type="checkbox"][value=${theme}]`).prop('checked', true);
+                //设置主题
+                $('html').attr('data-bs-theme', theme)
+            }
             $(SELECTOR_PRELOADER).fadeOut(_this._config.preloadDuration);
         }, this._config.preloadDuration)
+    }
+
+
+    _hasShowMenu() {
+        let len = document.querySelectorAll('.bsa-header .dropdown-menu.show').length;
+        if (len) {
+            $('.bsa-content').addClass('pe-none');
+        } else {
+            $('.bsa-content').removeClass('pe-none');
+        }
     }
 
 
@@ -367,7 +477,7 @@ class Layout {
             //再给内部的所有iframe设置主题
             $doc.find('iframe').each(function (index, iframeEl) {
                 //递归调用，给所有的iframe设置主题
-                _this._setIframeTheme(iframeEl,theme)
+                _this._setIframeTheme(iframeEl, theme)
             })
         }
     }
@@ -384,12 +494,12 @@ class Layout {
     }
 
     _scrollToA(a) {
-        let $a = $(a);
 
-        $a.addClass('active');
+
+        $(a).addClass('active');
         this._openMenu(a);
-
-        sidebarOsInstance.elements().viewport.scrollTo({top: $a.position().top});
+        //bug: 用a.offsetTop 代替 $(a).position().top 避免 后者它有时候会得到0的结果
+        sidebarOsInstance.elements().viewport.scrollTo({top: a.offsetTop})
 
 
     }

@@ -1,86 +1,60 @@
 //================封装的公共方法===============================
 
-
-/**
- * 在modal框中新打开一个窗口用于添加数据
- * @param url 路由地址
- * @param title 模态框标题，不填默认为url地址
- * @private
- */
-function _open(url, title = '') {
-    $.modal({
-        url: url,
-        title: title,
-        //禁用掉底部的按钮区域
-        buttons: [],
-        modalDialogClass:'modal-dialog-centered modal-lg'
-    })
-}
+// 这里可以存你自己封装的一些公共函数
 
 //=================================================
 
+//一些全局插件的统一配置
+$.loading.default.type = 'border';
+$.loading.default.color = 'success';
 
-// Tips:开发技巧,建议后端统一返回格式:{code:403 msg:'登录过期,重新登录' data:[]}
 
-// 统一设置
+/**
+ * ajax的一些统一处理
+ * Tips:建议后端对于ajax请求返回统一json格式,方便我们处理业务逻辑
+ * 这里的状态码是我们自己的业务上的code,不是http请求的status那个code
+ * 比如:
+ * {code:403 msg:'登录过期,重新登录' data:[]}
+ * {code:200 msg:'' data:[{...},{...}]}
+ * {code:10001 msg:'文章缩略图上传错误' data:[]}
+ * 这样我们只要检测到403我们就直接返回登录页
+ */
+
+//发送ajax前的统一设置
 $.ajaxSetup({
-    timeout: 5000, //超时时间:5秒
+  //超时时间:5秒
+  timeout: 5000,
+  //请求头添加参数
+  headers: {
     //请求头防止csrf攻击(参考php框架laravel)
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    //返回类型(这里设置后页面上的就可以不用设置了)
-    dataType: 'json'
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  },
+  //统一返回类型
+  dataType: 'json'
 });
 
 
-// 添加全局 AJAX 事件处理器
+//发送ajax前回调
 $(document).ajaxSend(function (event, xhr, options) {
-    // 这里可以处理请求发送前的操作
-    //开启遮罩层
-    $.loading.show();
+  //可以加你自己的处理逻辑
 });
 
 
+//ajax请求成功时回调
 $(document).ajaxSuccess(function (event, xhr, options) {
-    // 这里可以处理请求成功返回的操作，参数 xhr 是 XMLHttpRequest 对象，options 是 AJAX 请求选项对象
-    let response = JSON.parse(xhr.responseText);
-
-    switch (response.code) {
-        case 200://请求正确,这里根据选择要不要给出什么提示信息
-            console.log(response.msg)
-            break;
-
-        case 403://登录过期,跳转到登录页面
-            location.replace('/login');
-            break;
-
-        default://其它报错只给提示
-            console.log("错误:" + response.msg)
-            return false;
-    }
-
+  //可以加你自己的处理逻辑
 });
 
 
+//ajax请求失败时回调
 $(document).ajaxError(function (event, xhr, options, thrownError) {
-    // 这里可以处理请求失败的操作，参数 thrownError 是捕获到的错误
-    console.log('ajaxError')
+  //可以加你自己的处理逻辑
 });
 
 
-// 可选添加请求结束后的总体处理
+// ajax请求结束,成功失败都会执行
 $(document).ajaxComplete(function (event, xhr, options) {
-
-    // 这里可以处理所有请求完成的操作(比如我们可以关闭遮罩层、让form表单恢复重置等,在这里设置就不需要在ajaxError,ajaxSuccess写两遍了)
-
-    //请求完毕后关闭loading层
-    $.loading.hide();
-
-    //请求结束后 让formValidation表单验证插件的提交按钮变成可点击
-    // $('form').formValidation('disableSubmitButtons', false)
-    //如果要同时重置表单把注释打开
-    // $(form).formValidation('resetForm', true)
+  //可以加你自己的处理逻辑
 
 });
 

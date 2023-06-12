@@ -10,7 +10,7 @@
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../lib/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css"/>
+    <link rel="stylesheet" href="../lib/@eonasdan/tempus-dominus/dist/css/tempus-dominus.css"/>
     <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
     <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
 </head>
@@ -54,9 +54,11 @@
 
             <div class="row">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="开始时间" name="begintime" aria-label="begintime" id="datetimepicker6">
+                    <input type="text" class="form-control" placeholder="开始时间" name="begintime"
+                           aria-label="begintime" id="datetimepicker6">
                     <span class="input-group-text"><i class="bi bi-arrow-left-right"></i></span>
-                    <input type="text" class="form-control" placeholder="结束时间" name="endtime" aria-label="endtime" id="datetimepicker7">
+                    <input type="text" class="form-control" placeholder="结束时间" name="endtime" aria-label="endtime"
+                           id="datetimepicker7">
                 </div>
 
             </div>
@@ -65,18 +67,20 @@
         </div>
     </div>
 </div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
+
+
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
-
 <!--/插件放置区域-->
-
-
 <script src="../lib/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="../lib/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js"></script>
-<script src="../lib/moment/min/moment.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
     //年份选择
@@ -428,7 +432,7 @@
             },
         }
     });
-    
+
     td6.subscribe(tempusDominus.Namespace.events.change, (e) => {
         td7.updateOptions({
             restrictions: {

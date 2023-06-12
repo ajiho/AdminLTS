@@ -17,11 +17,10 @@
 <body class="bg-body-tertiary py-3">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
+        <div class="card-header bg-body">
+            croppie头像裁剪插件
+        </div>
         <div class="card-body">
-            <h5 class="card-title">croppie头像裁剪插件</h5>
-            <h6 class="card-subtitle mb-2 text-muted">可用于更换后台管理人员头像</h6>
-            <hr>
-
             <img src="../dist/img/avatar.jpg" alt="Admin"
                  class="rounded-circle   bsa-wh-100 bsa-cursor-pointer"
                  data-bs-toggle="modal"
@@ -29,6 +28,10 @@
         </div>
     </div>
 </div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
+
 
 <!-- 头像裁剪Modal -->
 <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -47,14 +50,14 @@
                     </div>
                     <div class="col d-none d-sm-block">
                         <div class="d-flex flex-column align-items-center ">
-                            <span class="text-muted">预览</span>
+                            <span class="">预览</span>
                             <img id="img1" src="../dist/img/avatar.jpg"
                                  class="mt-3 rounded-circle bsa-wh-100">
-                            <span class="text-muted mt-3">100x100</span>
+                            <span class=" mt-3">100x100</span>
                             <img id="img2" src="../dist/img/avatar.jpg"
                                  class="mt-3 rounded-circle bsa-wh-50">
 
-                            <span class="text-muted">50x50</span>
+                            <span class="">50x50</span>
                         </div>
                     </div>
                 </div>
@@ -85,6 +88,7 @@
 <script src="../lib/croppie/croppie.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
 

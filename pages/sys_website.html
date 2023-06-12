@@ -16,9 +16,10 @@
 <body class="bg-body-tertiary py-3">
 <div class="container-fluid">
     <div class="card border-0 shadow-sm">
+        <div class="card-header bg-body">
+            网站设置
+        </div>
         <div class="card-body">
-            <h5 class="card-title">网站设置</h5>
-            <hr>
             <div class="row">
                 <div class="col-12">
                     <form id="form">
@@ -31,7 +32,7 @@
                         <div class="row mb-3">
                             <label for="domain" class="col-sm-2 col-form-label text-sm-end">网站域名</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="domain" name="domain" value="http://www.bootstrap-admin.com">
+                                <input type="text" class="form-control" id="domain" name="domain" value="http://www.bootstrap-admin.top">
                             </div>
                         </div>
 
@@ -102,6 +103,10 @@
         </div>
     </div>
 </div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
+
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
@@ -110,6 +115,7 @@
 <script src="../lib/formvalidation/js/language/zh_CN.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
     //前端表单验证

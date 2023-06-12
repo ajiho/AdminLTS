@@ -27,6 +27,7 @@
       display: none;
 
       &.open {
+        border-bottom: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
         position: absolute;
         top: 0;
         left: 0;
@@ -175,22 +176,92 @@
 
   }
 
-  // 主题色
-  div[class^="bsa-theme-color"] {
+}
+
+
+// 主题色
+.bsa-theme-switcher-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+
+  input[type="checkbox"] {
+    cursor: pointer;
+    position: relative;
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    background: #ccc;
-    cursor: pointer;
-    border: var(--bs-border-width) solid var(--bs-border-color);
-  }
+    font-size: .9rem;
+    visibility: hidden;
+
+    &::after {
+      position: absolute;
+      background-color: #ccc;
+      width: 30px;
+      height: 30px;
+      visibility: visible;
+      content: " ";
+      border: var(--bs-border-width) solid var(--bs-border-color);
+      border-radius: 50%;
+    }
+
+    &:checked::after {
+      content: "✓";
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
 
-  // 主题色循环
-  @each $color in ($white, $dark, $indigo) {
-    $index: list.index(($white, $dark, $indigo), $color);
-    div.bsa-theme-color#{$index} {
-      background-color: $color;
+    &[value="light"]::after {
+      background-color: #fff;
+    }
+
+    &[value="light"]:checked::after {
+      color: var(--bs-body-color);
+    }
+
+    &[value="dark"]::after {
+      background-color: #212529;
+    }
+
+    &[value="indigo"]::after {
+      background-color: #6610f2;
+    }
+
+    &[value="green"]::after {
+      background-color: #198754;
+    }
+
+    &[value="blue"]::after {
+      background-color: #0d6efd;
+    }
+
+    &[value="yellow"]::after {
+      background-color: #ffc107;
+    }
+
+    &[value="orange"]::after {
+      background-color: #fd7e14;
+    }
+
+    &[value="teal"]::after {
+      background-color: #20c997;
+    }
+
+    &[value="cyan"]::after {
+      background-color: #0dcaf0;
+    }
+
+    &[value="pink"]::after {
+      background-color: #d63384;
+    }
+
+    &[value="red"]::after {
+      background-color: #dc3545;
     }
   }
 }

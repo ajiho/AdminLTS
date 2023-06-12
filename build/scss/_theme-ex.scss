@@ -1,3 +1,5 @@
+@include scrollbar();
+
 // 官方默认黑色主题适配
 @include color-mode("dark", true) {
   .dropdown-menu {
@@ -5,8 +7,8 @@
     --#{$prefix}dropdown-link-active-bg: #{$gray-700};
   }
 
-  @include quicktab-nav-pill ();
-  @include sidebar-menu ();
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
 }
 
 
@@ -50,7 +52,80 @@
   }
 
 
-  @include quicktab-nav-pill ();
-  @include sidebar-menu ();
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
 
+}
+
+
+@include color-mode("green", true) {
+  .dropdown-menu {
+    --#{$prefix}dropdown-link-active-bg: #{$green-700};
+  }
+
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
+}
+
+@include color-mode("blue", true) {
+  .dropdown-menu {
+    --#{$prefix}dropdown-link-active-bg: #{$blue-700};
+  }
+
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
+}
+
+@include color-mode("yellow", true) {
+  .dropdown-menu {
+    --#{$prefix}dropdown-link-active-bg: #{$yellow-700};
+  }
+
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
+}
+
+@include color-mode("pink", true) {
+  .dropdown-menu {
+    --#{$prefix}dropdown-link-active-bg: #{$pink-700};
+  }
+
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
+}
+
+@include color-mode("red", true) {
+  .dropdown-menu {
+    --#{$prefix}dropdown-link-active-bg: #{$red-700};
+  }
+
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
+}
+
+@include color-mode("teal", true) {
+  .dropdown-menu {
+    --#{$prefix}dropdown-link-active-bg: #{$teal-700};
+  }
+
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
+}
+
+@include color-mode("orange", true) {
+  .dropdown-menu {
+    --#{$prefix}dropdown-link-active-bg: #{$orange-700};
+  }
+
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
+}
+
+@include color-mode("cyan", true) {
+  .dropdown-menu {
+    --#{$prefix}dropdown-link-active-bg: #{$cyan-700};
+  }
+
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
 }

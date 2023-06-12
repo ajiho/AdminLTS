@@ -1,0 +1,55 @@
+@mixin green-root-vars {
+
+  @include color-mode("green", true) {
+
+    // scss-docs-start root-dark-mode-vars
+    --#{$prefix}body-color: #{$body-color-green};
+    --#{$prefix}body-color-rgb: #{to-rgb($body-color-green)};
+    --#{$prefix}body-bg: #{$body-bg-green};
+    --#{$prefix}body-bg-rgb: #{to-rgb($body-bg-green)};
+
+    --#{$prefix}emphasis-color: #{$body-emphasis-color-green};
+    --#{$prefix}emphasis-color-rgb: #{to-rgb($body-emphasis-color-green)};
+
+    --#{$prefix}secondary-color: #{$body-secondary-color-green};
+    --#{$prefix}secondary-color-rgb: #{to-rgb($body-secondary-color-green)};
+    --#{$prefix}secondary-bg: #{$body-secondary-bg-green};
+    --#{$prefix}secondary-bg-rgb: #{to-rgb($body-secondary-bg-green)};
+
+    --#{$prefix}tertiary-color: #{$body-tertiary-color-green};
+    --#{$prefix}tertiary-color-rgb: #{to-rgb($body-tertiary-color-green)};
+    --#{$prefix}tertiary-bg: #{$body-tertiary-bg-green};
+    --#{$prefix}tertiary-bg-rgb: #{to-rgb($body-tertiary-bg-green)};
+
+    @each $color, $value in $theme-colors-text-green {
+      --#{$prefix}#{$color}-text-emphasis: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-bg-subtle-green {
+      --#{$prefix}#{$color}-bg-subtle: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-border-subtle-green {
+      --#{$prefix}#{$color}-border-subtle: #{$value};
+    }
+
+    --#{$prefix}heading-color: #{$headings-color-green};
+
+    --#{$prefix}link-color: #{$link-color-green};
+    --#{$prefix}link-hover-color: #{$link-hover-color-green};
+    --#{$prefix}link-color-rgb: #{to-rgb($link-color-green)};
+    --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover-color-green)};
+
+    --#{$prefix}code-color: #{$code-color-green};
+
+    --#{$prefix}border-color: #{$border-color-green};
+    --#{$prefix}border-color-translucent: #{$border-color-translucent-green};
+
+    --#{$prefix}form-valid-color: #{$form-valid-color-green};
+    --#{$prefix}form-valid-border-color: #{$form-valid-border-color-green};
+    --#{$prefix}form-invalid-color: #{$form-invalid-color-green};
+    --#{$prefix}form-invalid-border-color: #{$form-invalid-border-color-green};
+    // scss-docs-end root-dark-mode-vars
+  }
+
+}

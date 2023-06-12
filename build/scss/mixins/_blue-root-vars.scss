@@ -1,0 +1,55 @@
+@mixin blue-root-vars {
+
+  @include color-mode("blue", true) {
+
+    // scss-docs-start root-dark-mode-vars
+    --#{$prefix}body-color: #{$body-color-blue};
+    --#{$prefix}body-color-rgb: #{to-rgb($body-color-blue)};
+    --#{$prefix}body-bg: #{$body-bg-blue};
+    --#{$prefix}body-bg-rgb: #{to-rgb($body-bg-blue)};
+
+    --#{$prefix}emphasis-color: #{$body-emphasis-color-blue};
+    --#{$prefix}emphasis-color-rgb: #{to-rgb($body-emphasis-color-blue)};
+
+    --#{$prefix}secondary-color: #{$body-secondary-color-blue};
+    --#{$prefix}secondary-color-rgb: #{to-rgb($body-secondary-color-blue)};
+    --#{$prefix}secondary-bg: #{$body-secondary-bg-blue};
+    --#{$prefix}secondary-bg-rgb: #{to-rgb($body-secondary-bg-blue)};
+
+    --#{$prefix}tertiary-color: #{$body-tertiary-color-blue};
+    --#{$prefix}tertiary-color-rgb: #{to-rgb($body-tertiary-color-blue)};
+    --#{$prefix}tertiary-bg: #{$body-tertiary-bg-blue};
+    --#{$prefix}tertiary-bg-rgb: #{to-rgb($body-tertiary-bg-blue)};
+
+    @each $color, $value in $theme-colors-text-blue {
+      --#{$prefix}#{$color}-text-emphasis: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-bg-subtle-blue {
+      --#{$prefix}#{$color}-bg-subtle: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-border-subtle-blue {
+      --#{$prefix}#{$color}-border-subtle: #{$value};
+    }
+
+    --#{$prefix}heading-color: #{$headings-color-blue};
+
+    --#{$prefix}link-color: #{$link-color-blue};
+    --#{$prefix}link-hover-color: #{$link-hover-color-blue};
+    --#{$prefix}link-color-rgb: #{to-rgb($link-color-blue)};
+    --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover-color-blue)};
+
+    --#{$prefix}code-color: #{$code-color-blue};
+
+    --#{$prefix}border-color: #{$border-color-blue};
+    --#{$prefix}border-color-translucent: #{$border-color-translucent-blue};
+
+    --#{$prefix}form-valid-color: #{$form-valid-color-blue};
+    --#{$prefix}form-valid-border-color: #{$form-valid-border-color-blue};
+    --#{$prefix}form-invalid-color: #{$form-invalid-color-blue};
+    --#{$prefix}form-invalid-border-color: #{$form-invalid-border-color-blue};
+    // scss-docs-end root-dark-mode-vars
+  }
+
+}

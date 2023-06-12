@@ -4,7 +4,7 @@ import $ from 'jquery'
 import _template from 'lodash-es/template'
 import Helper from './util/helper'
 
-
+const DATA_KEY = 'bsa.modal'
 const MODAL_CLASS = 'bsa-modal';
 const IFrameTpl = '<iframe src="<%= config.url %>" class="d-block w-100 h-100"></iframe>'
 
@@ -13,7 +13,7 @@ const IFrameTpl = '<iframe src="<%= config.url %>" class="d-block w-100 h-100"><
 const maskTpl = ` <div class="w-100 h-100  bg-body-tertiary d-flex align-items-center justify-content-center mask z-1 position-absolute start-0 top-0 end-0 bottom-0">
                            <div class="spinner-border text-secondary" role="status">
                             <span class="visually-hidden">Loading...</span>
-                           </div> 
+                           </div>
                         </div>`;
 
 
@@ -23,19 +23,19 @@ const TPL = `
         <div class="modal-dialog <% if ( config.url !== '' ) { %> modal-dialog-centered   <% } %> <%= config.modalDialogClass %>">
             <div class="modal-content">
                 <div class="modal-header">
-                    
 
-                    
+
+
                    <h1 class="modal-title fs-5" id="<%= id %>Label">
                    <% if ( config.url !== '' && config.title === '' ) { %>
                         <%= _htmlspecialchars(config.url) %>
                    <% }else if ( config.url === '' && config.title === '' ) { %>
-                        提示    
+                        提示
                    <% } else { %>
                         <%= _htmlspecialchars(config.title) %>
                    <% } %>
                     </h1>
-                  
+
                    <% if ( config.url === '' ) { %>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                    <% }else { %>
@@ -48,21 +48,21 @@ const TPL = `
                         </div>
                    <% } %>
 
-                   
+
                 </div>
-       
+
                 <% if ( config.url !== '' ) { %>
                 <div class="modal-body p-0 overflow-hidden">
                     <div class="iframe-wrapper">
                         ${maskTpl}
-                     </div> 
+                     </div>
                 </div>
                 <% }else{ %>
                 <div class="modal-body">
                     <%= config.body %>
                 </div>
                 <% } %>
-                
+
                 <% if( Array.isArray(config.buttons) && config.buttons.length !== 0 ) { %>
                 <div class="modal-footer">
                     <% _each(config.buttons, function (index,item) { %>
@@ -121,7 +121,7 @@ class Modal {
         this._element.addEventListener('hidden.bs.modal', function (event) {
             //调用隐藏完毕的回调
             if (_this._config.onHidden !== null) {
-                _this._config.onHidden(_this);
+                _this._config.onHidden(_this,$(_this._element).data(DATA_KEY));
             }
 
             const modalInstance = bootstrap.Modal.getInstance(_this._element);
@@ -322,6 +322,14 @@ class Modal {
         //     this.options.onDispose(this);
         // }
     }
+
+    //设置数据到dom上面
+    setData(data){
+      //获取当前的dom
+      $(this._element).data(DATA_KEY, data)
+    }
+
+
 
 
     _createModalElement() {

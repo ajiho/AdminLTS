@@ -131,9 +131,10 @@
 
     /* global bootstrap OverlayScrollbarsGlobal  */
     const NAME$3 = 'Layout';
-    const DATA_KEY$3 = 'bsa.layout';
+    const DATA_KEY$4 = 'bsa.layout';
     const THEME_CACHE_KEY = 'theme';
     const SELECTOR_QUICKTAB = '.qtab';
+    const SELECTOR_BACK_TO_TOP = '.bsa-back-to-top';
     const JQUERY_NO_CONFLICT$3 = $.fn[NAME$3];
 
     //用于实现密码点击显示/隐藏
@@ -149,6 +150,8 @@
       preloadDuration: 800,
       //tab页面是否适配主题
       tabPageEnableTheme: true,
+      //默认主题
+      theme: 'light',
       //主题的保存方式  sessionStorage,localStorage
       themeCacheType: 'localStorage'
     };
@@ -229,6 +232,62 @@
             }
           });
         }
+
+        //布局1的js逻辑
+        $(document).on('click', '.bsa-layout1-left .bsa-chevron-toggle', function (e) {
+          e.preventDefault();
+          let w = $(window).width();
+          if (w < 992) {
+            $('.bsa-layout1-left').toggleClass('open');
+          } else {
+            $('.bsa-layout1').toggleClass('collapsed');
+          }
+        });
+
+        // 布局2的左侧js逻辑
+        $(document).on('click', '.bsa-layout2-left .bsa-chevron-toggle', function (e) {
+          e.preventDefault();
+          let w = $(window).width();
+          if (w < 992) {
+            $('.bsa-layout2-right').removeClass('right-open');
+            $('.bsa-layout2-left').toggleClass('left-open');
+          } else {
+            $('.bsa-layout2').toggleClass('left-collapsed');
+          }
+        });
+
+        // 布局2的右侧js逻辑
+        $(document).on('click', '.bsa-layout2-right .bsa-chevron-toggle', function (e) {
+          e.preventDefault();
+          let w = $(window).width();
+          if (w < 992) {
+            $('.bsa-layout2-left').removeClass('left-open');
+            $('.bsa-layout2-right').toggleClass('right-open');
+          } else {
+            $('.bsa-layout2').toggleClass('right-collapsed');
+          }
+        });
+
+        // 布局3的逻辑部分
+        $(document).on('click', '.bsa-layout3-right .bsa-chevron-toggle', function (e) {
+          e.preventDefault();
+          let w = $(window).width();
+          if (w < 992) {
+            $('.bsa-layout3-right').toggleClass('open');
+          } else {
+            $('.bsa-layout3').toggleClass('collapsed');
+          }
+        });
+
+        //回到顶部逻辑部分
+        $(window).on('scroll', function () {
+          $(this).scrollTop() > 300 ? $(SELECTOR_BACK_TO_TOP).fadeIn() : $(SELECTOR_BACK_TO_TOP).fadeOut();
+        });
+        $(SELECTOR_BACK_TO_TOP).on('click', function () {
+          $('html').animate({
+            scrollTop: 0
+          }, 600);
+        });
       }
       _cacheInit() {
         let cacheType = 1;
@@ -269,8 +328,6 @@
           }
         });
 
-        // console.log(sidebarOsInstance)
-
         //头部下拉菜单滚动条
         $('.bsa-header .card-body').each(function (index, element) {
           OverlayScrollbars(element, {
@@ -307,37 +364,44 @@
           }
         });
 
-        //主题切换
-        $(document).on('click', 'div[class^=bsa-theme-color]', function (e) {
-          e.preventDefault();
-          let themeVal = Array.from(this.classList).at(-1);
+        //处理主题色的复选框
+        $('.bsa-theme-switcher-wrapper input[type="checkbox"]').click(function () {
+          // 如果当前复选框被选中
+          if ($(this).is(':checked')) {
+            let theme = $(this).attr('value');
 
-          //存入缓存
-          _this.Storge.set(THEME_CACHE_KEY, String(themeVal));
+            // 取消其他复选框的选中状态
+            $('.bsa-theme-switcher-wrapper input[type="checkbox"]').not(this).prop('checked', false);
 
-          //修改主题
-          $('html').attr('data-bs-theme', themeVal);
+            //存入缓存
+            _this.Storge.set(THEME_CACHE_KEY, theme);
 
-          //tab内部也需要修改主题
-          if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
-            Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
-              for (let tab of tabs) {
-                if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                  _this._setIframeTheme(tab.tabIFrame.el, themeVal);
+            //修改主题
+            $('html').attr('data-bs-theme', theme);
 
-                  // $doc.find('html').attr('data-bs-theme', themeVal);
-                  //
-                  // //同时我们还得在iframe的子文档中再次查找iframe元素
-                  // let $iframes = $doc.find('iframe');
-                  // $iframes.each(function (index, item) {
-                  //     if (Quicktab.canAccessIFrame(item)) {
-                  //         let $doc = $(item.contentDocument);
-                  //         $doc.find('html').attr('data-bs-theme', themeVal);
-                  //     }
-                  // })
+            //tab内部也需要修改主题
+            if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
+              Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
+                for (let tab of tabs) {
+                  if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
+                    _this._setIframeTheme(tab.tabIFrame.el, theme);
+                  }
                 }
-              }
-            });
+              });
+            }
+          } else {
+            _this.Storge.remove(THEME_CACHE_KEY);
+            $('html').attr('data-bs-theme', _this._config.theme);
+            //tab内部也需要修改主题
+            if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
+              Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
+                for (let tab of tabs) {
+                  if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
+                    _this._setIframeTheme(tab.tabIFrame.el, _this._config.theme);
+                  }
+                }
+              });
+            }
           }
         });
 
@@ -416,18 +480,51 @@
               //是否启用主题适配子页面
               if (_this._config.tabPageEnableTheme === true) {
                 if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                  $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', _this.Storge.get(THEME_CACHE_KEY));
+                  let theme = _this.Storge.get(THEME_CACHE_KEY);
+                  if (theme === null) {
+                    $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', _this._config.theme);
+                  } else {
+                    $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', theme);
+                  }
                 }
               }
             }
           });
         }
 
+        // 监听头部几个下拉菜单的事件
+        const myDropdown = document.querySelectorAll('.bsa-header [data-bs-toggle="dropdown"]');
+        myDropdown.forEach(function (el) {
+          el.addEventListener('hidden.bs.dropdown', event => {
+            _this._hasShowMenu();
+          });
+          el.addEventListener('shown.bs.dropdown', event => {
+            _this._hasShowMenu();
+          });
+        });
+
         //遮罩层关闭
         setTimeout(() => {
-          $('html').attr('data-bs-theme', _this.Storge.get(THEME_CACHE_KEY));
+          let theme = _this.Storge.get(THEME_CACHE_KEY);
+          if (theme === null) {
+            //设置主题
+            $('html').attr('data-bs-theme', _this._config.theme);
+          } else {
+            //让主题色选中
+            $(`.bsa-theme-switcher-wrapper input[type="checkbox"][value=${theme}]`).prop('checked', true);
+            //设置主题
+            $('html').attr('data-bs-theme', theme);
+          }
           $(SELECTOR_PRELOADER).fadeOut(_this._config.preloadDuration);
         }, this._config.preloadDuration);
+      }
+      _hasShowMenu() {
+        let len = document.querySelectorAll('.bsa-header .dropdown-menu.show').length;
+        if (len) {
+          $('.bsa-content').addClass('pe-none');
+        } else {
+          $('.bsa-content').removeClass('pe-none');
+        }
       }
       _setIframeTheme(iframe, theme) {
         let _this = this;
@@ -452,11 +549,11 @@
         return this._openMenu($canOpen);
       }
       _scrollToA(a) {
-        let $a = $(a);
-        $a.addClass('active');
+        $(a).addClass('active');
         this._openMenu(a);
+        //bug: 用a.offsetTop 代替 $(a).position().top 避免 后者它有时候会得到0的结果
         sidebarOsInstance.elements().viewport.scrollTo({
-          top: $a.position().top
+          top: a.offsetTop
         });
       }
 
@@ -464,14 +561,14 @@
       static _jQueryInterface(config) {
         for (const element of this) {
           let $element = $(element);
-          let data = $element.data(DATA_KEY$3);
+          let data = $element.data(DATA_KEY$4);
           const _config = $.extend({}, Default$3, typeof config === 'object' ? config : $element.data());
           if (!data) {
             //没有就new
             data = new Layout($element, _config);
 
             //赋值给data,供给下次调用
-            $element.data(DATA_KEY$3, data);
+            $element.data(DATA_KEY$4, data);
 
             //调用内部的私有方法,初始化，执行必须执行的方法
             data._init();
@@ -512,7 +609,7 @@
     };
 
     const NAME$2 = 'NavbarSearch';
-    const DATA_KEY$2 = 'bsa.navbar-search';
+    const DATA_KEY$3 = 'bsa.navbar-search';
     const JQUERY_NO_CONFLICT$2 = $.fn[NAME$2];
 
     // 搜索事件触发
@@ -526,11 +623,7 @@
       //关闭时重置
       closeReset: false,
       //触发器
-      trigger: SELECTOR_SEARCH_TRIGGER,
-      //请求地址
-      action: '',
-      //额外参数
-      params: ''
+      trigger: SELECTOR_SEARCH_TRIGGER
     };
     class NavbarSearch {
       constructor(_element, _options) {
@@ -557,9 +650,9 @@
           this.open();
         }
       }
-      _triggerSearch(keyword) {
+      _triggerSearch(inputValue) {
         const searchEvent = $.Event(EVENT_SEARCH);
-        $(this._element).trigger(searchEvent, [this._config, keyword]);
+        $(this._element).trigger(searchEvent, [inputValue, $(this._element).data()]);
       }
       _init() {
         let _this = this;
@@ -601,11 +694,11 @@
       // Static
       static _jQueryInterface(config) {
         return this.each(function () {
-          let data = $(this).data(DATA_KEY$2);
+          let data = $(this).data(DATA_KEY$3);
           const _config = $.extend({}, Default$2, typeof config === 'object' ? config : $(this).data());
           if (!data) {
             data = new NavbarSearch($(this), _config);
-            $(this).data(DATA_KEY$2, data);
+            $(this).data(DATA_KEY$3, data);
             data._init();
           } else if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
@@ -2615,58 +2708,73 @@
 
     // toast组件的模板
     const TPL$1 = `
-              <div class="toast position-fixed <%= positionClass %>" id="<%= id %>" style="<%= style %>"   role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                  <% if ( config.image !== '' ) { %>
-                  <img src="<%= config.image %>" style="height: <%= config.imageHeight %>" class="rounded me-2" alt="<%= config.imageAlt %>">
-                  <% } %>
-                  <strong class="me-auto"><%= config.title %></strong>
-                  <small><%= config.subTitle %></small>
-                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                  <%= config.body %>
-                </div>
-              </div>
-`;
+              <div class="toast <%= toastClass %>  overflow-hidden" id="<%= id %>"  role="alert" aria-live="assertive" aria-atomic="true">
+                
+                <% if ( config.content !== '') { %>
+                    <div class="toast-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span><%= config.content %></span>
+                            <% if ( config.btnClose === true ) { %>
+                            <button type="button" class="btn-close <% if ( enableBtnCloseWhite ) { %> btn-close-white  <% } %>" data-bs-dismiss="toast" aria-label="Close"></button>
+                             <% } %>
+                        </div>
+                    </div>
+                <% }else { %>
+                
+                <% if ( config.image !== '' || config.title !== '' ) { %>
+                    <div class="toast-header">
+                      <% if ( config.image !== '' ) { %>
+                      <img src="<%= config.image %>" style="height: <%= config.imageHeight %>" class="rounded me-2" alt="<%= config.imageAlt %>">
+                      <% } %>
+                      <strong class="me-auto"><%= config.title %></strong>
+                      <small><%= config.subTitle %></small>
+                      <% if ( config.btnClose === true ) { %>
+                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                      <% } %>
+                    </div>
+                    <% } %>
+                    
+                    <div class="toast-body">
+                    <%= config.body %>
+                    </div>
+                
+                <% } %>
+                
+                <% if ( config.autohide === true ) { %>
+                    <div style="height: 4px" class="progress" role="progressbar">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated <%= progressClass %>" 
+                        style="animation: progress <%= config.delay %>ms linear forwards">
+                        </div>
+                    </div>
+                <% } %>
+              </div>`;
 
     //用于唯一id标志累计
     let i$1 = 0;
     class Toasts {
       constructor(config) {
+        // let _this = this;
         this._config = config;
         i$1++;
 
-        //准备模板数据
-        //再次计算position的值，避免用户随意输入一个字符串导致不正确
-        let positions = ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'];
-        this._config.position = positions.indexOf(this._config.position) !== -1 ? this._config.position : 'top-right';
+        //准备容器
+        this._buildContainer();
 
-        //拆分成数组，方便取用
-        this.positionArr = this._config.position.split('-');
-        //计算得到一个class
-        this.positionClass = 'bsa-toast-' + this._config.position;
         //得到一个唯一id,用于查找dom
         this.id = 'bsa-toast-' + i$1;
-
-        //行内处理样式
-        let style = '';
-        if (this._config.position === 'top-center') {
-          style = `z-index: ${this._config.zIndex};position: fixed;${this.positionArr[0]}: -100%;left:50%;transform:translateX(-50%)`;
-        } else if (this._config.position === 'bottom-center') {
-          style = `z-index: ${this._config.zIndex};position: fixed;${this.positionArr[0]}: -100%;left:50%;transform:translateX(-50%)`;
-        } else {
-          style = `z-index: ${this._config.zIndex};position: fixed;${this.positionArr[0]}: 1rem;${this.positionArr[1]}: -100%;`;
-        }
 
         //模板引擎来组合dom
         let tpl = template(TPL$1)({
           id: this.id,
           config: this._config,
-          positionClass: this.positionClass,
-          style
+          toastClass: this._getToastColorSchemesClass(),
+          progressClass: this._getProgressClassColorSchemesClass(),
+          enableBtnCloseWhite: this._enableBtnCloseWhite()
         });
-        document.body.insertAdjacentHTML('afterbegin', tpl);
+        let containerSelecter = this._getContainerClass();
+
+        //找到这个容器并把toast插入进去
+        $(`.toast-container.${containerSelecter}`).append(tpl);
 
         //再次查找dom并存到对象属性上
         this.element = document.getElementById(this.id);
@@ -2674,65 +2782,166 @@
         //nwe bootstrap的Toast实例
         this.bootstrapToast = new bootstrap.Toast(this.element, {
           animation: this._config.animation,
-          autohide: this._config.autohide,
-          delay: this._config.delay
+          autohide: false
         });
 
         //事件注册和监听
+
+        //进度条事件处理,必须要autohide===true的时候才会启用此选项
+        if (this._config.autohide === true) {
+          this._progressEvent();
+        }
         this.element.addEventListener('show.bs.toast', () => {
-          //触发堆叠动画
-          let timer = setInterval(() => {
-            if (this.element.offsetHeight > 0) {
-              clearInterval(timer);
-              this.element.style.transition = 'all 600ms cubic-bezier(0.16, 1, 0.3, 1) 0ms';
-              if (this._config.position === 'top-center') {
-                this.element.style[this.positionArr[0]] = '0';
-              } else if (this._config.position === 'bottom-center') {
-                this.element.style[this.positionArr[0]] = '0';
-              } else {
-                this.element.style[this.positionArr[1]] = '1rem';
-              }
-              this._stack();
-            }
-          }, 0);
+          if (this._config.onShow !== null) {
+            this._config.onShow(this);
+          }
         });
-
-        //调用堆叠动画
+        this.element.addEventListener('shown.bs.toast', () => {
+          if (this._config.onShown !== null) {
+            this._config.onShown(this);
+          }
+        });
         this.element.addEventListener('hide.bs.toast', () => {
-          console.log('hide');
+          if (this._config.onHide !== null) {
+            this._config.onHide(this);
+          }
         });
-
-        //直接移除这个dom
         this.element.addEventListener('hidden.bs.toast', () => {
-          this.element.remove();
-          this._stack();
+          if (this._config.onHidden !== null) {
+            this._config.onHidden(this);
+          }
         });
 
         //直接调用显示的方法
-        this.show();
-      }
-      show() {
         this.bootstrapToast.show();
+      }
+      _progressEvent() {
+        let _this = this;
+        if (_this._config.hoverProgressPause === true) {
+          $(this.element).mouseenter(() => {
+            $(this.element).addClass('bsa-toast-pause');
+          });
+
+          //鼠标移出
+          $(this.element).mouseleave(() => {
+            $(this.element).removeClass('bsa-toast-pause');
+          });
+        }
+
+        //监听滚动条读条动画完毕事件
+        $(this.element).on('animationend', '.progress-bar', function (e) {
+          if (e.target === e.currentTarget) {
+            //手动隐藏
+            _this.hide();
+          }
+        });
+      }
+      _getContainerClass(selecterMode = true) {
+        //根据访问来取对应的类名
+        switch (this._config.placement) {
+          case 'top-left':
+            return selecterMode ? 'top-0.start-0' : 'top-0 start-0';
+          case 'top-center':
+            return selecterMode ? 'top-0.start-50.translate-middle-x' : 'top-0 start-50 translate-middle-x';
+          case 'top-right':
+            return selecterMode ? 'top-0.end-0' : 'top-0 end-0';
+          case 'middle-left':
+            return selecterMode ? 'top-50.start-0.translate-middle-y' : 'top-50 start-0 translate-middle-y';
+          case 'middle-center':
+            return selecterMode ? 'top-50.start-50.translate-middle' : 'top-50 start-50 translate-middle';
+          case 'middle-right':
+            return selecterMode ? 'top-50.end-0.translate-middle-y' : 'top-50 end-0 translate-middle-y';
+          case 'bottom-left':
+            return selecterMode ? 'bottom-0.start-0' : 'bottom-0 start-0';
+          case 'bottom-center':
+            return selecterMode ? 'bottom-0.start-50.translate-middle-x' : 'bottom-0 start-50 translate-middle-x';
+          case 'bottom-right':
+            return selecterMode ? 'bottom-0.end-0' : 'bottom-0 end-0';
+          default:
+            return selecterMode ? 'top-0.end-0' : 'top-0 end-0';
+        }
+      }
+      _getToastColorSchemesClass() {
+        //根据访问来取对应的类名
+        switch (this._config.type) {
+          case 'primary':
+            return 'text-bg-primary border-0';
+          case 'secondary':
+            return 'text-bg-secondary border-0';
+          case 'success':
+            return 'text-bg-success border-0';
+          case 'danger':
+            return 'text-bg-danger border-0';
+          case 'warning':
+            return 'text-bg-warning border-0';
+          case 'info':
+            return 'text-bg-info border-0';
+          case 'dark':
+            return 'text-bg-dark border-0';
+          case 'light':
+            return 'text-bg-light border-0';
+          default:
+            return '';
+        }
+      }
+      _enableBtnCloseWhite() {
+        //根据访问来取对应的类名
+        switch (this._config.type) {
+          case 'primary':
+            return true;
+          case 'secondary':
+            return true;
+          case 'success':
+            return true;
+          case 'danger':
+            return true;
+          case 'warning':
+            return false;
+          case 'info':
+            return false;
+          case 'dark':
+            return true;
+          case 'light':
+            return false;
+          default:
+            return false;
+        }
+      }
+      _getProgressClassColorSchemesClass() {
+        //根据访问来取对应的类名
+        switch (this._config.type) {
+          case 'primary':
+            return 'bg-primary';
+          case 'secondary':
+            return 'bg-secondary';
+          case 'success':
+            return 'bg-success';
+          case 'danger':
+            return 'bg-danger';
+          case 'warning':
+            return 'bg-warning';
+          case 'info':
+            return 'bg-info';
+          case 'dark':
+            return 'bg-dark';
+          case 'light':
+            //如果是light那么给进度条变成bg-secondary 因为 bg-light根本看不见
+            return 'bg-secondary';
+          default:
+            return '';
+        }
+      }
+      _buildContainer() {
+        //判断容器是否存在，存在就创建并添加到body中
+        let containerSelecter = this._getContainerClass();
+        let containerClass = this._getContainerClass(false);
+        let containerDomStr = ` <div class="toast-container position-fixed ${containerClass}  p-3"></div>`;
+        if ($(`.toast-container.${containerSelecter}`).length === 0) {
+          $(containerDomStr).appendTo('body');
+        }
       }
       hide() {
         this.bootstrapToast.hide();
-      }
-
-      // Private
-
-      _stack() {
-        let _this = this;
-        let elements = document.body.querySelectorAll(`.${this.positionClass}`);
-        let yAxis = [];
-        elements.forEach((el, index) => {
-          if (el instanceof HTMLElement) {
-            index === 0 && yAxis.push(0);
-            if (elements[index + 1] instanceof HTMLElement) {
-              yAxis.push(yAxis[index] + el.offsetHeight);
-            }
-            el.style[this.positionArr[0]] = yAxis[index] + _this._config.gap * index + 'px';
-          }
-        });
       }
     }
     $.extend({
@@ -2744,19 +2953,23 @@
       }
     });
     $.toasts.default = {
+      //鼠标移入进度条暂停
+      hoverProgressPause: true,
+      //toast是否添加关闭按钮
+      btnClose: true,
       //标题
       title: '',
+      //内容
+      content: '',
       //图片
       image: '',
       //图片的高度
       imageHeight: '25px',
       imageAlt: '',
       //副标题
-      subtitle: '',
-      //正文内容
+      subTitle: '',
+      //正文内容此选项完全可以自定义body的内容
       body: '',
-      //拓展的class类
-      class: '',
       //index
       zIndex: 1081,
       //将过渡应用到吐司
@@ -2765,12 +2978,10 @@
       autohide: true,
       //延迟隐藏吐司（毫秒）
       delay: 5000,
-      //toast 之间的间隙 (px)
-      gap: 16,
-      //角边距。也可以填充一个css变量。例子：var(--toast-margin)
-      margin: '1rem',
-      //toast 的角落位置。可用值：top-right,top-center, top-left, bottom-right,bottom-center,bottom-left
-      position: 'top-right',
+      //方位 可用值：top-left,top-center, top-left, middle-left,middle-center,middle-right,bottom-left,bottom-center,bottom-right
+      placement: 'top-right',
+      //情景模式
+      type: 'primary',
       //事件
       onShow: null,
       onShown: null,
@@ -2779,8 +2990,8 @@
     };
 
     const NAME$1 = 'PushMenu';
-    const DATA_KEY$1 = 'bsa.pushmenu';
-    const EVENT_KEY$1 = `.${DATA_KEY$1}`;
+    const DATA_KEY$2 = 'bsa.pushmenu';
+    const EVENT_KEY$1 = `.${DATA_KEY$2}`;
     const JQUERY_NO_CONFLICT$1 = $.fn[NAME$1];
 
     //折叠开始
@@ -2882,11 +3093,11 @@
       // Static
       static _jQueryInterface(config) {
         return this.each(function () {
-          let data = $(this).data(DATA_KEY$1);
+          let data = $(this).data(DATA_KEY$2);
           const _config = $.extend({}, Default$1, typeof config === 'object' ? config : $(this).data());
           if (!data) {
             data = new PushMenu($(this), _config);
-            $(this).data(DATA_KEY$1, data);
+            $(this).data(DATA_KEY$2, data);
             data._init();
           } else if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
@@ -2924,13 +3135,15 @@
     };
 
     const NAME = 'Sidebar';
-    const DATA_KEY = 'bsa.sidebar';
-    const EVENT_KEY = `.${DATA_KEY}`;
+    const DATA_KEY$1 = 'bsa.sidebar';
+    const EVENT_KEY = `.${DATA_KEY$1}`;
     const JQUERY_NO_CONFLICT = $.fn[NAME];
     const EVENT_EXPANDED = `expanded${EVENT_KEY}`;
     const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`;
     const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="sidebar"]';
     const Default = {
+      //点击是否自动关闭侧边栏
+      clickClose: false,
       //动画速度,单位毫秒
       animationSpeed: 150,
       //是否启用手风琴模式
@@ -3047,6 +3260,9 @@
 
           //给当前的a添加激活类
           $a.addClass('active');
+          if (_this._config.clickClose === true) {
+            $('[data-bsa-toggle="pushmenu"]').PushMenu('toggle');
+          }
 
           //添加tab处理
           Quicktab.get('.qtab').addTab({
@@ -3079,7 +3295,7 @@
       static _jQueryInterface(config) {
         for (const element of this) {
           let $element = $(element);
-          let data = $element.data(DATA_KEY);
+          let data = $element.data(DATA_KEY$1);
           let _config = $.extend({}, Default, typeof config === 'object' ? config : $element.data());
           if (_config.animationSpeed < 150) {
             _config.animationSpeed = 150;
@@ -3089,7 +3305,7 @@
             data = new Sidebar($element, _config);
 
             //赋值给data,供给下次调用
-            $element.data(DATA_KEY, data);
+            $element.data(DATA_KEY$1, data);
 
             //调用内部的私有方法,初始化，执行必须执行的方法
             data._init();
@@ -3135,6 +3351,7 @@
 
     /* global bootstrap   */
 
+    const DATA_KEY = 'bsa.modal';
     const MODAL_CLASS = 'bsa-modal';
     const IFrameTpl = '<iframe src="<%= config.url %>" class="d-block w-100 h-100"></iframe>';
 
@@ -3142,7 +3359,7 @@
     const maskTpl = ` <div class="w-100 h-100  bg-body-tertiary d-flex align-items-center justify-content-center mask z-1 position-absolute start-0 top-0 end-0 bottom-0">
                            <div class="spinner-border text-secondary" role="status">
                             <span class="visually-hidden">Loading...</span>
-                           </div> 
+                           </div>
                         </div>`;
 
     //模态框模板
@@ -3151,19 +3368,19 @@
         <div class="modal-dialog <% if ( config.url !== '' ) { %> modal-dialog-centered   <% } %> <%= config.modalDialogClass %>">
             <div class="modal-content">
                 <div class="modal-header">
-                    
 
-                    
+
+
                    <h1 class="modal-title fs-5" id="<%= id %>Label">
                    <% if ( config.url !== '' && config.title === '' ) { %>
                         <%= _htmlspecialchars(config.url) %>
                    <% }else if ( config.url === '' && config.title === '' ) { %>
-                        提示    
+                        提示
                    <% } else { %>
                         <%= _htmlspecialchars(config.title) %>
                    <% } %>
                     </h1>
-                  
+
                    <% if ( config.url === '' ) { %>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                    <% }else { %>
@@ -3176,21 +3393,21 @@
                         </div>
                    <% } %>
 
-                   
+
                 </div>
-       
+
                 <% if ( config.url !== '' ) { %>
                 <div class="modal-body p-0 overflow-hidden">
                     <div class="iframe-wrapper">
                         ${maskTpl}
-                     </div> 
+                     </div>
                 </div>
                 <% }else{ %>
                 <div class="modal-body">
                     <%= config.body %>
                 </div>
                 <% } %>
-                
+
                 <% if( Array.isArray(config.buttons) && config.buttons.length !== 0 ) { %>
                 <div class="modal-footer">
                     <% _each(config.buttons, function (index,item) { %>
@@ -3237,7 +3454,7 @@
         this._element.addEventListener('hidden.bs.modal', function (event) {
           //调用隐藏完毕的回调
           if (_this._config.onHidden !== null) {
-            _this._config.onHidden(_this);
+            _this._config.onHidden(_this, $(_this._element).data(DATA_KEY));
           }
           const modalInstance = bootstrap.Modal.getInstance(_this._element);
           if (modalInstance) {
@@ -3376,6 +3593,11 @@
         // }
       }
 
+      //设置数据到dom上面
+      setData(data) {
+        //获取当前的dom
+        $(this._element).data(DATA_KEY, data);
+      }
       _createModalElement() {
         //模板引擎来组合dom
         let tpl = template(TPL)({

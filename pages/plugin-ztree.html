@@ -10,49 +10,244 @@
     <meta name="author" content="ajiho">
     <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../lib/@ztree/ztree_v3/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="../lib/@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css">
     <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
     <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
 </head>
 <body class="bg-body-tertiary py-3">
 <div class="container-fluid">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">树形组件</h5>
-            <h6 class="card-subtitle mb-2 text-muted">树形组件在开发中也是一个非常非常很重要的角色</h6>
-            <hr>
-
-            <div class="mb-2">
-                <button class="btn btn-outline-warning" onclick="expandAll()">展开所有</button>
-                <button class="btn btn-outline-success" onclick="collapseAll()">折叠所有</button>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    ztree基本示例
+                </div>
+                <div class="card-body">
+                    <ul id="ztree-demo1" class="ztree"></ul>
+                </div>
             </div>
-
-            <ul id="treeDemo" class="ztree"></ul>
         </div>
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    可勾选的-independent(独立)模式
+                </div>
+                <div class="card-body">
+                    <ul id="ztree-demo2" class="ztree"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    可勾选的-leaf(叶子)模式
+                </div>
+                <div class="card-body">
+                    <ul id="ztree-demo3" class="ztree"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    禁用项目
+                </div>
+                <div class="card-body">
+                    <ul id="ztree-demo4" class="ztree"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    初始化时展开全部节点
+                </div>
+                <div class="card-body">
+                    <ul id="ztree-demo5" class="ztree"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    异步加载子节点数据
+                </div>
+                <div class="card-body">
+                    <ul id="ztree-demo6" class="ztree"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    ztree自带的编辑节点功能
+                </div>
+                <div class="card-body">
+                    <ul id="ztree-demo8" class="ztree"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    附加插槽给节点增加自己的按钮
+                </div>
+                <div class="card-body">
+                    <ul id="ztree-demo7" class="ztree"></ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
+
+
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
 <script src="../lib/@ztree/ztree_v3/js/jquery.ztree.all.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
 
-    //设置
-    var setting = {
+    let setting = {
         view: {
-            //是否双击展开
-            dblClickExpand: false,
-            addHoverDom: false,
-            removeHoverDom: false,
-            //是否多选
-            selectedMulti: false,
-            // showIcon: false,
+            showIcon: false,
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+    let setting2 = {
+        view: {
+            showIcon: false,
+        },
+
+        check: {
+            //是否开启选择框
+            enable: true,
+            chkboxType: {"Y": "", "N": ""}
+        },
+
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+    let setting3 = {
+        view: {
+            showIcon: false,
+        },
+
+        check: {
+            //是否开启选择框
+            enable: true,
+            chkboxType: {"Y": "ps", "N": "ps"}
+        },
+
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+    let setting4 = {
+        view: {
+            showIcon: false,
+        },
+
+        check: {
+            //是否开启选择框
+            enable: true,
+            chkboxType: {"Y": "ps", "N": "ps"},
+            //继承父节点的禁用属性
+            chkDisabledInherit: true
+        },
+
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+    let setting5 = {
+        view: {
+            showIcon: false,
+        },
+        check: {
+            //是否开启选择框
+            enable: true,
+            chkboxType: {"Y": "ps", "N": "ps"},
+            //继承父节点的禁用属性
+            chkDisabledInherit: true
+        },
+
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+    let setting6 = {
+        view: {
+            showIcon: false,
+        },
+        async: {
+            enable: true,
+            url: "/ztree",
+            autoParam: ["id", "name=n", "level=lv"],
+            otherParam: {"otherParam": "zTreeAsyncTest"},
+            //用于处理返回数据格式和ztree插件要求不一样的情况
+            dataFilter: function (treeId, parentNode, childNodes) {//childNodes 实际上是response对象
+                return childNodes.data
+            }
+        }
+    };
+    let setting7 = {
+        view: {
+            showIcon: false,
             //添加自定义的dom
-            addDiyDom: addDiyDom,
-            nameIsHTML: true
+            addDiyDom: function (treeId, treeNode) {
+
+                let aObj = $("#" + treeNode.tId + "_a");
+                if ($("#diyBtn_" + treeNode.id).length > 0) return;
+
+                let editStr = `
+            <i class="bi bi-pencil-square me-2" role=button id="editBtn_${treeNode.id}"></i>
+            <i class="bi bi-x-lg" role="button" id="delBtn_${treeNode.id}"></i>
+            `;
+                aObj.after(editStr);
+
+                //编辑按钮
+                $("#editBtn_" + treeNode.id).on('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let name = treeNode.name;
+                    let id = treeNode.id;
+                    alert("你点击了编辑按钮-" + name + '-ID:' + id);
+                })
+
+                //删除按钮
+                $("#delBtn_" + treeNode.id).on("click", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let name = treeNode.name;
+                    let id = treeNode.id;
+                    alert("你点击了删除按钮-" + name + '-ID:' + id);
+                });
+            },
         },
 
         check: {
@@ -64,14 +259,26 @@
             simpleData: {
                 enable: true
             }
-        },
-
-        edit: {
-            enable: true
         }
     };
 
-    var zNodes = [
+
+    var setting8 = {
+        view: {
+            showIcon: false,
+        },
+        edit: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+
+
+    let data = [
         {id: 1, pId: 0, name: '角色管理', open: true},
         {id: 2, pId: 1, name: "角色添加", open: true},
         {id: 3, pId: 1, name: "角色编辑", open: true},
@@ -85,50 +292,34 @@
         {id: 11, pId: 7, name: "二级菜单2", open: false},
     ];
 
+    let data2 = [
+        {id: 1, pId: 0, name: '角色管理', open: true, "chkDisabled": true},
+        {id: 2, pId: 1, name: "角色添加", open: true},
+        {id: 3, pId: 1, name: "角色编辑", open: true},
+        {id: 4, pId: 0, name: "节点管理", open: false},
+        {id: 5, pId: 4, name: "节点添加", open: true},
+        {id: 6, pId: 4, name: "节点编辑", open: true},
+        {id: 7, pId: 0, name: "多级菜单", open: false},
+        {id: 8, pId: 7, name: "二级菜单", open: false},
+        {id: 9, pId: 8, name: "三级菜单", open: false},
+        {id: 10, pId: 9, name: "四级菜单", open: false},
+        {id: 11, pId: 7, name: "二级菜单2", open: false},
+    ];
 
-    //ztree初始化
-    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
 
-
-    function expandAll() {
-        $.fn.zTree.getZTreeObj("treeDemo").expandAll(true);
+    $.fn.zTree.init($("#ztree-demo1"), setting, data);
+    $.fn.zTree.init($("#ztree-demo2"), setting2, data);
+    $.fn.zTree.init($("#ztree-demo3"), setting3, data);
+    $.fn.zTree.init($("#ztree-demo4"), setting4, data2);
+    let zTreeObj = $.fn.zTree.init($("#ztree-demo5"), setting5, data);
+    let nodes = zTreeObj.getNodes();
+    for (let i = 0; i < nodes.length; i++) {
+        zTreeObj.expandNode(nodes[i], true, false, false); // 递归展开节点
     }
 
-    function collapseAll() {
-        $.fn.zTree.getZTreeObj("treeDemo").expandAll(false);
-
-    }
-
-    function addDiyDom(treeId, treeNode) {
-
-        let aObj = $("#" + treeNode.tId + "_a");
-        if ($("#diyBtn_" + treeNode.id).length > 0) return;
-
-        let editStr = `
-            <i class="bi bi-pencil-square me-2" role=button id="editBtn_${treeNode.id}"></i>
-            <i class="bi bi-x-lg" role="button" id="delBtn_${treeNode.id}"></i>
-            `;
-        aObj.after(editStr);
-
-        //编辑按钮
-        $("#editBtn_" + treeNode.id).on('click',function (e){
-            e.preventDefault();
-            e.stopPropagation();
-            let name = treeNode.name;
-            let id = treeNode.id;
-            alert("你点击了编辑按钮-" + name + '-ID:' + id);
-        })
-
-        //删除按钮
-        $("#delBtn_" + treeNode.id).on("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            let name = treeNode.name;
-            let id = treeNode.id;
-            alert("你点击了删除按钮-" + name + '-ID:' + id);
-        });
-    }
-
+    $.fn.zTree.init($("#ztree-demo6"), setting6);
+    $.fn.zTree.init($("#ztree-demo7"), setting7, data);
+    $.fn.zTree.init($("#ztree-demo8"), setting8, data);
 
 </script>
 

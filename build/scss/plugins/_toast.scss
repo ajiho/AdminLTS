@@ -1,0 +1,14 @@
+@keyframes progress {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+.bsa-toast-pause {
+  .progress-bar {
+    animation-play-state: paused !important;
+  }
+}

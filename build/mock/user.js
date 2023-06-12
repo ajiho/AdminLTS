@@ -3,7 +3,7 @@ import Api from './uri';
 
 
 Mock.mock(Api.user, 'get', {
-    'data|100-1000': [{
+    'data|10-30': [{
         'id|+1': 1,
         'name': '@cname',
         'username': '@string(6, 12)',
@@ -18,14 +18,10 @@ Mock.mock(Api.user, 'get', {
 });
 
 
-// Mock.mock('/user', {
-//     'list|5-10': [
-//         {
-//             'id|+1': 1,
-//             'username': '@cname',
-//             'email': '@email',
-//             'gender': '@boolean',
-//             'price': '@integer'
-//         }
-//     ]
-// });
+Mock.mock(Api.useradd, 'post', {
+  'data': [],
+  'msg': 'success',
+  'code': 200,
+});
+
+

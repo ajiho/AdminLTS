@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+  <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+  <meta name="description" content="bootstrap-admin基于bootstrap5的免费开源的响应式后台管理模板">
+  <meta name="author" content="ajiho">
+  <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
+  <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
+</head>
+<body class="bg-body-tertiary py-3">
+<div class="container-fluid">
+  <!--  正文内容放置在此处  -->
+
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-body">
+          格式化时间
+        </div>
+        <div class="card-body">
+          <p>把当前时间戳格式化成指定的时间格式</p>
+          <p id="time1"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-body">
+          把指定时间戳格式化成指定的格式
+        </div>
+        <div class="card-body">
+          <p>测试时间戳:846460800</p>
+          <p id="time4"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-body">
+          当前时间+1年
+        </div>
+        <div class="card-body">
+          <p id="time5"></p>
+          <p id="time5-1"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-body">
+          转换成人类友好时间
+        </div>
+        <div class="card-body">
+          <p>比如把时间转换成多少年前、几个月前、几天前、几秒前等等</p>
+          <p>测试时间:2023-05-20 12:00:05</p>
+          <p id="time2"></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-body">
+          距离某个未来时间的倒计时效果
+        </div>
+        <div class="card-body">
+          <p>测试时间:2025-06-07 12:00:00</p>
+          <p>距离2025年高考还剩下:</p>
+          <p id="time3"></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-6"></div>
+  </div>
+
+
+  <!--回到顶部开始-->
+  <a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+  <!--回到顶部结束-->
+
+</div>
+
+<script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/jquery/dist/jquery.min.js"></script>
+<script src="../lib/dayjs/dayjs.min.js"></script>
+<script src="../lib/dayjs/plugin/relativeTime.js"></script>
+<script src="../lib/dayjs/locale/zh-cn.js"></script>
+<script src="../dist/js/bootstrap-admin.min.js"></script>
+<script src="../dist/js/app.js"></script>
+<script>
+  $(document).ready(function (e) {
+    //你的逻辑
+
+    //全局设置语言
+    dayjs.locale('zh-cn');
+
+    let time1 = dayjs().format('YYYY-MM-DD HH:mm:ss');
+    $('#time1').text(time1)
+
+
+    let time4 = dayjs(846460800).format('YYYY-MM-DD HH:mm:ss');
+    $('#time4').text(time4)
+
+    //要想使用友好的人类时间，必须加载该插件
+    dayjs.extend(window.dayjs_plugin_relativeTime);
+    let time2 = dayjs('2023-05-20 12:00:05').locale('zh-cn').fromNow();//也可以单独设置语言环境
+    $('#time2').text(time2);
+
+
+    function countdown() {
+      // 未来时间
+      const futureTime = dayjs('2025-06-07 12:00:00');
+      // 当前时间
+      const currentTime = dayjs();
+      // 计算时间差，转换为秒数
+      const diffSeconds = futureTime.diff(currentTime, 'second');
+      // 计算天数、小时数、分钟数和秒数
+      const days = Math.floor(diffSeconds / (24 * 60 * 60));
+      const hours = Math.floor((diffSeconds % (24 * 60 * 60)) / (60 * 60));
+      const minutes = Math.floor((diffSeconds % (60 * 60)) / 60);
+      const seconds = diffSeconds % 60;
+
+      // 将天数、小时数、分钟数和秒数输出为字符串
+      const output = days + '天 ' + hours + '时 ' + minutes + '分 ' + seconds + '秒';
+
+      $('#time3').html(output);
+
+    }
+
+
+    setInterval(countdown, 1000)
+
+
+    // 获取当前时间
+    const currentTime = dayjs();
+    // 将当前时间加上一年的时间
+    const futureTime = currentTime.add(1, 'year');
+    // 将计算后的时间转换为时间戳
+    const futureTimestamp = futureTime.valueOf();
+    let time5 = futureTime.format('YYYY-MM-DD HH:mm:ss');
+    $('#time5').html(time5);
+    $('#time5-1').html(futureTimestamp);
+
+
+  })
+</script>
+</body>
+</html>

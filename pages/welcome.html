@@ -21,7 +21,7 @@
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="me-1">
-                            <h6 class="mb-2 bsa-ellipsis-1">今日收入</h6>
+                            <h6 class="mb-2 bsa-ellipsis-1 ">今日收入</h6>
                             <h4 class="mb-1 bsa-ellipsis-1">13,145.20</h4>
                         </div>
                         <i class="bi bi-currency-yen fs-1 text-danger"></i>
@@ -68,16 +68,17 @@
                 </div>
             </div>
         </div>
+
         <!--开源信息-->
         <div class="col-12">
             <div class="card border-0 shadow-sm">
-                <div class="card-header ">
+                <div class="card-header bg-body">
                     版本信息
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
+                <div class="card-body p-0">
 
+                    <div class="table-responsive">
+                        <table class="table align-middle table-bordered   mb-0">
                             <tbody>
                             <tr>
                                 <th>当前版本</th>
@@ -85,7 +86,7 @@
                             </tr>
                             <tr>
                                 <th>基于框架</th>
-                                <td>bootstrap 5.3.0-alpha3</td>
+                                <td>bootstrap 5.3.0</td>
                             </tr>
                             <tr>
                                 <th>主要特色</th>
@@ -110,7 +111,7 @@
 
         <div class="col-lg-6">
             <div class="card border-0 shadow-sm">
-                <div class="card-header ">
+                <div class="card-header bg-body">
                     近七天pv值
                 </div>
                 <div class="card-body">
@@ -120,7 +121,7 @@
         </div>
         <div class="col-lg-6">
             <div class="card border-0 shadow-sm">
-                <div class="card-header ">
+                <div class="card-header bg-body">
                     年营业额走势
                 </div>
                 <div class="card-body">
@@ -129,9 +130,30 @@
             </div>
         </div>
 
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    up主数据
+                </div>
+                <div class="card-body">
+                    <canvas id="chart3"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    房源租赁概况
+                </div>
+                <div class="card-body">
+                    <canvas id="chart4"></canvas>
+                </div>
+            </div>
+        </div>
+
         <div class="col-12">
             <div class="card border-0 shadow-sm">
-                <div class="card-header ">
+                <div class="card-header bg-body">
                     订单摘要
                 </div>
                 <div class="card-body">
@@ -278,17 +300,20 @@
     </div>
 </div>
 
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
+
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
-<script src="../lib/chart.js/dist/chart.min.js"></script>
+<script src="../lib/chart.js/dist/chart.umd.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
 
-
     $(function () {
-
         new Chart(document.getElementById('chart-bar').getContext('2d'), {
             type: 'bar',
             data: {
@@ -316,6 +341,7 @@
                 }]
             },
             options: {
+                responsive: true,
                 scales: {
                     y: {
                         beginAtZero: true
@@ -336,6 +362,7 @@
                 }]
             },
             options: {
+                responsive: true,
                 scales: {
                     y: {
                         beginAtZero: true
@@ -346,76 +373,77 @@
     })
 
 
-    // new Chart(document.getElementById('chart-line2').getContext('2d'), {
-    //     type: 'line',
-    //     data: {
-    //         labels: ['2022.8.3', '2022.8.4', '2022.8.5', '2022.8.6', '2022.8.7', '2022.8.9'],
-    //         datasets: [
-    //             {
-    //                 label: '粉丝',
-    //                 data: [65, 90, 60, 50, 40, 30, 120],
-    //                 fill: false,
-    //                 borderColor: 'rgba(252, 92, 125,.5)',
-    //                 tension: 0.1,
-    //                 cubicInterpolationMode: 'monotone',
-    //
-    //             },
-    //             {
-    //                 label: '被收藏',
-    //                 data: [30, 80, 70, 48, 64, 101, 10],
-    //                 fill: false,
-    //                 borderColor: 'rgba(10, 191, 188,.5)',
-    //                 tension: 0.1,
-    //                 cubicInterpolationMode: 'monotone',
-    //             },
-    //             {
-    //                 label: '获赞',
-    //                 data: [10, 37, 54, 68, 73, 98, 110],
-    //                 fill: false,
-    //                 borderColor: 'rgba(221, 100, 0,.5)',
-    //                 tension: 0.1,
-    //                 cubicInterpolationMode: 'monotone',
-    //             }
-    //         ]
-    //     },
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: true
-    //             }
-    //         }
-    //     }
-    // });
-    // new Chart(document.getElementById('chart-doughnut').getContext('2d'), {
-    //     type: 'doughnut',
-    //     data: {
-    //         labels: [
-    //             '已租',
-    //             '未租'
-    //         ],
-    //         datasets: [{
-    //             label: 'Dataset 1',
-    //             data: [300, 50],
-    //             backgroundColor: [
-    //                 '#0abfbc',
-    //                 '#348f50'
-    //             ],
-    //             hoverOffset: 4
-    //         }]
-    //     },
-    //     options: {
-    //         responsive: true,
-    //         plugins: {
-    //             legend: {
-    //                 position: 'top',
-    //             },
-    //             title: {
-    //                 display: true,
-    //                 text: '已租未租房源占比图'
-    //             }
-    //         }
-    //     }
-    // });
+    new Chart(document.getElementById('chart3').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: ['2022.8.3', '2022.8.4', '2022.8.5', '2022.8.6', '2022.8.7', '2022.8.9'],
+            datasets: [
+                {
+                    label: '粉丝',
+                    data: [65, 90, 60, 50, 40, 30, 120],
+                    fill: false,
+                    borderColor: 'rgba(252, 92, 125,.5)',
+                    tension: 0.1,
+                    cubicInterpolationMode: 'monotone',
+
+                },
+                {
+                    label: '被收藏',
+                    data: [30, 80, 70, 48, 64, 101, 10],
+                    fill: false,
+                    borderColor: 'rgba(10, 191, 188,.5)',
+                    tension: 0.1,
+                    cubicInterpolationMode: 'monotone',
+                },
+                {
+                    label: '获赞',
+                    data: [10, 37, 54, 68, 73, 98, 110],
+                    fill: false,
+                    borderColor: 'rgba(221, 100, 0,.5)',
+                    tension: 0.1,
+                    cubicInterpolationMode: 'monotone',
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    new Chart(document.getElementById('chart4').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            labels: [
+                '已租',
+                '未租'
+            ],
+            datasets: [{
+                label: 'Dataset 1',
+                data: [300, 50],
+                backgroundColor: [
+                    '#0abfbc',
+                    '#348f50'
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: '已租未租房源占比图'
+                }
+            }
+        }
+    });
 
 </script>
 </body>

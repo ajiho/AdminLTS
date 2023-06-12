@@ -61,3 +61,8 @@
 }
 
 
+
+// fix:固定列是背景为白色的问题
+.fixed-columns, .fixed-columns-right {
+  background-color: var(--bs-body-bg);
+}

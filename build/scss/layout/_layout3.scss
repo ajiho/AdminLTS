@@ -1,0 +1,90 @@
+.bsa-layout3 {
+
+  // 右侧固定定位的菜单
+  .bsa-layout3-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 240px;
+    z-index: 1020;
+
+
+    // 左侧的箭头
+    .bsa-chevron-toggle {
+      position: absolute;
+      width: 16px;
+      height: 60px;
+      left: -16px;
+      top: 40%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: var(--bs-dark-text-emphasis);
+      background-color: var(--bs-dark-bg-subtle);
+
+      &::after {
+        font-family: bootstrap-icons, serif;
+        content: "\f285";
+
+        @include media-breakpoint-down(lg) {
+          content: "\F284";
+        }
+
+      }
+
+      &:hover {
+        color: var(--bs-light-text-emphasis);
+        background-color: var(--bs-light-bg-subtle);
+      }
+
+    }
+
+
+    @include media-breakpoint-down(lg) {
+      transition: .3s transform;
+      will-change: transform;
+      transform: translateX(101%);
+
+      &.open {
+        transform: translateX(0) !important;
+
+        .bsa-chevron-toggle::after {
+          font-family: bootstrap-icons, serif;
+          content: "\f285";
+        }
+
+      }
+
+    }
+  }
+
+
+  .bsa-layout3-left {
+    margin-right: 244px;
+
+    @include media-breakpoint-down(lg) {
+      margin-right: 0;
+    }
+
+  }
+
+
+  &.collapsed {
+
+    .bsa-layout3-left {
+      margin-right: 0;
+    }
+
+    .bsa-layout3-right {
+      transform: translateX(101%);
+    }
+
+    .bsa-chevron-toggle::after {
+      content: "\F284";
+    }
+
+  }
+
+}
+

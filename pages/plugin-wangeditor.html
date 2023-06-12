@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../lib/@wangeditor/editor/dist/css/style.css">
     <style>
+
+        /* 编辑器高度*/
         #editor-container {
             height: 310px;
         }
@@ -32,8 +34,10 @@
                     <label class="form-label">文章内容</label>
                     <div>
                         <div id="editor—wrapper">
-                            <div id="toolbar-container"><!-- 工具栏 --></div>
-                            <div id="editor-container"><!-- 编辑器 --></div>
+                            <!-- 工具栏 -->
+                            <div id="toolbar-container"></div>
+                            <!-- 编辑器 -->
+                            <div id="editor-container"></div>
                         </div>
                     </div>
                 </div>
@@ -42,19 +46,24 @@
         </div>
     </div>
 </div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
+
+
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
 <script src="../lib/@wangeditor/editor/dist/index.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
-
-
     const {createEditor, createToolbar, Boot} = window.wangEditor
-
     const editorConfig = {
+        //最好关闭自动聚焦,用户体验会比较好
+        autoFocus: false,
         placeholder: '开始你的创作!',
         onChange(editor) {
             const html = editor.getHtml()

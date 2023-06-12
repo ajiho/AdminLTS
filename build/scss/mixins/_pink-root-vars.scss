@@ -1,0 +1,55 @@
+@mixin pink-root-vars {
+
+  @include color-mode("pink", true) {
+
+    // scss-docs-start root-dark-mode-vars
+    --#{$prefix}body-color: #{$body-color-pink};
+    --#{$prefix}body-color-rgb: #{to-rgb($body-color-pink)};
+    --#{$prefix}body-bg: #{$body-bg-pink};
+    --#{$prefix}body-bg-rgb: #{to-rgb($body-bg-pink)};
+
+    --#{$prefix}emphasis-color: #{$body-emphasis-color-pink};
+    --#{$prefix}emphasis-color-rgb: #{to-rgb($body-emphasis-color-pink)};
+
+    --#{$prefix}secondary-color: #{$body-secondary-color-pink};
+    --#{$prefix}secondary-color-rgb: #{to-rgb($body-secondary-color-pink)};
+    --#{$prefix}secondary-bg: #{$body-secondary-bg-pink};
+    --#{$prefix}secondary-bg-rgb: #{to-rgb($body-secondary-bg-pink)};
+
+    --#{$prefix}tertiary-color: #{$body-tertiary-color-pink};
+    --#{$prefix}tertiary-color-rgb: #{to-rgb($body-tertiary-color-pink)};
+    --#{$prefix}tertiary-bg: #{$body-tertiary-bg-pink};
+    --#{$prefix}tertiary-bg-rgb: #{to-rgb($body-tertiary-bg-pink)};
+
+    @each $color, $value in $theme-colors-text-pink {
+      --#{$prefix}#{$color}-text-emphasis: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-bg-subtle-pink {
+      --#{$prefix}#{$color}-bg-subtle: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-border-subtle-pink {
+      --#{$prefix}#{$color}-border-subtle: #{$value};
+    }
+
+    --#{$prefix}heading-color: #{$headings-color-pink};
+
+    --#{$prefix}link-color: #{$link-color-pink};
+    --#{$prefix}link-hover-color: #{$link-hover-color-pink};
+    --#{$prefix}link-color-rgb: #{to-rgb($link-color-pink)};
+    --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover-color-pink)};
+
+    --#{$prefix}code-color: #{$code-color-pink};
+
+    --#{$prefix}border-color: #{$border-color-pink};
+    --#{$prefix}border-color-translucent: #{$border-color-translucent-pink};
+
+    --#{$prefix}form-valid-color: #{$form-valid-color-pink};
+    --#{$prefix}form-valid-border-color: #{$form-valid-border-color-pink};
+    --#{$prefix}form-invalid-color: #{$form-invalid-color-pink};
+    --#{$prefix}form-invalid-border-color: #{$form-invalid-border-color-pink};
+    // scss-docs-end root-dark-mode-vars
+  }
+
+}

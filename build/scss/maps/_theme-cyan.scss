@@ -1,0 +1,32 @@
+$theme-colors-text-cyan: (
+  "primary": $primary-text-emphasis-cyan,
+  "secondary": $secondary-text-emphasis-cyan,
+  "success": $success-text-emphasis-cyan,
+  "info": $info-text-emphasis-cyan,
+  "warning": $warning-text-emphasis-cyan,
+  "danger": $danger-text-emphasis-cyan,
+  "light": $light-text-emphasis-cyan,
+  "dark": $dark-text-emphasis-cyan,
+) !default;
+
+$theme-colors-bg-subtle-cyan: (
+  "primary": $primary-bg-subtle-cyan,
+  "secondary": $secondary-bg-subtle-cyan,
+  "success": $success-bg-subtle-cyan,
+  "info": $info-bg-subtle-cyan,
+  "warning": $warning-bg-subtle-cyan,
+  "danger": $danger-bg-subtle-cyan,
+  "light": $light-bg-subtle-cyan,
+  "dark": $dark-bg-subtle-cyan,
+) !default;
+
+$theme-colors-border-subtle-cyan: (
+  "primary": $primary-border-subtle-cyan,
+  "secondary": $secondary-border-subtle-cyan,
+  "success": $success-border-subtle-cyan,
+  "info": $info-border-subtle-cyan,
+  "warning": $warning-border-subtle-cyan,
+  "danger": $danger-border-subtle-cyan,
+  "light": $light-border-subtle-cyan,
+  "dark": $dark-border-subtle-cyan,
+) !default;

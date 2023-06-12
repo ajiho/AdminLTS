@@ -1,0 +1,55 @@
+@mixin indigo-root-vars {
+
+  @include color-mode("indigo", true) {
+
+    // scss-docs-start root-dark-mode-vars
+    --#{$prefix}body-color: #{$body-color-indigo};
+    --#{$prefix}body-color-rgb: #{to-rgb($body-color-indigo)};
+    --#{$prefix}body-bg: #{$body-bg-indigo};
+    --#{$prefix}body-bg-rgb: #{to-rgb($body-bg-indigo)};
+
+    --#{$prefix}emphasis-color: #{$body-emphasis-color-indigo};
+    --#{$prefix}emphasis-color-rgb: #{to-rgb($body-emphasis-color-indigo)};
+
+    --#{$prefix}secondary-color: #{$body-secondary-color-indigo};
+    --#{$prefix}secondary-color-rgb: #{to-rgb($body-secondary-color-indigo)};
+    --#{$prefix}secondary-bg: #{$body-secondary-bg-indigo};
+    --#{$prefix}secondary-bg-rgb: #{to-rgb($body-secondary-bg-indigo)};
+
+    --#{$prefix}tertiary-color: #{$body-tertiary-color-indigo};
+    --#{$prefix}tertiary-color-rgb: #{to-rgb($body-tertiary-color-indigo)};
+    --#{$prefix}tertiary-bg: #{$body-tertiary-bg-indigo};
+    --#{$prefix}tertiary-bg-rgb: #{to-rgb($body-tertiary-bg-indigo)};
+
+    @each $color, $value in $theme-colors-text-indigo {
+      --#{$prefix}#{$color}-text-emphasis: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-bg-subtle-indigo {
+      --#{$prefix}#{$color}-bg-subtle: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-border-subtle-indigo {
+      --#{$prefix}#{$color}-border-subtle: #{$value};
+    }
+
+    --#{$prefix}heading-color: #{$headings-color-indigo};
+
+    --#{$prefix}link-color: #{$link-color-indigo};
+    --#{$prefix}link-hover-color: #{$link-hover-color-indigo};
+    --#{$prefix}link-color-rgb: #{to-rgb($link-color-indigo)};
+    --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover-color-indigo)};
+
+    --#{$prefix}code-color: #{$code-color-indigo};
+
+    --#{$prefix}border-color: #{$border-color-indigo};
+    --#{$prefix}border-color-translucent: #{$border-color-translucent-indigo};
+
+    --#{$prefix}form-valid-color: #{$form-valid-color-indigo};
+    --#{$prefix}form-valid-border-color: #{$form-valid-border-color-indigo};
+    --#{$prefix}form-invalid-color: #{$form-invalid-color-indigo};
+    --#{$prefix}form-invalid-border-color: #{$form-invalid-border-color-indigo};
+    // scss-docs-end root-dark-mode-vars
+  }
+
+}

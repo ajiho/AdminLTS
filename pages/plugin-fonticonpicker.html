@@ -38,37 +38,42 @@
         </div>
     </div>
 </div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
 <script src="../lib/@fonticonpicker/fonticonpicker/dist/js/jquery.fonticonpicker.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
-<script src="../dist/js/app.js"></script>
-<script src="../dist/js/bootstrap-admin.mock.js"></script>
+
 <script>
     $(function () {
-        var font_element = $('#icon-example').fontIconPicker({
+
+        // 得到fontIconPicker插件对象
+        let fontIconPicker = $('#icon-example').fontIconPicker({
             theme: 'fip-bootstrap',
             searchPlaceholder: '搜索图标'
         });
 
         $.ajax({
             url: '../lib/bootstrap-icons/font/bootstrap-icons.json',
-            type: 'GET',
-            dataType: 'json'
-        }).done(function (response) {
-            var fontello_json_icons = [];
+        }).then(function (response) {
+            let fontello_json_icons = [];
             $.each(response, function (i, v) {
                 fontello_json_icons.push('bi bi-' + i);
             });
-            font_element.setIcons(fontello_json_icons);
-        }).fail(function () {
-            console.error('字体图标配置加载失败');
-        });
 
+            //插件对象设置图标
+            fontIconPicker.setIcons(fontello_json_icons);
+        })
+
+        //监听插件选择图标事件
         $(document).on('change', '#icon-example', function () {
+            //给input框设置
             $('#select-icon').html($(this).val());
         });
     })

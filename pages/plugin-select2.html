@@ -113,6 +113,11 @@
         </div>
     </div>
 </div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
+
+
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
@@ -120,6 +125,7 @@
 <script src="../lib/select2/dist/js/i18n/zh-CN.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 
 <script>
@@ -322,7 +328,7 @@
         //通过ajax请求来获取数据
         ajax: {
             //该接口总数据是100条 _limit：规定每页多少条
-            url: 'https://jsonplaceholder.typicode.com/posts?_limit=10',
+            url: '/ygfdrewr',
             dataType: 'json',
             delay: 500,// 延迟显示
             data: function (params) {
@@ -399,7 +405,7 @@
         //通过ajax请求来获取数据
         ajax: {
             //该接口总数据是100条 _limit：规定每页多少条
-            url: 'https://jsonplaceholder.typicode.com/posts?_limit=10',
+            url: '/igopfdigfopd',
             dataType: 'json',
             delay: 500,// 延迟显示
             data: function (params) {
@@ -477,7 +483,7 @@
         //通过ajax请求来获取数据
         ajax: {
             //该接口总数据是10条 _limit：规定每页多少条
-            url: 'https://jsonplaceholder.typicode.com/users?_limit=3',
+            url: '/uiourewrw',
             dataType: 'json',
             delay: 500,// 延迟显示
             data: function (params) {
@@ -520,7 +526,6 @@
         },
         // 搜索结果样式自定义
         templateResult: function (option) {
-            console.log(option);
             if (option.loading) return option.text;
             return `
                       <div class="py-2">
@@ -556,7 +561,7 @@
         //通过ajax请求来获取数据
         ajax: {
             //该接口总数据是10条 _limit：规定每页多少条
-            url: 'https://jsonplaceholder.typicode.com/users?_limit=3',
+            url: 'https://jsonplaceholder.typicode.com/posts?_limit=10',
             dataType: 'json',
             delay: 500,// 延迟显示
             data: function (params) {
@@ -599,7 +604,6 @@
         },
         // 搜索结果样式自定义
         templateResult: function (option) {
-            console.log(option);
             if (option.loading) return option.text;
             return `
                       <div class="py-2">

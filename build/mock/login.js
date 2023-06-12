@@ -3,8 +3,6 @@ import Api from './uri'
 
 
 
-
-
 Mock.mock(Api.login,'post', {
     'data|5-10': [
         {

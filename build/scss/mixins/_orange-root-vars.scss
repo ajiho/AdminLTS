@@ -1,0 +1,55 @@
+@mixin orange-root-vars {
+
+  @include color-mode("orange", true) {
+
+    // scss-docs-start root-dark-mode-vars
+    --#{$prefix}body-color: #{$body-color-orange};
+    --#{$prefix}body-color-rgb: #{to-rgb($body-color-orange)};
+    --#{$prefix}body-bg: #{$body-bg-orange};
+    --#{$prefix}body-bg-rgb: #{to-rgb($body-bg-orange)};
+
+    --#{$prefix}emphasis-color: #{$body-emphasis-color-orange};
+    --#{$prefix}emphasis-color-rgb: #{to-rgb($body-emphasis-color-orange)};
+
+    --#{$prefix}secondary-color: #{$body-secondary-color-orange};
+    --#{$prefix}secondary-color-rgb: #{to-rgb($body-secondary-color-orange)};
+    --#{$prefix}secondary-bg: #{$body-secondary-bg-orange};
+    --#{$prefix}secondary-bg-rgb: #{to-rgb($body-secondary-bg-orange)};
+
+    --#{$prefix}tertiary-color: #{$body-tertiary-color-orange};
+    --#{$prefix}tertiary-color-rgb: #{to-rgb($body-tertiary-color-orange)};
+    --#{$prefix}tertiary-bg: #{$body-tertiary-bg-orange};
+    --#{$prefix}tertiary-bg-rgb: #{to-rgb($body-tertiary-bg-orange)};
+
+    @each $color, $value in $theme-colors-text-orange {
+      --#{$prefix}#{$color}-text-emphasis: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-bg-subtle-orange {
+      --#{$prefix}#{$color}-bg-subtle: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-border-subtle-orange {
+      --#{$prefix}#{$color}-border-subtle: #{$value};
+    }
+
+    --#{$prefix}heading-color: #{$headings-color-orange};
+
+    --#{$prefix}link-color: #{$link-color-orange};
+    --#{$prefix}link-hover-color: #{$link-hover-color-orange};
+    --#{$prefix}link-color-rgb: #{to-rgb($link-color-orange)};
+    --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover-color-orange)};
+
+    --#{$prefix}code-color: #{$code-color-orange};
+
+    --#{$prefix}border-color: #{$border-color-orange};
+    --#{$prefix}border-color-translucent: #{$border-color-translucent-orange};
+
+    --#{$prefix}form-valid-color: #{$form-valid-color-orange};
+    --#{$prefix}form-valid-border-color: #{$form-valid-border-color-orange};
+    --#{$prefix}form-invalid-color: #{$form-invalid-color-orange};
+    --#{$prefix}form-invalid-border-color: #{$form-invalid-border-color-orange};
+    // scss-docs-end root-dark-mode-vars
+  }
+
+}

@@ -4,7 +4,7 @@ import {defineConfig} from 'vitepress'
 export default defineConfig({
 
     // 整个网页的标题
-    title: 'bootstrap-admin|一个轻量级的后台管理静态html模板',
+    title: 'bootstrap-admin官方文档',
     //网页的语言
     lang: 'zh',
     base: '/docs/',
@@ -55,8 +55,8 @@ export default defineConfig({
                     text: '快速开始',
                     items: [
                         {text: '介绍', link: '/guide/'},
-                        {text: '安装', link: '/guide/Install'},
                         {text: '快速上手', link: '/guide/quick-start'},
+                        {text: '开发经验', link: '/guide/experience'},
                         {text: '依赖项和插件', link: '/guide/Dependencies'},
                         {text: '浏览器支持', link: '/guide/BrowserSupport'},
                         {text: '拓展助手', link: '/guide/Helpers'},

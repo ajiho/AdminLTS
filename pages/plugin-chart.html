@@ -19,7 +19,7 @@
     <div class="row row-cols-1 row-cols-lg-2 g-3">
         <div class="col">
             <div class="card border-0 shadow-sm">
-                <div class="card-header ">
+                <div class="card-header bg-body ">
                     条形图
                 </div>
                 <div class="card-body">
@@ -29,7 +29,7 @@
         </div>
         <div class="col">
             <div class="card border-0 shadow-sm">
-                <div class="card-header ">
+                <div class="card-header bg-body ">
                     折线图
                 </div>
                 <div class="card-body">
@@ -39,7 +39,7 @@
         </div>
         <div class="col">
             <div class="card border-0 shadow-sm">
-                <div class="card-header ">
+                <div class="card-header bg-body ">
                     空心饼图
                 </div>
                 <div class="card-body">
@@ -49,7 +49,7 @@
         </div>
         <div class="col">
             <div class="card border-0 shadow-sm">
-                <div class="card-header ">
+                <div class="card-header bg-body ">
                     实心饼图
                 </div>
                 <div class="card-body">
@@ -59,12 +59,16 @@
         </div>
     </div>
 </div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
-<script src="../lib/chart.js/dist/chart.min.js"></script>
+<script src="../lib/chart.js/dist/chart.umd.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
     new Chart(document.getElementById('chart1').getContext('2d'), {

@@ -15,241 +15,249 @@
 </head>
 <body class="bg-body-tertiary py-3">
 <div class="container-fluid">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body">
-            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-2">
-                <div class="col">
-                    <div class="card-body">
-                        <h5 class="card-title">基础表单验证</h5>
-                        <div class="dropdown-divider mb-3"></div>
-                        <form action="#" id="form">
-                            <div class="mb-3">
-                                <label for="truename" class="form-label">姓名</label>
-                                <input type="text" class="form-control" id="truename" name="truename">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="username" class="form-label">账号</label>
-                                <input type="text" class="form-control" id="username" name="username">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">密码</label>
-                                <input type="text" class="form-control" id="password" name="password">
-                                <div id="emailHelp" class="form-text">密码不填写默认为123456</div>
-
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="password_confirm" class="form-label">确认密码</label>
-                                <input type="text" class="form-control" id="password_confirm"
-                                       name="password_confirm">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="sexRadio1" class="form-label">性别</label>
-                                <div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="sex" id="sexRadio1"
-                                               value="先生"
-                                               checked>
-                                        <label class="form-check-label" for="sexRadio1">先生</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="sex" id="sexRadio2"
-                                               value="女士">
-                                        <label class="form-check-label" for="sexRadio2">女士</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">手机</label>
-                                <input type="text" class="form-control" id="phone" name="phone">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="email" class="form-label">邮箱</label>
-                                <input type="text" class="form-control" id="email" name="email">
-                            </div>
-                            <button type="submit" class="btn btn-primary">添加</button>
-                        </form>
-                    </div>
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-2">
+        <div class="col">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    基础表单验证
                 </div>
-                <div class="col">
-                    <div class="card-body">
-                        <h5 class="card-title">水平的label</h5>
-                        <div class="dropdown-divider mb-3"></div>
+                <div class="card-body">
+                    <form action="#" id="form">
+                        <div class="mb-3">
+                            <label for="truename" class="form-label">姓名</label>
+                            <input type="text" class="form-control" id="truename" name="truename">
+                        </div>
 
-                        <form action="#" id="form2">
-                            <div class="mb-3 row">
-                                <label for="username2" class="col-sm-3 col-form-label">用户名</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="username2" name="username2">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="password2" class="col-sm-3 col-form-label">密码</label>
-                                <div class="col-sm-9">
-                                    <input type="password" autocomplete class="form-control" id="password2"
-                                           name="password2">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="confirmPassword2" class="col-sm-3 col-form-label">确认密码</label>
-                                <div class="col-sm-9">
-                                    <input type="password" autocomplete class="form-control" id="confirmPassword2"
-                                           name="confirmPassword2">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="email2" class="col-sm-3 col-form-label">邮箱</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="email2" name="email2">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="gender2Radio1" class="col-sm-3 col-form-label">性别</label>
-                                <div class="col-sm-9">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender2"
-                                               id="gender2Radio1" value="先生">
-                                        <label class="form-check-label" for="gender2Radio1">先生</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender2"
-                                               id="gender2Radio2" value="女士">
-                                        <label class="form-check-label" for="gender2Radio2">女士</label>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">账号</label>
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">密码</label>
+                            <input type="text" class="form-control" id="password" name="password">
+                            <div id="emailHelp" class="form-text">密码不填写默认为123456</div>
 
-                            <div class="mb-3 row">
-                                <label for="age2" class="col-sm-3 col-form-label">年龄</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="age2" name="age2">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password_confirm" class="form-label">确认密码</label>
+                            <input type="text" class="form-control" id="password_confirm"
+                                   name="password_confirm">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sexRadio1" class="form-label">性别</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="sexRadio1"
+                                           value="先生"
+                                           checked>
+                                    <label class="form-check-label" for="sexRadio1">先生</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="sexRadio2"
+                                           value="女士">
+                                    <label class="form-check-label" for="sexRadio2">女士</label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">手机</label>
+                            <input type="text" class="form-control" id="phone" name="phone">
+                        </div>
 
-                            <div class="mb-3 row">
-                                <label for="captchaAnswer" id="captchaProblems"
-                                       class="col-sm-3 col-form-label">70+115=</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="captchaAnswer"
-                                           name="captchaAnswer">
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <div class="col-sm-9 offset-sm-3">
-                                    <input type="checkbox" class="form-check-input" id="agree2" name="agree2">
-                                    <label class="form-check-label" for="agree2">同意条款协议</label>
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <div class="col-sm-9 offset-sm-3">
-                                    <button type="submit" class="btn btn-primary">提交</button>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">邮箱</label>
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                        <button type="submit" class="btn btn-primary">添加</button>
+                    </form>
                 </div>
-                <div class="col">
-                    <div class="card-body">
-                        <h5 class="card-title">选择验证</h5>
-                        <div class="dropdown-divider mb-3"></div>
-                        <form action="#" id="form3">
-                            <div class="mb-3 row">
-                                <label for="languages-net" class="col-sm-3 col-form-label">编程语言</label>
-                                <div class="col-sm-9">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="languages[]"
-                                               value="net" id="languages-net">
-                                        <label class="form-check-label" for="languages-net">
-                                            .net
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="languages[]"
-                                               value="Java" id="languages-Java">
-                                        <label class="form-check-label" for="languages-Java">
-                                            Java
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="languages[]"
-                                               value="C/C++" id="languages-C/C++">
-                                        <label class="form-check-label" for="languages-C/C++">
-                                            C/C++
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="languages[]"
-                                               value="PHP" id="languages-PHP">
-                                        <label class="form-check-label" for="languages-PHP">
-                                            PHP
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="languages[]"
-                                               value="Perl" id="languages-Perl">
-                                        <label class="form-check-label" for="languages-Perl">
-                                            Perl
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="languages[]"
-                                               value="Ruby" id="languages-Ruby">
-                                        <label class="form-check-label" for="languages-Ruby">
-                                            Ruby
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="languages[]"
-                                               value="Python" id="languages-Python">
-                                        <label class="form-check-label" for="languages-Python">
-                                            Python
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="languages[]"
-                                               value="Javascript" id="languages-Javascript">
-                                        <label class="form-check-label" for="languages-Javascript">
-                                            Javascript
-                                        </label>
-                                    </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    水平的label
+                </div>
+                <div class="card-body">
+                    <form action="#" id="form2">
+                        <div class="mb-3 row">
+                            <label for="username2" class="col-sm-3 col-form-label">用户名</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="username2" name="username2">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="password2" class="col-sm-3 col-form-label">密码</label>
+                            <div class="col-sm-9">
+                                <input type="password" autocomplete class="form-control" id="password2"
+                                       name="password2">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="confirmPassword2" class="col-sm-3 col-form-label">确认密码</label>
+                            <div class="col-sm-9">
+                                <input type="password" autocomplete class="form-control" id="confirmPassword2"
+                                       name="confirmPassword2">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="email2" class="col-sm-3 col-form-label">邮箱</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="email2" name="email2">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="gender2Radio1" class="col-sm-3 col-form-label">性别</label>
+                            <div class="col-sm-9">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender2"
+                                           id="gender2Radio1" value="先生">
+                                    <label class="form-check-label" for="gender2Radio1">先生</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender2"
+                                           id="gender2Radio2" value="女士">
+                                    <label class="form-check-label" for="gender2Radio2">女士</label>
+                                </div>
+                            </div>
+                        </div>
 
-                                </div>
+                        <div class="mb-3 row">
+                            <label for="age2" class="col-sm-3 col-form-label">年龄</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="age2" name="age2">
                             </div>
-                            <div class="mb-3 row">
-                                <label for="languages-net" class="col-sm-3 col-form-label">编辑器</label>
-                                <div class="col-sm-9">
-                                    <select class="form-select" aria-label="编辑器列表" name="editors[]"
-                                            multiple="multiple"
-                                            style="height: 200px;">
-                                        <option value="atom">Atom</option>
-                                        <option value="eclipse">Eclipse</option>
-                                        <option value="netbeen">NetBean</option>
-                                        <option value="nodepadplusplus">Nodepad++</option>
-                                        <option value="phpstorm">PHP Storm</option>
-                                        <option value="sublime">Sublime</option>
-                                        <option value="webstorm">Web Storm</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <div class="col-sm-9 offset-sm-3">
-                                    <button type="submit" class="btn btn-primary">提交</button>
-                                </div>
-                            </div>
+                        </div>
 
-                        </form>
-                    </div>
+                        <div class="mb-3 row">
+                            <label for="captchaAnswer" id="captchaProblems"
+                                   class="col-sm-3 col-form-label">70+115=</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="captchaAnswer"
+                                       name="captchaAnswer">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-sm-9 offset-sm-3">
+                                <input type="checkbox" class="form-check-input" id="agree2" name="agree2">
+                                <label class="form-check-label" for="agree2">同意条款协议</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-body">
+                    选择验证
+                </div>
+                <div class="card-body">
+                    <form action="#" id="form3">
+                        <div class="mb-3 row">
+                            <label for="languages-net" class="col-sm-3 col-form-label">编程语言</label>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="languages[]"
+                                           value="net" id="languages-net">
+                                    <label class="form-check-label" for="languages-net">
+                                        .net
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="languages[]"
+                                           value="Java" id="languages-Java">
+                                    <label class="form-check-label" for="languages-Java">
+                                        Java
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="languages[]"
+                                           value="C/C++" id="languages-C/C++">
+                                    <label class="form-check-label" for="languages-C/C++">
+                                        C/C++
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="languages[]"
+                                           value="PHP" id="languages-PHP">
+                                    <label class="form-check-label" for="languages-PHP">
+                                        PHP
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="languages[]"
+                                           value="Perl" id="languages-Perl">
+                                    <label class="form-check-label" for="languages-Perl">
+                                        Perl
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="languages[]"
+                                           value="Ruby" id="languages-Ruby">
+                                    <label class="form-check-label" for="languages-Ruby">
+                                        Ruby
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="languages[]"
+                                           value="Python" id="languages-Python">
+                                    <label class="form-check-label" for="languages-Python">
+                                        Python
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="languages[]"
+                                           value="Javascript" id="languages-Javascript">
+                                    <label class="form-check-label" for="languages-Javascript">
+                                        Javascript
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="languages-net" class="col-sm-3 col-form-label">编辑器</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" aria-label="编辑器列表" name="editors[]"
+                                        multiple="multiple"
+                                        style="height: 200px;">
+                                    <option value="atom">Atom</option>
+                                    <option value="eclipse">Eclipse</option>
+                                    <option value="netbeen">NetBean</option>
+                                    <option value="nodepadplusplus">Nodepad++</option>
+                                    <option value="phpstorm">PHP Storm</option>
+                                    <option value="sublime">Sublime</option>
+                                    <option value="webstorm">Web Storm</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
 
 
 
@@ -260,6 +268,7 @@
 <script src="../lib/formvalidation/js/language/zh_CN.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 
 <script>

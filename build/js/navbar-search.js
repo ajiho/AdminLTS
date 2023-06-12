@@ -21,10 +21,6 @@ const Default = {
     closeReset: false,
     //触发器
     trigger: SELECTOR_SEARCH_TRIGGER,
-    //请求地址
-    action: '',
-    //额外参数
-    params: ''
 }
 
 
@@ -60,9 +56,11 @@ class NavbarSearch {
         }
     }
 
-    _triggerSearch(keyword) {
+
+
+    _triggerSearch(inputValue) {
         const searchEvent = $.Event(EVENT_SEARCH);
-        $(this._element).trigger(searchEvent, [this._config, keyword])
+        $(this._element).trigger(searchEvent, [inputValue,$(this._element).data()])
     }
 
     _init() {

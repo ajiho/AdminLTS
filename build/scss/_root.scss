@@ -12,53 +12,13 @@
 }
 
 
-@include color-mode("indigo", true) {
-  --#{$prefix}body-color: #{$body-color-indigo};
-  --#{$prefix}body-color-rgb: #{to-rgb($body-color-indigo)};
-  --#{$prefix}body-bg: #{$body-bg-indigo};
-  --#{$prefix}body-bg-rgb: #{to-rgb($body-bg-indigo)};
-  --#{$prefix}emphasis-color: #{$body-emphasis-color-indigo};
-  --#{$prefix}emphasis-color-rgb: #{to-rgb($body-emphasis-color-indigo)};
-  --#{$prefix}secondary-color: #{$body-secondary-color-indigo};
-  --#{$prefix}secondary-color-rgb: #{to-rgb($body-secondary-color-indigo)};
-  --#{$prefix}secondary-bg: #{$body-secondary-bg-indigo};
-  --#{$prefix}secondary-bg-rgb: #{to-rgb($body-secondary-bg-indigo)};
-  --#{$prefix}tertiary-color: #{$body-tertiary-color-indigo};
-  --#{$prefix}tertiary-color-rgb: #{to-rgb($body-tertiary-color-indigo)};
-  --#{$prefix}tertiary-bg: #{$body-tertiary-bg-indigo};
-  --#{$prefix}tertiary-bg-rgb: #{to-rgb($body-tertiary-bg-indigo)};
-  --#{$prefix}emphasis-color: #{$emphasis-color-indigo};
-  --#{$prefix}primary-text: #{$primary-text-indigo};
-  --#{$prefix}secondary-text: #{$secondary-text-indigo};
-  --#{$prefix}success-text: #{$success-text-indigo};
-  --#{$prefix}info-text: #{$info-text-indigo};
-  --#{$prefix}warning-text: #{$warning-text-indigo};
-  --#{$prefix}danger-text: #{$danger-text-indigo};
-  --#{$prefix}light-text: #{$light-text-indigo};
-  --#{$prefix}dark-text: #{$dark-text-indigo};
-  --#{$prefix}primary-bg-subtle: #{$primary-bg-subtle-indigo};
-  --#{$prefix}secondary-bg-subtle: #{$secondary-bg-subtle-indigo};
-  --#{$prefix}success-bg-subtle: #{$success-bg-subtle-indigo};
-  --#{$prefix}info-bg-subtle: #{$info-bg-subtle-indigo};
-  --#{$prefix}warning-bg-subtle: #{$warning-bg-subtle-indigo};
-  --#{$prefix}danger-bg-subtle: #{$danger-bg-subtle-indigo};
-  --#{$prefix}light-bg-subtle: #{$light-bg-subtle-indigo};
-  --#{$prefix}dark-bg-subtle: #{$dark-bg-subtle-indigo};
-  --#{$prefix}primary-border-subtle: #{$primary-border-subtle-indigo};
-  --#{$prefix}secondary-border-subtle: #{$secondary-border-subtle-indigo};
-  --#{$prefix}success-border-subtle: #{$success-border-subtle-indigo};
-  --#{$prefix}info-border-subtle: #{$info-border-subtle-indigo};
-  --#{$prefix}warning-border-subtle: #{$warning-border-subtle-indigo};
-  --#{$prefix}danger-border-subtle: #{$danger-border-subtle-indigo};
-  --#{$prefix}light-border-subtle: #{$light-border-subtle-indigo};
-  --#{$prefix}dark-border-subtle: #{$dark-border-subtle-indigo};
-  --#{$prefix}heading-color: #{$headings-color-indigo};
-  --#{$prefix}link-color: #{$link-color-indigo};
-  --#{$prefix}link-hover-color: #{$link-hover-color-indigo};
-  --#{$prefix}link-color-rgb: #{to-rgb($link-color-indigo)};
-  --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover-color-indigo)};
-  --#{$prefix}code-color: #{$code-color-indigo};
-  --#{$prefix}border-color: #{$border-color-indigo};
-  --#{$prefix}border-color-translucent: #{$border-color-translucent-indigo};
-}
+@include indigo-root-vars();
+@include green-root-vars();
+@include pink-root-vars();
+@include yellow-root-vars();
+@include blue-root-vars();
+@include red-root-vars();
+@include orange-root-vars();
+@include teal-root-vars();
+@include cyan-root-vars();
 

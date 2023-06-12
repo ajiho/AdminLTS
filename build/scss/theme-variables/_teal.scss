@@ -1,0 +1,85 @@
+// Dark color mode variables
+//
+// Custom variables for the `[data-bs-theme="dark"]` theme. Use this as a starting point for your own custom color modes by creating a new theme-specific file like `_variables-teal.scss` and adding the variables you need.
+
+//
+// Global colors
+//
+
+// scss-docs-start sass-teal-mode-vars
+// scss-docs-start theme-text-teal-variables
+$primary-text-emphasis-teal:        tint-color($primary, 40%) !default;
+$secondary-text-emphasis-teal:      tint-color($secondary, 40%) !default;
+$success-text-emphasis-teal:        tint-color($success, 40%) !default;
+$info-text-emphasis-teal:           tint-color($info, 40%) !default;
+$warning-text-emphasis-teal:        tint-color($warning, 40%) !default;
+$danger-text-emphasis-teal:         tint-color($danger, 40%) !default;
+$light-text-emphasis-teal:          $teal-100 !default;
+$dark-text-emphasis-teal:           $teal-300 !default;
+// scss-docs-end theme-text-teal-variables
+
+// scss-docs-start theme-bg-subtle-teal-variables
+$primary-bg-subtle-teal:            shade-color($primary, 80%) !default;
+$secondary-bg-subtle-teal:          shade-color($secondary, 80%) !default;
+$success-bg-subtle-teal:            shade-color($success, 80%) !default;
+$info-bg-subtle-teal:               shade-color($info, 80%) !default;
+$warning-bg-subtle-teal:            shade-color($warning, 80%) !default;
+$danger-bg-subtle-teal:             shade-color($danger, 80%) !default;
+$light-bg-subtle-teal:              $teal-800 !default;
+$dark-bg-subtle-teal:               mix($teal-800, $black) !default;
+// scss-docs-end theme-bg-subtle-teal-variables
+
+// scss-docs-start theme-border-subtle-teal-variables
+$primary-border-subtle-teal:        shade-color($primary, 40%) !default;
+$secondary-border-subtle-teal:      shade-color($secondary, 40%) !default;
+$success-border-subtle-teal:        shade-color($success, 40%) !default;
+$info-border-subtle-teal:           shade-color($info, 40%) !default;
+$warning-border-subtle-teal:        shade-color($warning, 40%) !default;
+$danger-border-subtle-teal:         shade-color($danger, 40%) !default;
+$light-border-subtle-teal:          $teal-700 !default;
+$dark-border-subtle-teal:           $teal-800 !default;
+// scss-docs-end theme-border-subtle-teal-variables
+
+$body-color-teal:                   $teal-500 !default;
+$body-bg-teal:                      $teal-900 !default;
+$body-secondary-color-teal:         rgba($body-color-teal, .75) !default;
+$body-secondary-bg-teal:            $teal-800 !default;
+$body-tertiary-color-teal:          rgba($body-color-teal, .5) !default;
+$body-tertiary-bg-teal:             mix($teal-800, $teal-900, 50%) !default;
+$body-emphasis-color-teal:          $white !default;
+$border-color-teal:                 $teal-700 !default;
+$border-color-translucent-teal:     rgba($white, .15) !default;
+$headings-color-teal:               inherit !default;
+$link-color-teal:                   tint-color($primary, 40%) !default;
+$link-hover-color-teal:             shift-color($link-color-teal, -$link-shade-percentage) !default;
+$code-color-teal:                   tint-color($code-color, 40%) !default;
+
+
+//
+// Forms
+//
+
+$form-select-indicator-color-teal:  $body-color-teal !default;
+$form-select-indicator-teal:        url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color-teal}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !default;
+
+$form-switch-color-teal:            rgba($white, .25) !default;
+$form-switch-bg-image-teal:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$form-switch-color-teal}'/></svg>") !default;
+
+// scss-docs-start form-validation-colors-teal
+$form-valid-color-teal:             $green-300 !default;
+$form-valid-border-color-teal:      $green-300 !default;
+$form-invalid-color-teal:           $red-300 !default;
+$form-invalid-border-color-teal:    $red-300 !default;
+// scss-docs-end form-validation-colors-teal
+
+
+//
+// Accordion
+//
+
+$accordion-icon-color-teal:         $primary-text-emphasis-teal !default;
+$accordion-icon-active-color-teal:  $primary-text-emphasis-teal !default;
+
+$accordion-button-icon-teal:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color-teal}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$accordion-button-active-icon-teal:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color-teal}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+// scss-docs-end sass-teal-mode-vars

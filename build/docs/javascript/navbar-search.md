@@ -17,15 +17,16 @@
 ### Jquery
 
 ```javascript
-('[data-bsa-toggle="navbar-search"]').NavbarSearch(options)
+('.bsa-search-form-wrapper').NavbarSearch(options)
 ```
 
 ## 选项
 
-| 选项 | 类型 | 默认值 | 说明 |
-|--|--|--|--|
-|trigger |String | `'.bsa-search-form-toggler'` | 导航栏搜索的触发器(移动端显示) |
-|closeReset |boolean | false | 是否关闭搜索框时重置内容 |
+| 选项         | 类型 | 默认值 | 说明                    |
+|------------|--|--|-----------------------|
+| trigger    |String | `'.bsa-search-form-toggler'` | 导航栏搜索的触发器(移动端显示)      |
+| closeReset |boolean | false | 是否关闭搜索框时重置内容          |
+| data-*     |any |  | 其它拓展数据通过`data-*`的方式传递 |
 
  您可以像这样通过数据属性使用任何选项。
 
@@ -48,15 +49,14 @@
 例子:
 
 ```javascript
-//头部搜索框处理(不需要可以删除)
-$(document).on('search.bsa.navbar-search', function (e, config, keyword) {
-    //先得到请求地址
-    var url = config.action;
-    //这里是拼接其它参数
-    url += '?keyword=' + keyword + '&' + $.param(config.params);
-    //然后调用tab
+//头部搜索框处理(不需要可以删除,不明白的可以看bootstrap-admin官方文档)
+$(document).on('search.bsa.navbar-search', function (e, inputValue, data) {
+    //先得到请求地址,组合后大概是这样pages/search.html?keyword=dsadsa&type=article&user=admin2
+    let url = data.action + '?keyword=' + inputValue + '&' + $.param(data.params);
+
+    //然后通过tab打开一个搜索结果的窗口
     Quicktab.get('.qtab').addTab({
-        title: '<i class="bi bi-search"></i><span class="text-danger ms-2">' + keyword + '</span>',
+        title: '<i class="bi bi-search"></i><span class="text-danger ms-2">' + inputValue + '</span>',
         url: url,
         close: true,
     })

@@ -73,9 +73,13 @@ export default [
             {
                 file: 'dist/js/bootstrap-admin.mock.js',
                 format: 'iife',
+                globals: {
+                    jquery: 'jQuery'
+                },
                 sourcemap: false, // 不生成 sourcemap 文件
             }
         ],
+        external: ['jquery'],
         plugins: [
             json(),
             resolve(),
@@ -94,7 +98,7 @@ export default [
             }),
             terser({compress: {drop_console: false}})
         ],
-        onwarn: function (message) {
+        onwarn: function (message) {//避免打包mock.js的时候会报错
             if (message.code === 'EVAL') {
                 return;
             }

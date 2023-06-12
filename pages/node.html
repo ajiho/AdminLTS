@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+  <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+  <meta name="description" content="bootstrap-admin基于bootstrap5的免费开源的响应式后台管理模板">
+  <meta name="author" content="ajiho">
+  <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../lib/jquery-treegrid/css/jquery.treegrid.css">
+  <link rel="stylesheet" href="../lib/bootstrap-table/dist/bootstrap-table.min.css">
+  <link rel="stylesheet"
+        href="../lib/bootstrap-table/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css">
+  <link rel="stylesheet" href="../lib/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css"/>
+  <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
+  <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
+</head>
+<body class="bg-body-tertiary py-3">
+
+<div class="container-fluid">
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-body py-3">
+      <form class="row row-cols-sm-auto g-3 align-items-center">
+        <div class="col-12">
+          <div class="row">
+            <label for="name" class="col-sm-auto col-form-label">节点名称</label>
+            <div class="col">
+              <input type="email" class="form-control" id="name" name="name">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 gap-2">
+
+          <button type="button" class="btn btn-primary bsa-querySearch-btn">
+            <i class="bi bi-search"></i>搜索
+          </button>
+          <button type="button" class="btn btn-primary bsa-reset-btn">
+            <i class="bi bi-arrow-clockwise"></i>重置
+          </button>
+
+        </div>
+
+      </form>
+    </div>
+    <div class="card-body">
+      <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
+        <button class="btn btn-primary add-btn"><i
+          class="bi bi-plus"></i> 新增
+        </button>
+        <button class="btn btn-primary"><i class="bi bi-arrows-collapse"></i> 展开/折叠</button>
+      </div>
+      <table id="table"></table>
+    </div>
+  </div>
+</div>
+<!--回到顶部开始-->
+<a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+<!--回到顶部结束-->
+
+<script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/jquery/dist/jquery.min.js"></script>
+<script src="../lib/jquery-treegrid/js/jquery.treegrid.min.js"></script>
+<script src="../lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../lib/bootstrap-table/dist/extensions/treegrid/bootstrap-table-treegrid.min.js"></script>
+<script src="../lib/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../lib/bootstrap-table/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+<script src="../dist/js/bootstrap-admin.min.js"></script>
+<script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
+<script src="../dist/js/bootstrap-admin.mock.js"></script>
+
+<script>
+
+
+  $(function () {
+
+
+    // 新增节点
+    $('.add-btn').on('click', function () {
+
+      window.addNodeModal = $.modal({
+        url: 'node-add.html',
+        title: '添加节点',
+        //禁用掉底部的按钮区域
+        buttons: [],
+        modalDialogClass: 'modal-dialog-centered modal-lg',
+        onHidden: function (obj, data) {
+          if (data === true) {
+            //刷新当前数据表格
+            $('#table').bootstrapTable('refresh');
+            $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
+          }
+        }
+      })
+    })
+
+
+    $('#table').bootstrapTable({
+      //处理返回的格式
+      responseHandler: function (res) {
+        return res.data;
+      },
+      url: '/node',
+      idField: 'id',
+      showColumns: true,
+      // 工具按钮容器
+      toolbar: '#toolbar',
+      columns: [
+        {
+          title: 'ID',
+          field: 'id',
+          align: 'center',
+        },
+        {
+          field: 'name',
+          title: '节点名称',
+          width: 300,
+        },
+        {
+          field: 'icon',
+          title: '节点图标',
+          align: 'center',
+          formatter: 'formatIcon'
+        },
+        {
+          field: 'route_name',
+          title: '路由别名'
+        },
+        {
+          title: '是否菜单',
+          field: 'is_menu',
+          align: 'center',
+          formatter: 'formatMenu'
+        },
+        {
+          title: '加入时间',
+          field: 'create_at',
+          align: 'center',
+        },
+        {
+          title: '操作',
+          align: 'center',
+          formatter: formatAction,
+          events: {
+            'click .edit-btn': function (event, value, row, index) {
+              event.stopPropagation();
+
+              window.modalInstance = $.modal({
+                url: 'node-add.html',
+                title: '修改节点',
+                //禁用掉底部的按钮区域
+                buttons: [],
+                modalDialogClass: 'modal-dialog-centered modal-lg',
+                onHidden: function (obj, data) {
+                  if (data === true) {
+                    //刷新当前数据表格
+                    $('#table').bootstrapTable('refresh');
+                    $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
+                  }
+                }
+              })
+
+            },
+            'click .del-btn': function (event, value, row, index) {
+              event.stopPropagation();
+              $.modal({
+                body: `确定要删除节点[${row.name}]吗？`,
+                ok: function () {
+
+                  //发送ajax
+
+                }
+              })
+
+            },
+          }
+        }
+      ],
+      treeShowField: 'name',
+      parentIdField: 'pid',
+      onPostBody: function () {
+        var columns = $('#table').bootstrapTable('getOptions').columns;
+        if (columns && columns[0][1].visible) {
+          $('#table').treegrid({
+            treeColumn: 1,
+            onChange: function () {
+              $('#table').bootstrapTable('resetView')
+            }
+          })
+        }
+      }
+    })
+  })
+
+
+  function formatMenu(value, row, index) {
+    if (value === 1) {
+      return '<span class="badge text-bg-success">是</span>'
+    }
+    return '<span class="badge text-bg-danger">否</span>'
+  }
+
+  function formatIcon(value, row, index) {
+
+    return `<i class="${value}"></i>`
+  }
+
+
+  function formatAction(val, rows) {
+    return `<button type="button" class="btn btn-outline-secondary btn-sm edit-btn"><i class="bi bi-pencil"></i></button>
+                <button type="button" class="btn btn-outline-secondary btn-sm del-btn"><i class="bi bi-x-lg"></i></button>
+`;
+  }
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+@mixin teal-root-vars {
+
+  @include color-mode("teal", true) {
+
+    // scss-docs-start root-dark-mode-vars
+    --#{$prefix}body-color: #{$body-color-teal};
+    --#{$prefix}body-color-rgb: #{to-rgb($body-color-teal)};
+    --#{$prefix}body-bg: #{$body-bg-teal};
+    --#{$prefix}body-bg-rgb: #{to-rgb($body-bg-teal)};
+
+    --#{$prefix}emphasis-color: #{$body-emphasis-color-teal};
+    --#{$prefix}emphasis-color-rgb: #{to-rgb($body-emphasis-color-teal)};
+
+    --#{$prefix}secondary-color: #{$body-secondary-color-teal};
+    --#{$prefix}secondary-color-rgb: #{to-rgb($body-secondary-color-teal)};
+    --#{$prefix}secondary-bg: #{$body-secondary-bg-teal};
+    --#{$prefix}secondary-bg-rgb: #{to-rgb($body-secondary-bg-teal)};
+
+    --#{$prefix}tertiary-color: #{$body-tertiary-color-teal};
+    --#{$prefix}tertiary-color-rgb: #{to-rgb($body-tertiary-color-teal)};
+    --#{$prefix}tertiary-bg: #{$body-tertiary-bg-teal};
+    --#{$prefix}tertiary-bg-rgb: #{to-rgb($body-tertiary-bg-teal)};
+
+    @each $color, $value in $theme-colors-text-teal {
+      --#{$prefix}#{$color}-text-emphasis: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-bg-subtle-teal {
+      --#{$prefix}#{$color}-bg-subtle: #{$value};
+    }
+
+    @each $color, $value in $theme-colors-border-subtle-teal {
+      --#{$prefix}#{$color}-border-subtle: #{$value};
+    }
+
+    --#{$prefix}heading-color: #{$headings-color-teal};
+
+    --#{$prefix}link-color: #{$link-color-teal};
+    --#{$prefix}link-hover-color: #{$link-hover-color-teal};
+    --#{$prefix}link-color-rgb: #{to-rgb($link-color-teal)};
+    --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover-color-teal)};
+
+    --#{$prefix}code-color: #{$code-color-teal};
+
+    --#{$prefix}border-color: #{$border-color-teal};
+    --#{$prefix}border-color-translucent: #{$border-color-translucent-teal};
+
+    --#{$prefix}form-valid-color: #{$form-valid-color-teal};
+    --#{$prefix}form-valid-border-color: #{$form-valid-border-color-teal};
+    --#{$prefix}form-invalid-color: #{$form-invalid-color-teal};
+    --#{$prefix}form-invalid-border-color: #{$form-invalid-border-color-teal};
+    // scss-docs-end root-dark-mode-vars
+  }
+
+}

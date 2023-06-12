@@ -25,6 +25,6 @@ features:
   - title: 集成常用的优秀开源js、jq插件
     details: 内置一些开发中常用的优秀的开源项目,并做了主题适配
   - title: 基于最新的bootstrap框架
-    details: 哪怕是传统mvc开发方式我们也要追求优雅和版本更新保持bootstrap版本得更新获得最新特性
+    details: 哪怕是传统mvc开发方式我们也要力求最新,保持bootstrap版本的更新获得最新特性
 ---
 

@@ -16,6 +16,8 @@ const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="sidebar"]'
 
 
 const Default = {
+    //点击是否自动关闭侧边栏
+    clickClose: false,
     //动画速度,单位毫秒
     animationSpeed: 150,
     //是否启用手风琴模式
@@ -158,6 +160,10 @@ class Sidebar {
 
             //给当前的a添加激活类
             $a.addClass('active');
+
+            if (_this._config.clickClose === true) {
+                $('[data-bsa-toggle="pushmenu"]').PushMenu('toggle')
+            }
 
             //添加tab处理
             Quicktab.get('.qtab').addTab({

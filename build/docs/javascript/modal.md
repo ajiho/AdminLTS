@@ -1,8 +1,6 @@
 ## 说明
 
-基于bootstrap的modal组件封装的一个插件,modal本身就具有的强大响应式效果，也许你在别的项目可能使用过`layer`弹层插件
-,但是那个响应式并没有那么强大，这里我根据bootstrap官方的modal组件封装了一个简单的弹层,它不需要你配置弹层的大小,同时
-你可以配置`modal`组件的所有特性,也更和`bootstrap-admin`保持一致的风格。
+根据bootstrap官方组件[modal](https://getbootstrap.com/docs/5.3/components/modal/)封装的一个弹层插件
 
 ## 用法
 
@@ -51,11 +49,9 @@ dsasda
 dsasda
 ```
 
-
 ::: tip
 确认框用的频率特别高，这里特别封装了一个简约用法,免配置快速生成一个confirm框
 :::
-
 
 ```html
 dsasda
