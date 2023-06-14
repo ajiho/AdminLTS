@@ -35,32 +35,6 @@ $.modal({
 |      onHide      | Function | null                                              | hide调用实例方法时会立即触发此事件。                                                                              |
 |     onHidden     | Function | null                                              | 当模态框完成对用户隐藏时会触发此事件                                                                                |
 
-## 案例
-
-### alert
-
-```html
-dsasda
-```
-
-### confirm
-
-```html
-dsasda
-```
-
-::: tip
-确认框用的频率特别高，这里特别封装了一个简约用法,免配置快速生成一个confirm框
-:::
-
-```html
-dsasda
-```
-
-### prompt
-
-### iframe弹层
-
 
 
 

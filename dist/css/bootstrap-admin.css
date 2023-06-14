@@ -2185,7 +2185,7 @@ span.tmpzTreeMove_arrow {
   right: 12px;
   color: var(--bs-light-text-emphasis);
   background-color: var(--bs-light-bg-subtle);
-  z-index: 20000;
+  z-index: 1001;
 }
 .bsa-back-to-top:hover {
   color: var(--bs-dark-text-emphasis);

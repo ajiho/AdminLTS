@@ -23,12 +23,12 @@
 <div class="container-fluid">
   <div class="card border-0 shadow-sm">
     <div class="card-header bg-body py-3">
-      <form class="row row-cols-sm-auto g-3 align-items-center">
+      <form class="row row-cols-sm-auto g-3 align-items-center" action="#">
         <div class="col-12">
           <div class="row">
             <label for="name" class="col-sm-auto col-form-label">节点名称</label>
             <div class="col">
-              <input type="email" class="form-control" id="name" name="name">
+              <input type="text" class="form-control" id="name" name="name">
             </div>
           </div>
         </div>
@@ -41,18 +41,13 @@
           <button type="button" class="btn btn-primary bsa-reset-btn">
             <i class="bi bi-arrow-clockwise"></i>重置
           </button>
+          <button class="btn btn-primary expandAll"><i class="bi bi-arrows-collapse"></i> 展开/折叠</button>
 
         </div>
 
       </form>
     </div>
     <div class="card-body">
-      <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
-        <button class="btn btn-primary add-btn"><i
-          class="bi bi-plus"></i> 新增
-        </button>
-        <button class="btn btn-primary"><i class="bi bi-arrows-collapse"></i> 展开/折叠</button>
-      </div>
       <table id="table"></table>
     </div>
   </div>
@@ -74,29 +69,35 @@
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 
 <script>
-
-
   $(function () {
-
-
-    // 新增节点
-    $('.add-btn').on('click', function () {
-
-      window.addNodeModal = $.modal({
-        url: 'node-add.html',
-        title: '添加节点',
-        //禁用掉底部的按钮区域
-        buttons: [],
-        modalDialogClass: 'modal-dialog-centered modal-lg',
-        onHidden: function (obj, data) {
-          if (data === true) {
-            //刷新当前数据表格
-            $('#table').bootstrapTable('refresh');
-            $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
-          }
-        }
-      })
+    //展开折叠
+    let t = false;
+    $('.expandAll').on('click', function () {
+      t = !t;
+      if (t) {
+        $('#table').treegrid('collapseAll');
+      } else {
+        $('#table').treegrid('expandAll');
+      }
     })
+
+
+    //搜索处理
+    $('.bsa-querySearch-btn').on('click', function () {
+      $('#table').bootstrapTable('refresh');
+      $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
+    })
+
+    //重置处理
+    $('.bsa-reset-btn').on('click', function () {
+
+      //把所有的字段都恢复默认值
+      $('#name').val('');
+      //刷新回到第一页
+      $('#table').bootstrapTable('refresh');
+      $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
+    })
+
 
 
     $('#table').bootstrapTable({
@@ -107,8 +108,6 @@
       url: '/node',
       idField: 'id',
       showColumns: true,
-      // 工具按钮容器
-      toolbar: '#toolbar',
       columns: [
         {
           title: 'ID',
@@ -177,6 +176,26 @@
               })
 
             },
+
+            'click .add-btn': function (event, value, row, index) {
+              event.stopPropagation();
+
+              window.addNodeModal = $.modal({
+                url: 'node-add.html',
+                title: '添加节点',
+                //禁用掉底部的按钮区域
+                buttons: [],
+                modalDialogClass: 'modal-dialog-centered modal-lg',
+                onHidden: function (obj, data) {
+                  if (data === true) {
+                    //刷新当前数据表格
+                    $('#table').bootstrapTable('refresh');
+                    $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
+                  }
+                }
+              })
+
+            },
           }
         }
       ],
@@ -210,9 +229,18 @@
   }
 
 
+  // 这里关于给节点新增节点可以自己增加一个判断,比如你后端只能允许最大三个层级之类的。
   function formatAction(val, rows) {
-    return `<button type="button" class="btn btn-outline-secondary btn-sm edit-btn"><i class="bi bi-pencil"></i></button>
+    return `
+
+
+
+           <button type="button" class="btn btn-outline-secondary btn-sm add-btn" data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-title="添加节点"><i class="bi bi-plus"></i></button>
+<button type="button" class="btn btn-outline-secondary btn-sm edit-btn"><i class="bi bi-pencil"></i></button>
                 <button type="button" class="btn btn-outline-secondary btn-sm del-btn"><i class="bi bi-x-lg"></i></button>
+
+
 `;
   }
 

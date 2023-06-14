@@ -51,9 +51,6 @@ yarn add bootstrap-admin
     <!--    插件css引入位置,放这里是因为bootstrap-admin.css文件中有对插件样式的覆盖-->
 
     <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
-
-    <!--   所以在最后你可以定义你自己的css进行二次覆盖等操作  -->
-
     <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
 </head>
 <body class="bg-body-tertiary py-3">
@@ -63,8 +60,7 @@ yarn add bootstrap-admin
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
-<!--该js文件在生产环境中请移除,是用于mock模拟ajax请求的-->
-<script src="../dist/js/bootstrap-admin.mock.js"></script>
+
 
 <!--js插件引入位置,放这里是bootstrap-admin.min.js文件中可能包含插件的引用-->
 

@@ -25,16 +25,6 @@
     <div class="card-body">
       <form id="form">
         <div class="row mb-3">
-          <label for="sitename" class="col-sm-2 col-form-label text-sm-end">上级节点</label>
-          <div class="col-sm-10">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>顶级节点</option>
-              <option value="1">权限管理</option>
-              <option value="2">文章管理</option>
-            </select>
-          </div>
-        </div>
-        <div class="row mb-3">
           <label for="name" class="col-sm-2 col-form-label text-sm-end">节点名称</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" id="name" name="name" value="">
@@ -83,14 +73,42 @@
 
 </div>
 
-
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
+<script src="../lib/formvalidation/js/formValidation.js"></script>
+<script src="../lib/formvalidation/js/framework/bootstrap.js"></script>
+<script src="../lib/formvalidation/js/language/zh_CN.js"></script>
 <script src="../lib/@fonticonpicker/fonticonpicker/dist/js/jquery.fonticonpicker.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
 <script>
   $(document).ready(function (e) {
+
+    $("#form").formValidation({
+      //验证字段
+      fields: {
+        name: {
+          validators: {
+            notEmpty: true
+          }
+        },
+        username: {
+          validators: {
+            notEmpty: true
+          }
+        },
+        //...
+      }
+    }).on('success.form.fv', function (e) {
+      //阻止表单提交
+      e.preventDefault();
+      //得到表单对象
+      let $form = $(e.target);
+      let data = $form.serialize();
+
+
+    });
+
 
     // 得到fontIconPicker插件对象
     let fontIconPicker = $('#icon-example').fontIconPicker({

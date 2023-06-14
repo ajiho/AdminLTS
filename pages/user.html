@@ -114,8 +114,6 @@
 <script>
   $(function () {
 
-    //新增用户模态框
-
     // 新增用户
     $('.add-btn').on('click', function () {
 
@@ -136,7 +134,6 @@
       })
     })
 
-
     /**
      * columns表示列，里面的对象 title是表头信息，field是服务端返回的字段名称
      * 1.不做分页，返回的数据格式是 [{},{}]
@@ -150,8 +147,8 @@
     $('#table').bootstrapTable({
       //配置语言
       locale: 'zh-CN',
-      //设置高度，就可以固定表头，用户体验良好
-      height: 500,
+      //设置高度就可以固定表头
+      // height: 500,
       //请求地址
       url: '/user',
       responseHandler: function (res) {
@@ -159,11 +156,11 @@
       },
 
       // 固定列功能开启
-      fixedColumns: true,
+      // fixedColumns: true,
       // 左侧固定列数
-      fixedNumber: 1,
+      // fixedNumber: 1,
       //右侧固定列数
-      fixedRightNumber: 1,
+      // fixedRightNumber: 1,
 
       //是否开启分页
       pagination: true,
@@ -171,6 +168,8 @@
       sidePagination: 'client',
       // 初始化加载第一页，默认第一页
       pageNumber: 1,
+      //默认显示几条
+      pageSize: 5,
       //可供选择的每页的行数 - (亲测大于1000存在渲染问题)
       pageList: [5, 10, 25, 50, 100],
       //在上百页的情况下体验较好 - 能够显示首尾页

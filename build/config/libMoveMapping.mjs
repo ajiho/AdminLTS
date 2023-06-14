@@ -123,6 +123,14 @@ export let libMoveMapping = [
   {
     form: 'node_modules/@fullcalendar/**/*',
     to: 'lib/@fullcalendar'
+  },
+  {
+    form: 'node_modules/datatables.net/**/*',
+    to: 'lib/datatables.net'
+  },
+  {
+    form: 'node_modules/datatables.net-bs5/**/*',
+    to: 'lib/datatables.net-bs5'
   }
 
 ]

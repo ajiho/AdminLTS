@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="icon" href="../dist/img/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="../dist/img/favicon-16x16.png" sizes="16x16" type="image/png">
+  <meta name="keywords" content="响应式后台模板,开源免费后台模板,Bootstrap5后台管理系统模板">
+  <meta name="description" content="bootstrap-admin基于bootstrap5的免费开源的响应式后台管理模板">
+  <meta name="author" content="ajiho">
+  <link rel="stylesheet" href="../lib/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../lib/@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
+  <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
+</head>
+<body class="bg-body-tertiary py-3">
+<div class="container-fluid">
+  <!--  正文内容放置在此处  -->
+
+  <!--  为了美观,建议大家都把新内容都放card组件里面  -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-body">
+      <button class="btn btn-primary collapse-btn"><i class="bi bi-arrows-collapse"></i> 展开/折叠</button>
+      <button class="btn btn-primary"><i class="bi bi-arrows-collapse"></i> 确定分配</button>
+    </div>
+    <div class="card-body">
+      <ul id="ztree-demo1" class="ztree"></ul>
+    </div>
+  </div>
+
+  <!--回到顶部开始-->
+  <a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+  <!--回到顶部结束-->
+
+</div>
+
+<script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/jquery/dist/jquery.min.js"></script>
+<script src="../lib/@ztree/ztree_v3/js/jquery.ztree.all.min.js"></script>
+<script src="../dist/js/bootstrap-admin.min.js"></script>
+<script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
+<script src="../dist/js/bootstrap-admin.mock.js"></script>
+<script>
+  $(document).ready(function (e) {
+    //你的逻辑
+    let setting = {
+      view: {
+        showIcon: false,
+      },
+
+      check: {
+        //是否开启选择框
+        enable: true,
+        chkboxType: {"Y": "ps", "N": "ps"}
+      },
+
+      data: {
+        simpleData: {
+          enable: true
+        }
+      }
+    };
+    let data = [
+      {id: 1, pId: 0, name: '角色管理', open: true},
+      {id: 2, pId: 1, name: "角色添加", open: true},
+      {id: 3, pId: 1, name: "角色编辑", open: true},
+      {id: 4, pId: 0, name: "节点管理", open: false},
+      {id: 5, pId: 4, name: "节点添加", open: true},
+      {id: 6, pId: 4, name: "节点编辑", open: true},
+      {id: 7, pId: 0, name: "多级菜单", open: false},
+      {id: 8, pId: 7, name: "二级菜单", open: false},
+      {id: 9, pId: 8, name: "三级菜单", open: false},
+      {id: 10, pId: 9, name: "四级菜单", open: false},
+      {id: 11, pId: 7, name: "二级菜单2", open: false},
+    ];
+    $.fn.zTree.init($("#ztree-demo1"), setting, data);
+
+    //部分的展开和折叠
+    let t = false;
+    $('.collapse-btn').on('click', function () {
+      t = !t;
+      if (t) {
+        $.fn.zTree.getZTreeObj("ztree-demo1").expandAll(false);
+      } else {
+        $.fn.zTree.getZTreeObj("ztree-demo1").expandAll(true);
+      }
+    })
+
+  })
+</script>
+</body>
+</html>

@@ -236,5 +236,15 @@ export let libIgnore = [
 
 
   ],
+  ...[
+    'lib/datatables.net/*',
+    '!lib/datatables.net/js',
+  ],
+  ...[
+    'lib/datatables.net-bs5/*',
+    '!lib/datatables.net-bs5/css',
+    '!lib/datatables.net-bs5/images',
+    '!lib/datatables.net-bs5/js',
+  ],
 ]
 

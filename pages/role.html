@@ -19,26 +19,27 @@
 <div class="container-fluid">
   <div class="card border-0 shadow-sm">
     <div class="card-header bg-body py-3">
-      <div class="row g-3">
-        <div class="col-sm-4">
+      <form class="row row-cols-sm-auto g-3 align-items-center" action="#">
+        <div class="col-12">
           <div class="row">
             <label for="name" class="col-sm-auto col-form-label">角色名称</label>
-            <div class="col-sm-9">
-              <input type="email" class="form-control" id="name" name="name">
+            <div class="col">
+              <input type="text" class="form-control" id="name" name="name">
             </div>
           </div>
         </div>
-        <div class="col-auto">
-          <button type="button" class="btn btn-primary bsa-querySearch-btn"><i
-            class="bi bi-search"></i>
-            搜索
+
+        <div class="col-12 gap-2">
+
+          <button type="button" class="btn btn-primary bsa-querySearch-btn">
+            <i class="bi bi-search"></i>搜索
           </button>
-          <button type="button" class="btn btn-primary bsa-reset-btn"><i
-            class="bi bi-arrow-clockwise"></i>
-            重置
+          <button type="button" class="btn btn-primary bsa-reset-btn">
+            <i class="bi bi-arrow-clockwise"></i>重置
           </button>
         </div>
-      </div>
+
+      </form>
     </div>
 
     <div class="card-body">
@@ -99,8 +100,8 @@
     $('#table').bootstrapTable({
       //配置语言
       locale: 'zh-CN',
-      //设置高度，就可以固定表头，用户体验良好
-      height: 500,
+      //设置高度，就可以固定表头
+      // height: 500,
       //请求地址
       url: '/role',
       responseHandler: function (res) {
@@ -113,6 +114,8 @@
       sidePagination: 'client',
       // 初始化加载第一页，默认第一页
       pageNumber: 1,
+      //默认显示几条
+      pageSize: 5,
       //可供选择的每页的行数 - (亲测大于1000存在渲染问题)
       pageList: [5, 10, 25, 50, 100],
       //在上百页的情况下体验较好 - 能够显示首尾页
@@ -266,11 +269,11 @@
               event.stopPropagation();
 
               window.rolemodal = $.modal({
-                url: 'user-role.html',
+                url: 'role-node.html',
                 title: '分配节点',
                 //禁用掉底部的按钮区域
                 buttons: [],
-                modalDialogClass: 'modal-dialog-centered modal-lg',
+                modalDialogClass: 'modal-dialog-centered modal-xl',
                 onHidden: function (obj, data) {
                   if (data === true) {
                     //刷新当前数据表格
@@ -306,11 +309,7 @@
     $('.bsa-reset-btn').on('click', function () {
 
       //把所有的字段都恢复默认值
-      $('#username').val('');
-      $('#phone').val('');
-      $('#beginTime').val('');
-      $('#endTime').val('');
-      $('#status').val('0');
+      $('#name').val('');
       //刷新回到第一页
       $('#table').bootstrapTable('refresh');
       $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
