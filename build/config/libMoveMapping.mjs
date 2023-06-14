@@ -131,7 +131,12 @@ export let libMoveMapping = [
   {
     form: 'node_modules/datatables.net-bs5/**/*',
     to: 'lib/datatables.net-bs5'
+  },
+  {
+    form: 'node_modules/shepherd.js/**/*',
+    to: 'lib/shepherd.js'
   }
+
 
 ]
 

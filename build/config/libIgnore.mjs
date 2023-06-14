@@ -186,6 +186,13 @@ export let libIgnore = [
   ...[
     'lib/video.js/*',
     '!lib/video.js/dist',
+
+    'lib/video.js/dist/*',
+    '!lib/video.js/dist/alt',
+    '!lib/video.js/dist/font',
+    '!lib/video.js/dist/lang',
+    '!lib/video.js/dist/*.js',
+    '!lib/video.js/dist/*.css',
   ],
   ...[
     'lib/clipboard/*',
@@ -245,6 +252,10 @@ export let libIgnore = [
     '!lib/datatables.net-bs5/css',
     '!lib/datatables.net-bs5/images',
     '!lib/datatables.net-bs5/js',
+  ],
+  ...[
+    'lib/shepherd.js/*',
+    '!lib/shepherd.js/dist',
   ],
 ]
 
