@@ -79,7 +79,7 @@
     .card {
       border: 0;
       min-width: 300px;
-      height: 280px;
+      max-height: 280px;
 
 
       @include media-breakpoint-down(lg) {
