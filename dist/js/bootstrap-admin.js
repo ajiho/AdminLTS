@@ -238,7 +238,26 @@
           e.preventDefault();
           let w = $(window).width();
           if (w < 992) {
-            $('.bsa-layout1-left').toggleClass('open');
+            let $bsaLayout1Left = $('.bsa-layout1-left');
+            if ($bsaLayout1Left.hasClass('open')) {
+              $bsaLayout1Left.removeClass('open');
+
+              //移除遮罩层
+              $('.bsa-mask').remove();
+            } else {
+              $bsaLayout1Left.addClass('open');
+              let maskStr = '<div class="bsa-mask"></div>';
+              let $maskStr = $(maskStr);
+              $maskStr.css('zIndex', 1011);
+              // 绑定点击事件
+              $maskStr.on('click', function () {
+                $bsaLayout1Left.removeClass('open');
+                $(this).remove();
+              });
+
+              // 把 DOM 元素添加到页面中
+              $('body').append($maskStr);
+            }
           } else {
             $('.bsa-layout1').toggleClass('collapsed');
           }
@@ -249,8 +268,26 @@
           e.preventDefault();
           let w = $(window).width();
           if (w < 992) {
-            $('.bsa-layout2-right').removeClass('right-open');
-            $('.bsa-layout2-left').toggleClass('left-open');
+            let $bsaLayout2Left = $('.bsa-layout2-left');
+            let $bsaLayout2Right = $('.bsa-layout2-right');
+            $bsaLayout2Right.removeClass('right-open');
+            if ($bsaLayout2Left.hasClass('left-open')) {
+              $bsaLayout2Left.removeClass('left-open');
+              $('.bsa-mask').remove();
+            } else {
+              $bsaLayout2Left.addClass('left-open');
+              if ($('.bsa-mask').length === 0) {
+                let maskStr = '<div class="bsa-mask"></div>';
+                let $maskStr = $(maskStr);
+                $maskStr.css('zIndex', 1011);
+                $maskStr.on('click', function () {
+                  $bsaLayout2Left.removeClass('left-open');
+                  $bsaLayout2Right.removeClass('right-open');
+                  $(this).remove();
+                });
+                $('body').append($maskStr);
+              }
+            }
           } else {
             $('.bsa-layout2').toggleClass('left-collapsed');
           }
@@ -261,8 +298,26 @@
           e.preventDefault();
           let w = $(window).width();
           if (w < 992) {
-            $('.bsa-layout2-left').removeClass('left-open');
-            $('.bsa-layout2-right').toggleClass('right-open');
+            let $bsaLayout2Left = $('.bsa-layout2-left');
+            let $bsaLayout2Right = $('.bsa-layout2-right');
+            $bsaLayout2Left.removeClass('left-open');
+            if ($bsaLayout2Right.hasClass('right-open')) {
+              $bsaLayout2Right.removeClass('right-open');
+              $('.bsa-mask').remove();
+            } else {
+              $bsaLayout2Right.addClass('right-open');
+              if ($('.bsa-mask').length === 0) {
+                let maskStr = '<div class="bsa-mask"></div>';
+                let $maskStr = $(maskStr);
+                $maskStr.css('zIndex', 1011);
+                $maskStr.on('click', function () {
+                  $bsaLayout2Left.removeClass('left-open');
+                  $bsaLayout2Right.removeClass('right-open');
+                  $(this).remove();
+                });
+                $('body').append($maskStr);
+              }
+            }
           } else {
             $('.bsa-layout2').toggleClass('right-collapsed');
           }
@@ -273,7 +328,25 @@
           e.preventDefault();
           let w = $(window).width();
           if (w < 992) {
-            $('.bsa-layout3-right').toggleClass('open');
+            let $bsaLayout3Right = $('.bsa-layout3-right');
+            if ($bsaLayout3Right.hasClass('open')) {
+              $bsaLayout3Right.removeClass('open');
+              //移除遮罩层
+              $('.bsa-mask').remove();
+            } else {
+              $bsaLayout3Right.addClass('open');
+              let maskStr = '<div class="bsa-mask"></div>';
+              let $maskStr = $(maskStr);
+              $maskStr.css('zIndex', 1011);
+              // 绑定点击事件
+              $maskStr.on('click', function () {
+                $bsaLayout3Right.removeClass('open');
+                $(this).remove();
+              });
+
+              // 把 DOM 元素添加到页面中
+              $('body').append($maskStr);
+            }
           } else {
             $('.bsa-layout3').toggleClass('collapsed');
           }

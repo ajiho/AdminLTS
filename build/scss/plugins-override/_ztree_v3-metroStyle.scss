@@ -12,9 +12,9 @@
 }
 
 .ztree li a.curSelectedNode {
-  background-color: var(--bs-secondary-bg-subtle);
-  color: var(--bs-secondary-text-emphasis);
-  border: 1px solid var(--bs-secondary-border-subtle);
+  color: var(--bs-dark-text-emphasis);
+  background-color: var(--bs-dark-bg-subtle);
+  border: 1px solid var(--bs-dark-border-subtle);
   height: 20px;
 }
 
