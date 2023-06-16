@@ -8,6 +8,10 @@ let api = {
   //用户列表
   user: RegExp('/user.*'),
   useradd: RegExp('/useradd.*'),
+  userdel: RegExp('/user/.*'),
+  //分配角色
+  userrole: RegExp('/user/role.*'),
+
 
   node: RegExp('/node.*'),
   nodeadd: RegExp('/nodeadd.*'),
@@ -15,6 +19,7 @@ let api = {
 
   role: RegExp('/role.*'),
   roleadd: RegExp('/roleadd.*'),
+  rolenode: RegExp('/role/node.*'),
 
 
   //tree节点

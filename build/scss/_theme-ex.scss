@@ -1,5 +1,3 @@
-@include scrollbar();
-
 // 官方默认黑色主题适配
 @include color-mode("dark", true) {
   .dropdown-menu {

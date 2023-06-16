@@ -29,16 +29,27 @@ Mock.mock(Api.role, 'get', {
       'name': '文章审核员',
       'create_at': '@datetime'
     },
+    {
+      'id': 6,
+      'name': '销售',
+      'create_at': '@datetime'
+    },
   ],
   'msg': 'success',
   'code': 200,
 });
 
 
-Mock.mock(Api.nodeadd, 'post', {
+Mock.mock(Api.roleadd, 'post', {
   'data': [],
   'msg': 'success',
   'code': 200,
 });
 
+
+Mock.mock(Api.rolenode, 'post', {
+  'data': [],
+  'msg': 'success',
+  'code': 200,
+});
 

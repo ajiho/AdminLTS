@@ -60,7 +60,7 @@
         </div>
         <div class="row mb-3">
           <div class="col-sm-10 offset-sm-2">
-            <button type="submit" class="btn btn-primary">添加</button>
+            <button type="submit" class="btn btn-primary">修改</button>
           </div>
         </div>
       </form>
@@ -113,8 +113,12 @@
     // 得到fontIconPicker插件对象
     let fontIconPicker = $('#icon-example').fontIconPicker({
       theme: 'fip-bootstrap',
-      searchPlaceholder: '搜索图标'
+      searchPlaceholder: '搜索图标',
+    }).on('change', '#icon-example', function () {
+      //给input框设置
+      $('#select-icon').html($(this).val());
     });
+
 
     $.ajax({
       url: '../lib/bootstrap-icons/font/bootstrap-icons.json',
@@ -123,16 +127,11 @@
       $.each(response, function (i, v) {
         fontello_json_icons.push('bi bi-' + i);
       });
-
       //插件对象设置图标
       fontIconPicker.setIcons(fontello_json_icons);
+      //回显当前所选的图标
+      fontIconPicker.setIcon('bi bi-1-circle');
     })
-
-    //监听插件选择图标事件
-    $(document).on('change', '#icon-example', function () {
-      //给input框设置
-      $('#select-icon').html($(this).val());
-    });
 
 
   })

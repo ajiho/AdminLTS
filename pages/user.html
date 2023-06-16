@@ -71,10 +71,10 @@
 
         <div class="col-12 gap-2">
 
-          <button type="button" class="btn btn-primary bsa-querySearch-btn">
+          <button type="button" class="btn btn-light bsa-querySearch-btn">
             <i class="bi bi-search"></i>搜索
           </button>
-          <button type="button" class="btn btn-primary bsa-reset-btn">
+          <button type="button" class="btn btn-light bsa-reset-btn">
             <i class="bi bi-arrow-clockwise"></i>重置
           </button>
 
@@ -84,12 +84,12 @@
     </div>
     <div class="card-body">
       <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
-        <button class="btn btn-outline-secondary add-btn"><i
+        <button class="btn btn-light add-btn"><i
           class="bi bi-plus"></i> 新增
         </button>
-        <button class="btn btn-outline-secondary"><i class="bi bi-trash"></i> 批量删除</button>
-        <button class="btn btn-outline-secondary"><i class="bi bi-box-arrow-down"></i> 导入</button>
-        <button class="btn btn-outline-secondary"><i class="bi bi-box-arrow-up"></i> 导出</button>
+        <button class="btn btn-light batch-btn" disabled><i class="bi bi-trash"></i> 批量删除</button>
+        <button class="btn btn-light"><i class="bi bi-box-arrow-down"></i> 导入</button>
+        <button class="btn btn-light"><i class="bi bi-box-arrow-up"></i> 导出</button>
       </div>
       <table id="table"></table>
     </div>
@@ -112,12 +112,10 @@
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 
 <script>
-  $(function () {
-
+  $(document).ready(function (e) {
     // 新增用户
     $('.add-btn').on('click', function () {
-
-
+      // window :建议加上该前缀,否则在子页面中通过parent.modalInstance 获取不到该实例对象
       window.modalInstance = $.modal({
         url: 'user-add.html',
         title: '用户添加',
@@ -142,8 +140,6 @@
      * 4.服务端分页返回的格式为：{rows:[{},{}],total:200}
      * 参考：https://github.com/wenzhixin/bootstrap-table-examples/blob/master/json/data2.json
      */
-
-
     $('#table').bootstrapTable({
       //配置语言
       locale: 'zh-CN',
@@ -154,13 +150,12 @@
       responseHandler: function (res) {
         return res.data;
       },
-
-      // 固定列功能开启
-      // fixedColumns: true,
-      // 左侧固定列数
-      // fixedNumber: 1,
+      //固定列功能开启
+      fixedColumns: true,
+      //左侧固定列数
+      fixedNumber: 1,
       //右侧固定列数
-      // fixedRightNumber: 1,
+      fixedRightNumber: 1,
 
       //是否开启分页
       pagination: true,
@@ -200,9 +195,9 @@
       // 显示文本
       showButtonText: false,
       // 显示全屏
-      showFullscreen: true,
+      showFullscreen: false,
       // 开关控制分页
-      showPaginationSwitch: true,
+      showPaginationSwitch: false,
       // 总数字段
       totalField: 'total',
       // 当字段为 undefined 显示
@@ -211,7 +206,7 @@
       sortOrder: "asc",
 
       // 按钮的类
-      buttonsClass: 'outline-secondary',
+      buttonsClass: 'light',
       // 类名前缀
       buttonsPrefix: 'btn',
 
@@ -223,7 +218,32 @@
       icons: {
         fullscreen: 'bi-arrows-fullscreen',
       },
-
+      //头部的那个复选框选中事件
+      onCheckAll: function (row) {
+        batchBtnStatusHandle()
+      },
+      //单行选中事件
+      onCheck: function (row) {
+        batchBtnStatusHandle()
+      },
+      //单行取消选中事件
+      onUncheck: function (row) {
+        batchBtnStatusHandle()
+      },
+      //头部的那个复选框取消选中事件
+      onUncheckAll: function (row) {
+        batchBtnStatusHandle()
+      },
+      //加载模板,不改的话，默认的会超出不好看
+      loadingTemplate: function () {
+        return '<div class="spinner-grow" role="status"><span class="visually-hidden">Loading...</span></div>';
+      },
+      onPostBody: function () {
+        //重新启用弹出层,否则formatter格式化函数返回的html字符串上的tooltip提示不生效
+        $('[data-bs-toggle="tooltip"]').each(function (i, el) {
+          new bootstrap.Tooltip(el)
+        })
+      },
       //params是一个对象
       queryParams: function (params) {
         return {
@@ -272,6 +292,12 @@
           align: 'center'
         },
         {
+          title: '角色',
+          field: 'role_id',
+          align: 'center',
+          formatter: formatRole
+        },
+        {
           title: '用户名',
           field: 'username',
           align: 'center',
@@ -312,7 +338,7 @@
               event.stopPropagation();
 
               window.modalInstance = $.modal({
-                url: 'user-add.html',
+                url: 'user-edit.html',
                 title: '用户编辑',
                 //禁用掉底部的按钮区域
                 buttons: [],
@@ -370,6 +396,76 @@
       ]
     });
 
+
+    //批量处理
+    $('.batch-btn').on('click', function () {
+      //获取所有选中行的id
+      let id = [];
+      let rowSelected = $("#table").bootstrapTable('getSelections');
+      $.each(rowSelected, function (index, row) {
+        id.push(row.id);
+      })
+
+      //发送ajax
+      $.modal({
+        body: '确定要删除所选用户吗?',
+        ok: function () {
+          $.ajax({
+            url: '/user/10',
+            method: 'delete',
+            data: {id},
+          }).then(response => {
+            if (response.code === 200) {
+              $.toasts({
+                type: 'success',
+                delay: 1500,
+                content: '删除成功',
+                onHidden: function () {
+
+                  $('#table').bootstrapTable('refresh');
+                  $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
+                  //把批量删除按钮变成禁止点击
+                  $('.batch-btn').attr('disabled', true)
+                }
+              })
+            }
+          });
+        }
+      })
+    })
+
+
+    //处理批量按钮的disabled状态
+    function batchBtnStatusHandle() {
+      let rowSelected = $("#table").bootstrapTable('getSelections');
+      if (rowSelected.length > 0) {
+        $('.batch-btn').attr('disabled', false)
+      } else {
+        $('.batch-btn').attr('disabled', true)
+      }
+    }
+
+
+    function formatRole(val, rows) {
+      switch (val) {
+        case 1:
+          return '经理'
+        case 2:
+          return '组长'
+        case 3:
+          return '研发组长'
+        case 4:
+          return '客服'
+        case 5:
+          return '文章审核员'
+        case 6:
+          return '销售'
+        default:
+          return '<span class="badge text-bg-danger">未分配</span>'
+      }
+
+    }
+
     function formatGender(val, rows) {
       return val === true ? '男' : '女';
     }
@@ -383,11 +479,19 @@
 
     //格式化列数据演示 val:当前数据 rows:当前整行数据
     function formatAction(val, rows) {
-      return `<button type="button" class="btn btn-outline-secondary btn-sm edit-btn"><i class="bi bi-pencil"></i></button>
-                <button type="button" class="btn btn-outline-secondary btn-sm del-btn"><i class="bi bi-x-lg"></i></button>
-                <button type="button" class="btn btn-outline-secondary btn-sm role-btn" title="分配角色"><i class="bi bi-person-square"></i></button>
 
-`;
+      let html = '';
+
+      html += `<button type="button" class="btn btn-light btn-sm edit-btn" data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-title="修改用户"><i class="bi bi-pencil"></i></button>`;
+
+      html += `<button type="button" class="btn btn-light mx-1 btn-sm del-btn" data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-title="删除用户"><i class="bi bi-trash3"></i></button>`
+
+      html += `<button type="button" class="btn btn-light btn-sm role-btn" data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-title="分配角色"><i class="bi bi-person-square"></i></button>`
+
+      return html;
     }
 
     //搜索处理
@@ -411,7 +515,6 @@
     })
 
     //==============================日期时间插件====================================
-
     //自定义日期格式插件
     let td6 = new tempusDominus.TempusDominus(document.getElementById('beginTime'), {
       //本地化控制
@@ -462,7 +565,6 @@
         },
       }
     });
-
     let td7 = new tempusDominus.TempusDominus(document.getElementById('endTime'), {
       //本地化控制
       localization: {
@@ -512,7 +614,6 @@
         },
       }
     });
-
     //事件监听设定起始时间为td7实例的选中时间
     td6.subscribe(tempusDominus.Namespace.events.change, (e) => {
       td7.updateOptions({

@@ -51,13 +51,13 @@
         </div>
         <div class="mb-3">
           <label for="phone" class="form-label">手机</label>
-          <input type="text" class="form-control" id="phone" name="phone">
+          <input type="text" class="form-control" id="phone" name="phone" value="18878654123">
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">邮箱</label>
-          <input type="text" class="form-control" id="email" name="email">
+          <input type="text" class="form-control" id="email" name="email" value="456456@qq.com">
         </div>
-        <button type="submit" class="btn btn-primary">添加</button>
+        <button type="submit" class="btn btn-primary">修改</button>
       </form>
     </div>
   </div>
@@ -113,10 +113,10 @@
         //添加成功
         $.toasts({
           type: 'success',
-          content: '添加成功',
-          delay:1000,
+          content: '修改成功',
+          delay: 1000,
           autohide: true,
-          onHidden:function (){
+          onHidden: function () {
             parent.modalInstance.setData(true);
             parent.modalInstance.close();
           }

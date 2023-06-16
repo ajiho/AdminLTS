@@ -35,20 +35,23 @@
 
         <div class="col-12 gap-2">
 
-          <button type="button" class="btn btn-primary bsa-querySearch-btn">
+          <button type="button" class="btn btn-light bsa-querySearch-btn">
             <i class="bi bi-search"></i>搜索
           </button>
-          <button type="button" class="btn btn-primary bsa-reset-btn">
+          <button type="button" class="btn btn-light bsa-reset-btn">
             <i class="bi bi-arrow-clockwise"></i>重置
           </button>
-          <button class="btn btn-primary expandAll"><i class="bi bi-arrows-collapse"></i> 展开/折叠</button>
+
 
         </div>
 
       </form>
     </div>
     <div class="card-body">
-      <table id="table"></table>
+      <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
+        <button class="btn btn-light expandAll"><i class="bi bi-arrows-collapse"></i> 展开/折叠</button>
+      </div>
+      <table id="table" style="word-break:break-all;"></table>
     </div>
   </div>
 </div>
@@ -99,7 +102,6 @@
     })
 
 
-
     $('#table').bootstrapTable({
       //处理返回的格式
       responseHandler: function (res) {
@@ -108,6 +110,22 @@
       url: '/node',
       idField: 'id',
       showColumns: true,
+      // 显示图标
+      showButtonIcons: true,
+      // 是否显示详细视图和列表视图的切换按钮
+      showToggle: true,
+      // 是否显示刷新按钮
+      showRefresh: true,
+      // 按钮的类
+      buttonsClass: 'light',
+      // 类名前缀
+      buttonsPrefix: 'btn',
+      // 工具按钮容器
+      toolbar: '#toolbar',
+      //加载模板,不改的话，默认的会超出不好看
+      loadingTemplate: function () {
+        return '<div class="spinner-grow" role="status"><span class="visually-hidden">Loading...</span></div>';
+      },
       columns: [
         {
           title: 'ID',
@@ -127,6 +145,7 @@
         },
         {
           field: 'route_name',
+          align: 'center',
           title: '路由别名'
         },
         {
@@ -149,7 +168,7 @@
               event.stopPropagation();
 
               window.modalInstance = $.modal({
-                url: 'node-add.html',
+                url: 'node-edit.html',
                 title: '修改节点',
                 //禁用掉底部的按钮区域
                 buttons: [],
@@ -202,7 +221,13 @@
       treeShowField: 'name',
       parentIdField: 'pid',
       onPostBody: function () {
-        var columns = $('#table').bootstrapTable('getOptions').columns;
+        //重新启用弹出层,否则formatter格式化函数返回的html字符串上的tooltip提示不生效
+        $('[data-bs-toggle="tooltip"]').each(function (i, el) {
+          new bootstrap.Tooltip(el)
+        })
+
+        //jquery-treegrid的相关逻辑
+        let columns = $('#table').bootstrapTable('getOptions').columns;
         if (columns && columns[0][1].visible) {
           $('#table').treegrid({
             treeColumn: 1,
@@ -231,17 +256,25 @@
 
   // 这里关于给节点新增节点可以自己增加一个判断,比如你后端只能允许最大三个层级之类的。
   function formatAction(val, rows) {
-    return `
+
+    let html = '';
+
+    //第一个按钮
+    html += `<button type="button" class="btn btn-light btn-sm add-btn" data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-title="添加子节点">
+        <i class="bi bi-plus"></i>
+        </button>`
+
+    //第二个按钮
+    html += `<button type="button" class="btn btn-light btn-sm edit-btn mx-1" data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-title="编辑节点"><i class="bi bi-pencil"></i></button>`
 
 
+    //第三个按钮
+    html += `<button type="button" class="btn btn-light btn-sm del-btn" data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-title="删除节点"><i class="bi bi-trash3"></i></button>`
 
-           <button type="button" class="btn btn-outline-secondary btn-sm add-btn" data-bs-toggle="tooltip" data-bs-placement="top"
-        data-bs-title="添加节点"><i class="bi bi-plus"></i></button>
-<button type="button" class="btn btn-outline-secondary btn-sm edit-btn"><i class="bi bi-pencil"></i></button>
-                <button type="button" class="btn btn-outline-secondary btn-sm del-btn"><i class="bi bi-x-lg"></i></button>
-
-
-`;
+    return html;
   }
 
 </script>

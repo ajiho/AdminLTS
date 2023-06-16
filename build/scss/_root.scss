@@ -11,7 +11,11 @@
   --bsa-footer-height: #{$footer-height};
 }
 
+table {
+  white-space: nowrap;
+}
 
+@include scrollbar();
 @include indigo-root-vars();
 @include green-root-vars();
 @include pink-root-vars();

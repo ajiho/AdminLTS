@@ -25,12 +25,12 @@
         <div class="row mb-3">
           <label for="name" class="col-sm-2 col-form-label text-sm-end">角色名称</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" name="name" value="">
+            <input type="text" class="form-control" id="name" name="name" value="经理">
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-sm-10 offset-sm-2">
-            <button type="submit" class="btn btn-primary">添加</button>
+            <button type="submit" class="btn btn-primary">修改</button>
           </div>
         </div>
       </form>
@@ -83,12 +83,12 @@
           //添加成功
           $.toasts({
             type: 'success',
-            content: '添加成功',
+            content: '修改成功',
             delay: 1000,
             autohide: true,
             onHidden: function () {
-              parent.addRoleModal.setData(true);
-              parent.addRoleModal.close();
+              parent.editRoleModal.setData(true);
+              parent.editRoleModal.close();
             }
           })
         }
