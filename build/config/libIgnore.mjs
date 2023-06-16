@@ -257,5 +257,9 @@ export let libIgnore = [
     'lib/shepherd.js/*',
     '!lib/shepherd.js/dist',
   ],
+  ...[
+    'lib/bootstrap-select/*',
+    '!lib/bootstrap-select/dist',
+  ],
 ]
 

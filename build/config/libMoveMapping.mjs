@@ -135,6 +135,10 @@ export let libMoveMapping = [
   {
     form: 'node_modules/shepherd.js/**/*',
     to: 'lib/shepherd.js'
+  },
+  {
+    form: 'node_modules/bootstrap-select/**/*',
+    to: 'lib/bootstrap-select'
   }
 
 

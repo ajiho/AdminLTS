@@ -53,7 +53,6 @@ class PushMenu {
       $(SELECTOR_SIDEBAR).data('isOpen', true);
       //添加遮罩层
       this._addOverlay();
-
     }
 
   }
