@@ -15,6 +15,7 @@
         href="../lib/bootstrap-table/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css">
   <link rel="stylesheet" href="../lib/@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css">
   <link rel="stylesheet" href="../lib/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css"/>
+  <link rel="stylesheet" href="../lib/bootstrap-select/dist/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
   <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
 </head>
@@ -92,8 +93,8 @@
               <div class="row">
                 <label for="status" class="col-sm-auto col-form-label">用户状态</label>
                 <div class="col">
-                  <select class="form-select" id="status">
-                    <option value="0" selected>所有</option>
+                  <select class="selectpicker">
+                    <option value="0">所有</option>
                     <option value="1">正常</option>
                     <option value="2">停用</option>
                   </select>
@@ -101,9 +102,7 @@
               </div>
             </div>
 
-
             <div class="col-12 gap-2">
-
               <button type="button" class="btn btn-light bsa-querySearch-btn">
                 <i class="bi bi-search"></i>搜索
               </button>
@@ -148,6 +147,8 @@
 <script src="../lib/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="../lib/bootstrap-table/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
 <script src="../lib/@ztree/ztree_v3/js/jquery.ztree.all.min.js"></script>
+<script src="../lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="../lib/bootstrap-select/dist/js/i18n/defaults-zh_CN.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
 <!--假数据模拟,生产环境中请直接删除该js-->
@@ -156,8 +157,8 @@
 <script>
 
 
-  $(function () {
-
+  $(document).ready(function (e) {
+    $('select').selectpicker();
 
     // 左侧的部门
     let setting = {

@@ -16,12 +16,11 @@
 
 .icons-selector.fip-bootstrap span.current-icon,
 .icons-selector.fip-bootstrap span.current-icon:hover {
-  color: var(--bs-light-text) !important;
-  background-color: var(--bs-light-bg-subtle) !important;
-  border: none !important;
+  color: var(--bs-light-text-emphasis) !important;
+  // background-color: var(--bs-light-bg-subtle) !important;
+  background-color: rgba(var(--bs-tertiary-color-rgb),.1)!important;
+  border: var(--bs-border-width) solid var(--bs-light-border-subtle) !important;
 }
-
-/*var(--bs-body-bg)*/
 
 .icons-selector.fip-bootstrap .selector-popup {
   background-color: var(--bs-body-bg) !important;
@@ -33,6 +32,16 @@
   background-color: var(--bs-body-bg) !important;
   border: var(--bs-border-width) solid var(--bs-border-color) !important;
   color: var(--bs-body-color) !important;
+}
+
+// 阴影直接给删掉
+.icons-selector.fip-bootstrap .fip-box:hover {
+  box-shadow: none !important;
+}
+
+// 阴影直接给删掉
+.icons-selector.fip-bootstrap .selector-category select:focus, .icons-selector.fip-bootstrap .selector-search input[type=text]:focus {
+  box-shadow: none !important;
 }
 
 
@@ -65,4 +74,9 @@
 .icons-selector.fip-bootstrap .selector-footer,
 .icons-selector.fip-bootstrap .selector-footer i {
   color: var(--bs-body-color) !important;
+}
+
+// fix:白色主题下当前选中图标看不见的问题
+.icons-selector.fip-bootstrap span.current-icon:hover i, .icons-selector.fip-bootstrap span.current-icon i {
+  color: var(--bs-light-text-emphasis) !important;
 }

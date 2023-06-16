@@ -14,6 +14,7 @@
   <link rel="stylesheet"
         href="../lib/bootstrap-table/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css">
   <link rel="stylesheet" href="../lib/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css"/>
+  <link rel="stylesheet" href="../lib/bootstrap-select/dist/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="../dist/css/bootstrap-admin.min.css">
   <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
 </head>
@@ -59,8 +60,8 @@
           <div class="row">
             <label for="status" class="col-sm-auto col-form-label">用户状态</label>
             <div class="col">
-              <select class="form-select" id="status">
-                <option value="0" selected>所有</option>
+              <select class="selectpicker">
+                <option value="0">所有</option>
                 <option value="1">正常</option>
                 <option value="2">停用</option>
               </select>
@@ -106,6 +107,8 @@
 <script src="../lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
 <script src="../lib/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="../lib/bootstrap-table/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+<script src="../lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="../lib/bootstrap-select/dist/js/i18n/defaults-zh_CN.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
 <!--假数据模拟,生产环境中请直接删除该js-->
@@ -113,6 +116,8 @@
 
 <script>
   $(document).ready(function (e) {
+    $('select').selectpicker();
+
     // 新增用户
     $('.add-btn').on('click', function () {
       // window :建议加上该前缀,否则在子页面中通过parent.modalInstance 获取不到该实例对象
