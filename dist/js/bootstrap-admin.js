@@ -3098,22 +3098,27 @@
       // Public
 
       expand() {
-        //事件
-        $(this._element).trigger($.Event(EVENT_EXPAND));
+        let w = $(window).width();
+        if (w < 992) {
+          //事件
+          $(this._element).trigger($.Event(EVENT_EXPAND));
 
-        // 展开
-        $('.bsa-sidebar').addClass(CLASS_NAME_COLLAPSED);
-        $(SELECTOR_SIDEBAR).data('isOpen', true);
-        //添加遮罩层
-        this._addOverlay();
+          // 展开
+          $('.bsa-sidebar').addClass(CLASS_NAME_COLLAPSED);
+          $(SELECTOR_SIDEBAR).data('isOpen', true);
+          //添加遮罩层
+          this._addOverlay();
+        }
       }
       collapse() {
-        $(this._element).trigger($.Event(EVENT_COLLAPSE));
-        $(SELECTOR_SIDEBAR).removeClass(CLASS_NAME_COLLAPSED);
-        $(SELECTOR_SIDEBAR).data('isOpen', false);
-        //同时移除遮罩层
-        // $('.bsa-mask').remove();
-        $(SELECTOR_MASK).remove();
+        let w = $(window).width();
+        if (w < 992) {
+          $(this._element).trigger($.Event(EVENT_COLLAPSE));
+          $(SELECTOR_SIDEBAR).removeClass(CLASS_NAME_COLLAPSED);
+          $(SELECTOR_SIDEBAR).data('isOpen', false);
+          //同时移除遮罩层
+          $(SELECTOR_MASK).remove();
+        }
       }
       toggle() {
         if ($(SELECTOR_SIDEBAR).hasClass(CLASS_NAME_COLLAPSED)) {
@@ -3325,7 +3330,6 @@
         $(document).on('click', '.bsa-menu a:not(.has-children):not([target])', function (e) {
           e.preventDefault();
           let $a = $(this);
-
           //移除所有的激活类
           $('.bsa-menu a').each(function (index, a) {
             $(a).removeClass('active');
@@ -3334,7 +3338,7 @@
           //给当前的a添加激活类
           $a.addClass('active');
           if (_this._config.clickClose === true) {
-            $('[data-bsa-toggle="pushmenu"]').PushMenu('toggle');
+            $('[data-bsa-toggle="pushmenu"]').PushMenu('collapse');
           }
 
           //添加tab处理

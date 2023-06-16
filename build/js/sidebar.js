@@ -118,7 +118,6 @@ class Sidebar {
             e.preventDefault();
             let $a = $(this);
 
-
             //是否开启手风琴模式
             if (_this._config.accordion) {
 
@@ -152,7 +151,6 @@ class Sidebar {
         $(document).on('click', '.bsa-menu a:not(.has-children):not([target])', function (e) {
             e.preventDefault();
             let $a = $(this);
-
             //移除所有的激活类
             $('.bsa-menu a').each(function (index, a) {
                 $(a).removeClass('active');
@@ -162,7 +160,7 @@ class Sidebar {
             $a.addClass('active');
 
             if (_this._config.clickClose === true) {
-                $('[data-bsa-toggle="pushmenu"]').PushMenu('toggle')
+                $('[data-bsa-toggle="pushmenu"]').PushMenu('collapse')
             }
 
             //添加tab处理

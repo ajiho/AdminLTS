@@ -250,7 +250,6 @@ class Layout {
           // 绑定点击事件
           $maskStr.on('click', function () {
             $bsaLayout3Right.removeClass('open')
-
             $(this).remove();
           });
 
