@@ -479,7 +479,6 @@
     //格式化列数据演示 val:当前数据 rows:当前整行数据
     function formatStatus(val, rows) {
       return val === 1 ? '<span class="badge text-bg-success">正常</span>' : '<span class="badge text-bg-danger">停用</span>';
-
     }
 
 
@@ -488,12 +487,17 @@
 
       let html = '';
 
+
+      //第一个按钮(你可以在这里判断用户是否有修改权限来决定是否显示)
       html += `<button type="button" class="btn btn-light btn-sm edit-btn" data-bs-toggle="tooltip" data-bs-placement="top"
         data-bs-title="修改用户"><i class="bi bi-pencil"></i></button>`;
 
+      //第二个按钮
       html += `<button type="button" class="btn btn-light mx-1 btn-sm del-btn" data-bs-toggle="tooltip" data-bs-placement="top"
         data-bs-title="删除用户"><i class="bi bi-trash3"></i></button>`
 
+
+      //第三个按钮
       html += `<button type="button" class="btn btn-light btn-sm role-btn" data-bs-toggle="tooltip" data-bs-placement="top"
         data-bs-title="分配角色"><i class="bi bi-person-square"></i></button>`
 
@@ -521,13 +525,44 @@
     })
 
     //==============================日期时间插件====================================
+
+
+    //日期时间的翻译，由于该插件没有内置中文翻译，需要手动通过选项进行翻译
+    let td_zh = {
+      today: '回到今天',
+      clear: '清除选择',
+      close: '关闭选取器',
+      selectMonth: '选择月份',
+      previousMonth: '上个月',
+      nextMonth: '下个月',
+      selectYear: '选择年份',
+      previousYear: '上一年',
+      nextYear: '下一年',
+      selectDecade: '选择十年',
+      previousDecade: '上一个十年',
+      nextDecade: '下一个十年',
+      previousCentury: '上一个世纪',
+      nextCentury: '下一个世纪',
+      pickHour: '选取时间',
+      incrementHour: '增量小时',
+      decrementHour: '递减小时',
+      pickMinute: '选取分钟',
+      incrementMinute: '增量分钟',
+      decrementMinute: '递减分钟',
+      pickSecond: '选取秒',
+      incrementSecond: '增量秒',
+      decrementSecond: '递减秒',
+      toggleMeridiem: '切换上下午',
+      selectTime: '选择时间',
+      selectDate: '选择日期',
+    }
+
     //自定义日期格式插件
     let td6 = new tempusDominus.TempusDominus(document.getElementById('beginTime'), {
       //本地化控制
       localization: {
+        ...td_zh,//展开语法
         format: 'yyyy-MM-dd HH:mm:ss',
-        //是否使用24小时制,比如3.15分会变成15.15
-        hourCycle: 'h24'
       },
       //布局控制
       display: {
@@ -574,9 +609,10 @@
     let td7 = new tempusDominus.TempusDominus(document.getElementById('endTime'), {
       //本地化控制
       localization: {
+        ...td_zh,//展开语法
         format: 'yyyy-MM-dd HH:mm:ss',
         //是否使用24小时制,比如3.15分会变成15.15
-        hourCycle: 'h24'
+        // hourCycle: 'h24'
       },
       //布局控制
       display: {
