@@ -2204,7 +2204,7 @@ span.tmpzTreeMove_arrow {
   right: 12px;
   color: var(--bs-light-text-emphasis);
   background-color: var(--bs-light-bg-subtle);
-  z-index: 1001;
+  z-index: 1028;
 }
 .bsa-back-to-top:hover {
   color: var(--bs-dark-text-emphasis);
@@ -2969,6 +2969,9 @@ ul.bsa-timeline2 > li::before {
   }
   .bsa-layout3 .bsa-layout3-left {
     margin-right: 0;
+  }
+  .bsa-back-to-top {
+    z-index: 1001;
   }
 }
 

@@ -11,7 +11,12 @@
   right: 12px;
   color: var(--bs-light-text-emphasis);
   background-color: var(--bs-light-bg-subtle);
-  z-index: 1001;
+  z-index: 1028;
+
+  @include media-breakpoint-down(lg) {
+    z-index: 1001;
+  }
+
 
   &:hover {
     color: var(--bs-dark-text-emphasis);
