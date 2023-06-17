@@ -21,6 +21,8 @@ let api = {
   roleadd: RegExp('/roleadd.*'),
   rolenode: RegExp('/role/node.*'),
 
+  //消息通知
+  msg: RegExp('/msg.*'),
 
   //tree节点
   ztree: RegExp('/ztree.*'),

@@ -32,3 +32,4 @@ import './logout';
 import './ztree';
 import './node';
 import './role';
+import './msg';

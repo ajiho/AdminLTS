@@ -1,5 +1,5 @@
 /*!
- * bootstrap-admin v1.1.0 (https://gitee.com/ajiho/bootstrap-admin)
+ * bootstrap-admin v2.0.1 (https://gitee.com/ajiho/bootstrap-admin)
  * Copyright 2021-2023 ajiho
  * license MIT (https://gitee.com/ajiho/bootstrap-admin/blob/2.x/LICENSE)
  */
