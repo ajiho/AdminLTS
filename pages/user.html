@@ -84,6 +84,7 @@
       </form>
     </div>
     <div class="card-body">
+      <!--  表格上方左侧的工具条区域    -->
       <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
         <button class="btn btn-light add-btn"><i
           class="bi bi-plus"></i> 新增
@@ -92,6 +93,7 @@
         <button class="btn btn-light"><i class="bi bi-box-arrow-down"></i> 导入</button>
         <button class="btn btn-light"><i class="bi bi-box-arrow-up"></i> 导出</button>
       </div>
+      <!--  数据表格    -->
       <table id="table"></table>
     </div>
   </div>
@@ -116,11 +118,10 @@
 
 <script>
   $(document).ready(function (e) {
-    $('select').selectpicker();
 
     // 新增用户
     $('.add-btn').on('click', function () {
-      // window :建议加上该前缀,否则在子页面中通过parent.modalInstance 获取不到该实例对象
+      // window :建议加上该前缀,否则在子页面中通过parent.modalInstance 获取不到该实例对象,因为它现在处于一个匿名函数里
       window.modalInstance = $.modal({
         url: 'user-add.html',
         title: '用户添加',
@@ -636,7 +637,8 @@
       });
     });
 
-
+    //下拉框美化插件，原生的bootstrap它会调用系统的那个下拉菜单
+    $('select').selectpicker();
   });
 
 

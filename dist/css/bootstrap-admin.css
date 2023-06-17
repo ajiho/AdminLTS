@@ -2291,7 +2291,7 @@ span.tmpzTreeMove_arrow {
   right: 30px;
   border-style: solid;
   border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent var(--bs-dark-bg-subtle);
+  border-color: transparent transparent transparent rgba(var(--bs-tertiary-color-rgb), 0.2);
 }
 .bsa-timeline1-wrapper .bsa-timeline1-right {
   padding: 0 0 20px 40px;
