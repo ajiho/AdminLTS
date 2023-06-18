@@ -38,3 +38,9 @@ Mock.mock(Api.userrole, 'post', {
   'msg': 'success',
   'code': 200,
 });
+
+Mock.mock(Api.userChangeStatus, 'get', {
+  'data': [],
+  'msg': 'success',
+  'code': 200,
+});

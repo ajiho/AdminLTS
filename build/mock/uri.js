@@ -11,6 +11,8 @@ let api = {
   userdel: RegExp('/user/.*'),
   //分配角色
   userrole: RegExp('/user/role.*'),
+  //改变用户状态
+  userChangeStatus: RegExp('/userChangeStatus/.*'),
 
 
   node: RegExp('/node.*'),

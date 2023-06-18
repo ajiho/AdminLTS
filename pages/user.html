@@ -184,6 +184,8 @@
       idField: 'id',
       // 是否启用点击选中行
       clickToSelect: true,
+      //点击那些元素可以忽略勾选
+      ignoreClickToSelectOn: ignoreClickToSelectOn,
       // 是否显示详细视图和列表视图的切换按钮
       showToggle: true,
       // 请求得到的数据类型
@@ -333,7 +335,34 @@
           title: '状态',
           field: 'status',
           align: 'center',
-          formatter: formatStatus
+          formatter: formatStatus,
+          events: {
+            'click .form-switch': function (event, value, row, index) {
+              event.preventDefault();
+              event.stopPropagation();
+
+              //获取当前状态
+              let $checkbox = $(event.target);
+              //获取即将去往的选中状态
+              let status = $checkbox.prop('checked');
+
+              //发送ajax改变用户的状态
+              $.ajax({
+                url: `/userChangeStatus/${row.id}`,
+                method: 'get',
+              }).then(response => {
+                if (response.code === 200) {
+                  //修改状态
+                  $checkbox.prop('checked', status);
+                  //给出通知
+                  $.toasts({
+                    type: 'success',
+                    content: '操作成功'
+                  })
+                }
+              });
+            }
+          }
         },
         {
           title: '操作',
@@ -441,6 +470,11 @@
     })
 
 
+    function ignoreClickToSelectOn(e) {
+      return $(e).hasClass('form-check-input');
+    }
+
+
     //处理批量按钮的disabled状态
     function batchBtnStatusHandle() {
       let rowSelected = $("#table").bootstrapTable('getSelections');
@@ -478,7 +512,18 @@
 
     //格式化列数据演示 val:当前数据 rows:当前整行数据
     function formatStatus(val, rows) {
-      return val === 1 ? '<span class="badge text-bg-success">正常</span>' : '<span class="badge text-bg-danger">停用</span>';
+
+      let uncheck = `<div class="form-check form-switch">
+  <input class="form-check-input bsa-cursor-pointer" type="checkbox">
+</div>`;
+
+      let checked = `<div class="form-check form-switch">
+  <input class="form-check-input bsa-cursor-pointer" type="checkbox" checked>
+</div>`
+
+      return val === 1 ? checked : uncheck;
+
+
     }
 
 
