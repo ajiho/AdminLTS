@@ -11,11 +11,13 @@
   --bsa-footer-height: #{$footer-height};
 }
 
+// 让表格都禁止换行
 table {
   white-space: nowrap;
 }
 
-@include scrollbar();
+
+// 引入各种配色变量
 @include indigo-root-vars();
 @include green-root-vars();
 @include pink-root-vars();
@@ -25,4 +27,5 @@ table {
 @include orange-root-vars();
 @include teal-root-vars();
 @include cyan-root-vars();
+@include scrollbar();
 

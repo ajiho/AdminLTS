@@ -1,0 +1,49 @@
+@include color-mode("indigo", true) {
+
+  //模态框的关闭按钮的颜色
+  .btn-close {
+    --#{$prefix}btn-close-bg: #{ escape-svg($btn-close-bg-indigo) };
+  }
+
+  // 这里是表单触发背景阴影
+  .form-control:focus {
+    border-color: $body-color-indigo;
+    box-shadow: 0 0 0 .25rem rgba($body-color-indigo, .25);
+  }
+
+
+  // 多选框和单选框
+  .form-check-input:focus {
+    border-color: $body-color-indigo;
+    box-shadow: 0 0 0 .25rem rgba($body-color-indigo, .25);
+  }
+
+  .form-check-input:checked {
+    background-color: $body-color-indigo;
+    border-color: $body-color-indigo;
+  }
+
+  // 手风琴
+  .accordion {
+    --bs-accordion-active-bg: #{rgba($body-color-indigo, .15)};
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 .25rem rgb(148 62 255 / 25%);
+  }
+
+
+  // 下拉选择框
+  .form-select:focus {
+    border-color: $body-color-indigo;
+    box-shadow: 0 0 0 .25rem rgba($body-color-indigo, .25);
+  }
+
+
+  .dropdown-menu {
+    // --#{$prefix}-dropdown-bg: #{mix($blue-500, $blue-600)};
+    --#{$prefix}dropdown-link-active-bg: #{$indigo-700};
+  }
+
+
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
+
+}

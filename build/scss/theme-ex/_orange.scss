@@ -1,0 +1,14 @@
+@include color-mode("orange", true) {
+
+  //模态框的关闭按钮的颜色
+  .btn-close {
+    --#{$prefix}btn-close-bg: #{ escape-svg($btn-close-bg-orange) };
+  }
+
+  .dropdown-menu {
+    --#{$prefix}dropdown-link-active-bg: #{$orange-700};
+  }
+
+  @include quicktab-nav-pill();
+  @include sidebar-menu();
+}
