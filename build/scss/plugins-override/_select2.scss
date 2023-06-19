@@ -1,3 +1,41 @@
+$select2-selection-single-bg-blue: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$body-color-blue}" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') !default;
+$select2-selection-single-bg-cyan: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$body-color-cyan}" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') !default;
+$select2-selection-single-bg-green: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$body-color-green}" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') !default;
+$select2-selection-single-bg-indigo: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$body-color-indigo}" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') !default;
+$select2-selection-single-bg-orange: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$body-color-orange}" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') !default;
+$select2-selection-single-bg-pink: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$body-color-pink}" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') !default;
+$select2-selection-single-bg-red: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$body-color-red}" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') !default;
+$select2-selection-single-bg-teal: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$body-color-teal}" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') !default;
+$select2-selection-single-bg-yellow: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$body-color-yellow}" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') !default;
+$select2-selection-single-bg-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$body-color-dark}" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') !default;
+
+
+//已经被选中的项目左边的小图标
+$select2-selection-choice-remove-bg-blue: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-color-blue}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-cyan: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-color-cyan}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-green: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-color-green}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-indigo: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-color-indigo}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-orange: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-color-orange}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-pink: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-color-pink}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-red: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-color-red}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-teal: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-color-teal}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-yellow: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-color-yellow}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-color-dark}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+
+
+//已经被选中的项目左边的小图标鼠标移入时的
+$select2-selection-choice-remove-bg-blue-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-tertiary-color-blue}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-cyan-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-tertiary-color-cyan}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-green-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-tertiary-color-green}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-indigo-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-tertiary-color-indigo}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-orange-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-tertiary-color-orange}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-pink-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-tertiary-color-pink}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-red-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-tertiary-color-red}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-teal-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-tertiary-color-teal}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-yellow-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-tertiary-color-yellow}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+$select2-selection-choice-remove-bg-dark-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$body-tertiary-color-dark}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
+
+
 .select2-container--bootstrap-5 .select2-selection {
   background-color: var(--bs-body-bg) !important;
   color: var(--bs-body-color) !important;
@@ -65,14 +103,309 @@
 }
 
 
-//.select2-container--bootstrap-5 .select2-selection--single {
-//  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%236610f2' stroke='' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-//}
+@include color-mode("blue", true) {
+  // 下拉框右边的向下的小三角
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-image: #{ escape-svg($select2-selection-single-bg-blue) };
+  }
 
-//.select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
-//  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color-cyan}'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") 50%/.75rem auto no-repeat;
-//}
-//
-//.select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
-//  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color-cyan}'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") 50%/.75rem auto no-repeat;
-//}
+
+  //选择删除图标
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-blue) };
+  }
+
+  //选择删除图标鼠标移入会变深一点
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-blue-hover) };
+  }
+
+
+  //单选后边的关闭按钮
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear:hover, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-blue) };
+
+  }
+
+  //单选后边的关闭按钮鼠标移入状态
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear,.select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-blue-hover) };
+
+  }
+
+
+}
+
+@include color-mode("cyan", true) {
+  // 下拉框右边的向下的小三角
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-image: #{ escape-svg($select2-selection-single-bg-cyan) };
+  }
+
+  //选择删除图标
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-cyan) };
+  }
+
+  //选择删除图标鼠标移入会变深一点
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-cyan-hover) };
+  }
+
+
+  //单选后边的关闭按钮
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear:hover, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-cyan) };
+
+  }
+
+  //单选后边的关闭按钮鼠标移入状态
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear,.select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-cyan-hover) };
+
+  }
+
+}
+
+@include color-mode("green", true) {
+  // 下拉框右边的向下的小三角
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-image: #{ escape-svg($select2-selection-single-bg-green) };
+  }
+  //选择删除图标
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-green) };
+  }
+
+  //选择删除图标鼠标移入会变深一点
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-green-hover) };
+  }
+
+
+  //单选后边的关闭按钮
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear:hover, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-green) };
+
+  }
+
+  //单选后边的关闭按钮鼠标移入状态
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear,.select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-green-hover) };
+
+  }
+}
+
+@include color-mode("indigo", true) {
+  // 下拉框右边的向下的小三角
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-image: #{ escape-svg($select2-selection-single-bg-indigo) };
+  }
+
+  //选择删除图标
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-indigo) };
+  }
+
+  //选择删除图标鼠标移入会变深一点
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-indigo-hover) };
+  }
+
+
+  //单选后边的关闭按钮
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear:hover, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-indigo) };
+
+  }
+
+  //单选后边的关闭按钮鼠标移入状态
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear,.select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-indigo-hover) };
+
+  }
+}
+
+@include color-mode("orange", true) {
+  // 下拉框右边的向下的小三角
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-image: #{ escape-svg($select2-selection-single-bg-orange) };
+  }
+
+  //选择删除图标
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-orange) };
+  }
+
+  //选择删除图标鼠标移入会变深一点
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-orange-hover) };
+  }
+
+
+  //单选后边的关闭按钮
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear:hover, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-orange) };
+
+  }
+
+  //单选后边的关闭按钮鼠标移入状态
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear,.select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-orange-hover) };
+
+  }
+}
+
+@include color-mode("pink", true) {
+  // 下拉框右边的向下的小三角
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-image: #{ escape-svg($select2-selection-single-bg-pink) };
+  }
+
+  //选择删除图标
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-pink) };
+  }
+
+  //选择删除图标鼠标移入会变深一点
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-pink-hover) };
+  }
+
+
+  //单选后边的关闭按钮
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear:hover, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-pink) };
+
+  }
+
+  //单选后边的关闭按钮鼠标移入状态
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear,.select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-pink-hover) };
+
+  }
+}
+
+@include color-mode("red", true) {
+  // 下拉框右边的向下的小三角
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-image: #{ escape-svg($select2-selection-single-bg-red) };
+  }
+
+  //选择删除图标
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-red) };
+  }
+
+  //选择删除图标鼠标移入会变深一点
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-red-hover) };
+  }
+
+
+  //单选后边的关闭按钮
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear:hover, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-red) };
+
+  }
+
+  //单选后边的关闭按钮鼠标移入状态
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear,.select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-red-hover) };
+
+  }
+}
+
+@include color-mode("teal", true) {
+  // 下拉框右边的向下的小三角
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-image: #{ escape-svg($select2-selection-single-bg-teal) };
+  }
+
+  //选择删除图标
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-teal) };
+  }
+
+  //选择删除图标鼠标移入会变深一点
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-teal-hover) };
+  }
+
+
+  //单选后边的关闭按钮
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear:hover, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-teal) };
+
+  }
+
+  //单选后边的关闭按钮鼠标移入状态
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear,.select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-teal-hover) };
+
+  }
+
+}
+
+@include color-mode("yellow", true) {
+  // 下拉框右边的向下的小三角
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-image: #{ escape-svg($select2-selection-single-bg-yellow) };
+  }
+
+  //选择删除图标
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-yellow) };
+  }
+
+  //选择删除图标鼠标移入会变深一点
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-yellow-hover) };
+  }
+
+
+  //单选后边的关闭按钮
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear:hover, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-yellow) };
+
+  }
+
+  //单选后边的关闭按钮鼠标移入状态
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear,.select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-yellow-hover) };
+
+  }
+}
+
+@include color-mode("dark", true) {
+  // 下拉框右边的向下的小三角
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-image: #{ escape-svg($select2-selection-single-bg-dark) };
+  }
+
+  //选择删除图标
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-dark) };
+  }
+
+  //选择删除图标鼠标移入会变深一点
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-dark-hover) };
+  }
+
+
+  //单选后边的关闭按钮
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear:hover, .select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear:hover {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-dark) };
+
+  }
+
+  //单选后边的关闭按钮鼠标移入状态
+  .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__clear,.select2-container--bootstrap-5 .select2-selection--single .select2-selection__clear {
+    background-image: #{ escape-svg($select2-selection-choice-remove-bg-dark-hover) };
+
+  }
+
+}
+
+

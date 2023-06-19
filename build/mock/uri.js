@@ -28,6 +28,9 @@ let api = {
 
   //tree节点
   ztree: RegExp('/ztree.*'),
+
+  //select2
+  select2demo1: RegExp('/select2demo1.*'),
 }
 
 
