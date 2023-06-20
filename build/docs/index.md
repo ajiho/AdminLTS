@@ -32,5 +32,7 @@ features:
     details: 不只是其它传统后台模板只会修改侧边栏和头部主题,它支持内容页主题同步(可关闭)
   - title: 开源且富有活力
     details: 传统mvc开发方式我们也要力求最新,保持bootstrap版本和插件、依赖的更新,获得最新特性以及插件的bug修复。
+  - title: 充分利用bootstrap的特性
+    details: 充分利用bootstrap提供的助手类来设计页面
 ---
 

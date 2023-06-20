@@ -261,5 +261,9 @@ export let libIgnore = [
     'lib/bootstrap-select/*',
     '!lib/bootstrap-select/dist',
   ],
+  ...[
+    'lib/jquery.cookie/*',
+    '!lib/jquery.cookie/jquery.cookie.js',
+  ],
 ]
 

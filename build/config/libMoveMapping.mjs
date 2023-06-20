@@ -139,8 +139,10 @@ export let libMoveMapping = [
   {
     form: 'node_modules/bootstrap-select/**/*',
     to: 'lib/bootstrap-select'
+  },
+  {
+    form: 'node_modules/jquery.cookie/**/*',
+    to: 'lib/jquery.cookie'
   }
-
-
 ]
 
