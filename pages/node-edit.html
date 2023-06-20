@@ -81,8 +81,10 @@
 <script src="../lib/@fonticonpicker/fonticonpicker/dist/js/jquery.fonticonpicker.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
+<script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
-  $(document).ready(function (e) {
+  $(document).ready(function () {
 
     $("#form").formValidation({
       //验证字段
@@ -106,7 +108,25 @@
       let $form = $(e.target);
       let data = $form.serialize();
 
-
+      //得到序列化数据
+      $.ajax({
+        url: "/nodeedit",
+        method: 'put',
+        data: data,
+        success: function (res) {
+          if(res.code===200){
+            $.toasts({
+              type: 'success',
+              content: '修改成功',
+              autohide: true,
+              onHidden: function () {
+                parent.editNodeModal.setData(true);
+                parent.editNodeModal.close();
+              }
+            })
+          }
+        }
+      })
     });
 
 

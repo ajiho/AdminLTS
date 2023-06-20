@@ -1,0 +1,39 @@
+{
+  "name": "fake-progress",
+  "version": "1.0.4",
+  "description": "Fake a progress bar using an exponential progress function",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piercus/fake-progress.git"
+  },
+  "keywords": [
+    "progress",
+    "fake",
+    "spinner",
+    "percentage",
+    "simulate",
+    "elegant",
+    "loading",
+    "busy"
+  ],
+  "author": "Pierre Colle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/piercus/fake-progress/issues"
+  },
+  "xo":{
+    "rules" : {
+      "object-shorthand": ["error", "never"]
+    }
+  },
+  "homepage": "https://github.com/piercus/fake-progress#readme",
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "vows": "^0.8.1",
+    "xo": "^0.18.1"
+  }
+}

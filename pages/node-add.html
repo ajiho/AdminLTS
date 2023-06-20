@@ -81,6 +81,8 @@
 <script src="../lib/@fonticonpicker/fonticonpicker/dist/js/jquery.fonticonpicker.min.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
+<!--假数据模拟,生产环境中请直接删除该js-->
+<script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
   $(document).ready(function (e) {
 
@@ -107,34 +109,48 @@
       let data = $form.serialize();
 
 
+      $.ajax({
+        url: "/nodeadd",
+        method: 'post',
+        data: data,
+        success: function (res) {
+          //添加成功
+          $.toasts({
+            type: 'success',
+            content: '添加成功',
+            delay: 1000,
+            autohide: true,
+            onHidden: function () {
+              parent.addNodeModal.setData(true);
+              parent.addNodeModal.close();
+            }
+          })
+        }
+      })
+
     });
 
 
-    // 得到fontIconPicker插件对象
+    // fontIconPicker相关的配置
     let fontIconPicker = $('#icon-example').fontIconPicker({
       theme: 'fip-bootstrap',
       searchPlaceholder: '搜索图标'
-    });
-
-    $.ajax({
-      url: '../lib/bootstrap-icons/font/bootstrap-icons.json',
-    }).then(function (response) {
-      let fontello_json_icons = [];
-      $.each(response, function (i, v) {
-        fontello_json_icons.push('bi bi-' + i);
-      });
-
-      //插件对象设置图标
-      fontIconPicker.setIcons(fontello_json_icons);
-    })
-
-    //监听插件选择图标事件
-    $(document).on('change', '#icon-example', function () {
+    }).on('change', '#icon-example', function () {
       //给input框设置
       $('#select-icon').html($(this).val());
     });
 
 
+    $.ajax({
+      url: '../lib/bootstrap-icons/font/bootstrap-icons.json',//开发环境这里也要注意修改。
+    }).then(function (response) {
+      let fontello_json_icons = [];
+      $.each(response, function (i, v) {
+        fontello_json_icons.push('bi bi-' + i);
+      });
+      //插件对象设置图标
+      fontIconPicker.setIcons(fontello_json_icons);
+    })
   })
 </script>
 </body>

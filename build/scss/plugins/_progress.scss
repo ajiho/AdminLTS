@@ -1,0 +1,13 @@
+.bsa-progress {
+  height: 3px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1033;
+  background: unset;
+
+  .progress-bar {
+    transition-duration: 200ms;
+  }
+}

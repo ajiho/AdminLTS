@@ -143,3 +143,15 @@ Mock.mock(Api.nodeadd, 'post', {
 });
 
 
+Mock.mock(Api.nodeedit, 'put', {
+  'data': [],
+  'msg': 'success',
+  'code': 200,
+});
+
+Mock.mock(Api.nodedel, 'delete', {
+  'data': [],
+  'msg': 'success',
+  'code': 200,
+});
+

@@ -61,6 +61,7 @@
 
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
+<script src="../lib/jquery.cookie/jquery.cookie.js"></script>
 <script src="../lib/jquery-treegrid/js/jquery.treegrid.min.js"></script>
 <script src="../lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
 <script src="../lib/bootstrap-table/dist/extensions/treegrid/bootstrap-table-treegrid.min.js"></script>
@@ -72,6 +73,7 @@
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 
 <script>
+
   $(function () {
     //展开折叠
     let t = false;
@@ -126,6 +128,7 @@
       loadingTemplate: function () {
         return '<div class="spinner-grow" role="status"><span class="visually-hidden">Loading...</span></div>';
       },
+      //列数据
       columns: [
         {
           title: 'ID',
@@ -167,7 +170,7 @@
             'click .edit-btn': function (event, value, row, index) {
               event.stopPropagation();
 
-              window.modalInstance = $.modal({
+              window.editNodeModal = $.modal({
                 url: 'node-edit.html',
                 title: '修改节点',
                 //禁用掉底部的按钮区域
@@ -181,16 +184,31 @@
                   }
                 }
               })
-
             },
             'click .del-btn': function (event, value, row, index) {
               event.stopPropagation();
               $.modal({
                 body: `确定要删除节点[${row.name}]吗？`,
                 ok: function () {
-
                   //发送ajax
-
+                  $.ajax({
+                    url: "/nodedel/" + row.id,
+                    method: 'delete',
+                    success: function (res) {
+                      if (res.code === 200) {
+                        //添加成功
+                        $.toasts({
+                          type: 'success',
+                          content: '删除成功',
+                          onHidden: function () {
+                            //刷新当前数据表格
+                            $('#table').bootstrapTable('refresh');
+                            $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
+                          }
+                        })
+                      }
+                    }
+                  })
                 }
               })
 
@@ -225,7 +243,6 @@
         $('[data-bs-toggle="tooltip"]').each(function (i, el) {
           new bootstrap.Tooltip(el)
         })
-
         //jquery-treegrid的相关逻辑
         let columns = $('#table').bootstrapTable('getOptions').columns;
         if (columns && columns[0][1].visible) {
@@ -233,8 +250,23 @@
             treeColumn: 1,
             onChange: function () {
               $('#table').bootstrapTable('resetView')
-            }
+            },
+            //保存展开的状态(刷新页面节点展开闭合状态是保存的),true:保存折叠状态
+            saveState: true
           })
+        }
+      },
+      //行点击事件
+      onClickRow: function (row) {
+
+        if(!$(event.target).hasClass('treegrid-expander')){
+          //这里是点击行执行节点展开逻辑
+          let $tr = $('.treegrid-' + row.id);
+          if ($tr.treegrid('isExpanded')) {
+            $tr.treegrid('collapse');
+          } else {
+            $tr.treegrid('expand');
+          }
         }
       }
     })

@@ -789,6 +789,19 @@ table {
   animation-play-state: paused !important;
 }
 
+.bsa-progress {
+  height: 3px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1033;
+  background: unset;
+}
+.bsa-progress .progress-bar {
+  transition-duration: 200ms;
+}
+
 .quicktab > ul {
   border-top: 0 !important;
   border-left: 0 !important;
@@ -2072,35 +2085,12 @@ span.tmpzTreeMove_arrow {
   border-right: var(--bs-border-width) solid var(--bs-border-color);
   will-change: transform;
 }
-.bsa-sidebar .bsa-sidebar-header {
-  width: 100%;
+.bsa-sidebar .card-header {
   height: var(--bsa-header-height);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  padding: 0 15px;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-clip: padding-box;
   border-bottom: var(--bs-border-width) solid var(--bs-border-color);
 }
-.bsa-sidebar .bsa-sidebar-header .bsa-logo-icon {
-  max-width: 36px;
-  max-height: 36px;
-}
-.bsa-sidebar .bsa-sidebar-header .bsa-logo-text {
-  margin-bottom: 0;
-  letter-spacing: 1px;
-  color: var(--bs-body-color);
-}
-.bsa-sidebar .bsa-sidebar-body {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  position: absolute;
-  inset: var(--bsa-header-height) 0 0 0;
+.bsa-sidebar .card-footer {
+  border-top: var(--bs-border-width) solid var(--bs-border-color);
 }
 .bsa-sidebar.open {
   transform: translateX(0);
@@ -2203,12 +2193,12 @@ span.tmpzTreeMove_arrow {
   bottom: 0;
   position: fixed;
   text-align: center;
-  padding: 7px;
   font-size: 14px;
   border-top: var(--bs-border-width) solid var(--bs-border-color);
   z-index: 3;
   height: var(--bsa-footer-height);
   box-sizing: border-box;
+  padding: 0.5rem 1rem;
 }
 
 .bsa-preloader {

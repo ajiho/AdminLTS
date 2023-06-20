@@ -21,6 +21,9 @@ const SELECTOR_LOGIN_PASSWORD = '.bsa-show_hide_password span'
 //装载器
 const SELECTOR_PRELOADER = '.bsa-preloader'
 
+//侧边栏滚动区域选择器
+const SELECTOR_SIDEBAR_SCROLL_AREA = '.bsa-sidebar> .card > .card-body'
+
 const Default = {
   //滚动条自动隐藏 never scroll leave move  #https://kingsora.github.io/OverlayScrollbars/
   scrollbarAutoHide: 'leave',
@@ -306,24 +309,26 @@ class Layout {
         OverlayScrollbarsGlobal.SizeObserverPlugin,
         OverlayScrollbarsGlobal.ClickScrollPlugin
       ]);
-    }
 
-
-    //导航菜单滚动条插件
-    sidebarOsInstance = OverlayScrollbars(document.querySelector('.bsa-sidebar-body'), {
-      overflow: {
-        x: 'hidden',
-        y: 'scroll',
-      },
-      scrollbars: {
-        //never scroll leave move
-        autoHide: _this._config.scrollbarAutoHide,
-        //是否可以点击轨道滚动
-        clickScroll: true,
-        //隐藏滚动条的时间
-        autoHideDelay: _this._config.scrollbarAutoHideDelay,
+      //侧边栏滚动区域
+      if ($(SELECTOR_SIDEBAR_SCROLL_AREA).length !== 0) {
+        //导航菜单滚动条插件
+        sidebarOsInstance = OverlayScrollbars($(SELECTOR_SIDEBAR_SCROLL_AREA)[0], {
+          overflow: {
+            x: 'hidden',
+            y: 'scroll',
+          },
+          scrollbars: {
+            //never scroll leave move
+            autoHide: _this._config.scrollbarAutoHide,
+            //是否可以点击轨道滚动
+            clickScroll: true,
+            //隐藏滚动条的时间
+            autoHideDelay: _this._config.scrollbarAutoHideDelay,
+          }
+        });
       }
-    });
+    }
 
 
     //头部下拉菜单滚动条
@@ -335,10 +340,10 @@ class Layout {
         },
         scrollbars: {
           //never scroll leave move
-          autoHide: 'leave',
+          autoHide: _this._config.scrollbarAutoHide,
           clickScroll: true,
           //隐藏滚动条的时间
-          autoHideDelay: 1300,
+          autoHideDelay: _this._config.scrollbarAutoHideDelay,
         }
       });
     })
@@ -582,10 +587,11 @@ class Layout {
 
     $(a).addClass('active');
     this._openMenu(a);
-    //bug: 用a.offsetTop 代替 $(a).position().top 避免 后者它有时候会得到0的结果
-    sidebarOsInstance.elements().viewport.scrollTo({top: a.offsetTop})
+    if (sidebarOsInstance !== null) {
 
-
+      //bug: 用a.offsetTop 代替 $(a).position().top 避免 后者它有时候会得到0的结果
+      sidebarOsInstance.elements().viewport.scrollTo({top: a.offsetTop})
+    }
   }
 
 

@@ -1,5 +1,4 @@
 .bsa-footer {
-  // background: var(--bsa-footer-bg);
   background-color: var(--#{$prefix}body-bg);
   color: var(--#{$prefix}body-color);
   left: var(--bsa-sidebar-width);
@@ -7,12 +6,12 @@
   bottom: 0;
   position: fixed;
   text-align: center;
-  padding: 7px;
   font-size: 14px;
   border-top: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
   z-index: 3;
   height: var(--bsa-footer-height);
   box-sizing: border-box;
+  padding: .5rem 1rem;
 
   @include media-breakpoint-down(lg) {
     left: 0;

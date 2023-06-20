@@ -17,11 +17,14 @@ let api = {
 
   node: RegExp('/node.*'),
   nodeadd: RegExp('/nodeadd.*'),
+  nodeedit: RegExp('/nodeedit.*'),
+  nodedel: RegExp('/nodedel.*'),
 
 
   role: RegExp('/role.*'),
   roleadd: RegExp('/roleadd.*'),
   rolenode: RegExp('/role/node.*'),
+  roleedit: RegExp('/roleedit.*'),
 
   //消息通知
   msg: RegExp('/msg.*'),

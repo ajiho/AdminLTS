@@ -6,15 +6,17 @@ import PushMenu from './push-menu'
 import Sidebar from './sidebar'
 import Modal from './modal'
 import Loading from './loading'
+import Progress from './progress'
 
 
 export {
-    Layout,
-    NavbarSearch,
-    Toasts,
-    PushMenu,
-    Sidebar,
-    Modal,
-    Loading
+  Layout,
+  NavbarSearch,
+  Toasts,
+  PushMenu,
+  Sidebar,
+  Modal,
+  Loading,
+  Progress
 }
 

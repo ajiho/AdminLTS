@@ -7,7 +7,7 @@ import _template from 'lodash-es/template'
 // toast组件的模板
 const TPL = `
               <div class="toast <%= toastClass %>  overflow-hidden" id="<%= id %>"  role="alert" aria-live="assertive" aria-atomic="true">
-                
+
                 <% if ( config.content !== '') { %>
                     <div class="toast-body">
                         <div class="d-flex align-items-center justify-content-between">
@@ -18,7 +18,7 @@ const TPL = `
                         </div>
                     </div>
                 <% }else { %>
-                
+
                 <% if ( config.image !== '' || config.title !== '' ) { %>
                     <div class="toast-header">
                       <% if ( config.image !== '' ) { %>
@@ -31,16 +31,16 @@ const TPL = `
                       <% } %>
                     </div>
                     <% } %>
-                    
+
                     <div class="toast-body">
                     <%= config.body %>
                     </div>
-                
+
                 <% } %>
-                
+
                 <% if ( config.autohide === true ) { %>
                     <div style="height: 4px" class="progress" role="progressbar">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated <%= progressClass %>" 
+                        <div class="progress-bar progress-bar-striped progress-bar-animated <%= progressClass %>"
                         style="animation: progress <%= config.delay %>ms linear forwards">
                         </div>
                     </div>
@@ -340,7 +340,7 @@ $.toasts.default = {
     //自动隐藏吐司
     autohide: true,
     //延迟隐藏吐司（毫秒）
-    delay: 5000,
+    delay: 1500,
 
 
     //方位 可用值：top-left,top-center, top-left, middle-left,middle-center,middle-right,bottom-left,bottom-center,bottom-right

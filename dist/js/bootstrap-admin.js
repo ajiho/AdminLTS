@@ -131,7 +131,7 @@
 
     /* global bootstrap OverlayScrollbarsGlobal  */
     const NAME$3 = 'Layout';
-    const DATA_KEY$4 = 'bsa.layout';
+    const DATA_KEY$5 = 'bsa.layout';
     const THEME_CACHE_KEY = 'theme';
     const SELECTOR_QUICKTAB = '.qtab';
     const SELECTOR_BACK_TO_TOP = '.bsa-back-to-top';
@@ -141,6 +141,9 @@
     const SELECTOR_LOGIN_PASSWORD = '.bsa-show_hide_password span';
     //装载器
     const SELECTOR_PRELOADER = '.bsa-preloader';
+
+    //侧边栏滚动区域选择器
+    const SELECTOR_SIDEBAR_SCROLL_AREA = '.bsa-sidebar> .card > .card-body';
     const Default$3 = {
       //滚动条自动隐藏 never scroll leave move  #https://kingsora.github.io/OverlayScrollbars/
       scrollbarAutoHide: 'leave',
@@ -383,23 +386,26 @@
 
           //给滚动条对象注册插件
           OverlayScrollbars.plugin([OverlayScrollbarsGlobal.ScrollbarsHidingPlugin, OverlayScrollbarsGlobal.SizeObserverPlugin, OverlayScrollbarsGlobal.ClickScrollPlugin]);
-        }
 
-        //导航菜单滚动条插件
-        sidebarOsInstance = OverlayScrollbars(document.querySelector('.bsa-sidebar-body'), {
-          overflow: {
-            x: 'hidden',
-            y: 'scroll'
-          },
-          scrollbars: {
-            //never scroll leave move
-            autoHide: _this._config.scrollbarAutoHide,
-            //是否可以点击轨道滚动
-            clickScroll: true,
-            //隐藏滚动条的时间
-            autoHideDelay: _this._config.scrollbarAutoHideDelay
+          //侧边栏滚动区域
+          if ($(SELECTOR_SIDEBAR_SCROLL_AREA).length !== 0) {
+            //导航菜单滚动条插件
+            sidebarOsInstance = OverlayScrollbars($(SELECTOR_SIDEBAR_SCROLL_AREA)[0], {
+              overflow: {
+                x: 'hidden',
+                y: 'scroll'
+              },
+              scrollbars: {
+                //never scroll leave move
+                autoHide: _this._config.scrollbarAutoHide,
+                //是否可以点击轨道滚动
+                clickScroll: true,
+                //隐藏滚动条的时间
+                autoHideDelay: _this._config.scrollbarAutoHideDelay
+              }
+            });
           }
-        });
+        }
 
         //头部下拉菜单滚动条
         $('.bsa-header .card-body').each(function (index, element) {
@@ -410,10 +416,10 @@
             },
             scrollbars: {
               //never scroll leave move
-              autoHide: 'leave',
+              autoHide: _this._config.scrollbarAutoHide,
               clickScroll: true,
               //隐藏滚动条的时间
-              autoHideDelay: 1300
+              autoHideDelay: _this._config.scrollbarAutoHideDelay
             }
           });
         });
@@ -624,24 +630,26 @@
       _scrollToA(a) {
         $(a).addClass('active');
         this._openMenu(a);
-        //bug: 用a.offsetTop 代替 $(a).position().top 避免 后者它有时候会得到0的结果
-        sidebarOsInstance.elements().viewport.scrollTo({
-          top: a.offsetTop
-        });
+        if (sidebarOsInstance !== null) {
+          //bug: 用a.offsetTop 代替 $(a).position().top 避免 后者它有时候会得到0的结果
+          sidebarOsInstance.elements().viewport.scrollTo({
+            top: a.offsetTop
+          });
+        }
       }
 
       // Static
       static _jQueryInterface(config) {
         for (const element of this) {
           let $element = $(element);
-          let data = $element.data(DATA_KEY$4);
+          let data = $element.data(DATA_KEY$5);
           const _config = $.extend({}, Default$3, typeof config === 'object' ? config : $element.data());
           if (!data) {
             //没有就new
             data = new Layout($element, _config);
 
             //赋值给data,供给下次调用
-            $element.data(DATA_KEY$4, data);
+            $element.data(DATA_KEY$5, data);
 
             //调用内部的私有方法,初始化，执行必须执行的方法
             data._init();
@@ -682,7 +690,7 @@
     };
 
     const NAME$2 = 'NavbarSearch';
-    const DATA_KEY$3 = 'bsa.navbar-search';
+    const DATA_KEY$4 = 'bsa.navbar-search';
     const JQUERY_NO_CONFLICT$2 = $.fn[NAME$2];
 
     // 搜索事件触发
@@ -767,11 +775,11 @@
       // Static
       static _jQueryInterface(config) {
         return this.each(function () {
-          let data = $(this).data(DATA_KEY$3);
+          let data = $(this).data(DATA_KEY$4);
           const _config = $.extend({}, Default$2, typeof config === 'object' ? config : $(this).data());
           if (!data) {
             data = new NavbarSearch($(this), _config);
-            $(this).data(DATA_KEY$3, data);
+            $(this).data(DATA_KEY$4, data);
             data._init();
           } else if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
@@ -2782,7 +2790,7 @@
     // toast组件的模板
     const TPL$1 = `
               <div class="toast <%= toastClass %>  overflow-hidden" id="<%= id %>"  role="alert" aria-live="assertive" aria-atomic="true">
-                
+
                 <% if ( config.content !== '') { %>
                     <div class="toast-body">
                         <div class="d-flex align-items-center justify-content-between">
@@ -2793,7 +2801,7 @@
                         </div>
                     </div>
                 <% }else { %>
-                
+
                 <% if ( config.image !== '' || config.title !== '' ) { %>
                     <div class="toast-header">
                       <% if ( config.image !== '' ) { %>
@@ -2806,16 +2814,16 @@
                       <% } %>
                     </div>
                     <% } %>
-                    
+
                     <div class="toast-body">
                     <%= config.body %>
                     </div>
-                
+
                 <% } %>
-                
+
                 <% if ( config.autohide === true ) { %>
                     <div style="height: 4px" class="progress" role="progressbar">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated <%= progressClass %>" 
+                        <div class="progress-bar progress-bar-striped progress-bar-animated <%= progressClass %>"
                         style="animation: progress <%= config.delay %>ms linear forwards">
                         </div>
                     </div>
@@ -3050,7 +3058,7 @@
       //自动隐藏吐司
       autohide: true,
       //延迟隐藏吐司（毫秒）
-      delay: 5000,
+      delay: 1500,
       //方位 可用值：top-left,top-center, top-left, middle-left,middle-center,middle-right,bottom-left,bottom-center,bottom-right
       placement: 'top-right',
       //情景模式
@@ -3063,8 +3071,8 @@
     };
 
     const NAME$1 = 'PushMenu';
-    const DATA_KEY$2 = 'bsa.pushmenu';
-    const EVENT_KEY$1 = `.${DATA_KEY$2}`;
+    const DATA_KEY$3 = 'bsa.pushmenu';
+    const EVENT_KEY$1 = `.${DATA_KEY$3}`;
     const JQUERY_NO_CONFLICT$1 = $.fn[NAME$1];
 
     //折叠开始
@@ -3171,11 +3179,11 @@
       // Static
       static _jQueryInterface(config) {
         return this.each(function () {
-          let data = $(this).data(DATA_KEY$2);
+          let data = $(this).data(DATA_KEY$3);
           const _config = $.extend({}, Default$1, typeof config === 'object' ? config : $(this).data());
           if (!data) {
             data = new PushMenu($(this), _config);
-            $(this).data(DATA_KEY$2, data);
+            $(this).data(DATA_KEY$3, data);
             data._init();
           } else if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
@@ -3213,8 +3221,8 @@
     };
 
     const NAME = 'Sidebar';
-    const DATA_KEY$1 = 'bsa.sidebar';
-    const EVENT_KEY = `.${DATA_KEY$1}`;
+    const DATA_KEY$2 = 'bsa.sidebar';
+    const EVENT_KEY = `.${DATA_KEY$2}`;
     const JQUERY_NO_CONFLICT = $.fn[NAME];
     const EVENT_EXPANDED = `expanded${EVENT_KEY}`;
     const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`;
@@ -3372,7 +3380,7 @@
       static _jQueryInterface(config) {
         for (const element of this) {
           let $element = $(element);
-          let data = $element.data(DATA_KEY$1);
+          let data = $element.data(DATA_KEY$2);
           let _config = $.extend({}, Default, typeof config === 'object' ? config : $element.data());
           if (_config.animationSpeed < 150) {
             _config.animationSpeed = 150;
@@ -3382,7 +3390,7 @@
             data = new Sidebar($element, _config);
 
             //赋值给data,供给下次调用
-            $element.data(DATA_KEY$1, data);
+            $element.data(DATA_KEY$2, data);
 
             //调用内部的私有方法,初始化，执行必须执行的方法
             data._init();
@@ -3428,7 +3436,7 @@
 
     /* global bootstrap   */
 
-    const DATA_KEY = 'bsa.modal';
+    const DATA_KEY$1 = 'bsa.modal';
     const MODAL_CLASS = 'bsa-modal';
     const IFrameTpl = '<iframe src="<%= config.url %>" class="d-block w-100 h-100"></iframe>';
 
@@ -3531,7 +3539,7 @@
         this._element.addEventListener('hidden.bs.modal', function (event) {
           //调用隐藏完毕的回调
           if (_this._config.onHidden !== null) {
-            _this._config.onHidden(_this, $(_this._element).data(DATA_KEY));
+            _this._config.onHidden(_this, $(_this._element).data(DATA_KEY$1));
           }
           const modalInstance = bootstrap.Modal.getInstance(_this._element);
           if (modalInstance) {
@@ -3673,7 +3681,7 @@
       //设置数据到dom上面
       setData(data) {
         //获取当前的dom
-        $(this._element).data(DATA_KEY, data);
+        $(this._element).data(DATA_KEY$1, data);
       }
       _createModalElement() {
         //模板引擎来组合dom
@@ -3815,10 +3823,37 @@
       }
     };
 
+    const DATA_KEY = 'bsa.layout';
+    class Progress {
+      constructor(element, options) {
+        this.element = element;
+        this.options = options;
+      }
+      myMethod() {
+        console.log('myMethod called');
+      }
+    }
+    $.fn.Progress = function (options) {
+      const args = Array.prototype.slice.call(arguments, 1);
+      return this.each(function () {
+        let instance = $.data(this, DATA_KEY);
+        if (!instance) {
+          const newInstance = new Progress(this, options);
+          $.data(this, DATA_KEY, newInstance);
+          instance = newInstance;
+        }
+        if (typeof options === 'string') {
+          instance[options].apply(instance, args);
+        }
+      });
+    };
+    $.extend($.fn.Progress, Progress.prototype);
+
     exports.Layout = Layout;
     exports.Loading = Loading;
     exports.Modal = Modal;
     exports.NavbarSearch = NavbarSearch;
+    exports.Progress = Progress;
     exports.PushMenu = PushMenu;
     exports.Sidebar = Sidebar;
     exports.Toasts = Toasts;

@@ -27,7 +27,7 @@ features:
   - title: 严格区分样式
     details: 严格区分bootstrap-admin和bootstrap的样式,bootstrap-admin的样式都是以bsa开头，没有修改bootstrap底层样式,体验原汁原味的bootstrap
   - title: 集成常用的优秀开源js、jq插件
-    details: 内置一些开发中常用的优秀的开源项目,并做了主题适配,但没有修改插件任何一行源码
+    details: 内置一些开发中常用的优秀的开源项目,并做了主题适配,让风格更加统一，但没有修改插件任何一行源码
   - title: 支持暗模式等多主题
     details: 不只是其它传统后台模板只会修改侧边栏和头部主题,它支持内容页主题同步(可关闭)
   - title: 开源且富有活力

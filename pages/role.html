@@ -256,18 +256,28 @@
                 body: '确定要删除角色【' + row.name + '】?',
                 ok: function () {
 
+
                   $.ajax({
                     url: '/user/10',
                     method: 'delete',
                   }).then(response => {
                     if (response.code === 200) {
 
+                      $.toasts({
+                        type: 'success',
+                        delay: 1500,
+                        content: '删除成功',
+                        onHidden: function () {
+                          $('#table').bootstrapTable('refresh');
+                          $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
+                          //把批量删除按钮变成禁止点击
+                          $('.batch-btn').attr('disabled', true)
+                        }
+                      })
                     }
                   });
-
                 }
               })
-
             },
             'click .node-btn': function (event, value, row, index) {
               event.stopPropagation();

@@ -9,17 +9,6 @@ $.loading.default.type = 'border';
 $.loading.default.color = 'success';
 
 
-/**
- * ajax的一些统一处理
- * Tips:建议后端对于ajax请求返回统一json格式,方便我们处理业务逻辑
- * 这里的状态码是我们自己的业务上的code,不是http请求的status那个code
- * 比如:
- * {code:403 msg:'登录过期,重新登录' data:[]}
- * {code:200 msg:'' data:[{...},{...}]}
- * {code:10001 msg:'文章缩略图上传错误' data:[]}
- * 这样我们只要检测到403我们就直接返回登录页
- */
-
 //发送ajax前的统一设置
 $.ajaxSetup({
   //超时时间:5秒
@@ -33,31 +22,30 @@ $.ajaxSetup({
   dataType: 'json'
 });
 
+/**
+ * ajax的一些统一处理
+ * Tips:建议后端对于ajax请求返回统一json格式,方便我们处理业务逻辑
+ * 这里的状态码是我们自己的业务上的code,不是http请求的status那个code
+ * 比如:
+ * {code:403 msg:'登录过期,重新登录' data:[]}
+ * {code:200 msg:'' data:[{...},{...}]}
+ * {code:10001 msg:'文章缩略图上传错误' data:[]}
+ * 这样我们只要检测到403我们就直接返回登录页
+ */
 
-//发送ajax前回调
-$(document).ajaxSend(function (event, xhr, options) {
-  //可以加你自己的处理逻辑
+
+$(document).ajaxStart(function() {
+
 });
 
+$(document).ajaxStop(function() {
 
-//ajax请求成功时回调
-$(document).ajaxSuccess(function (event, xhr, options) {
-  //可以加你自己的处理逻辑
 });
 
-
-//ajax请求失败时回调
-$(document).ajaxError(function (event, xhr, options, thrownError) {
-  //可以加你自己的处理逻辑
-});
-
-
-// ajax请求结束,成功失败都会执行
+// ajax的每一次请求结束,成功失败都会执行
 $(document).ajaxComplete(function (event, xhr, options) {
   //可以加你自己的处理逻辑
 
 });
-
-
 
 

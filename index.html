@@ -16,6 +16,8 @@
 </head>
 
 <body data-theme="light">
+
+
 <!--头部导航-->
 <ul class="bsa-header">
   <!-- 侧边栏触发按钮(移动端时显示) -->
@@ -248,184 +250,190 @@
 
 <!--侧边栏-->
 <div class="bsa-sidebar">
-  <!--  侧边栏头部部分(展示品牌logo)  -->
-  <div class="bsa-sidebar-header">
-    <img src="dist/img/favicon-32x32.png" class="bsa-logo-icon" alt="logo-icon">
-    <div class="bsa-logo-text ms-2 bsa-ellipsis-2">bootstrap-admin</div>
-  </div>
-  <!--  侧边栏的身体部分  -->
-  <div class="bsa-sidebar-body" data-overlayscrollbars-initialize>
-    <!--   侧边栏的菜单     -->
-    <ul class="bsa-menu" data-bsa-toggle="sidebar" data-accordion="true" data-click-close="true">
-      <li>
-        <a href="pages/welcome.html">
-          <i class="bi bi-house"></i>首页
-        </a>
-      </li>
-      <li>
-        <a href="javascript:" class="has-children">
-          <i class="bi bi-person-lock"></i>权限管理
-        </a>
-        <ul>
-          <li>
-            <a href="pages/user.html">用户列表</a>
-          </li>
-          <li>
-            <a href="pages/user2.html">用户列表(多部门版)</a>
-          </li>
-          <li>
-            <a href="pages/role.html">角色列表</a>
-          </li>
-          <li>
-            <a href="pages/node.html">节点列表</a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="javascript:" class="has-children">
-          <i class="bi bi-filetype-html"></i>示例页面
-        </a>
-        <ul>
-          <li>
-            <a href="pages/blank.html">新页面</a>
-          </li>
-          <li>
-            <!-- target="_self":添加该属性可以让该页面不从tab页面里打开  -->
-            <a href="pages/lockscreen.html" target="_self">锁屏页</a>
-          </li>
-          <li>
-            <a href="pages/gallery.html">图库列表</a>
-          </li>
-          <li>
-            <a href="pages/errors.html">错误页面</a>
-          </li>
-          <li>
-            <a href="pages/login.html" target="_self">登录页面</a>
-          </li>
-          <li>
-            <a href="pages/timeline.html">时间轴</a>
-          </li>
-          <li>
-            <a href="pages/layout1.html">布局示例1</a>
-          </li>
-          <li>
-            <a href="pages/layout2.html">布局示例2</a>
-          </li>
-          <li>
-            <a href="pages/layout3.html">布局示例3</a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="javascript:" class="has-children">
-          <i class="bi bi-filetype-js"></i>插件
-        </a>
-        <ul>
-          <li><a href="pages/plugin-day.js.html">day.js(时间格式)</a></li>
-          <li><a href="pages/plugin-clipboard.html">复制粘贴插件</a></li>
-          <li><a href="pages/plugin-shepherd.html">更新引导插件</a></li>
-          <li><a href="pages/plugin-fullcalendar.html">日历</a></li>
-          <li><a href="pages/plugin-video-js.html">视频播放器</a></li>
-          <li><a href="pages/plugin-pickr.html">颜色选择器</a></li>
-          <li><a href="pages/plugin-raty-js.html">评分插件</a></li>
-          <li><a href="pages/plugin-bootstrap-input-spinner.html">输入框微调插件</a></li>
-          <li><a href="pages/plugin-bs-stepper.html">步骤条插件</a></li>
-          <li><a href="pages/plugin-sweetalert2.html">sweetalert2</a></li>
-          <li><a href="pages/plugin-formvalidation.html">表单验证</a></li>
-          <li><a href="pages/plugin-tempus-dominus.html">日期时间</a></li>
-          <li><a href="pages/plugin-croppie.html">头像裁剪</a></li>
-          <li>
-            <a href="javascript:" class="has-children">树形组件</a>
-            <ul>
-              <li><a href="pages/plugin-ztree.html">ztree</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="javascript:" class="has-children">图表</a>
-            <ul>
-              <li><a href="pages/plugin-chart.html">chart.js</a></li>
-              <li><a href="pages/plugin-echarts.html">echart.js</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="javascript:" class="has-children">数据表格</a>
-            <ul>
-              <li><a href="pages/plugin-bootstrap-table.html">bootstrap-table</a></li>
-              <li><a href="pages/plugin-datatables.html">datatables</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="javascript:" class="has-children">编辑器</a>
-            <ul>
-              <li><a href="pages/plugin-wangeditor.html">wangeditor</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="javascript:" class="has-children">文件上传</a>
-            <ul>
-              <li><a href="pages/plugin-bootstrap-fileinput.html">bootstrap-fileinput</a></li>
-              <li><a href="pages/plugin-dropzone.html">dropzone</a></li>
-            </ul>
-          </li>
-          <li><a href="pages/plugin-select2.html">select2</a></li>
-          <li><a href="pages/plugin-bootstrap-select.html">bootstrap-select</a></li>
-          <li><a href="pages/plugin-fonticonpicker.html">图标选择器</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="javascript:" class="has-children">
-          <i class="bi bi-gear"></i>设置
-        </a>
-        <ul>
-          <li><a href="pages/sys_website.html">网站设置</a></li>
-          <li><a href="pages/sys_email.html">邮件服务</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="docs/index.html" target="_blank">
-          <i class="bi bi-filetype-doc"></i>文档
-        </a>
-      </li>
-      <li>
-        <a href="javascript:" class="has-children">
-          <i class="bi bi-list-nested"></i>多级菜单
-        </a>
-        <ul>
-          <li><a href="pages/multilevel.html?id=1">一级菜单</a></li>
-          <li>
-            <a href="javascript:" class="has-children">一级菜单</a>
-            <ul>
-              <li><a href="pages/multilevel.html?id=2">二级菜单</a></li>
-              <li>
-                <a href="javascript:" class="has-children">二级菜单</a>
-                <ul>
-                  <li><a href="pages/multilevel.html?id=3">三级菜单</a></li>
-                  <li>
-                    <a href="javascript:" class="has-children">三级菜单</a>
-                    <ul>
-                      <li><a href="pages/multilevel.html?id=4">四级菜单</a></li>
-                      <li>
-                        <a href="javascript:" class="has-children">四级菜单</a>
-                        <ul>
-                          <li><a href="pages/multilevel.html?id=5">五级菜单</a></li>
-                          <li><a href="pages/multilevel.html?id=6">五级菜单</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="pages/multilevel.html?id=7" class="has-children">一级菜单</a>
-            <ul>
-              <li><a href="pages/multilevel.html?id=8">二级菜单</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
+  <div class="card border-0 h-100">
+    <!--  侧边栏头部(用于展示品牌logo)  -->
+    <div class="card-header bg-body d-flex align-items-center flex-shrink-0">
+      <img src="dist/img/favicon-32x32.png" class="bsa-logo-icon" alt="logo-icon">
+      <div class="bsa-logo-text ms-2 bsa-ellipsis-2">bootstrap-admin</div>
+    </div>
+    <!--  侧边栏身体部分(用于主要的侧边栏菜单)  -->
+    <div class="card-body p-0" data-overlayscrollbars-initialize>
+      <!--   侧边栏的菜单     -->
+      <ul class="bsa-menu" data-bsa-toggle="sidebar" data-accordion="true" data-click-close="true">
+        <li>
+          <a href="pages/welcome.html">
+            <i class="bi bi-house"></i>首页
+          </a>
+        </li>
+        <li>
+          <a href="javascript:" class="has-children">
+            <i class="bi bi-person-lock"></i>权限管理
+          </a>
+          <ul>
+            <li>
+              <a href="pages/user.html">用户列表</a>
+            </li>
+            <li>
+              <a href="pages/user2.html">用户列表(多部门版)</a>
+            </li>
+            <li>
+              <a href="pages/role.html">角色列表</a>
+            </li>
+            <li>
+              <a href="pages/node.html">节点列表</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:" class="has-children">
+            <i class="bi bi-filetype-html"></i>示例页面
+          </a>
+          <ul>
+            <li>
+              <a href="pages/blank.html">新页面</a>
+            </li>
+            <li>
+              <!-- target="_self":添加该属性可以让该页面不从tab页面里打开  -->
+              <a href="pages/lockscreen.html" target="_self">锁屏页</a>
+            </li>
+            <li>
+              <a href="pages/gallery.html">图库列表</a>
+            </li>
+            <li>
+              <a href="pages/errors.html">错误页面</a>
+            </li>
+            <li>
+              <a href="pages/login.html" target="_self">登录页面</a>
+            </li>
+            <li>
+              <a href="pages/timeline.html">时间轴</a>
+            </li>
+            <li>
+              <a href="pages/layout1.html">布局示例1</a>
+            </li>
+            <li>
+              <a href="pages/layout2.html">布局示例2</a>
+            </li>
+            <li>
+              <a href="pages/layout3.html">布局示例3</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:" class="has-children">
+            <i class="bi bi-filetype-js"></i>插件
+          </a>
+          <ul>
+            <li><a href="pages/plugin-day.js.html">day.js(时间格式)</a></li>
+            <li><a href="pages/plugin-clipboard.html">复制粘贴插件</a></li>
+            <li><a href="pages/plugin-shepherd.html">更新引导插件</a></li>
+            <li><a href="pages/plugin-fullcalendar.html">日历</a></li>
+            <li><a href="pages/plugin-video-js.html">视频播放器</a></li>
+            <li><a href="pages/plugin-pickr.html">颜色选择器</a></li>
+            <li><a href="pages/plugin-raty-js.html">评分插件</a></li>
+            <li><a href="pages/plugin-bootstrap-input-spinner.html">输入框微调插件</a></li>
+            <li><a href="pages/plugin-bs-stepper.html">步骤条插件</a></li>
+            <li><a href="pages/plugin-sweetalert2.html">sweetalert2</a></li>
+            <li><a href="pages/plugin-formvalidation.html">表单验证</a></li>
+            <li><a href="pages/plugin-tempus-dominus.html">日期时间</a></li>
+            <li><a href="pages/plugin-croppie.html">头像裁剪</a></li>
+            <li>
+              <a href="javascript:" class="has-children">树形组件</a>
+              <ul>
+                <li><a href="pages/plugin-ztree.html">ztree</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:" class="has-children">图表</a>
+              <ul>
+                <li><a href="pages/plugin-chart.html">chart.js</a></li>
+                <li><a href="pages/plugin-echarts.html">echart.js</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:" class="has-children">数据表格</a>
+              <ul>
+                <li><a href="pages/plugin-bootstrap-table.html">bootstrap-table</a></li>
+                <li><a href="pages/plugin-datatables.html">datatables</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:" class="has-children">编辑器</a>
+              <ul>
+                <li><a href="pages/plugin-wangeditor.html">wangeditor</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:" class="has-children">文件上传</a>
+              <ul>
+                <li><a href="pages/plugin-bootstrap-fileinput.html">bootstrap-fileinput</a></li>
+                <li><a href="pages/plugin-dropzone.html">dropzone</a></li>
+              </ul>
+            </li>
+            <li><a href="pages/plugin-select2.html">select2</a></li>
+            <li><a href="pages/plugin-bootstrap-select.html">bootstrap-select</a></li>
+            <li><a href="pages/plugin-fonticonpicker.html">图标选择器</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:" class="has-children">
+            <i class="bi bi-gear"></i>设置
+          </a>
+          <ul>
+            <li><a href="pages/sys_website.html">网站设置</a></li>
+            <li><a href="pages/sys_email.html">邮件服务</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="docs/index.html" target="_blank">
+            <i class="bi bi-filetype-doc"></i>文档
+          </a>
+        </li>
+        <li>
+          <a href="javascript:" class="has-children">
+            <i class="bi bi-list-nested"></i>多级菜单
+          </a>
+          <ul>
+            <li><a href="pages/multilevel.html?id=1">一级菜单</a></li>
+            <li>
+              <a href="javascript:" class="has-children">一级菜单</a>
+              <ul>
+                <li><a href="pages/multilevel.html?id=2">二级菜单</a></li>
+                <li>
+                  <a href="javascript:" class="has-children">二级菜单</a>
+                  <ul>
+                    <li><a href="pages/multilevel.html?id=3">三级菜单</a></li>
+                    <li>
+                      <a href="javascript:" class="has-children">三级菜单</a>
+                      <ul>
+                        <li><a href="pages/multilevel.html?id=4">四级菜单</a></li>
+                        <li>
+                          <a href="javascript:" class="has-children">四级菜单</a>
+                          <ul>
+                            <li><a href="pages/multilevel.html?id=5">五级菜单</a></li>
+                            <li><a href="pages/multilevel.html?id=6">五级菜单</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="pages/multilevel.html?id=7" class="has-children">一级菜单</a>
+              <ul>
+                <li><a href="pages/multilevel.html?id=8">二级菜单</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!--  侧边栏底部(用于演示,不需要可删除)  -->
+    <div class="card-footer bg-body">
+      Version: 2.0.1
+    </div>
   </div>
 </div>
 
@@ -457,7 +465,7 @@
 <script src="dist/js/bootstrap-admin.mock.js"></script>
 
 <script>
-  $(function () {
+  $(document).ready(function () {
 
     //头部搜索框处理(不需要可以删除,不明白的可以看bootstrap-admin官方文档)
     $(document).on('search.bsa.navbar-search', function (e, inputValue, data) {
@@ -475,12 +483,10 @@
     //退出登录
     $(document).on('click', '.bsa-logout', function (e) {
       e.preventDefault();
-
       $.modal({
         body: '确定要退出吗？',
         cancelBtn: true,
         ok: function () {
-
 
           //请求退出路由
           $.ajax({

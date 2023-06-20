@@ -312,8 +312,7 @@
 <!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
-
-  $(function () {
+  $(document).ready(function () {
     new Chart(document.getElementById('chart-bar').getContext('2d'), {
       type: 'bar',
       data: {

@@ -47,6 +47,12 @@ Mock.mock(Api.roleadd, 'post', {
 });
 
 
+Mock.mock(Api.roleedit, 'put', {
+  'data': [],
+  'msg': 'success',
+  'code': 200,
+});
+
 Mock.mock(Api.rolenode, 'post', {
   'data': [],
   'msg': 'success',

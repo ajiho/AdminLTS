@@ -117,7 +117,7 @@
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 
 <script>
-  $(document).ready(function (e) {
+  $(document).ready(function () {
 
     // 新增用户
     $('.add-btn').on('click', function () {
@@ -357,7 +357,8 @@
                   //给出通知
                   $.toasts({
                     type: 'success',
-                    content: '操作成功'
+                    placement: 'top-center',
+                    content: '操作成功',
                   })
                 }
               });
@@ -399,7 +400,15 @@
                     method: 'delete',
                   }).then(response => {
                     if (response.code === 200) {
-
+                      $.toasts({
+                        type: 'success',
+                        content: '删除成功',
+                        onHidden: function () {
+                          //刷新当前数据表格
+                          $('#table').bootstrapTable('refresh');
+                          $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
+                        }
+                      })
                     }
                   });
 
