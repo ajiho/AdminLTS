@@ -176,6 +176,16 @@
           cacheType = 1;
         }
         this.Storge = new Storage(cacheType);
+        let theme = this.Storge.get(THEME_CACHE_KEY);
+        if (theme === null) {
+          //设置主题
+          $('html').attr('data-bs-theme', this._config.theme);
+        } else {
+          //让主题色选中
+          $(`.bsa-theme-switcher-wrapper input[type="checkbox"][value=${theme}]`).prop('checked', true);
+          //设置主题
+          $('html').attr('data-bs-theme', theme);
+        }
       }
 
       // Public
@@ -555,12 +565,7 @@
               //是否启用主题适配子页面
               if (_this._config.tabPageEnableTheme === true) {
                 if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                  let theme = _this.Storge.get(THEME_CACHE_KEY);
-                  if (theme === null) {
-                    $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', _this._config.theme);
-                  } else {
-                    $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', theme);
-                  }
+                  $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', $(top.window.document).find('html').attr('data-bs-theme'));
                 }
               }
             }
@@ -580,16 +585,6 @@
 
         //遮罩层关闭
         setTimeout(() => {
-          let theme = _this.Storge.get(THEME_CACHE_KEY);
-          if (theme === null) {
-            //设置主题
-            $('html').attr('data-bs-theme', _this._config.theme);
-          } else {
-            //让主题色选中
-            $(`.bsa-theme-switcher-wrapper input[type="checkbox"][value=${theme}]`).prop('checked', true);
-            //设置主题
-            $('html').attr('data-bs-theme', theme);
-          }
           $(SELECTOR_PRELOADER).fadeOut(_this._config.preloadDuration);
         }, this._config.preloadDuration);
       }
@@ -3450,9 +3445,6 @@
         <div class="modal-dialog <% if ( config.url !== '' ) { %> modal-dialog-centered   <% } %> <%= config.modalDialogClass %>">
             <div class="modal-content">
                 <div class="modal-header">
-
-
-
                    <h1 class="modal-title fs-5" id="<%= id %>Label">
                    <% if ( config.url !== '' && config.title === '' ) { %>
                         <%= _htmlspecialchars(config.url) %>
@@ -3597,7 +3589,7 @@
             if (Helper.canAccessIFrame(iframe)) {
               //不是跨域的iframe
 
-              $(iframe.contentDocument).find('html').attr('data-bs-theme', $('body').Layout('getTheme'));
+              $(iframe.contentDocument).find('html').attr('data-bs-theme', $(top.window.document).find('html').attr('data-bs-theme'));
             }
           }
 

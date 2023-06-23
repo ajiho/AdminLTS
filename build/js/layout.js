@@ -62,6 +62,18 @@ class Layout {
 
     this.Storge = new Storage(cacheType)
 
+
+    let theme = this.Storge.get(THEME_CACHE_KEY)
+    if (theme === null) {
+      //设置主题
+      $('html').attr('data-bs-theme', this._config.theme)
+    } else {
+      //让主题色选中
+      $(`.bsa-theme-switcher-wrapper input[type="checkbox"][value=${theme}]`).prop('checked', true);
+      //设置主题
+      $('html').attr('data-bs-theme', theme)
+    }
+
   }
 
 
@@ -492,13 +504,7 @@ class Layout {
 
             if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
 
-              let theme = _this.Storge.get(THEME_CACHE_KEY)
-
-              if (theme === null) {
-                $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', _this._config.theme);
-              } else {
-                $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', theme);
-              }
+              $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', $(top.window.document).find('html').attr('data-bs-theme'));
             }
 
           }
@@ -523,17 +529,6 @@ class Layout {
 
     //遮罩层关闭
     setTimeout(() => {
-
-      let theme = _this.Storge.get(THEME_CACHE_KEY)
-      if (theme === null) {
-        //设置主题
-        $('html').attr('data-bs-theme', _this._config.theme)
-      } else {
-        //让主题色选中
-        $(`.bsa-theme-switcher-wrapper input[type="checkbox"][value=${theme}]`).prop('checked', true);
-        //设置主题
-        $('html').attr('data-bs-theme', theme)
-      }
       $(SELECTOR_PRELOADER).fadeOut(_this._config.preloadDuration);
     }, this._config.preloadDuration)
 

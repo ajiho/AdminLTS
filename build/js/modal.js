@@ -23,9 +23,6 @@ const TPL = `
         <div class="modal-dialog <% if ( config.url !== '' ) { %> modal-dialog-centered   <% } %> <%= config.modalDialogClass %>">
             <div class="modal-content">
                 <div class="modal-header">
-
-
-
                    <h1 class="modal-title fs-5" id="<%= id %>Label">
                    <% if ( config.url !== '' && config.title === '' ) { %>
                         <%= _htmlspecialchars(config.url) %>
@@ -213,7 +210,7 @@ class Modal {
 
                 if (Helper.canAccessIFrame(iframe)) {//不是跨域的iframe
 
-                    $(iframe.contentDocument).find('html').attr('data-bs-theme', $('body').Layout('getTheme'));
+                    $(iframe.contentDocument).find('html').attr('data-bs-theme', $(top.window.document).find('html').attr('data-bs-theme'));
 
                 }
 
