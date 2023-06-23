@@ -22,7 +22,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <div class="me-1">
               <h6 class="mb-2 bsa-ellipsis-1 ">今日收入</h6>
-              <h4 class="mb-1 bsa-ellipsis-1">13,145.20</h4>
+              <h4 class="mb-1 bsa-ellipsis-1" data-bsa-toggle="numspin" data-decimal-places="2">13145.20</h4>
             </div>
             <i class="bi bi-currency-yen fs-1 text-danger"></i>
           </div>
@@ -35,7 +35,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <div class="me-1">
               <h6 class="mb-2 bsa-ellipsis-1">用户总数</h6>
-              <h4 class="mb-1 bsa-ellipsis-1">1546</h4>
+              <h4 class="mb-1 bsa-ellipsis-1" data-bsa-toggle="numspin">1546</h4>
             </div>
             <i class="bi bi-people fs-1 text-info"></i>
           </div>
@@ -48,7 +48,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <div class="me-1">
               <h6 class="mb-2 bsa-ellipsis-1">订单总数</h6>
-              <h4 class="mb-1 bsa-ellipsis-1">2000</h4>
+              <h4 class="mb-1 bsa-ellipsis-1" data-bsa-toggle="numspin">2000</h4>
             </div>
             <i class="bi bi-cart fs-1 text-primary"></i>
           </div>
@@ -61,7 +61,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <div class="me-1">
               <h6 class="mb-2 bsa-ellipsis-1">留言</h6>
-              <h4 class="mb-1 bsa-ellipsis-1">1000</h4>
+              <h4 class="mb-1 bsa-ellipsis-1" data-bsa-toggle="numspin">1000</h4>
             </div>
             <i class="bi bi-chat fs-1 text-success"></i>
           </div>
@@ -300,6 +300,7 @@
   </div>
 </div>
 
+
 <!--回到顶部开始-->
 <a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
 <!--回到顶部结束-->
@@ -307,12 +308,16 @@
 <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/jquery/dist/jquery.min.js"></script>
 <script src="../lib/chart.js/dist/chart.umd.js"></script>
+<script src="../lib/countup.js/dist/countUp.umd.js"></script>
 <script src="../dist/js/bootstrap-admin.min.js"></script>
 <script src="../dist/js/app.js"></script>
 <!--假数据模拟,生产环境中请直接删除该js-->
 <script src="../dist/js/bootstrap-admin.mock.js"></script>
 <script>
+
+
   $(document).ready(function () {
+
     new Chart(document.getElementById('chart-bar').getContext('2d'), {
       type: 'bar',
       data: {

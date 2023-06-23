@@ -1,5 +1,5 @@
 import $ from 'jquery'
-const DATA_KEY = 'bsa.layout'
+const DATA_KEY = 'bsa.progress'
 
 
 

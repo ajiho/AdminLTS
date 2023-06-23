@@ -2,6 +2,7 @@ import $ from 'jquery'
 import Quicktab from 'bootstrap-quicktab';
 import Helper from './util/helper'
 
+const SELECTOR_QUICKTAB = '.qtab'
 const NAME = 'Sidebar'
 const DATA_KEY = 'bsa.sidebar'
 const EVENT_KEY = `.${DATA_KEY}`
@@ -146,31 +147,33 @@ class Sidebar {
             }
         });
 
-
+      if ($(SELECTOR_QUICKTAB).length !== 0 && typeof Quicktab !== 'undefined') {
         //侧边栏，没有子集的链接
         $(document).on('click', '.bsa-menu a:not(.has-children):not([target])', function (e) {
-            e.preventDefault();
-            let $a = $(this);
-            //移除所有的激活类
-            $('.bsa-menu a').each(function (index, a) {
-                $(a).removeClass('active');
-            });
+          e.preventDefault();
+          let $a = $(this);
+          //移除所有的激活类
+          $('.bsa-menu a').each(function (index, a) {
+            $(a).removeClass('active');
+          });
 
-            //给当前的a添加激活类
-            $a.addClass('active');
+          //给当前的a添加激活类
+          $a.addClass('active');
 
-            if (_this._config.clickClose === true) {
-                $('[data-bsa-toggle="pushmenu"]').PushMenu('collapse')
-            }
+          if (_this._config.clickClose === true) {
+            $('[data-bsa-toggle="pushmenu"]').PushMenu('collapse')
+          }
 
-            //添加tab处理
-            Quicktab.get('.qtab').addTab({
-                title: this.innerText,
-                url: this.getAttribute('href'),
-                close: true,
-            });
+          //添加tab处理
+          Quicktab.get('.qtab').addTab({
+            title: this.innerText,
+            url: this.getAttribute('href'),
+            close: true,
+          });
 
         });
+      }
+
     }
 
 

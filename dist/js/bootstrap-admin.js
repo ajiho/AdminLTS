@@ -130,12 +130,12 @@
     }
 
     /* global bootstrap OverlayScrollbarsGlobal  */
-    const NAME$3 = 'Layout';
-    const DATA_KEY$5 = 'bsa.layout';
+    const NAME$4 = 'Layout';
+    const DATA_KEY$6 = 'bsa.layout';
     const THEME_CACHE_KEY = 'theme';
-    const SELECTOR_QUICKTAB = '.qtab';
+    const SELECTOR_QUICKTAB$1 = '.qtab';
     const SELECTOR_BACK_TO_TOP = '.bsa-back-to-top';
-    const JQUERY_NO_CONFLICT$3 = $.fn[NAME$3];
+    const JQUERY_NO_CONFLICT$4 = $.fn[NAME$4];
 
     //用于实现密码点击显示/隐藏
     const SELECTOR_LOGIN_PASSWORD = '.bsa-show_hide_password span';
@@ -144,7 +144,7 @@
 
     //侧边栏滚动区域选择器
     const SELECTOR_SIDEBAR_SCROLL_AREA = '.bsa-sidebar> .card > .card-body';
-    const Default$3 = {
+    const Default$4 = {
       //滚动条自动隐藏 never scroll leave move  #https://kingsora.github.io/OverlayScrollbars/
       scrollbarAutoHide: 'leave',
       //滚动条隐藏时间
@@ -168,6 +168,14 @@
       constructor(element, config) {
         this._config = config;
         this._element = element;
+        let cacheType = 1;
+        //换成实例化
+        if (this._config.themeCacheType === 'localStorage') {
+          cacheType = 2;
+        } else if (this._config.themeCacheType === 'sessionStorage') {
+          cacheType = 1;
+        }
+        this.Storge = new Storage(cacheType);
       }
 
       // Public
@@ -197,8 +205,6 @@
 
       // 所有页面都要执行的
       _common() {
-        this._cacheInit();
-
         //启用提示
         $('[data-bs-toggle="tooltip"]').each(function (i, el) {
           new bootstrap.Tooltip(el);
@@ -365,16 +371,6 @@
           }, 600);
         });
       }
-      _cacheInit() {
-        let cacheType = 1;
-        //换成实例化
-        if (this._config.themeCacheType === 'localStorage') {
-          cacheType = 2;
-        } else if (this._config.themeCacheType === 'sessionStorage') {
-          cacheType = 1;
-        }
-        this.Storge = new Storage(cacheType);
-      }
 
       // 首页需要执行的方法
       _index() {
@@ -459,8 +455,8 @@
             $('html').attr('data-bs-theme', theme);
 
             //tab内部也需要修改主题
-            if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
-              Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
+            if ($(SELECTOR_QUICKTAB$1).length !== 0 && _this._config.tabPageEnableTheme === true) {
+              Quicktab.get(SELECTOR_QUICKTAB$1).setTab(function (tabs) {
                 for (let tab of tabs) {
                   if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
                     _this._setIframeTheme(tab.tabIFrame.el, theme);
@@ -472,8 +468,8 @@
             _this.Storge.remove(THEME_CACHE_KEY);
             $('html').attr('data-bs-theme', _this._config.theme);
             //tab内部也需要修改主题
-            if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
-              Quicktab.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
+            if ($(SELECTOR_QUICKTAB$1).length !== 0 && _this._config.tabPageEnableTheme === true) {
+              Quicktab.get(SELECTOR_QUICKTAB$1).setTab(function (tabs) {
                 for (let tab of tabs) {
                   if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
                     _this._setIframeTheme(tab.tabIFrame.el, _this._config.theme);
@@ -485,9 +481,9 @@
         });
 
         //tab插件初始化
-        if ($(SELECTOR_QUICKTAB).length !== 0 && typeof Quicktab !== 'undefined') {
+        if ($(SELECTOR_QUICKTAB$1).length !== 0 && typeof Quicktab !== 'undefined') {
           new Quicktab({
-            selector: SELECTOR_QUICKTAB,
+            selector: SELECTOR_QUICKTAB$1,
             minHeight: '',
             //不设置默认自适应容器高度
             height: '100%',
@@ -642,14 +638,14 @@
       static _jQueryInterface(config) {
         for (const element of this) {
           let $element = $(element);
-          let data = $element.data(DATA_KEY$5);
-          const _config = $.extend({}, Default$3, typeof config === 'object' ? config : $element.data());
+          let data = $element.data(DATA_KEY$6);
+          const _config = $.extend({}, Default$4, typeof config === 'object' ? config : $element.data());
           if (!data) {
             //没有就new
             data = new Layout($element, _config);
 
             //赋值给data,供给下次调用
-            $element.data(DATA_KEY$5, data);
+            $element.data(DATA_KEY$6, data);
 
             //调用内部的私有方法,初始化，执行必须执行的方法
             data._init();
@@ -672,7 +668,6 @@
      * Data API
      * ====================================================
      */
-
     $(window).on('load', () => {
       Layout._jQueryInterface.call($('body'));
     });
@@ -682,25 +677,25 @@
      * ====================================================
      */
 
-    $.fn[NAME$3] = Layout._jQueryInterface;
-    $.fn[NAME$3].Constructor = Layout;
-    $.fn[NAME$3].noConflict = function () {
-      $.fn[NAME$3] = JQUERY_NO_CONFLICT$3;
+    $.fn[NAME$4] = Layout._jQueryInterface;
+    $.fn[NAME$4].Constructor = Layout;
+    $.fn[NAME$4].noConflict = function () {
+      $.fn[NAME$4] = JQUERY_NO_CONFLICT$4;
       return Layout._jQueryInterface;
     };
 
-    const NAME$2 = 'NavbarSearch';
-    const DATA_KEY$4 = 'bsa.navbar-search';
-    const JQUERY_NO_CONFLICT$2 = $.fn[NAME$2];
+    const NAME$3 = 'NavbarSearch';
+    const DATA_KEY$5 = 'bsa.navbar-search';
+    const JQUERY_NO_CONFLICT$3 = $.fn[NAME$3];
 
     // 搜索事件触发
     const EVENT_SEARCH = 'search.bsa.navbar-search';
-    const SELECTOR_DATA_TOGGLE$1 = '[data-bsa-toggle="navbar-search"]';
+    const SELECTOR_DATA_TOGGLE$2 = '[data-bsa-toggle="navbar-search"]';
     const SELECTOR_SEARCH_TRIGGER = '.bsa-search-form-toggler';
 
     // 展开时的类名
     const CLASS_NAME_OPEN = 'open';
-    const Default$2 = {
+    const Default$3 = {
       //关闭时重置
       closeReset: false,
       //触发器
@@ -775,11 +770,11 @@
       // Static
       static _jQueryInterface(config) {
         return this.each(function () {
-          let data = $(this).data(DATA_KEY$4);
-          const _config = $.extend({}, Default$2, typeof config === 'object' ? config : $(this).data());
+          let data = $(this).data(DATA_KEY$5);
+          const _config = $.extend({}, Default$3, typeof config === 'object' ? config : $(this).data());
           if (!data) {
             data = new NavbarSearch($(this), _config);
-            $(this).data(DATA_KEY$4, data);
+            $(this).data(DATA_KEY$5, data);
             data._init();
           } else if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
@@ -800,7 +795,7 @@
 
     $(window).on('load', () => {
       if (Helper.isIndex()) {
-        NavbarSearch._jQueryInterface.call($(SELECTOR_DATA_TOGGLE$1));
+        NavbarSearch._jQueryInterface.call($(SELECTOR_DATA_TOGGLE$2));
       }
     });
 
@@ -809,10 +804,10 @@
      * ====================================================
      */
 
-    $.fn[NAME$2] = NavbarSearch._jQueryInterface;
-    $.fn[NAME$2].Constructor = NavbarSearch;
-    $.fn[NAME$2].noConflict = function () {
-      $.fn[NAME$2] = JQUERY_NO_CONFLICT$2;
+    $.fn[NAME$3] = NavbarSearch._jQueryInterface;
+    $.fn[NAME$3].Constructor = NavbarSearch;
+    $.fn[NAME$3].noConflict = function () {
+      $.fn[NAME$3] = JQUERY_NO_CONFLICT$3;
       return NavbarSearch._jQueryInterface;
     };
 
@@ -2831,18 +2826,18 @@
               </div>`;
 
     //用于唯一id标志累计
-    let i$1 = 0;
+    let i$2 = 0;
     class Toasts {
       constructor(config) {
         // let _this = this;
         this._config = config;
-        i$1++;
+        i$2++;
 
         //准备容器
         this._buildContainer();
 
         //得到一个唯一id,用于查找dom
-        this.id = 'bsa-toast-' + i$1;
+        this.id = 'bsa-toast-' + i$2;
 
         //模板引擎来组合dom
         let tpl = template(TPL$1)({
@@ -3070,10 +3065,10 @@
       onHidden: null
     };
 
-    const NAME$1 = 'PushMenu';
-    const DATA_KEY$3 = 'bsa.pushmenu';
-    const EVENT_KEY$1 = `.${DATA_KEY$3}`;
-    const JQUERY_NO_CONFLICT$1 = $.fn[NAME$1];
+    const NAME$2 = 'PushMenu';
+    const DATA_KEY$4 = 'bsa.pushmenu';
+    const EVENT_KEY$1 = `.${DATA_KEY$4}`;
+    const JQUERY_NO_CONFLICT$2 = $.fn[NAME$2];
 
     //折叠开始
     const EVENT_COLLAPSE = `collapse${EVENT_KEY$1}`;
@@ -3092,7 +3087,7 @@
     const SELECTOR_MASK = '.bsa-mask';
     //折叠类名
     const CLASS_NAME_COLLAPSED = 'open';
-    const Default$1 = {
+    const Default$2 = {
       //过渡的动画时间
       animationSpeed: 300
     };
@@ -3179,11 +3174,11 @@
       // Static
       static _jQueryInterface(config) {
         return this.each(function () {
-          let data = $(this).data(DATA_KEY$3);
-          const _config = $.extend({}, Default$1, typeof config === 'object' ? config : $(this).data());
+          let data = $(this).data(DATA_KEY$4);
+          const _config = $.extend({}, Default$2, typeof config === 'object' ? config : $(this).data());
           if (!data) {
             data = new PushMenu($(this), _config);
-            $(this).data(DATA_KEY$3, data);
+            $(this).data(DATA_KEY$4, data);
             data._init();
           } else if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
@@ -3213,21 +3208,22 @@
      * ====================================================
      */
 
-    $.fn[NAME$1] = PushMenu._jQueryInterface;
-    $.fn[NAME$1].Constructor = PushMenu;
-    $.fn[NAME$1].noConflict = function () {
-      $.fn[NAME$1] = JQUERY_NO_CONFLICT$1;
+    $.fn[NAME$2] = PushMenu._jQueryInterface;
+    $.fn[NAME$2].Constructor = PushMenu;
+    $.fn[NAME$2].noConflict = function () {
+      $.fn[NAME$2] = JQUERY_NO_CONFLICT$2;
       return PushMenu._jQueryInterface;
     };
 
-    const NAME = 'Sidebar';
-    const DATA_KEY$2 = 'bsa.sidebar';
-    const EVENT_KEY = `.${DATA_KEY$2}`;
-    const JQUERY_NO_CONFLICT = $.fn[NAME];
+    const SELECTOR_QUICKTAB = '.qtab';
+    const NAME$1 = 'Sidebar';
+    const DATA_KEY$3 = 'bsa.sidebar';
+    const EVENT_KEY = `.${DATA_KEY$3}`;
+    const JQUERY_NO_CONFLICT$1 = $.fn[NAME$1];
     const EVENT_EXPANDED = `expanded${EVENT_KEY}`;
     const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`;
-    const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="sidebar"]';
-    const Default = {
+    const SELECTOR_DATA_TOGGLE$1 = '[data-bsa-toggle="sidebar"]';
+    const Default$1 = {
       //点击是否自动关闭侧边栏
       clickClose: false,
       //动画速度,单位毫秒
@@ -3333,29 +3329,30 @@
             _this.collapse($a);
           }
         });
+        if ($(SELECTOR_QUICKTAB).length !== 0 && typeof Quicktab !== 'undefined') {
+          //侧边栏，没有子集的链接
+          $(document).on('click', '.bsa-menu a:not(.has-children):not([target])', function (e) {
+            e.preventDefault();
+            let $a = $(this);
+            //移除所有的激活类
+            $('.bsa-menu a').each(function (index, a) {
+              $(a).removeClass('active');
+            });
 
-        //侧边栏，没有子集的链接
-        $(document).on('click', '.bsa-menu a:not(.has-children):not([target])', function (e) {
-          e.preventDefault();
-          let $a = $(this);
-          //移除所有的激活类
-          $('.bsa-menu a').each(function (index, a) {
-            $(a).removeClass('active');
+            //给当前的a添加激活类
+            $a.addClass('active');
+            if (_this._config.clickClose === true) {
+              $('[data-bsa-toggle="pushmenu"]').PushMenu('collapse');
+            }
+
+            //添加tab处理
+            Quicktab.get('.qtab').addTab({
+              title: this.innerText,
+              url: this.getAttribute('href'),
+              close: true
+            });
           });
-
-          //给当前的a添加激活类
-          $a.addClass('active');
-          if (_this._config.clickClose === true) {
-            $('[data-bsa-toggle="pushmenu"]').PushMenu('collapse');
-          }
-
-          //添加tab处理
-          Quicktab.get('.qtab').addTab({
-            title: this.innerText,
-            url: this.getAttribute('href'),
-            close: true
-          });
-        });
+        }
       }
 
       //获取display:none元素的真实高度
@@ -3380,8 +3377,8 @@
       static _jQueryInterface(config) {
         for (const element of this) {
           let $element = $(element);
-          let data = $element.data(DATA_KEY$2);
-          let _config = $.extend({}, Default, typeof config === 'object' ? config : $element.data());
+          let data = $element.data(DATA_KEY$3);
+          let _config = $.extend({}, Default$1, typeof config === 'object' ? config : $element.data());
           if (_config.animationSpeed < 150) {
             _config.animationSpeed = 150;
           }
@@ -3390,7 +3387,7 @@
             data = new Sidebar($element, _config);
 
             //赋值给data,供给下次调用
-            $element.data(DATA_KEY$2, data);
+            $element.data(DATA_KEY$3, data);
 
             //调用内部的私有方法,初始化，执行必须执行的方法
             data._init();
@@ -3416,7 +3413,7 @@
 
     $(window).on('load', () => {
       if (Helper.isIndex()) {
-        $(SELECTOR_DATA_TOGGLE).each(function () {
+        $(SELECTOR_DATA_TOGGLE$1).each(function () {
           Sidebar._jQueryInterface.call($(this));
         });
       }
@@ -3427,16 +3424,16 @@
      * ====================================================
      */
 
-    $.fn[NAME] = Sidebar._jQueryInterface;
-    $.fn[NAME].Constructor = Sidebar;
-    $.fn[NAME].noConflict = function () {
-      $.fn[NAME] = JQUERY_NO_CONFLICT;
+    $.fn[NAME$1] = Sidebar._jQueryInterface;
+    $.fn[NAME$1].Constructor = Sidebar;
+    $.fn[NAME$1].noConflict = function () {
+      $.fn[NAME$1] = JQUERY_NO_CONFLICT$1;
       return Sidebar._jQueryInterface;
     };
 
     /* global bootstrap   */
 
-    const DATA_KEY$1 = 'bsa.modal';
+    const DATA_KEY$2 = 'bsa.modal';
     const MODAL_CLASS = 'bsa-modal';
     const IFrameTpl = '<iframe src="<%= config.url %>" class="d-block w-100 h-100"></iframe>';
 
@@ -3512,15 +3509,15 @@
     </div>`;
 
     //进行累计
-    let i = 0;
+    let i$1 = 0;
     class Modal {
       //构造函数
       constructor(options) {
         this._config = options;
 
         //唯一id
-        this.id = MODAL_CLASS + '-' + i;
-        i++;
+        this.id = MODAL_CLASS + '-' + i$1;
+        i$1++;
 
         //显示modal框
         this.show();
@@ -3539,7 +3536,7 @@
         this._element.addEventListener('hidden.bs.modal', function (event) {
           //调用隐藏完毕的回调
           if (_this._config.onHidden !== null) {
-            _this._config.onHidden(_this, $(_this._element).data(DATA_KEY$1));
+            _this._config.onHidden(_this, $(_this._element).data(DATA_KEY$2));
           }
           const modalInstance = bootstrap.Modal.getInstance(_this._element);
           if (modalInstance) {
@@ -3681,7 +3678,7 @@
       //设置数据到dom上面
       setData(data) {
         //获取当前的dom
-        $(this._element).data(DATA_KEY$1, data);
+        $(this._element).data(DATA_KEY$2, data);
       }
       _createModalElement() {
         //模板引擎来组合dom
@@ -3823,7 +3820,7 @@
       }
     };
 
-    const DATA_KEY = 'bsa.layout';
+    const DATA_KEY$1 = 'bsa.progress';
     class Progress {
       constructor(element, options) {
         this.element = element;
@@ -3836,10 +3833,10 @@
     $.fn.Progress = function (options) {
       const args = Array.prototype.slice.call(arguments, 1);
       return this.each(function () {
-        let instance = $.data(this, DATA_KEY);
+        let instance = $.data(this, DATA_KEY$1);
         if (!instance) {
           const newInstance = new Progress(this, options);
-          $.data(this, DATA_KEY, newInstance);
+          $.data(this, DATA_KEY$1, newInstance);
           instance = newInstance;
         }
         if (typeof options === 'string') {
@@ -3849,10 +3846,85 @@
     };
     $.extend($.fn.Progress, Progress.prototype);
 
+    var t=function(){return t=Object.assign||function(t){for(var i,n=1,s=arguments.length;n<s;n++)for(var a in i=arguments[n])Object.prototype.hasOwnProperty.call(i,a)&&(t[a]=i[a]);return t},t.apply(this,arguments)},i=function(){function i(i,n,s){var a=this;this.endVal=n,this.options=s,this.version="2.6.2",this.defaults={startVal:0,decimalPlaces:0,duration:2,useEasing:!0,useGrouping:!0,useIndianSeparators:!1,smartEasingThreshold:999,smartEasingAmount:333,separator:",",decimal:".",prefix:"",suffix:"",enableScrollSpy:!1,scrollSpyDelay:200,scrollSpyOnce:!1},this.finalEndVal=null,this.useEasing=!0,this.countDown=!1,this.error="",this.startVal=0,this.paused=!0,this.once=!1,this.count=function(t){a.startTime||(a.startTime=t);var i=t-a.startTime;a.remaining=a.duration-i,a.useEasing?a.countDown?a.frameVal=a.startVal-a.easingFn(i,0,a.startVal-a.endVal,a.duration):a.frameVal=a.easingFn(i,a.startVal,a.endVal-a.startVal,a.duration):a.frameVal=a.startVal+(a.endVal-a.startVal)*(i/a.duration);var n=a.countDown?a.frameVal<a.endVal:a.frameVal>a.endVal;a.frameVal=n?a.endVal:a.frameVal,a.frameVal=Number(a.frameVal.toFixed(a.options.decimalPlaces)),a.printValue(a.frameVal),i<a.duration?a.rAF=requestAnimationFrame(a.count):null!==a.finalEndVal?a.update(a.finalEndVal):a.options.onCompleteCallback&&a.options.onCompleteCallback();},this.formatNumber=function(t){var i,n,s,e,o=t<0?"-":"";i=Math.abs(t).toFixed(a.options.decimalPlaces);var r=(i+="").split(".");if(n=r[0],s=r.length>1?a.options.decimal+r[1]:"",a.options.useGrouping){e="";for(var l=3,h=0,u=0,p=n.length;u<p;++u)a.options.useIndianSeparators&&4===u&&(l=2,h=1),0!==u&&h%l==0&&(e=a.options.separator+e),h++,e=n[p-u-1]+e;n=e;}return a.options.numerals&&a.options.numerals.length&&(n=n.replace(/[0-9]/g,(function(t){return a.options.numerals[+t]})),s=s.replace(/[0-9]/g,(function(t){return a.options.numerals[+t]}))),o+a.options.prefix+n+s+a.options.suffix},this.easeOutExpo=function(t,i,n,s){return n*(1-Math.pow(2,-10*t/s))*1024/1023+i},this.options=t(t({},this.defaults),s),this.formattingFn=this.options.formattingFn?this.options.formattingFn:this.formatNumber,this.easingFn=this.options.easingFn?this.options.easingFn:this.easeOutExpo,this.startVal=this.validateValue(this.options.startVal),this.frameVal=this.startVal,this.endVal=this.validateValue(n),this.options.decimalPlaces=Math.max(this.options.decimalPlaces),this.resetDuration(),this.options.separator=String(this.options.separator),this.useEasing=this.options.useEasing,""===this.options.separator&&(this.options.useGrouping=!1),this.el="string"==typeof i?document.getElementById(i):i,this.el?this.printValue(this.startVal):this.error="[CountUp] target is null or undefined","undefined"!=typeof window&&this.options.enableScrollSpy&&(this.error?console.error(this.error,i):(window.onScrollFns=window.onScrollFns||[],window.onScrollFns.push((function(){return a.handleScroll(a)})),window.onscroll=function(){window.onScrollFns.forEach((function(t){return t()}));},this.handleScroll(this)));}return i.prototype.handleScroll=function(t){if(t&&window&&!t.once){var i=window.innerHeight+window.scrollY,n=t.el.getBoundingClientRect(),s=n.top+window.pageYOffset,a=n.top+n.height+window.pageYOffset;a<i&&a>window.scrollY&&t.paused?(t.paused=!1,setTimeout((function(){return t.start()}),t.options.scrollSpyDelay),t.options.scrollSpyOnce&&(t.once=!0)):(window.scrollY>a||s>i)&&!t.paused&&t.reset();}},i.prototype.determineDirectionAndSmartEasing=function(){var t=this.finalEndVal?this.finalEndVal:this.endVal;this.countDown=this.startVal>t;var i=t-this.startVal;if(Math.abs(i)>this.options.smartEasingThreshold&&this.options.useEasing){this.finalEndVal=t;var n=this.countDown?1:-1;this.endVal=t+n*this.options.smartEasingAmount,this.duration=this.duration/2;}else this.endVal=t,this.finalEndVal=null;null!==this.finalEndVal?this.useEasing=!1:this.useEasing=this.options.useEasing;},i.prototype.start=function(t){this.error||(t&&(this.options.onCompleteCallback=t),this.duration>0?(this.determineDirectionAndSmartEasing(),this.paused=!1,this.rAF=requestAnimationFrame(this.count)):this.printValue(this.endVal));},i.prototype.pauseResume=function(){this.paused?(this.startTime=null,this.duration=this.remaining,this.startVal=this.frameVal,this.determineDirectionAndSmartEasing(),this.rAF=requestAnimationFrame(this.count)):cancelAnimationFrame(this.rAF),this.paused=!this.paused;},i.prototype.reset=function(){cancelAnimationFrame(this.rAF),this.paused=!0,this.resetDuration(),this.startVal=this.validateValue(this.options.startVal),this.frameVal=this.startVal,this.printValue(this.startVal);},i.prototype.update=function(t){cancelAnimationFrame(this.rAF),this.startTime=null,this.endVal=this.validateValue(t),this.endVal!==this.frameVal&&(this.startVal=this.frameVal,null==this.finalEndVal&&this.resetDuration(),this.finalEndVal=null,this.determineDirectionAndSmartEasing(),this.rAF=requestAnimationFrame(this.count));},i.prototype.printValue=function(t){var i;if(this.el){var n=this.formattingFn(t);if(null===(i=this.options.plugin)||void 0===i?void 0:i.render)this.options.plugin.render(this.el,n);else if("INPUT"===this.el.tagName)this.el.value=n;else "text"===this.el.tagName||"tspan"===this.el.tagName?this.el.textContent=n:this.el.innerHTML=n;}},i.prototype.ensureNumber=function(t){return "number"==typeof t&&!isNaN(t)},i.prototype.validateValue=function(t){var i=Number(t);return this.ensureNumber(i)?i:(this.error="[CountUp] invalid start or end value: ".concat(t),null)},i.prototype.resetDuration=function(){this.startTime=null,this.duration=1e3*Number(this.options.duration),this.remaining=this.duration;},i}();
+
+    const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="numspin"]';
+    const NAME = 'Numspin';
+    const DATA_KEY = 'bsa.numspin';
+    const JQUERY_NO_CONFLICT = $.fn[NAME];
+    const Default = {
+      //小数点后面的位数
+      decimalPlaces: 0,
+      //持续时间
+      duration: 1.5
+    };
+    class Numspin {
+      constructor(element, options) {
+        this.element = element;
+        this.options = options;
+        this.numAnim = new i(element, $(this.element).text(), options);
+      }
+      start() {
+        if (!this.numAnim.error) {
+          this.numAnim.start();
+        } else {
+          console.error(this.numAnim.error);
+        }
+      }
+      static _jQueryInterface(options) {
+        //将函数的参数包装成数组
+        const args = Array.prototype.slice.call(arguments, 1);
+        for (let element of this) {
+          //读取一下实例对象
+          let instance = $.data(element, DATA_KEY);
+          if (!instance) {
+            //如果没有就new
+
+            //先读取一下属性进行合并
+            let _options = $.extend({}, Default, typeof options === 'object' ? options : $(element).data());
+            const newInstance = new Numspin(element, _options);
+            $.data(element, DATA_KEY, newInstance); //再重新设置回去
+            instance = newInstance;
+          }
+          if (typeof options === 'string') {
+            //如果是字符串就当作是要调用类的方法
+
+            if (typeof instance[options] === 'undefined') {
+              //判断要调用的方法是否存在
+              throw new TypeError(`方法 "${options}" 不存在`);
+            }
+            let res = instance[options].apply(instance, args);
+            if (typeof res !== 'undefined') {
+              return res;
+            }
+          }
+        }
+        return this;
+      }
+    }
+    $(window).on('load', () => {
+      $(SELECTOR_DATA_TOGGLE).each(function () {
+        Numspin._jQueryInterface.call($(this), 'start');
+      });
+    });
+
+    /**
+     * jQuery API
+     * ====================================================
+     */
+
+    $.fn[NAME] = Numspin._jQueryInterface;
+    $.fn[NAME].Constructor = Numspin;
+    $.fn[NAME].noConflict = function () {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return Numspin._jQueryInterface;
+    };
+
     exports.Layout = Layout;
     exports.Loading = Loading;
     exports.Modal = Modal;
     exports.NavbarSearch = NavbarSearch;
+    exports.Numspin = Numspin;
     exports.Progress = Progress;
     exports.PushMenu = PushMenu;
     exports.Sidebar = Sidebar;

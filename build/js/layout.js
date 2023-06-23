@@ -7,6 +7,7 @@ import Storage from './util/storage'
 import Quicktab from 'bootstrap-quicktab';
 
 
+
 const NAME = 'Layout'
 const DATA_KEY = 'bsa.layout'
 const THEME_CACHE_KEY = 'theme'
@@ -50,6 +51,17 @@ class Layout {
   constructor(element, config) {
     this._config = config
     this._element = element
+
+    let cacheType = 1;
+    //换成实例化
+    if (this._config.themeCacheType === 'localStorage') {
+      cacheType = 2
+    } else if (this._config.themeCacheType === 'sessionStorage') {
+      cacheType = 1
+    }
+
+    this.Storge = new Storage(cacheType)
+
   }
 
 
@@ -79,7 +91,6 @@ class Layout {
   // Private
   _init() {
 
-
     this._common();
 
     if (Helper.isIndex()) {
@@ -91,8 +102,6 @@ class Layout {
 
   // 所有页面都要执行的
   _common() {
-
-    this._cacheInit();
 
 
     //启用提示
@@ -276,22 +285,8 @@ class Layout {
         scrollTop: 0
       }, 600)
     })
-
-
   }
 
-  _cacheInit() {
-
-    let cacheType = 1;
-    //换成实例化
-    if (this._config.themeCacheType === 'localStorage') {
-      cacheType = 2
-    } else if (this._config.themeCacheType === 'sessionStorage') {
-      cacheType = 1
-    }
-
-    this.Storge = new Storage(cacheType)
-  }
 
   // 首页需要执行的方法
   _index() {
@@ -541,7 +536,10 @@ class Layout {
       }
       $(SELECTOR_PRELOADER).fadeOut(_this._config.preloadDuration);
     }, this._config.preloadDuration)
+
+
   }
+
 
 
   _hasShowMenu() {
@@ -641,11 +639,9 @@ class Layout {
  * Data API
  * ====================================================
  */
-
 $(window).on('load', () => {
   Layout._jQueryInterface.call($('body'));
 })
-
 
 /**
  * jQuery API

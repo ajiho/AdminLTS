@@ -437,8 +437,8 @@
   </div>
 </div>
 
-<!--内容区域(用于tab选项卡插件)-->
-<div class="bsa-content">
+<!--内容区域-->
+<div class="bsa-content bsa-content-fixed">
   <div class="qtab" data-qt-tabs='[{"title":"首页","url":"pages/welcome.html","close":false}]'></div>
 </div>
 
@@ -466,6 +466,15 @@
 
 <script>
   $(document).ready(function () {
+
+    // var {
+    //   OverlayScrollbars,
+    //   ScrollbarsHidingPlugin,
+    //   SizeObserverPlugin,
+    //   ClickScrollPlugin
+    // } = OverlayScrollbarsGlobal;
+    // const osInstance = OverlayScrollbars(document.querySelector('body'), {});
+
 
     //头部搜索框处理(不需要可以删除,不明白的可以看bootstrap-admin官方文档)
     $(document).on('search.bsa.navbar-search', function (e, inputValue, data) {
