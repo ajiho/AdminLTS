@@ -60,7 +60,7 @@
           <div class="row">
             <label for="status" class="col-sm-auto col-form-label">用户状态</label>
             <div class="col">
-              <select class="selectpicker">
+              <select class="selectpicker" id="status" name="status">
                 <option value="0">所有</option>
                 <option value="1">正常</option>
                 <option value="2">停用</option>
@@ -247,6 +247,12 @@
         return '<div class="spinner-grow" role="status"><span class="visually-hidden">Loading...</span></div>';
       },
       onPostBody: function () {
+        //重新启用弹出层,否则formatter格式化函数返回的html字符串上的tooltip提示不生效
+        $('[data-bs-toggle="tooltip"]').each(function (i, el) {
+          new bootstrap.Tooltip(el)
+        })
+      },
+      onLoadSuccess: function () {
         //重新启用弹出层,否则formatter格式化函数返回的html字符串上的tooltip提示不生效
         $('[data-bs-toggle="tooltip"]').each(function (i, el) {
           new bootstrap.Tooltip(el)
@@ -572,7 +578,7 @@
       $('#phone').val('');
       $('#beginTime').val('');
       $('#endTime').val('');
-      $('#status').val('0');
+      $('#status').selectpicker('val', ['0']).trigger("change");
       //刷新回到第一页
       $('#table').bootstrapTable('refresh');
       $('#table').bootstrapTable('selectPage', 1)//跳转到第一页
