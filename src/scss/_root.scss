@@ -1,0 +1,26 @@
+:root {
+  scroll-behavior: auto !important;
+}
+
+:root,
+[data-bs-theme='light'] {
+  // bsa自定义变量
+  --bsa-header-height: #{$header-height};
+  --bsa-sidebar-width: #{$sidebar-width};
+  --bsa-footer-height: #{$footer-height};
+}
+
+table {
+  white-space: nowrap;
+}
+
+@include scrollbar;
+@include indigo-root-vars;
+@include green-root-vars;
+@include pink-root-vars;
+@include yellow-root-vars;
+@include blue-root-vars;
+@include red-root-vars;
+@include orange-root-vars;
+@include teal-root-vars;
+@include cyan-root-vars;

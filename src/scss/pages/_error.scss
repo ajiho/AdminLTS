@@ -1,0 +1,18 @@
+.bsa-error-code {
+  font-size: 7rem;
+  font-weight: 700;
+  color: var(--bs-secondary-color);
+  text-align: center;
+  text-shadow:
+    4px 4px 0 var(--bs-light-bg-subtle),
+    6px 6px 0 var(--bs-secondary-color);
+  word-break: break-all;
+}
+
+.bsa-error-text {
+  padding-top: 20px;
+  margin-bottom: 30px;
+  color: var(--bs-secondary-color);
+  text-align: center;
+  border-top: 5px solid var(--bs-secondary-color);
+}

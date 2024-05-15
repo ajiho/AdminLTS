@@ -1,0 +1,12 @@
+// 加载层插件所需样式
+.bsa-loading {
+  position: fixed;
+  inset: 0;
+  // 避免和别的插件产生冲突
+  z-index: 9999999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 30%);
+  transition: all 0.2s ease-out;
+}

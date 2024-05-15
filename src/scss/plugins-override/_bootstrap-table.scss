@@ -1,0 +1,88 @@
+//loading时的背景色
+.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading {
+  background-color: var(--bs-light-bg-subtle) !important;
+}
+
+// 左右两边的白线
+.bootstrap-table .fixed-table-container.fixed-height .fixed-table-border {
+  border-left: var(--bs-border-width) solid var(--bs-border-color) !important;
+  border-right: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+// 底部的白线
+.bootstrap-table .fixed-table-container.fixed-height:not(.has-footer) {
+  border-bottom: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+// 头部的白线
+.bootstrap-table .fixed-table-container.fixed-height .table thead th {
+  border-bottom: none !important;
+}
+
+//加载器的小黑点
+.bootstrap-table
+  .fixed-table-container
+  .fixed-table-body
+  .fixed-table-loading
+  .loading-wrap
+  .animation-dot,
+.bootstrap-table
+  .fixed-table-container
+  .fixed-table-body
+  .fixed-table-loading
+  .loading-wrap
+  .animation-wrap::after,
+.bootstrap-table
+  .fixed-table-container
+  .fixed-table-body
+  .fixed-table-loading
+  .loading-wrap
+  .animation-wrap::before {
+  background-color: var(--bs-light-text) !important;
+}
+
+.bootstrap-table
+  .fixed-table-container
+  .fixed-table-body
+  .fixed-table-loading
+  .loading-wrap
+  .loading-text {
+  color: var(--bs-light-text) !important;
+}
+
+// 列属性 checkbox: true时复选项样式，默认的太丑陋,这里直接用bootstrap的复选项样式直接覆盖上去
+.bootstrap-table
+  .fixed-table-container
+  .table
+  .bs-checkbox
+  label
+  input[type='checkbox'] {
+  @include bs-checkbox;
+}
+
+//  showColumns:true 时 右边工具栏下拉菜单的复选框按钮美化
+.bootstrap-table .keep-open .dropdown-item-marker input[type='checkbox'] {
+  @include bs-checkbox;
+}
+
+// showToggle: true 时的复选框按钮美化
+.bootstrap-table .card-views .card-view label input[type='checkbox'] {
+  @include bs-checkbox;
+}
+
+// 全屏时背景色也要改一下，顺便给一个内边距否则太丑陋
+.bootstrap-table.fullscreen {
+  background: var(--bs-body-bg) !important;
+  padding: 12px !important;
+}
+
+// 分页强制启用换行模式
+.bootstrap-table .pagination {
+  flex-wrap: wrap !important;
+}
+
+// fix:固定列是背景为白色的问题
+.fixed-columns,
+.fixed-columns-right {
+  background-color: var(--bs-body-bg);
+}

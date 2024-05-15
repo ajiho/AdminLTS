@@ -1,5 +1,5 @@
 node_modules
 **/lib/
 /docs/
-build/js/app.js
+src/js/app.js
 /dist/

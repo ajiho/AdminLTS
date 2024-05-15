@@ -1,0 +1,151 @@
+// 时间轴容器
+.bsa-timeline1-wrapper {
+  position: relative;
+
+  // 时间轴中间的线条
+  &::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    margin-left: -3px;
+    content: '';
+    background-color: rgb(var(--bs-tertiary-color-rgb) 0.2);
+
+    // 小设备线条移动到左边
+    @include media-breakpoint-down(md) {
+      left: 29px;
+    }
+  }
+
+  /* 内容周围的容器 */
+  .bsa-timeline1 {
+    position: relative;
+    width: 50%;
+    background-color: inherit;
+
+    @include media-breakpoint-down(md) {
+      width: 100%;
+      padding-right: 0;
+      padding-left: 70px;
+
+      &::before {
+        left: 61px;
+        border-color: transparent var(--bs-tertiary-color) transparent
+          transparent;
+        border-style: solid;
+        border-width: 10px 10px 10px 0;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      top: 15px;
+      right: -8px;
+      z-index: 1;
+      width: 20px;
+      height: 20px;
+      content: '';
+      background-color: var(--bs-dark-bg-subtle); //颜色变浅
+      border: 5px solid var(--bs-dark-border-subtle);
+      border-radius: 50%;
+    }
+  }
+
+  /* 将容器放在左侧 */
+  .bsa-timeline1-left {
+    left: 0;
+    padding: 0 40px 20px 0;
+
+    // 箭头向右边的小三角
+    &::before {
+      position: absolute;
+      top: 17px;
+      right: 30px;
+      z-index: 1;
+      content: ' ';
+      border-color: transparent transparent transparent
+        rgb(var(--bs-tertiary-color-rgb) 0.2);
+      border-style: solid;
+      border-width: 10px 0 10px 10px;
+
+      @include media-breakpoint-down(md) {
+        right: auto;
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      &::after {
+        left: 18px;
+      }
+    }
+  }
+
+  /* 将容器放置在右侧 */
+  .bsa-timeline1-right {
+    left: 50%;
+    padding: 0 0 20px 40px;
+
+    @include media-breakpoint-down(md) {
+      left: 0;
+    }
+
+    &::before {
+      position: absolute;
+      top: 17px;
+      left: 31px;
+      z-index: 1;
+      content: ' ';
+      border-color: transparent var(--bs-dark-bg-subtle) transparent transparent;
+      border-style: solid;
+      border-width: 10px 10px 10px 0;
+    }
+
+    &::after {
+      left: -12px;
+
+      @include media-breakpoint-down(md) {
+        left: 18px;
+      }
+    }
+  }
+}
+
+// 时间轴2样式
+
+ul {
+  &.bsa-timeline2 {
+    position: relative;
+    list-style-type: none;
+
+    &::before {
+      position: absolute;
+      left: 29px;
+      z-index: 400;
+      display: inline-block;
+      width: 2px;
+      height: 100%;
+      content: ' ';
+      background: #d4d9df;
+    }
+
+    > li {
+      padding-left: 20px;
+      margin: 20px 0;
+
+      &::before {
+        position: absolute;
+        left: 20px;
+        z-index: 400;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        content: ' ';
+        background: #fff;
+        border: 3px solid #22c0e8;
+        border-radius: 50%;
+      }
+    }
+  }
+}

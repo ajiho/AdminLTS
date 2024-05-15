@@ -1,0 +1,25 @@
+.bsa-back-to-top {
+  position: fixed;
+  right: 12px;
+  bottom: 20px;
+  z-index: 1028;
+  display: none;
+  width: 40px;
+  height: 40px;
+  font-size: 26px;
+  line-height: 40px;
+  color: var(--bs-light-text-emphasis);
+  text-align: center;
+  background-color: var(--bs-light-bg-subtle);
+  border-radius: 10px;
+
+  @include media-breakpoint-down(lg) {
+    z-index: 1001;
+  }
+
+  &:hover {
+    color: var(--bs-dark-text-emphasis);
+    background-color: var(--bs-dark-bg-subtle);
+    transition: all 0.5s;
+  }
+}
