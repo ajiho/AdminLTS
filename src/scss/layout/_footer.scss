@@ -12,7 +12,8 @@
   text-align: center;
   // background: var(--bsa-footer-bg);
   background-color: var(--#{$prefix}body-bg);
-  border-top: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
+  border-top: var(--#{$prefix}border-width) solid rgba(0, 0, 0, 0.12);
+  //box-shadow: 0 1px 1px -1px rgba(var(--#{$prefix}dark-rgb), 0.25);
 
   @include media-breakpoint-down(lg) {
     left: 0;

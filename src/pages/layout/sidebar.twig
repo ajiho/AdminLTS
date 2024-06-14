@@ -1,0 +1,238 @@
+<!--侧边栏-->
+<div class="bsa-sidebar">
+
+  <div class="card border-0 h-100">
+    <!--  侧边栏头部(用于展示品牌logo)  -->
+    <div class="card-header bg-body d-flex align-items-center flex-shrink-0 border-bottom-0">
+      <img src="img/favicon-32x32.png" class="bsa-logo-icon" alt="logo-icon">
+      <div class="bsa-logo-text ms-2 bsa-ellipsis-2">bootstrap-admin</div>
+    </div>
+    <!--  侧边栏身体部分(用于主要的侧边栏菜单)  -->
+    <div class="card-body px-0 py-1 overflow-y-auto" data-overlayscrollbars-initialize data-bsa-toggle="scrollbar">
+      <!--  导航菜单部分  -->
+      <ul class="bsa-navigation" data-bsa-toggle="treeview">
+        <li>
+          <a href="welcome.html">
+            <div class="prepend"><i class="bi bi-house"></i></div>
+            <div class="content">首页</div>
+          </a>
+        </li>
+        <!--  分割线  -->
+        <li class="separator"></li>
+        <li>
+          <a href="javascript:" class="has-arrow">
+            <div class="prepend"><i class="bi bi-person-lock"></i></div>
+            <div class="content">权限管理</div>
+            <div class="append">
+              <span class="badge text-bg-primary">6</span>
+            </div>
+          </a>
+          <ul>
+            <li>
+              <a href="user-list.html">
+                <div class="content">用户列表(Tab)</div>
+              </a>
+            </li>
+            <li>
+              <a href="role-list.html">
+                <div class="content">角色列表(Modal)</div>
+              </a>
+            </li>
+            <li>
+              <a href="node-list.html">
+                <div class="content">节点列表</div>
+                <div class="append">
+                  <span class="badge text-bg-primary">2</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:" class="has-arrow">
+            <div class="prepend"><i class="bi bi-filetype-html"></i></div>
+            <div class="content">示例页面</div>
+            <div class="append">
+              <span class="badge rounded-pill text-bg-danger">New</span>
+            </div>
+          </a>
+          <ul>
+            <li>
+              <a href="login.html" target="_blank">
+                <div class="content">登录页</div>
+              </a>
+            </li>
+            <li>
+              <a href="error.html">
+                <div class="content">错误页面</div>
+              </a>
+            </li>
+            <li>
+              <a href="lockscreen.html" target="_self">
+                <div class="content">锁屏页</div>
+              </a>
+            </li>
+            <li>
+              <a href="search.html">
+                <div class="content">搜索结果</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!--  副标题  -->
+        <li class="subheader">APPLICATION</li>
+        <li>
+          <a href="javascript:" class="has-arrow">
+            <div class="prepend"><i class="bi bi-grid"></i></div>
+            <div class="content">应用</div>
+          </a>
+          <ul>
+            <li>
+              <a href="message.html">
+                <div class="content">消息中心</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="javascript:" class="has-arrow">
+            <div class="prepend"><i class="bi bi-gear"></i></div>
+            <div class="content">设置</div>
+          </a>
+          <ul>
+            <li>
+              <a href="javascript:" class="has-arrow">
+                <div class="content">系统设置</div>
+              </a>
+              <ul>
+                <li>
+                  <a href="sys-website.html">
+                    <div class="content">网站设置</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="sys-email.html">
+                    <div class="content">邮件服务</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:" class="has-arrow">
+                <div class="content">我的设置</div>
+              </a>
+              <ul>
+                <li>
+                  <a href="profile.html">
+                    <div class="content">个人资料</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="reset-password.html">
+                    <div class="content">修改密码</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="subheader">OTHER</li>
+        <li>
+          <a href="https://www.bootstrap-admin.top/docs">
+            <div class="prepend"><i class="bi bi-filetype-doc"></i></div>
+            <div class="content">文档</div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:"  class="has-arrow">
+            <div class="prepend"><i class="bi bi-list-nested"></i></div>
+            <div class="content">多级菜单</div>
+          </a>
+          <ul>
+            <li>
+              <a href="multilevel.html?id=1">
+                <div class="content">一级菜单</div>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:" class="has-arrow">
+                <div class="content">一级菜单</div>
+              </a>
+              <ul>
+                <li>
+                  <a href="multilevel.html?id=2">
+                    <div class="content">二级菜单</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:" class="has-arrow">
+                    <div class="content">二级菜单</div>
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="multilevel.html?id=3">
+                        <div class="content">三级菜单</div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:" class="has-arrow">
+                        <div class="content">三级菜单</div>
+                      </a>
+                      <ul>
+                        <li>
+                          <a href="multilevel.html?id=4">
+                            <div class="content">四级菜单</div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="javascript:" class="has-arrow">
+                            <div class="content">四级菜单</div>
+                          </a>
+                          <ul>
+                            <li>
+                              <a href="multilevel.html?id=5">
+                                <div class="content">五级菜单</div>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="multilevel.html?id=6">
+                                <div class="content">五级菜单</div>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="multilevel.html?id=7">
+                                <div class="content">五级菜单</div>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:" class="has-arrow">
+                <div class="content">一级菜单</div>
+              </a>
+              <ul>
+                <li>
+                  <a href="multilevel.html?id=8">
+                    <div class="content">二级菜单</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!--  侧边栏底部(不需要可删除)  -->
+    <div class="card-footer bg-body bore">
+      Version: v2.0.1
+    </div>
+  </div>
+
+</div>

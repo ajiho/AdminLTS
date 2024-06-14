@@ -13,8 +13,8 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/ajiho/bootstrap-admin/stargazers"><img src="https://img.shields.io/github/stars/ajiho/bootstrap-admin" alt=""></a>
-<a href='https://gitee.com/ajiho/bootstrap-admin/stargazers'><img src='https://gitee.com/ajiho/bootstrap-admin/badge/star.svg?theme=dark' alt='star'></img></a>
+<a href="https://github.com/ajiho/bootstrap-admin"><img src="https://img.shields.io/github/stars/ajiho/bootstrap-admin" alt=""></a>
+<a href='https://gitee.com/ajiho/bootstrap-admin'><img src='https://gitee.com/ajiho/bootstrap-admin/badge/star.svg?theme=dark' alt='star'></img></a>
 </p>
 
 <p align="center">

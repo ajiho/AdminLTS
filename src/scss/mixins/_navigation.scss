@@ -1,0 +1,166 @@
+@use 'sass:color';
+
+@mixin navigation() {
+  // 侧边栏的导航样式
+  .#{$bsa-prefix}navigation {
+    @include ul-reset;
+
+    // 使用变量是为了方便计算submenu距离左侧的padding值
+    --#{$bsa-prefix}navigation-arrow-icon: #{escape-svg($navigation-arrow-icon)};
+    --#{$bsa-prefix}navigation-active-color: #{$navigation-active-color};
+    --#{$bsa-prefix}navigation-padding-x: #{$navigation-padding-x};
+    --#{$bsa-prefix}navigation-padding-y: #{$navigation-padding-y};
+    --#{$bsa-prefix}navigation-prepend-margin-right: #{$navigation-prepend-margin-right};
+    --#{$bsa-prefix}navigation-prepend-font-size: #{$navigation-prepend-font-size};
+
+    ul {
+      @include ul-reset;
+    }
+
+    li {
+      //  副标题
+      &.subheader {
+        padding: 8px 15px;
+        overflow: hidden;
+        font-size: 0.875rem;
+        font-weight: 400;
+        color: color.scale($body-color, $lightness: 60%);
+        @include text-ellipsis;
+      }
+
+      // 分隔符
+      &.separator {
+        height: 0;
+        padding: 0;
+        margin: 0.35em 0;
+        overflow: hidden;
+        border-top: 1px solid color.scale($body-color, $lightness: 90%);
+      }
+
+      // a链接的样式
+      a {
+        outline-width: 0;
+        letter-spacing: 0.5px;
+        position: relative;
+        display: grid;
+        grid-template-areas: 'prepend content append arrow';
+        grid-template-columns: max-content 1fr auto auto;
+        padding: var(--#{$bsa-prefix}navigation-padding-y)
+          var(--#{$bsa-prefix}navigation-padding-x);
+        margin-bottom: 4px;
+        color: $body-color;
+        text-decoration: none;
+        transition:
+          color 0.15s ease-in-out,
+          background-color 0.15s ease-in-out,
+          border-color 0.15s ease-in-out,
+          box-shadow 0.15s ease-in-out,
+          border-radius 0.15s ease;
+
+        //如果使用徽章组件那么给徽章组件字体大小变小一点
+        .badge {
+          font-size: 60%;
+        }
+
+        + ul {
+          @include navigation-submenu-spacing(5);
+        }
+
+        &:hover {
+          background-color: color.scale($body-color, $lightness: 96%);
+        }
+
+        // 前置内容
+        .prepend {
+          font-size: var(--#{$bsa-prefix}navigation-prepend-font-size);
+          margin-right: var(--#{$bsa-prefix}navigation-prepend-margin-right);
+          line-height: 1;
+          display: flex;
+          grid-area: prepend;
+          align-items: center;
+          justify-content: center;
+          align-self: center;
+        }
+
+        // 标题
+        .content {
+          grid-area: content;
+          align-self: center;
+
+          @include text-ellipsis;
+        }
+
+        // 追加内容
+        .append {
+          display: flex;
+          grid-area: append;
+          align-items: center;
+          align-self: center;
+          margin: 0 10px;
+        }
+
+        // 激活的a链接
+        &.active {
+          color: $navigation-active-color;
+          background-color: color.scale(
+            $navigation-active-color,
+            $lightness: 88%
+          );
+
+          &:hover {
+            background-color: color.scale(
+              $navigation-active-color,
+              $lightness: 84%
+            );
+          }
+        }
+
+        // 箭头
+        &.has-arrow {
+          &::after {
+            display: flex;
+            flex-shrink: 0;
+            grid-area: arrow;
+            align-items: center;
+            align-self: center;
+            width: 1.25em;
+            height: 1.25em;
+            content: ' ';
+            background-color: $body-color;
+            mask-image: var(--#{$bsa-prefix}navigation-arrow-icon);
+            mask-repeat: no-repeat;
+            mask-size: 1.25em;
+            transition: transform 150ms ease-in-out;
+            transform: scale(0.4) rotate(0);
+            transform-origin: center;
+            will-change: transform;
+          }
+        }
+      }
+
+      // 不包含open类的li的ul都隐藏
+      &:not(.open) > a + ul {
+        display: none;
+      }
+
+      //带有展开类的li
+      &.open {
+        > a {
+          color: $navigation-active-color;
+
+          &:hover {
+            background-color: color.scale(
+              $navigation-active-color,
+              $lightness: 96%
+            );
+          }
+
+          &::after {
+            background-color: $navigation-active-color;
+            transform: scale(0.4) rotate(-90deg);
+          }
+        }
+      }
+    }
+  }
+}

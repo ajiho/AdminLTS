@@ -15,7 +15,7 @@ const plugins = [
   }),
   babel({
     babelHelpers: 'bundled',
-    exclude: ['node_modules/**', 'src/js/utils/vent.js']
+    exclude: ['node_modules/**']
   })
 ]
 
@@ -53,10 +53,11 @@ config.push({
     name: 'BootstrapAdmin',
     file,
     globals: {
-      jquery: 'jQuery'
+      jquery: 'jQuery',
+      'quicktab': 'Quicktab',
     },
   },
-  external: ['jquery'],
+  external: ['jquery', 'quicktab'],
   plugins
 })
 
@@ -72,20 +73,13 @@ config.push({
   output: {
     ...base,
     format: 'iife',
-    // name: 'BootstrapAdmin',
     file,
     globals: {
-      jquery: 'jQuery'
+      mockjs: 'Mock'
     },
   },
-  external: ['jquery'],
-  plugins,
-  onwarn: function (message) {//避免打包mock.js的时候会报错
-    if (message.code === 'EVAL') {
-      return;
-    }
-    this.onwarn(message)
-  }
+  external: ['mockjs'],
+  plugins
 })
 
 

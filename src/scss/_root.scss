@@ -14,13 +14,9 @@ table {
   white-space: nowrap;
 }
 
-@include scrollbar;
-@include indigo-root-vars;
-@include green-root-vars;
-@include pink-root-vars;
-@include yellow-root-vars;
-@include blue-root-vars;
-@include red-root-vars;
-@include orange-root-vars;
-@include teal-root-vars;
-@include cyan-root-vars;
+// 全局滚动条样式美化
+@include scrollbar();
+//引入刷新图标
+@include btn-custom($btn-refresh-bg, 'btn-refresh');
+@include btn-custom($btn-fullscreen-bg, 'btn-fullscreen');
+@include btn-custom($btn-fullscreen-exit-bg, 'btn-fullscreen-exit');

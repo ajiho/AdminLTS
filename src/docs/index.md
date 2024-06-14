@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "bootstrap-admin"
-  text: "开发后台管理系统的最佳起点"
+  name: 'bootstrap-admin'
+  text: '开发后台管理系统的最佳起点'
   tagline: 让喜欢用bootstrap搭建后台的程序员更加愉悦
   image:
     src: /bootstrap-logo-shadow.png
@@ -33,4 +33,3 @@ features:
   - title: 开源且富有活力
     details: 传统mvc开发方式我们也要力求最新,保持bootstrap版本和插件、依赖的更新,获得最新特性以及插件的bug修复。
 ---
-

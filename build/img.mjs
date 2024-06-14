@@ -17,17 +17,16 @@ fs.emptydirSync(destination)
 const files = await imagemin(['src/img/*'], {
   destination,
   plugins: [
-    imageminGifsicle({interlaced: true}),
+    imageminGifsicle({ interlaced: true }),
     imageminJpegtran(),
     imageminPngquant({
       quality: [0.6, 0.8]
     }),
     imageminSvgo({
-      plugins: [
-        {removeViewBox: true},
-        {cleanupIDs: false}
-      ]
+      plugins: [{
+        name: 'removeViewBox',
+        active: false
+      }]
     })
   ]
 });
-console.log(files);

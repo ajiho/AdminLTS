@@ -14,39 +14,13 @@
   margin: 0;
   list-style: none;
 
-  // background: var(--bsa-header-bg);
   background-color: var(--#{$prefix}body-bg);
-  border-bottom: var(--#{$prefix}border-width) solid
-    var(--#{$prefix}border-color);
+  box-shadow: 0 1px 1px -1px rgba(var(--#{$prefix}dark-rgb), 0.25);
 
   // 移动端的时候left为0
   @include media-breakpoint-down(lg) {
     left: 0;
     padding: 0;
-
-    .bsa-search-form-wrapper {
-      display: none;
-
-      &.open {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: var(--bsa-header-height);
-        padding: 0 12px;
-        background-color: var(--#{$prefix}body-bg);
-        border-bottom: var(--#{$prefix}border-width) solid
-          var(--#{$prefix}border-color);
-
-        .bsa-search-form {
-          width: 100%;
-        }
-      }
-    }
   }
 
   // 每个li
@@ -94,8 +68,13 @@
       display: block;
       padding: 8px 20px;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      @include text-ellipsis;
+
+      // 激活状态背景色也保持不变
+      &:active {
+        background-color: var(--#{$prefix}tertiary-bg);
+        color: var(--#{$prefix}body-color);
+      }
     }
   }
 
@@ -106,68 +85,6 @@
     // lg屏幕下显示toggler
     @include media-breakpoint-down(lg) {
       display: block;
-    }
-  }
-
-  // 搜索的表单的触发器
-  .bsa-search-form-toggler {
-    display: none;
-
-    // lg屏幕下显示放大镜图标
-    @include media-breakpoint-down(lg) {
-      display: inline;
-    }
-  }
-
-  // 搜索表单
-  .bsa-search-form {
-    position: relative;
-    width: 240px;
-
-    // 表单样式覆盖
-    .form-control {
-      padding-right: 44px;
-      padding-left: 20px;
-      border-radius: 30px;
-
-      &:focus {
-        border-color: var(--#{$prefix}border-color);
-        box-shadow: none;
-      }
-    }
-
-    // 搜索图标和关闭图标
-    .bsa-search-close-btn,
-    .bsa-search-submit-btn {
-      position: absolute;
-      top: 50%;
-      right: 15px;
-      width: 24px;
-      height: inherit;
-      padding: 0;
-      font-size: 18px;
-      color: var(--#{$prefix}body-color);
-      background-color: transparent;
-      border: 0;
-      transform: translateY(-50%);
-    }
-
-    // 放大镜图标
-    .bsa-search-submit-btn {
-      // lg屏幕下隐藏
-      @include media-breakpoint-down(lg) {
-        display: none;
-      }
-    }
-
-    // 关闭图标默认pc状态下是隐藏的
-    .bsa-search-close-btn {
-      display: none;
-
-      // lg屏幕下显示
-      @include media-breakpoint-down(lg) {
-        display: inline;
-      }
     }
   }
 }
@@ -263,8 +180,8 @@
   align-items: center;
   justify-content: center;
   height: inherit;
-  padding: 0 20px;
-  font-size: 24px;
+  padding: 0 16px;
+  font-size: 20px;
 
   // color: var(--bsa-header-item-color);
   color: var(--#{$prefix}body-color);
@@ -278,7 +195,7 @@
   }
 
   @include media-breakpoint-down(md) {
-    padding: 0 16px;
+    padding: 0 14px;
   }
 
   @include media-breakpoint-down(sm) {
@@ -297,8 +214,8 @@
     // 用户头像
     .bsa-user-avatar {
       flex-shrink: 0;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       overflow: hidden;
       user-select: none;
       border-radius: 50%;

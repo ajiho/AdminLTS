@@ -52,6 +52,3 @@ bootstrap-admin只集成了部分插件，并不是说你就只能用这些插�
 - [datatables](https://github.com/DataTables/DataTables)
 - [bootstrap-select](https://github.com/snapappointments/bootstrap-select/)
 - [jquery-treegrid](https://github.com/maxazan/jquery-treegrid)
-
-
-

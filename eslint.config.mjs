@@ -12,7 +12,7 @@ export default [
     languageOptions: {
       //es6
       ecmaVersion: 2022,
-      //脚本类型
+      //类型 module:模块  script:脚本
       sourceType: "module",
       //全局变量
       globals: {

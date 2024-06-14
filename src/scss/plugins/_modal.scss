@@ -1,96 +1,42 @@
 .bsa-modal {
-  .iframe-wrapper {
-    height: calc(100vh - 12rem) !important;
-  }
+  .modal-wrapper {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
 
-  .modal-header i:hover {
-    color: var(--bs-tertiary-color);
-  }
-
-  .modal-title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .modal-dialog {
-    &.modal-fullscreen {
-      .iframe-wrapper {
-        height: 100% !important;
+    /* 禁止这个元素接受鼠标事件 */
+    .modal-header {
+      .modal-title {
+        @include text-ellipsis();
       }
-    }
 
-    // sm屏幕下全屏
-    &.modal-fullscreen-sm-down {
-      .iframe-wrapper {
-        @include media-breakpoint-down(sm) {
-          height: 100% !important;
-        }
+      .btn-refresh {
+        @include btn-custom-modal-spacer;
       }
 
       .btn-fullscreen {
-        @include media-breakpoint-down(sm) {
-          display: none !important;
-        }
+        @include btn-custom-modal-spacer;
+      }
+
+      .btn-fullscreen-exit {
+        @include btn-custom-modal-spacer;
+      }
+
+
+      .btn-close {
+        --#{$prefix}btn-close-bg: #{escape-svg($btn-close-md-bg)};
       }
     }
 
-    // md屏幕下全屏
-    &.modal-fullscreen-md-down {
-      .iframe-wrapper {
-        @include media-breakpoint-down(md) {
-          height: 100% !important;
-        }
-      }
+    .modal-body {
+      .loading {
+        opacity: 1;
+        transition: opacity 600ms;
 
-      .btn-fullscreen {
-        @include media-breakpoint-down(md) {
-          display: none !important;
-        }
-      }
-    }
-
-    // lg屏幕下全屏
-    &.modal-fullscreen-lg-down {
-      .iframe-wrapper {
-        @include media-breakpoint-down(lg) {
-          height: 100% !important;
-        }
-      }
-
-      .btn-fullscreen {
-        @include media-breakpoint-down(lg) {
-          display: none !important;
-        }
-      }
-    }
-
-    // xl屏幕下全屏
-    &.modal-fullscreen-xl-down {
-      .iframe-wrapper {
-        @include media-breakpoint-down(xl) {
-          height: 100% !important;
-        }
-      }
-
-      .btn-fullscreen {
-        @include media-breakpoint-down(xl) {
-          display: none !important;
-        }
-      }
-    }
-
-    // xxl屏幕下全屏
-    &.modal-fullscreen-xxl-down {
-      .iframe-wrapper {
-        @include media-breakpoint-down(xxl) {
-          height: 100% !important;
-        }
-      }
-
-      .btn-fullscreen {
-        @include media-breakpoint-down(xxl) {
-          display: none !important;
+        &.fade-out {
+          opacity: 0;
         }
       }
     }

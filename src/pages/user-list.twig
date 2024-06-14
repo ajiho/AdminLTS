@@ -1,0 +1,539 @@
+{% extends "layout/main.twig" %}
+
+{% block stylesheet %}
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/css/tempus-dominus.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.css">
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css">
+{% endblock %}
+
+{% block mainCnt %}
+
+<div class="container-fluid">
+  <div class="row g-3">
+    <div class="col-12 bsa-search-area">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body bg-body">
+          <form class="row row-cols-sm-auto g-3 py-2 align-items-center">
+            <div class="col-12">
+              <div class="row">
+                <label for="username" class="col-sm-auto col-form-label">用户名</label>
+                <div class="col">
+                  <input type="text" class="form-control" id="username" name="username">
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <label for="keyword" class="col-sm-auto col-form-label">关键字</label>
+                <div class="col">
+                  <input type="email" class="form-control" id="keyword" name="keyword">
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <label for="phone" class="col-sm-auto col-form-label">手机号</label>
+                <div class="col">
+                  <input type="email" class="form-control" id="phone" name="phone">
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <label for="beginTime" class="col-sm-auto col-form-label">创建时间</label>
+                <div class="col">
+                  <div class="input-group">
+                    <input type="text" readonly class="form-control" aria-label="q" placeholder="开始时间" name="beginTime"
+                      id="beginTime">
+                    <span class="input-group-text"><i class="bi bi-arrow-left-right"></i></span>
+                    <input type="text" readonly class="form-control" aria-label="q" placeholder="结束时间" name="endTime"
+                      id="endTime">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <label for="status" class="col-sm-auto col-form-label">用户状态</label>
+                <div class="col">
+                  <select class="form-select" id="status" name="status">
+                    <option value="0" selected>所有</option>
+                    <option value="1">正常</option>
+                    <option value="2">停用</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 gap-2">
+              <button type="button" class="btn btn-light bsa-search-btn">
+                <i class="bi bi-search"></i>搜索
+              </button>
+              <button type="button" class="btn btn-light bsa-reset-btn">
+                <i class="bi bi-arrow-clockwise"></i>重置
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body bg-body">
+          <!--  表格上方左侧的工具条区域    -->
+          <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
+            <button class="btn btn-light" data-qt-parent-target="#qtab" data-qt-tab-title='新增用户'
+              data-qt-tab-closable='true' data-qt-tab-url='user-add.html'>
+              <i class="bi bi-plus"></i> 新增
+            </button>
+
+            <button class="btn btn-light bsa-edit-btn" disabled>
+              <i class="bi bi-pencil-square"></i> 修改
+            </button>
+
+            <button class="btn btn-light bsa-del-btn" disabled>
+              <i class="bi bi-x-lg"></i> 删除
+            </button>
+
+
+            <button class="btn btn-light bsa-batch-btn" disabled><i class="bi bi-trash"></i> 批量删除</button>
+            <button class="btn btn-light"><i class="bi bi-box-arrow-down"></i> 导入</button>
+            <button class="btn btn-light"><i class="bi bi-box-arrow-up"></i> 导出</button>
+          </div>
+
+          <!--  数据表格    -->
+          <table id="table"></table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/locale/bootstrap-table-zh-CN.js"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/js/tempus-dominus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/locales/zh-CN.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/plugins/bi-one.min.js"></script>
+{% endblock %}
+
+{% block js %}
+
+
+<script>
+  /**
+   * bootstrap-table的官网是https://github.com/wenzhixin/bootstrap-table
+   * 后台模板的增删改查的主要驱动就是该插件，该插件熟练使用后curd会非常快，
+   * 所以请一定要静下心来好好研究并学会该插件
+   * columns表示列，里面的对象 title是表头信息，field是服务端返回的字段名称
+   * 1.不做分页，返回的数据格式是 [{},{}]
+   * 2.如果要开启分页，需要配置pagination:true, sidePagination:'client|server'
+   * 3.客户端分页所需要的格式和不做分页时是一样的 都是 :[{},{}]
+   * 4.服务端分页返回的格式为：{rows:[{},{}],total:200}
+   */
+  const $table = $('#table');
+  // 列配置
+  const columns = [
+    {
+      checkbox: true,
+      //是否显示该列
+      visible: true,
+    },
+    {
+      //列的标题
+      title: 'ID',
+      //列的字段
+      field: 'id',
+      // 对齐方式:https://bootstrap-table.com/docs/api/column-options/#align
+      align: 'center',
+      // 是否作为排序列
+      sortable: true,
+      // 当列名称与实际名称不一致时可用
+      sortName: 'sortId',
+      //设置false可以让该列不出现在showColumns:true时右侧工具栏按钮弹出的下拉菜单列表中
+      switchable: false,
+      // 列的宽度
+      width: 8,
+      // 宽度单位
+      widthUnit: 'rem'
+    },
+    {
+      title: '用户名',
+      field: 'username',
+      align: 'center',
+      formatter: formatUsername
+    },
+    {
+      title: '姓名',
+      field: 'name',
+      align: 'center'
+    },
+    {
+      title: '角色',
+      field: 'role_id',
+      align: 'center',
+      formatter: formatRole
+    },
+    {
+      title: '性别',
+      field: 'gender',
+      align: 'center',
+      formatter: formatGender
+    },
+    {
+      title: '手机',
+      field: 'phone',
+      align: 'center',
+    },
+    {
+      title: '邮箱',
+      field: 'email',
+      align: 'center',
+    },
+    {
+      title: '加入时间',
+      field: 'create_at',
+      align: 'center',
+    },
+    {
+      title: '状态',
+      field: 'status',
+      align: 'center',
+      formatter: formatStatus,
+      events: {
+        'click .form-switch': function (event, value, row, index) {
+          event.preventDefault();
+
+
+          const status = value === 0 ? '启用' : '停用'
+          $.modal({
+            body: `确定要${status}[${row.name}]吗?`,
+            ok: function () {
+
+              //发送ajax改变用户的状态
+              $.ajax({
+                url: `/user/ChangeStatus/${row.id}`,
+                method: 'get',
+              }).then(response => {
+                if (response.code === 200) {
+                  //刷新表格
+                  $table.Table('refresh');
+                  //给出通知
+                  $.toasts.success('已' + status)
+                  //关闭modal
+                  this.hide();
+                }
+              });
+            }
+          })
+        }
+      }
+    },
+    {
+      title: '操作',
+      align: 'center',
+      formatter: formatAction,
+      events: {
+        'click .btn-reser': function (event, value, row, index) {
+
+          console.log('werw')
+
+        }
+      }
+    }
+  ]
+
+  $table.Table({
+    // 请求方法
+    method: 'get',
+    // 请求地址
+    url: '/user',
+    // 请求得到的数据类型
+    dataType: 'json',
+    // 响应处理,如果服务端返回的数据不是指定的格式，可以在前端进行处理
+    responseHandler: function (res) {
+      return res.data;
+    },
+    queryParams: function (params) {//params是一个对象
+      //左边是发送到服务端的字段参数，这里是随便做的示例,根据需求跳调整
+      return {
+        // 每页数据量
+        limit: params.limit,
+        // sql语句起始索引
+        offset: params.offset,
+        page: (params.offset / params.limit) + 1,
+        // 排序的列名
+        sort: params.sort,
+        // 排序方式 'asc' 'desc'
+        sortOrder: params.order,
+        //关键词
+        keywords: $('input[name=keyword]').val(),
+        //开始时间
+        beginTime: $('input[name=beginTime]').val(),
+        //结束时间
+        endTime: $('input[name=endTime]').val(),
+      }
+    },
+    columns
+  });
+
+
+  //value:当前数据 row:当前整行数据
+  function formatGender(value, row, index, field) {
+    return value === true ? '先生' : '女士';
+  }
+
+  function formatUsername(value, row, index, field) {
+    return `<a href="#">${value}</a>`;
+  }
+
+
+  function formatRole(value, row, index, field) {
+    switch (value) {
+      case 1:
+        return '经理'
+      case 2:
+        return '组长'
+      case 3:
+        return '研发组长'
+      case 4:
+        return '客服'
+      case 5:
+        return '文章审核员'
+      case 6:
+        return '销售'
+      default:
+        return '<span class="badge text-bg-danger">未分配</span>'
+    }
+
+  }
+
+
+  function formatStatus(value, row, index, field) {
+
+    const checked = `<div class="form-check form-switch"><input class="form-check-input bsa-cursor-pointer" type="checkbox" checked > </div>`;
+    const unChecked = `<div class="form-check form-switch"><input class="form-check-input bsa-cursor-pointer" type="checkbox"> </div>`;
+
+    return value === 1 ? checked : unChecked;
+
+  }
+
+
+  function formatAction(value, row, index, field) {
+
+
+
+    //编辑按钮
+    const editBtn = `<button type="button" class="btn btn-light btn-sm me-2" onclick="edit(${row.id})" data-bs-title="修改用户" data-bs-toggle="tooltip" data-bs-placement="top"><i class="bi bi-pencil"></i></button>`
+
+    //重置
+    const resetBtn = `<button type='button' class="btn btn-light btn-sm" onclick="resetPwd(${row.id})"><i class="bi bi-key me-2"></i>重置密码</button>`
+
+    //分配角色
+    const roleBtn = `<button type='button' class="btn btn-light btn-sm" onclick="authRole(${row.id})"><i class="bi bi-person-check me-2"></i>分配角色</button>`
+
+    //删除按钮(注意:如果是要传递整行对象数据需要通过JSON.stringify转换成字符串,以及onclick的属性值用单引号包裹)
+    const delBtn = `<button type='button' class="btn btn-light btn-sm" onclick='del(${JSON.stringify(row)})'><i class="bi bi-trash me-2"></i>删除</button>`
+
+    const content = `<div class="d-flex gap-2 align-items-center flex-wrap">${resetBtn + roleBtn + delBtn}</div`
+
+    const moreBtn = `<button  type="button" class="btn btn-light btn-sm me-2" data-bs-title="更多操作"  data-bs-toggle="popover" data-bs-placement="top" data-bs-html="true" data-bs-content="${escapeDoubleQuotes(content)}"><i class="bi bi-three-dots me-2"></i>更多</button>`
+
+    return editBtn + moreBtn;
+
+  }
+
+
+  //搜索
+  $table.Table('search', '.bsa-search-btn');
+  //重置
+  $table.Table('reset', '.bsa-reset-btn', '.bsa-search-area form');
+  //批量删除
+  $table.Table('batch', '.bsa-batch-btn', function (ids, selectedRows) {
+
+    $.modal({
+      body: `确定要删除所选${ids.length}个用户吗?`,
+      ok: function () {
+        //发起ajax请求
+        $.ajax({
+          url: '/user/delall',
+          method: 'delete',
+          data: {
+            id: ids
+          }
+        }).then(response => {
+          if (response.code === 200) {
+
+            $table.Table('refreshSelectPage');
+
+            //这里的this表示的是当前modal的实例对象
+            this.hide();
+
+            $.toasts.success('已批量删除')
+          }
+        });
+      }
+    })
+  })
+
+
+  /**
+   * 第三个参数是表示自定义按钮可点击条件,这里是表示当选中的行数为1时按钮才能点击
+   * 这里是es6语法,如果看不懂的去补一下这个知识
+   */
+  $table.Table('batch', '.bsa-edit-btn', function (ids, selectedRows) {
+
+    parent.$('[data-bsa-toggle="iframe"]').IFrame('addTab', {
+      url: `user-edit.html?id=${ids[0]}`,
+      title: '修改用户'
+    })
+
+  }, selectedRows => selectedRows.length === 1)
+
+
+  // 删除按钮
+  $table.Table('batch', '.bsa-del-btn', function (ids, selectedRows) {
+
+    del(selectedRows[0])
+
+  }, selectedRows => selectedRows.length === 1)
+
+
+
+
+  /* 用户管理-删除 */
+  function del(row) {
+    $.modal({
+      body: `确定要删除用户${row.name}吗?`,
+      ok: function () {
+
+        //发起ajax请求
+        $.ajax({
+          url: `/user/${row.id}`,
+          method: 'delete',
+        }).then(response => {
+          if (response.code === 200) {
+
+            //刷新表格
+            $table.Table('refreshSelectPage');
+
+            //这里的this表示的是当前modal的实例对象
+            this.hide();
+
+            $.toasts.success('删除成功')
+          }
+        });
+      }
+    })
+  }
+
+
+
+
+
+  /* 用户管理-编辑 */
+  function edit(userId) {
+    parent.$('[data-bsa-toggle="iframe"]').IFrame('addTab', {
+      url: `user-edit.html?id=${userId}`,
+      title: '修改用户'
+    })
+  }
+
+
+  /* 用户管理-重置密码 */
+  function resetPwd(userId) {
+
+    parent.$('[data-bsa-toggle="iframe"]').IFrame('addTab', {
+      url: `user-repassword.html?id=${userId}`,
+      title: '重置密码'
+    })
+
+  }
+
+  /* 用户管理-分配角色 */
+  function authRole(userId) {
+    parent.$('[data-bsa-toggle="iframe"]').IFrame('addTab', {
+      url: `user-role.html?id=${userId}`,
+      title: '用户分配角色'
+    })
+  }
+
+</script>
+
+
+<script>
+  $(function () {
+    //全局加载语言包
+    tempusDominus.locale(tempusDominus.locales.zh_CN.name);
+    //全局加载bootstrap-icons图标
+    tempusDominus.extend(tempusDominus.plugins.bi_one.load);
+
+    const tempusDominusConfig = {
+      //本土化的一些设置
+      localization: {
+        format: 'yyyy-MM-dd HH:mm:ss',
+        //是否使用24小时制,比如3.15分会变成15.15
+        hourCycle: 'h24'
+      },
+      //布局控制
+      display: {
+        //视图模式(选择年份视图最先开始)
+        viewMode: 'calendar',
+        components: {
+          //是否开启日历，false:则是时刻模式
+          calendar: true,
+          //支持年份选择
+          year: true,
+          //是否开启月份选择
+          month: true,
+          //支持日期选择
+          date: true,
+          //底部按钮中那个时刻选择是否启用，false则表示隐藏，下面三个需要该选项为true时有效
+          clock: true,
+          //时
+          hours: true,
+          //分
+          minutes: true,
+          //秒
+          seconds: true
+        },
+        //视图底部按钮
+        buttons: {
+          today: true,
+          clear: true,
+          close: true,
+        },
+      }
+    }
+    const td1 = new tempusDominus.TempusDominus(document.getElementById('beginTime'), tempusDominusConfig);
+    const td2 = new tempusDominus.TempusDominus(document.getElementById('endTime'), tempusDominusConfig);
+    //事件监听设定起始时间为td2实例的选中时间
+    td1.subscribe(tempusDominus.Namespace.events.change, (e) => {
+      td2.updateOptions({
+        restrictions: {
+          minDate: e.date,
+        },
+      });
+    });
+    //事件监听设定起始时间为td1实例的选中时间
+    td2.subscribe(tempusDominus.Namespace.events.change, (e) => {
+      td1.updateOptions({
+        restrictions: {
+          maxDate: e.date,
+        },
+      });
+    });
+  })
+</script>
+
+{% endblock %}

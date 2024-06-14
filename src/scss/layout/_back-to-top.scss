@@ -1,25 +1,24 @@
 .bsa-back-to-top {
-  position: fixed;
-  right: 12px;
-  bottom: 20px;
-  z-index: 1028;
+  text-align: center;
+  cursor: pointer;
   display: none;
   width: 40px;
   height: 40px;
-  font-size: 26px;
-  line-height: 40px;
-  color: var(--bs-light-text-emphasis);
-  text-align: center;
-  background-color: var(--bs-light-bg-subtle);
-  border-radius: 10px;
-
-  @include media-breakpoint-down(lg) {
-    z-index: 1001;
-  }
+  border-radius: 100%;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9;
+  color: #fff;
+  background: #307ef3;
+  border: none;
+  padding: 7px;
+  box-shadow: 0 0 10px #307ef3;
+  opacity: 0.5;
+  transition: all 0.3s ease;
 
   &:hover {
-    color: var(--bs-dark-text-emphasis);
-    background-color: var(--bs-dark-bg-subtle);
-    transition: all 0.5s;
+    transition: all 0.3s ease;
+    opacity: 1;
   }
 }

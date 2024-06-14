@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh" data-bsa-toggle="backtotop" data-overlayscrollbars-initialize>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="icon" href="img/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="img/favicon-16x16.png" sizes="16x16" type="image/png">
+  <meta name="keywords" content="响应式后台模板,开源免费后台模板,bootstrap5后台管理系统模板">
+  <meta name="description" content="bootstrap-admin基于bootstrap5的免费开源的响应式后台管理模板">
+  <meta name="author" content="ajiho">
+  <!--核心css依赖-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.7.3/styles/overlayscrollbars.min.css">
+  <link rel="stylesheet" href="css/bootstrap-admin.min.css">
+  <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
+</head>
+
+<body class="bg-body-tertiary py-3" data-bsa-toggle="scrollbar" data-overlayscrollbars-initialize>
+  <div class="container-fluid">
+    <div class="row g-3">
+      <div class="col">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body"> 网站设置 </div>
+          <div class="card-body">
+            <form id="form">
+              <div class="row mb-3">
+                <label for="sitename" class="col-sm-2 col-form-label text-sm-end">网站名称</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="sitename" name="sitename" value="bootstrap-admin">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="domain" class="col-sm-2 col-form-label text-sm-end">网站域名</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="domain" name="domain" value="https://www.bootstrap-admin.top">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="cache" class="col-sm-2 col-form-label text-sm-end">缓存时间</label>
+                <div class="col-sm-10">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="cache" name="cache" value="10">
+                    <span class="input-group-text">分钟</span>
+                  </div>
+                  <div class="form-text">本地开发一般推荐设置为 0,线上环境建议设置为 10 </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="cache" class="col-sm-2 col-form-label text-sm-end">最大文件上传</label>
+                <div class="col-sm-10">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="cache" name="cache" value="2048">
+                    <span class="input-group-text">KB</span>
+                  </div>
+                  <div class="form-text">提示:1 M = 1024 KB</div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="upfiletype" class="col-sm-2 col-form-label text-sm-end">上传文件类型</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="upfiletype" name="upfiletype" value="png|gif|jpg|jpeg|zip|rar">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="title" class="col-sm-2 col-form-label text-sm-end">首页标题</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" id="title" rows="3" name="title">bootstrap-admin 通用后台管理模板系统</textarea>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="keywords" class="col-sm-2 col-form-label text-sm-end">META关键词</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" id="keywords" rows="3" name="keywords" placeholder="多个关键词用英文逗号分隔">响应式,后台管理模板,bootstrap5</textarea>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="descript" class="col-sm-2 col-form-label text-sm-end">META描述</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" id="descript" rows="3" name="descript">bootstrap-admin是基于bootstrap(5.1.3+)的通用型后台模板解决方案</textarea>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="copyright" class="col-sm-2 col-form-label text-sm-end">版权信息</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" id="copyright" rows="3" name="copyright">Copyright © . All right reserved.</textarea>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-10 offset-sm-2">
+                  <button type="submit" class="btn btn-primary">确认修改</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--核心依赖-->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.7.3/browser/overlayscrollbars.browser.es6.min.js"></script>
+  <!--假数据模拟依赖，生产环境中请直接删除该js-->
+  <script src="https://cdn.jsdelivr.net/npm/mockjs@1.1.0/dist/mock.min.js"></script>
+  <!--当前页面的依赖-->
+  <script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/formValidation.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/framework/bootstrap.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/language/zh_CN.js"></script>
+  <!--bootstrap-admin核心js文件-->
+  <script src="js/bootstrap-admin.js"></script>
+  <!--全局设置-->
+  <script src="js/bootstrap-admin.common.js"></script>
+  <!--假数据模拟,生产环境中请直接删除该js(否则会影响您的ajax请求功能)-->
+  <script src="js/bootstrap-admin.mock.js"></script>
+  <script>
+    //前端表单验证
+    $('#form').formValidation({
+      fields: {
+        keywords: {
+          validators: {
+            notEmpty: true,
+          }
+        }
+      }
+    }).on('success.form.fv', function(e) {
+      //阻止表单提交
+      e.preventDefault();
+      //得到表单对象
+      const $form = $(e.target);
+      const data = $form.serialize();
+      //ajax请求
+      $.ajax({
+        url: "/sys/website",
+        method: 'put',
+        data
+      }).then(function(response) {
+        if (response.code === 200) {
+          $.toasts.success()
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+{% extends "layout/main.twig" %}
+
+{% block mainCnt %}
+<div class="container-fluid">
+    <div class="row g-3">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <form id="form">
+                        <div class="row mb-3">
+                            <label for="name" class="col-sm-2 col-form-label text-sm-end">父节点</label>
+                            <div class="col-sm-10">
+                                <select class="form-select" id="name" disabled>
+                                    <option value="0" selected>权限管理</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="name" class="col-sm-2 col-form-label text-sm-end">节点名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="name" value="">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="route_name" class="col-sm-2 col-form-label text-sm-end">路由别名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="route_name" name="route_name" value="">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="route_name" class="col-sm-2 col-form-label text-sm-end">是否菜单</label>
+                            <div class="col-sm-10 d-flex align-items-center">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" aria-label="是否菜单"
+                                        name="is-menu" checked>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="icon" class="col-sm-2 col-form-label text-sm-end">节点图标</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="icon" name="icon" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 offset-sm-2">
+                                <button type="submit" class="btn btn-primary">添加</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+
+<script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/formValidation.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/framework/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/language/zh_CN.js"></script>
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+    //表单验证
+    $("#form").formValidation({
+        //验证字段
+        fields: {
+            name: {
+                validators: {
+                    notEmpty: true
+                }
+            },
+            route_name: {
+                validators: {
+                    notEmpty: true
+                }
+            },
+            //...
+        }
+    }).on('success.form.fv', function (e) {
+        //阻止表单提交
+        e.preventDefault();
+        //得到表单对象
+        const $form = $(e.target);
+        const data = $form.serialize();
+
+        // 得到序列化数据
+        $.ajax({
+            url: "/node",
+            method: 'post',
+            data: data,
+        }).then(response => {
+            if (response.code === 200) {
+
+                //通知
+                $.toasts.success()
+
+
+                //关闭当前tab
+                const qtab = parent.Quicktab.get('qtab');
+
+                //跳转的url
+                const url = 'node-list.html'
+
+                const contentWindow = qtab.getTabWindowByUrl(url)
+                contentWindow && contentWindow.$table.Table('refreshSelectPage')//只刷新表格
+
+                //激活页面
+                qtab.closeActiveTab().activeTabByUrl(url, true)
+
+
+            }
+        });
+    });
+</script>
+{% endblock %}

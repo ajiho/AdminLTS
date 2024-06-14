@@ -1,6 +1,4 @@
-
 `bootstrap-admin`也提供了一些css助手类,方便我们使用,因此在页面中看到如下类名不要觉得奇怪,因为`bootstrap-admin`的助手类都是`bsa-`开头
-
 
 ## cursor
 
@@ -8,9 +6,6 @@
 
 - .bsa-cursor-pointer
 - .bsa-cursor-default
-
-
-
 
 ## ellipsis
 
@@ -20,8 +15,6 @@
 .bsa-ellipsis-{1-5}
 ```
 
-
-
 ## fontsize
 
 快速设置字体大小
@@ -29,7 +22,6 @@
 ```
 .bsa-fs-{25-60}
 ```
-
 
 ## opacity
 
@@ -47,14 +39,12 @@
 .bsa-radius-{10-30}
 ```
 
-
 ## spacing
 
 设置宽高
+
 ```
 .bsa-h-{1-20}
 .bsa-w-{1-20}
 .bsa-wh-{1-20}
 ```
-
-

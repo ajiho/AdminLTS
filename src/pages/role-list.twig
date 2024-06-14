@@ -1,0 +1,317 @@
+{% extends "layout/main.twig" %}
+
+{% block stylesheet %}
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/css/tempus-dominus.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.css">
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css">
+{% endblock %}
+
+{% block mainCnt %}
+<div class="container-fluid">
+    <div class="row g-3">
+        <div class="col-12 bsa-search-area">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body bg-body">
+                    <form class="row row-cols-sm-auto g-3 py-2 align-items-center" id="queryForm">
+                        <div class="col-12">
+                            <div class="row">
+                                <label for="name" class="col-sm-auto col-form-label">角色名称</label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 gap-2">
+                            <button type="button" class="btn btn-light bsa-search-btn">
+                                <i class="bi bi-search"></i>搜索
+                            </button>
+                            <button type="button" class="btn btn-light bsa-reset-btn">
+                                <i class="bi bi-arrow-clockwise"></i>重置
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body bg-body">
+                    <!--  表格上方左侧的工具条区域    -->
+                    <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
+                        <button class="btn btn-light" onclick="addRole()"><i class="bi bi-plus"></i> 新增
+                        </button>
+                        <button class="btn btn-light bsa-batch-btn" disabled><i class="bi bi-trash"></i> 批量删除</button>
+                        <button class="btn btn-light"><i class="bi bi-box-arrow-down"></i> 导入</button>
+                        <button class="btn btn-light"><i class="bi bi-box-arrow-up"></i> 导出</button>
+                    </div>
+                    <!--  数据表格    -->
+                    <table id="table"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/locale/bootstrap-table-zh-CN.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/js/tempus-dominus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/locales/zh-CN.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/plugins/bi-one.min.js"></script>
+{% endblock %}
+
+{% block js %}
+
+
+<script>
+
+    const $table = $('#table');
+
+    const columns = [
+        {
+            checkbox: true,
+            visible: true,
+        },
+        {
+            title: 'ID',
+            field: 'id',
+            align: 'center',
+            // true:启用排序
+            sortable: true,
+        },
+        {
+            title: '角色名称',
+            field: 'name',
+            align: 'center'
+        },
+        {
+            title: '加入时间',
+            field: 'create_at',
+            align: 'center',
+        },
+        {
+            title: '操作',
+            align: 'center',
+            formatter: formatAction
+        }
+    ]
+
+    $table.Table({
+        // 请求方法
+        method: 'get',
+        // 请求地址
+        url: '/role',
+        // 请求得到的数据类型
+        dataType: 'json',
+        // 响应处理,如果服务端返回的数据不是指定的格式，可以在前端进行处理
+        responseHandler: function (res) {
+            return res.data;
+        },
+        queryParams: function (params) {//params是一个对象
+            //左边是发送到服务端的字段参数，这里是随便做的示例,根据需求跳调整
+            return {
+                // 每页数据量
+                limit: params.limit,
+                // sql语句起始索引
+                offset: params.offset,
+                page: (params.offset / params.limit) + 1,
+                // 排序的列名
+                sort: params.sort,
+                // 排序方式 'asc' 'desc'
+                sortOrder: params.order,
+                //关键词
+                keywords: $('input[name=keyword]').val(),
+                //开始时间
+                beginTime: $('input[name=beginTime]').val(),
+                //结束时间
+                endTime: $('input[name=endTime]').val(),
+            }
+        },
+        columns
+    });
+
+
+
+    function formatAction(value, row, index, field) {
+
+
+        //编辑按钮
+        const editBtn = `<button type="button" class="btn btn-light btn-sm me-2" onclick="edit(${row.id})" data-bs-title="修改角色" data-bs-toggle="tooltip" data-bs-placement="top"><i class="bi bi-pencil"></i></button>`
+
+        //分配节点按钮
+        const nodeBtn = `<button type='button' class="btn btn-light btn-sm" onclick="authNode(${row.id})"><i class="bi bi bi-check2-circle me-2"></i>分配节点</button>`
+
+        //删除按钮
+        const delBtn = `<button type='button' class="btn btn-light btn-sm" onclick='del(${JSON.stringify(row)})'><i class="bi bi-trash me-2"></i>删除</button>`
+
+        const content = `<div class="d-flex gap-2 align-items-center flex-wrap">${nodeBtn + delBtn}</div`
+
+        //更多按钮   
+        const moreBtn = `<button type="button" class="btn btn-light btn-sm me-2" data-bs-title="更多操作" data-bs-toggle="popover" data-bs-placement="top" data-bs-html="true" data-bs-content="${escapeDoubleQuotes(content)}"><i class="bi bi-three-dots me-2"></i>更多</button>`
+
+        return editBtn + moreBtn;
+
+    }
+
+
+    //搜索
+    $table.Table('search', '.bsa-search-btn');
+    //重置
+    $table.Table('reset', '.bsa-reset-btn', '.bsa-search-area form');
+    //批量删除
+    $table.Table('batch', '.bsa-batch-btn', function (ids, selectedRows) {
+
+        $.modal({
+            body: '确定要删除所选角色吗?',
+            ok: function () {
+                //发起ajax请求
+                $.ajax({
+                    url: '/role/delall',
+                    method: 'delete',
+                    data: {
+                        id: ids
+                    }
+
+                }).then(response => {
+                    if (response.code === 200) {
+
+                        //刷新表格
+                        $table.Table('refreshSelectPage');
+
+                        //关闭当前模态框
+                        this.hide();
+
+                        //发出消息通知
+                        $.toasts.success('删除成功')
+                    }
+                });
+            }
+        })
+    })
+
+
+
+
+    function addRole() {
+
+        $.modal({
+            title: '添加角色',
+            url: 'role-add.html',
+            // url: 'https://getbootstrap.com',
+            // url: 'https://imccc.cc/ai.html',
+            // height: '800px',
+            ok: function (contentWindow) {
+                contentWindow.$('#form').data('formValidation').validate();
+            },
+            //监听来自子页面的消息
+            onMessage: function (data) {
+
+                //通知
+                $.toasts.success('添加成功')
+
+                //关闭模态框
+                this.hide();
+
+                //刷新表格
+                $table.Table('refreshSelectPage');
+
+            },
+        })
+    }
+
+
+    function edit(id) {
+
+        $.modal({
+            title: '编辑角色',
+            url: 'role-edit.html?id=' + id,
+            height: '150px',
+            ok: function (contentWindow) {
+                contentWindow.$('#form').data('formValidation').validate();
+            },
+            //监听来自子页面的消息
+            onMessage: function (data) {
+
+                //通知
+                $.toasts.success()
+
+
+                //关闭模态框
+                this.hide();
+
+                //刷新表格
+                $table.Table('refreshSelectPage');
+
+            },
+        })
+    }
+
+
+    /* 角色管理-删除 */
+    function del(row) {
+        $.modal({
+            body: `确定要删除角色<b>${row.name}</b>吗?`,
+            ok: function () {
+
+                //发起ajax请求
+                $.ajax({
+                    url: `/role/${row.id}`,
+                    method: 'delete',
+                }).then(response => {
+                    if (response.code === 200) {
+
+                        //刷新表格
+                        $table.Table('refreshSelectPage');
+
+                        //这里的this表示的是当前modal的实例对象
+                        this.hide();
+
+                        $.toasts.success()
+                    }
+                });
+            }
+        })
+    }
+
+
+
+
+
+    // 分配节点
+    function authNode(id) {
+
+        $.modal({
+            title: '分配权限',
+            url: `role-node.html?id=${id}`,
+            ok: function (contentWindow) {
+
+                console.log(contentWindow);
+
+                //调用add方法
+                contentWindow.add();
+            },
+            //监听来自子页面的消息
+            onMessage: function (data) {
+
+                if (data.type === "node") {
+                    //这里的this表示的是当前modal的实例对象
+                    this.hide();
+                    $.toasts.success()
+                }
+            },
+        })
+    }
+
+</script>
+
+{% endblock %}

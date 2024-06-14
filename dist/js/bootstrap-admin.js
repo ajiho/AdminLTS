@@ -5,45 +5,161 @@
  */
 
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery'), require('bootstrap-quicktab')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'bootstrap-quicktab'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.BootstrapAdmin = {}, global.jQuery, global.Quicktab$1));
-})(this, (function (exports, $, Quicktab$1) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'jquery'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.BootstrapAdmin = {}, global.jQuery));
+})(this, (function (exports, $) { 'use strict';
 
-  var Helper = {
-    //判断是否为主页面
-    isIndex() {
-      return $('.bsa-header').length !== 0 && $('.bsa-sidebar').length !== 0;
-    },
-    canAccessIFrame(iframe) {
-      let html = null;
+  var id = 0;
+  function _classPrivateFieldLooseKey(name) {
+    return "__private_" + id++ + "_" + name;
+  }
+  function _classPrivateFieldLooseBase(receiver, privateKey) {
+    if (!Object.prototype.hasOwnProperty.call(receiver, privateKey)) {
+      throw new TypeError("attempted to use private field on non-instance");
+    }
+    return receiver;
+  }
+
+  const NAME$d = 'NavbarSearch';
+  const DATA_KEY$a = 'bsa.navbar-search';
+  const JQUERY_NO_CONFLICT$a = $.fn[NAME$d];
+  const SELECTOR_DATA_TOGGLE$9 = '[data-bsa-toggle="navbar-search"]';
+  const Default$d = {
+    //关闭时重置
+    closeReset: false,
+    //触发器
+    trigger: '.bsa-search-form-toggler'
+  };
+  var _config$d = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _element$b = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _init$a = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  class NavbarSearch {
+    constructor(element, config) {
+      // Public
+      Object.defineProperty(this, _init$a, {
+        value: _init2$a
+      });
+      Object.defineProperty(this, _config$d, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element$b, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$d)[_config$d] = config;
+      _classPrivateFieldLooseBase(this, _element$b)[_element$b] = element;
+    }
+    // Static
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY$a);
+        if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError(`No method named "${config}"`);
+          }
+          value = data[config](...args);
+          return;
+        }
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new NavbarSearch($(this), $.extend({}, Default$d, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY$a, data);
+        _classPrivateFieldLooseBase(data, _init$a)[_init$a]();
+      });
+      return typeof value === 'undefined' ? this : value;
+    }
+  }
+
+  /**
+   * Data API
+   * ====================================================
+   */
+  function _init2$a() {
+    console.log('init');
+  }
+  $(() => {
+    $(SELECTOR_DATA_TOGGLE$9).each(function () {
+      NavbarSearch.jQueryInterface.call($(this));
+    });
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME$d] = NavbarSearch.jQueryInterface;
+  $.fn[NAME$d].Constructor = NavbarSearch;
+  $.fn[NAME$d].noConflict = function () {
+    $.fn[NAME$d] = JQUERY_NO_CONFLICT$a;
+    return NavbarSearch.jQueryInterface;
+  };
+
+  var Util = {
+    // 给任意url添加一个参数
+    addSearchParams(url, params = {}) {
+      let isRootPath = url.startsWith('/');
+      let isRelative;
+      let base = window.location.origin;
+      let urlObj;
       try {
-        // 浏览器兼容
-        let doc = iframe.contentDocument || iframe.contentWindow.document;
-        html = doc.body.innerHTML;
-      } catch (err) {
-        // do nothing
+        urlObj = new URL(url);
+        isRelative = false;
+      } catch (e) {
+        urlObj = new URL(url, base);
+        isRelative = true;
       }
-      return html !== null;
+
+      // 遍历 params 并使用 set 替换现有参数或添加新参数
+      Object.entries(params).forEach(([key, value]) => {
+        urlObj.searchParams.set(key, value);
+      });
+
+      // 构造新的 URL
+      const new_url = new URL(`${urlObj.origin}${urlObj.pathname}?${urlObj.searchParams.toString()}${urlObj.hash}`);
+      if (isRelative) {
+        let finalUrl = new_url.href.replace(`${base}/`, '');
+        return isRootPath ? `/${finalUrl}` : finalUrl;
+      } else {
+        return new_url.href;
+      }
     },
-    isObject(obj) {
-      return Object.prototype.toString.call(obj) === '[object Object]';
+    isCrossOrigin(iframe) {
+      try {
+        // 尝试访问 iframe 的内容
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        // 如果没有抛出异常，说明不是跨域的
+        return false;
+      } catch (e) {
+        // 如果捕获到 SecurityError 异常，说明是跨域的
+        if (e instanceof DOMException && e.name === 'SecurityError') {
+          return true;
+        } else {
+          throw e; // 重新抛出不是 SecurityError 的异常
+        }
+      }
     },
-    /**
-     * 通过key更新obj中的指定数据
-     * @param obj 更新值的对象
-     * @param objKey 拼接后的key数据，string ‘.’符号拼接
-     * @param newValue 更新的值
-     * @returns {*} 返回更新后的数据
-     */
-    updateObjDataByKey(obj, objKey, newValue) {
-      const keyList = objKey.split('.');
-      const lastKey = keyList[keyList.length - 1];
-      keyList.reduce((pre, item) => {
-        if (item === lastKey) pre[item] = newValue;
-        return pre[item];
-      }, obj);
-      return obj;
+    isSVGString(str) {
+      // 1. 检查字符串是否包含 <svg> 标签
+      if (typeof str !== 'string' || !str.trim().startsWith('<svg')) {
+        return false;
+      }
+
+      // 2. 使用 DOMParser 解析字符串
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(str, 'image/svg+xml');
+
+      // 3. 检查解析结果是否包含 <svg> 根元素
+      const svgElement = doc.documentElement;
+      return svgElement.tagName === 'svg' && !doc.querySelector('parsererror');
     },
     //html反转义
     htmlspecialchars_decode(text) {
@@ -60,2943 +176,143 @@
       let output = temp.innerHTML;
       temp = null;
       return output;
-    }
-  };
-
-  class Storage {
-    /**
-     * @param type 1:sessionStorage 2:localStorage
-     */
-    constructor(type = 1) {
-      this.type = type;
-    }
-
-    /**
-     * 设置缓存
-     * @param name 缓存的key
-     * @param data 缓存数据
-     */
-    set(name, data) {
-      this.remove(name);
-      if (this.type === 1) {
-        sessionStorage.setItem(name, JSON.stringify(data));
-      } else if (this.type === 2) {
-        localStorage.setItem(name, JSON.stringify(data));
-      }
-    }
-
-    /**
-     * 获取缓存
-     * @param name 缓存的key
-     * @returns {any}
-     */
-    get(name) {
-      if (this.type === 1) {
-        let value = sessionStorage.getItem(name);
-        try {
-          return JSON.parse(value);
-        } catch (e) {
-          return value;
-        }
-      } else if (this.type === 2) {
-        let value = localStorage.getItem(name);
-        try {
-          return JSON.parse(value);
-        } catch (e) {
-          return value;
-        }
-      }
-    }
-
-    /**
-     * 删除缓存
-     * @param name
-     */
-    remove(name) {
-      if (this.type === 1) {
-        sessionStorage.removeItem(name);
-      } else if (this.type === 2) {
-        localStorage.removeItem(name);
-      }
-    }
-
-    /**
-     * 同时删除 sessionStorage和localStorage缓存
-     * @param name
-     */
-    static removeBoth(name) {
-      sessionStorage.removeItem(name);
-      localStorage.removeItem(name);
-    }
-  }
-
-  /* global bootstrap OverlayScrollbarsGlobal  */
-  const NAME$3 = 'Layout';
-  const DATA_KEY$4 = 'bsa.layout';
-  const THEME_CACHE_KEY = 'theme';
-  const SELECTOR_QUICKTAB = '.qtab';
-  const SELECTOR_BACK_TO_TOP = '.bsa-back-to-top';
-  const JQUERY_NO_CONFLICT$3 = $.fn[NAME$3];
-
-  //用于实现密码点击显示/隐藏
-  const SELECTOR_LOGIN_PASSWORD = '.bsa-show_hide_password span';
-  //装载器
-  const SELECTOR_PRELOADER = '.bsa-preloader';
-  const Default$3 = {
-    //滚动条自动隐藏 never scroll leave move  #https://kingsora.github.io/OverlayScrollbars/
-    scrollbarAutoHide: 'leave',
-    //滚动条隐藏时间
-    scrollbarAutoHideDelay: 1300,
-    //加载器持续时间
-    preloadDuration: 800,
-    //tab页面是否适配主题
-    tabPageEnableTheme: true,
-    //默认主题
-    theme: 'light',
-    //主题的保存方式  sessionStorage,localStorage
-    themeCacheType: 'localStorage'
-  };
-
-  //滚动条插件对象
-  let OverlayScrollbars = null;
-
-  //侧边栏滚动条插件的示例对象
-  let sidebarOsInstance = null;
-  class Layout {
-    constructor(element, config) {
-      this._config = config;
-      this._element = element;
-    }
-
-    // Public
-    fullscreen() {
-      if (Helper.isIndex()) {
-        document.documentElement.requestFullscreen();
-      }
-    }
-    exitFullscreen() {
-      if (Helper.isIndex()) {
-        if (document.fullscreenElement !== null) {
-          document.exitFullscreen();
-        }
-      }
-    }
-    getTheme() {
-      return this.Storge.get(THEME_CACHE_KEY);
-    }
-
-    // Private
-    _init() {
-      this._common();
-      if (Helper.isIndex()) {
-        this._index();
-      }
-    }
-
-    // 所有页面都要执行的
-    _common() {
-      this._cacheInit();
-
-      //启用提示
-      $('[data-bs-toggle="tooltip"]').each(function (i, el) {
-        new bootstrap.Tooltip(el);
-      });
-
-      //启用弹出层工具
-      $('[data-bs-toggle="popover"]').each(function (i, el) {
-        new bootstrap.Popover(el);
-      });
-
-      //禁止所有的input框记忆,优化体验，否则会有烦人提示
-      $('input').attr('AutoComplete', 'off');
-
-      //禁止action为#的无效表单提交
-      $(document).on('submit', 'form[action="#"]', function (e) {
-        e.preventDefault();
-      });
-
-      //登录页面的密码切换
-      if ($(SELECTOR_LOGIN_PASSWORD).length !== 0) {
-        //登录页面密码框的显示和隐藏
-        $(SELECTOR_LOGIN_PASSWORD).on('click', function (event) {
-          event.preventDefault();
-          let $input = $('.bsa-show_hide_password input');
-          let $i = $('.bsa-show_hide_password i');
-          if ($input.attr('type') === 'text') {
-            $input.attr('type', 'password');
-            $i.removeClass('bi-eye');
-            $i.addClass('bi-eye-slash');
-          } else if ($input.attr('type') === 'password') {
-            $input.attr('type', 'text');
-            $i.addClass('bi-eye');
-            $i.removeClass('bi-eye-slash');
-          }
-        });
-      }
-
-      //布局1的js逻辑
-      $(document).on('click', '.bsa-layout1-left .bsa-chevron-toggle', function (e) {
-        e.preventDefault();
-        let w = $(window).width();
-        if (w < 992) {
-          let $bsaLayout1Left = $('.bsa-layout1-left');
-          if ($bsaLayout1Left.hasClass('open')) {
-            $bsaLayout1Left.removeClass('open');
-
-            //移除遮罩层
-            $('.bsa-mask').remove();
-          } else {
-            $bsaLayout1Left.addClass('open');
-            let maskStr = '<div class="bsa-mask"></div>';
-            let $maskStr = $(maskStr);
-            $maskStr.css('zIndex', 1011);
-            // 绑定点击事件
-            $maskStr.on('click', function () {
-              $bsaLayout1Left.removeClass('open');
-              $(this).remove();
-            });
-
-            // 把 DOM 元素添加到页面中
-            $('body').append($maskStr);
-          }
-        } else {
-          $('.bsa-layout1').toggleClass('collapsed');
-        }
-      });
-
-      // 布局2的左侧js逻辑
-      $(document).on('click', '.bsa-layout2-left .bsa-chevron-toggle', function (e) {
-        e.preventDefault();
-        let w = $(window).width();
-        if (w < 992) {
-          let $bsaLayout2Left = $('.bsa-layout2-left');
-          let $bsaLayout2Right = $('.bsa-layout2-right');
-          $bsaLayout2Right.removeClass('right-open');
-          if ($bsaLayout2Left.hasClass('left-open')) {
-            $bsaLayout2Left.removeClass('left-open');
-            $('.bsa-mask').remove();
-          } else {
-            $bsaLayout2Left.addClass('left-open');
-            if ($('.bsa-mask').length === 0) {
-              let maskStr = '<div class="bsa-mask"></div>';
-              let $maskStr = $(maskStr);
-              $maskStr.css('zIndex', 1011);
-              $maskStr.on('click', function () {
-                $bsaLayout2Left.removeClass('left-open');
-                $bsaLayout2Right.removeClass('right-open');
-                $(this).remove();
-              });
-              $('body').append($maskStr);
-            }
-          }
-        } else {
-          $('.bsa-layout2').toggleClass('left-collapsed');
-        }
-      });
-
-      // 布局2的右侧js逻辑
-      $(document).on('click', '.bsa-layout2-right .bsa-chevron-toggle', function (e) {
-        e.preventDefault();
-        let w = $(window).width();
-        if (w < 992) {
-          let $bsaLayout2Left = $('.bsa-layout2-left');
-          let $bsaLayout2Right = $('.bsa-layout2-right');
-          $bsaLayout2Left.removeClass('left-open');
-          if ($bsaLayout2Right.hasClass('right-open')) {
-            $bsaLayout2Right.removeClass('right-open');
-            $('.bsa-mask').remove();
-          } else {
-            $bsaLayout2Right.addClass('right-open');
-            if ($('.bsa-mask').length === 0) {
-              let maskStr = '<div class="bsa-mask"></div>';
-              let $maskStr = $(maskStr);
-              $maskStr.css('zIndex', 1011);
-              $maskStr.on('click', function () {
-                $bsaLayout2Left.removeClass('left-open');
-                $bsaLayout2Right.removeClass('right-open');
-                $(this).remove();
-              });
-              $('body').append($maskStr);
-            }
-          }
-        } else {
-          $('.bsa-layout2').toggleClass('right-collapsed');
-        }
-      });
-
-      // 布局3的逻辑部分
-      $(document).on('click', '.bsa-layout3-right .bsa-chevron-toggle', function (e) {
-        e.preventDefault();
-        let w = $(window).width();
-        if (w < 992) {
-          let $bsaLayout3Right = $('.bsa-layout3-right');
-          if ($bsaLayout3Right.hasClass('open')) {
-            $bsaLayout3Right.removeClass('open');
-            //移除遮罩层
-            $('.bsa-mask').remove();
-          } else {
-            $bsaLayout3Right.addClass('open');
-            let maskStr = '<div class="bsa-mask"></div>';
-            let $maskStr = $(maskStr);
-            $maskStr.css('zIndex', 1011);
-            // 绑定点击事件
-            $maskStr.on('click', function () {
-              $bsaLayout3Right.removeClass('open');
-              $(this).remove();
-            });
-
-            // 把 DOM 元素添加到页面中
-            $('body').append($maskStr);
-          }
-        } else {
-          $('.bsa-layout3').toggleClass('collapsed');
-        }
-      });
-
-      //回到顶部逻辑部分
-      $(window).on('scroll', function () {
-        $(this).scrollTop() > 300 ? $(SELECTOR_BACK_TO_TOP).fadeIn() : $(SELECTOR_BACK_TO_TOP).fadeOut();
-      });
-      $(SELECTOR_BACK_TO_TOP).on('click', function () {
-        $('html').animate({
-          scrollTop: 0
-        }, 600);
-      });
-    }
-    _cacheInit() {
-      let cacheType = 1;
-      //换成实例化
-      if (this._config.themeCacheType === 'localStorage') {
-        cacheType = 2;
-      } else if (this._config.themeCacheType === 'sessionStorage') {
-        cacheType = 1;
-      }
-      this.Storge = new Storage(cacheType);
-    }
-
-    // 首页需要执行的方法
-    _index() {
-      let _this = this;
-
-      //给滚动条注册插件
-      if (typeof OverlayScrollbarsGlobal !== 'undefined') {
-        OverlayScrollbars = OverlayScrollbarsGlobal.OverlayScrollbars;
-
-        //给滚动条对象注册插件
-        OverlayScrollbars.plugin([OverlayScrollbarsGlobal.ScrollbarsHidingPlugin, OverlayScrollbarsGlobal.SizeObserverPlugin, OverlayScrollbarsGlobal.ClickScrollPlugin]);
-      }
-
-      //导航菜单滚动条插件
-      sidebarOsInstance = OverlayScrollbars(document.querySelector('.bsa-sidebar-body'), {
-        overflow: {
-          x: 'hidden',
-          y: 'scroll'
-        },
-        scrollbars: {
-          //never scroll leave move
-          autoHide: _this._config.scrollbarAutoHide,
-          //是否可以点击轨道滚动
-          clickScroll: true,
-          //隐藏滚动条的时间
-          autoHideDelay: _this._config.scrollbarAutoHideDelay
-        }
-      });
-
-      //头部下拉菜单滚动条
-      $('.bsa-header .card-body').each(function (index, element) {
-        OverlayScrollbars(element, {
-          overflow: {
-            x: 'hidden',
-            y: 'scroll'
-          },
-          scrollbars: {
-            //never scroll leave move
-            autoHide: 'leave',
-            clickScroll: true,
-            //隐藏滚动条的时间
-            autoHideDelay: 1300
-          }
-        });
-      });
-
-      // 监听全屏事件
-      $(document).on('fullscreenchange', function () {
-        if (document.fullscreenElement == null) {
-          //退出全屏
-          $('.bsa-fullscreen-toggler').find('i.bi').removeClass('bi-fullscreen-exit').addClass('bi-arrows-fullscreen');
-        } else {
-          $('.bsa-fullscreen-toggler').find('i.bi').removeClass('bi-arrows-fullscreen').addClass('bi-fullscreen-exit');
-        }
-      });
-
-      //全屏
-      $('.bsa-fullscreen-toggler').on('click', function () {
-        if ($(this).find('.bi-arrows-fullscreen').length > 0) {
-          document.documentElement.requestFullscreen();
-        } else {
-          document.exitFullscreen();
-        }
-      });
-
-      //处理主题色的复选框
-      $('.bsa-theme-switcher-wrapper input[type="checkbox"]').click(function () {
-        // 如果当前复选框被选中
-        if ($(this).is(':checked')) {
-          let theme = $(this).attr('value');
-
-          // 取消其他复选框的选中状态
-          $('.bsa-theme-switcher-wrapper input[type="checkbox"]').not(this).prop('checked', false);
-
-          //存入缓存
-          _this.Storge.set(THEME_CACHE_KEY, theme);
-
-          //修改主题
-          $('html').attr('data-bs-theme', theme);
-
-          //tab内部也需要修改主题
-          if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
-            Quicktab$1.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
-              for (let tab of tabs) {
-                if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                  _this._setIframeTheme(tab.tabIFrame.el, theme);
-                }
-              }
-            });
-          }
-        } else {
-          _this.Storge.remove(THEME_CACHE_KEY);
-          $('html').attr('data-bs-theme', _this._config.theme);
-          //tab内部也需要修改主题
-          if ($(SELECTOR_QUICKTAB).length !== 0 && _this._config.tabPageEnableTheme === true) {
-            Quicktab$1.get(SELECTOR_QUICKTAB).setTab(function (tabs) {
-              for (let tab of tabs) {
-                if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                  _this._setIframeTheme(tab.tabIFrame.el, _this._config.theme);
-                }
-              }
-            });
-          }
-        }
-      });
-
-      //tab插件初始化
-      if ($(SELECTOR_QUICKTAB).length !== 0 && typeof Quicktab$1 !== 'undefined') {
-        new Quicktab$1({
-          selector: SELECTOR_QUICKTAB,
-          minHeight: '',
-          //不设置默认自适应容器高度
-          height: '100%',
-          //不设置默认自适应容器宽度
-          width: '',
-          //"sessionStorage","localStorage",null:不缓存每次刷新都会只展示选项tabs里面的tab
-          cache: 'sessionStorage',
-          //初始化的tab
-          tabs: [],
-          toolbar: {
-            refresh: {
-              enable: true
-            },
-            //全屏功能
-            fullscreen: {
-              //true:开启全屏 false:关闭全屏
-              enable: true,
-              fullscreen: function () {
-                $('.bsa-content').addClass('fullscreen');
-              },
-              exitFullscreen: function () {
-                $('.bsa-content').removeClass('fullscreen');
-              }
-            }
-          },
-          tabConfig: {
-            //拖动排序
-            dragSort: true,
-            //点击tab时自动居中
-            clickRollback: true,
-            //右键菜单功能启用
-            contextmenu: {
-              enable: true
-            }
-          },
-          //实例初始化完毕回调，只会执行一次
-          onInit: function (e) {
-            $('.bsa-menu a').each(function (index, a) {
-              if ($(a).attr('href') === Quicktab$1.getTabUrl(e.target.getActiveTab())) {
-                _this._scrollToA(a);
-                //结束循环，避免左侧菜单有重复的测试地址时会展开多个菜单
-                return false;
-              }
-            });
-          },
-          //tab被单击事件
-          onTabClick: function (e) {
-            let $allA = $('.bsa-menu a');
-            $allA.each(function (index, a) {
-              //如果找到这个tab的地址
-              if ($(a).attr('href') === e.tabUrl) {
-                //移除所有的展开和激活状态
-                $allA.each(function (index, a) {
-                  $(a).removeClass('open active');
-                });
-
-                //移除所有ul正在执行的动画,并且移除掉行内style样式
-                $('.bsa-menu ul').each(function (index, ul) {
-                  $(ul).removeAttr('style');
-                });
-                _this._scrollToA(a);
-                //结束循环，避免左侧菜单有重复的测试地址时会展开多个菜单
-                return false;
-              }
-            });
-          },
-          //tab加载完毕事件
-          onTabLoaded: function (tab) {
-            //是否启用主题适配子页面
-            if (_this._config.tabPageEnableTheme === true) {
-              if (tab.tabIFrame.el !== null && tab.tabIFrame.canAccess === true) {
-                let theme = _this.Storge.get(THEME_CACHE_KEY);
-                if (theme === null) {
-                  $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', _this._config.theme);
-                } else {
-                  $(tab.tabIFrame.el.contentDocument).find('html').attr('data-bs-theme', theme);
-                }
-              }
-            }
-          }
-        });
-      }
-
-      // 监听头部几个下拉菜单的事件
-      const myDropdown = document.querySelectorAll('.bsa-header [data-bs-toggle="dropdown"]');
-      myDropdown.forEach(function (el) {
-        el.addEventListener('hidden.bs.dropdown', event => {
-          _this._hasShowMenu();
-        });
-        el.addEventListener('shown.bs.dropdown', event => {
-          _this._hasShowMenu();
-        });
-      });
-
-      //遮罩层关闭
-      setTimeout(() => {
-        let theme = _this.Storge.get(THEME_CACHE_KEY);
-        if (theme === null) {
-          //设置主题
-          $('html').attr('data-bs-theme', _this._config.theme);
-        } else {
-          //让主题色选中
-          $(`.bsa-theme-switcher-wrapper input[type="checkbox"][value=${theme}]`).prop('checked', true);
-          //设置主题
-          $('html').attr('data-bs-theme', theme);
-        }
-        $(SELECTOR_PRELOADER).fadeOut(_this._config.preloadDuration);
-      }, this._config.preloadDuration);
-    }
-    _hasShowMenu() {
-      let len = document.querySelectorAll('.bsa-header .dropdown-menu.show').length;
-      if (len) {
-        $('.bsa-content').addClass('pe-none');
-      } else {
-        $('.bsa-content').removeClass('pe-none');
-      }
-    }
-    _setIframeTheme(iframe, theme) {
-      let _this = this;
-      if (Helper.canAccessIFrame(iframe)) {
-        let $doc = $(iframe.contentDocument);
-        //先给自己设置主题
-        $doc.find('html').attr('data-bs-theme', theme);
-        //再给内部的所有iframe设置主题
-        $doc.find('iframe').each(function (index, iframeEl) {
-          //递归调用，给所有的iframe设置主题
-          _this._setIframeTheme(iframeEl, theme);
-        });
-      }
-    }
-    _openMenu(a) {
-      let $ul = $(a).parent().parent();
-      let $canOpen = $ul.siblings(a);
-      if (!($canOpen.length > 0)) {
-        return;
-      }
-      $canOpen.addClass('open');
-      return this._openMenu($canOpen);
-    }
-    _scrollToA(a) {
-      $(a).addClass('active');
-      this._openMenu(a);
-      //bug: 用a.offsetTop 代替 $(a).position().top 避免 后者它有时候会得到0的结果
-      sidebarOsInstance.elements().viewport.scrollTo({
-        top: a.offsetTop
-      });
-    }
-
-    // Static
-    static _jQueryInterface(config) {
-      for (const element of this) {
-        let $element = $(element);
-        let data = $element.data(DATA_KEY$4);
-        const _config = $.extend({}, Default$3, typeof config === 'object' ? config : $element.data());
-        if (!data) {
-          //没有就new
-          data = new Layout($element, _config);
-
-          //赋值给data,供给下次调用
-          $element.data(DATA_KEY$4, data);
-
-          //调用内部的私有方法,初始化，执行必须执行的方法
-          data._init();
-        }
-        if (typeof config === 'string') {
-          if (typeof data[config] === 'undefined') {
-            throw new TypeError(`方法 "${config}" 不存在`);
-          }
-          let execRt = data[config]();
-          if (typeof execRt !== 'undefined') {
-            return execRt;
-          }
-        }
-      }
-      return this;
-    }
-  }
-
-  /**
-   * Data API
-   * ====================================================
-   */
-
-  $(window).on('load', () => {
-    Layout._jQueryInterface.call($('body'));
-  });
-
-  /**
-   * jQuery API
-   * ====================================================
-   */
-
-  $.fn[NAME$3] = Layout._jQueryInterface;
-  $.fn[NAME$3].Constructor = Layout;
-  $.fn[NAME$3].noConflict = function () {
-    $.fn[NAME$3] = JQUERY_NO_CONFLICT$3;
-    return Layout._jQueryInterface;
-  };
-
-  const NAME$2 = 'NavbarSearch';
-  const DATA_KEY$3 = 'bsa.navbar-search';
-  const JQUERY_NO_CONFLICT$2 = $.fn[NAME$2];
-
-  // 搜索事件触发
-  const EVENT_SEARCH = 'search.bsa.navbar-search';
-  const SELECTOR_DATA_TOGGLE$1 = '[data-bsa-toggle="navbar-search"]';
-  const SELECTOR_SEARCH_TRIGGER = '.bsa-search-form-toggler';
-
-  // 展开时的类名
-  const CLASS_NAME_OPEN = 'open';
-  const Default$2 = {
-    //关闭时重置
-    closeReset: false,
-    //触发器
-    trigger: SELECTOR_SEARCH_TRIGGER
-  };
-  class NavbarSearch {
-    constructor(_element, _options) {
-      this._element = _element;
-      this._config = _options;
-      this._$input = this._element.find('input.bsa-input-search');
-    }
-
-    // Public
-
-    open() {
-      this._element.addClass(CLASS_NAME_OPEN);
-    }
-    close() {
-      this._element.removeClass(CLASS_NAME_OPEN);
-      if (this._config.closeReset === true) {
-        this._$input.val('');
-      }
-    }
-    toggle() {
-      if (this._element.hasClass(CLASS_NAME_OPEN)) {
-        this.close();
-      } else {
-        this.open();
-      }
-    }
-    _triggerSearch(inputValue) {
-      const searchEvent = $.Event(EVENT_SEARCH);
-      $(this._element).trigger(searchEvent, [inputValue, $(this._element).data()]);
-    }
-    _init() {
-      let _this = this;
-
-      //给input框绑定key事件
-      _this._$input.on('keydown', function (event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          let inputVal = $.trim(_this._$input.val());
-          if (inputVal !== '') {
-            _this._triggerSearch(inputVal);
-          }
-        }
-      });
-
-      //给搜索图标绑定点击事件
-      $(document).on('click', '.bsa-search-submit-btn', function (e) {
-        e.preventDefault();
-        let inputVal = $.trim(_this._$input.val());
-        if (inputVal !== '') {
-          _this._triggerSearch(inputVal);
-        }
-      });
-
-      //给关闭按钮绑定点击事件
-      $(document).on('click', '.bsa-search-close-btn', function (e) {
-        e.preventDefault();
-        _this.close();
-      });
-
-      //给触发器绑定事件
-
-      $(document).on('click', _this._config.trigger, function (e) {
-        e.preventDefault();
-        _this.open();
-      });
-    }
-
-    // Static
-    static _jQueryInterface(config) {
-      return this.each(function () {
-        let data = $(this).data(DATA_KEY$3);
-        const _config = $.extend({}, Default$2, typeof config === 'object' ? config : $(this).data());
-        if (!data) {
-          data = new NavbarSearch($(this), _config);
-          $(this).data(DATA_KEY$3, data);
-          data._init();
-        } else if (typeof config === 'string') {
-          if (typeof data[config] === 'undefined') {
-            throw new TypeError(`No method named "${config}"`);
-          }
-          data[config]();
-        } else if (typeof config === 'undefined') {
-          data._init();
-        }
-      });
-    }
-  }
-
-  /**
-   * Data API
-   * ====================================================
-   */
-
-  $(window).on('load', () => {
-    if (Helper.isIndex()) {
-      NavbarSearch._jQueryInterface.call($(SELECTOR_DATA_TOGGLE$1));
-    }
-  });
-
-  /**
-   * jQuery API
-   * ====================================================
-   */
-
-  $.fn[NAME$2] = NavbarSearch._jQueryInterface;
-  $.fn[NAME$2].Constructor = NavbarSearch;
-  $.fn[NAME$2].noConflict = function () {
-    $.fn[NAME$2] = JQUERY_NO_CONFLICT$2;
-    return NavbarSearch._jQueryInterface;
-  };
-
-  /** Detect free variable `global` from Node.js. */
-  var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
-
-  /** Detect free variable `self`. */
-  var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-
-  /** Used as a reference to the global object. */
-  var root = freeGlobal || freeSelf || Function('return this')();
-
-  /** Built-in value references. */
-  var Symbol = root.Symbol;
-
-  /** Used for built-in method references. */
-  var objectProto$b = Object.prototype;
-
-  /** Used to check objects for own properties. */
-  var hasOwnProperty$9 = objectProto$b.hasOwnProperty;
-
-  /**
-   * Used to resolve the
-   * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
-   * of values.
-   */
-  var nativeObjectToString$1 = objectProto$b.toString;
-
-  /** Built-in value references. */
-  var symToStringTag$1 = Symbol ? Symbol.toStringTag : undefined;
-
-  /**
-   * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
-   *
-   * @private
-   * @param {*} value The value to query.
-   * @returns {string} Returns the raw `toStringTag`.
-   */
-  function getRawTag(value) {
-    var isOwn = hasOwnProperty$9.call(value, symToStringTag$1),
-        tag = value[symToStringTag$1];
-
-    try {
-      value[symToStringTag$1] = undefined;
-      var unmasked = true;
-    } catch (e) {}
-
-    var result = nativeObjectToString$1.call(value);
-    if (unmasked) {
-      if (isOwn) {
-        value[symToStringTag$1] = tag;
-      } else {
-        delete value[symToStringTag$1];
-      }
-    }
-    return result;
-  }
-
-  /** Used for built-in method references. */
-  var objectProto$a = Object.prototype;
-
-  /**
-   * Used to resolve the
-   * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
-   * of values.
-   */
-  var nativeObjectToString = objectProto$a.toString;
-
-  /**
-   * Converts `value` to a string using `Object.prototype.toString`.
-   *
-   * @private
-   * @param {*} value The value to convert.
-   * @returns {string} Returns the converted string.
-   */
-  function objectToString(value) {
-    return nativeObjectToString.call(value);
-  }
-
-  /** `Object#toString` result references. */
-  var nullTag = '[object Null]',
-      undefinedTag = '[object Undefined]';
-
-  /** Built-in value references. */
-  var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
-
-  /**
-   * The base implementation of `getTag` without fallbacks for buggy environments.
-   *
-   * @private
-   * @param {*} value The value to query.
-   * @returns {string} Returns the `toStringTag`.
-   */
-  function baseGetTag(value) {
-    if (value == null) {
-      return value === undefined ? undefinedTag : nullTag;
-    }
-    return (symToStringTag && symToStringTag in Object(value))
-      ? getRawTag(value)
-      : objectToString(value);
-  }
-
-  /**
-   * Checks if `value` is the
-   * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
-   * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
-   *
-   * @static
-   * @memberOf _
-   * @since 0.1.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is an object, else `false`.
-   * @example
-   *
-   * _.isObject({});
-   * // => true
-   *
-   * _.isObject([1, 2, 3]);
-   * // => true
-   *
-   * _.isObject(_.noop);
-   * // => true
-   *
-   * _.isObject(null);
-   * // => false
-   */
-  function isObject(value) {
-    var type = typeof value;
-    return value != null && (type == 'object' || type == 'function');
-  }
-
-  /** `Object#toString` result references. */
-  var asyncTag = '[object AsyncFunction]',
-      funcTag$1 = '[object Function]',
-      genTag = '[object GeneratorFunction]',
-      proxyTag = '[object Proxy]';
-
-  /**
-   * Checks if `value` is classified as a `Function` object.
-   *
-   * @static
-   * @memberOf _
-   * @since 0.1.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is a function, else `false`.
-   * @example
-   *
-   * _.isFunction(_);
-   * // => true
-   *
-   * _.isFunction(/abc/);
-   * // => false
-   */
-  function isFunction(value) {
-    if (!isObject(value)) {
-      return false;
-    }
-    // The use of `Object#toString` avoids issues with the `typeof` operator
-    // in Safari 9 which returns 'object' for typed arrays and other constructors.
-    var tag = baseGetTag(value);
-    return tag == funcTag$1 || tag == genTag || tag == asyncTag || tag == proxyTag;
-  }
-
-  /** Used to detect overreaching core-js shims. */
-  var coreJsData = root['__core-js_shared__'];
-
-  /** Used to detect methods masquerading as native. */
-  var maskSrcKey = (function() {
-    var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
-    return uid ? ('Symbol(src)_1.' + uid) : '';
-  }());
-
-  /**
-   * Checks if `func` has its source masked.
-   *
-   * @private
-   * @param {Function} func The function to check.
-   * @returns {boolean} Returns `true` if `func` is masked, else `false`.
-   */
-  function isMasked(func) {
-    return !!maskSrcKey && (maskSrcKey in func);
-  }
-
-  /** Used for built-in method references. */
-  var funcProto$2 = Function.prototype;
-
-  /** Used to resolve the decompiled source of functions. */
-  var funcToString$2 = funcProto$2.toString;
-
-  /**
-   * Converts `func` to its source code.
-   *
-   * @private
-   * @param {Function} func The function to convert.
-   * @returns {string} Returns the source code.
-   */
-  function toSource(func) {
-    if (func != null) {
-      try {
-        return funcToString$2.call(func);
-      } catch (e) {}
-      try {
-        return (func + '');
-      } catch (e) {}
-    }
-    return '';
-  }
-
-  /**
-   * Used to match `RegExp`
-   * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
-   */
-  var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
-
-  /** Used to detect host constructors (Safari). */
-  var reIsHostCtor = /^\[object .+?Constructor\]$/;
-
-  /** Used for built-in method references. */
-  var funcProto$1 = Function.prototype,
-      objectProto$9 = Object.prototype;
-
-  /** Used to resolve the decompiled source of functions. */
-  var funcToString$1 = funcProto$1.toString;
-
-  /** Used to check objects for own properties. */
-  var hasOwnProperty$8 = objectProto$9.hasOwnProperty;
-
-  /** Used to detect if a method is native. */
-  var reIsNative = RegExp('^' +
-    funcToString$1.call(hasOwnProperty$8).replace(reRegExpChar, '\\$&')
-    .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
-  );
-
-  /**
-   * The base implementation of `_.isNative` without bad shim checks.
-   *
-   * @private
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is a native function,
-   *  else `false`.
-   */
-  function baseIsNative(value) {
-    if (!isObject(value) || isMasked(value)) {
-      return false;
-    }
-    var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
-    return pattern.test(toSource(value));
-  }
-
-  /**
-   * Gets the value at `key` of `object`.
-   *
-   * @private
-   * @param {Object} [object] The object to query.
-   * @param {string} key The key of the property to get.
-   * @returns {*} Returns the property value.
-   */
-  function getValue(object, key) {
-    return object == null ? undefined : object[key];
-  }
-
-  /**
-   * Gets the native function at `key` of `object`.
-   *
-   * @private
-   * @param {Object} object The object to query.
-   * @param {string} key The key of the method to get.
-   * @returns {*} Returns the function if it's native, else `undefined`.
-   */
-  function getNative(object, key) {
-    var value = getValue(object, key);
-    return baseIsNative(value) ? value : undefined;
-  }
-
-  var defineProperty = (function() {
-    try {
-      var func = getNative(Object, 'defineProperty');
-      func({}, '', {});
-      return func;
-    } catch (e) {}
-  }());
-
-  /**
-   * The base implementation of `assignValue` and `assignMergeValue` without
-   * value checks.
-   *
-   * @private
-   * @param {Object} object The object to modify.
-   * @param {string} key The key of the property to assign.
-   * @param {*} value The value to assign.
-   */
-  function baseAssignValue(object, key, value) {
-    if (key == '__proto__' && defineProperty) {
-      defineProperty(object, key, {
-        'configurable': true,
-        'enumerable': true,
-        'value': value,
-        'writable': true
-      });
-    } else {
-      object[key] = value;
-    }
-  }
-
-  /**
-   * Performs a
-   * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
-   * comparison between two values to determine if they are equivalent.
-   *
-   * @static
-   * @memberOf _
-   * @since 4.0.0
-   * @category Lang
-   * @param {*} value The value to compare.
-   * @param {*} other The other value to compare.
-   * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
-   * @example
-   *
-   * var object = { 'a': 1 };
-   * var other = { 'a': 1 };
-   *
-   * _.eq(object, object);
-   * // => true
-   *
-   * _.eq(object, other);
-   * // => false
-   *
-   * _.eq('a', 'a');
-   * // => true
-   *
-   * _.eq('a', Object('a'));
-   * // => false
-   *
-   * _.eq(NaN, NaN);
-   * // => true
-   */
-  function eq(value, other) {
-    return value === other || (value !== value && other !== other);
-  }
-
-  /** Used for built-in method references. */
-  var objectProto$8 = Object.prototype;
-
-  /** Used to check objects for own properties. */
-  var hasOwnProperty$7 = objectProto$8.hasOwnProperty;
-
-  /**
-   * Assigns `value` to `key` of `object` if the existing value is not equivalent
-   * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
-   * for equality comparisons.
-   *
-   * @private
-   * @param {Object} object The object to modify.
-   * @param {string} key The key of the property to assign.
-   * @param {*} value The value to assign.
-   */
-  function assignValue(object, key, value) {
-    var objValue = object[key];
-    if (!(hasOwnProperty$7.call(object, key) && eq(objValue, value)) ||
-        (value === undefined && !(key in object))) {
-      baseAssignValue(object, key, value);
-    }
-  }
-
-  /**
-   * Copies properties of `source` to `object`.
-   *
-   * @private
-   * @param {Object} source The object to copy properties from.
-   * @param {Array} props The property identifiers to copy.
-   * @param {Object} [object={}] The object to copy properties to.
-   * @param {Function} [customizer] The function to customize copied values.
-   * @returns {Object} Returns `object`.
-   */
-  function copyObject(source, props, object, customizer) {
-    var isNew = !object;
-    object || (object = {});
-
-    var index = -1,
-        length = props.length;
-
-    while (++index < length) {
-      var key = props[index];
-
-      var newValue = customizer
-        ? customizer(object[key], source[key], key, object, source)
-        : undefined;
-
-      if (newValue === undefined) {
-        newValue = source[key];
-      }
-      if (isNew) {
-        baseAssignValue(object, key, newValue);
-      } else {
-        assignValue(object, key, newValue);
-      }
-    }
-    return object;
-  }
-
-  /**
-   * This method returns the first argument it receives.
-   *
-   * @static
-   * @since 0.1.0
-   * @memberOf _
-   * @category Util
-   * @param {*} value Any value.
-   * @returns {*} Returns `value`.
-   * @example
-   *
-   * var object = { 'a': 1 };
-   *
-   * console.log(_.identity(object) === object);
-   * // => true
-   */
-  function identity(value) {
-    return value;
-  }
-
-  /**
-   * A faster alternative to `Function#apply`, this function invokes `func`
-   * with the `this` binding of `thisArg` and the arguments of `args`.
-   *
-   * @private
-   * @param {Function} func The function to invoke.
-   * @param {*} thisArg The `this` binding of `func`.
-   * @param {Array} args The arguments to invoke `func` with.
-   * @returns {*} Returns the result of `func`.
-   */
-  function apply(func, thisArg, args) {
-    switch (args.length) {
-      case 0: return func.call(thisArg);
-      case 1: return func.call(thisArg, args[0]);
-      case 2: return func.call(thisArg, args[0], args[1]);
-      case 3: return func.call(thisArg, args[0], args[1], args[2]);
-    }
-    return func.apply(thisArg, args);
-  }
-
-  /* Built-in method references for those with the same name as other `lodash` methods. */
-  var nativeMax = Math.max;
-
-  /**
-   * A specialized version of `baseRest` which transforms the rest array.
-   *
-   * @private
-   * @param {Function} func The function to apply a rest parameter to.
-   * @param {number} [start=func.length-1] The start position of the rest parameter.
-   * @param {Function} transform The rest array transform.
-   * @returns {Function} Returns the new function.
-   */
-  function overRest(func, start, transform) {
-    start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
-    return function() {
-      var args = arguments,
-          index = -1,
-          length = nativeMax(args.length - start, 0),
-          array = Array(length);
-
-      while (++index < length) {
-        array[index] = args[start + index];
-      }
-      index = -1;
-      var otherArgs = Array(start + 1);
-      while (++index < start) {
-        otherArgs[index] = args[index];
-      }
-      otherArgs[start] = transform(array);
-      return apply(func, this, otherArgs);
-    };
-  }
-
-  /**
-   * Creates a function that returns `value`.
-   *
-   * @static
-   * @memberOf _
-   * @since 2.4.0
-   * @category Util
-   * @param {*} value The value to return from the new function.
-   * @returns {Function} Returns the new constant function.
-   * @example
-   *
-   * var objects = _.times(2, _.constant({ 'a': 1 }));
-   *
-   * console.log(objects);
-   * // => [{ 'a': 1 }, { 'a': 1 }]
-   *
-   * console.log(objects[0] === objects[1]);
-   * // => true
-   */
-  function constant(value) {
-    return function() {
-      return value;
-    };
-  }
-
-  /**
-   * The base implementation of `setToString` without support for hot loop shorting.
-   *
-   * @private
-   * @param {Function} func The function to modify.
-   * @param {Function} string The `toString` result.
-   * @returns {Function} Returns `func`.
-   */
-  var baseSetToString = !defineProperty ? identity : function(func, string) {
-    return defineProperty(func, 'toString', {
-      'configurable': true,
-      'enumerable': false,
-      'value': constant(string),
-      'writable': true
-    });
-  };
-
-  /** Used to detect hot functions by number of calls within a span of milliseconds. */
-  var HOT_COUNT = 800,
-      HOT_SPAN = 16;
-
-  /* Built-in method references for those with the same name as other `lodash` methods. */
-  var nativeNow = Date.now;
-
-  /**
-   * Creates a function that'll short out and invoke `identity` instead
-   * of `func` when it's called `HOT_COUNT` or more times in `HOT_SPAN`
-   * milliseconds.
-   *
-   * @private
-   * @param {Function} func The function to restrict.
-   * @returns {Function} Returns the new shortable function.
-   */
-  function shortOut(func) {
-    var count = 0,
-        lastCalled = 0;
-
-    return function() {
-      var stamp = nativeNow(),
-          remaining = HOT_SPAN - (stamp - lastCalled);
-
-      lastCalled = stamp;
-      if (remaining > 0) {
-        if (++count >= HOT_COUNT) {
-          return arguments[0];
-        }
-      } else {
-        count = 0;
-      }
-      return func.apply(undefined, arguments);
-    };
-  }
-
-  /**
-   * Sets the `toString` method of `func` to return `string`.
-   *
-   * @private
-   * @param {Function} func The function to modify.
-   * @param {Function} string The `toString` result.
-   * @returns {Function} Returns `func`.
-   */
-  var setToString = shortOut(baseSetToString);
-
-  /**
-   * The base implementation of `_.rest` which doesn't validate or coerce arguments.
-   *
-   * @private
-   * @param {Function} func The function to apply a rest parameter to.
-   * @param {number} [start=func.length-1] The start position of the rest parameter.
-   * @returns {Function} Returns the new function.
-   */
-  function baseRest(func, start) {
-    return setToString(overRest(func, start, identity), func + '');
-  }
-
-  /** Used as references for various `Number` constants. */
-  var MAX_SAFE_INTEGER$1 = 9007199254740991;
-
-  /**
-   * Checks if `value` is a valid array-like length.
-   *
-   * **Note:** This method is loosely based on
-   * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
-   *
-   * @static
-   * @memberOf _
-   * @since 4.0.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
-   * @example
-   *
-   * _.isLength(3);
-   * // => true
-   *
-   * _.isLength(Number.MIN_VALUE);
-   * // => false
-   *
-   * _.isLength(Infinity);
-   * // => false
-   *
-   * _.isLength('3');
-   * // => false
-   */
-  function isLength(value) {
-    return typeof value == 'number' &&
-      value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER$1;
-  }
-
-  /**
-   * Checks if `value` is array-like. A value is considered array-like if it's
-   * not a function and has a `value.length` that's an integer greater than or
-   * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
-   *
-   * @static
-   * @memberOf _
-   * @since 4.0.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
-   * @example
-   *
-   * _.isArrayLike([1, 2, 3]);
-   * // => true
-   *
-   * _.isArrayLike(document.body.children);
-   * // => true
-   *
-   * _.isArrayLike('abc');
-   * // => true
-   *
-   * _.isArrayLike(_.noop);
-   * // => false
-   */
-  function isArrayLike(value) {
-    return value != null && isLength(value.length) && !isFunction(value);
-  }
-
-  /** Used as references for various `Number` constants. */
-  var MAX_SAFE_INTEGER = 9007199254740991;
-
-  /** Used to detect unsigned integer values. */
-  var reIsUint = /^(?:0|[1-9]\d*)$/;
-
-  /**
-   * Checks if `value` is a valid array-like index.
-   *
-   * @private
-   * @param {*} value The value to check.
-   * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
-   * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
-   */
-  function isIndex(value, length) {
-    var type = typeof value;
-    length = length == null ? MAX_SAFE_INTEGER : length;
-
-    return !!length &&
-      (type == 'number' ||
-        (type != 'symbol' && reIsUint.test(value))) &&
-          (value > -1 && value % 1 == 0 && value < length);
-  }
-
-  /**
-   * Checks if the given arguments are from an iteratee call.
-   *
-   * @private
-   * @param {*} value The potential iteratee value argument.
-   * @param {*} index The potential iteratee index or key argument.
-   * @param {*} object The potential iteratee object argument.
-   * @returns {boolean} Returns `true` if the arguments are from an iteratee call,
-   *  else `false`.
-   */
-  function isIterateeCall(value, index, object) {
-    if (!isObject(object)) {
-      return false;
-    }
-    var type = typeof index;
-    if (type == 'number'
-          ? (isArrayLike(object) && isIndex(index, object.length))
-          : (type == 'string' && index in object)
-        ) {
-      return eq(object[index], value);
-    }
-    return false;
-  }
-
-  /**
-   * Creates a function like `_.assign`.
-   *
-   * @private
-   * @param {Function} assigner The function to assign values.
-   * @returns {Function} Returns the new assigner function.
-   */
-  function createAssigner(assigner) {
-    return baseRest(function(object, sources) {
-      var index = -1,
-          length = sources.length,
-          customizer = length > 1 ? sources[length - 1] : undefined,
-          guard = length > 2 ? sources[2] : undefined;
-
-      customizer = (assigner.length > 3 && typeof customizer == 'function')
-        ? (length--, customizer)
-        : undefined;
-
-      if (guard && isIterateeCall(sources[0], sources[1], guard)) {
-        customizer = length < 3 ? undefined : customizer;
-        length = 1;
-      }
-      object = Object(object);
-      while (++index < length) {
-        var source = sources[index];
-        if (source) {
-          assigner(object, source, index, customizer);
-        }
-      }
-      return object;
-    });
-  }
-
-  /**
-   * The base implementation of `_.times` without support for iteratee shorthands
-   * or max array length checks.
-   *
-   * @private
-   * @param {number} n The number of times to invoke `iteratee`.
-   * @param {Function} iteratee The function invoked per iteration.
-   * @returns {Array} Returns the array of results.
-   */
-  function baseTimes(n, iteratee) {
-    var index = -1,
-        result = Array(n);
-
-    while (++index < n) {
-      result[index] = iteratee(index);
-    }
-    return result;
-  }
-
-  /**
-   * Checks if `value` is object-like. A value is object-like if it's not `null`
-   * and has a `typeof` result of "object".
-   *
-   * @static
-   * @memberOf _
-   * @since 4.0.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
-   * @example
-   *
-   * _.isObjectLike({});
-   * // => true
-   *
-   * _.isObjectLike([1, 2, 3]);
-   * // => true
-   *
-   * _.isObjectLike(_.noop);
-   * // => false
-   *
-   * _.isObjectLike(null);
-   * // => false
-   */
-  function isObjectLike(value) {
-    return value != null && typeof value == 'object';
-  }
-
-  /** `Object#toString` result references. */
-  var argsTag$1 = '[object Arguments]';
-
-  /**
-   * The base implementation of `_.isArguments`.
-   *
-   * @private
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is an `arguments` object,
-   */
-  function baseIsArguments(value) {
-    return isObjectLike(value) && baseGetTag(value) == argsTag$1;
-  }
-
-  /** Used for built-in method references. */
-  var objectProto$7 = Object.prototype;
-
-  /** Used to check objects for own properties. */
-  var hasOwnProperty$6 = objectProto$7.hasOwnProperty;
-
-  /** Built-in value references. */
-  var propertyIsEnumerable = objectProto$7.propertyIsEnumerable;
-
-  /**
-   * Checks if `value` is likely an `arguments` object.
-   *
-   * @static
-   * @memberOf _
-   * @since 0.1.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is an `arguments` object,
-   *  else `false`.
-   * @example
-   *
-   * _.isArguments(function() { return arguments; }());
-   * // => true
-   *
-   * _.isArguments([1, 2, 3]);
-   * // => false
-   */
-  var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
-    return isObjectLike(value) && hasOwnProperty$6.call(value, 'callee') &&
-      !propertyIsEnumerable.call(value, 'callee');
-  };
-
-  /**
-   * Checks if `value` is classified as an `Array` object.
-   *
-   * @static
-   * @memberOf _
-   * @since 0.1.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is an array, else `false`.
-   * @example
-   *
-   * _.isArray([1, 2, 3]);
-   * // => true
-   *
-   * _.isArray(document.body.children);
-   * // => false
-   *
-   * _.isArray('abc');
-   * // => false
-   *
-   * _.isArray(_.noop);
-   * // => false
-   */
-  var isArray = Array.isArray;
-
-  /**
-   * This method returns `false`.
-   *
-   * @static
-   * @memberOf _
-   * @since 4.13.0
-   * @category Util
-   * @returns {boolean} Returns `false`.
-   * @example
-   *
-   * _.times(2, _.stubFalse);
-   * // => [false, false]
-   */
-  function stubFalse() {
-    return false;
-  }
-
-  /** Detect free variable `exports`. */
-  var freeExports$1 = typeof exports == 'object' && exports && !exports.nodeType && exports;
-
-  /** Detect free variable `module`. */
-  var freeModule$1 = freeExports$1 && typeof module == 'object' && module && !module.nodeType && module;
-
-  /** Detect the popular CommonJS extension `module.exports`. */
-  var moduleExports$1 = freeModule$1 && freeModule$1.exports === freeExports$1;
-
-  /** Built-in value references. */
-  var Buffer = moduleExports$1 ? root.Buffer : undefined;
-
-  /* Built-in method references for those with the same name as other `lodash` methods. */
-  var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
-
-  /**
-   * Checks if `value` is a buffer.
-   *
-   * @static
-   * @memberOf _
-   * @since 4.3.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
-   * @example
-   *
-   * _.isBuffer(new Buffer(2));
-   * // => true
-   *
-   * _.isBuffer(new Uint8Array(2));
-   * // => false
-   */
-  var isBuffer = nativeIsBuffer || stubFalse;
-
-  /** `Object#toString` result references. */
-  var argsTag = '[object Arguments]',
-      arrayTag = '[object Array]',
-      boolTag = '[object Boolean]',
-      dateTag = '[object Date]',
-      errorTag$1 = '[object Error]',
-      funcTag = '[object Function]',
-      mapTag = '[object Map]',
-      numberTag = '[object Number]',
-      objectTag$1 = '[object Object]',
-      regexpTag = '[object RegExp]',
-      setTag = '[object Set]',
-      stringTag = '[object String]',
-      weakMapTag = '[object WeakMap]';
-
-  var arrayBufferTag = '[object ArrayBuffer]',
-      dataViewTag = '[object DataView]',
-      float32Tag = '[object Float32Array]',
-      float64Tag = '[object Float64Array]',
-      int8Tag = '[object Int8Array]',
-      int16Tag = '[object Int16Array]',
-      int32Tag = '[object Int32Array]',
-      uint8Tag = '[object Uint8Array]',
-      uint8ClampedTag = '[object Uint8ClampedArray]',
-      uint16Tag = '[object Uint16Array]',
-      uint32Tag = '[object Uint32Array]';
-
-  /** Used to identify `toStringTag` values of typed arrays. */
-  var typedArrayTags = {};
-  typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
-  typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
-  typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
-  typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
-  typedArrayTags[uint32Tag] = true;
-  typedArrayTags[argsTag] = typedArrayTags[arrayTag] =
-  typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] =
-  typedArrayTags[dataViewTag] = typedArrayTags[dateTag] =
-  typedArrayTags[errorTag$1] = typedArrayTags[funcTag] =
-  typedArrayTags[mapTag] = typedArrayTags[numberTag] =
-  typedArrayTags[objectTag$1] = typedArrayTags[regexpTag] =
-  typedArrayTags[setTag] = typedArrayTags[stringTag] =
-  typedArrayTags[weakMapTag] = false;
-
-  /**
-   * The base implementation of `_.isTypedArray` without Node.js optimizations.
-   *
-   * @private
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
-   */
-  function baseIsTypedArray(value) {
-    return isObjectLike(value) &&
-      isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
-  }
-
-  /**
-   * The base implementation of `_.unary` without support for storing metadata.
-   *
-   * @private
-   * @param {Function} func The function to cap arguments for.
-   * @returns {Function} Returns the new capped function.
-   */
-  function baseUnary(func) {
-    return function(value) {
-      return func(value);
-    };
-  }
-
-  /** Detect free variable `exports`. */
-  var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
-
-  /** Detect free variable `module`. */
-  var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
-
-  /** Detect the popular CommonJS extension `module.exports`. */
-  var moduleExports = freeModule && freeModule.exports === freeExports;
-
-  /** Detect free variable `process` from Node.js. */
-  var freeProcess = moduleExports && freeGlobal.process;
-
-  /** Used to access faster Node.js helpers. */
-  var nodeUtil = (function() {
-    try {
-      // Use `util.types` for Node.js 10+.
-      var types = freeModule && freeModule.require && freeModule.require('util').types;
-
-      if (types) {
-        return types;
-      }
-
-      // Legacy `process.binding('util')` for Node.js < 10.
-      return freeProcess && freeProcess.binding && freeProcess.binding('util');
-    } catch (e) {}
-  }());
-
-  /* Node.js helper references. */
-  var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
-
-  /**
-   * Checks if `value` is classified as a typed array.
-   *
-   * @static
-   * @memberOf _
-   * @since 3.0.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
-   * @example
-   *
-   * _.isTypedArray(new Uint8Array);
-   * // => true
-   *
-   * _.isTypedArray([]);
-   * // => false
-   */
-  var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
-
-  /** Used for built-in method references. */
-  var objectProto$6 = Object.prototype;
-
-  /** Used to check objects for own properties. */
-  var hasOwnProperty$5 = objectProto$6.hasOwnProperty;
-
-  /**
-   * Creates an array of the enumerable property names of the array-like `value`.
-   *
-   * @private
-   * @param {*} value The value to query.
-   * @param {boolean} inherited Specify returning inherited property names.
-   * @returns {Array} Returns the array of property names.
-   */
-  function arrayLikeKeys(value, inherited) {
-    var isArr = isArray(value),
-        isArg = !isArr && isArguments(value),
-        isBuff = !isArr && !isArg && isBuffer(value),
-        isType = !isArr && !isArg && !isBuff && isTypedArray(value),
-        skipIndexes = isArr || isArg || isBuff || isType,
-        result = skipIndexes ? baseTimes(value.length, String) : [],
-        length = result.length;
-
-    for (var key in value) {
-      if ((inherited || hasOwnProperty$5.call(value, key)) &&
-          !(skipIndexes && (
-             // Safari 9 has enumerable `arguments.length` in strict mode.
-             key == 'length' ||
-             // Node.js 0.10 has enumerable non-index properties on buffers.
-             (isBuff && (key == 'offset' || key == 'parent')) ||
-             // PhantomJS 2 has enumerable non-index properties on typed arrays.
-             (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
-             // Skip index properties.
-             isIndex(key, length)
-          ))) {
-        result.push(key);
-      }
-    }
-    return result;
-  }
-
-  /** Used for built-in method references. */
-  var objectProto$5 = Object.prototype;
-
-  /**
-   * Checks if `value` is likely a prototype object.
-   *
-   * @private
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
-   */
-  function isPrototype(value) {
-    var Ctor = value && value.constructor,
-        proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto$5;
-
-    return value === proto;
-  }
-
-  /**
-   * This function is like
-   * [`Object.keys`](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
-   * except that it includes inherited enumerable properties.
-   *
-   * @private
-   * @param {Object} object The object to query.
-   * @returns {Array} Returns the array of property names.
-   */
-  function nativeKeysIn(object) {
-    var result = [];
-    if (object != null) {
-      for (var key in Object(object)) {
-        result.push(key);
-      }
-    }
-    return result;
-  }
-
-  /** Used for built-in method references. */
-  var objectProto$4 = Object.prototype;
-
-  /** Used to check objects for own properties. */
-  var hasOwnProperty$4 = objectProto$4.hasOwnProperty;
-
-  /**
-   * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
-   *
-   * @private
-   * @param {Object} object The object to query.
-   * @returns {Array} Returns the array of property names.
-   */
-  function baseKeysIn(object) {
-    if (!isObject(object)) {
-      return nativeKeysIn(object);
-    }
-    var isProto = isPrototype(object),
-        result = [];
-
-    for (var key in object) {
-      if (!(key == 'constructor' && (isProto || !hasOwnProperty$4.call(object, key)))) {
-        result.push(key);
-      }
-    }
-    return result;
-  }
-
-  /**
-   * Creates an array of the own and inherited enumerable property names of `object`.
-   *
-   * **Note:** Non-object values are coerced to objects.
-   *
-   * @static
-   * @memberOf _
-   * @since 3.0.0
-   * @category Object
-   * @param {Object} object The object to query.
-   * @returns {Array} Returns the array of property names.
-   * @example
-   *
-   * function Foo() {
-   *   this.a = 1;
-   *   this.b = 2;
-   * }
-   *
-   * Foo.prototype.c = 3;
-   *
-   * _.keysIn(new Foo);
-   * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
-   */
-  function keysIn(object) {
-    return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
-  }
-
-  /**
-   * This method is like `_.assignIn` except that it accepts `customizer`
-   * which is invoked to produce the assigned values. If `customizer` returns
-   * `undefined`, assignment is handled by the method instead. The `customizer`
-   * is invoked with five arguments: (objValue, srcValue, key, object, source).
-   *
-   * **Note:** This method mutates `object`.
-   *
-   * @static
-   * @memberOf _
-   * @since 4.0.0
-   * @alias extendWith
-   * @category Object
-   * @param {Object} object The destination object.
-   * @param {...Object} sources The source objects.
-   * @param {Function} [customizer] The function to customize assigned values.
-   * @returns {Object} Returns `object`.
-   * @see _.assignWith
-   * @example
-   *
-   * function customizer(objValue, srcValue) {
-   *   return _.isUndefined(objValue) ? srcValue : objValue;
-   * }
-   *
-   * var defaults = _.partialRight(_.assignInWith, customizer);
-   *
-   * defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
-   * // => { 'a': 1, 'b': 2 }
-   */
-  var assignInWith = createAssigner(function(object, source, srcIndex, customizer) {
-    copyObject(source, keysIn(source), object, customizer);
-  });
-
-  /**
-   * Creates a unary function that invokes `func` with its argument transformed.
-   *
-   * @private
-   * @param {Function} func The function to wrap.
-   * @param {Function} transform The argument transform.
-   * @returns {Function} Returns the new function.
-   */
-  function overArg(func, transform) {
-    return function(arg) {
-      return func(transform(arg));
-    };
-  }
-
-  /** Built-in value references. */
-  var getPrototype = overArg(Object.getPrototypeOf, Object);
-
-  /** `Object#toString` result references. */
-  var objectTag = '[object Object]';
-
-  /** Used for built-in method references. */
-  var funcProto = Function.prototype,
-      objectProto$3 = Object.prototype;
-
-  /** Used to resolve the decompiled source of functions. */
-  var funcToString = funcProto.toString;
-
-  /** Used to check objects for own properties. */
-  var hasOwnProperty$3 = objectProto$3.hasOwnProperty;
-
-  /** Used to infer the `Object` constructor. */
-  var objectCtorString = funcToString.call(Object);
-
-  /**
-   * Checks if `value` is a plain object, that is, an object created by the
-   * `Object` constructor or one with a `[[Prototype]]` of `null`.
-   *
-   * @static
-   * @memberOf _
-   * @since 0.8.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
-   * @example
-   *
-   * function Foo() {
-   *   this.a = 1;
-   * }
-   *
-   * _.isPlainObject(new Foo);
-   * // => false
-   *
-   * _.isPlainObject([1, 2, 3]);
-   * // => false
-   *
-   * _.isPlainObject({ 'x': 0, 'y': 0 });
-   * // => true
-   *
-   * _.isPlainObject(Object.create(null));
-   * // => true
-   */
-  function isPlainObject(value) {
-    if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
-      return false;
-    }
-    var proto = getPrototype(value);
-    if (proto === null) {
-      return true;
-    }
-    var Ctor = hasOwnProperty$3.call(proto, 'constructor') && proto.constructor;
-    return typeof Ctor == 'function' && Ctor instanceof Ctor &&
-      funcToString.call(Ctor) == objectCtorString;
-  }
-
-  /** `Object#toString` result references. */
-  var domExcTag = '[object DOMException]',
-      errorTag = '[object Error]';
-
-  /**
-   * Checks if `value` is an `Error`, `EvalError`, `RangeError`, `ReferenceError`,
-   * `SyntaxError`, `TypeError`, or `URIError` object.
-   *
-   * @static
-   * @memberOf _
-   * @since 3.0.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is an error object, else `false`.
-   * @example
-   *
-   * _.isError(new Error);
-   * // => true
-   *
-   * _.isError(Error);
-   * // => false
-   */
-  function isError(value) {
-    if (!isObjectLike(value)) {
-      return false;
-    }
-    var tag = baseGetTag(value);
-    return tag == errorTag || tag == domExcTag ||
-      (typeof value.message == 'string' && typeof value.name == 'string' && !isPlainObject(value));
-  }
-
-  /**
-   * Attempts to invoke `func`, returning either the result or the caught error
-   * object. Any additional arguments are provided to `func` when it's invoked.
-   *
-   * @static
-   * @memberOf _
-   * @since 3.0.0
-   * @category Util
-   * @param {Function} func The function to attempt.
-   * @param {...*} [args] The arguments to invoke `func` with.
-   * @returns {*} Returns the `func` result or error object.
-   * @example
-   *
-   * // Avoid throwing errors for invalid selectors.
-   * var elements = _.attempt(function(selector) {
-   *   return document.querySelectorAll(selector);
-   * }, '>_>');
-   *
-   * if (_.isError(elements)) {
-   *   elements = [];
-   * }
-   */
-  var attempt = baseRest(function(func, args) {
-    try {
-      return apply(func, undefined, args);
-    } catch (e) {
-      return isError(e) ? e : new Error(e);
-    }
-  });
-
-  /**
-   * A specialized version of `_.map` for arrays without support for iteratee
-   * shorthands.
-   *
-   * @private
-   * @param {Array} [array] The array to iterate over.
-   * @param {Function} iteratee The function invoked per iteration.
-   * @returns {Array} Returns the new mapped array.
-   */
-  function arrayMap(array, iteratee) {
-    var index = -1,
-        length = array == null ? 0 : array.length,
-        result = Array(length);
-
-    while (++index < length) {
-      result[index] = iteratee(array[index], index, array);
-    }
-    return result;
-  }
-
-  /**
-   * The base implementation of `_.values` and `_.valuesIn` which creates an
-   * array of `object` property values corresponding to the property names
-   * of `props`.
-   *
-   * @private
-   * @param {Object} object The object to query.
-   * @param {Array} props The property names to get values for.
-   * @returns {Object} Returns the array of property values.
-   */
-  function baseValues(object, props) {
-    return arrayMap(props, function(key) {
-      return object[key];
-    });
-  }
-
-  /** Used for built-in method references. */
-  var objectProto$2 = Object.prototype;
-
-  /** Used to check objects for own properties. */
-  var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
-
-  /**
-   * Used by `_.defaults` to customize its `_.assignIn` use to assign properties
-   * of source objects to the destination object for all destination properties
-   * that resolve to `undefined`.
-   *
-   * @private
-   * @param {*} objValue The destination value.
-   * @param {*} srcValue The source value.
-   * @param {string} key The key of the property to assign.
-   * @param {Object} object The parent object of `objValue`.
-   * @returns {*} Returns the value to assign.
-   */
-  function customDefaultsAssignIn(objValue, srcValue, key, object) {
-    if (objValue === undefined ||
-        (eq(objValue, objectProto$2[key]) && !hasOwnProperty$2.call(object, key))) {
-      return srcValue;
-    }
-    return objValue;
-  }
-
-  /** Used to escape characters for inclusion in compiled string literals. */
-  var stringEscapes = {
-    '\\': '\\',
-    "'": "'",
-    '\n': 'n',
-    '\r': 'r',
-    '\u2028': 'u2028',
-    '\u2029': 'u2029'
-  };
-
-  /**
-   * Used by `_.template` to escape characters for inclusion in compiled string literals.
-   *
-   * @private
-   * @param {string} chr The matched character to escape.
-   * @returns {string} Returns the escaped character.
-   */
-  function escapeStringChar(chr) {
-    return '\\' + stringEscapes[chr];
-  }
-
-  /* Built-in method references for those with the same name as other `lodash` methods. */
-  var nativeKeys = overArg(Object.keys, Object);
-
-  /** Used for built-in method references. */
-  var objectProto$1 = Object.prototype;
-
-  /** Used to check objects for own properties. */
-  var hasOwnProperty$1 = objectProto$1.hasOwnProperty;
-
-  /**
-   * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
-   *
-   * @private
-   * @param {Object} object The object to query.
-   * @returns {Array} Returns the array of property names.
-   */
-  function baseKeys(object) {
-    if (!isPrototype(object)) {
-      return nativeKeys(object);
-    }
-    var result = [];
-    for (var key in Object(object)) {
-      if (hasOwnProperty$1.call(object, key) && key != 'constructor') {
-        result.push(key);
-      }
-    }
-    return result;
-  }
-
-  /**
-   * Creates an array of the own enumerable property names of `object`.
-   *
-   * **Note:** Non-object values are coerced to objects. See the
-   * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
-   * for more details.
-   *
-   * @static
-   * @since 0.1.0
-   * @memberOf _
-   * @category Object
-   * @param {Object} object The object to query.
-   * @returns {Array} Returns the array of property names.
-   * @example
-   *
-   * function Foo() {
-   *   this.a = 1;
-   *   this.b = 2;
-   * }
-   *
-   * Foo.prototype.c = 3;
-   *
-   * _.keys(new Foo);
-   * // => ['a', 'b'] (iteration order is not guaranteed)
-   *
-   * _.keys('hi');
-   * // => ['0', '1']
-   */
-  function keys(object) {
-    return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
-  }
-
-  /** Used to match template delimiters. */
-  var reInterpolate = /<%=([\s\S]+?)%>/g;
-
-  /**
-   * The base implementation of `_.propertyOf` without support for deep paths.
-   *
-   * @private
-   * @param {Object} object The object to query.
-   * @returns {Function} Returns the new accessor function.
-   */
-  function basePropertyOf(object) {
-    return function(key) {
-      return object == null ? undefined : object[key];
-    };
-  }
-
-  /** Used to map characters to HTML entities. */
-  var htmlEscapes = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;'
-  };
-
-  /**
-   * Used by `_.escape` to convert characters to HTML entities.
-   *
-   * @private
-   * @param {string} chr The matched character to escape.
-   * @returns {string} Returns the escaped character.
-   */
-  var escapeHtmlChar = basePropertyOf(htmlEscapes);
-
-  /** `Object#toString` result references. */
-  var symbolTag = '[object Symbol]';
-
-  /**
-   * Checks if `value` is classified as a `Symbol` primitive or object.
-   *
-   * @static
-   * @memberOf _
-   * @since 4.0.0
-   * @category Lang
-   * @param {*} value The value to check.
-   * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
-   * @example
-   *
-   * _.isSymbol(Symbol.iterator);
-   * // => true
-   *
-   * _.isSymbol('abc');
-   * // => false
-   */
-  function isSymbol(value) {
-    return typeof value == 'symbol' ||
-      (isObjectLike(value) && baseGetTag(value) == symbolTag);
-  }
-
-  /** Used as references for various `Number` constants. */
-  var INFINITY = 1 / 0;
-
-  /** Used to convert symbols to primitives and strings. */
-  var symbolProto = Symbol ? Symbol.prototype : undefined,
-      symbolToString = symbolProto ? symbolProto.toString : undefined;
-
-  /**
-   * The base implementation of `_.toString` which doesn't convert nullish
-   * values to empty strings.
-   *
-   * @private
-   * @param {*} value The value to process.
-   * @returns {string} Returns the string.
-   */
-  function baseToString(value) {
-    // Exit early for strings to avoid a performance hit in some environments.
-    if (typeof value == 'string') {
-      return value;
-    }
-    if (isArray(value)) {
-      // Recursively convert values (susceptible to call stack limits).
-      return arrayMap(value, baseToString) + '';
-    }
-    if (isSymbol(value)) {
-      return symbolToString ? symbolToString.call(value) : '';
-    }
-    var result = (value + '');
-    return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
-  }
-
-  /**
-   * Converts `value` to a string. An empty string is returned for `null`
-   * and `undefined` values. The sign of `-0` is preserved.
-   *
-   * @static
-   * @memberOf _
-   * @since 4.0.0
-   * @category Lang
-   * @param {*} value The value to convert.
-   * @returns {string} Returns the converted string.
-   * @example
-   *
-   * _.toString(null);
-   * // => ''
-   *
-   * _.toString(-0);
-   * // => '-0'
-   *
-   * _.toString([1, 2, 3]);
-   * // => '1,2,3'
-   */
-  function toString(value) {
-    return value == null ? '' : baseToString(value);
-  }
-
-  /** Used to match HTML entities and HTML characters. */
-  var reUnescapedHtml = /[&<>"']/g,
-      reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
-
-  /**
-   * Converts the characters "&", "<", ">", '"', and "'" in `string` to their
-   * corresponding HTML entities.
-   *
-   * **Note:** No other characters are escaped. To escape additional
-   * characters use a third-party library like [_he_](https://mths.be/he).
-   *
-   * Though the ">" character is escaped for symmetry, characters like
-   * ">" and "/" don't need escaping in HTML and have no special meaning
-   * unless they're part of a tag or unquoted attribute value. See
-   * [Mathias Bynens's article](https://mathiasbynens.be/notes/ambiguous-ampersands)
-   * (under "semi-related fun fact") for more details.
-   *
-   * When working with HTML you should always
-   * [quote attribute values](http://wonko.com/post/html-escaping) to reduce
-   * XSS vectors.
-   *
-   * @static
-   * @since 0.1.0
-   * @memberOf _
-   * @category String
-   * @param {string} [string=''] The string to escape.
-   * @returns {string} Returns the escaped string.
-   * @example
-   *
-   * _.escape('fred, barney, & pebbles');
-   * // => 'fred, barney, &amp; pebbles'
-   */
-  function escape(string) {
-    string = toString(string);
-    return (string && reHasUnescapedHtml.test(string))
-      ? string.replace(reUnescapedHtml, escapeHtmlChar)
-      : string;
-  }
-
-  /** Used to match template delimiters. */
-  var reEscape = /<%-([\s\S]+?)%>/g;
-
-  /** Used to match template delimiters. */
-  var reEvaluate = /<%([\s\S]+?)%>/g;
-
-  /**
-   * By default, the template delimiters used by lodash are like those in
-   * embedded Ruby (ERB) as well as ES2015 template strings. Change the
-   * following template settings to use alternative delimiters.
-   *
-   * @static
-   * @memberOf _
-   * @type {Object}
-   */
-  var templateSettings = {
-
-    /**
-     * Used to detect `data` property values to be HTML-escaped.
-     *
-     * @memberOf _.templateSettings
-     * @type {RegExp}
-     */
-    'escape': reEscape,
-
-    /**
-     * Used to detect code to be evaluated.
-     *
-     * @memberOf _.templateSettings
-     * @type {RegExp}
-     */
-    'evaluate': reEvaluate,
-
-    /**
-     * Used to detect `data` property values to inject.
-     *
-     * @memberOf _.templateSettings
-     * @type {RegExp}
-     */
-    'interpolate': reInterpolate,
-
-    /**
-     * Used to reference the data object in the template text.
-     *
-     * @memberOf _.templateSettings
-     * @type {string}
-     */
-    'variable': '',
-
-    /**
-     * Used to import variables into the compiled template.
-     *
-     * @memberOf _.templateSettings
-     * @type {Object}
-     */
-    'imports': {
-
-      /**
-       * A reference to the `lodash` function.
-       *
-       * @memberOf _.templateSettings.imports
-       * @type {Function}
-       */
-      '_': { 'escape': escape }
-    }
-  };
-
-  /** Error message constants. */
-  var INVALID_TEMPL_VAR_ERROR_TEXT = 'Invalid `variable` option passed into `_.template`';
-
-  /** Used to match empty string literals in compiled template source. */
-  var reEmptyStringLeading = /\b__p \+= '';/g,
-      reEmptyStringMiddle = /\b(__p \+=) '' \+/g,
-      reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
-
-  /**
-   * Used to validate the `validate` option in `_.template` variable.
-   *
-   * Forbids characters which could potentially change the meaning of the function argument definition:
-   * - "()," (modification of function parameters)
-   * - "=" (default value)
-   * - "[]{}" (destructuring of function parameters)
-   * - "/" (beginning of a comment)
-   * - whitespace
-   */
-  var reForbiddenIdentifierChars = /[()=,{}\[\]\/\s]/;
-
-  /**
-   * Used to match
-   * [ES template delimiters](http://ecma-international.org/ecma-262/7.0/#sec-template-literal-lexical-components).
-   */
-  var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
-
-  /** Used to ensure capturing order of template delimiters. */
-  var reNoMatch = /($^)/;
-
-  /** Used to match unescaped characters in compiled string literals. */
-  var reUnescapedString = /['\n\r\u2028\u2029\\]/g;
-
-  /** Used for built-in method references. */
-  var objectProto = Object.prototype;
-
-  /** Used to check objects for own properties. */
-  var hasOwnProperty = objectProto.hasOwnProperty;
-
-  /**
-   * Creates a compiled template function that can interpolate data properties
-   * in "interpolate" delimiters, HTML-escape interpolated data properties in
-   * "escape" delimiters, and execute JavaScript in "evaluate" delimiters. Data
-   * properties may be accessed as free variables in the template. If a setting
-   * object is given, it takes precedence over `_.templateSettings` values.
-   *
-   * **Note:** In the development build `_.template` utilizes
-   * [sourceURLs](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl)
-   * for easier debugging.
-   *
-   * For more information on precompiling templates see
-   * [lodash's custom builds documentation](https://lodash.com/custom-builds).
-   *
-   * For more information on Chrome extension sandboxes see
-   * [Chrome's extensions documentation](https://developer.chrome.com/extensions/sandboxingEval).
-   *
-   * @static
-   * @since 0.1.0
-   * @memberOf _
-   * @category String
-   * @param {string} [string=''] The template string.
-   * @param {Object} [options={}] The options object.
-   * @param {RegExp} [options.escape=_.templateSettings.escape]
-   *  The HTML "escape" delimiter.
-   * @param {RegExp} [options.evaluate=_.templateSettings.evaluate]
-   *  The "evaluate" delimiter.
-   * @param {Object} [options.imports=_.templateSettings.imports]
-   *  An object to import into the template as free variables.
-   * @param {RegExp} [options.interpolate=_.templateSettings.interpolate]
-   *  The "interpolate" delimiter.
-   * @param {string} [options.sourceURL='templateSources[n]']
-   *  The sourceURL of the compiled template.
-   * @param {string} [options.variable='obj']
-   *  The data object variable name.
-   * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
-   * @returns {Function} Returns the compiled template function.
-   * @example
-   *
-   * // Use the "interpolate" delimiter to create a compiled template.
-   * var compiled = _.template('hello <%= user %>!');
-   * compiled({ 'user': 'fred' });
-   * // => 'hello fred!'
-   *
-   * // Use the HTML "escape" delimiter to escape data property values.
-   * var compiled = _.template('<b><%- value %></b>');
-   * compiled({ 'value': '<script>' });
-   * // => '<b>&lt;script&gt;</b>'
-   *
-   * // Use the "evaluate" delimiter to execute JavaScript and generate HTML.
-   * var compiled = _.template('<% _.forEach(users, function(user) { %><li><%- user %></li><% }); %>');
-   * compiled({ 'users': ['fred', 'barney'] });
-   * // => '<li>fred</li><li>barney</li>'
-   *
-   * // Use the internal `print` function in "evaluate" delimiters.
-   * var compiled = _.template('<% print("hello " + user); %>!');
-   * compiled({ 'user': 'barney' });
-   * // => 'hello barney!'
-   *
-   * // Use the ES template literal delimiter as an "interpolate" delimiter.
-   * // Disable support by replacing the "interpolate" delimiter.
-   * var compiled = _.template('hello ${ user }!');
-   * compiled({ 'user': 'pebbles' });
-   * // => 'hello pebbles!'
-   *
-   * // Use backslashes to treat delimiters as plain text.
-   * var compiled = _.template('<%= "\\<%- value %\\>" %>');
-   * compiled({ 'value': 'ignored' });
-   * // => '<%- value %>'
-   *
-   * // Use the `imports` option to import `jQuery` as `jq`.
-   * var text = '<% jq.each(users, function(user) { %><li><%- user %></li><% }); %>';
-   * var compiled = _.template(text, { 'imports': { 'jq': jQuery } });
-   * compiled({ 'users': ['fred', 'barney'] });
-   * // => '<li>fred</li><li>barney</li>'
-   *
-   * // Use the `sourceURL` option to specify a custom sourceURL for the template.
-   * var compiled = _.template('hello <%= user %>!', { 'sourceURL': '/basic/greeting.jst' });
-   * compiled(data);
-   * // => Find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector.
-   *
-   * // Use the `variable` option to ensure a with-statement isn't used in the compiled template.
-   * var compiled = _.template('hi <%= data.user %>!', { 'variable': 'data' });
-   * compiled.source;
-   * // => function(data) {
-   * //   var __t, __p = '';
-   * //   __p += 'hi ' + ((__t = ( data.user )) == null ? '' : __t) + '!';
-   * //   return __p;
-   * // }
-   *
-   * // Use custom template delimiters.
-   * _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
-   * var compiled = _.template('hello {{ user }}!');
-   * compiled({ 'user': 'mustache' });
-   * // => 'hello mustache!'
-   *
-   * // Use the `source` property to inline compiled templates for meaningful
-   * // line numbers in error messages and stack traces.
-   * fs.writeFileSync(path.join(process.cwd(), 'jst.js'), '\
-   *   var JST = {\
-   *     "main": ' + _.template(mainText).source + '\
-   *   };\
-   * ');
-   */
-  function template(string, options, guard) {
-    // Based on John Resig's `tmpl` implementation
-    // (http://ejohn.org/blog/javascript-micro-templating/)
-    // and Laura Doktorova's doT.js (https://github.com/olado/doT).
-    var settings = templateSettings.imports._.templateSettings || templateSettings;
-    string = toString(string);
-    options = assignInWith({}, options, settings, customDefaultsAssignIn);
-
-    var imports = assignInWith({}, options.imports, settings.imports, customDefaultsAssignIn),
-        importsKeys = keys(imports),
-        importsValues = baseValues(imports, importsKeys);
-
-    var isEscaping,
-        isEvaluating,
-        index = 0,
-        interpolate = options.interpolate || reNoMatch,
-        source = "__p += '";
-
-    // Compile the regexp to match each delimiter.
-    var reDelimiters = RegExp(
-      (options.escape || reNoMatch).source + '|' +
-      interpolate.source + '|' +
-      (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + '|' +
-      (options.evaluate || reNoMatch).source + '|$'
-    , 'g');
-
-    // Use a sourceURL for easier debugging.
-    // The sourceURL gets injected into the source that's eval-ed, so be careful
-    // to normalize all kinds of whitespace, so e.g. newlines (and unicode versions of it) can't sneak in
-    // and escape the comment, thus injecting code that gets evaled.
-    var sourceURL = hasOwnProperty.call(options, 'sourceURL')
-      ? ('//# sourceURL=' +
-         (options.sourceURL + '').replace(/\s/g, ' ') +
-         '\n')
-      : '';
-
-    string.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
-      interpolateValue || (interpolateValue = esTemplateValue);
-
-      // Escape characters that can't be included in string literals.
-      source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
-
-      // Replace delimiters with snippets.
-      if (escapeValue) {
-        isEscaping = true;
-        source += "' +\n__e(" + escapeValue + ") +\n'";
-      }
-      if (evaluateValue) {
-        isEvaluating = true;
-        source += "';\n" + evaluateValue + ";\n__p += '";
-      }
-      if (interpolateValue) {
-        source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
-      }
-      index = offset + match.length;
-
-      // The JS engine embedded in Adobe products needs `match` returned in
-      // order to produce the correct `offset` value.
-      return match;
-    });
-
-    source += "';\n";
-
-    // If `variable` is not specified wrap a with-statement around the generated
-    // code to add the data object to the top of the scope chain.
-    var variable = hasOwnProperty.call(options, 'variable') && options.variable;
-    if (!variable) {
-      source = 'with (obj) {\n' + source + '\n}\n';
-    }
-    // Throw an error if a forbidden character was found in `variable`, to prevent
-    // potential command injection attacks.
-    else if (reForbiddenIdentifierChars.test(variable)) {
-      throw new Error(INVALID_TEMPL_VAR_ERROR_TEXT);
-    }
-
-    // Cleanup code by stripping empty strings.
-    source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
-      .replace(reEmptyStringMiddle, '$1')
-      .replace(reEmptyStringTrailing, '$1;');
-
-    // Frame code as the function body.
-    source = 'function(' + (variable || 'obj') + ') {\n' +
-      (variable
-        ? ''
-        : 'obj || (obj = {});\n'
-      ) +
-      "var __t, __p = ''" +
-      (isEscaping
-         ? ', __e = _.escape'
-         : ''
-      ) +
-      (isEvaluating
-        ? ', __j = Array.prototype.join;\n' +
-          "function print() { __p += __j.call(arguments, '') }\n"
-        : ';\n'
-      ) +
-      source +
-      'return __p\n}';
-
-    var result = attempt(function() {
-      return Function(importsKeys, sourceURL + 'return ' + source)
-        .apply(undefined, importsValues);
-    });
-
-    // Provide the compiled function's source by its `toString` method or
-    // the `source` property as a convenience for inlining compiled templates.
-    result.source = source;
-    if (isError(result)) {
-      throw result;
-    }
-    return result;
-  }
-
-  /* global bootstrap   */
-
-
-  // toast组件的模板
-  const TPL$1 = `
-              <div class="toast <%= toastClass %>  overflow-hidden" id="<%= id %>"  role="alert" aria-live="assertive" aria-atomic="true">
-                
-                <% if ( config.content !== '') { %>
-                    <div class="toast-body">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <span><%= config.content %></span>
-                            <% if ( config.btnClose === true ) { %>
-                            <button type="button" class="btn-close <% if ( enableBtnCloseWhite ) { %> btn-close-white  <% } %>" data-bs-dismiss="toast" aria-label="Close"></button>
-                             <% } %>
-                        </div>
-                    </div>
-                <% }else { %>
-                
-                <% if ( config.image !== '' || config.title !== '' ) { %>
-                    <div class="toast-header">
-                      <% if ( config.image !== '' ) { %>
-                      <img src="<%= config.image %>" style="height: <%= config.imageHeight %>" class="rounded me-2" alt="<%= config.imageAlt %>">
-                      <% } %>
-                      <strong class="me-auto"><%= config.title %></strong>
-                      <small><%= config.subTitle %></small>
-                      <% if ( config.btnClose === true ) { %>
-                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                      <% } %>
-                    </div>
-                    <% } %>
-                    
-                    <div class="toast-body">
-                    <%= config.body %>
-                    </div>
-                
-                <% } %>
-                
-                <% if ( config.autohide === true ) { %>
-                    <div style="height: 4px" class="progress" role="progressbar">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated <%= progressClass %>" 
-                        style="animation: progress <%= config.delay %>ms linear forwards">
-                        </div>
-                    </div>
-                <% } %>
-              </div>`;
-
-  //用于唯一id标志累计
-  let i$1 = 0;
-  class Toasts {
-    constructor(config) {
-      // let _this = this;
-      this._config = config;
-      i$1++;
-
-      //准备容器
-      this._buildContainer();
-
-      //得到一个唯一id,用于查找dom
-      this.id = 'bsa-toast-' + i$1;
-
-      //模板引擎来组合dom
-      let tpl = template(TPL$1)({
-        id: this.id,
-        config: this._config,
-        toastClass: this._getToastColorSchemesClass(),
-        progressClass: this._getProgressClassColorSchemesClass(),
-        enableBtnCloseWhite: this._enableBtnCloseWhite()
-      });
-      let containerSelecter = this._getContainerClass();
-
-      //找到这个容器并把toast插入进去
-      $(`.toast-container.${containerSelecter}`).append(tpl);
-
-      //再次查找dom并存到对象属性上
-      this.element = document.getElementById(this.id);
-
-      //nwe bootstrap的Toast实例
-      this.bootstrapToast = new bootstrap.Toast(this.element, {
-        animation: this._config.animation,
-        autohide: false
-      });
-
-      //事件注册和监听
-
-      //进度条事件处理,必须要autohide===true的时候才会启用此选项
-      if (this._config.autohide === true) {
-        this._progressEvent();
-      }
-      this.element.addEventListener('show.bs.toast', () => {
-        if (this._config.onShow !== null) {
-          this._config.onShow(this);
-        }
-      });
-      this.element.addEventListener('shown.bs.toast', () => {
-        if (this._config.onShown !== null) {
-          this._config.onShown(this);
-        }
-      });
-      this.element.addEventListener('hide.bs.toast', () => {
-        if (this._config.onHide !== null) {
-          this._config.onHide(this);
-        }
-      });
-      this.element.addEventListener('hidden.bs.toast', () => {
-        if (this._config.onHidden !== null) {
-          this._config.onHidden(this);
-        }
-      });
-
-      //直接调用显示的方法
-      this.bootstrapToast.show();
-    }
-    _progressEvent() {
-      let _this = this;
-      if (_this._config.hoverProgressPause === true) {
-        $(this.element).mouseenter(() => {
-          $(this.element).addClass('bsa-toast-pause');
-        });
-
-        //鼠标移出
-        $(this.element).mouseleave(() => {
-          $(this.element).removeClass('bsa-toast-pause');
-        });
-      }
-
-      //监听滚动条读条动画完毕事件
-      $(this.element).on('animationend', '.progress-bar', function (e) {
-        if (e.target === e.currentTarget) {
-          //手动隐藏
-          _this.hide();
-        }
-      });
-    }
-    _getContainerClass(selecterMode = true) {
-      //根据访问来取对应的类名
-      switch (this._config.placement) {
-        case 'top-left':
-          return selecterMode ? 'top-0.start-0' : 'top-0 start-0';
-        case 'top-center':
-          return selecterMode ? 'top-0.start-50.translate-middle-x' : 'top-0 start-50 translate-middle-x';
-        case 'top-right':
-          return selecterMode ? 'top-0.end-0' : 'top-0 end-0';
-        case 'middle-left':
-          return selecterMode ? 'top-50.start-0.translate-middle-y' : 'top-50 start-0 translate-middle-y';
-        case 'middle-center':
-          return selecterMode ? 'top-50.start-50.translate-middle' : 'top-50 start-50 translate-middle';
-        case 'middle-right':
-          return selecterMode ? 'top-50.end-0.translate-middle-y' : 'top-50 end-0 translate-middle-y';
-        case 'bottom-left':
-          return selecterMode ? 'bottom-0.start-0' : 'bottom-0 start-0';
-        case 'bottom-center':
-          return selecterMode ? 'bottom-0.start-50.translate-middle-x' : 'bottom-0 start-50 translate-middle-x';
-        case 'bottom-right':
-          return selecterMode ? 'bottom-0.end-0' : 'bottom-0 end-0';
-        default:
-          return selecterMode ? 'top-0.end-0' : 'top-0 end-0';
-      }
-    }
-    _getToastColorSchemesClass() {
-      //根据访问来取对应的类名
-      switch (this._config.type) {
-        case 'primary':
-          return 'text-bg-primary border-0';
-        case 'secondary':
-          return 'text-bg-secondary border-0';
-        case 'success':
-          return 'text-bg-success border-0';
-        case 'danger':
-          return 'text-bg-danger border-0';
-        case 'warning':
-          return 'text-bg-warning border-0';
-        case 'info':
-          return 'text-bg-info border-0';
-        case 'dark':
-          return 'text-bg-dark border-0';
-        case 'light':
-          return 'text-bg-light border-0';
-        default:
+    },
+    sprintf(_str, ...args) {
+      let flag = true;
+      let i = 0;
+      const str = _str.replace(/%s/g, () => {
+        const arg = args[i++];
+        if (typeof arg === 'undefined') {
+          flag = false;
           return '';
-      }
+        }
+        return arg;
+      });
+      return flag ? str : '';
     }
-    _enableBtnCloseWhite() {
-      //根据访问来取对应的类名
-      switch (this._config.type) {
-        case 'primary':
-          return true;
-        case 'secondary':
-          return true;
-        case 'success':
-          return true;
-        case 'danger':
-          return true;
-        case 'warning':
-          return false;
-        case 'info':
-          return false;
-        case 'dark':
-          return true;
-        case 'light':
-          return false;
-        default:
-          return false;
-      }
-    }
-    _getProgressClassColorSchemesClass() {
-      //根据访问来取对应的类名
-      switch (this._config.type) {
-        case 'primary':
-          return 'bg-primary';
-        case 'secondary':
-          return 'bg-secondary';
-        case 'success':
-          return 'bg-success';
-        case 'danger':
-          return 'bg-danger';
-        case 'warning':
-          return 'bg-warning';
-        case 'info':
-          return 'bg-info';
-        case 'dark':
-          return 'bg-dark';
-        case 'light':
-          //如果是light那么给进度条变成bg-secondary 因为 bg-light根本看不见
-          return 'bg-secondary';
-        default:
-          return '';
-      }
-    }
-    _buildContainer() {
-      //判断容器是否存在，存在就创建并添加到body中
-      let containerSelecter = this._getContainerClass();
-      let containerClass = this._getContainerClass(false);
-      let containerDomStr = ` <div class="toast-container position-fixed ${containerClass}  p-3"></div>`;
-      if ($(`.toast-container.${containerSelecter}`).length === 0) {
-        $(containerDomStr).appendTo('body');
-      }
-    }
-    hide() {
-      this.bootstrapToast.hide();
-    }
-  }
-  $.extend({
-    toasts: function (options, option2) {
-      let def = $.extend({}, $.toasts.default, options);
+  };
 
-      //new实例
-      return new Toasts(def);
+  const NAME$c = 'toasts';
+  const ClassName$3 = {
+    //白色按钮
+    BTN_CLOSE_WHITE: 'btn-close-white',
+    //容器的类名
+    TOAST_CONTAINER: 'toast-container',
+    //动画暂停类
+    TOAST_PAUSE: 'bsa-toast-pause',
+    //body关闭按钮的修饰类
+    TOAST_BODY_BTN_CLASS: 'me-2 m-auto'
+  };
+  const ICONS = {
+    success: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-success me-2" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+  <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+</svg>`,
+    error: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-danger me-2" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>`,
+    warning: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-warning me-2" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+</svg>`,
+    info: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-info me-2" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+</svg>`
+  };
+
+  //html的构造
+  const HTML$2 = {
+    //容器
+    container: [`<div class="${ClassName$3.TOAST_CONTAINER} position-fixed %s p-3">`, `</div>`],
+    //吐司
+    toast: [`<div class="toast %s border-0  overflow-hidden" id="%s"  role="alert" aria-live="assertive" aria-atomic="true">`, '</div>'],
+    //身体的容器
+    toastBodyWrapper: [`<div class="d-flex">`, `</div>`],
+    //身体
+    toastBody: `<div class="toast-body">%s</div>`,
+    //参数1: 白色按钮 参数2:没有标题时的关闭按钮需要再多两个修饰类 me-2 m-auto
+    btnClose: `<button type="button" class="btn-close %s %s" data-bs-dismiss="toast" aria-label="Close"></button>`,
+    //参数1:主题色适配
+    toastHeader: [`<div class="toast-header %s">`, `</div>`],
+    headerImg: `<img src="%s" height="%s" class="rounded me-2" alt="%s">`,
+    headerTitle: `<strong class="me-auto">%s</strong>`,
+    headerSubTitle: '<small>%s</small>',
+    progress: `<div style="height: 4px" class="progress" role="progressbar">
+         <div class="progress-bar progress-bar-striped progress-bar-animated %s"
+                        style="animation: progress %sms linear forwards"></div></div>`
+  };
+
+  // 需要白色关闭按钮的情景
+  const needWhiteCloseBtnType = ['primary', 'secondary', 'success', 'danger', 'dark'];
+  const Map$2 = {
+    //主题色
+    toastColorScheme: {
+      primary: 'text-bg-primary',
+      secondary: 'text-bg-secondary',
+      success: 'text-bg-success',
+      danger: 'text-bg-danger',
+      warning: 'text-bg-warning',
+      info: 'text-bg-info',
+      dark: 'text-bg-dark',
+      light: 'text-bg-light'
+    },
+    //主题色
+    toastHeaderColorScheme: {
+      primary: 'border-bottom border-primary-subtle text-bg-primary',
+      secondary: 'border-bottom border-secondary-subtle text-bg-secondary',
+      success: 'border-bottom border-success-subtle text-bg-success',
+      danger: 'border-bottom border-danger-subtle text-bg-danger',
+      warning: 'border-bottom border-warning-subtle text-bg-warning',
+      info: 'border-bottom border-info-subtle text-bg-info',
+      dark: 'border-bottom border-dark-subtle text-bg-dark',
+      light: 'border-bottom border-light-subtle text-bg-light'
+    },
+    progressColorScheme: {
+      primary: 'bg-primary',
+      secondary: 'bg-secondary',
+      success: 'bg-success',
+      danger: 'bg-danger',
+      warning: 'bg-warning',
+      info: 'bg-info',
+      dark: 'bg-dark',
+      light: 'bg-light'
+    },
+    placement: {
+      'top-left': 'top-0 start-0',
+      'top-center': 'top-0 start-50 translate-middle-x',
+      'top-right': 'top-0 end-0',
+      'middle-left': 'top-50 start-0 translate-middle-y',
+      'middle-center': 'top-50 start-50 translate-middle',
+      'middle-right': 'top-50 end-0 translate-middle-y',
+      'bottom-left': 'bottom-0 start-0',
+      'bottom-center': 'bottom-0 start-50 translate-middle-x',
+      'bottom-right': 'bottom-0 end-0'
     }
-  });
-  $.toasts.default = {
+  };
+
+  //默认参数
+  const Default$c = {
+    // 惰性打开
+    lazyOpen: false,
+    //打开的窗口对象
+    window: 'top',
     //鼠标移入进度条暂停
     hoverProgressPause: true,
-    //toast是否添加关闭按钮
+    //是否添加关闭按钮,如果标题 title选项被定义，那么该关闭按钮则是头部的关闭按钮，否则则是body的关闭按钮
     btnClose: true,
     //标题
     title: '',
-    //内容
-    content: '',
-    //图片
+    //图片，title不为空时有效
     image: '',
-    //图片的高度
+    //图片的高度,title不为空时有效
     imageHeight: '25px',
+    //图片的提示 title不为空时有效
     imageAlt: '',
-    //副标题
+    //副标题 title不为空时有效
     subTitle: '',
-    //正文内容此选项完全可以自定义body的内容
+    //身体部分的内容
     body: '',
     //index
     zIndex: 1081,
@@ -3008,8 +324,8 @@
     delay: 5000,
     //方位 可用值：top-left,top-center, top-left, middle-left,middle-center,middle-right,bottom-left,bottom-center,bottom-right
     placement: 'top-right',
-    //情景模式
-    type: 'primary',
+    //情景模式 undefined/string 可用值:primary success info  warning danger light dark
+    type: undefined,
     //事件
     onShow: null,
     onShown: null,
@@ -3017,37 +333,326 @@
     onHidden: null
   };
 
-  const NAME$1 = 'PushMenu';
-  const DATA_KEY$2 = 'bsa.pushmenu';
-  const EVENT_KEY$1 = `.${DATA_KEY$2}`;
-  const JQUERY_NO_CONFLICT$1 = $.fn[NAME$1];
+  //用于唯一id标志累计
+  let i$1 = 0;
+  var _config$c = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _id$1 = /*#__PURE__*/_classPrivateFieldLooseKey("id");
+  var _container = /*#__PURE__*/_classPrivateFieldLooseKey("container");
+  var _toast = /*#__PURE__*/_classPrivateFieldLooseKey("toast");
+  var _toastInstance = /*#__PURE__*/_classPrivateFieldLooseKey("toastInstance");
+  var _$$2 = /*#__PURE__*/_classPrivateFieldLooseKey("$");
+  var _bootstrap$1 = /*#__PURE__*/_classPrivateFieldLooseKey("bootstrap");
+  var _bindEvents$1 = /*#__PURE__*/_classPrivateFieldLooseKey("bindEvents");
+  var _progressEvents = /*#__PURE__*/_classPrivateFieldLooseKey("progressEvents");
+  var _buildToast = /*#__PURE__*/_classPrivateFieldLooseKey("buildToast");
+  var _buildContainer = /*#__PURE__*/_classPrivateFieldLooseKey("buildContainer");
+  class Toasts {
+    constructor(config) {
+      Object.defineProperty(this, _buildContainer, {
+        value: _buildContainer2
+      });
+      Object.defineProperty(this, _buildToast, {
+        value: _buildToast2
+      });
+      // 进度条的事件
+      Object.defineProperty(this, _progressEvents, {
+        value: _progressEvents2
+      });
+      Object.defineProperty(this, _bindEvents$1, {
+        value: _bindEvents2$1
+      });
+      Object.defineProperty(this, _config$c, {
+        writable: true,
+        value: void 0
+      });
+      //唯一id
+      Object.defineProperty(this, _id$1, {
+        writable: true,
+        value: void 0
+      });
+      //容器元素
+      Object.defineProperty(this, _container, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _toast, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _toastInstance, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _$$2, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _bootstrap$1, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$c)[_config$c] = config;
 
-  //折叠开始
-  const EVENT_COLLAPSE = `collapse${EVENT_KEY$1}`;
-  //折叠完毕
-  const EVENT_COLLAPSED$1 = `collapsed${EVENT_KEY$1}`;
+      //更改触发的全局对象
+      _classPrivateFieldLooseBase(this, _$$2)[_$$2] = window[_classPrivateFieldLooseBase(this, _config$c)[_config$c].window].$;
+      _classPrivateFieldLooseBase(this, _bootstrap$1)[_bootstrap$1] = window[_classPrivateFieldLooseBase(this, _config$c)[_config$c].window].bootstrap;
+      i$1++;
+      _classPrivateFieldLooseBase(this, _id$1)[_id$1] = i$1;
 
-  //展开开始
-  const EVENT_EXPAND = `expand${EVENT_KEY$1}`;
+      //准备容器
+      _classPrivateFieldLooseBase(this, _buildContainer)[_buildContainer]();
 
-  //展开完毕
-  const EVENT_EXPANDED$1 = `expanded${EVENT_KEY$1}`;
-  const SELECTOR_TOGGLE_BUTTON = '[data-bsa-toggle="pushmenu"]';
+      //nwe bootstrap的Toast实例
+      _classPrivateFieldLooseBase(this, _toastInstance)[_toastInstance] = new (_classPrivateFieldLooseBase(this, _bootstrap$1)[_bootstrap$1].Toast)(_classPrivateFieldLooseBase(this, _toast)[_toast][0], {
+        animation: _classPrivateFieldLooseBase(this, _config$c)[_config$c].animation,
+        autohide: false
+      });
+
+      //事件注册和监听
+      _classPrivateFieldLooseBase(this, _bindEvents$1)[_bindEvents$1]();
+      if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].lazyOpen === false) {
+        //直接弹出
+        this.show();
+      }
+    }
+    show() {
+      _classPrivateFieldLooseBase(this, _toastInstance)[_toastInstance].show();
+    }
+    hide() {
+      _classPrivateFieldLooseBase(this, _toastInstance)[_toastInstance].hide();
+    }
+  }
+
+  /**
+   * jQuery 全局函数 API
+   * ====================================================
+   */
+  function _bindEvents2$1() {
+    //进度条事件处理,必须要autohide===true的时候才会启用此选项
+    if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].autohide === true) {
+      _classPrivateFieldLooseBase(this, _progressEvents)[_progressEvents]();
+    }
+    _classPrivateFieldLooseBase(this, _toast)[_toast][0].addEventListener('show.bs.toast', () => {
+      typeof _classPrivateFieldLooseBase(this, _config$c)[_config$c].onShow === 'function' && _classPrivateFieldLooseBase(this, _config$c)[_config$c].onShow.call(this);
+    });
+    _classPrivateFieldLooseBase(this, _toast)[_toast][0].addEventListener('shown.bs.toast', () => {
+      typeof _classPrivateFieldLooseBase(this, _config$c)[_config$c].onShown === 'function' && _classPrivateFieldLooseBase(this, _config$c)[_config$c].onShown.call(this);
+    });
+    _classPrivateFieldLooseBase(this, _toast)[_toast][0].addEventListener('hide.bs.toast', () => {
+      typeof _classPrivateFieldLooseBase(this, _config$c)[_config$c].onHide === 'function' && _classPrivateFieldLooseBase(this, _config$c)[_config$c].onHide.call(this);
+    });
+    _classPrivateFieldLooseBase(this, _toast)[_toast][0].addEventListener('hidden.bs.toast', () => {
+      typeof _classPrivateFieldLooseBase(this, _config$c)[_config$c].onHidden === 'function' && _classPrivateFieldLooseBase(this, _config$c)[_config$c].onHidden.call(this);
+      //直接删除该toast
+      _classPrivateFieldLooseBase(this, _toast)[_toast].remove();
+      if (_classPrivateFieldLooseBase(this, _container)[_container].children().length === 0) {
+        _classPrivateFieldLooseBase(this, _container)[_container].remove();
+      }
+    });
+  }
+  function _progressEvents2() {
+    let that = this;
+    if (_classPrivateFieldLooseBase(that, _config$c)[_config$c].hoverProgressPause === true) {
+      _classPrivateFieldLooseBase(this, _toast)[_toast].mouseenter(function () {
+        _classPrivateFieldLooseBase(that, _$$2)[_$$2](this).addClass(ClassName$3.TOAST_PAUSE);
+      });
+
+      //鼠标移出
+      _classPrivateFieldLooseBase(this, _toast)[_toast].mouseleave(function () {
+        _classPrivateFieldLooseBase(that, _$$2)[_$$2](this).removeClass(ClassName$3.TOAST_PAUSE);
+      });
+    }
+
+    //监听滚动条读条动画完毕事件
+    _classPrivateFieldLooseBase(this, _toast)[_toast].on('animationend', '.progress-bar', function (event) {
+      if (event.target === event.currentTarget) {
+        //手动隐藏
+        that.hide();
+      }
+    });
+  }
+  function _buildToast2() {
+    let html = [];
+
+    //接着是内部的判断
+    html.push(Util.sprintf(HTML$2.toast[0], Map$2.toastColorScheme[_classPrivateFieldLooseBase(this, _config$c)[_config$c].type] || '', _classPrivateFieldLooseBase(this, _id$1)[_id$1]));
+
+    //按钮类,确定哪些情景类型需要使用白色的按钮类
+    const btnClass = needWhiteCloseBtnType.includes(_classPrivateFieldLooseBase(this, _config$c)[_config$c].type) ? ClassName$3.BTN_CLOSE_WHITE : '';
+    if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].title !== '') {
+      //标题不为空
+      //如果标题被设置了
+
+      let toastHeaderColor = Map$2.toastHeaderColorScheme[_classPrivateFieldLooseBase(this, _config$c)[_config$c].type] || '';
+      html.push(Util.sprintf(HTML$2.toastHeader[0], toastHeaderColor)); //头部
+
+      if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].image !== '') {
+        //有传递图标
+
+        //判断是否是svg字符串
+        if (Util.isSVGString(_classPrivateFieldLooseBase(this, _config$c)[_config$c].image)) {
+          html.push(_classPrivateFieldLooseBase(this, _config$c)[_config$c].image);
+        } else {
+          html.push(Util.sprintf(HTML$2.headerImg, _classPrivateFieldLooseBase(this, _config$c)[_config$c].image, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageHeight, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageAlt));
+        }
+      }
+      html.push(Util.sprintf(HTML$2.headerTitle, _classPrivateFieldLooseBase(this, _config$c)[_config$c].title));
+      html.push(Util.sprintf(HTML$2.headerSubTitle, _classPrivateFieldLooseBase(this, _config$c)[_config$c].subTitle));
+      if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].btnClose === true) {
+        html.push(Util.sprintf(HTML$2.btnClose, btnClass, ''));
+      }
+      //中间添加内容
+      html.push(HTML$2.toastHeader[1]);
+
+      //加入内容
+      html.push(Util.sprintf(HTML$2.toastBody, _classPrivateFieldLooseBase(this, _config$c)[_config$c].body));
+    } else {
+      //只插入body
+
+      if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].btnClose === true) {
+        //身体容器的开始
+        html.push(HTML$2.toastBodyWrapper[0]);
+      }
+      let body = _classPrivateFieldLooseBase(this, _config$c)[_config$c].body;
+      if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].image !== '') {
+        //有传递图标
+
+        //判断是否是svg字符串
+        if (Util.isSVGString(_classPrivateFieldLooseBase(this, _config$c)[_config$c].image)) {
+          body = _classPrivateFieldLooseBase(this, _config$c)[_config$c].image + body;
+        } else {
+          body = html.push(Util.sprintf(HTML$2.headerImg, _classPrivateFieldLooseBase(this, _config$c)[_config$c].image, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageHeight, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageAlt)) + body;
+        }
+      }
+      html.push(Util.sprintf(HTML$2.toastBody, body));
+      if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].btnClose === true) {
+        html.push(Util.sprintf(HTML$2.btnClose, btnClass, ClassName$3.TOAST_BODY_BTN_CLASS));
+      }
+      if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].btnClose === true) {
+        //身体容器的结束
+        html.push(HTML$2.toastBodyWrapper[1]);
+      }
+    }
+    if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].autohide === true) {
+      //进度条
+      html.push(Util.sprintf(HTML$2.progress, Map$2.progressColorScheme[_classPrivateFieldLooseBase(this, _config$c)[_config$c].type] || 'bg-light', _classPrivateFieldLooseBase(this, _config$c)[_config$c].delay));
+    }
+    html.push(HTML$2.toast[1]);
+    return html.join('');
+  }
+  function _buildContainer2() {
+    let placement = Map$2.placement[_classPrivateFieldLooseBase(this, _config$c)[_config$c].placement] || 'top-right';
+    let html = [Util.sprintf(HTML$2.container[0], placement), HTML$2.container[1]].join('');
+
+    //判断不同方向的容器是否存在，不存在就创建并添加到body中
+    const containerSelector = `.${ClassName$3.TOAST_CONTAINER}.${placement.replace(/ /g, '.')}`;
+    if (_classPrivateFieldLooseBase(this, _$$2)[_$$2](containerSelector).length === 0) {
+      _classPrivateFieldLooseBase(this, _$$2)[_$$2](html).appendTo('body');
+    }
+    _classPrivateFieldLooseBase(this, _container)[_container] = _classPrivateFieldLooseBase(this, _$$2)[_$$2](containerSelector);
+    _classPrivateFieldLooseBase(this, _container)[_container].append(_classPrivateFieldLooseBase(this, _buildToast)[_buildToast]());
+    _classPrivateFieldLooseBase(this, _toast)[_toast] = _classPrivateFieldLooseBase(this, _container)[_container].find('#' + _classPrivateFieldLooseBase(this, _id$1)[_id$1]);
+  }
+  $[NAME$c] = function (options) {
+    return new Toasts($.extend({}, $[NAME$c].default, typeof options === 'object' ? options : {}));
+  };
+
+  //快捷方法的封装
+  const fastMethods = {
+    success: {
+      placement: 'top-center',
+      image: ICONS.success,
+      body: '操作成功'
+    },
+    error: {
+      placement: 'top-center',
+      image: ICONS.error,
+      body: '操作失败'
+    },
+    warning: {
+      placement: 'top-center',
+      image: ICONS.warning
+    },
+    info: {
+      placement: 'top-center',
+      image: ICONS.info
+    }
+  };
+  for (const methodName of Object.keys(fastMethods)) {
+    //快捷方法
+    $[NAME$c][methodName] = function (options, options2) {
+      let ops = {};
+      if (typeof options === "string") {
+        ops.body = options;
+      }
+      if (typeof options2 === "function") {
+        ops.onHidden = options2;
+      }
+      if (typeof options === "object") {
+        ops = options;
+      }
+      return new Toasts($.extend({}, $[NAME$c].default, fastMethods[methodName], ops));
+    };
+  }
+  $[NAME$c].default = Default$c;
+
+  const NAME$b = 'PushMenu';
+  const DATA_KEY$9 = 'bsa.pushmenu';
+  const EVENT_KEY$3 = `.${DATA_KEY$9}`;
+  const JQUERY_NO_CONFLICT$9 = $.fn[NAME$b];
+  const Event = {
+    //折叠开始
+    COLLAPSE: `collapse${EVENT_KEY$3}`,
+    //折叠完毕
+    COLLAPSED: `collapsed${EVENT_KEY$3}`,
+    //展开开始
+    EXPAND: `expand${EVENT_KEY$3}`,
+    //展开完毕
+    EXPANDED: `expanded${EVENT_KEY$3}`
+  };
+  const SELECTOR_DATA_TOGGLE$8 = '[data-bsa-toggle="pushmenu"]';
 
   //侧边栏选择器
   const SELECTOR_SIDEBAR = '.bsa-sidebar';
   const SELECTOR_MASK = '.bsa-mask';
   //折叠类名
   const CLASS_NAME_COLLAPSED = 'open';
-  const Default$1 = {
+  const Default$b = {
     //过渡的动画时间
     animationSpeed: 300
   };
+  var _element$a = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _config$b = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _addTransition = /*#__PURE__*/_classPrivateFieldLooseKey("addTransition");
+  var _addOverlay = /*#__PURE__*/_classPrivateFieldLooseKey("addOverlay");
+  var _init$9 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  var _setupListeners$5 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
   class PushMenu {
-    constructor(element, options) {
-      this._element = element;
-      this._options = options;
-      this._addTransition();
+    constructor(element, config) {
+      Object.defineProperty(this, _setupListeners$5, {
+        value: _setupListeners2$5
+      });
+      Object.defineProperty(this, _init$9, {
+        value: _init2$9
+      });
+      Object.defineProperty(this, _addOverlay, {
+        value: _addOverlay2
+      });
+      // Private
+      Object.defineProperty(this, _addTransition, {
+        value: _addTransition2
+      });
+      Object.defineProperty(this, _element$a, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _config$b, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _element$a)[_element$a] = element;
+      _classPrivateFieldLooseBase(this, _config$b)[_config$b] = config;
+      _classPrivateFieldLooseBase(this, _addTransition)[_addTransition]();
     }
 
     // Public
@@ -3056,19 +661,19 @@
       let w = $(window).width();
       if (w < 992) {
         //事件
-        $(this._element).trigger($.Event(EVENT_EXPAND));
+        $(_classPrivateFieldLooseBase(this, _element$a)[_element$a]).trigger($.Event(Event.EXPAND));
 
         // 展开
         $('.bsa-sidebar').addClass(CLASS_NAME_COLLAPSED);
         $(SELECTOR_SIDEBAR).data('isOpen', true);
         //添加遮罩层
-        this._addOverlay();
+        _classPrivateFieldLooseBase(this, _addOverlay)[_addOverlay]();
       }
     }
     collapse() {
       let w = $(window).width();
       if (w < 992) {
-        $(this._element).trigger($.Event(EVENT_COLLAPSE));
+        $(_classPrivateFieldLooseBase(this, _element$a)[_element$a]).trigger($.Event(Event.COLLAPSE));
         $(SELECTOR_SIDEBAR).removeClass(CLASS_NAME_COLLAPSED);
         $(SELECTOR_SIDEBAR).data('isOpen', false);
         //同时移除遮罩层
@@ -3082,65 +687,30 @@
         this.expand();
       }
     }
-
-    // Private
-    _addTransition() {
-      $(SELECTOR_SIDEBAR).css({
-        transition: `${this._options.animationSpeed}ms transform`
-      });
-    }
-    _addOverlay() {
-      if ($(SELECTOR_MASK).length === 0) {
-        $('<div class="bsa-mask"></div>').prependTo('body');
-      }
-    }
-    _init() {
-      let _this = this;
-
-      //遮罩层关闭事件
-      $(document).on('click', SELECTOR_MASK, function (e) {
-        e.preventDefault();
-        _this.collapse();
-      });
-
-      //监听过渡事件
-      $(document).on('transitionend', SELECTOR_SIDEBAR, function (e) {
-        if (e.target === e.currentTarget) {
-          const expandedEvent = $.Event(EVENT_EXPANDED$1);
-          const collapsedEvent = $.Event(EVENT_COLLAPSED$1);
-
-          //判断是展开还是折叠
-          if ($(e.target).data('isOpen')) {
-            $(_this._element).trigger(expandedEvent);
-          } else {
-            $(_this._element).trigger(collapsedEvent);
-          }
-        }
-      });
-      $(document).on('click', SELECTOR_TOGGLE_BUTTON, event => {
-        event.preventDefault();
-        _this.toggle();
-      });
-    }
-
     // Static
-    static _jQueryInterface(config) {
-      return this.each(function () {
-        let data = $(this).data(DATA_KEY$2);
-        const _config = $.extend({}, Default$1, typeof config === 'object' ? config : $(this).data());
-        if (!data) {
-          data = new PushMenu($(this), _config);
-          $(this).data(DATA_KEY$2, data);
-          data._init();
-        } else if (typeof config === 'string') {
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY$9);
+        if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
           if (typeof data[config] === 'undefined') {
             throw new TypeError(`No method named "${config}"`);
           }
-          data[config]();
-        } else if (typeof config === 'undefined') {
-          data._init();
+          value = data[config](...args);
+          return;
         }
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new PushMenu($(this), $.extend({}, Default$b, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY$9, data);
+        _classPrivateFieldLooseBase(data, _init$9)[_init$9]();
       });
+      return typeof value === 'undefined' ? this : value;
     }
   }
 
@@ -3148,11 +718,48 @@
    * Data API
    * ====================================================
    */
-
-  $(window).on('load', () => {
-    if (Helper.isIndex()) {
-      PushMenu._jQueryInterface.call($(SELECTOR_TOGGLE_BUTTON));
+  function _addTransition2() {
+    $(SELECTOR_SIDEBAR).css({
+      transition: `${_classPrivateFieldLooseBase(this, _config$b)[_config$b].animationSpeed}ms transform`
+    });
+  }
+  function _addOverlay2() {
+    if ($(SELECTOR_MASK).length === 0) {
+      $('<div class="bsa-mask"></div>').prependTo('body');
     }
+  }
+  function _init2$9() {
+    _classPrivateFieldLooseBase(this, _setupListeners$5)[_setupListeners$5]();
+  }
+  function _setupListeners2$5() {
+    let that = this;
+
+    //遮罩层关闭事件
+    $(document).on('click', SELECTOR_MASK, function (e) {
+      e.preventDefault();
+      that.collapse();
+    });
+
+    //监听过渡事件
+    $(document).on('transitionend', SELECTOR_SIDEBAR, function (e) {
+      if (e.target === e.currentTarget) {
+        //判断是展开还是折叠
+        if ($(e.target).data('isOpen')) {
+          $(_classPrivateFieldLooseBase(that, _element$a)[_element$a]).trigger($.Event(Event.EXPANDED));
+        } else {
+          $(_classPrivateFieldLooseBase(that, _element$a)[_element$a]).trigger($.Event(Event.COLLAPSED));
+        }
+      }
+    });
+    $(document).on('click', SELECTOR_DATA_TOGGLE$8, event => {
+      event.preventDefault();
+      that.toggle();
+    });
+  }
+  $(() => {
+    $(SELECTOR_DATA_TOGGLE$8).each(function () {
+      PushMenu.jQueryInterface.call($(this));
+    });
   });
 
   /**
@@ -3160,199 +767,230 @@
    * ====================================================
    */
 
-  $.fn[NAME$1] = PushMenu._jQueryInterface;
-  $.fn[NAME$1].Constructor = PushMenu;
-  $.fn[NAME$1].noConflict = function () {
-    $.fn[NAME$1] = JQUERY_NO_CONFLICT$1;
-    return PushMenu._jQueryInterface;
+  $.fn[NAME$b] = PushMenu.jQueryInterface;
+  $.fn[NAME$b].Constructor = PushMenu;
+  $.fn[NAME$b].noConflict = function () {
+    $.fn[NAME$b] = JQUERY_NO_CONFLICT$9;
+    return PushMenu.jQueryInterface;
   };
 
-  const NAME = 'Sidebar';
-  const DATA_KEY$1 = 'bsa.sidebar';
-  const EVENT_KEY = `.${DATA_KEY$1}`;
-  const JQUERY_NO_CONFLICT = $.fn[NAME];
-  const EVENT_EXPANDED = `expanded${EVENT_KEY}`;
-  const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`;
-  const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="sidebar"]';
-  const Default = {
-    //点击是否自动关闭侧边栏
-    clickClose: false,
+  const NAME$a = 'Treeview';
+  const DATA_KEY$8 = 'bsa.treeview';
+  const EVENT_KEY$2 = `.${DATA_KEY$8}`;
+  const JQUERY_NO_CONFLICT$8 = $.fn[NAME$a];
+  const SELECTOR_DATA_TOGGLE$7 = '[data-bsa-toggle="treeview"]';
+  const EVENT_EXPANDED = `expanded${EVENT_KEY$2}`;
+  const EVENT_COLLAPSED = `collapsed${EVENT_KEY$2}`;
+
+  //递归折叠完成
+  const EVENT_RECURSIVE_COLLAPSED = `recursive.collapsed${EVENT_KEY$2}`;
+  const SELECTOR_LI = 'li';
+  const SELECTOR_LINK = 'a';
+  const SELECTOR_SUBMENU = 'ul';
+  const CLASS_NAME_EXPANDED = 'open';
+  const CLASS_NAME_ACTIVE = 'active';
+  const Default$a = {
     //动画速度,单位毫秒
     animationSpeed: 150,
     //是否启用手风琴模式
     accordion: true
   };
+  var _config$a = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _element$9 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _init$8 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  var _setupListeners$4 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  var _isAnimating = /*#__PURE__*/_classPrivateFieldLooseKey("isAnimating");
+  var _accordion = /*#__PURE__*/_classPrivateFieldLooseKey("accordion");
   class Treeview {
     constructor(element, config) {
-      this._config = config;
-      this._element = element;
-    }
-
-    // Public
-
-    expand($menuLink) {
-      let _this = this;
-      $menuLink.siblings('ul').each(function (index, element) {
-        //变成jquery对象
-        let $element = $(element);
-
-        //获取真实的滚动高度
-        let scrollHeight = _this._getRealHeight(element);
-
-        //设置一个展开标志属性,用于监听过渡结束时判断是展开还是折叠
-        $element.data('isOpen', true);
-        $element.css({
-          height: 0
-        });
-
-        //触发重绘
-        void element.scrollHeight;
-        $element.css({
-          'transition-timing-function': 'ease',
-          'transition-duration': `${_this._config.animationSpeed}ms`,
-          'transition-property': 'height',
-          display: 'block',
-          height: scrollHeight
-        });
+      Object.defineProperty(this, _accordion, {
+        value: _accordion2
       });
-    }
-    collapse($menuLink) {
-      let _this = this;
-      $menuLink.siblings('ul').each(function (index, element) {
-        let $element = $(element);
-        let scrollHeight = _this._getRealHeight(element);
-        $element.data('isOpen', false);
-        $element.css({
-          'transition-timing-function': 'ease',
-          'transition-duration': `${_this._config.animationSpeed}ms`,
-          'transition-property': 'height',
-          display: 'block',
-          height: scrollHeight
-        });
-        void element.scrollHeight;
-        $element.css({
-          height: 0
-        });
+      Object.defineProperty(this, _isAnimating, {
+        value: _isAnimating2
       });
-    }
-
-    // Private
-    _init() {
-      let _this = this;
-
-      //左侧导航过度结束事件
-      $(document).on('transitionend', '.bsa-menu ul', function (e) {
-        if (e.target === e.currentTarget) {
-          const expandedEvent = $.Event(EVENT_EXPANDED);
-          const collapsedEvent = $.Event(EVENT_COLLAPSED);
-          $(e.target).removeAttr('style');
-          //判断是展开还是折叠
-          if ($(e.target).data('isOpen')) {
-            $(_this._element).trigger(expandedEvent);
-          } else {
-            $(_this._element).trigger(collapsedEvent);
-          }
-        }
+      // 初始化事件
+      Object.defineProperty(this, _setupListeners$4, {
+        value: _setupListeners2$4
       });
-
-      //侧边栏点击事件,有子集的且没有target属性
-      $(document).on('click', '.bsa-menu a.has-children:not([target])', function (e) {
-        e.preventDefault();
-        let $a = $(this);
-
-        //是否开启手风琴模式
-        if (_this._config.accordion) {
-          let $pSiblingsLi = $a.parent().siblings('li');
-          let $pSiblingsOpenA = $pSiblingsLi.children('a.has-children.open');
-
-          //调用折叠类
-          _this.collapse($pSiblingsOpenA);
-          $pSiblingsOpenA.removeClass('open');
-          //
-          // //同时给折叠的ul下面的子集中a链接有激活的给移除激活效果
-          $pSiblingsLi.children('a.active').removeClass('active');
-        }
-        if (!$a.hasClass('open')) {
-          $a.addClass('open');
-          _this.expand($a);
+      // Private
+      Object.defineProperty(this, _init$8, {
+        value: _init2$8
+      });
+      Object.defineProperty(this, _config$a, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element$9, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$a)[_config$a] = config;
+      _classPrivateFieldLooseBase(this, _element$9)[_element$9] = element;
+    }
+    toggle($link, event) {
+      //查找兄弟元素ul
+      const $nextUl = $link.siblings(SELECTOR_SUBMENU);
+      const $parentLi = $link.parent();
+      if (!_classPrivateFieldLooseBase(this, _isAnimating)[_isAnimating]($link)) return;
+      if ($nextUl.length > 0) {
+        //说明它是包含子集的可以点击
+        event.preventDefault(); //阻止默认事件,防止跳转
+        if ($parentLi.hasClass(CLASS_NAME_EXPANDED)) {
+          this.collapse($link);
         } else {
-          $a.removeClass('open');
-          _this.collapse($a);
+          this.expand($link);
         }
+      }
+    }
+    expand($link, callback) {
+      _classPrivateFieldLooseBase(this, _accordion)[_accordion]($link);
+      const that = this;
+      const $nextUl = $link.siblings(SELECTOR_SUBMENU);
+      const $parentLi = $link.parent();
+      if (!$parentLi.hasClass(CLASS_NAME_EXPANDED)) {
+        $parentLi.addClass(CLASS_NAME_EXPANDED);
+        $nextUl.css('display', 'none').stop(true, false).slideDown(_classPrivateFieldLooseBase(that, _config$a)[_config$a].animationSpeed, function () {
+          $(this).removeAttr('style');
+          $(_classPrivateFieldLooseBase(that, _element$9)[_element$9]).trigger($.Event(EVENT_EXPANDED));
+          typeof callback === 'function' && callback();
+        });
+      }
+    }
+
+    //折叠
+    collapse($link, callback) {
+      const that = this;
+      const $nextUl = $link.siblings(SELECTOR_SUBMENU);
+      const $parentLi = $link.parent();
+      if ($parentLi.hasClass(CLASS_NAME_EXPANDED)) {
+        $parentLi.removeClass(CLASS_NAME_EXPANDED);
+        $nextUl.css('display', 'block').stop(true, false).slideUp(_classPrivateFieldLooseBase(that, _config$a)[_config$a].animationSpeed, function () {
+          $(this).removeAttr('style');
+          $(_classPrivateFieldLooseBase(that, _element$9)[_element$9]).trigger($.Event(EVENT_COLLAPSED));
+          typeof callback === 'function' && callback();
+        });
+      }
+    }
+
+    // 展开全部
+    expandAll() {}
+
+    // 折叠全部
+    collapseAll() {
+      const that = this;
+      that.removeAllActiveClass();
+      $(_classPrivateFieldLooseBase(this, _element$9)[_element$9]).find(`${SELECTOR_LI}.${CLASS_NAME_EXPANDED}`).children(SELECTOR_LINK).each(function () {
+        const $link = $(this);
+        that.collapse($link);
       });
+    }
+    addActiveClass($link) {
+      $link.addClass(CLASS_NAME_ACTIVE);
+    }
+    removeActiveClass($link) {
+      $link.removeClass(CLASS_NAME_ACTIVE);
+    }
 
-      //侧边栏，没有子集的链接
-      $(document).on('click', '.bsa-menu a:not(.has-children):not([target])', function (e) {
-        e.preventDefault();
-        let $a = $(this);
-        //移除所有的激活类
-        $('.bsa-menu a').each(function (index, a) {
-          $(a).removeClass('active');
-        });
-
-        // 给当前的a添加激活类
-        $a.addClass('active');
-        if (_this._config.clickClose === true) {
-          $('[data-bsa-toggle="pushmenu"]').PushMenu('collapse');
-        }
-
-        //添加tab处理
-        Quicktab.get('.qtab').addTab({
-          title: this.innerText,
-          url: this.getAttribute('href'),
-          close: true
-        });
+    // 递归折叠某个菜单
+    collapseRecursive($link) {
+      let collapsible = this.getChildCollapsible($link);
+      collapsible.forEach(item => {
+        this.collapse(item);
       });
     }
 
-    //获取display:none元素的真实高度
-    _getRealHeight(element) {
-      let $element = $(element);
-      let $clone = $element.clone();
-      $clone.css({
-        visibility: 'hidden',
-        display: 'block',
-        position: 'absolute',
-        zIndex: '-999'
+    // 递归展开某个菜单
+    expandRecursive($link) {
+      const that = this;
+      let collapsible = this.getParentCollapsible($link);
+      collapsible = collapsible.reverse();
+      let collapsibleLen = collapsible.length;
+
+      //已展开的数量
+      let expandedNum = 0;
+
+      //移除所有的激活状态
+      this.removeAllActiveClass();
+
+      //添加激活类
+      this.addActiveClass($link);
+
+      //折叠子集
+      this.collapseRecursive($link);
+      if (collapsibleLen > 0) {
+        //则是有子集的
+        collapsible.forEach(item => {
+          this.expand(item, function () {
+            expandedNum++;
+            if (collapsibleLen === expandedNum) {
+              $(_classPrivateFieldLooseBase(that, _element$9)[_element$9]).trigger($.Event(EVENT_RECURSIVE_COLLAPSED));
+            }
+          });
+        });
+      } else {
+        //顶级
+        $(_classPrivateFieldLooseBase(that, _element$9)[_element$9]).trigger($.Event(EVENT_RECURSIVE_COLLAPSED));
+      }
+    }
+    removeAllActiveClass() {
+      const that = this;
+      $(_classPrivateFieldLooseBase(this, _element$9)[_element$9]).find(SELECTOR_LINK).each(function () {
+        that.removeActiveClass($(this));
       });
-      $element.after($clone);
-      let nx = $element.next();
-      //获取滚动高度
-      let nxsh = nx.prop('scrollHeight');
-      nx.remove();
-      return nxsh;
+    }
+    getParentCollapsible($link) {
+      // 定义内部递归函数，并传递结果数组
+      const recursiveHelper = ($link, obj) => {
+        let $ul = $link.parent().parent();
+        let $canOpen = $ul.siblings($link);
+        if (!($canOpen.length > 0)) {
+          return obj; // 如果没有更多的可展开项，返回当前的obj
+        }
+        const $parentLi = $canOpen.parent();
+        if (!$parentLi.hasClass(CLASS_NAME_EXPANDED)) {
+          obj.push($canOpen);
+        }
+
+        // 递归调用，传递累积结果
+        return recursiveHelper($canOpen, obj);
+      };
+
+      // 初始调用，传递一个空数组作为累积结果
+      return recursiveHelper($link, []);
+    }
+    getChildCollapsible($link) {
+      const result = [];
+      $link.closest(SELECTOR_SUBMENU).find(`${SELECTOR_LI}.${CLASS_NAME_EXPANDED}`).children(SELECTOR_LINK).each(function () {
+        result.push($(this));
+      });
+      return result;
     }
 
     // Static
-    static _jQueryInterface(config) {
-      for (const element of this) {
-        let $element = $(element);
-        let data = $element.data(DATA_KEY$1);
-        let _config = $.extend({}, Default, typeof config === 'object' ? config : $element.data());
-        if (_config.animationSpeed < 150) {
-          _config.animationSpeed = 150;
-        }
-        if (!data) {
-          //没有就new
-          data = new Treeview($element, _config);
-
-          //赋值给data,供给下次调用
-          $element.data(DATA_KEY$1, data);
-
-          //调用内部的私有方法,初始化，执行必须执行的方法
-          data._init();
-        }
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY$8);
         if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
           if (typeof data[config] === 'undefined') {
-            throw new TypeError(`方法 "${config}" 不存在`);
+            throw new TypeError(`No method named "${config}"`);
           }
-          let execRt = data[config]();
-          if (typeof execRt !== 'undefined') {
-            return execRt;
-          }
+          value = data[config](...args);
+          return;
         }
-      }
-      return this;
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new Treeview($(this), $.extend({}, Default$a, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY$8, data);
+        _classPrivateFieldLooseBase(data, _init$8)[_init$8]();
+      });
+      return typeof value === 'undefined' ? this : value;
     }
   }
 
@@ -3360,13 +998,35 @@
    * Data API
    * ====================================================
    */
+  function _init2$8() {
+    // 初始化点击事件
+    _classPrivateFieldLooseBase(this, _setupListeners$4)[_setupListeners$4]();
+  }
+  function _setupListeners2$4() {
+    const that = this;
+    $(_classPrivateFieldLooseBase(this, _element$9)[_element$9]).on('click', `${SELECTOR_LINK}:not([target])`, function (event) {
+      let $link = $(this);
+      that.toggle($link, event);
+    });
+  }
+  function _isAnimating2($link) {
+    return !$link.parent().find(SELECTOR_SUBMENU).slice(1).is(':animated') && !$link.parents(SELECTOR_SUBMENU).is(':animated');
+  }
+  function _accordion2($link) {
+    if (_classPrivateFieldLooseBase(this, _config$a)[_config$a].accordion) {
+      //手风琴
 
-  $(window).on('load', () => {
-    if (Helper.isIndex()) {
-      $(SELECTOR_DATA_TOGGLE).each(function () {
-        Treeview._jQueryInterface.call($(this));
+      const that = this;
+      $link.parent().siblings(`${SELECTOR_LI}.${CLASS_NAME_EXPANDED}`).children(SELECTOR_LINK).each(function () {
+        const $link = $(this);
+        that.collapse($link);
       });
     }
+  }
+  $(() => {
+    $(SELECTOR_DATA_TOGGLE$7).each(function () {
+      Treeview.jQueryInterface.call($(this));
+    });
   });
 
   /**
@@ -3374,311 +1034,26 @@
    * ====================================================
    */
 
-  $.fn[NAME] = Treeview._jQueryInterface;
-  $.fn[NAME].Constructor = Treeview;
-  $.fn[NAME].noConflict = function () {
-    $.fn[NAME] = JQUERY_NO_CONFLICT;
-    return Treeview._jQueryInterface;
+  $.fn[NAME$a] = Treeview.jQueryInterface;
+  $.fn[NAME$a].Constructor = Treeview;
+  $.fn[NAME$a].noConflict = function () {
+    $.fn[NAME$a] = JQUERY_NO_CONFLICT$8;
+    return Treeview.jQueryInterface;
   };
 
-  /* global bootstrap   */
+  OverlayScrollbarsGlobal;
 
-  const DATA_KEY = 'bsa.modal';
-  const MODAL_CLASS = 'bsa-modal';
-  const IFrameTpl = '<iframe src="<%= config.url %>" class="d-block w-100 h-100"></iframe>';
+  // 全局api的名称
+  const NAME$9 = 'modal';
+  const DATA_KEY_OK_NAME = 'ok';
+  const DATA_KEY_CANCEL_NAME = 'cancel';
 
-  // 遮罩层
-  const maskTpl = ` <div class="w-100 h-100  bg-body-tertiary d-flex align-items-center justify-content-center mask z-1 position-absolute start-0 top-0 end-0 bottom-0">
-                           <div class="spinner-border text-secondary" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                           </div>
-                        </div>`;
-
-  //模态框模板
-  const TPL = `
-    <div class="modal ${MODAL_CLASS} <%= config.modalClass %>" id="<%= id %>"   tabindex="-1" aria-labelledby="<%= id %>Label" aria-hidden="true">
-        <div class="modal-dialog <% if ( config.url !== '' ) { %> modal-dialog-centered   <% } %> <%= config.modalDialogClass %>">
-            <div class="modal-content">
-                <div class="modal-header">
-
-
-
-                   <h1 class="modal-title fs-5" id="<%= id %>Label">
-                   <% if ( config.url !== '' && config.title === '' ) { %>
-                        <%= _htmlspecialchars(config.url) %>
-                   <% }else if ( config.url === '' && config.title === '' ) { %>
-                        提示
-                   <% } else { %>
-                        <%= _htmlspecialchars(config.title) %>
-                   <% } %>
-                    </h1>
-
-                   <% if ( config.url === '' ) { %>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                   <% }else { %>
-                        <div class="d-flex align-items-center gap-3 fs-5">
-                        <i class="bi bi-arrow-clockwise btn-refresh" role="button"></i>
-                        <% if ( !config.modalDialogClass.trim().split(/\\s+/).includes('modal-fullscreen') ) { %>
-                         <i class="bi bi-fullscreen btn-fullscreen" role="button"></i>
-                        <% } %>
-                         <i class="bi bi-x-circle" role="button" data-bs-dismiss="modal"></i>
-                        </div>
-                   <% } %>
-
-
-                </div>
-
-                <% if ( config.url !== '' ) { %>
-                <div class="modal-body p-0 overflow-hidden">
-                    <div class="iframe-wrapper">
-                        ${maskTpl}
-                     </div>
-                </div>
-                <% }else{ %>
-                <div class="modal-body">
-                    <%= config.body %>
-                </div>
-                <% } %>
-
-                <% if( Array.isArray(config.buttons) && config.buttons.length !== 0 ) { %>
-                <div class="modal-footer">
-                    <% _each(config.buttons, function (index,item) { %>
-                      <button type="button" data-key="<%= index %>" class="btn <%= item.class %>"><%= item.text %></button>
-                    <% });%>
-                </div>
-                <% }else if( !(Array.isArray(config.buttons) && config.buttons.length === 0) ) { %>
-                 <div class="modal-footer">
-                    <button type="button" data-key="ok" data-bs-dismiss="modal" class="btn <%= config.btnOKClass %>"><%= config.btnOKText %></button>
-                    <% if ( config.cancelBtn === true ) { %>
-                    <button type="button" data-key="cancel" data-bs-dismiss="modal" class="btn <%= config.btnCancelClass %>"><%= config.btnCancelText %></button>
-                    <% } %>
-                </div>
-                <% } %>
-            </div>
-        </div>
-    </div>`;
-
-  //进行累计
-  let i = 0;
-  class Modal {
-    //构造函数
-    constructor(options) {
-      this._config = options;
-
-      //唯一id
-      this.id = MODAL_CLASS + '-' + i;
-      i++;
-
-      //显示modal框
-      this.show();
-    }
-
-    // 事件注册程序
-    _eventRegister() {
-      let _this = this;
-      this._element.addEventListener('hide.bs.modal', function (event) {
-        if (_this._config.onHide !== null) {
-          _this._config.onHide(_this);
-        }
-      });
-
-      //监听
-      this._element.addEventListener('hidden.bs.modal', function (event) {
-        //调用隐藏完毕的回调
-        if (_this._config.onHidden !== null) {
-          _this._config.onHidden(_this, $(_this._element).data(DATA_KEY));
-        }
-        const modalInstance = bootstrap.Modal.getInstance(_this._element);
-        if (modalInstance) {
-          modalInstance.dispose();
-        }
-        document.body.removeChild(_this._element);
-      });
-      this._element.addEventListener('show.bs.modal', function (event) {
-        if (_this._config.onShow !== null) {
-          _this._config.onShow(_this);
-        }
-      });
-      this._element.addEventListener('shown.bs.modal', function (event) {
-        //调用隐藏完毕的回调
-        if (_this._config.onShown !== null) {
-          _this._config.onShown(_this);
-        }
-        _this._addIframe();
-      });
-      _this._iframeAction();
-
-      //按钮区域的事件绑定
-      _this._btnEvent();
-    }
-    _btnEvent() {
-      let _this = this;
-      $(this._element).on('click', '.modal-footer button', function () {
-        let key = $(this).attr('data-key');
-        if (['ok', 'cancel'].includes(key)) {
-          if (key === 'ok' && _this._config.ok !== null) {
-            _this._config.ok(_this);
-          }
-          if (key === 'cancel' && _this._config.cancel !== null) {
-            _this._config.cancel(_this);
-          }
-        } else {
-          //判断action是否为null
-          if (_this._config.buttons[key].action !== null) {
-            _this._config.buttons[key].action(_this);
-          }
-        }
-      });
-    }
-
-    // 添加iframe
-    _addIframe() {
-      let _this = this;
-      let iframe = template(IFrameTpl)({
-        id: _this.id,
-        config: _this._config
-      });
-      let $ifd = $(iframe);
-      $ifd.on('load', function () {
-        //读取本地的主题,回显主题，判断是否是跨域的iframe,如果不是跨域的iframe就根据传入的配置决定是否自动加主题
-
-        if (_this._config.iframeInnerTheme === true) {
-          let iframe = this;
-          if (Helper.canAccessIFrame(iframe)) {
-            //不是跨域的iframe
-
-            $(iframe.contentDocument).find('html').attr('data-bs-theme', $('body').Layout('getTheme'));
-          }
-        }
-
-        //移除遮罩层
-        $(_this._element).find('.iframe-wrapper .mask').fadeOut(function () {
-          this.remove();
-        });
-      });
-      $ifd.prependTo($(_this._element).find('.iframe-wrapper'));
-    }
-
-    // 最大化 刷新按钮操作
-    _iframeAction() {
-      let _this = this;
-
-      //刷新处理
-      $(this._element).on('click', '.modal-header .btn-refresh', function () {
-        //先判断遮罩层是否已经存在，如果已经存在就给它删除
-        if (_this._getMask().length > 0) {
-          _this._removeMask();
-        }
-
-        //插入遮罩层
-        $(maskTpl).prependTo($(_this._element).find('.iframe-wrapper'));
-
-        //判断是否是跨域的iframe,如果是跨域的就直接移除重新添加
-        if (Helper.canAccessIFrame(_this._getIframe()[0])) {
-          _this._getIframe()[0].contentWindow.location.reload();
-        } else {
-          //移除iframe
-          _this._getIframe().remove();
-          _this._addIframe();
-        }
-      });
-
-      //全屏处理
-      $(this._element).on('click', '.modal-header .btn-fullscreen', function () {
-        let fullBtn = this;
-        if ($(fullBtn).hasClass('bi-fullscreen')) {
-          $(_this._element).find('.modal-dialog').addClass('modal-fullscreen');
-          $(fullBtn).removeClass('bi-fullscreen').addClass('bi-fullscreen-exit');
-        } else {
-          //给模态框移除全屏的类
-          $(_this._element).find('.modal-dialog').removeClass('modal-fullscreen');
-          $(fullBtn).removeClass('bi-fullscreen-exit').addClass('bi-fullscreen');
-        }
-      });
-    }
-    _getIframe() {
-      return $(this._element).find('.iframe-wrapper iframe');
-    }
-    _getMask() {
-      return $(this._element).find('.iframe-wrapper .mask');
-    }
-    _removeMask() {
-      this._getMask().remove();
-    }
-    show() {
-      //创建容器
-      this._createModalElement();
-      let modalInstance = new bootstrap.Modal(this._element, this._config.modalOptions);
-      if (modalInstance) {
-        modalInstance.show();
-      }
-    }
-    close() {
-      const modalInstance = bootstrap.Modal.getInstance(this._element);
-      if (modalInstance) {
-        // modalInstance.dispose();
-        modalInstance.hide();
-      }
-      // document.body.removeChild(this._element);
-      // if (this.options.onDispose) {
-      //     this.options.onDispose(this);
-      // }
-    }
-
-    //设置数据到dom上面
-    setData(data) {
-      //获取当前的dom
-      $(this._element).data(DATA_KEY, data);
-    }
-    _createModalElement() {
-      //模板引擎来组合dom
-      let tpl = template(TPL)({
-        id: this.id,
-        config: this._config,
-        _each: $.each,
-        _htmlspecialchars: Helper.htmlspecialchars
-      });
-
-      //加入到body中放着
-      $(tpl).prependTo('body');
-
-      //然后再把dom存起来
-      this._element = document.getElementById(this.id);
-
-      //事件监听程序
-      this._eventRegister();
-    }
-  }
-  $.extend({
-    modal: function (options, option2) {
-      let def = $.extend({}, $.modal.default, options);
-      let buttonsTemp = [];
-      if (Array.isArray(def.buttons) && def.buttons.length > 0) {
-        $.each(def.buttons, function (index, item) {
-          if (!Helper.isObject(item)) {
-            throw new Error('选项buttons数组元素必须是一个对象');
-          }
-          //按钮的配置来合并
-          let btnOpt = $.extend({}, $.modal.btnDefault, item);
-          buttonsTemp.push(btnOpt);
-        });
-        def = Helper.updateObjDataByKey(def, 'buttons', buttonsTemp);
-      }
-
-      //new实例
-      return new Modal(def);
-    }
-  });
-
-  //单个按钮的默认值
-  $.modal.btnDefault = {
-    text: '按钮',
-    class: 'btn-light',
-    action: null
-  };
-
-  //把默认的参数暴露出去
-  $.modal.default = {
+  // 默认参数
+  const Default$9 = {
+    // 惰性打开
+    lazyOpen: false,
+    //打开的窗口对象
+    window: 'top',
     //取消按钮的文本
     btnCancelText: '取消',
     //取消按钮的class
@@ -3687,95 +1062,2114 @@
     btnOKText: '确定',
     //ok按钮的class
     btnOKClass: 'btn-primary',
-    //默认ok按钮是开启的。如果ok按钮回调存在的话，会调用回调
-    ok: null,
+    //确定按钮回调
+    ok: function () {
+      return false;
+    },
     //开启取消按钮
-    cancelBtn: false,
-    //取消按钮被单击回调
-    cancel: null,
+    btnCancel: true,
+    //取消按钮回调
+    cancel: function () {
+      return true;
+    },
     //标题
-    title: '',
+    title: '信息',
+    //高度 当为iframe时 高度默认自动计算为屏幕高度最适宜的高度,您可以设置该选项强制覆盖默认行为
+    height: undefined,
     //内容
     body: '',
-    //iframe 内部是否自动适配bootstrap-admin的多主题
-    iframeInnerTheme: true,
-    //可以设置按钮对齐方式
-    btnAlign: 'right',
-    //如果想调整底部按钮的位置，可以这样
-    btnSize: 'sm',
-    //自定义按钮,默认是null
+    //可以设置底部按钮对齐方式 可选值: start  center  end
+    btnAlign: 'end',
+    //可以设置底部按钮的尺寸 可选值: sm lg
+    btnSize: '',
+    //单个按钮的基本模板
+    btntpl: {
+      text: '按钮',
+      class: 'btn-light',
+      action: null
+    },
+    //自定义按钮,默认是null,默认的确定和取消按钮如果不满足需求可以自定义,设置为: 空数组[]模态框的footer部分将会被隐藏
     buttons: null,
     // ".modal"所在div修饰类  比如:fade
     modalClass: 'fade',
-    modalDialogClass: 'modal-dialog-centered modal-sm',
-    // ".modal-dialog"所在div修饰类  比如:modal-dialog-scrollable modal-dialog-centered modal-dialog-scrollable
-
+    //垂直居中  undefined/boolean  true:启用垂直居中 false:不启用  如果是IFrame模式，则默认自动垂直居中，您可以设置该选项强制覆盖默认行为
+    centered: undefined,
+    //可滚动,undefined/boolean  该配置只在在非iframe模式下有效
+    scrollable: undefined,
+    //尺寸 undefined/String 可选值:sm lg xl ,为了好的用户体验，如果是iframe模式，尺寸默认会被设置为lg，您可以设置该选项强制覆盖默认行为
+    size: undefined,
+    //全屏模式 可选值:sm md lg xl xxl always
+    fullscreen: undefined,
     // bootstrap模态框选项参考:https://getbootstrap.com/docs/5.1/components/modal/#options
     modalOptions: {
       backdrop: true,
       keyboard: true,
       focus: true
     },
-    //iframe的url地址,设置它就是设置iframe
-    url: '',
+    //iframe的url地址,如果设置了该选项，则表示该modal为一个iframe弹层
+    url: undefined,
+    //右边的关闭按钮 是否启用
+    btnClose: true,
+    //右边的全屏按钮  undefined/boolean true:启用全屏按钮 false:不启用全屏按钮  如果是iframe模式，则会默认会启用该选项，如果被该选项被设置则打破默认规则
+    btnFullscreen: undefined,
+    //右边的刷新按钮是否显示,该选项只在iframe时设置有效
+    btnRefresh: true,
+    //是否启用加载动画效果,该选项只有当是iframe弹出层时有效,false或者对象
+    loading: false,
     onShow: null,
     onShown: null,
     onHide: null,
-    onHidden: null
+    onHidden: null,
+    onHidePrevented: null,
+    //子页面通过postMessage这个api向父级页面传递的消息时产生的回调
+    onMessage: null
   };
 
-  //模板
-  const LOADINGTPL = `<div class="bsa-loading">
-    <div class="spinner-<%= config.type %> text-<%= config.color %> 
-    <% if (config.type == 'border' && config.size == 'sm')  { %> spinner-border-sm <% } %>
-    <% if (config.type == 'grow' && config.size == 'sm')  { %> spinner-grow-sm <% } %>
-    " role="status" <% if ( typeof config.size == 'string' &&  config.size != 'sm')  { %> style="<%= config.size %>" <% } %>>
-        <span class="visually-hidden">Loading...</span>
-    </div>
-</div>`;
-  class Loading {
-    static show() {
-      //根据传入的选项来控制模板
-      let tpl = template(LOADINGTPL)({
-        config: $.loading._config
+  //类名
+  const ClassName$2 = {
+    //自定义的类用来对一些样式进行设置
+    MODAL: 'bsa-modal',
+    //居中类
+    MODAL_DIALOG_CENTERED: 'modal-dialog-centered',
+    //全屏类
+    MODAL_FULLSCREEN: 'modal-fullscreen',
+    //滚动类
+    MODAL_DIALOG_SCROLLABLE: 'modal-dialog-scrollable',
+    //模态框包裹容器(用于美化滚动条的包裹)
+    MODAL_WRAPPER: 'modal-wrapper',
+    //退出全屏
+    BTN_FULLSCREEN_EXIT: 'btn-fullscreen-exit',
+    //全屏按钮类
+    BTN_FULLSCREEN: 'btn-fullscreen'
+  };
+
+  // 简短选项映射，为了使用的时候更方便
+  const Map$1 = {
+    size: {
+      sm: 'modal-sm',
+      lg: 'modal-lg',
+      xl: 'modal-xl'
+    },
+    fullscreen: {
+      always: 'modal-fullscreen',
+      sm: 'modal-fullscreen-sm-down',
+      md: 'modal-fullscreen-md-down',
+      lg: 'modal-fullscreen-lg-down',
+      xl: 'modal-fullscreen-xl-down',
+      xxl: 'modal-fullscreen-xxl-down'
+    },
+    btnAlign: {
+      start: 'justify-content-start',
+      center: 'justify-content-center',
+      end: 'justify-content-end'
+    },
+    btnSize: {
+      sm: 'btn-sm',
+      lg: 'btn-lg'
+    }
+  };
+
+  // html的结构定义
+  const HTML$1 = {
+    IFrame: `<iframe class="d-block w-100 h-100"></iframe>`,
+    modal: [
+    //开始标记
+    `<div class="modal ${ClassName$2.MODAL} %s" id="%s"   tabindex="-1" aria-labelledby="%sLabel" aria-hidden="true">`, `</div>`],
+    //包裹容器
+    modalWrapper: [`<div class="${ClassName$2.MODAL_WRAPPER}">`, `</div>`],
+    // dialog部分
+    modalDialog: [
+    // 垂直居中 可滚动  大小尺寸 全屏设置
+    `<div class="modal-dialog %s %s %s %s">`, `</div>`],
+    modalContent: [`<div class="modal-content overflow-hidden border-0 shadow-sm">`, `</div>`],
+    modalHeader: [`<div class="modal-header">`, `</div>`],
+    modalTitle: `<h1 class="modal-title fs-5" id="%sLabel">%s</h1>`,
+    btnClose: `<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>`,
+    btnRefresh: `<button type="button" class="btn-refresh"></button>`,
+    btnFullscreen: `<button type="button" class="btn-fullscreen-trigger ${ClassName$2.BTN_FULLSCREEN}"></button>`,
+    //这个是如果url不为空(也就是iframe模式弹出层的时候)头部的操作按钮
+    headerRightWrapper: [`<div class="d-flex align-items-center gap-3 ms-auto">`, `</div>`],
+    //身体部分,高度可以等到添加到body后动态计算并设置它，因为如果buttons参数设置为[] 那么表示底部不启用,此时就需要动态计算高度比较合理
+    modalBody: [`<div class="modal-body %s">`, `</div>`],
+    modalFooter: [
+    // 参数1:用来设置对齐方式
+    `<div class="modal-footer %s">`, `</div>`],
+    //参数1：用来设置按钮的主题色，参数2：用来设置尺寸
+    modalFooterBtn: `<button type="button" data-key="%s" class="btn %s %s">%s</button>`
+  };
+
+  //进行累计
+  let i = 0;
+  var _$$1 = /*#__PURE__*/_classPrivateFieldLooseKey("$");
+  var _bootstrap = /*#__PURE__*/_classPrivateFieldLooseKey("bootstrap");
+  var _config$9 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _id = /*#__PURE__*/_classPrivateFieldLooseKey("id");
+  var _element$8 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _modalInstance = /*#__PURE__*/_classPrivateFieldLooseKey("modalInstance");
+  var _modalDialog = /*#__PURE__*/_classPrivateFieldLooseKey("modalDialog");
+  var _modalHeader = /*#__PURE__*/_classPrivateFieldLooseKey("modalHeader");
+  var _modalBodyEl = /*#__PURE__*/_classPrivateFieldLooseKey("modalBodyEl");
+  var _modalFooter = /*#__PURE__*/_classPrivateFieldLooseKey("modalFooter");
+  var _modalWrapper = /*#__PURE__*/_classPrivateFieldLooseKey("modalWrapper");
+  var _iframe = /*#__PURE__*/_classPrivateFieldLooseKey("iframe");
+  var _showLoading = /*#__PURE__*/_classPrivateFieldLooseKey("showLoading");
+  var _beautifyScrollbar = /*#__PURE__*/_classPrivateFieldLooseKey("beautifyScrollbar");
+  var _createModalElement = /*#__PURE__*/_classPrivateFieldLooseKey("createModalElement");
+  var _bodyDynamicHeight = /*#__PURE__*/_classPrivateFieldLooseKey("bodyDynamicHeight");
+  var _bindEvents = /*#__PURE__*/_classPrivateFieldLooseKey("bindEvents");
+  var _bindFullscreenEvents = /*#__PURE__*/_classPrivateFieldLooseKey("bindFullscreenEvents");
+  var _bindRefreshBtnEvents = /*#__PURE__*/_classPrivateFieldLooseKey("bindRefreshBtnEvents");
+  var _bindMessageEvent = /*#__PURE__*/_classPrivateFieldLooseKey("bindMessageEvent");
+  var _bindModalEvents = /*#__PURE__*/_classPrivateFieldLooseKey("bindModalEvents");
+  var _isCrossOrigin = /*#__PURE__*/_classPrivateFieldLooseKey("isCrossOrigin");
+  var _bindIFrameEvents = /*#__PURE__*/_classPrivateFieldLooseKey("bindIFrameEvents");
+  var _destory = /*#__PURE__*/_classPrivateFieldLooseKey("destory");
+  var _bandFooterBtnEvent = /*#__PURE__*/_classPrivateFieldLooseKey("bandFooterBtnEvent");
+  class Modal {
+    //构造函数
+    constructor(config) {
+      Object.defineProperty(this, _bandFooterBtnEvent, {
+        value: _bandFooterBtnEvent2
       });
-      if ($('.bsa-loading').length === 0) {
-        $(tpl).prependTo('body');
+      Object.defineProperty(this, _destory, {
+        value: _destory2
+      });
+      Object.defineProperty(this, _bindIFrameEvents, {
+        value: _bindIFrameEvents2
+      });
+      Object.defineProperty(this, _isCrossOrigin, {
+        value: _isCrossOrigin2
+      });
+      // 模态框的事件处理
+      Object.defineProperty(this, _bindModalEvents, {
+        value: _bindModalEvents2
+      });
+      Object.defineProperty(this, _bindMessageEvent, {
+        value: _bindMessageEvent2
+      });
+      Object.defineProperty(this, _bindRefreshBtnEvents, {
+        value: _bindRefreshBtnEvents2
+      });
+      // 全屏按钮事件
+      Object.defineProperty(this, _bindFullscreenEvents, {
+        value: _bindFullscreenEvents2
+      });
+      // 绑定事件
+      Object.defineProperty(this, _bindEvents, {
+        value: _bindEvents2
+      });
+      Object.defineProperty(this, _bodyDynamicHeight, {
+        value: _bodyDynamicHeight2
+      });
+      Object.defineProperty(this, _createModalElement, {
+        value: _createModalElement2
+      });
+      Object.defineProperty(this, _beautifyScrollbar, {
+        value: _beautifyScrollbar2
+      });
+      Object.defineProperty(this, _showLoading, {
+        value: _showLoading2
+      });
+      // jquery对象
+      Object.defineProperty(this, _$$1, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _bootstrap, {
+        writable: true,
+        value: void 0
+      });
+      //配置
+      Object.defineProperty(this, _config$9, {
+        writable: true,
+        value: void 0
+      });
+      //id
+      Object.defineProperty(this, _id, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element$8, {
+        writable: true,
+        value: void 0
+      });
+      // 实例对象
+      Object.defineProperty(this, _modalInstance, {
+        writable: true,
+        value: void 0
+      });
+      //模态框的头部
+      Object.defineProperty(this, _modalDialog, {
+        writable: true,
+        value: void 0
+      });
+      //模态框的头部
+      Object.defineProperty(this, _modalHeader, {
+        writable: true,
+        value: void 0
+      });
+      //模态框的内容部分
+      Object.defineProperty(this, _modalBodyEl, {
+        writable: true,
+        value: void 0
+      });
+      //模态框的底部
+      Object.defineProperty(this, _modalFooter, {
+        writable: true,
+        value: void 0
+      });
+      // 模态框的包裹
+      Object.defineProperty(this, _modalWrapper, {
+        writable: true,
+        value: void 0
+      });
+      //iframe元素
+      Object.defineProperty(this, _iframe, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$9)[_config$9] = config;
+      i++;
+      //唯一id
+      _classPrivateFieldLooseBase(this, _id)[_id] = `modal-${i}`;
+
+      //更改触发的jquery和bootstrap对象
+      _classPrivateFieldLooseBase(this, _$$1)[_$$1] = window[_classPrivateFieldLooseBase(this, _config$9)[_config$9].window].$;
+      _classPrivateFieldLooseBase(this, _bootstrap)[_bootstrap] = window[_classPrivateFieldLooseBase(this, _config$9)[_config$9].window].bootstrap;
+
+      //创建容器
+      _classPrivateFieldLooseBase(this, _createModalElement)[_createModalElement]();
+      _classPrivateFieldLooseBase(this, _showLoading)[_showLoading]();
+
+      // 滚动条美化
+      _classPrivateFieldLooseBase(this, _beautifyScrollbar)[_beautifyScrollbar]();
+
+      // 创建实例
+      _classPrivateFieldLooseBase(this, _modalInstance)[_modalInstance] = new (_classPrivateFieldLooseBase(this, _bootstrap)[_bootstrap].Modal)(_classPrivateFieldLooseBase(this, _element$8)[_element$8], _classPrivateFieldLooseBase(this, _config$9)[_config$9].modalOptions);
+
+      //绑定事件
+      _classPrivateFieldLooseBase(this, _bindEvents)[_bindEvents]();
+      if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].lazyOpen === false) {
+        //直接弹出
+        this.show();
       }
     }
-    static hide() {
-      if (typeof $.loading._config === 'undefined') {
-        return;
-      }
-      $('.bsa-loading').remove();
+    show() {
+      _classPrivateFieldLooseBase(this, _modalInstance)[_modalInstance].show();
+    }
+    hide() {
+      _classPrivateFieldLooseBase(this, _modalInstance)[_modalInstance].hide();
+    }
+    toggle() {
+      _classPrivateFieldLooseBase(this, _modalInstance)[_modalInstance].toggle();
     }
   }
-  $.loading = {
-    //默认参数
-    default: {
-      //颜色
-      color: 'primary',
-      //类型 grow:实心圈  border:空心圈
-      type: 'border',
-      //尺寸 要根据类型来判断  spinner-grow-sm spinner-border-sm  或者行内样式来控制：style="width: 3rem; height: 3rem;"
-      size: null
+
+  /**
+   * jQuery 全局函数 API
+   * ====================================================
+   */
+  function _showLoading2() {
+    //根据选项决定是否要加入loading层
+    if (_classPrivateFieldLooseBase(this, _iframe)[_iframe].length > 0 && _classPrivateFieldLooseBase(this, _config$9)[_config$9].loading !== false) {
+      $.loading({
+        window: _classPrivateFieldLooseBase(this, _config$9)[_config$9].window,
+        container: _classPrivateFieldLooseBase(this, _modalBodyEl)[_modalBodyEl],
+        class: 'bg-body-tertiary',
+        spinner: 'grow'
+      }).show();
+    }
+  }
+  function _beautifyScrollbar2() {
+    const that = this;
+
+    //滚动条美化
+    _classPrivateFieldLooseBase(this, _modalWrapper)[_modalWrapper].Scrollbar();
+
+    //处理美化遮罩层导致的关闭问题
+    _classPrivateFieldLooseBase(this, _modalWrapper)[_modalWrapper].on('click', function (event) {
+      event.stopPropagation(); //阻止冒泡行为
+
+      const res = $(event.target).closest(_classPrivateFieldLooseBase(that, _modalDialog)[_modalDialog]);
+      if (!res.length > 0) {
+        //下面的代码摘自bootstrap的modal官方的源码
+
+        if (_classPrivateFieldLooseBase(that, _config$9)[_config$9].modalOptions.backdrop === 'static') {
+          _classPrivateFieldLooseBase(that, _modalInstance)[_modalInstance]._triggerBackdropTransition();
+          return;
+        }
+        if (_classPrivateFieldLooseBase(that, _config$9)[_config$9].modalOptions.backdrop) {
+          that.hide();
+        }
+      }
+    });
+
+    //处理modal被启用可滚动的情况就美化滚动条
+    if (_classPrivateFieldLooseBase(this, _iframe)[_iframe].length === 0 && _classPrivateFieldLooseBase(this, _config$9)[_config$9].scrollable === true) {
+      _classPrivateFieldLooseBase(this, _modalBodyEl)[_modalBodyEl].Scrollbar();
+    }
+  }
+  function _createModalElement2() {
+    let html = [];
+    html.push(Util.sprintf(HTML$1.modal[0], _classPrivateFieldLooseBase(this, _config$9)[_config$9].modalClass, _classPrivateFieldLooseBase(this, _id)[_id], _classPrivateFieldLooseBase(this, _id)[_id]));
+    html.push(HTML$1.modalWrapper[0]);
+
+    //垂直居中,如果是iframe模式那么默认给它开启
+    let centered = '';
+    if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].url !== undefined && _classPrivateFieldLooseBase(this, _config$9)[_config$9].centered === undefined) {
+      centered = ClassName$2.MODAL_DIALOG_CENTERED;
+    } else if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].centered === true) {
+      centered = ClassName$2.MODAL_DIALOG_CENTERED;
+    }
+    let scrollable = '';
+    //body可滚动，如果iframe模式则默认不给它使用该功能
+    if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].scrollable === true && _classPrivateFieldLooseBase(this, _config$9)[_config$9].url === undefined) {
+      scrollable = ClassName$2.MODAL_DIALOG_SCROLLABLE;
+    }
+    let size = '';
+    if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].url !== undefined && _classPrivateFieldLooseBase(this, _config$9)[_config$9].size === undefined) {
+      size = Map$1.size['lg'];
+    } else {
+      size = Map$1.size[_classPrivateFieldLooseBase(this, _config$9)[_config$9].size] || '';
+    }
+    let fullscreen = Map$1.fullscreen[_classPrivateFieldLooseBase(this, _config$9)[_config$9].fullscreen] || '';
+    html.push(Util.sprintf(HTML$1.modalDialog[0], centered, scrollable, size, fullscreen));
+
+    //装填modalContent
+    html.push(HTML$1.modalContent[0]);
+
+    //装填modal-header
+    html.push(HTML$1.modalHeader[0]);
+    //标题准备
+    html.push(Util.sprintf(HTML$1.modalTitle, _classPrivateFieldLooseBase(this, _id)[_id], Util.htmlspecialchars(_classPrivateFieldLooseBase(this, _config$9)[_config$9].title)));
+    //右边的操作按钮
+    html.push(HTML$1.headerRightWrapper[0]);
+    //刷新按钮，要判断是否为url模式,不是的话，就加入刷新按钮
+    if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].url !== undefined && _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnRefresh === true) {
+      html.push(HTML$1.btnRefresh);
+    }
+
+    //全屏按钮,如果是iframe则给它开启
+    if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].url !== undefined && _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnFullscreen === undefined) {
+      html.push(HTML$1.btnFullscreen);
+    } else if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].btnFullscreen === true) {
+      html.push(HTML$1.btnFullscreen);
+    }
+
+    //关闭按钮
+    if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].btnClose === true) {
+      html.push(HTML$1.btnClose);
+    }
+    html.push(HTML$1.headerRightWrapper[1]);
+    html.push(HTML$1.modalHeader[1]);
+    html.push(Util.sprintf(HTML$1.modalBody[0], _classPrivateFieldLooseBase(this, _config$9)[_config$9].url !== undefined ? 'p-0 overflow-hidden' : ''));
+
+    //装填modal-body部分
+    if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].url !== undefined) {
+      //插入iframe
+      html.push(HTML$1.IFrame);
+    } else {
+      html.push(_classPrivateFieldLooseBase(this, _config$9)[_config$9].body);
+    }
+    html.push(HTML$1.modalBody[1]);
+    let btnAlign = Map$1.btnAlign[_classPrivateFieldLooseBase(this, _config$9)[_config$9].btnAlign] || '';
+    let btnSize = Map$1.btnSize[_classPrivateFieldLooseBase(this, _config$9)[_config$9].btnSize] || '';
+
+    //装填modal-footer部分
+    if (Array.isArray(_classPrivateFieldLooseBase(this, _config$9)[_config$9].buttons) && _classPrivateFieldLooseBase(this, _config$9)[_config$9].buttons.length !== 0) {
+      html.push(Util.sprintf(HTML$1.modalFooter[0], btnAlign));
+      _classPrivateFieldLooseBase(this, _config$9)[_config$9].buttons.forEach((item, index) => {
+        item = Object.assign(_classPrivateFieldLooseBase(this, _config$9)[_config$9].btntpl, item);
+        html.push(Util.sprintf(HTML$1.modalFooterBtn, index, item.class, btnSize, item.text));
+      });
+      html.push(HTML$1.modalFooter[1]);
+    } else if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].buttons === null) {
+      html.push(Util.sprintf(HTML$1.modalFooter[0], btnAlign));
+      html.push(Util.sprintf(HTML$1.modalFooterBtn, DATA_KEY_OK_NAME, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnOKClass, btnSize, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnOKText));
+      if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].btnCancel === true) {
+        html.push(Util.sprintf(HTML$1.modalFooterBtn, DATA_KEY_CANCEL_NAME, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnCancelClass, btnSize, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnCancelText));
+      }
+      html.push(HTML$1.modalFooter[1]);
+    }
+    html.push(HTML$1.modalContent[1]);
+    html.push(HTML$1.modalDialog[1]);
+    html.push(HTML$1.modalWrapper[1]);
+    html.push(HTML$1.modal[1]);
+
+    //转回字符串
+    html = html.join('');
+
+    //加入到body中放着
+    _classPrivateFieldLooseBase(this, _$$1)[_$$1](html).prependTo('body');
+
+    //查找元素方便后续的使用,避免重复的查找
+    _classPrivateFieldLooseBase(this, _element$8)[_element$8] = _classPrivateFieldLooseBase(this, _$$1)[_$$1](`#${_classPrivateFieldLooseBase(this, _id)[_id]}`);
+    _classPrivateFieldLooseBase(this, _modalDialog)[_modalDialog] = _classPrivateFieldLooseBase(this, _element$8)[_element$8].find('.modal-dialog');
+    _classPrivateFieldLooseBase(this, _modalBodyEl)[_modalBodyEl] = _classPrivateFieldLooseBase(this, _element$8)[_element$8].find('.modal-body');
+    _classPrivateFieldLooseBase(this, _modalHeader)[_modalHeader] = _classPrivateFieldLooseBase(this, _element$8)[_element$8].find('.modal-header');
+    _classPrivateFieldLooseBase(this, _modalFooter)[_modalFooter] = _classPrivateFieldLooseBase(this, _element$8)[_element$8].find('.modal-footer');
+    _classPrivateFieldLooseBase(this, _iframe)[_iframe] = _classPrivateFieldLooseBase(this, _modalBodyEl)[_modalBodyEl].find('iframe');
+    _classPrivateFieldLooseBase(this, _modalWrapper)[_modalWrapper] = _classPrivateFieldLooseBase(this, _element$8)[_element$8].find(`.${ClassName$2.MODAL_WRAPPER}`);
+
+    //动态计算高度
+    _classPrivateFieldLooseBase(this, _bodyDynamicHeight)[_bodyDynamicHeight]();
+  }
+  function _bodyDynamicHeight2() {
+    //设置body高度
+    if (_classPrivateFieldLooseBase(this, _iframe)[_iframe].length > 0 && _classPrivateFieldLooseBase(this, _config$9)[_config$9].height === undefined) {
+      //是iframe则动态设置高度
+
+      //先动态显示出来
+      _classPrivateFieldLooseBase(this, _element$8)[_element$8][0].style.display = 'block';
+      //拿到高度
+      let headerHeader = _classPrivateFieldLooseBase(this, _modalHeader)[_modalHeader].length > 0 ? _classPrivateFieldLooseBase(this, _modalHeader)[_modalHeader][0].getBoundingClientRect().height : 0;
+      let footerHeader = _classPrivateFieldLooseBase(this, _modalFooter)[_modalFooter].length > 0 ? _classPrivateFieldLooseBase(this, _modalFooter)[_modalFooter][0].getBoundingClientRect().height : 0;
+      //立马隐藏
+      _classPrivateFieldLooseBase(this, _element$8)[_element$8][0].style.display = 'none';
+
+      //动态设置高度
+      _classPrivateFieldLooseBase(this, _modalBodyEl)[_modalBodyEl][0].style.height = `calc(100vh - 9rem - ${headerHeader + footerHeader}px)`;
+    } else {
+      //设置选项提供的高度
+      _classPrivateFieldLooseBase(this, _modalBodyEl)[_modalBodyEl][0].style.height = _classPrivateFieldLooseBase(this, _config$9)[_config$9].height;
+    }
+  }
+  function _bindEvents2() {
+    _classPrivateFieldLooseBase(this, _bindModalEvents)[_bindModalEvents]();
+    _classPrivateFieldLooseBase(this, _bindIFrameEvents)[_bindIFrameEvents]();
+    _classPrivateFieldLooseBase(this, _bindRefreshBtnEvents)[_bindRefreshBtnEvents]();
+    _classPrivateFieldLooseBase(this, _bindFullscreenEvents)[_bindFullscreenEvents]();
+    _classPrivateFieldLooseBase(this, _bandFooterBtnEvent)[_bandFooterBtnEvent]();
+    _classPrivateFieldLooseBase(this, _bindMessageEvent)[_bindMessageEvent]();
+  }
+  function _bindFullscreenEvents2() {
+    const that = this;
+    _classPrivateFieldLooseBase(this, _modalHeader)[_modalHeader].on('click', '.btn-fullscreen-trigger', function () {
+      if (!_classPrivateFieldLooseBase(that, _modalDialog)[_modalDialog].hasClass(ClassName$2.MODAL_FULLSCREEN)) {
+        _classPrivateFieldLooseBase(that, _modalDialog)[_modalDialog].addClass(ClassName$2.MODAL_FULLSCREEN);
+        $(this).removeClass(ClassName$2.BTN_FULLSCREEN).addClass(ClassName$2.BTN_FULLSCREEN_EXIT);
+      } else {
+        _classPrivateFieldLooseBase(that, _modalDialog)[_modalDialog].removeClass(ClassName$2.MODAL_FULLSCREEN);
+        $(this).removeClass(ClassName$2.BTN_FULLSCREEN_EXIT).addClass(ClassName$2.BTN_FULLSCREEN);
+      }
+    });
+  }
+  function _bindRefreshBtnEvents2() {
+    const that = this;
+
+    //刷新按钮
+    _classPrivateFieldLooseBase(this, _modalHeader)[_modalHeader].on('click', '.btn-refresh', function () {
+      _classPrivateFieldLooseBase(that, _showLoading)[_showLoading]();
+
+      //判断是否是跨域的iframe,如果是跨域的就直接移除重新添加
+      if (!_classPrivateFieldLooseBase(that, _isCrossOrigin)[_isCrossOrigin](_classPrivateFieldLooseBase(that, _iframe)[_iframe][0])) {
+        _classPrivateFieldLooseBase(that, _iframe)[_iframe][0].contentWindow.location.reload();
+      } else {
+        _classPrivateFieldLooseBase(that, _iframe)[_iframe].attr('src', Util.addSearchParams(_classPrivateFieldLooseBase(that, _iframe)[_iframe].attr('src'), {
+          ___t: Math.random()
+        }));
+      }
+    });
+  }
+  function _bindMessageEvent2() {
+    window[_classPrivateFieldLooseBase(this, _config$9)[_config$9].window].addEventListener('message', event => {
+      if (event.source === _classPrivateFieldLooseBase(this, _iframe)[_iframe][0].contentWindow) {
+        //判断是否来自子页面的
+        //调用选项
+        typeof _classPrivateFieldLooseBase(this, _config$9)[_config$9].onMessage === 'function' && _classPrivateFieldLooseBase(this, _config$9)[_config$9].onMessage.call(this, event.data, event.source, event.origin);
+      }
+    }, false);
+  }
+  function _bindModalEvents2() {
+    let that = this;
+    _classPrivateFieldLooseBase(this, _element$8)[_element$8][0].addEventListener('hide.bs.modal', function (event) {
+      typeof _classPrivateFieldLooseBase(that, _config$9)[_config$9].onHide === 'function' && _classPrivateFieldLooseBase(that, _config$9)[_config$9].onHide.call(that, event);
+    });
+
+    //监听
+    _classPrivateFieldLooseBase(this, _element$8)[_element$8][0].addEventListener('hidden.bs.modal', function (event) {
+      typeof _classPrivateFieldLooseBase(that, _config$9)[_config$9].onHidden === 'function' && _classPrivateFieldLooseBase(that, _config$9)[_config$9].onHidden.call(that, event);
+      _classPrivateFieldLooseBase(that, _destory)[_destory]();
+    });
+
+    //监听
+    _classPrivateFieldLooseBase(this, _element$8)[_element$8][0].addEventListener('hidePrevented.bs.modal', function (event) {
+      typeof _classPrivateFieldLooseBase(that, _config$9)[_config$9].onHidePrevented === 'function' && _classPrivateFieldLooseBase(that, _config$9)[_config$9].onHidePrevented.call(that, event);
+    });
+    _classPrivateFieldLooseBase(this, _element$8)[_element$8][0].addEventListener('show.bs.modal', function (event) {
+      typeof _classPrivateFieldLooseBase(that, _config$9)[_config$9].onShow === 'function' && _classPrivateFieldLooseBase(that, _config$9)[_config$9].onShow.call(that, event);
+    });
+    _classPrivateFieldLooseBase(this, _element$8)[_element$8][0].addEventListener('shown.bs.modal', function (event) {
+      //设置src
+      _classPrivateFieldLooseBase(that, _iframe)[_iframe].attr('src', _classPrivateFieldLooseBase(that, _config$9)[_config$9].url);
+      typeof _classPrivateFieldLooseBase(that, _config$9)[_config$9].onShown === 'function' && _classPrivateFieldLooseBase(that, _config$9)[_config$9].onShown.call(that, event);
+    });
+  }
+  function _isCrossOrigin2(iframe) {
+    try {
+      // 尝试访问 iframe 的内容
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      // 如果没有抛出异常，说明不是跨域的
+      return false;
+    } catch (e) {
+      // 如果捕获到 SecurityError 异常，说明是跨域的
+      if (e instanceof DOMException && e.name === 'SecurityError') {
+        return true;
+      } else {
+        throw e; // 重新抛出不是 SecurityError 的异常
+      }
+    }
+  }
+  function _bindIFrameEvents2() {
+    const that = this;
+    if (_classPrivateFieldLooseBase(this, _iframe)[_iframe].length > 0) {
+      //绑定事件
+      _classPrivateFieldLooseBase(this, _iframe)[_iframe].on('load', function () {
+        $.loading.hide({
+          window: _classPrivateFieldLooseBase(that, _config$9)[_config$9].window,
+          container: _classPrivateFieldLooseBase(that, _modalBodyEl)[_modalBodyEl]
+        });
+      });
+    }
+  }
+  function _destory2() {
+    //销毁滚动条
+    const osBodyInstance = _classPrivateFieldLooseBase(this, _modalBodyEl)[_modalBodyEl].Scrollbar('getOsInstance');
+    if (!osBodyInstance.jquery) {
+      $(osBodyInstance.elements().viewport).html('');
+      osBodyInstance.destroy();
+    }
+    const osInstance = _classPrivateFieldLooseBase(this, _modalWrapper)[_modalWrapper].Scrollbar('getOsInstance');
+    if (!osInstance.jquery) {
+      $(osInstance.elements().viewport).html('');
+      osInstance.destroy();
+    }
+    // 删除dom上存储的数据
+    _classPrivateFieldLooseBase(this, _modalInstance)[_modalInstance].dispose();
+
+    // 直接删除整个元素
+    _classPrivateFieldLooseBase(this, _element$8)[_element$8].remove();
+  }
+  function _bandFooterBtnEvent2() {
+    let that = this;
+    _classPrivateFieldLooseBase(this, _modalFooter)[_modalFooter].on('click', 'button', function () {
+      let key = $(this).attr('data-key');
+      let contentWindow;
+      if (_classPrivateFieldLooseBase(that, _iframe)[_iframe].length > 0) {
+        contentWindow = _classPrivateFieldLooseBase(that, _iframe)[_iframe][0].contentWindow;
+      }
+      if ([DATA_KEY_OK_NAME, DATA_KEY_CANCEL_NAME].includes(key)) {
+        if (key === DATA_KEY_OK_NAME && typeof _classPrivateFieldLooseBase(that, _config$9)[_config$9].ok === 'function') {
+          //ok 默认不要自动关闭
+          _classPrivateFieldLooseBase(that, _config$9)[_config$9].ok.call(that, contentWindow);
+        }
+        if (key === DATA_KEY_CANCEL_NAME && typeof _classPrivateFieldLooseBase(that, _config$9)[_config$9].cancel === 'function') {
+          let callret = _classPrivateFieldLooseBase(that, _config$9)[_config$9].cancel.call(that, contentWindow);
+          if (callret !== false) {
+            that.hide();
+          }
+        }
+      } else {
+        typeof _classPrivateFieldLooseBase(that, _config$9)[_config$9].buttons[key]['action'] === 'function' && _classPrivateFieldLooseBase(that, _config$9)[_config$9].buttons[key].action.call(that, contentWindow);
+      }
+    });
+  }
+  $[NAME$9] = function (options) {
+    return new Modal($.extend({}, $[NAME$9].default, options));
+  };
+  $[NAME$9].default = Default$9;
+
+  // 全局api的名称
+  const NAME$8 = 'loading';
+
+  //类名
+  const ClassName$1 = {
+    loading: 'bsa-loading',
+    //显示时的激活类
+    active: 'active'
+  };
+  const Map = {
+    spinner: {
+      border: 'spinner-border',
+      grow: 'spinner-grow'
     },
-    show: function (params) {
-      //参数合并
-      this._config = $.extend({}, this.default, params);
-      Loading.show(this._config);
-    },
-    hide: function () {
-      Loading.hide();
+    //主题色
+    spinnerColorScheme: {
+      primary: 'text-primary',
+      secondary: 'text-secondary',
+      success: 'text-success',
+      danger: 'text-danger',
+      warning: 'text-warning',
+      info: 'text-info',
+      dark: 'text-dark',
+      light: 'text-light'
     }
   };
 
-  exports.Layout = Layout;
+  // html的结构
+  const HTML = {
+    container: [`<div class="${ClassName$1.loading}">`, `</div>`],
+    //旋转器 参数1:旋转器类型,参数2:主题色 参数3:尺寸 参数4:行内样式控制的尺寸
+    spinner: `<div class="%s %s %s" %s role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>`
+  };
+
+  //默认参数
+  const Default$8 = {
+    //打开的窗口对象
+    window: 'top',
+    //容器,选择器，element。jQuery对象
+    container: 'body',
+    // 容器的定位
+    containerPosition: 'relative',
+    //情景模式 undefined/string 可用值:primary success info  warning danger light dark
+    type: '',
+    //旋转器 grow:实心圈  border:空心圈
+    spinner: 'border',
+    //尺寸 可选值 'sm' | 'style="width: 3rem; height: 3rem;"'
+    size: '',
+    //给loading层附加的样式类
+    class: '',
+    //是否有淡出效果
+    fadeOut: true
+  };
+  var _config$8 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _$ = /*#__PURE__*/_classPrivateFieldLooseKey("$");
+  var _$loading = /*#__PURE__*/_classPrivateFieldLooseKey("$loading");
+  var _transitionendListeners = /*#__PURE__*/_classPrivateFieldLooseKey("transitionendListeners");
+  var _transitionendHandle = /*#__PURE__*/_classPrivateFieldLooseKey("transitionendHandle");
+  var _createLoadingElement = /*#__PURE__*/_classPrivateFieldLooseKey("createLoadingElement");
+  class Loading {
+    //构造函数
+    constructor(config) {
+      Object.defineProperty(this, _createLoadingElement, {
+        value: _createLoadingElement2
+      });
+      Object.defineProperty(this, _transitionendHandle, {
+        value: _transitionendHandle2
+      });
+      Object.defineProperty(this, _transitionendListeners, {
+        value: _transitionendListeners2
+      });
+      Object.defineProperty(this, _config$8, {
+        writable: true,
+        value: void 0
+      });
+      // jquery对象
+      Object.defineProperty(this, _$, {
+        writable: true,
+        value: void 0
+      });
+      //元素
+      Object.defineProperty(this, _$loading, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$8)[_config$8] = config;
+
+      //更改触发的jquery对象
+      _classPrivateFieldLooseBase(this, _$)[_$] = window[_classPrivateFieldLooseBase(this, _config$8)[_config$8].window].$;
+      _classPrivateFieldLooseBase(this, _createLoadingElement)[_createLoadingElement]();
+      _classPrivateFieldLooseBase(this, _transitionendListeners)[_transitionendListeners]();
+    }
+    show() {
+      _classPrivateFieldLooseBase(this, _$loading)[_$loading].addClass(ClassName$1.active);
+    }
+    hide(options) {
+      let config = Object.assign(_classPrivateFieldLooseBase(this, _config$8)[_config$8], typeof options === "object" ? options : {});
+      const $loading = window[config.window].$(config.container).find(`.${ClassName$1.loading}`);
+      if (_classPrivateFieldLooseBase(this, _config$8)[_config$8].fadeOut === true) {
+        $loading.addClass('fade-out');
+      } else {
+        $loading.remove();
+      }
+    }
+  }
+
+  /**
+   * jQuery 全局函数 API
+   * ====================================================
+   */
+  function _transitionendListeners2() {
+    //事件委托
+    if (_classPrivateFieldLooseBase(this, _config$8)[_config$8].fadeOut === true) {
+      _classPrivateFieldLooseBase(this, _$)[_$](window[_classPrivateFieldLooseBase(this, _config$8)[_config$8].window].document).off('transitionend', `.${ClassName$1.loading}`, _classPrivateFieldLooseBase(this, _transitionendHandle)[_transitionendHandle]);
+      _classPrivateFieldLooseBase(this, _$)[_$](window[_classPrivateFieldLooseBase(this, _config$8)[_config$8].window].document).on('transitionend', `.${ClassName$1.loading}`, _classPrivateFieldLooseBase(this, _transitionendHandle)[_transitionendHandle]);
+    }
+  }
+  function _transitionendHandle2() {
+    $(this).remove();
+  }
+  function _createLoadingElement2() {
+    let html = [];
+    html.push(HTML.container[0]);
+    let spinner = Map.spinner[_classPrivateFieldLooseBase(this, _config$8)[_config$8].spinner] || 'spinner-border';
+    let color = Map.spinnerColorScheme[_classPrivateFieldLooseBase(this, _config$8)[_config$8].type] || '';
+    let size = _classPrivateFieldLooseBase(this, _config$8)[_config$8].size === 'sm' ? spinner + '-sm' : '';
+    let styleSize = _classPrivateFieldLooseBase(this, _config$8)[_config$8].size !== 'sm' ? _classPrivateFieldLooseBase(this, _config$8)[_config$8].size : '';
+    html.push(Util.sprintf(HTML.spinner, spinner, color, size, styleSize));
+    html.push(HTML.container[1]);
+    html = html.join('');
+
+    //先移除
+    _classPrivateFieldLooseBase(this, _$)[_$](_classPrivateFieldLooseBase(this, _config$8)[_config$8].container).find(`.${ClassName$1.loading}`).remove();
+    _classPrivateFieldLooseBase(this, _$)[_$](html).prependTo(_classPrivateFieldLooseBase(this, _config$8)[_config$8].container);
+    //查找元素
+    _classPrivateFieldLooseBase(this, _$loading)[_$loading] = _classPrivateFieldLooseBase(this, _$)[_$](_classPrivateFieldLooseBase(this, _config$8)[_config$8].container).find(`.${ClassName$1.loading}`);
+    _classPrivateFieldLooseBase(this, _$)[_$](_classPrivateFieldLooseBase(this, _config$8)[_config$8].container).css({
+      position: _classPrivateFieldLooseBase(this, _config$8)[_config$8].containerPosition
+    });
+    if (_classPrivateFieldLooseBase(this, _config$8)[_config$8].container !== 'body') {
+      //动态设置样式
+      _classPrivateFieldLooseBase(this, _$loading)[_$loading].css({
+        position: 'absolute'
+      });
+    }
+    _classPrivateFieldLooseBase(this, _config$8)[_config$8].class !== '' && _classPrivateFieldLooseBase(this, _$loading)[_$loading].addClass(_classPrivateFieldLooseBase(this, _config$8)[_config$8].class);
+  }
+  let loadingInstance;
+  $[NAME$8] = function (options) {
+    loadingInstance = new Loading($.extend({}, $[NAME$8].default, typeof options === 'object' ? options : {}));
+    return loadingInstance;
+  };
+  $[NAME$8].hide = function (options) {
+    loadingInstance.hide(options);
+  };
+  $[NAME$8].default = Default$8;
+
+  const {
+    OverlayScrollbars,
+    ScrollbarsHidingPlugin,
+    SizeObserverPlugin,
+    ClickScrollPlugin
+  } = OverlayScrollbarsGlobal;
+  const NAME$7 = 'Scrollbar';
+  const DATA_KEY$7 = 'bsa.scrollbar';
+  const JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
+  const SELECTOR_DATA_TOGGLE$6 = '[data-bsa-toggle="scrollbar"]';
+  const Default$7 = {
+    param1: {},
+    param2: {
+      overflow: {
+        x: 'hidden',
+        y: 'scroll'
+      },
+      scrollbars: {
+        //never scroll leave move
+        autoHide: 'leave',
+        //是否可以点击轨道滚动
+        clickScroll: true,
+        //隐藏滚动条的时间
+        autoHideDelay: 1300
+      }
+    },
+    param3: {}
+  };
+  var _config$7 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _element$7 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _osInstance = /*#__PURE__*/_classPrivateFieldLooseKey("osInstance");
+  var _init$7 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  class Scrollbar {
+    constructor(element, config) {
+      // Private
+      Object.defineProperty(this, _init$7, {
+        value: _init2$7
+      });
+      Object.defineProperty(this, _config$7, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element$7, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _osInstance, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$7)[_config$7] = config;
+      _classPrivateFieldLooseBase(this, _element$7)[_element$7] = element;
+    }
+    // 获取滚动条插件的实例
+    getOsInstance() {
+      return _classPrivateFieldLooseBase(this, _osInstance)[_osInstance];
+    }
+
+    // Static
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY$7);
+        if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError(`No method named "${config}"`);
+          }
+          value = data[config](...args);
+          return;
+        }
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new Scrollbar($(this), $.extend({}, Default$7, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY$7, data);
+        _classPrivateFieldLooseBase(data, _init$7)[_init$7]();
+      });
+      return typeof value === 'undefined' ? this : value;
+    }
+  }
+
+  /**
+   * Data API
+   * ====================================================
+   */
+  function _init2$7() {
+    //插件注册
+    OverlayScrollbars.plugin([SizeObserverPlugin, ClickScrollPlugin, ScrollbarsHidingPlugin]);
+
+    //初始化实例
+    _classPrivateFieldLooseBase(this, _osInstance)[_osInstance] = OverlayScrollbars($.isEmptyObject(_classPrivateFieldLooseBase(this, _config$7)[_config$7].param1) ? _classPrivateFieldLooseBase(this, _element$7)[_element$7][0] : _classPrivateFieldLooseBase(this, _config$7)[_config$7].param1, _classPrivateFieldLooseBase(this, _config$7)[_config$7].param2, _classPrivateFieldLooseBase(this, _config$7)[_config$7].param3);
+  }
+  $(() => {
+    $(SELECTOR_DATA_TOGGLE$6).each(function () {
+      Scrollbar.jQueryInterface.call($(this));
+    });
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME$7] = Scrollbar.jQueryInterface;
+  $.fn[NAME$7].Constructor = Scrollbar;
+  $.fn[NAME$7].noConflict = function () {
+    $.fn[NAME$7] = JQUERY_NO_CONFLICT$7;
+    return Scrollbar.jQueryInterface;
+  };
+
+  const NAME$6 = 'Fullscreen';
+  const DATA_KEY$6 = 'bsa.fullscreen';
+  const JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
+  const SELECTOR_DATA_TOGGLE$5 = '[data-bsa-toggle="fullscreen"]';
+
+  // 默认选项
+  const Default$6 = {
+    //全屏图标
+    fullIcon: 'bi bi-arrows-fullscreen',
+    //退出全屏图标
+    exitIcon: 'bi bi-fullscreen-exit'
+  };
+  var _config$6 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _element$6 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _init$6 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  var _setupListeners$3 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  var _iconToggle = /*#__PURE__*/_classPrivateFieldLooseKey("iconToggle");
+  class Fullscreen {
+    constructor(element, config) {
+      Object.defineProperty(this, _iconToggle, {
+        value: _iconToggle2
+      });
+      Object.defineProperty(this, _setupListeners$3, {
+        value: _setupListeners2$3
+      });
+      // Private
+      Object.defineProperty(this, _init$6, {
+        value: _init2$6
+      });
+      Object.defineProperty(this, _config$6, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element$6, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$6)[_config$6] = config;
+      _classPrivateFieldLooseBase(this, _element$6)[_element$6] = element;
+    }
+    toggle() {
+      if (document.fullscreenElement) {
+        this.exitFullscreen();
+      } else {
+        this.fullscreen();
+      }
+    }
+    // 全屏
+    fullscreen() {
+      document.documentElement.requestFullscreen();
+    }
+
+    // 退出全屏
+    exitFullscreen() {
+      document.exitFullscreen();
+    }
+
+    // Static
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY$6);
+        if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError(`No method named "${config}"`);
+          }
+          value = data[config](...args);
+          return;
+        }
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new Fullscreen($(this), $.extend({}, Default$6, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY$6, data);
+        _classPrivateFieldLooseBase(data, _init$6)[_init$6]();
+      });
+      return typeof value === 'undefined' ? this : value;
+    }
+  }
+
+  /**
+   * Data API
+   * ====================================================
+   */
+  function _init2$6() {
+    _classPrivateFieldLooseBase(this, _setupListeners$3)[_setupListeners$3]();
+  }
+  function _setupListeners2$3() {
+    const that = this;
+
+    // 这里是全局监听,避免是非通过点击退出全屏时图标没有恢复的问题
+    $(document).on('fullscreenchange', function () {
+      _classPrivateFieldLooseBase(that, _iconToggle)[_iconToggle]();
+    });
+    _classPrivateFieldLooseBase(that, _element$6)[_element$6].on('click', function () {
+      that.toggle();
+    });
+  }
+  function _iconToggle2() {
+    if (document.fullscreenElement) {
+      //全屏图标
+      _classPrivateFieldLooseBase(this, _element$6)[_element$6].find('i').removeClass(_classPrivateFieldLooseBase(this, _config$6)[_config$6].fullIcon).addClass(_classPrivateFieldLooseBase(this, _config$6)[_config$6].exitIcon);
+    } else {
+      _classPrivateFieldLooseBase(this, _element$6)[_element$6].find('i').removeClass(_classPrivateFieldLooseBase(this, _config$6)[_config$6].exitIcon).addClass(_classPrivateFieldLooseBase(this, _config$6)[_config$6].fullIcon);
+    }
+  }
+  $(() => {
+    $(SELECTOR_DATA_TOGGLE$5).each(function () {
+      Fullscreen.jQueryInterface.call($(this));
+    });
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME$6] = Fullscreen.jQueryInterface;
+  $.fn[NAME$6].Constructor = Fullscreen;
+  $.fn[NAME$6].noConflict = function () {
+    $.fn[NAME$6] = JQUERY_NO_CONFLICT$6;
+    return Fullscreen.jQueryInterface;
+  };
+
+  const NAME$5 = 'IFrame';
+  const DATA_KEY$5 = 'bsa.iframe';
+  const JQUERY_NO_CONFLICT$5 = $.fn[NAME$5];
+  const SELECTOR_DATA_TOGGLE$4 = '[data-bsa-toggle="iframe"]';
+  const Default$5 = {
+    //侧边栏是否跟着tab的激活来进行展开折叠动画
+    sidebarToggle: false,
+    //点击是否自动关闭侧边栏
+    clickCloseSidebar: false,
+    //触发元素选择器
+    triggerElement: '.bsa-navigation a:not(.has-arrow):not([target])',
+    //treeview的实例选择器
+    treeviewElement: '.bsa-navigation',
+    //scrollbar的实例选择器
+    scrollbarElement: '.bsa-sidebar .card-body',
+    //pushMenu插件的选择器
+    pushMenuElement: '.bsa-sidebar-toggler',
+    //tab的标题,选择器字符串,内部是从triggerElement提供的选择器下面查找的
+    tabTitle: '.content'
+  };
+  var _config$5 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _element$5 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _quicktab = /*#__PURE__*/_classPrivateFieldLooseKey("quicktab");
+  var _$treeview = /*#__PURE__*/_classPrivateFieldLooseKey("$treeview");
+  var _link = /*#__PURE__*/_classPrivateFieldLooseKey("link");
+  var _clicked = /*#__PURE__*/_classPrivateFieldLooseKey("clicked");
+  var _init$5 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  var _setupListeners$2 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  class IFrame {
+    constructor(element, config) {
+      Object.defineProperty(this, _setupListeners$2, {
+        value: _setupListeners2$2
+      });
+      // Private
+      Object.defineProperty(this, _init$5, {
+        value: _init2$5
+      });
+      Object.defineProperty(this, _config$5, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element$5, {
+        writable: true,
+        value: void 0
+      });
+      // quicktab插件实例
+      Object.defineProperty(this, _quicktab, {
+        writable: true,
+        value: void 0
+      });
+      // 内部插件treeview实例
+      Object.defineProperty(this, _$treeview, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _link, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _clicked, {
+        writable: true,
+        value: false
+      });
+      _classPrivateFieldLooseBase(this, _config$5)[_config$5] = config;
+      _classPrivateFieldLooseBase(this, _element$5)[_element$5] = element;
+    }
+    // Static
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY$5);
+        if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
+          if (typeof data[config] !== 'undefined') {
+            value = data[config](...args);
+          } else if (_classPrivateFieldLooseBase(data, _quicktab)[_quicktab][config] !== 'undefined') {
+            value = _classPrivateFieldLooseBase(data, _quicktab)[_quicktab][config](...args);
+          } else {
+            throw new TypeError(`No method named "${config}"`);
+          }
+          return;
+        }
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new IFrame($(this), $.extend({}, Default$5, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY$5, data);
+        _classPrivateFieldLooseBase(data, _init$5)[_init$5]();
+      });
+      return typeof value === 'undefined' ? this : value;
+    }
+  }
+
+  /**
+   * Data API
+   * ====================================================
+   */
+  function _init2$5() {
+    const that = this;
+    _classPrivateFieldLooseBase(this, _$treeview)[_$treeview] = $(_classPrivateFieldLooseBase(this, _config$5)[_config$5].treeviewElement);
+
+    //初始化quicktab实例
+    _classPrivateFieldLooseBase(this, _quicktab)[_quicktab] = new Quicktab(_classPrivateFieldLooseBase(this, _element$5)[_element$5][0], {
+      height: '100%',
+      //tab的激活事件
+      onTabActivated: function (url) {
+        if (_classPrivateFieldLooseBase(that, _config$5)[_config$5].sidebarToggle === true) {
+          if (_classPrivateFieldLooseBase(that, _clicked)[_clicked] === false) {
+            _classPrivateFieldLooseBase(that, _link)[_link] = $(_classPrivateFieldLooseBase(that, _config$5)[_config$5].triggerElement).filter(function () {
+              return $(this).attr('href') === url;
+            });
+            if (_classPrivateFieldLooseBase(that, _link)[_link].length > 0) {
+              //调用expandRecursive方法
+              _classPrivateFieldLooseBase(that, _$treeview)[_$treeview].Treeview('expandRecursive', _classPrivateFieldLooseBase(that, _link)[_link]);
+            }
+          }
+          _classPrivateFieldLooseBase(that, _clicked)[_clicked] = false;
+        }
+      },
+      onTabCloseAll: function () {
+        _classPrivateFieldLooseBase(that, _$treeview)[_$treeview].Treeview('collapseAll');
+      },
+      onInit: function () {
+        $('.quicktab-dropdown .body').Scrollbar();
+      }
+    });
+
+    // 初始化点击事件
+    _classPrivateFieldLooseBase(this, _setupListeners$2)[_setupListeners$2]();
+  }
+  function _setupListeners2$2() {
+    const that = this;
+
+    //侧边栏，没有子集的链接
+    $(document).on('click', _classPrivateFieldLooseBase(that, _config$5)[_config$5].triggerElement, function (event) {
+      event.preventDefault(); //阻止默认事件
+
+      const $trigger = $(this);
+
+      // 移除所有的激活类
+      _classPrivateFieldLooseBase(that, _$treeview)[_$treeview].Treeview('removeAllActiveClass');
+
+      // 给当前的a添加激活类
+      _classPrivateFieldLooseBase(that, _$treeview)[_$treeview].Treeview('addActiveClass', $trigger);
+      if (_classPrivateFieldLooseBase(that, _config$5)[_config$5].clickCloseSidebar === true) {
+        //如果开启自动关闭
+        $(_classPrivateFieldLooseBase(that, _config$5)[_config$5].pushMenuElement).PushMenu('collapse');
+      }
+      _classPrivateFieldLooseBase(that, _clicked)[_clicked] = true;
+
+      //添加tab处理
+      _classPrivateFieldLooseBase(that, _quicktab)[_quicktab].addTab({
+        title: $trigger.find(_classPrivateFieldLooseBase(that, _config$5)[_config$5].tabTitle).text(),
+        url: this.getAttribute('href'),
+        close: true
+      });
+    });
+
+    //treeview插件的事件监听
+    _classPrivateFieldLooseBase(this, _$treeview)[_$treeview].on('recursive.collapsed.bsa.treeview', function () {
+      $(_classPrivateFieldLooseBase(that, _config$5)[_config$5].scrollbarElement).Scrollbar('getOsInstance').elements().viewport.scrollTo({
+        top: _classPrivateFieldLooseBase(that, _link)[_link].prop('offsetTop'),
+        behavior: 'smooth'
+      });
+    });
+  }
+  $(() => {
+    $(SELECTOR_DATA_TOGGLE$4).each(function () {
+      IFrame.jQueryInterface.call($(this));
+    });
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+  $.fn[NAME$5] = IFrame.jQueryInterface;
+  $.fn[NAME$5].Constructor = IFrame;
+  $.fn[NAME$5].noConflict = function () {
+    $.fn[NAME$5] = JQUERY_NO_CONFLICT$5;
+    return IFrame.jQueryInterface;
+  };
+
+  const NAME$4 = 'BackToTop';
+  const DATA_KEY$4 = 'bsa.backtotop';
+  const EVENT_KEY$1 = `.${DATA_KEY$4}`;
+  const JQUERY_NO_CONFLICT$4 = $.fn[NAME$4];
+  const SELECTOR_DATA_TOGGLE$3 = '[data-bsa-toggle="backtotop"]';
+  const EVENT_SCROLL_BEFORE = `scroll.before${EVENT_KEY$1}`;
+  const EVENT_SCROLL_COMPLETE = `scroll.complete${EVENT_KEY$1}`;
+
+  // 类名,美化的
+  const CLASS_NAME_BACKTOTOP = 'bsa-back-to-top';
+  const Default$4 = {
+    //距离顶部的距离
+    distanceFromTop: 300,
+    //滚动速度
+    speed: 600,
+    //添加到那个容器中
+    prependTo: 'body',
+    //触发元素
+    triggerElement: '.bsa-back-to-top'
+  };
+  var _config$4 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _element$4 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _init$4 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  var _setupListeners$1 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  class BackToTop {
+    constructor(element, config) {
+      Object.defineProperty(this, _setupListeners$1, {
+        value: _setupListeners2$1
+      });
+      // Private
+      Object.defineProperty(this, _init$4, {
+        value: _init2$4
+      });
+      Object.defineProperty(this, _config$4, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element$4, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$4)[_config$4] = config;
+      _classPrivateFieldLooseBase(this, _element$4)[_element$4] = element;
+    }
+    // Static
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY$4);
+        if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError(`No method named "${config}"`);
+          }
+          value = data[config](...args);
+          return;
+        }
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new BackToTop($(this), $.extend({}, Default$4, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY$4, data);
+        _classPrivateFieldLooseBase(data, _init$4)[_init$4]();
+      });
+      return typeof value === 'undefined' ? this : value;
+    }
+  }
+
+  /**
+   * Data API
+   * ====================================================
+   */
+  function _init2$4() {
+    _classPrivateFieldLooseBase(this, _setupListeners$1)[_setupListeners$1]();
+  }
+  function _setupListeners2$1() {
+    const that = this;
+
+    //回到顶部,向下滚动300px渐显回到顶部按钮
+    $(window).on('scroll', function () {
+      // 先找到这个滚动到顶部的元素
+      const $backtotop = $(`.${CLASS_NAME_BACKTOTOP}`);
+      if ($backtotop.length === 0) {
+        //如果没有
+        $(`<a class="${CLASS_NAME_BACKTOTOP}"><i class="bi bi-arrow-up-short"></i></a>`).prependTo($(_classPrivateFieldLooseBase(that, _config$4)[_config$4].prependTo));
+      }
+      $(this).scrollTop() > _classPrivateFieldLooseBase(that, _config$4)[_config$4].distanceFromTop ? $backtotop.fadeIn() : $backtotop.fadeOut();
+    });
+
+    //回到顶部事件监听
+    $(document).on('click', _classPrivateFieldLooseBase(that, _config$4)[_config$4].triggerElement, function () {
+      $(_classPrivateFieldLooseBase(that, _element$4)[_element$4]).trigger($.Event(EVENT_SCROLL_BEFORE));
+      $('html').animate({
+        scrollTop: 0
+      }, _classPrivateFieldLooseBase(that, _config$4)[_config$4].speed, function () {
+        $(_classPrivateFieldLooseBase(that, _element$4)[_element$4]).trigger($.Event(EVENT_SCROLL_COMPLETE));
+      });
+    });
+  }
+  $(() => {
+    $(SELECTOR_DATA_TOGGLE$3).each(function () {
+      BackToTop.jQueryInterface.call($(this));
+    });
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME$4] = BackToTop.jQueryInterface;
+  $.fn[NAME$4].Constructor = BackToTop;
+  $.fn[NAME$4].noConflict = function () {
+    $.fn[NAME$4] = JQUERY_NO_CONFLICT$4;
+    return BackToTop.jQueryInterface;
+  };
+
+  const NAME$3 = 'Initialize';
+  const DATA_KEY$3 = 'bsa.initialize';
+  const JQUERY_NO_CONFLICT$3 = $.fn[NAME$3];
+
+  //类名
+  const ClassName = {
+    pe: 'pe-none'
+  };
+  const Default$3 = {
+    //提示工具允许的属性和标签设置 see:https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer
+    sanitizerAllowList: {
+      '*': ['class', 'dir', 'id', 'lang', 'role', /^aria-[\w-]*$/i],
+      a: ['target', 'href', 'title', 'rel'],
+      img: ['src', 'srcset', 'alt', 'title', 'width', 'height'],
+      button: ['onclick']
+    },
+    //提示和气泡工具是否点击下一次自动关闭
+    nextClickDismiss: true
+  };
+  var _config$3 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _element$3 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _headerDropdown = /*#__PURE__*/_classPrivateFieldLooseKey("headerDropdown");
+  var _init$3 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  var _optimize = /*#__PURE__*/_classPrivateFieldLooseKey("optimize");
+  var _nextClickDismiss = /*#__PURE__*/_classPrivateFieldLooseKey("nextClickDismiss");
+  var _sanitizerSetUp = /*#__PURE__*/_classPrivateFieldLooseKey("sanitizerSetUp");
+  class Initialize {
+    constructor(element, config) {
+      // 消毒剂处理
+      Object.defineProperty(this, _sanitizerSetUp, {
+        value: _sanitizerSetUp2
+      });
+      //优化:处理提示工具和气泡工具的下一次关闭，弥补官方的不足，官方的下一次关闭只能是a元素，参阅:https://getbootstrap.com/docs/5.3/components/popovers/#dismiss-on-next-click
+      Object.defineProperty(this, _nextClickDismiss, {
+        value: _nextClickDismiss2
+      });
+      Object.defineProperty(this, _optimize, {
+        value: _optimize2
+      });
+      // Private
+      Object.defineProperty(this, _init$3, {
+        value: _init2$3
+      });
+      Object.defineProperty(this, _headerDropdown, {
+        value: _headerDropdown2
+      });
+      Object.defineProperty(this, _config$3, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element$3, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$3)[_config$3] = config;
+      _classPrivateFieldLooseBase(this, _element$3)[_element$3] = element;
+    }
+
+    //bootstrap提示组件初始化
+    tooltipInit(config = {}, hide = false) {
+      $('[data-bs-toggle="tooltip"]').each(function () {
+        const instance = bootstrap.Tooltip.getOrCreateInstance(this, config);
+        hide && instance.hide();
+      });
+    }
+
+    //bootstrap气泡组件初始化
+    popoverInit(config = {}, hide = false) {
+      $('[data-bs-toggle="popover"]').each(function () {
+        const instance = bootstrap.Popover.getOrCreateInstance(this, config);
+        hide && instance.hide();
+      });
+    }
+    // Static
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY$3);
+        if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError(`No method named "${config}"`);
+          }
+          value = data[config](...args);
+          return;
+        }
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new Initialize($(this), $.extend({}, Default$3, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY$3, data);
+        _classPrivateFieldLooseBase(data, _init$3)[_init$3]();
+      });
+      return typeof value === 'undefined' ? this : value;
+    }
+  }
+
+  /**
+   * Data API
+   * ====================================================
+   */
+  function _headerDropdown2() {
+    $('.bsa-header [data-bs-toggle="dropdown"]').on('hidden.bs.dropdown shown.bs.dropdown', function (event) {
+      const $content = $('.bsa-content');
+      $('.bsa-header .dropdown-menu.show').length > 0 ? $content.addClass(ClassName.pe) : $content.removeClass(ClassName.pe);
+    });
+  }
+  function _init2$3() {
+    _classPrivateFieldLooseBase(this, _sanitizerSetUp)[_sanitizerSetUp]();
+    this.tooltipInit();
+    this.popoverInit();
+    _classPrivateFieldLooseBase(this, _headerDropdown)[_headerDropdown]();
+    _classPrivateFieldLooseBase(this, _optimize)[_optimize]();
+    _classPrivateFieldLooseBase(this, _nextClickDismiss)[_nextClickDismiss]();
+  }
+  function _optimize2() {
+    //优化:禁止所有的input记忆输入内容
+    $('input').attr('AutoComplete', 'off');
+
+    // 优化:在提示框和气泡框显示出来之前先把别的已经存在的都隐藏掉
+    $(document).on('show.bs.popover', '[data-bs-toggle="popover"]', () => {
+      this.popoverInit({}, true);
+    });
+    $(document).on('show.bs.tooltip', '[data-bs-toggle="tooltip"]', () => {
+      this.tooltipInit({}, true);
+    });
+
+    //优化:无效表单禁止提交(如果form没有action属性或者action属性值等于#,不让提交)
+    $(document).on('submit', 'form', function (event) {
+      const action = $(this).attr('action');
+      if (action === undefined || action === '#') {
+        event.preventDefault();
+      }
+    });
+
+    //优化:对于含有#的a链接阻止默认事件
+    $(document).on('click', 'a[href="#"]', function (event) {
+      event.preventDefault();
+    });
+
+    //优化表单验证插件，在请求完毕后按钮重置，自动再重置表单
+    $(document).on('ajaxComplete', function (event, jqXHR, ajaxOptions) {
+      $('form').each(function () {
+        const formValidation = $(this).data('formValidation');
+        if (formValidation !== undefined) {
+          //再次判断表单验证插件有实例
+
+          formValidation.resetForm();
+        }
+      });
+    });
+  }
+  function _nextClickDismiss2() {
+    const that = this;
+    if (_classPrivateFieldLooseBase(that, _config$3)[_config$3].nextClickDismiss === true) {
+      $(document).on('click', function (event) {
+        if (!$(event.target).closest('[data-bs-toggle="popover"],[data-bs-toggle="tooltip"]').length) {
+          that.tooltipInit({}, true);
+          that.popoverInit({}, true);
+        }
+      });
+    }
+  }
+  function _sanitizerSetUp2() {
+    $.extend(bootstrap.Tooltip.Default.allowList, Default$3.sanitizerAllowList);
+  }
+  $(() => {
+    Initialize.jQueryInterface.call($('body'));
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME$3] = Initialize.jQueryInterface;
+  $.fn[NAME$3].Constructor = Initialize;
+  $.fn[NAME$3].noConflict = function () {
+    $.fn[NAME$3] = JQUERY_NO_CONFLICT$3;
+    return Initialize.jQueryInterface;
+  };
+
+  const NAME$2 = 'Table';
+  const DATA_KEY$2 = 'bsa.table';
+  const JQUERY_NO_CONFLICT$2 = $.fn[NAME$2];
+  const SELECTOR_DATA_TOGGLE$2 = '[data-bsa-toggle="table"]';
+
+  // 图标相关配置
+  const ICON = {
+    // 图标前缀
+    iconsPrefix: 'bi',
+    // 图标大小 undefined sm lg
+    iconSize: undefined,
+    // 图标的设置 详细参考:https://examples.bootstrap-table.com/#options/table-icons.html
+    icons: {
+      paginationSwitchDown: 'bi bi-sort-down',
+      paginationSwitchUp: 'bi bi-sort-up',
+      refresh: 'bi-arrow-repeat',
+      toggleOff: 'bi-toggle2-off',
+      toggleOn: 'bi-toggle2-on',
+      fullscreen: 'bi-fullscreen',
+      columns: 'bi-card-checklist',
+      detailOpen: 'bi-plus',
+      detailClose: 'bi-dash'
+    }
+  };
+
+  //工具栏相关配置
+  const TOOLBAR = {
+    // 工具按钮容器
+    toolbar: '#toolbar',
+    // true:显示详细视图和列表视图的切换按钮
+    showToggle: true,
+    // true:显示可以弹出所有列名称的列表的下拉菜单的按钮
+    showColumns: true,
+    // true:显示刷新按钮
+    showRefresh: true,
+    // true:显示全屏按钮
+    showFullscreen: true,
+    // true:显示控制分页的开关的按钮
+    showPaginationSwitch: true,
+    // true:toolbar的按钮组则会显示图标
+    showButtonIcons: true,
+    // true:toolbar的按钮组则会显示文本,false:不显示按钮的文本信息，为了美观多半会把该选项设置为false
+    showButtonText: false,
+    // 按钮的类名前缀
+    buttonsPrefix: 'btn',
+    // 按钮的类,和buttonsPrefix组合使用实际上就是设置按钮的class类名 <button class="btn btn-light" type="button"></button>
+    buttonsClass: 'light',
+    // 给右上角的按钮区域增加一个自定义按钮
+    buttons: function () {
+      return {
+        //这里只做一个示例
+        collapseSearch: {
+          text: '搜索区域折叠/显示',
+          icon: 'bi bi-search',
+          event: function () {
+            $('.bsa-search-area').slideToggle();
+          },
+          attributes: {
+            title: '折叠搜索区域'
+          }
+        }
+      };
+    }
+  };
+
+  //分页相关配置
+  const PAGINATION = {
+    //是否开启分页
+    pagination: true,
+    //是客户端分页还是服务端分页  'client','server',由于演示没有后端提供服务，所以采用前端分页演示
+    sidePagination: 'client',
+    // 初始化加载第一页，默认第一页
+    pageNumber: 1,
+    //默认显示几条
+    pageSize: 5,
+    //可供选择的每页的行数
+    pageList: [5, 10, 25, 50, 100],
+    //true:当在最后一页时,点击下一页跳转到第一页
+    paginationLoop: true,
+    // 展示首尾页的最小页数
+    paginationPagesBySide: 2
+  };
+  const Default$2 = {
+    //配置语言
+    locale: 'zh-CN',
+    //设置高度就可以固定表头,不过不建议设置
+    // height: 300,
+    //固定列功能开启
+    fixedColumns: true,
+    //左侧固定列数
+    fixedNumber: 1,
+    //右侧固定列数
+    fixedRightNumber: 1,
+    // 是否启用点击选中行
+    clickToSelect: true,
+    //点击那些元素可以忽略勾选
+    ignoreClickToSelectOn: function (element) {
+      //意思就是遇到.more-btn和.form-check-input或者button、a标签的时候被点击的时候行不会被选中
+      return !!$(element).closest('.more-btn, .form-check-input,button,a,.treegrid-expander').length;
+    },
+    // 总数字段
+    totalField: 'total',
+    // 当字段为 undefined 显示
+    undefinedText: '-',
+    // 定义全局排序方式 只能是undefined, 'asc' or 'desc'
+    sortOrder: 'asc',
+    //加载模板,不改的话，默认的会超出不好看
+    loadingTemplate: function () {
+      return '<div class="spinner-grow" role="status"><span class="visually-hidden">Loading...</span></div>';
+    },
+    //所有的事件都会触发的事件,用于初始化bootstrap的提示和气泡插件
+    onAll: function (name, args) {
+      const $body = $('body');
+      $body.Initialize('tooltipInit', {
+        container: '.bootstrap-table'
+      }, true);
+      $body.Initialize('popoverInit', {
+        container: '.bootstrap-table'
+      }, true);
+    },
+    ...PAGINATION,
+    ...ICON,
+    ...TOOLBAR
+  };
+  var _config$2 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _element$2 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _table = /*#__PURE__*/_classPrivateFieldLooseKey("table");
+  var _init$2 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  var _getParents = /*#__PURE__*/_classPrivateFieldLooseKey("getParents");
+  var _getChildren = /*#__PURE__*/_classPrivateFieldLooseKey("getChildren");
+  var _toggleParentOnLastChildUncheck = /*#__PURE__*/_classPrivateFieldLooseKey("toggleParentOnLastChildUncheck");
+  class Table {
+    constructor(element, config) {
+      Object.defineProperty(this, _toggleParentOnLastChildUncheck, {
+        value: _toggleParentOnLastChildUncheck2
+      });
+      Object.defineProperty(this, _getChildren, {
+        value: _getChildren2
+      });
+      Object.defineProperty(this, _getParents, {
+        value: _getParents2
+      });
+      Object.defineProperty(this, _init$2, {
+        value: _init2$2
+      });
+      Object.defineProperty(this, _config$2, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element$2, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _table, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$2)[_config$2] = config;
+      _classPrivateFieldLooseBase(this, _element$2)[_element$2] = element;
+    }
+    //快速刷新
+    refreshSelectPage(page = 1) {
+      _classPrivateFieldLooseBase(this, _table)[_table].bootstrapTable('refresh');
+      _classPrivateFieldLooseBase(this, _table)[_table].bootstrapTable('selectPage', page);
+    }
+
+    // 快速搜索的方法
+    search(btnSelector) {
+      const that = this;
+      $(document).on('click', btnSelector, function (event) {
+        event.preventDefault();
+        that.refreshSelectPage();
+      });
+    }
+
+    // 快速重置,如果情况不满足还可以通过回调函数进行自定义处理
+    reset(btnSelector, formSelector, callback) {
+      const that = this;
+      $(document).on('click', btnSelector, function (event) {
+        event.preventDefault();
+
+        //找到传递进来的form表单
+        if (typeof formSelector === 'string') {
+          $(formSelector)[0].reset(); //快速重置表单
+        }
+        typeof callback === 'function' && callback.call(that, formSelector);
+
+        //然后刷新
+        that.refreshSelectPage();
+      });
+    }
+
+    //批量删除
+    batch(btnSelector, callback, conditionFn) {
+      const that = this;
+      const $btn = $(btnSelector);
+      _classPrivateFieldLooseBase(that, _table)[_table].on('all.bs.table', function (name, args) {
+        const selectedRows = _classPrivateFieldLooseBase(that, _table)[_table].bootstrapTable('getSelections');
+        let conditionResult;
+        // 如果传递了条件函数，则使用传递的条件函数进行判断
+        if (typeof conditionFn === "function") {
+          conditionResult = conditionFn.call(that, selectedRows);
+        } else {
+          // 默认条件：选中行数量大于 0
+          conditionResult = selectedRows.length > 0;
+        }
+        // 根据条件结果设置按钮状态
+        $btn.attr('disabled', !conditionResult);
+      });
+      $(document).on('click', btnSelector, function () {
+        //获取所有选中行的id
+        const ids = [];
+        const rowSelected = _classPrivateFieldLooseBase(that, _table)[_table].bootstrapTable('getSelections');
+        $.each(rowSelected, function (index, row) {
+          ids.push(row.id);
+        });
+        callback.call(this, ids, rowSelected);
+      });
+    }
+
+    /**
+     * 让按钮具备bootstrap-table的treegrid拓展的全部展开和折叠能力
+     * @param {String} btnSelector
+     */
+    treegridExtSlideToggleByButton(btnSelector) {
+      const that = this;
+      $(document).on('click', btnSelector, function (event) {
+        event.preventDefault();
+        if (_classPrivateFieldLooseBase(that, _table)[_table].find('tr').hasClass('treegrid-expanded')) {
+          //只要有一个tr是被展开的就折叠
+          _classPrivateFieldLooseBase(that, _table)[_table].treegrid('collapseAll');
+        } else {
+          _classPrivateFieldLooseBase(that, _table)[_table].treegrid('expandAll');
+        }
+      });
+    }
+    treegridExtSlideToggleClickRow(exceptSelector = 'button') {
+      //给整行绑定事件委托
+
+      _classPrivateFieldLooseBase(this, _element$2)[_element$2].on('click', 'tbody tr', function (event) {
+        const $target = $(event.target);
+        if (!$target.closest(exceptSelector).length) {
+          if (!$target.is('.treegrid-expander')) {
+            if ($(this).treegrid('isExpanded')) {
+              $(this).treegrid('collapse');
+            } else {
+              $(this).treegrid('expand');
+            }
+          }
+        }
+      });
+    }
+    treegridExtInit() {
+      const that = this;
+      _classPrivateFieldLooseBase(that, _table)[_table].on('post-body.bs.table', function (event, data) {
+        const options = _classPrivateFieldLooseBase(that, _table)[_table].bootstrapTable('getOptions');
+        const columns = options.columns;
+        const columnsFirst = columns[0];
+        if (columns && columnsFirst) {
+          const treeColumn = columnsFirst.findIndex(obj => obj.field === options.treeShowField);
+          if (treeColumn !== -1 && columnsFirst[treeColumn].visible) {
+            _classPrivateFieldLooseBase(that, _table)[_table].treegrid({
+              treeColumn: treeColumn,
+              onChange: function () {
+                _classPrivateFieldLooseBase(that, _table)[_table].bootstrapTable('resetView');
+              },
+              saveState: true
+            });
+          }
+        }
+      });
+    }
+    //勾选节点关联
+    toggleCheckRelation(idField = 'id', pidField = 'pid') {
+      const that = this;
+      _classPrivateFieldLooseBase(that, _table)[_table].on('change', '.bs-checkbox input', function () {
+        const $input = $(this);
+        const rowIndex = $input.attr('data-index');
+        if (rowIndex !== undefined) {
+          const data = _classPrivateFieldLooseBase(that, _table)[_table].bootstrapTable('getData');
+          const row = data[rowIndex];
+          if ($input.is(':checked')) {
+            const parentsIndex = [];
+            const childrenIndex = [];
+            _classPrivateFieldLooseBase(that, _getParents)[_getParents](data, row, [], parentsIndex, idField, pidField);
+            _classPrivateFieldLooseBase(that, _getChildren)[_getChildren](data, row, [], childrenIndex, idField, pidField);
+            //所有的行索引
+            const rowsIndex = [...parentsIndex, ...childrenIndex];
+            rowsIndex.forEach(index => {
+              _classPrivateFieldLooseBase(that, _table)[_table].bootstrapTable('check', index);
+            });
+          } else {
+            //1.把所有的子节点都取消掉
+            const childrenIndex = [];
+            _classPrivateFieldLooseBase(that, _getChildren)[_getChildren](data, row, [], childrenIndex, idField, pidField);
+            childrenIndex.forEach(index => {
+              _classPrivateFieldLooseBase(that, _table)[_table].bootstrapTable('uncheck', index);
+            });
+
+            //2.取消选中最后一个子元素时查找对应父元素取消
+            _classPrivateFieldLooseBase(that, _toggleParentOnLastChildUncheck)[_toggleParentOnLastChildUncheck](data, row, idField, pidField);
+          }
+        }
+      });
+    }
+
+    // Static
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY$2);
+        if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
+          if (typeof data[config] !== 'undefined') {
+            value = data[config](...args);
+          } else if (_classPrivateFieldLooseBase(data, _table)[_table].bootstrapTable.methods.includes(config)) {
+            value = _classPrivateFieldLooseBase(data, _table)[_table].bootstrapTable(config, ...args);
+          } else {
+            throw new TypeError(`No method named "${config}"`);
+          }
+          return;
+        }
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new Table($(this), $.extend({}, Default$2, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY$2, data);
+        _classPrivateFieldLooseBase(data, _init$2)[_init$2]();
+      });
+      return typeof value === 'undefined' ? this : value;
+    }
+  }
+
+  /**
+   * Data API
+   * ====================================================
+   */
+  function _init2$2() {
+    //实例化bootstrapTable
+    _classPrivateFieldLooseBase(this, _table)[_table] = _classPrivateFieldLooseBase(this, _element$2)[_element$2].bootstrapTable(_classPrivateFieldLooseBase(this, _config$2)[_config$2]);
+  }
+  function _getParents2(data, row, result = [], rowsIndex = [], idField = 'id', pidField = 'pid') {
+    data.forEach((item, index) => {
+      if (item[idField] === row[pidField]) {
+        result.push(item);
+        rowsIndex.push(index);
+        _classPrivateFieldLooseBase(this, _getParents)[_getParents](data, item, result, rowsIndex, idField, pidField);
+      }
+    });
+  }
+  function _getChildren2(data, row, result = [], rowsIndex = [], idField = 'id', pidField = 'pid') {
+    data.forEach((item, index) => {
+      if (item[pidField] === row[idField]) {
+        result.push(item);
+        rowsIndex.push(index);
+        _classPrivateFieldLooseBase(this, _getChildren)[_getChildren](data, item, result, rowsIndex, idField, pidField);
+      }
+    });
+  }
+  function _toggleParentOnLastChildUncheck2(data, row, idField = 'id', pidField = 'pid') {
+    //找到父级的数据
+    const parentIndex = data.findIndex(obj => obj.id === row.pid);
+    const parentRow = data[parentIndex];
+    if (parentIndex !== -1) {
+      //找到所有子集
+      const sonData = [];
+      _classPrivateFieldLooseBase(this, _getChildren)[_getChildren](data, parentRow, sonData, [], idField, pidField);
+
+      //获取所有的被勾选的row
+      const sonCheckedData = sonData.filter(item => item[0] === true);
+      if (sonCheckedData.length === 0) {
+        _classPrivateFieldLooseBase(this, _table)[_table].bootstrapTable('uncheck', parentIndex);
+
+        //递归调用
+        _classPrivateFieldLooseBase(this, _toggleParentOnLastChildUncheck)[_toggleParentOnLastChildUncheck](data, parentRow, idField, pidField);
+      }
+    }
+  }
+  $(() => {
+    $(SELECTOR_DATA_TOGGLE$2).each(function () {
+      Table.jQueryInterface.call($(this));
+    });
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME$2] = Table.jQueryInterface;
+  $.fn[NAME$2].Constructor = Table;
+  $.fn[NAME$2].noConflict = function () {
+    $.fn[NAME$2] = JQUERY_NO_CONFLICT$2;
+    return Table.jQueryInterface;
+  };
+
+  const NAME$1 = 'ToggleIcon';
+  const DATA_KEY$1 = 'bsa.toggleicon';
+  const JQUERY_NO_CONFLICT$1 = $.fn[NAME$1];
+  const SELECTOR_DATA_TOGGLE$1 = '[data-bsa-toggle="toggleicon"]';
+  const Default$1 = {};
+  var _config$1 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _element$1 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _init$1 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  class ToggleIcon {
+    constructor(element, config) {
+      Object.defineProperty(this, _init$1, {
+        value: _init2$1
+      });
+      Object.defineProperty(this, _config$1, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element$1, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config$1)[_config$1] = config;
+      _classPrivateFieldLooseBase(this, _element$1)[_element$1] = element;
+    }
+
+    // Static
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY$1);
+        if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError(`No method named "${config}"`);
+          }
+          value = data[config](...args);
+          return;
+        }
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new ToggleIcon($(this), $.extend({}, Default$1, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY$1, data);
+        _classPrivateFieldLooseBase(data, _init$1)[_init$1]();
+      });
+      return typeof value === 'undefined' ? this : value;
+    }
+  }
+
+  /**
+   * Data API
+   * ====================================================
+   */
+  function _init2$1() {
+    console.log('w');
+  }
+  $(() => {
+    $(SELECTOR_DATA_TOGGLE$1).each(function () {
+      ToggleIcon.jQueryInterface.call($(this));
+    });
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME$1] = ToggleIcon.jQueryInterface;
+  $.fn[NAME$1].Constructor = ToggleIcon;
+  $.fn[NAME$1].noConflict = function () {
+    $.fn[NAME$1] = JQUERY_NO_CONFLICT$1;
+    return ToggleIcon.jQueryInterface;
+  };
+
+  const NAME = 'Tab';
+  const DATA_KEY = 'bsa.tab';
+  const EVENT_KEY = `.${DATA_KEY}`;
+  const JQUERY_NO_CONFLICT = $.fn[NAME];
+  const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="tab"]';
+  const EVENT_ACTIVE = `active${EVENT_KEY}`;
+  const Default = {
+    activeClass: 'active',
+    //配置
+    config: {}
+  };
+  var _config = /*#__PURE__*/_classPrivateFieldLooseKey("config");
+  var _element = /*#__PURE__*/_classPrivateFieldLooseKey("element");
+  var _init = /*#__PURE__*/_classPrivateFieldLooseKey("init");
+  var _removeActiveClass = /*#__PURE__*/_classPrivateFieldLooseKey("removeActiveClass");
+  var _setupListeners = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  class Tab {
+    constructor(element, config) {
+      // 初始化事件
+      Object.defineProperty(this, _setupListeners, {
+        value: _setupListeners2
+      });
+      Object.defineProperty(this, _removeActiveClass, {
+        value: _removeActiveClass2
+      });
+      // Private
+      Object.defineProperty(this, _init, {
+        value: _init2
+      });
+      Object.defineProperty(this, _config, {
+        writable: true,
+        value: void 0
+      });
+      Object.defineProperty(this, _element, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldLooseBase(this, _config)[_config] = config;
+      _classPrivateFieldLooseBase(this, _element)[_element] = element;
+    }
+    // Static
+    static jQueryInterface(config, ...args) {
+      let value;
+      this.each(function () {
+        let data = $(this).data(DATA_KEY);
+        if (typeof config === 'string') {
+          if (!data) {
+            return;
+          }
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError(`No method named "${config}"`);
+          }
+          value = data[config](...args);
+          return;
+        }
+        if (data) {
+          console.warn('You cannot initialize the table more than once!');
+          return;
+        }
+        data = new Tab($(this), $.extend({}, Default, typeof config === 'object' ? config : $(this).data()));
+        $(this).data(DATA_KEY, data);
+        _classPrivateFieldLooseBase(data, _init)[_init]();
+      });
+      return typeof value === 'undefined' ? this : value;
+    }
+  }
+
+  /**
+   * Data API
+   * ====================================================
+   */
+  function _init2() {
+    // 初始化点击事件
+    _classPrivateFieldLooseBase(this, _setupListeners)[_setupListeners]();
+  }
+  function _removeActiveClass2() {
+    $(SELECTOR_DATA_TOGGLE).removeClass(_classPrivateFieldLooseBase(this, _config)[_config].activeClass);
+  }
+  function _setupListeners2() {
+    const that = this;
+    _classPrivateFieldLooseBase(that, _element)[_element].on('click', function (event) {
+      //已经激活的就不要再激活了
+      if (!$(this).hasClass(_classPrivateFieldLooseBase(that, _config)[_config].activeClass)) {
+        //移除所有的激活类
+        _classPrivateFieldLooseBase(that, _removeActiveClass)[_removeActiveClass]();
+        //然后给当前按钮添加激活类
+        $(this).addClass(_classPrivateFieldLooseBase(that, _config)[_config].activeClass);
+        //触发激活事件
+        $(_classPrivateFieldLooseBase(that, _element)[_element]).trigger($.Event(EVENT_ACTIVE), [_classPrivateFieldLooseBase(that, _config)[_config].config]);
+      }
+    });
+  }
+  $(() => {
+    $(SELECTOR_DATA_TOGGLE).each(function () {
+      Tab.jQueryInterface.call($(this));
+    });
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME] = Tab.jQueryInterface;
+  $.fn[NAME].Constructor = Tab;
+  $.fn[NAME].noConflict = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT;
+    return Tab.jQueryInterface;
+  };
+
+  exports.BackToTop = BackToTop;
+  exports.Fullscreen = Fullscreen;
+  exports.IFrame = IFrame;
+  exports.Initialize = Initialize;
   exports.Loading = Loading;
   exports.Modal = Modal;
   exports.NavbarSearch = NavbarSearch;
   exports.PushMenu = PushMenu;
+  exports.Scrollbar = Scrollbar;
+  exports.Tab = Tab;
+  exports.Table = Table;
   exports.Toasts = Toasts;
+  exports.ToggleIcon = ToggleIcon;
   exports.Treeview = Treeview;
 
 }));

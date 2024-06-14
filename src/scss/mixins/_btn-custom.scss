@@ -1,0 +1,57 @@
+@mixin btn-custom($bg-var, $class-name) {
+  .#{$class-name} {
+    // scss-docs-start close-css-vars
+    --#{$prefix}btn-color: #{$btn-close-color};
+    --#{$prefix}btn-bg: #{escape-svg($bg-var)};
+    --#{$prefix}btn-opacity: #{$btn-close-opacity};
+    --#{$prefix}btn-hover-opacity: #{$btn-close-hover-opacity};
+    --#{$prefix}btn-focus-shadow: #{$btn-close-focus-shadow};
+    --#{$prefix}btn-focus-opacity: #{$btn-close-focus-opacity};
+    --#{$prefix}btn-disabled-opacity: #{$btn-close-disabled-opacity};
+    --#{$prefix}btn-white-filter: #{$btn-close-white-filter};
+    // scss-docs-end close-css-vars
+
+    box-sizing: content-box;
+    width: $btn-close-width;
+    height: $btn-close-height;
+    padding: $btn-close-padding-y $btn-close-padding-x;
+    color: var(--#{$prefix}btn-color);
+    background: transparent var(--#{$prefix}btn-bg) center / $btn-close-width
+      auto no-repeat; // include transparent for button elements
+    border: 0; // for button elements
+    @include border-radius();
+    opacity: var(--#{$prefix}btn-opacity);
+
+    // Override <a>'s hover style
+    &:hover {
+      color: var(--#{$prefix}btn-color);
+      text-decoration: none;
+      opacity: var(--#{$prefix}btn-hover-opacity);
+    }
+
+    &:focus {
+      outline: 0;
+      box-shadow: var(--#{$prefix}btn-focus-shadow);
+      opacity: var(--#{$prefix}btn-focus-opacity);
+    }
+
+    &:disabled,
+    &.disabled {
+      pointer-events: none;
+      user-select: none;
+      opacity: var(--#{$prefix}btn-disabled-opacity);
+    }
+  }
+
+  .#{$class-name}-white {
+    @include btn-custom-white();
+  }
+
+  @if $enable-dark-mode {
+    @include color-mode(dark) {
+      .#{$class-name} {
+        @include btn-custom-white();
+      }
+    }
+  }
+}

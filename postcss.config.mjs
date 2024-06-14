@@ -14,11 +14,8 @@ export default context => {
                 cascade: false
             }),
             sortMediaQueries({
-                sort: function (a, b) {
-                    let aMax = a.match(/\d+/)[0];
-                    let bMax = b.match(/\d+/)[0];
-                    return bMax - aMax;
-                }
+                //desktop-first mobile-first
+                sort: 'mobile-first'
             })
         ],
     }

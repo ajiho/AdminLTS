@@ -1,0 +1,6 @@
+@mixin text-ellipsis() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  // background-color: inherit;
+}

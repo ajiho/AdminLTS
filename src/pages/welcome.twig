@@ -1,7 +1,8 @@
-{% extends "base/base.twig" %}
+{% extends "layout/main.twig" %}
 
 
-{% block content %}
+{% block mainCnt %}
+<div class="container-fluid">
   <div class="row g-3">
     <div class="col-lg-3">
       <div class="card shadow-sm border-0">
@@ -9,7 +10,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <div class="me-1">
               <h6 class="mb-2 bsa-ellipsis-1 ">今日收入</h6>
-              <h4 class="mb-1 bsa-ellipsis-1">13,145.20</h4>
+              <h4 class="mb-1 bsa-ellipsis-1 animation-number">13145.20</h4>
             </div>
             <i class="bi bi-currency-yen fs-1 text-danger"></i>
           </div>
@@ -22,7 +23,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <div class="me-1">
               <h6 class="mb-2 bsa-ellipsis-1">用户总数</h6>
-              <h4 class="mb-1 bsa-ellipsis-1">1546</h4>
+              <h4 class="mb-1 bsa-ellipsis-1 animation-number">1546</h4>
             </div>
             <i class="bi bi-people fs-1 text-info"></i>
           </div>
@@ -35,7 +36,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <div class="me-1">
               <h6 class="mb-2 bsa-ellipsis-1">订单总数</h6>
-              <h4 class="mb-1 bsa-ellipsis-1">2000</h4>
+              <h4 class="mb-1 bsa-ellipsis-1 animation-number">2000</h4>
             </div>
             <i class="bi bi-cart fs-1 text-primary"></i>
           </div>
@@ -48,7 +49,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <div class="me-1">
               <h6 class="mb-2 bsa-ellipsis-1">留言</h6>
-              <h4 class="mb-1 bsa-ellipsis-1">1000</h4>
+              <h4 class="mb-1 bsa-ellipsis-1 animation-number">1000</h4>
             </div>
             <i class="bi bi-chat fs-1 text-success"></i>
           </div>
@@ -67,27 +68,25 @@
           <div class="table-responsive">
             <table class="table align-middle table-bordered   mb-0">
               <tbody>
-              <tr>
-                <th>当前版本</th>
-                <td>v2.0.1</td>
-              </tr>
-              <tr>
-                <th>基于框架</th>
-                <td>bootstrap 5.3.0</td>
-              </tr>
-              <tr>
-                <th>主要特色</th>
-                <td>零门槛 / 响应式 / 清爽 / 极简</td>
-              </tr>
-              <tr>
-                <th>获取渠道2</th>
-                <td>
-                  <a class="btn btn-danger" href="https://github.com/ajiho/bootstrap-admin"
-                     target="_blank">Github</a>
-                  <a class="btn btn-success" href="https://github.com/ajiho/bootstrap-admin/releases"
-                     target="_blank">立即下载</a>
-                </td>
-              </tr>
+                <tr>
+                  <th>Version</th>
+                  <td>v2.0.1</td>
+                </tr>
+                <tr>
+                  <th>bootstrap</th>
+                  <td>v 5.3.0</td>
+                </tr>
+                <tr>
+                  <th>主要特色</th>
+                  <td>零门槛 / 响应式 / 清爽 / 极简</td>
+                </tr>
+                <tr>
+                  <th>获取渠道</th>
+                  <td>
+                    <a class="btn btn-secondary" href="https://github.com/ajiho/bootstrap-admin/releases"
+                      target="_blank"><i class="bi bi-github"></i></a>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -147,137 +146,37 @@
           <div class="table-responsive">
             <table class="table align-middle mb-0">
               <thead>
-              <tr>
-                <th>订单号</th>
-                <th>商品</th>
-                <th>下单人</th>
-                <th>下单日期</th>
-                <th>价格</th>
-                <th>状态</th>
-                <th>操作</th>
-              </tr>
+                <tr>
+                  <th>订单号</th>
+                  <th>商品</th>
+                  <th>下单人</th>
+                  <th>下单日期</th>
+                  <th>价格</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>#157444499</td>
-                <td>
-                  Apple iPhone 13 (A2634) 512GB
-                </td>
-                <td>欲饮琵琶码上催</td>
-                <td>2022/7/16</td>
-                <td>￥100.00</td>
-                <td>
-                  <span class="badge bg-success">交易成功</span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <a href="javascript:" class="btn btn-sm btn-light"><i
-                        class="bi bi-gear"></i></a>
-                    <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                        class="bi bi-arrow-down"></i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>#157444499</td>
-                <td>
-                  Apple iPhone 13 (A2634) 512GB
-                </td>
-                <td>欲饮琵琶码上催</td>
-                <td>2022/7/16</td>
-                <td>￥100.00</td>
-                <td>
-                  <span class="badge bg-success">交易成功</span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <a href="javascript:" class="btn btn-sm btn-light"><i
-                        class="bi bi-gear"></i></a>
-                    <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                        class="bi bi-arrow-down"></i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>#157444499</td>
-                <td>
-                  Apple iPhone 13 (A2634) 512GB
-                </td>
-                <td>欲饮琵琶码上催</td>
-                <td>2022/7/16</td>
-                <td>￥100.00</td>
-                <td>
-                  <span class="badge bg-success">交易成功</span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <a href="javascript:" class="btn btn-sm btn-light"><i
-                        class="bi bi-gear"></i></a>
-                    <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                        class="bi bi-arrow-down"></i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>#157444499</td>
-                <td>
-                  Apple iPhone 13 (A2634) 512GB
-                </td>
-                <td>欲饮琵琶码上催</td>
-                <td>2022/7/16</td>
-                <td>￥100.00</td>
-                <td>
-                  <span class="badge bg-success">交易成功</span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <a href="javascript:" class="btn btn-sm btn-light"><i
-                        class="bi bi-gear"></i></a>
-                    <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                        class="bi bi-arrow-down"></i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>#157444499</td>
-                <td>
-                  Apple iPhone 13 (A2634) 512GB
-                </td>
-                <td>欲饮琵琶码上催</td>
-                <td>2022/7/16</td>
-                <td>￥100.00</td>
-                <td>
-                  <span class="badge bg-success">交易成功</span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <a href="javascript:" class="btn btn-sm btn-light"><i
-                        class="bi bi-gear"></i></a>
-                    <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                        class="bi bi-arrow-down"></i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>#157444499</td>
-                <td>
-                  Apple iPhone 13 (A2634) 512GB
-                </td>
-                <td>欲饮琵琶码上催</td>
-                <td>2022/7/16</td>
-                <td>￥100.00</td>
-                <td>
-                  <span class="badge bg-success">交易成功</span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <a href="javascript:" class="btn btn-sm btn-light"><i
-                        class="bi bi-gear"></i></a>
-                    <a href="javascript:" class="btn btn-sm btn-light ms-4"><i
-                        class="bi bi-arrow-down"></i></a>
-                  </div>
-                </td>
-              </tr>
+                {% for key in range(5) %}
+                <tr>
+                  <td>#15744449{{ loop.index }}</td>
+                  <td>
+                    Apple iPhone 13 (A2634) 512GB
+                  </td>
+                  <td>欲饮琵琶码上催</td>
+                  <td>2022/7/16</td>
+                  <td>￥100.00</td>
+                  <td>
+                    <span class="badge bg-success">交易成功</span>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <a href="javascript:" class="btn btn-sm btn-light"><i class="bi bi-gear"></i></a>
+                      <a href="javascript:" class="btn btn-sm btn-light ms-4"><i class="bi bi-arrow-down"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
@@ -285,148 +184,167 @@
       </div>
     </div>
   </div>
+</div>
+
 {% endblock %}
 
-
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js"></script>
+{% endblock %}
 
 {% block js %}
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-  <script>
-    $(function () {
-      new Chart(document.getElementById('chart-bar').getContext('2d'), {
-        type: 'bar',
-        data: {
-          labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
-          datasets: [{
-            label: 'pv值',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              'rgba(52,143,80, 0.6)',
-              'rgba(52,143,80, 0.6)',
-              'rgba(52,143,80, 0.6)',
-              'rgba(52,143,80, 0.6)',
-              'rgba(52,143,80, 0.6)',
-              'rgba(52,143,80, 0.6)'
-            ],
-            borderColor: [
-              'rgba(52,143,80, 0.6)',
-              'rgba(52,143,80, 0.6)',
-              'rgba(52,143,80, 0.6)',
-              'rgba(52,143,80, 0.6)',
-              'rgba(52,143,80, 0.6)',
-              'rgba(52,143,80, 0.6)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-      new Chart(document.getElementById('chart-line').getContext('2d'), {
-        type: 'line',
-        data: {
-          labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
-          datasets: [{
-            label: '营业额 单位/万元',
-            data: [65, 90, 60, 50, 40, 30, 20],
-            fill: false,
-            borderColor: 'rgba(185,110,228,.5)',
-            tension: 0.1
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-      new Chart(document.getElementById('chart3').getContext('2d'), {
-        type: 'line',
-        data: {
-          labels: ['2022.8.3', '2022.8.4', '2022.8.5', '2022.8.6', '2022.8.7', '2022.8.9'],
-          datasets: [
-            {
-              label: '粉丝',
-              data: [65, 90, 60, 50, 40, 30, 120],
-              fill: false,
-              borderColor: 'rgba(252, 92, 125,.5)',
-              tension: 0.1,
-              cubicInterpolationMode: 'monotone',
-
-            },
-            {
-              label: '被收藏',
-              data: [30, 80, 70, 48, 64, 101, 10],
-              fill: false,
-              borderColor: 'rgba(10, 191, 188,.5)',
-              tension: 0.1,
-              cubicInterpolationMode: 'monotone',
-            },
-            {
-              label: '获赞',
-              data: [10, 37, 54, 68, 73, 98, 110],
-              fill: false,
-              borderColor: 'rgba(221, 100, 0,.5)',
-              tension: 0.1,
-              cubicInterpolationMode: 'monotone',
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-      new Chart(document.getElementById('chart4').getContext('2d'), {
-        type: 'doughnut',
-        data: {
-          labels: [
-            '已租',
-            '未租'
+<script>
+  $(function () {
+    new Chart(document.getElementById('chart-bar').getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
+        datasets: [{
+          label: 'pv值',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: [
+            'rgba(52,143,80, 0.6)',
+            'rgba(52,143,80, 0.6)',
+            'rgba(52,143,80, 0.6)',
+            'rgba(52,143,80, 0.6)',
+            'rgba(52,143,80, 0.6)',
+            'rgba(52,143,80, 0.6)'
           ],
-          datasets: [{
-            label: 'Dataset 1',
-            data: [300, 50],
-            backgroundColor: [
-              '#0abfbc',
-              '#348f50'
-            ],
-            hoverOffset: 4
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'top',
-            },
-            title: {
-              display: true,
-              text: '已租未租房源占比图'
-            }
+          borderColor: [
+            'rgba(52,143,80, 0.6)',
+            'rgba(52,143,80, 0.6)',
+            'rgba(52,143,80, 0.6)',
+            'rgba(52,143,80, 0.6)',
+            'rgba(52,143,80, 0.6)',
+            'rgba(52,143,80, 0.6)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
           }
         }
-      });
-
-      //图表响应式处理
-      window.onresize = function () {
-        for (let id in Chart.instances) {
-          Chart.instances[id].resize();
+      }
+    });
+    new Chart(document.getElementById('chart-line').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
+        datasets: [{
+          label: '营业额 单位/万元',
+          data: [65, 90, 60, 50, 40, 30, 20],
+          fill: false,
+          borderColor: 'rgba(185,110,228,.5)',
+          tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
-      };
+      }
+    });
+    new Chart(document.getElementById('chart3').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: ['2022.8.3', '2022.8.4', '2022.8.5', '2022.8.6', '2022.8.7', '2022.8.9'],
+        datasets: [
+          {
+            label: '粉丝',
+            data: [65, 90, 60, 50, 40, 30, 120],
+            fill: false,
+            borderColor: 'rgba(252, 92, 125,.5)',
+            tension: 0.1,
+            cubicInterpolationMode: 'monotone',
+
+          },
+          {
+            label: '被收藏',
+            data: [30, 80, 70, 48, 64, 101, 10],
+            fill: false,
+            borderColor: 'rgba(10, 191, 188,.5)',
+            tension: 0.1,
+            cubicInterpolationMode: 'monotone',
+          },
+          {
+            label: '获赞',
+            data: [10, 37, 54, 68, 73, 98, 110],
+            fill: false,
+            borderColor: 'rgba(221, 100, 0,.5)',
+            tension: 0.1,
+            cubicInterpolationMode: 'monotone',
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    new Chart(document.getElementById('chart4').getContext('2d'), {
+      type: 'doughnut',
+      data: {
+        labels: [
+          '已租',
+          '未租'
+        ],
+        datasets: [{
+          label: 'Dataset 1',
+          data: [300, 50],
+          backgroundColor: [
+            '#0abfbc',
+            '#348f50'
+          ],
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: '已租未租房源占比图'
+          }
+        }
+      }
+    });
+
+    //图表响应式处理
+    window.onresize = function () {
+      for (let id in Chart.instances) {
+        Chart.instances[id].resize();
+      }
+    };
+  })
+</script>
+<script>
+  $(function () {
+    //数字老虎机效果
+    $('.animation-number').each(function (index, element) {
+      const number = $(element).text();
+      const decimalPlaces = (number.split('.')[1] || '').length;
+      new countUp.CountUp(element, number, {
+        //小数点后面的位数
+        decimalPlaces: decimalPlaces,
+        //持续时间
+        duration: 2
+      }).start();
     })
-  </script>
+  })
+</script>
 {% endblock %}

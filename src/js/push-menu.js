@@ -1,23 +1,22 @@
 import $ from 'jquery'
-import Helper from './util/helper'
 
 const NAME = 'PushMenu'
 const DATA_KEY = 'bsa.pushmenu'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-//折叠开始
-const EVENT_COLLAPSE = `collapse${EVENT_KEY}`
-//折叠完毕
-const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
+const Event = {
+  //折叠开始
+  COLLAPSE: `collapse${EVENT_KEY}`,
+  //折叠完毕
+  COLLAPSED: `collapsed${EVENT_KEY}`,
+  //展开开始
+  EXPAND: `expand${EVENT_KEY}`,
+  //展开完毕
+  EXPANDED: `expanded${EVENT_KEY}`,
+}
 
-//展开开始
-const EVENT_EXPAND = `expand${EVENT_KEY}`
-
-//展开完毕
-const EVENT_EXPANDED = `expanded${EVENT_KEY}`
-
-const SELECTOR_TOGGLE_BUTTON = '[data-bsa-toggle="pushmenu"]'
+const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="pushmenu"]'
 
 //侧边栏选择器
 const SELECTOR_SIDEBAR = '.bsa-sidebar'
@@ -31,10 +30,13 @@ const Default = {
 }
 
 class PushMenu {
-  constructor(element, options) {
-    this._element = element
-    this._options = options
-    this._addTransition()
+  #element
+  #config
+
+  constructor(element, config) {
+    this.#element = element
+    this.#config = config
+    this.#addTransition()
   }
 
   // Public
@@ -43,20 +45,20 @@ class PushMenu {
     let w = $(window).width()
     if (w < 992) {
       //事件
-      $(this._element).trigger($.Event(EVENT_EXPAND))
+      $(this.#element).trigger($.Event(Event.EXPAND))
 
       // 展开
       $('.bsa-sidebar').addClass(CLASS_NAME_COLLAPSED)
       $(SELECTOR_SIDEBAR).data('isOpen', true)
       //添加遮罩层
-      this._addOverlay()
+      this.#addOverlay()
     }
   }
 
   collapse() {
     let w = $(window).width()
     if (w < 992) {
-      $(this._element).trigger($.Event(EVENT_COLLAPSE))
+      $(this.#element).trigger($.Event(Event.COLLAPSE))
       $(SELECTOR_SIDEBAR).removeClass(CLASS_NAME_COLLAPSED)
       $(SELECTOR_SIDEBAR).data('isOpen', false)
       //同时移除遮罩层
@@ -73,73 +75,88 @@ class PushMenu {
   }
 
   // Private
-  _addTransition() {
+  #addTransition() {
     $(SELECTOR_SIDEBAR).css({
-      transition: `${this._options.animationSpeed}ms transform`,
+      transition: `${this.#config.animationSpeed}ms transform`,
     })
   }
 
-  _addOverlay() {
+  #addOverlay() {
     if ($(SELECTOR_MASK).length === 0) {
       $('<div class="bsa-mask"></div>').prependTo('body')
     }
   }
 
-  _init() {
-    let _this = this
+  #init() {
+    this.#setupListeners()
+  }
+
+  #setupListeners() {
+    let that = this
 
     //遮罩层关闭事件
     $(document).on('click', SELECTOR_MASK, function (e) {
       e.preventDefault()
-      _this.collapse()
+      that.collapse()
     })
 
     //监听过渡事件
     $(document).on('transitionend', SELECTOR_SIDEBAR, function (e) {
       if (e.target === e.currentTarget) {
-        const expandedEvent = $.Event(EVENT_EXPANDED)
-        const collapsedEvent = $.Event(EVENT_COLLAPSED)
-
         //判断是展开还是折叠
         if ($(e.target).data('isOpen')) {
-          $(_this._element).trigger(expandedEvent)
+          $(that.#element).trigger($.Event(Event.EXPANDED))
         } else {
-          $(_this._element).trigger(collapsedEvent)
+          $(that.#element).trigger($.Event(Event.COLLAPSED))
         }
       }
     })
 
-    $(document).on('click', SELECTOR_TOGGLE_BUTTON, (event) => {
+    $(document).on('click', SELECTOR_DATA_TOGGLE, (event) => {
       event.preventDefault()
-
-      _this.toggle()
+      that.toggle()
     })
   }
 
   // Static
-  static _jQueryInterface(config) {
-    return this.each(function () {
-      let data = $(this).data(DATA_KEY)
-      const _config = $.extend(
-        {},
-        Default,
-        typeof config === 'object' ? config : $(this).data(),
-      )
+  static jQueryInterface(config, ...args) {
+    let value
 
-      if (!data) {
-        data = new PushMenu($(this), _config)
-        $(this).data(DATA_KEY, data)
-        data._init()
-      } else if (typeof config === 'string') {
+    this.each(function () {
+      let data = $(this).data(DATA_KEY)
+
+      if (typeof config === 'string') {
+        if (!data) {
+          return
+        }
+
         if (typeof data[config] === 'undefined') {
           throw new TypeError(`No method named "${config}"`)
         }
 
-        data[config]()
-      } else if (typeof config === 'undefined') {
-        data._init()
+        value = data[config](...args)
+
+        return
       }
+
+      if (data) {
+        console.warn('You cannot initialize the table more than once!')
+        return
+      }
+
+      data = new PushMenu(
+        $(this),
+        $.extend(
+          {},
+          Default,
+          typeof config === 'object' ? config : $(this).data(),
+        ),
+      )
+      $(this).data(DATA_KEY, data)
+      data.#init()
     })
+
+    return typeof value === 'undefined' ? this : value
   }
 }
 
@@ -148,10 +165,10 @@ class PushMenu {
  * ====================================================
  */
 
-$(window).on('load', () => {
-  if (Helper.isIndex()) {
-    PushMenu._jQueryInterface.call($(SELECTOR_TOGGLE_BUTTON))
-  }
+$(() => {
+  $(SELECTOR_DATA_TOGGLE).each(function () {
+    PushMenu.jQueryInterface.call($(this))
+  })
 })
 
 /**
@@ -159,11 +176,11 @@ $(window).on('load', () => {
  * ====================================================
  */
 
-$.fn[NAME] = PushMenu._jQueryInterface
+$.fn[NAME] = PushMenu.jQueryInterface
 $.fn[NAME].Constructor = PushMenu
 $.fn[NAME].noConflict = function () {
   $.fn[NAME] = JQUERY_NO_CONFLICT
-  return PushMenu._jQueryInterface
+  return PushMenu.jQueryInterface
 }
 
 export default PushMenu
