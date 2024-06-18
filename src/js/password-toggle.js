@@ -1,24 +1,54 @@
 import $ from 'jquery'
 
-const NAME = 'ToggleIcon'
-const DATA_KEY = 'bsa.toggleicon'
+const NAME = 'PasswordToggle'
+const DATA_KEY = 'bsa.passwordtoggle'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
-const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="toggleicon"]'
+const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="passwordtoggle"]'
 
-const Default = {}
+const Default = {
+  //针对的input输入框
+  target: null,
+  //可见的图标
+  visibleIcon: 'bi bi-eye-slash',
+  //不可见的图标
+  invisibleIcon: 'bi bi-eye',
+}
 
-class ToggleIcon {
+class PasswordToggle {
   #config
   #element
-
-  #init() {
-    console.log('w')
-  }
 
   constructor(element, config) {
     this.#config = config
     this.#element = element
+  }
+
+  #init() {
+    if ($(this.#config.target).length <= 0) {
+      //如果没有提供target参数直接不处理
+      return
+    }
+    // 初始化点击事件
+    this.#setupListeners()
+  }
+
+  // 初始化事件
+  #setupListeners() {
+    const that = this
+
+    that.#element.on('click', function (event) {
+      const $input = $(that.#config.target)
+
+      if ($input.attr('type') === 'text') {
+        $input.attr('type', 'password')
+
+        $(this).html(`<i class="${that.#config.visibleIcon}"></i>`)
+      } else if ($input.attr('type') === 'password') {
+        $input.attr('type', 'text')
+        $(this).html(`<i class="${that.#config.invisibleIcon}"></i>`)
+      }
+    })
   }
 
   // Static
@@ -47,7 +77,7 @@ class ToggleIcon {
         return
       }
 
-      data = new ToggleIcon(
+      data = new PasswordToggle(
         $(this),
         $.extend(
           {},
@@ -70,7 +100,7 @@ class ToggleIcon {
 
 $(() => {
   $(SELECTOR_DATA_TOGGLE).each(function () {
-    ToggleIcon.jQueryInterface.call($(this))
+    PasswordToggle.jQueryInterface.call($(this))
   })
 })
 
@@ -79,11 +109,11 @@ $(() => {
  * ====================================================
  */
 
-$.fn[NAME] = ToggleIcon.jQueryInterface
-$.fn[NAME].Constructor = ToggleIcon
+$.fn[NAME] = PasswordToggle.jQueryInterface
+$.fn[NAME].Constructor = PasswordToggle
 $.fn[NAME].noConflict = function () {
   $.fn[NAME] = JQUERY_NO_CONFLICT
-  return ToggleIcon.jQueryInterface
+  return PasswordToggle.jQueryInterface
 }
 
-export default ToggleIcon
+export default PasswordToggle

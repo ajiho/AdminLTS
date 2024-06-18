@@ -207,9 +207,7 @@
         $.modal({
             title: '添加角色',
             url: 'role-add.html',
-            // url: 'https://getbootstrap.com',
-            // url: 'https://imccc.cc/ai.html',
-            // height: '800px',
+            height: '150px',
             ok: function (contentWindow) {
                 contentWindow.$('#form').data('formValidation').validate();
             },
@@ -294,9 +292,6 @@
             title: '分配权限',
             url: `role-node.html?id=${id}`,
             ok: function (contentWindow) {
-
-                console.log(contentWindow);
-
                 //调用add方法
                 contentWindow.add();
             },
@@ -304,9 +299,12 @@
             onMessage: function (data) {
 
                 if (data.type === "node") {
-                    //这里的this表示的是当前modal的实例对象
+                    //关闭modal
                     this.hide();
-                    $.toasts.success()
+                    //通知
+                    $.toasts.success('分配节点成功');
+                    //刷新表格
+                    $table.Table('refreshSelectPage');
                 }
             },
         })

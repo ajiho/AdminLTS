@@ -20,10 +20,10 @@
             <div class="mb-3">
               <div class="input-group">
                 <span class="input-group-text bg-white"><i class="bi bi-person-lock"></i></span>
-                <input type="password" class="form-control bsa-toggle-input" placeholder="请输入密码" name="password"
-                  autocomplete="off" id="password" aria-label="password">
-                <span class="input-group-text bg-white bsa-cursor-pointer bsa-toggle-input-trigger"><i
-                    class="bi bi-eye-slash"></i></span>
+                <input type="password" class="form-control" placeholder="请输入密码" name="password" autocomplete="off"
+                  id="password" aria-label="password">
+                <span class="input-group-text bg-white bsa-cursor-pointer" data-bsa-toggle="passwordtoggle"
+                  data-target='input[name="password"]'><i class="bi bi-eye-slash"></i></span>
               </div>
             </div>
 
@@ -45,7 +45,7 @@
             </div>
 
             <div class="d-grid gap-2">
-              <button class="btn btn-outline-success" type="submit"><i class="bi bi-box-arrow-in-right"></i> 登入</button>
+              <button class="btn btn-outline-success" type="submit"><i class="bi bi-box-arrow-in-right"></i> 登录</button>
             </div>
 
           </form>
@@ -68,6 +68,11 @@
 
 {% block js %}
 <script>
+
+
+  //清理掉quicktab的本地缓存
+  bootstrapadmin.util.quicktabCacheClear()
+
   //前端表单验证
   $('#form').formValidation({
     fields: {
@@ -87,12 +92,12 @@
         }
       }
     }
-  }).on('success.form.fv', function (e) {
+  }).on('success.form.fv', function (event) {
     //阻止表单提交
-    e.preventDefault();
+    event.preventDefault();
 
     //得到表单对象
-    const $form = $(e.target);
+    const $form = $(event.target);
     //获取数据
     const data = $form.serialize();
 
@@ -108,22 +113,6 @@
         $.toasts.success('登录成功', () => location.replace('index.html'))
       }
     });
-  });
-
-
-
-  //密码框的显示和隐藏
-  $(document).on('click', '.bsa-toggle-input-trigger', function (event) {
-    event.preventDefault();
-    const $input = $('.bsa-toggle-input');
-    const $trigger = $('.bsa-toggle-input-trigger');
-    if ($input.attr('type') === 'text') {
-      $input.attr('type', 'password');
-      $trigger.html('<i class="bi bi-eye-slash"></i>')
-    } else if ($input.attr('type') === 'password') {
-      $input.attr('type', 'text');
-      $trigger.html('<i class="bi bi-eye"></i>')
-    }
   });
 </script>
 {% endblock %}

@@ -20,18 +20,43 @@
 }
 
 //加载器的小黑点
-.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .animation-dot,
-.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .animation-wrap::after,
-.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .animation-wrap::before {
+.bootstrap-table
+  .fixed-table-container
+  .fixed-table-body
+  .fixed-table-loading
+  .loading-wrap
+  .animation-dot,
+.bootstrap-table
+  .fixed-table-container
+  .fixed-table-body
+  .fixed-table-loading
+  .loading-wrap
+  .animation-wrap::after,
+.bootstrap-table
+  .fixed-table-container
+  .fixed-table-body
+  .fixed-table-loading
+  .loading-wrap
+  .animation-wrap::before {
   background-color: var(--bs-light-text) !important;
 }
 
-.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .loading-text {
+.bootstrap-table
+  .fixed-table-container
+  .fixed-table-body
+  .fixed-table-loading
+  .loading-wrap
+  .loading-text {
   color: var(--bs-light-text) !important;
 }
 
 // 列属性 checkbox: true时复选项样式，默认的太丑陋,这里直接用bootstrap的复选项样式直接覆盖上去
-.bootstrap-table .fixed-table-container .table .bs-checkbox label input[type='checkbox'] {
+.bootstrap-table
+  .fixed-table-container
+  .table
+  .bs-checkbox
+  label
+  input[type='checkbox'] {
   @include bs-checkbox;
 }
 

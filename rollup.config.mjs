@@ -8,7 +8,9 @@ import getBanner from "./build/banner.mjs"
 
 const plugins = [
   resolve(),
-  commonjs(),
+  commonjs({
+    exclude:'src/js/loading.js'
+  }),
   stripBanner({
     include: '**/*.js',
     exclude: 'node_modules/**'
@@ -50,7 +52,7 @@ config.push({
   output: {
     ...base,
     format: 'umd',
-    name: 'BootstrapAdmin',
+    name: 'bootstrapadmin',
     file,
     globals: {
       jquery: 'jQuery',

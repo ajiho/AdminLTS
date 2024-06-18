@@ -58,8 +58,23 @@ class Initialize {
     )
   }
 
+  #checkProtocol() {
+    // 检查协议
+    if (window.location.protocol === 'file:') {
+      const relativePath =
+        window.location.pathname + window.location.search + window.location.hash
+      alert(
+        `您正在通过file://协议打开${relativePath}页面。为了确保一切功能正常，请通过本地服务器运行此页面`,
+      )
+      document.write('')
+      document.close() // 确保文档流关闭
+    }
+  }
+
   // Private
   #init() {
+    this.#checkProtocol()
+
     this.#sanitizerSetUp()
 
     this.tooltipInit()

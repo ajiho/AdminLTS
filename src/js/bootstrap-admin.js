@@ -10,8 +10,9 @@ import IFrame from './iframe'
 import BackToTop from './back-to-top'
 import Initialize from './initialize'
 import Table from './table'
-import ToggleIcon from './toggle-icon'
+import PasswordToggle from './password-toggle'
 import Tab from './tab'
+import util from './util/index'
 
 export {
   Initialize,
@@ -27,5 +28,6 @@ export {
   Loading,
   Scrollbar,
   Fullscreen,
-  ToggleIcon,
+  PasswordToggle,
+  util,
 }

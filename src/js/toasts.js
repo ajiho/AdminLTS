@@ -31,8 +31,7 @@ const ICONS = {
   info: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-info me-2" viewBox="0 0 16 16">
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
   <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-</svg>`
-
+</svg>`,
 }
 
 //html的构造
@@ -49,13 +48,9 @@ const HTML = {
   ],
 
   //身体的容器
-  toastBodyWrapper: [
-    `<div class="d-flex">`,
-    `</div>`
-  ],
+  toastBodyWrapper: [`<div class="d-flex">`, `</div>`],
   //身体
   toastBody: `<div class="toast-body">%s</div>`,
-
 
   //参数1: 白色按钮 参数2:没有标题时的关闭按钮需要再多两个修饰类 me-2 m-auto
   btnClose: `<button type="button" class="btn-close %s %s" data-bs-dismiss="toast" aria-label="Close"></button>`,
@@ -172,7 +167,6 @@ const Default = {
   onHide: null,
   onHidden: null,
 }
-
 
 //用于唯一id标志累计
 let i = 0
@@ -292,14 +286,16 @@ class Toasts {
       ? ClassName.BTN_CLOSE_WHITE
       : ''
 
-    if (this.#config.title !== '') {//标题不为空
+    if (this.#config.title !== '') {
+      //标题不为空
       //如果标题被设置了
 
       let toastHeaderColor = Map.toastHeaderColorScheme[this.#config.type] || ''
 
       html.push(Utils.sprintf(HTML.toastHeader[0], toastHeaderColor)) //头部
 
-      if (this.#config.image !== '') {//有传递图标
+      if (this.#config.image !== '') {
+        //有传递图标
 
         //判断是否是svg字符串
         if (Utils.isSVGString(this.#config.image)) {
@@ -314,7 +310,6 @@ class Toasts {
             ),
           )
         }
-
       }
       html.push(Utils.sprintf(HTML.headerTitle, this.#config.title))
       html.push(Utils.sprintf(HTML.headerSubTitle, this.#config.subTitle))
@@ -327,43 +322,50 @@ class Toasts {
 
       //加入内容
       html.push(Utils.sprintf(HTML.toastBody, this.#config.body))
-    } else {//只插入body
+    } else {
+      //只插入body
 
-
-      if (this.#config.btnClose === true) {//身体容器的开始
+      if (this.#config.btnClose === true) {
+        //身体容器的开始
         html.push(HTML.toastBodyWrapper[0])
       }
 
       let body = this.#config.body
-      if (this.#config.image !== '') {//有传递图标
+      if (this.#config.image !== '') {
+        //有传递图标
 
         //判断是否是svg字符串
         if (Utils.isSVGString(this.#config.image)) {
-          body = this.#config.image + body;
+          body = this.#config.image + body
         } else {
-          body = html.push(
-            Utils.sprintf(
-              HTML.headerImg,
-              this.#config.image,
-              this.#config.imageHeight,
-              this.#config.imageAlt,
-            ),
-          ) + body
-
+          body =
+            html.push(
+              Utils.sprintf(
+                HTML.headerImg,
+                this.#config.image,
+                this.#config.imageHeight,
+                this.#config.imageAlt,
+              ),
+            ) + body
         }
       }
 
       html.push(Utils.sprintf(HTML.toastBody, body))
 
       if (this.#config.btnClose === true) {
-        html.push(Utils.sprintf(HTML.btnClose, btnClass, ClassName.TOAST_BODY_BTN_CLASS))
+        html.push(
+          Utils.sprintf(
+            HTML.btnClose,
+            btnClass,
+            ClassName.TOAST_BODY_BTN_CLASS,
+          ),
+        )
       }
 
-      if (this.#config.btnClose === true) {//身体容器的结束
+      if (this.#config.btnClose === true) {
+        //身体容器的结束
         html.push(HTML.toastBodyWrapper[1])
       }
-
-
     }
 
     if (this.#config.autohide === true) {
@@ -422,20 +424,17 @@ $[NAME] = function (options) {
   )
 }
 
-
-
-
 //快捷方法的封装
 const fastMethods = {
   success: {
     placement: 'top-center',
     image: ICONS.success,
-    body:'操作成功'
+    body: '操作成功',
   },
   error: {
     placement: 'top-center',
     image: ICONS.error,
-    body:'操作失败'
+    body: '操作失败',
   },
   warning: {
     placement: 'top-center',
@@ -448,36 +447,26 @@ const fastMethods = {
 }
 
 for (const methodName of Object.keys(fastMethods)) {
-
   //快捷方法
   $[NAME][methodName] = function (options, options2) {
-
-    let ops = {};
-    if (typeof options === "string") {
+    let ops = {}
+    if (typeof options === 'string') {
       ops.body = options
     }
 
-    if (typeof options2 === "function") {
+    if (typeof options2 === 'function') {
       ops.onHidden = options2
     }
 
-    if (typeof options === "object") {
+    if (typeof options === 'object') {
       ops = options
     }
 
     return new Toasts(
-      $.extend(
-        {},
-        $[NAME].default,
-        fastMethods[methodName],
-        ops,
-      ),
+      $.extend({}, $[NAME].default, fastMethods[methodName], ops),
     )
   }
-
 }
-
-
 
 $[NAME].default = Default
 

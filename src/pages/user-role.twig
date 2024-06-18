@@ -186,14 +186,17 @@
         }).then(response => {
           if (response.code === 200) {
 
-            //刷新当前tab
-            $table.Table('refreshSelectPage');
+            // 通知成功
+            $.toasts.success('角色分配成功')
 
-            //这里的this表示的是当前modal的实例对象
+            //关闭当前的modal
             this.hide();
 
-            // 通知成功
-            $.toasts.success()
+            const url = 'user-list.html'
+            //拿到用户列表页的$table变量调用refreshSelectPage刷新方法
+            parent.Quicktab.get('qtab').getTabWindowByUrl(url)?.$table.Table('refreshSelectPage')
+            //关闭当前激活的Tab并激活用户列表页
+            parent.Quicktab.get('qtab').closeActiveTab().activeTabByUrl(url, true)
           }
         });
       }

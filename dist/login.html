@@ -13,66 +13,93 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.7.3/styles/overlayscrollbars.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css">
+  
   <link rel="stylesheet" href="css/bootstrap-admin.min.css">
   <title>bootstrap-admin开源免费响应式后台管理系统模板</title>
+  
 </head>
 
 <body class="bg-body-tertiary py-3" data-bsa-toggle="scrollbar" data-overlayscrollbars-initialize>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <div class="d-flex align-items-center justify-content-center">
-          <div style="width: 400px;max-width: 100%;margin-top: 12vh;">
-            <h2 class="text-center">bootstrap-admin</h2>
-            <p class="text-secondary text-center">基于bootstrap5设计的后台管理模板系统</p>
-            <form id="form" class="form">
-              <div class="mb-3">
-                <div class="input-group">
-                  <span class="input-group-text bg-white "><i class="bi bi-person"></i></span>
-                  <input type="text" class="form-control" placeholder="请输入用户" name="username" id="username" aria-label="username">
-                </div>
+
+  
+  
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex align-items-center justify-content-center">
+        <div style="width: 400px;max-width: 100%;margin-top: 12vh;">
+          <h2 class="text-center">bootstrap-admin</h2>
+          <p class="text-secondary text-center">基于bootstrap5设计的后台管理模板系统</p>
+          <form id="form" class="form">
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text bg-white "><i class="bi bi-person"></i></span>
+                <input type="text" class="form-control" placeholder="请输入用户" name="username" id="username"
+                  aria-label="username">
               </div>
-              <div class="mb-3">
-                <div class="input-group">
-                  <span class="input-group-text bg-white"><i class="bi bi-person-lock"></i></span>
-                  <input type="password" class="form-control bsa-toggle-input" placeholder="请输入密码" name="password" autocomplete="off" id="password" aria-label="password">
-                  <span class="input-group-text bg-white bsa-cursor-pointer bsa-toggle-input-trigger"><i class="bi bi-eye-slash"></i></span>
-                </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text bg-white"><i class="bi bi-person-lock"></i></span>
+                <input type="password" class="form-control" placeholder="请输入密码" name="password" autocomplete="off"
+                  id="password" aria-label="password">
+                <span class="input-group-text bg-white bsa-cursor-pointer" data-bsa-toggle="passwordtoggle"
+                  data-target='input[name="password"]'><i class="bi bi-eye-slash"></i></span>
               </div>
-              <div class="mb-3">
-                <div class="input-group">
-                  <span class="input-group-text bg-white"><i class="bi bi-shield-lock"></i></span>
-                  <input type="text" class="form-control" id="captcha" name="captcha" aria-label="captcha" placeholder="请输入验证码" style="min-width: 80px">
-                  <img src="img/captcha.gif" alt="验证码" class="bsa-cursor-pointer" style="height: 38px;width: 120px" />
-                </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text bg-white"><i class="bi bi-shield-lock"></i></span>
+                <input type="text" class="form-control" id="captcha" name="captcha" aria-label="captcha"
+                  placeholder="请输入验证码" style="min-width: 80px">
+                <img src="img/captcha.gif" alt="验证码" class="bsa-cursor-pointer" style="height: 38px;width: 120px" />
               </div>
-              <div class="mb-3 d-flex align-items-center justify-content-between flex-wrap gap-3 ">
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember" value="1">
-                  <label class="form-check-label" for="exampleCheck1">十天内免登录</label>
-                </div>
-                <a href="javascript:" class="link-success text-decoration-none">忘记密码?</a>
+            </div>
+
+            <div class="mb-3 d-flex align-items-center justify-content-between flex-wrap gap-3 ">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember" value="1">
+                <label class="form-check-label" for="exampleCheck1">十天内免登录</label>
               </div>
-              <div class="d-grid gap-2">
-                <button class="btn btn-outline-success" type="submit"><i class="bi bi-box-arrow-in-right"></i> 登入</button>
-              </div>
-            </form>
-          </div>
+              <a href="javascript:" class="link-success text-decoration-none">忘记密码?</a>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button class="btn btn-outline-success" type="submit"><i class="bi bi-box-arrow-in-right"></i> 登录</button>
+            </div>
+
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+
+
+
+
+
   <!--核心依赖-->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.7.3/browser/overlayscrollbars.browser.es6.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.7.3/browser/overlayscrollbars.browser.es6.min.js"></script>
   <!--假数据模拟依赖，生产环境中请直接删除该js-->
   <script src="https://cdn.jsdelivr.net/npm/mockjs@1.1.0/dist/mock.min.js"></script>
   <!--当前页面的依赖-->
-  <script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/formValidation.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/framework/bootstrap.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/language/zh_CN.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/formValidation.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/framework/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/language/zh_CN.js"></script>
+
+
   <!--bootstrap-admin核心js文件-->
   <script src="js/bootstrap-admin.js"></script>
   <!--全局设置-->
@@ -80,58 +107,54 @@
   <!--假数据模拟,生产环境中请直接删除该js(否则会影响您的ajax请求功能)-->
   <script src="js/bootstrap-admin.mock.js"></script>
   <script>
-    //前端表单验证
-    $('#form').formValidation({
-      fields: {
-        username: {
-          validators: {
-            notEmpty: true,
-          }
-        },
-        password: {
-          validators: {
-            notEmpty: true,
-          }
-        },
-        captcha: {
-          validators: {
-            notEmpty: true,
-          }
+
+
+  //清理掉quicktab的本地缓存
+  bootstrapadmin.util.quicktabCacheClear()
+
+  //前端表单验证
+  $('#form').formValidation({
+    fields: {
+      username: {
+        validators: {
+          notEmpty: true,
+        }
+      },
+      password: {
+        validators: {
+          notEmpty: true,
+        }
+      },
+      captcha: {
+        validators: {
+          notEmpty: true,
         }
       }
-    }).on('success.form.fv', function(e) {
-      //阻止表单提交
-      e.preventDefault();
-      //得到表单对象
-      const $form = $(e.target);
-      //获取数据
-      const data = $form.serialize();
-      //发起ajax请求
-      $.ajax({
-        method: 'post',
-        url: '/login',
-        //表单数据
-        data: data,
-      }).then(response => {
-        if (response.code === 200) {
-          $.toasts.success('登录成功', () => location.replace('index.html'))
-        }
-      });
-    });
-    //密码框的显示和隐藏
-    $(document).on('click', '.bsa-toggle-input-trigger', function(event) {
-      event.preventDefault();
-      const $input = $('.bsa-toggle-input');
-      const $trigger = $('.bsa-toggle-input-trigger');
-      if ($input.attr('type') === 'text') {
-        $input.attr('type', 'password');
-        $trigger.html('<i class="bi bi-eye-slash"></i>')
-      } else if ($input.attr('type') === 'password') {
-        $input.attr('type', 'text');
-        $trigger.html('<i class="bi bi-eye"></i>')
+    }
+  }).on('success.form.fv', function (event) {
+    //阻止表单提交
+    event.preventDefault();
+
+    //得到表单对象
+    const $form = $(event.target);
+    //获取数据
+    const data = $form.serialize();
+
+    //发起ajax请求
+    $.ajax({
+      method: 'post',
+      url: '/login',
+      //表单数据
+      data: data,
+    }).then(response => {
+      if (response.code === 200) {
+
+        $.toasts.success('登录成功', () => location.replace('index.html'))
       }
     });
-  </script>
+  });
+</script>
+
 </body>
 
 </html>

@@ -24,7 +24,6 @@
         @include btn-custom-modal-spacer;
       }
 
-
       .btn-close {
         --#{$prefix}btn-close-bg: #{escape-svg($btn-close-md-bg)};
       }

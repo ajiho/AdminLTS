@@ -2,9 +2,6 @@
 
 {% block stylesheet %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quicktab@0.0.8/dist/css/quicktab.min.css">
-<style>
-
-</style>
 {% endblock %}
 
 {% block content %}
@@ -14,53 +11,6 @@
 {% include 'layout/content.twig' %}
 {% include 'layout/footer.twig' %}
 
-
-<div class="modal bsa-modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-wrapper">
-    <div class="modal-dialog ">
-      <div class="modal-content border-0 shadow-sm">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" style="height: 800px;">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="btn2222">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" data-bs-backdrop="false" data-bs-keyboard="false" id="exampleModal2" tabindex="-1"
-  aria-labelledby="exampleModal2Label" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModal2Label">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
 {% endblock %}
 
 {% block script %}
@@ -69,49 +19,6 @@
 
 {% block js %}
 <script>
-
-  OverlayScrollbarsGlobal.OverlayScrollbars({
-    target: document.querySelector('.modal-wrapper'),
-    // scrollbars: {
-    //   slot: document.querySelector('.modal-dialog').parentElement,
-    // },
-    // elements: {
-    //   viewport: document.querySelector('#exampleModal'),
-    // }
-  }, {})
-
-  const myModal = new bootstrap.Modal('#exampleModal', {
-    keyboard: false,
-    backdrop: false
-  })
-
-
-  $('.btn-modal').on('click', function () {
-    myModal.show()
-  })
-
-
-
-  document.getElementById('exampleModal').addEventListener('click', function (event) {
-    event.stopPropagation()//阻止冒泡行为
-    const res = $(event.target).closest('.modal-dialog')
-
-    if (!res.length > 0) {
-      myModal._triggerBackdropTransition()
-    }
-  });
-
-
-  document.getElementById('btn2222').addEventListener('click', function () {
-
-    // $('#exampleModal').trigger('mousedown.dismiss.bs.modal')
-
-    myModal._triggerBackdropTransition()
-
-  });
-
-
-
   //退出登录
   $(document).on('click', '.bsa-logout', function (e) {
     e.preventDefault();
@@ -123,14 +30,11 @@
           url: '/logout'
         }).then(response => {
           if (response.code === 200) {
-
             //关闭modal
             this.hide();
-
             $.toasts.success('退出成功', () => location.replace('login.html'))
           }
         });
-        return false;
       }
     })
 

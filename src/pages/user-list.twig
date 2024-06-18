@@ -141,7 +141,7 @@
    * 3.客户端分页所需要的格式和不做分页时是一样的 都是 :[{},{}]
    * 4.服务端分页返回的格式为：{rows:[{},{}],total:200}
    */
-  const $table = $('#table');
+  var $table = $('#table');
   // 列配置
   const columns = [
     {
@@ -438,12 +438,11 @@
   }
 
 
-
-
-
   /* 用户管理-编辑 */
   function edit(userId) {
-    parent.$('[data-bsa-toggle="iframe"]').IFrame('addTab', {
+
+    //也可以通过这种方式增加Tab
+    parent.Quicktab.get('qtab').addTab({
       url: `user-edit.html?id=${userId}`,
       title: '修改用户'
     })
@@ -452,16 +451,32 @@
 
   /* 用户管理-重置密码 */
   function resetPwd(userId) {
+    $.modal({
+      title: '重置密码',
+      url: 'user-repassword.html',
+      height: '150px',
+      ok: function (contentWindow) {
+        // 调用子页面的表单验证
+        contentWindow.$('#form').data('formValidation').validate();
+      },
+      //监听来自子页面的消息
+      onMessage: function (data) {
+        //通知
+        $.toasts.success('密码重置成功')
 
-    parent.$('[data-bsa-toggle="iframe"]').IFrame('addTab', {
-      url: `user-repassword.html?id=${userId}`,
-      title: '重置密码'
+        //关闭模态框
+        this.hide();
+
+        //刷新表格
+        $table.Table('refreshSelectPage');
+
+      },
     })
-
   }
 
   /* 用户管理-分配角色 */
   function authRole(userId) {
+
     parent.$('[data-bsa-toggle="iframe"]').IFrame('addTab', {
       url: `user-role.html?id=${userId}`,
       title: '用户分配角色'

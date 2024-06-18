@@ -12,6 +12,8 @@ function escapeDoubleQuotes(str) {
 }
 
 
+
+
 //============================================================================
 
 
@@ -21,6 +23,9 @@ $.modal.default.centered = true
 $.modal.default.btnAlign = 'center'
 $.modal.default.loading = true
 
+
+// 配置进度条插件的小球不要显示
+top.NProgress.configure({ showSpinner: false });
 
 
 //============================================================================
@@ -61,11 +66,8 @@ $.ajaxSetup({
  * AJAX请求开始时触发
  */
 $(document).on("ajaxSend", function (event, jqXHR, ajaxOptions) {
-
-  //执行你自己的逻辑
-
-  // 例子:进度条开始
-  // NProgress.start(); 
+  //进度条开始
+  top.NProgress.start();
 
 })
 
@@ -74,11 +76,8 @@ $(document).on("ajaxSend", function (event, jqXHR, ajaxOptions) {
  * AJAX请求完成时(成功或失败)触发
  */
 $(document).on("ajaxComplete", function (event, jqXHR, ajaxOptions) {
-
-  //执行你自己的逻辑
-
-  //例子:进度条结束
-  // NProgress.done();
+  //进度条结束
+  top.NProgress.done();
 });
 
 

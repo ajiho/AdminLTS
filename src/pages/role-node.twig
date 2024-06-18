@@ -78,7 +78,7 @@
         <div class="card-body bg-body">
           <!--  表格上方左侧的工具条区域    -->
           <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
-            <button class="btn btn-light bsa-slide-toggle-btn"><i class="bi bi-arrows-collapse"></i> 展开/折叠
+            <button class="btn btn-light bsa-slide-toggle-btn"><i class="bi bi-arrow-left-right"></i> 展开/折叠
             </button>
           </div>
           <!--  数据表格    -->
@@ -245,36 +245,6 @@
   $table.Table('search', '.bsa-search-btn');
   //重置
   $table.Table('reset', '.bsa-reset-btn', '.bsa-search-area form');
-
-  //确定
-  $table.Table('batch', '.bsa-batch-btn', function (ids, selectedRows) {
-
-    $.modal({
-      body: `确定要给该用户设置角色[${selectedRows[0].name}]吗?`,
-      ok: function () {
-        //发起ajax请求
-        $.ajax({
-          url: `/user/role/${selectedRows[0].id}`,
-          method: 'post'
-        }).then(response => {
-          if (response.code === 200) {
-
-            $table.Table('refreshSelectPage');
-
-            //这里的this表示的是当前modal的实例对象
-            this.hide();
-
-            $.toasts({
-              type: 'success',
-              body: '操作成功',
-            })
-          }
-        });
-      }
-    })
-  })
-
-
 
 
   //给角色授权

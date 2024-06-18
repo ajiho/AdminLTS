@@ -8,6 +8,14 @@
                 <div class="card-body">
                     <form id="form">
                         <div class="row mb-3">
+                            <label for="name" class="col-sm-2 col-form-label text-sm-end">父节点</label>
+                            <div class="col-sm-10">
+                                <select class="form-select" id="name" disabled>
+                                    <option value="0" selected>权限管理</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label for="name" class="col-sm-2 col-form-label text-sm-end">节点名称</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="name" name="name" value="">
@@ -100,16 +108,10 @@
                 $.toasts.success()
 
 
-                const qtab = parent.Quicktab.get('qtab');
                 const url = 'node-list.html'
+                parent.Quicktab.get('qtab').getTabWindowByUrl(url)?.$table.Table('refreshSelectPage')
+                parent.Quicktab.get('qtab').closeActiveTab().activeTabByUrl(url, true)
 
-                //根据url找到Tab的Ifrmae的contentWindow对象
-                const contentWindow = qtab.getTabWindowByUrl(url)
-                //使用contentWindow对象拿到$table属性调用刷新方法,node-list页面中有提示要想访问到属性必须使用var来修饰
-                contentWindow && contentWindow.$table.Table('refreshSelectPage')//只刷新表格
-
-                //关闭当前tab并激活滚动到指定url
-                qtab.closeActiveTab().activeTabByUrl(url, true)
 
 
             }

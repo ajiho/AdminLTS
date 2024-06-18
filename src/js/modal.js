@@ -104,15 +104,10 @@ const ClassName = {
   //模态框包裹容器(用于美化滚动条的包裹)
   MODAL_WRAPPER: 'modal-wrapper',
 
-
   //退出全屏
   BTN_FULLSCREEN_EXIT: 'btn-fullscreen-exit',
   //全屏按钮类
   BTN_FULLSCREEN: 'btn-fullscreen',
-
-
-
-
 }
 
 // 简短选项映射，为了使用的时候更方便
@@ -222,7 +217,6 @@ class Modal {
   //iframe元素
   #iframe
 
-
   //构造函数
   constructor(config) {
     this.#config = config
@@ -231,16 +225,14 @@ class Modal {
     this.#id = `modal-${i}`
 
     //更改触发的jquery和bootstrap对象
+
     this.#$ = window[this.#config.window].$
     this.#bootstrap = window[this.#config.window].bootstrap
 
     //创建容器
     this.#createModalElement()
 
-
-    this.#showLoading();
-
-
+    this.#showLoading()
 
     // 滚动条美化
     this.#beautifyScrollbar()
@@ -260,19 +252,15 @@ class Modal {
     }
   }
 
-
   #showLoading() {
     //根据选项决定是否要加入loading层
     if (this.#iframe.length > 0 && this.#config.loading !== false) {
-
       $.loading({
         window: this.#config.window,
         container: this.#modalBodyEl,
         class: 'bg-body-tertiary',
-        spinner: 'grow'
+        spinner: 'grow',
       }).show()
-
-
     }
   }
 
@@ -521,34 +509,23 @@ class Modal {
 
   // 全屏按钮事件
   #bindFullscreenEvents() {
-
-    const that = this;
-
+    const that = this
 
     this.#modalHeader.on('click', '.btn-fullscreen-trigger', function () {
-
-
-
       if (!that.#modalDialog.hasClass(ClassName.MODAL_FULLSCREEN)) {
-
-
-
         that.#modalDialog.addClass(ClassName.MODAL_FULLSCREEN)
 
-        $(this).removeClass(ClassName.BTN_FULLSCREEN).addClass(ClassName.BTN_FULLSCREEN_EXIT);
-
-
+        $(this)
+          .removeClass(ClassName.BTN_FULLSCREEN)
+          .addClass(ClassName.BTN_FULLSCREEN_EXIT)
       } else {
-
         that.#modalDialog.removeClass(ClassName.MODAL_FULLSCREEN)
 
-        $(this).removeClass(ClassName.BTN_FULLSCREEN_EXIT).addClass(ClassName.BTN_FULLSCREEN);
-
+        $(this)
+          .removeClass(ClassName.BTN_FULLSCREEN_EXIT)
+          .addClass(ClassName.BTN_FULLSCREEN)
       }
-
     })
-
-
   }
 
   #bindRefreshBtnEvents() {
@@ -556,8 +533,7 @@ class Modal {
 
     //刷新按钮
     this.#modalHeader.on('click', '.btn-refresh', function () {
-
-      that.#showLoading();
+      that.#showLoading()
 
       //判断是否是跨域的iframe,如果是跨域的就直接移除重新添加
       if (!that.#isCrossOrigin(that.#iframe[0])) {
@@ -656,7 +632,7 @@ class Modal {
       this.#iframe.on('load', function () {
         $.loading.hide({
           window: that.#config.window,
-          container: that.#modalBodyEl
+          container: that.#modalBodyEl,
         })
       })
     }

@@ -1,6 +1,9 @@
+import debounce from 'just-debounce-it'
+
 export default {
-
-
+  debounce(...args) {
+    return debounce(...args)
+  },
   // 给任意url添加一个参数
   addSearchParams(url, params = {}) {
     let isRootPath = url.startsWith('/')
@@ -51,21 +54,19 @@ export default {
     }
   },
 
-
-
   isSVGString(str) {
     // 1. 检查字符串是否包含 <svg> 标签
     if (typeof str !== 'string' || !str.trim().startsWith('<svg')) {
-      return false;
+      return false
     }
 
     // 2. 使用 DOMParser 解析字符串
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(str, 'image/svg+xml');
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(str, 'image/svg+xml')
 
     // 3. 检查解析结果是否包含 <svg> 根元素
-    const svgElement = doc.documentElement;
-    return svgElement.tagName === 'svg' && !doc.querySelector('parsererror');
+    const svgElement = doc.documentElement
+    return svgElement.tagName === 'svg' && !doc.querySelector('parsererror')
   },
 
   //html反转义
@@ -87,7 +88,6 @@ export default {
     temp = null
     return output
   },
-
   sprintf(_str, ...args) {
     let flag = true
     let i = 0
@@ -103,5 +103,16 @@ export default {
     })
 
     return flag ? str : ''
+  },
+
+  quicktabCacheClear(prefix = 'Quicktab') {
+    ;['localStorage', 'sessionStorage'].forEach((storage) => {
+      const keys = Object.keys(window[storage])
+      keys.forEach((key) => {
+        if (key.startsWith(prefix)) {
+          window[storage].removeItem(key)
+        }
+      })
+    })
   },
 }

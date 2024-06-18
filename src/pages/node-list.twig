@@ -56,10 +56,10 @@
                 <div class="card-body bg-body">
                     <!--  表格上方左侧的工具条区域    -->
                     <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
-                        <button class="btn btn-light" data-qt-parent-target="#qtab" data-qt-tab-title='添加根节点'
-                            data-qt-tab-closable='true' data-qt-tab-url='node-add.html'><i class="bi bi-plus"></i> 添加根节点
+                        <button class="btn btn-light" data-qt-parent-target="#qtab" data-qt-tab-title='新增节点'
+                            data-qt-tab-closable='true' data-qt-tab-url='node-add.html'><i class="bi bi-plus"></i> 新增
                         </button>
-                        <button class="btn btn-light bsa-slide-toggle-btn"><i class="bi bi-arrows-collapse"></i> 展开/折叠
+                        <button class="btn btn-light bsa-slide-toggle-btn"><i class="bi bi-arrow-left-right"></i> 展开/折叠
                         </button>
                     </div>
                     <!--  数据表格    -->
@@ -227,11 +227,6 @@
 
     function formatAction(value, row, index, field) {
 
-
-        //添加子节点
-        const childNodeBtn = `<button type="button" class="btn btn-light btn-sm me-2" onclick="addChild(${row.id})" data-bs-title="添加子节点" data-bs-toggle="tooltip" data-bs-placement="top"><i class="bi bi-plus"></i></button>`
-
-
         //修改
         const editBtn = `<button type="button" class="btn btn-light btn-sm me-2" onclick="edit(${row.id})" data-bs-title="编辑" data-bs-toggle="tooltip" data-bs-placement="top"><i class="bi bi-pencil"></i></button>`
 
@@ -241,7 +236,7 @@
 
 
 
-        return childNodeBtn + editBtn + delBtn;
+        return editBtn + delBtn;
 
     }
 
@@ -261,13 +256,6 @@
     $table.Table('reset', '.bsa-reset-btn', '.bsa-search-area form');
 
 
-    // 添加子节点
-    function addChild(id) {
-        parent.$('[data-bsa-toggle="iframe"]').IFrame('addTab', {
-            url: `node-child-add.html?id=${id}`,
-            title: '添加子节点'
-        })
-    }
 
 
     function del(row) {

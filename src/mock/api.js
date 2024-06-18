@@ -20,6 +20,8 @@ let api = {
     role: RegExp(/^\/user\/role\/\d+$/),
     //重置密码
     repassword: RegExp(/^\/user\/repassword\/\d+$/),
+    //用户注册地区数据
+    region: '/user/region',
   },
 
   //登录

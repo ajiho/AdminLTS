@@ -1,21 +1,21 @@
 {% extends "layout/main.twig" %}
 
+
+{% block bodyAttr %}class="bg-body py-3" data-bsa-toggle="scrollbar" data-overlayscrollbars-initialize{%
+endblock %}
+
 {% block mainCnt %}
-<div class="container-fluid">
+<div class="container">
     <div class="row g-3">
         <div class="col">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body">
-                    <form id="form">
-                        <div class="row mb-3">
-                            <label for="name" class="col-sm-2 col-form-label text-sm-end">角色名称</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name" value="经理">
-                            </div>
-                        </div>
-                    </form>
+            <form id="form">
+                <div class="row mb-3">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-end">角色名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" value="经理">
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

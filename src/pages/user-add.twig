@@ -101,8 +101,12 @@
 
         $.toasts.success()
 
-        //找到父级页面的Quicktab实例
-        parent.Quicktab.get('qtab').closeActiveTab().activeTabByUrl('user-list.html', true)
+        const url = 'user-list.html'
+        //拿到用户列表页的$table变量调用refreshSelectPage刷新方法
+        parent.Quicktab.get('qtab').getTabWindowByUrl(url)?.$table.Table('refreshSelectPage')
+        //关闭当前激活的Tab并激活用户列表页
+        parent.Quicktab.get('qtab').closeActiveTab().activeTabByUrl(url, true)
+
 
       }
     });

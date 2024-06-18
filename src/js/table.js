@@ -196,7 +196,7 @@ class Table {
       const selectedRows = that.#table.bootstrapTable('getSelections')
       let conditionResult
       // 如果传递了条件函数，则使用传递的条件函数进行判断
-      if (typeof conditionFn === "function") {
+      if (typeof conditionFn === 'function') {
         conditionResult = conditionFn.call(that, selectedRows)
       } else {
         // 默认条件：选中行数量大于 0
@@ -377,7 +377,6 @@ class Table {
         if (!data) {
           return
         }
-
 
         if (typeof data[config] !== 'undefined') {
           value = data[config](...args)

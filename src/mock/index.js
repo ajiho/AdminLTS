@@ -1,8 +1,14 @@
 import Mock from 'mockjs'
-import './extend'
+import './extends/phone'
 import Utils from './utils/index'
 import Api from './api'
-import { roleList, userList, nodeList, noticeList } from './data/index'
+import {
+  roleList,
+  userList,
+  nodeList,
+  noticeList,
+  provinceList,
+} from './data/index'
 
 //模拟ajax的延时操作
 Mock.setup({
@@ -35,6 +41,13 @@ Mock.mock(Api.user.delete, 'delete', Utils.template())
 
 //批量删除
 Mock.mock(Api.user.delall, 'delete', Utils.template())
+
+//用户注册地区数据
+Mock.mock(
+  Api.user.region,
+  'get',
+  Utils.template(() => provinceList),
+)
 
 //登录
 Mock.mock(Api.login, 'post', Utils.template())

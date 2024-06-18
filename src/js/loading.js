@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import Util from './util'
+import Utils from './util'
 
 // 全局api的名称
 const NAME = 'loading'
@@ -8,7 +8,7 @@ const NAME = 'loading'
 const ClassName = {
   loading: 'bsa-loading',
   //显示时的激活类
-  active: 'active'
+  active: 'active',
 }
 
 const Map = {
@@ -40,7 +40,6 @@ const HTML = {
 </div>`,
 }
 
-
 //默认参数
 const Default = {
   //打开的窗口对象
@@ -58,14 +57,15 @@ const Default = {
   //给loading层附加的样式类
   class: '',
   //是否有淡出效果
-  fadeOut: true
+  fadeOut: true,
 }
 
 class Loading {
-
   #config
+
   // jquery对象
   #$
+
   //元素
   #$loading
 
@@ -75,30 +75,29 @@ class Loading {
 
     //更改触发的jquery对象
     this.#$ = window[this.#config.window].$
-
-
     this.#createLoadingElement()
     this.#transitionendListeners()
-
-
   }
-
 
   #transitionendListeners() {
     //事件委托
     if (this.#config.fadeOut === true) {
-
-      this.#$(window[this.#config.window].document).off('transitionend', `.${ClassName.loading}`, this.#transitionendHandle)
-      this.#$(window[this.#config.window].document).on('transitionend', `.${ClassName.loading}`, this.#transitionendHandle)
+      this.#$(window[this.#config.window].document).off(
+        'transitionend',
+        `.${ClassName.loading}`,
+        this.#transitionendHandle,
+      )
+      this.#$(window[this.#config.window].document).on(
+        'transitionend',
+        `.${ClassName.loading}`,
+        this.#transitionendHandle,
+      )
     }
-
   }
 
   #transitionendHandle() {
     $(this).remove()
   }
-
-
 
   #createLoadingElement() {
     let html = []
@@ -109,17 +108,18 @@ class Loading {
     let color = Map.spinnerColorScheme[this.#config.type] || ''
     let size = this.#config.size === 'sm' ? spinner + '-sm' : ''
     let styleSize = this.#config.size !== 'sm' ? this.#config.size : ''
-    html.push(Util.sprintf(HTML.spinner, spinner, color, size, styleSize))
+    html.push(Utils.sprintf(HTML.spinner, spinner, color, size, styleSize))
 
     html.push(HTML.container[1])
     html = html.join('')
 
-
     //先移除
     this.#$(this.#config.container).find(`.${ClassName.loading}`).remove()
-    this.#$(html).prependTo(this.#config.container);
+    this.#$(html).prependTo(this.#config.container)
     //查找元素
-    this.#$loading = this.#$(this.#config.container).find(`.${ClassName.loading}`)
+    this.#$loading = this.#$(this.#config.container).find(
+      `.${ClassName.loading}`,
+    )
 
     this.#$(this.#config.container).css({
       position: this.#config.containerPosition,
@@ -140,26 +140,26 @@ class Loading {
   }
 
   hide(options) {
-
-    let config = Object.assign(this.#config, typeof options === "object" ? options : {})
-    const $loading = window[config.window].$(config.container).find(`.${ClassName.loading}`);
+    let config = Object.assign(
+      this.#config,
+      typeof options === 'object' ? options : {},
+    )
+    const $loading = window[config.window]
+      .$(config.container)
+      .find(`.${ClassName.loading}`)
     if (this.#config.fadeOut === true) {
       $loading.addClass('fade-out')
     } else {
       $loading.remove()
     }
-
-
   }
-
 }
-
 
 /**
  * jQuery 全局函数 API
  * ====================================================
  */
-let loadingInstance;
+let loadingInstance
 $[NAME] = function (options) {
   loadingInstance = new Loading(
     $.extend({}, $[NAME].default, typeof options === 'object' ? options : {}),
@@ -172,6 +172,5 @@ $[NAME].hide = function (options) {
 }
 
 $[NAME].default = Default
-
 
 export default Loading

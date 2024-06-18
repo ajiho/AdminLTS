@@ -7,7 +7,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery')) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.BootstrapAdmin = {}, global.jQuery));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.bootstrapadmin = {}, global.jQuery));
 })(this, (function (exports, $) { 'use strict';
 
   var id = 0;
@@ -103,7 +103,70 @@
     return NavbarSearch.jQueryInterface;
   };
 
-  var Util = {
+  var functionDebounce = debounce;
+
+  function debounce(fn, wait, callFirst) {
+    var timeout = null;
+    var debouncedFn = null;
+
+    var clear = function() {
+      if (timeout) {
+        clearTimeout(timeout);
+
+        debouncedFn = null;
+        timeout = null;
+      }
+    };
+
+    var flush = function() {
+      var call = debouncedFn;
+      clear();
+
+      if (call) {
+        call();
+      }
+    };
+
+    var debounceWrapper = function() {
+      if (!wait) {
+        return fn.apply(this, arguments);
+      }
+
+      var context = this;
+      var args = arguments;
+      var callNow = callFirst && !timeout;
+      clear();
+
+      debouncedFn = function() {
+        fn.apply(context, args);
+      };
+
+      timeout = setTimeout(function() {
+        timeout = null;
+
+        if (!callNow) {
+          var call = debouncedFn;
+          debouncedFn = null;
+
+          return call();
+        }
+      }, wait);
+
+      if (callNow) {
+        return debouncedFn();
+      }
+    };
+
+    debounceWrapper.cancel = clear;
+    debounceWrapper.flush = flush;
+
+    return debounceWrapper;
+  }
+
+  var Utils = {
+    debounce(...args) {
+      return functionDebounce(...args);
+    },
     // 给任意url添加一个参数
     addSearchParams(url, params = {}) {
       let isRootPath = url.startsWith('/');
@@ -189,6 +252,16 @@
         return arg;
       });
       return flag ? str : '';
+    },
+    quicktabCacheClear(prefix = 'Quicktab') {
+      ['localStorage', 'sessionStorage'].forEach(storage => {
+        const keys = Object.keys(window[storage]);
+        keys.forEach(key => {
+          if (key.startsWith(prefix)) {
+            window[storage].removeItem(key);
+          }
+        });
+      });
     }
   };
 
@@ -475,7 +548,7 @@
     let html = [];
 
     //接着是内部的判断
-    html.push(Util.sprintf(HTML$2.toast[0], Map$2.toastColorScheme[_classPrivateFieldLooseBase(this, _config$c)[_config$c].type] || '', _classPrivateFieldLooseBase(this, _id$1)[_id$1]));
+    html.push(Utils.sprintf(HTML$2.toast[0], Map$2.toastColorScheme[_classPrivateFieldLooseBase(this, _config$c)[_config$c].type] || '', _classPrivateFieldLooseBase(this, _id$1)[_id$1]));
 
     //按钮类,确定哪些情景类型需要使用白色的按钮类
     const btnClass = needWhiteCloseBtnType.includes(_classPrivateFieldLooseBase(this, _config$c)[_config$c].type) ? ClassName$3.BTN_CLOSE_WHITE : '';
@@ -484,28 +557,28 @@
       //如果标题被设置了
 
       let toastHeaderColor = Map$2.toastHeaderColorScheme[_classPrivateFieldLooseBase(this, _config$c)[_config$c].type] || '';
-      html.push(Util.sprintf(HTML$2.toastHeader[0], toastHeaderColor)); //头部
+      html.push(Utils.sprintf(HTML$2.toastHeader[0], toastHeaderColor)); //头部
 
       if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].image !== '') {
         //有传递图标
 
         //判断是否是svg字符串
-        if (Util.isSVGString(_classPrivateFieldLooseBase(this, _config$c)[_config$c].image)) {
+        if (Utils.isSVGString(_classPrivateFieldLooseBase(this, _config$c)[_config$c].image)) {
           html.push(_classPrivateFieldLooseBase(this, _config$c)[_config$c].image);
         } else {
-          html.push(Util.sprintf(HTML$2.headerImg, _classPrivateFieldLooseBase(this, _config$c)[_config$c].image, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageHeight, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageAlt));
+          html.push(Utils.sprintf(HTML$2.headerImg, _classPrivateFieldLooseBase(this, _config$c)[_config$c].image, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageHeight, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageAlt));
         }
       }
-      html.push(Util.sprintf(HTML$2.headerTitle, _classPrivateFieldLooseBase(this, _config$c)[_config$c].title));
-      html.push(Util.sprintf(HTML$2.headerSubTitle, _classPrivateFieldLooseBase(this, _config$c)[_config$c].subTitle));
+      html.push(Utils.sprintf(HTML$2.headerTitle, _classPrivateFieldLooseBase(this, _config$c)[_config$c].title));
+      html.push(Utils.sprintf(HTML$2.headerSubTitle, _classPrivateFieldLooseBase(this, _config$c)[_config$c].subTitle));
       if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].btnClose === true) {
-        html.push(Util.sprintf(HTML$2.btnClose, btnClass, ''));
+        html.push(Utils.sprintf(HTML$2.btnClose, btnClass, ''));
       }
       //中间添加内容
       html.push(HTML$2.toastHeader[1]);
 
       //加入内容
-      html.push(Util.sprintf(HTML$2.toastBody, _classPrivateFieldLooseBase(this, _config$c)[_config$c].body));
+      html.push(Utils.sprintf(HTML$2.toastBody, _classPrivateFieldLooseBase(this, _config$c)[_config$c].body));
     } else {
       //只插入body
 
@@ -518,15 +591,15 @@
         //有传递图标
 
         //判断是否是svg字符串
-        if (Util.isSVGString(_classPrivateFieldLooseBase(this, _config$c)[_config$c].image)) {
+        if (Utils.isSVGString(_classPrivateFieldLooseBase(this, _config$c)[_config$c].image)) {
           body = _classPrivateFieldLooseBase(this, _config$c)[_config$c].image + body;
         } else {
-          body = html.push(Util.sprintf(HTML$2.headerImg, _classPrivateFieldLooseBase(this, _config$c)[_config$c].image, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageHeight, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageAlt)) + body;
+          body = html.push(Utils.sprintf(HTML$2.headerImg, _classPrivateFieldLooseBase(this, _config$c)[_config$c].image, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageHeight, _classPrivateFieldLooseBase(this, _config$c)[_config$c].imageAlt)) + body;
         }
       }
-      html.push(Util.sprintf(HTML$2.toastBody, body));
+      html.push(Utils.sprintf(HTML$2.toastBody, body));
       if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].btnClose === true) {
-        html.push(Util.sprintf(HTML$2.btnClose, btnClass, ClassName$3.TOAST_BODY_BTN_CLASS));
+        html.push(Utils.sprintf(HTML$2.btnClose, btnClass, ClassName$3.TOAST_BODY_BTN_CLASS));
       }
       if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].btnClose === true) {
         //身体容器的结束
@@ -535,14 +608,14 @@
     }
     if (_classPrivateFieldLooseBase(this, _config$c)[_config$c].autohide === true) {
       //进度条
-      html.push(Util.sprintf(HTML$2.progress, Map$2.progressColorScheme[_classPrivateFieldLooseBase(this, _config$c)[_config$c].type] || 'bg-light', _classPrivateFieldLooseBase(this, _config$c)[_config$c].delay));
+      html.push(Utils.sprintf(HTML$2.progress, Map$2.progressColorScheme[_classPrivateFieldLooseBase(this, _config$c)[_config$c].type] || 'bg-light', _classPrivateFieldLooseBase(this, _config$c)[_config$c].delay));
     }
     html.push(HTML$2.toast[1]);
     return html.join('');
   }
   function _buildContainer2() {
     let placement = Map$2.placement[_classPrivateFieldLooseBase(this, _config$c)[_config$c].placement] || 'top-right';
-    let html = [Util.sprintf(HTML$2.container[0], placement), HTML$2.container[1]].join('');
+    let html = [Utils.sprintf(HTML$2.container[0], placement), HTML$2.container[1]].join('');
 
     //判断不同方向的容器是否存在，不存在就创建并添加到body中
     const containerSelector = `.${ClassName$3.TOAST_CONTAINER}.${placement.replace(/ /g, '.')}`;
@@ -626,11 +699,11 @@
   var _addTransition = /*#__PURE__*/_classPrivateFieldLooseKey("addTransition");
   var _addOverlay = /*#__PURE__*/_classPrivateFieldLooseKey("addOverlay");
   var _init$9 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
-  var _setupListeners$5 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  var _setupListeners$6 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
   class PushMenu {
     constructor(element, config) {
-      Object.defineProperty(this, _setupListeners$5, {
-        value: _setupListeners2$5
+      Object.defineProperty(this, _setupListeners$6, {
+        value: _setupListeners2$6
       });
       Object.defineProperty(this, _init$9, {
         value: _init2$9
@@ -729,9 +802,9 @@
     }
   }
   function _init2$9() {
-    _classPrivateFieldLooseBase(this, _setupListeners$5)[_setupListeners$5]();
+    _classPrivateFieldLooseBase(this, _setupListeners$6)[_setupListeners$6]();
   }
-  function _setupListeners2$5() {
+  function _setupListeners2$6() {
     let that = this;
 
     //遮罩层关闭事件
@@ -798,7 +871,7 @@
   var _config$a = /*#__PURE__*/_classPrivateFieldLooseKey("config");
   var _element$9 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
   var _init$8 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
-  var _setupListeners$4 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  var _setupListeners$5 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
   var _isAnimating = /*#__PURE__*/_classPrivateFieldLooseKey("isAnimating");
   var _accordion = /*#__PURE__*/_classPrivateFieldLooseKey("accordion");
   class Treeview {
@@ -810,8 +883,8 @@
         value: _isAnimating2
       });
       // 初始化事件
-      Object.defineProperty(this, _setupListeners$4, {
-        value: _setupListeners2$4
+      Object.defineProperty(this, _setupListeners$5, {
+        value: _setupListeners2$5
       });
       // Private
       Object.defineProperty(this, _init$8, {
@@ -1000,9 +1073,9 @@
    */
   function _init2$8() {
     // 初始化点击事件
-    _classPrivateFieldLooseBase(this, _setupListeners$4)[_setupListeners$4]();
+    _classPrivateFieldLooseBase(this, _setupListeners$5)[_setupListeners$5]();
   }
-  function _setupListeners2$4() {
+  function _setupListeners2$5() {
     const that = this;
     $(_classPrivateFieldLooseBase(this, _element$9)[_element$9]).on('click', `${SELECTOR_LINK}:not([target])`, function (event) {
       let $link = $(this);
@@ -1334,6 +1407,7 @@
       _classPrivateFieldLooseBase(this, _id)[_id] = `modal-${i}`;
 
       //更改触发的jquery和bootstrap对象
+
       _classPrivateFieldLooseBase(this, _$$1)[_$$1] = window[_classPrivateFieldLooseBase(this, _config$9)[_config$9].window].$;
       _classPrivateFieldLooseBase(this, _bootstrap)[_bootstrap] = window[_classPrivateFieldLooseBase(this, _config$9)[_config$9].window].bootstrap;
 
@@ -1411,7 +1485,7 @@
   }
   function _createModalElement2() {
     let html = [];
-    html.push(Util.sprintf(HTML$1.modal[0], _classPrivateFieldLooseBase(this, _config$9)[_config$9].modalClass, _classPrivateFieldLooseBase(this, _id)[_id], _classPrivateFieldLooseBase(this, _id)[_id]));
+    html.push(Utils.sprintf(HTML$1.modal[0], _classPrivateFieldLooseBase(this, _config$9)[_config$9].modalClass, _classPrivateFieldLooseBase(this, _id)[_id], _classPrivateFieldLooseBase(this, _id)[_id]));
     html.push(HTML$1.modalWrapper[0]);
 
     //垂直居中,如果是iframe模式那么默认给它开启
@@ -1433,7 +1507,7 @@
       size = Map$1.size[_classPrivateFieldLooseBase(this, _config$9)[_config$9].size] || '';
     }
     let fullscreen = Map$1.fullscreen[_classPrivateFieldLooseBase(this, _config$9)[_config$9].fullscreen] || '';
-    html.push(Util.sprintf(HTML$1.modalDialog[0], centered, scrollable, size, fullscreen));
+    html.push(Utils.sprintf(HTML$1.modalDialog[0], centered, scrollable, size, fullscreen));
 
     //装填modalContent
     html.push(HTML$1.modalContent[0]);
@@ -1441,7 +1515,7 @@
     //装填modal-header
     html.push(HTML$1.modalHeader[0]);
     //标题准备
-    html.push(Util.sprintf(HTML$1.modalTitle, _classPrivateFieldLooseBase(this, _id)[_id], Util.htmlspecialchars(_classPrivateFieldLooseBase(this, _config$9)[_config$9].title)));
+    html.push(Utils.sprintf(HTML$1.modalTitle, _classPrivateFieldLooseBase(this, _id)[_id], Utils.htmlspecialchars(_classPrivateFieldLooseBase(this, _config$9)[_config$9].title)));
     //右边的操作按钮
     html.push(HTML$1.headerRightWrapper[0]);
     //刷新按钮，要判断是否为url模式,不是的话，就加入刷新按钮
@@ -1462,7 +1536,7 @@
     }
     html.push(HTML$1.headerRightWrapper[1]);
     html.push(HTML$1.modalHeader[1]);
-    html.push(Util.sprintf(HTML$1.modalBody[0], _classPrivateFieldLooseBase(this, _config$9)[_config$9].url !== undefined ? 'p-0 overflow-hidden' : ''));
+    html.push(Utils.sprintf(HTML$1.modalBody[0], _classPrivateFieldLooseBase(this, _config$9)[_config$9].url !== undefined ? 'p-0 overflow-hidden' : ''));
 
     //装填modal-body部分
     if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].url !== undefined) {
@@ -1477,17 +1551,17 @@
 
     //装填modal-footer部分
     if (Array.isArray(_classPrivateFieldLooseBase(this, _config$9)[_config$9].buttons) && _classPrivateFieldLooseBase(this, _config$9)[_config$9].buttons.length !== 0) {
-      html.push(Util.sprintf(HTML$1.modalFooter[0], btnAlign));
+      html.push(Utils.sprintf(HTML$1.modalFooter[0], btnAlign));
       _classPrivateFieldLooseBase(this, _config$9)[_config$9].buttons.forEach((item, index) => {
         item = Object.assign(_classPrivateFieldLooseBase(this, _config$9)[_config$9].btntpl, item);
-        html.push(Util.sprintf(HTML$1.modalFooterBtn, index, item.class, btnSize, item.text));
+        html.push(Utils.sprintf(HTML$1.modalFooterBtn, index, item.class, btnSize, item.text));
       });
       html.push(HTML$1.modalFooter[1]);
     } else if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].buttons === null) {
-      html.push(Util.sprintf(HTML$1.modalFooter[0], btnAlign));
-      html.push(Util.sprintf(HTML$1.modalFooterBtn, DATA_KEY_OK_NAME, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnOKClass, btnSize, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnOKText));
+      html.push(Utils.sprintf(HTML$1.modalFooter[0], btnAlign));
+      html.push(Utils.sprintf(HTML$1.modalFooterBtn, DATA_KEY_OK_NAME, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnOKClass, btnSize, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnOKText));
       if (_classPrivateFieldLooseBase(this, _config$9)[_config$9].btnCancel === true) {
-        html.push(Util.sprintf(HTML$1.modalFooterBtn, DATA_KEY_CANCEL_NAME, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnCancelClass, btnSize, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnCancelText));
+        html.push(Utils.sprintf(HTML$1.modalFooterBtn, DATA_KEY_CANCEL_NAME, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnCancelClass, btnSize, _classPrivateFieldLooseBase(this, _config$9)[_config$9].btnCancelText));
       }
       html.push(HTML$1.modalFooter[1]);
     }
@@ -1565,7 +1639,7 @@
       if (!_classPrivateFieldLooseBase(that, _isCrossOrigin)[_isCrossOrigin](_classPrivateFieldLooseBase(that, _iframe)[_iframe][0])) {
         _classPrivateFieldLooseBase(that, _iframe)[_iframe][0].contentWindow.location.reload();
       } else {
-        _classPrivateFieldLooseBase(that, _iframe)[_iframe].attr('src', Util.addSearchParams(_classPrivateFieldLooseBase(that, _iframe)[_iframe].attr('src'), {
+        _classPrivateFieldLooseBase(that, _iframe)[_iframe].attr('src', Utils.addSearchParams(_classPrivateFieldLooseBase(that, _iframe)[_iframe].attr('src'), {
           ___t: Math.random()
         }));
       }
@@ -1808,7 +1882,7 @@
     let color = Map.spinnerColorScheme[_classPrivateFieldLooseBase(this, _config$8)[_config$8].type] || '';
     let size = _classPrivateFieldLooseBase(this, _config$8)[_config$8].size === 'sm' ? spinner + '-sm' : '';
     let styleSize = _classPrivateFieldLooseBase(this, _config$8)[_config$8].size !== 'sm' ? _classPrivateFieldLooseBase(this, _config$8)[_config$8].size : '';
-    html.push(Util.sprintf(HTML.spinner, spinner, color, size, styleSize));
+    html.push(Utils.sprintf(HTML.spinner, spinner, color, size, styleSize));
     html.push(HTML.container[1]);
     html = html.join('');
 
@@ -1967,15 +2041,15 @@
   var _config$6 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
   var _element$6 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
   var _init$6 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
-  var _setupListeners$3 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  var _setupListeners$4 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
   var _iconToggle = /*#__PURE__*/_classPrivateFieldLooseKey("iconToggle");
   class Fullscreen {
     constructor(element, config) {
       Object.defineProperty(this, _iconToggle, {
         value: _iconToggle2
       });
-      Object.defineProperty(this, _setupListeners$3, {
-        value: _setupListeners2$3
+      Object.defineProperty(this, _setupListeners$4, {
+        value: _setupListeners2$4
       });
       // Private
       Object.defineProperty(this, _init$6, {
@@ -2041,9 +2115,9 @@
    * ====================================================
    */
   function _init2$6() {
-    _classPrivateFieldLooseBase(this, _setupListeners$3)[_setupListeners$3]();
+    _classPrivateFieldLooseBase(this, _setupListeners$4)[_setupListeners$4]();
   }
-  function _setupListeners2$3() {
+  function _setupListeners2$4() {
     const that = this;
 
     // 这里是全局监听,避免是非通过点击退出全屏时图标没有恢复的问题
@@ -2107,11 +2181,11 @@
   var _link = /*#__PURE__*/_classPrivateFieldLooseKey("link");
   var _clicked = /*#__PURE__*/_classPrivateFieldLooseKey("clicked");
   var _init$5 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
-  var _setupListeners$2 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  var _setupListeners$3 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
   class IFrame {
     constructor(element, config) {
-      Object.defineProperty(this, _setupListeners$2, {
-        value: _setupListeners2$2
+      Object.defineProperty(this, _setupListeners$3, {
+        value: _setupListeners2$3
       });
       // Private
       Object.defineProperty(this, _init$5, {
@@ -2211,9 +2285,9 @@
     });
 
     // 初始化点击事件
-    _classPrivateFieldLooseBase(this, _setupListeners$2)[_setupListeners$2]();
+    _classPrivateFieldLooseBase(this, _setupListeners$3)[_setupListeners$3]();
   }
-  function _setupListeners2$2() {
+  function _setupListeners2$3() {
     const that = this;
 
     //侧边栏，没有子集的链接
@@ -2289,11 +2363,11 @@
   var _config$4 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
   var _element$4 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
   var _init$4 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
-  var _setupListeners$1 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  var _setupListeners$2 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
   class BackToTop {
     constructor(element, config) {
-      Object.defineProperty(this, _setupListeners$1, {
-        value: _setupListeners2$1
+      Object.defineProperty(this, _setupListeners$2, {
+        value: _setupListeners2$2
       });
       // Private
       Object.defineProperty(this, _init$4, {
@@ -2342,9 +2416,9 @@
    * ====================================================
    */
   function _init2$4() {
-    _classPrivateFieldLooseBase(this, _setupListeners$1)[_setupListeners$1]();
+    _classPrivateFieldLooseBase(this, _setupListeners$2)[_setupListeners$2]();
   }
-  function _setupListeners2$1() {
+  function _setupListeners2$2() {
     const that = this;
 
     //回到顶部,向下滚动300px渐显回到顶部按钮
@@ -2408,6 +2482,7 @@
   var _config$3 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
   var _element$3 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
   var _headerDropdown = /*#__PURE__*/_classPrivateFieldLooseKey("headerDropdown");
+  var _checkProtocol = /*#__PURE__*/_classPrivateFieldLooseKey("checkProtocol");
   var _init$3 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
   var _optimize = /*#__PURE__*/_classPrivateFieldLooseKey("optimize");
   var _nextClickDismiss = /*#__PURE__*/_classPrivateFieldLooseKey("nextClickDismiss");
@@ -2428,6 +2503,9 @@
       // Private
       Object.defineProperty(this, _init$3, {
         value: _init2$3
+      });
+      Object.defineProperty(this, _checkProtocol, {
+        value: _checkProtocol2
       });
       Object.defineProperty(this, _headerDropdown, {
         value: _headerDropdown2
@@ -2496,7 +2574,17 @@
       $('.bsa-header .dropdown-menu.show').length > 0 ? $content.addClass(ClassName.pe) : $content.removeClass(ClassName.pe);
     });
   }
+  function _checkProtocol2() {
+    // 检查协议
+    if (window.location.protocol === 'file:') {
+      const relativePath = window.location.pathname + window.location.search + window.location.hash;
+      alert(`您正在通过file://协议打开${relativePath}页面。为了确保一切功能正常，请通过本地服务器运行此页面`);
+      document.write('');
+      document.close(); // 确保文档流关闭
+    }
+  }
   function _init2$3() {
+    _classPrivateFieldLooseBase(this, _checkProtocol)[_checkProtocol]();
     _classPrivateFieldLooseBase(this, _sanitizerSetUp)[_sanitizerSetUp]();
     this.tooltipInit();
     this.popoverInit();
@@ -2970,16 +3058,28 @@
     return Table.jQueryInterface;
   };
 
-  const NAME$1 = 'ToggleIcon';
-  const DATA_KEY$1 = 'bsa.toggleicon';
+  const NAME$1 = 'PasswordToggle';
+  const DATA_KEY$1 = 'bsa.passwordtoggle';
   const JQUERY_NO_CONFLICT$1 = $.fn[NAME$1];
-  const SELECTOR_DATA_TOGGLE$1 = '[data-bsa-toggle="toggleicon"]';
-  const Default$1 = {};
+  const SELECTOR_DATA_TOGGLE$1 = '[data-bsa-toggle="passwordtoggle"]';
+  const Default$1 = {
+    //针对的input输入框
+    target: null,
+    //可见的图标
+    visibleIcon: 'bi bi-eye-slash',
+    //不可见的图标
+    invisibleIcon: 'bi bi-eye'
+  };
   var _config$1 = /*#__PURE__*/_classPrivateFieldLooseKey("config");
   var _element$1 = /*#__PURE__*/_classPrivateFieldLooseKey("element");
   var _init$1 = /*#__PURE__*/_classPrivateFieldLooseKey("init");
-  class ToggleIcon {
+  var _setupListeners$1 = /*#__PURE__*/_classPrivateFieldLooseKey("setupListeners");
+  class PasswordToggle {
     constructor(element, config) {
+      // 初始化事件
+      Object.defineProperty(this, _setupListeners$1, {
+        value: _setupListeners2$1
+      });
       Object.defineProperty(this, _init$1, {
         value: _init2$1
       });
@@ -2994,7 +3094,6 @@
       _classPrivateFieldLooseBase(this, _config$1)[_config$1] = config;
       _classPrivateFieldLooseBase(this, _element$1)[_element$1] = element;
     }
-
     // Static
     static jQueryInterface(config, ...args) {
       let value;
@@ -3014,7 +3113,7 @@
           console.warn('You cannot initialize the table more than once!');
           return;
         }
-        data = new ToggleIcon($(this), $.extend({}, Default$1, typeof config === 'object' ? config : $(this).data()));
+        data = new PasswordToggle($(this), $.extend({}, Default$1, typeof config === 'object' ? config : $(this).data()));
         $(this).data(DATA_KEY$1, data);
         _classPrivateFieldLooseBase(data, _init$1)[_init$1]();
       });
@@ -3027,11 +3126,29 @@
    * ====================================================
    */
   function _init2$1() {
-    console.log('w');
+    if ($(_classPrivateFieldLooseBase(this, _config$1)[_config$1].target).length <= 0) {
+      //如果没有提供target参数直接不处理
+      return;
+    }
+    // 初始化点击事件
+    _classPrivateFieldLooseBase(this, _setupListeners$1)[_setupListeners$1]();
+  }
+  function _setupListeners2$1() {
+    const that = this;
+    _classPrivateFieldLooseBase(that, _element$1)[_element$1].on('click', function (event) {
+      const $input = $(_classPrivateFieldLooseBase(that, _config$1)[_config$1].target);
+      if ($input.attr('type') === 'text') {
+        $input.attr('type', 'password');
+        $(this).html(`<i class="${_classPrivateFieldLooseBase(that, _config$1)[_config$1].visibleIcon}"></i>`);
+      } else if ($input.attr('type') === 'password') {
+        $input.attr('type', 'text');
+        $(this).html(`<i class="${_classPrivateFieldLooseBase(that, _config$1)[_config$1].invisibleIcon}"></i>`);
+      }
+    });
   }
   $(() => {
     $(SELECTOR_DATA_TOGGLE$1).each(function () {
-      ToggleIcon.jQueryInterface.call($(this));
+      PasswordToggle.jQueryInterface.call($(this));
     });
   });
 
@@ -3040,11 +3157,11 @@
    * ====================================================
    */
 
-  $.fn[NAME$1] = ToggleIcon.jQueryInterface;
-  $.fn[NAME$1].Constructor = ToggleIcon;
+  $.fn[NAME$1] = PasswordToggle.jQueryInterface;
+  $.fn[NAME$1].Constructor = PasswordToggle;
   $.fn[NAME$1].noConflict = function () {
     $.fn[NAME$1] = JQUERY_NO_CONFLICT$1;
-    return ToggleIcon.jQueryInterface;
+    return PasswordToggle.jQueryInterface;
   };
 
   const NAME = 'Tab';
@@ -3164,13 +3281,14 @@
   exports.Loading = Loading;
   exports.Modal = Modal;
   exports.NavbarSearch = NavbarSearch;
+  exports.PasswordToggle = PasswordToggle;
   exports.PushMenu = PushMenu;
   exports.Scrollbar = Scrollbar;
   exports.Tab = Tab;
   exports.Table = Table;
   exports.Toasts = Toasts;
-  exports.ToggleIcon = ToggleIcon;
   exports.Treeview = Treeview;
+  exports.util = Utils;
 
 }));
 //# sourceMappingURL=bootstrap-admin.js.map
