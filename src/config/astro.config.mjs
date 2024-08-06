@@ -34,13 +34,13 @@ export default defineConfig({
   // 不要压缩html
   compressHTML: false,
   // 公共静态资源目录
-  publicDir: '.tmp/dist',
+  publicDir: './.tmp/dist',
   // 源码目录
-  srcDir: 'src/view',
+  srcDir: './src/view',
   // 缓存目录
-  cacheDir: '.cache',
+  cacheDir: './dist',
   //输出目录
-  outDir: 'dist',
+  outDir: './dist',
   //开发工具栏
   devToolbar: {
     enabled: false,

@@ -46,12 +46,12 @@ export default [
   //https://github.com/eslint/eslint/issues/17831
   {
     ignores: [
-      'src/config',
-      'src/docs',
-      'src/img',
-      'src/script',
-      'src/scss',
-      'src/view',
+      'src/config/',
+      'src/docs/',
+      'src/img/',
+      'src/script/',
+      'src/scss/',
+      'src/view/',
     ],
   },
 ]

@@ -1,8 +1,0 @@
-.workflow
-.gitee
-node_modules
-.idea
-/.vscode
-*.DS_Store
-*.log
-.vercel

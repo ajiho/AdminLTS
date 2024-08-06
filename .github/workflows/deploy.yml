@@ -1,0 +1,34 @@
+name: Deploy to Vercel
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  push:
+    branches:
+      - 2.x
+    paths:
+      - src/docs/**
+  # 允许从页面手动运行此工作流
+  workflow_dispatch:
+jobs:
+  Deploy-Production:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm # 或者 pnpm / yarn
+          cache-dependency-path: docs
+      - name: Push to Vercel
+        run: |
+          npm install --global vercel@canary
+          # 如果只想部署不想影响生产环境的地址,可以把environment设置成preview 同时把--prod这个选项移除
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

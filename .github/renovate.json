@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "prHourlyLimit": 10,
+  "timezone": "Asia/Shanghai",
+  "labels": ["dependencies", "renovate"],
+  "ignorePresets": ["node-engines"]
+}
