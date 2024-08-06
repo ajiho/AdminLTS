@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import Initialize from './initialize'
+import Initialize from './initializer'
 
 const NAME = 'Table'
 const DATA_KEY = 'lts.table'

@@ -2,6 +2,8 @@
 .idea
 /.vscode
 
+# 各种lint工具缓存目录
+.cache/
 
 # 生产目录
 dist/
@@ -14,17 +16,23 @@ node_modules/
 *.DS_Store
 *.log
 
-# vercel部署
-.vercel
+
+
 
 # 缓存文件
-**/.vitepress/cache
-.cache
+**/.vitepress/cache/
+**/.vitepress/dist/
+**/.vitepress/.temp/
+
 
 # 临时目录(比如css文件编译中转,或者用于astro的public静态资源目录)
 .tmp
+
 
 # astro相关
 .astro/
 # 不需要的类型
 **/env.d.ts
+
+# vercel部署
+.vercel

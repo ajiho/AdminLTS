@@ -1,0 +1,16 @@
+{
+  "framework": null,
+  "buildCommand": "",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/docs/(.*)",
+      "destination": "/docs/404"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/error"
+    }
+  ]
+}

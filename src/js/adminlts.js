@@ -8,14 +8,14 @@ import Scrollbar from './scrollbar'
 import Fullscreen from './fullscreen'
 import IFrame from './iframe'
 import Scrolltop from './scrolltop'
-import Initialize from './initialize'
+import Initializer from './initializer'
 import Table from './table'
 import PasswordToggle from './password-toggle'
 import Tab from './tab'
 import Util from './util'
 
 export {
-  Initialize,
+  Initializer,
   IFrame,
   NavbarSearch,
   Toasts,
@@ -29,5 +29,5 @@ export {
   Scrollbar,
   Fullscreen,
   PasswordToggle,
-  Util,
+  Util as util,
 }
