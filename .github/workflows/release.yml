@@ -1,26 +1,81 @@
 name: Release
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - 2.x
 
 
-# 为整个工作流配置权限
-permissions: 
+permissions:
   contents: write
+  pull-requests: write
 
 jobs:
-  build:
+  release-please:
     runs-on: ubuntu-latest
     steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Release
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm # 或者 pnpm / yarn
+          cache-dependency-path: docs
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Write the current version number to docs/versions.json
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          node -e "
+          const fs = require('fs');
+          const data = fs.readFileSync('versions.json', 'utf8');
+          const versionLinks = JSON.parse(data);
+          versionLinks.currently = '${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}';
+          fs.writeFileSync('versions.json', JSON.stringify(versionLinks, null, 2), 'utf8');
+          "
+        working-directory: ./docs
+      - name: Upload release assets
         uses: softprops/action-gh-release@v2
+        with:
+          files: CHANGELOG.md
+          tag_name: ${{ steps.release.outputs.tag_name }}
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Deploy docs and obtain the deployed URL
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          npm install --global vercel@canary
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          DEPLOY_URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
+          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+        working-directory: ./docs
+      - name: Write the URL of Vercel deployment to the archived property of docs/versions.json
+        run: |
+          node -e "
+          const fs = require('fs');
+          const data = fs.readFileSync('versions.json', 'utf8');
+          const versionLinks = JSON.parse(data);
+          versionLinks['archived']['${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}'] = '${{ env.DEPLOY_URL }}';
+          fs.writeFileSync('versions.json', JSON.stringify(versionLinks, null, 2), 'utf8');
+          "
+        if: ${{ steps.release.outputs.release_created }}
+        working-directory: ./docs
+      - name: Submit docs/versions.json to the repository
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "docs: update versions"
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          body: |
-            Please refer to [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md) for details.

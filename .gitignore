@@ -14,15 +14,19 @@ node_modules/
 *.DS_Store
 *.log
 
+
 # vercel部署
-.vercel
+**/.vercel
+**/.vercelignore
 
 # 缓存文件
-**/.vitepress/cache
 .cache
+**/.vitepress/cache
+
 
 # 临时目录(比如css文件编译中转,或者用于astro的public静态资源目录)
 .tmp
+
 
 # astro相关
 .astro/
