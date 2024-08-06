@@ -1,10 +1,10 @@
 import $ from 'jquery'
 
 const NAME = 'PasswordToggle'
-const DATA_KEY = 'bsa.passwordtoggle'
+const DATA_KEY = 'lts.passwordtoggle'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
-const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="passwordtoggle"]'
+const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="passwordtoggle"]'
 
 const Default = {
   //针对的input输入框

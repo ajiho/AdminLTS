@@ -4,19 +4,13 @@
 
 :root,
 [data-bs-theme='light'] {
-  // bsa自定义变量
-  --bsa-header-height: #{$header-height};
-  --bsa-sidebar-width: #{$sidebar-width};
-  --bsa-footer-height: #{$footer-height};
+  // lts自定义变量
+  --#{$lts-prefix}header-height: #{$lts-header-height};
+  --#{$lts-prefix}sidebar-width: #{$lts-sidebar-width};
+  --#{$lts-prefix}footer-height: #{$lts-footer-height};
 }
 
+// 禁止表格内容换行
 table {
   white-space: nowrap;
 }
-
-// 全局滚动条样式美化
-@include scrollbar();
-//引入刷新图标
-@include btn-custom($btn-refresh-bg, 'btn-refresh');
-@include btn-custom($btn-fullscreen-bg, 'btn-fullscreen');
-@include btn-custom($btn-fullscreen-exit-bg, 'btn-fullscreen-exit');

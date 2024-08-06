@@ -6,7 +6,7 @@ const NAME = 'loading'
 
 //类名
 const ClassName = {
-  loading: 'bsa-loading',
+  loading: 'lts-loading',
   //显示时的激活类
   active: 'active',
 }

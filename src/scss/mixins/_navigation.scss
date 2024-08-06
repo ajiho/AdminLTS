@@ -2,16 +2,18 @@
 
 @mixin navigation() {
   // 侧边栏的导航样式
-  .#{$bsa-prefix}navigation {
+  .#{$lts-prefix}navigation {
     @include ul-reset;
 
     // 使用变量是为了方便计算submenu距离左侧的padding值
-    --#{$bsa-prefix}navigation-arrow-icon: #{escape-svg($navigation-arrow-icon)};
-    --#{$bsa-prefix}navigation-active-color: #{$navigation-active-color};
-    --#{$bsa-prefix}navigation-padding-x: #{$navigation-padding-x};
-    --#{$bsa-prefix}navigation-padding-y: #{$navigation-padding-y};
-    --#{$bsa-prefix}navigation-prepend-margin-right: #{$navigation-prepend-margin-right};
-    --#{$bsa-prefix}navigation-prepend-font-size: #{$navigation-prepend-font-size};
+    --#{$lts-prefix}navigation-arrow-icon: #{escape-svg(
+        $lts-navigation-arrow-icon
+      )};
+    --#{$lts-prefix}navigation-active-color: #{$lts-navigation-active-color};
+    --#{$lts-prefix}navigation-padding-x: #{$lts-navigation-padding-x};
+    --#{$lts-prefix}navigation-padding-y: #{$lts-navigation-padding-y};
+    --#{$lts-prefix}navigation-prepend-margin-right: #{$lts-navigation-prepend-margin-right};
+    --#{$lts-prefix}navigation-prepend-font-size: #{$lts-navigation-prepend-font-size};
 
     ul {
       @include ul-reset;
@@ -24,7 +26,10 @@
         overflow: hidden;
         font-size: 0.875rem;
         font-weight: 400;
-        color: color.scale($body-color, $lightness: 60%);
+
+        // color: color.scale($body-color, $lightness: 60%);
+        color: adjust($body-color, 60%);
+
         @include text-ellipsis;
       }
 
@@ -34,30 +39,28 @@
         padding: 0;
         margin: 0.35em 0;
         overflow: hidden;
-        border-top: 1px solid color.scale($body-color, $lightness: 90%);
+
+        // border-top: 1px solid color.scale($body-color, $lightness: 90%);
+        border-top: 1px solid adjust($body-color, 90%);
       }
 
       // a链接的样式
       a {
-        outline-width: 0;
-        letter-spacing: 0.5px;
         position: relative;
         display: grid;
         grid-template-areas: 'prepend content append arrow';
         grid-template-columns: max-content 1fr auto auto;
-        padding: var(--#{$bsa-prefix}navigation-padding-y)
-          var(--#{$bsa-prefix}navigation-padding-x);
+        padding: var(--#{$lts-prefix}navigation-padding-y)
+          var(--#{$lts-prefix}navigation-padding-x);
         margin-bottom: 4px;
         color: $body-color;
         text-decoration: none;
-        transition:
-          color 0.15s ease-in-out,
-          background-color 0.15s ease-in-out,
-          border-color 0.15s ease-in-out,
-          box-shadow 0.15s ease-in-out,
-          border-radius 0.15s ease;
+        letter-spacing: 0.5px;
+        outline-width: 0;
 
-        //如果使用徽章组件那么给徽章组件字体大小变小一点
+        @include transition($lts-navigation-transition);
+
+        // 如果使用徽章组件那么给徽章组件字体大小变小一点
         .badge {
           font-size: 60%;
         }
@@ -67,19 +70,20 @@
         }
 
         &:hover {
-          background-color: color.scale($body-color, $lightness: 96%);
+          // background-color: color.scale($body-color, $lightness: 96%);
+          background-color: adjust($body-color, 96%);
         }
 
         // 前置内容
         .prepend {
-          font-size: var(--#{$bsa-prefix}navigation-prepend-font-size);
-          margin-right: var(--#{$bsa-prefix}navigation-prepend-margin-right);
-          line-height: 1;
           display: flex;
           grid-area: prepend;
           align-items: center;
-          justify-content: center;
           align-self: center;
+          justify-content: center;
+          margin-right: var(--#{$lts-prefix}navigation-prepend-margin-right);
+          font-size: var(--#{$lts-prefix}navigation-prepend-font-size);
+          line-height: 1;
         }
 
         // 标题
@@ -101,17 +105,22 @@
 
         // 激活的a链接
         &.active {
-          color: $navigation-active-color;
-          background-color: color.scale(
-            $navigation-active-color,
-            $lightness: 88%
-          );
+          color: $lts-navigation-active-color;
+
+          // background-color:
+          //   color.scale(
+          //     $lts-navigation-active-color,
+          //     $lightness: 88%
+          //   );
+          background-color: adjust($lts-navigation-active-color, 88%);
 
           &:hover {
-            background-color: color.scale(
-              $navigation-active-color,
-              $lightness: 84%
-            );
+            // background-color:
+            //   color.scale(
+            //     $lts-navigation-active-color,
+            //     $lightness: 84%
+            //   );
+            background-color: adjust($lts-navigation-active-color, 84%);
           }
         }
 
@@ -127,10 +136,12 @@
             height: 1.25em;
             content: ' ';
             background-color: $body-color;
-            mask-image: var(--#{$bsa-prefix}navigation-arrow-icon);
+            mask-image: var(--#{$lts-prefix}navigation-arrow-icon);
             mask-repeat: no-repeat;
             mask-size: 1.25em;
-            transition: transform 150ms ease-in-out;
+
+            @include transition(transform 150ms $lts-transition-fn);
+
             transform: scale(0.4) rotate(0);
             transform-origin: center;
             will-change: transform;
@@ -143,20 +154,23 @@
         display: none;
       }
 
-      //带有展开类的li
+      // 带有展开类的li
       &.open {
         > a {
-          color: $navigation-active-color;
+          color: $lts-navigation-active-color;
 
           &:hover {
-            background-color: color.scale(
-              $navigation-active-color,
-              $lightness: 96%
-            );
+            // background-color:
+            //   color.scale(
+            //     $lts-navigation-active-color,
+            //     $lightness: 96%
+            //   );
+
+            background-color: adjust($lts-navigation-active-color, 96%);
           }
 
           &::after {
-            background-color: $navigation-active-color;
+            background-color: $lts-navigation-active-color;
             transform: scale(0.4) rotate(-90deg);
           }
         }

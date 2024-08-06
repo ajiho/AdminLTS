@@ -8,10 +8,10 @@ const {
 } = OverlayScrollbarsGlobal
 
 const NAME = 'Scrollbar'
-const DATA_KEY = 'bsa.scrollbar'
+const DATA_KEY = 'lts.scrollbar'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
-const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="scrollbar"]'
+const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="scrollbar"]'
 
 const Default = {
   param1: {},

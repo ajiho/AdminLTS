@@ -1,10 +1,10 @@
 import $ from 'jquery'
 
 const NAME = 'IFrame'
-const DATA_KEY = 'bsa.iframe'
+const DATA_KEY = 'lts.iframe'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
-const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="iframe"]'
+const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="iframe"]'
 
 const Default = {
   //侧边栏是否跟着tab的激活来进行展开折叠动画
@@ -12,13 +12,13 @@ const Default = {
   //点击是否自动关闭侧边栏
   clickCloseSidebar: false,
   //触发元素选择器
-  triggerElement: '.bsa-navigation a:not(.has-arrow):not([target])',
+  triggerElement: '.lts-navigation a:not(.has-arrow):not([target])',
   //treeview的实例选择器
-  treeviewElement: '.bsa-navigation',
+  treeviewElement: '.lts-navigation',
   //scrollbar的实例选择器
-  scrollbarElement: '.bsa-sidebar .card-body',
+  scrollbarElement: '.lts-sidebar .card-body',
   //pushMenu插件的选择器
-  pushMenuElement: '.bsa-sidebar-toggler',
+  pushMenuElement: '.lts-sidebar-toggler',
   //tab的标题,选择器字符串,内部是从triggerElement提供的选择器下面查找的
   tabTitle: '.content',
 }
@@ -31,8 +31,6 @@ class IFrame {
   // 内部插件treeview实例
   #$treeview
   #link
-
-  #clicked = false
 
   constructor(element, config) {
     this.#config = config
@@ -50,20 +48,18 @@ class IFrame {
       height: '100%',
       //tab的激活事件
       onTabActivated: function (url) {
-        if (that.#config.sidebarToggle === true) {
-          if (that.#clicked === false) {
-            that.#link = $(that.#config.triggerElement).filter(function () {
-              return $(this).attr('href') === url
-            })
-
-            if (that.#link.length > 0) {
-              //调用expandRecursive方法
-              that.#$treeview.Treeview('expandRecursive', that.#link)
-            }
-          }
-
-          that.#clicked = false
-        }
+        // if (that.#config.sidebarToggle === true) {
+        //   if (that.#clicked === false) {
+        //     that.#link = $(that.#config.triggerElement).filter(function () {
+        //       return $(this).attr('href') === url
+        //     })
+        //     if (that.#link.length > 0) {
+        //       //调用expandRecursive方法
+        //       that.#$treeview.Treeview('expandRecursive', that.#link)
+        //     }
+        //   }
+        //   that.#clicked = false
+        // }
       },
 
       onTabCloseAll: function () {
@@ -98,7 +94,7 @@ class IFrame {
         $(that.#config.pushMenuElement).PushMenu('collapse')
       }
 
-      that.#clicked = true
+      // that.#clicked = true
 
       //添加tab处理
       that.#quicktab.addTab({
@@ -109,7 +105,7 @@ class IFrame {
     })
 
     //treeview插件的事件监听
-    this.#$treeview.on('recursive.collapsed.bsa.treeview', function () {
+    this.#$treeview.on('recursive.collapsed.lts.treeview', function () {
       $(that.#config.scrollbarElement)
         .Scrollbar('getOsInstance')
         .elements()

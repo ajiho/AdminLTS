@@ -1,4 +1,4 @@
-<h1 align="center">bootstrap-admin</h1>
+<h1 align="center">adminlts</h1>
 
 
 <p align="center">
@@ -13,11 +13,11 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/ajiho/bootstrap-admin"><img src="https://img.shields.io/github/stars/ajiho/bootstrap-admin" alt=""></a>
-<a href='https://gitee.com/ajiho/bootstrap-admin'><img src='https://gitee.com/ajiho/bootstrap-admin/badge/star.svg?theme=dark' alt='star'></img></a>
+<a href="https://github.com/ajiho/adminlts"><img src="https://img.shields.io/github/stars/ajiho/adminlts" alt=""></a>
+<a href='https://gitee.com/ajiho/adminlts'><img src='https://gitee.com/ajiho/adminlts/badge/star.svg?theme=dark' alt='star'></img></a>
 </p>
 
 <p align="center">
-<a href="https://www.bootstrap-admin.top/docs/index.html">文档</a> &nbsp;|&nbsp; <a href="https://www.bootstrap-admin.top">Demo</a>
+<a href="https://www.adminlts.com/docs/index.html">文档</a> &nbsp;|&nbsp; <a href="https://www.adminlts.top">Demo</a>
 </p>
 

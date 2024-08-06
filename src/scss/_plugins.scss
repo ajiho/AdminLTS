@@ -1,7 +1,11 @@
 @import 'plugins/loading';
 @import 'plugins/modal';
 @import 'plugins/toast';
-// 第三方的插件美化和覆盖
+@import 'plugins/scrolltop';
+
+// 主要插件的美化
 @import 'plugins/external/bootstrap-table';
 @import 'plugins/external/overlayScrollbars';
+
+// 三方插件的少量美化
 @import 'plugins/external/dronzone';

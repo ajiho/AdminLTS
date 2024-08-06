@@ -1,16 +1,16 @@
 // 加载层插件所需样式
-.bsa-loading {
+.#{$lts-prefix}loading {
   position: fixed;
   inset: 0;
   z-index: 9999999999;
   display: none;
-  width: 100%;
-  height: 100%;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
   background-color: rgb(0 0 0 / 30%);
-  transition: all 0.2s ease-out;
   opacity: 1;
+  transition: all 0.2s ease-out;
   transition: opacity 500ms;
   // 激活
   &.active {

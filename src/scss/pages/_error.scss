@@ -1,18 +1,18 @@
-.bsa-error-code {
+.#{$lts-prefix}error-code {
   font-size: 7rem;
   font-weight: 700;
-  color: var(--bs-secondary-color);
+  color: var(--#{$prefix}secondary-color);
   text-align: center;
   text-shadow:
-    4px 4px 0 var(--bs-light-bg-subtle),
-    6px 6px 0 var(--bs-secondary-color);
+    4px 4px 0 var(--#{$prefix}light-bg-subtle),
+    6px 6px 0 var(--#{$prefix}secondary-color);
   word-break: break-all;
 }
 
-.bsa-error-text {
+.#{$lts-prefix}error-text {
   padding-top: 20px;
   margin-bottom: 30px;
-  color: var(--bs-secondary-color);
+  color: var(--#{$prefix}secondary-color);
   text-align: center;
-  border-top: 5px solid var(--bs-secondary-color);
+  border-top: 5px solid var(--#{$prefix}secondary-color);
 }

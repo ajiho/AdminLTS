@@ -1,10 +1,10 @@
 import $ from 'jquery'
 
 const NAME = 'Treeview'
-const DATA_KEY = 'bsa.treeview'
+const DATA_KEY = 'lts.treeview'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
-const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="treeview"]'
+const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="treeview"]'
 
 const EVENT_EXPANDED = `expanded${EVENT_KEY}`
 const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`

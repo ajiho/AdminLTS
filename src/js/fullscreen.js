@@ -1,10 +1,10 @@
 import $ from 'jquery'
 
 const NAME = 'Fullscreen'
-const DATA_KEY = 'bsa.fullscreen'
+const DATA_KEY = 'lts.fullscreen'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
-const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="fullscreen"]'
+const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="fullscreen"]'
 
 // 默认选项
 const Default = {

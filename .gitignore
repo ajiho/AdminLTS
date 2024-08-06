@@ -1,7 +1,30 @@
-node_modules
+# 工程文件
 .idea
 /.vscode
+
+
+# 生产目录
+dist/
+
+
+# Node
+node_modules/
+
+# 系统或者日志文件
 *.DS_Store
 *.log
+
+# vercel部署
 .vercel
+
+# 缓存文件
+**/.vitepress/cache
 .cache
+
+# 临时目录(比如css文件编译中转,或者用于astro的public静态资源目录)
+.tmp
+
+# astro相关
+.astro/
+# 不需要的类型
+**/env.d.ts

@@ -9,6 +9,7 @@
     --#{$prefix}btn-focus-opacity: #{$btn-close-focus-opacity};
     --#{$prefix}btn-disabled-opacity: #{$btn-close-disabled-opacity};
     --#{$prefix}btn-white-filter: #{$btn-close-white-filter};
+
     // scss-docs-end close-css-vars
 
     box-sizing: content-box;
@@ -18,8 +19,11 @@
     color: var(--#{$prefix}btn-color);
     background: transparent var(--#{$prefix}btn-bg) center / $btn-close-width
       auto no-repeat; // include transparent for button elements
+
     border: 0; // for button elements
-    @include border-radius();
+
+    @include border-radius;
+
     opacity: var(--#{$prefix}btn-opacity);
 
     // Override <a>'s hover style
@@ -44,13 +48,13 @@
   }
 
   .#{$class-name}-white {
-    @include btn-custom-white();
+    @include btn-custom-white;
   }
 
   @if $enable-dark-mode {
     @include color-mode(dark) {
       .#{$class-name} {
-        @include btn-custom-white();
+        @include btn-custom-white;
       }
     }
   }

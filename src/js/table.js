@@ -2,10 +2,10 @@ import $ from 'jquery'
 import Initialize from './initialize'
 
 const NAME = 'Table'
-const DATA_KEY = 'bsa.table'
+const DATA_KEY = 'lts.table'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
-const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="table"]'
+const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="table"]'
 
 // 图标相关配置
 const ICON = {
@@ -57,7 +57,7 @@ const TOOLBAR = {
         text: '搜索区域折叠/显示',
         icon: 'bi bi-search',
         event: function () {
-          $('.bsa-search-area').slideToggle()
+          $('.lts-search-area').slideToggle()
         },
         attributes: {
           title: '折叠搜索区域',

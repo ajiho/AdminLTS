@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout childpage backtotop>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="d-flex align-items-center justify-content-center">
+          <div style="width: 400px;max-width: 100%;margin-top: 12vh;">
+            <div class="d-flex flex-column align-items-center">
+              <h2 class="">上午 11:11</h2>
+              <p class="text-secondary">2023年 5月 20日 星期六</p>
+              <i class="bi bi-person-circle lts-fs-60 text-secondary"></i>
+              <p>Administrator</p>
+              <form id="form" style="width: 280px;max-width: 100%">
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="请输入登录密码"
+                    aria-label="锁屏密码"
+                    name="lockpwd"
+                  />
+                  <button class="btn btn-outline-secondary" type="submit">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                  </button>
+                </div>
+              </form>
+              <p class="text-secondary my-2">系统锁屏,请输入密码登录!</p>
+              <a class="text-decoration-none" href="login.html">退出重新登录</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/formValidation.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/framework/bootstrap.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/language/zh_CN.js"
+  ></script>
+
+  <script is:inline slot="js">
+    //前端表单验证
+    $('#form')
+      .formValidation({
+        fields: {
+          lockpwd: {
+            validators: {
+              notEmpty: true,
+            },
+          },
+        },
+      })
+      .on('success.form.fv', function (e) {
+        //阻止表单提交
+        e.preventDefault()
+
+        //得到表单对象
+        const $form = $(e.target)
+        //获取数据
+        const data = $form.serialize()
+
+        //发起ajax请求
+        $.ajax({
+          method: 'post',
+          url: '/login',
+          //表单数据
+          data: data,
+        }).then((response) => {
+          if (response.code === 200) {
+            $.toasts({
+              type: 'success',
+              body: '登录成功',
+              onHidden: () => location.replace('index.html'),
+            })
+          }
+        })
+      })
+  </script>
+</BaseLayout>

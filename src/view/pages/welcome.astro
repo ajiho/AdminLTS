@@ -1,0 +1,702 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import globalData from '../../../build/data/index.mjs'
+const { version, bootstrapVersion } = globalData
+---
+
+<BaseLayout childpage backtotop>
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/css/tempus-dominus.min.css"
+  />
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.css"
+  />
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css"
+  />
+
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/locale/bootstrap-table-zh-CN.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/js/tempus-dominus.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/locales/zh-CN.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.7/dist/plugins/bi-one.min.js"
+  ></script>
+
+  <div class="container-fluid">
+    <div class="row g-3">
+      <div class="col-lg-3">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="me-1">
+                <h6 class="mb-2 lts-ellipsis-1">今日收入</h6>
+                <h4 class="mb-1 lts-ellipsis-1 animation-number">13145.20</h4>
+              </div>
+              <i class="bi bi-currency-yen fs-1 text-danger"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="me-1">
+                <h6 class="mb-2 lts-ellipsis-1">用户总数</h6>
+                <h4 class="mb-1 lts-ellipsis-1 animation-number">1546</h4>
+              </div>
+              <i class="bi bi-people fs-1 text-info"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="me-1">
+                <h6 class="mb-2 lts-ellipsis-1">订单总数</h6>
+                <h4 class="mb-1 lts-ellipsis-1 animation-number">2000</h4>
+              </div>
+              <i class="bi bi-cart fs-1 text-primary"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="me-1">
+                <h6 class="mb-2 lts-ellipsis-1">留言</h6>
+                <h4 class="mb-1 lts-ellipsis-1 animation-number">1000</h4>
+              </div>
+              <i class="bi bi-chat fs-1 text-success"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--开源信息-->
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body">版本信息</div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table align-middle table-bordered mb-0">
+                <tbody>
+                  <tr>
+                    <th>Version</th>
+                    <td>{version}</td>
+                  </tr>
+                  <tr>
+                    <th>bootstrap</th>
+                    <td>{bootstrapVersion}</td>
+                  </tr>
+                  <tr>
+                    <th>主要特色</th>
+                    <td>零门槛 / 响应式 / 清爽 / 极简</td>
+                  </tr>
+                  <tr>
+                    <th>获取渠道</th>
+                    <td>
+                      <a
+                        class="btn btn-secondary"
+                        href="https://github.com/ajiho/adminlts/releases"
+                        target="_blank"><i class="bi bi-github"></i></a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body">近七天pv值</div>
+          <div class="card-body">
+            <canvas id="chart-bar"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body">年营业额走势</div>
+          <div class="card-body">
+            <canvas id="chart-line"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!--echarts实现的注册用户分布地区图表-->
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body">注册用户地区分布</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="table-responsive">
+                  <table class="table lts-register-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">排名</th>
+                        <th scope="col">地区</th>
+                        <th scope="col">人数</th>
+                      </tr>
+                    </thead>
+                    <tbody> </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="geo" style="height: 400px;width: 100%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card border-0 mb-3 shadow-sm">
+          <div class="card-header bg-body">设备存储情况</div>
+          <div class="card-body">
+            <h4 class="mb-3">36666/50000</h4>
+            <hr />
+            <div class="mb-4">
+              <p class="d-flex justify-content-between">
+                图片 <span class="text-body-secondary">20GB</span>
+              </p>
+              <div class="progress" style="height:5px;">
+                <div class="progress-bar bg-success" style="width:80%"></div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <p class="d-flex justify-content-between">
+                文档 <span class="text-body-secondary">5GB</span>
+              </p>
+              <div class="progress" style="height:5px;">
+                <div class="progress-bar bg-danger" style="width:60%"></div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <p class="d-flex justify-content-between">
+                视频 <span class="text-body-secondary">80GB</span>
+              </p>
+              <div class="progress" style="height:5px;">
+                <div class="progress-bar bg-primary" style="width:40%"></div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <p class="d-flex justify-content-between">
+                音频 <span class="text-body-secondary">80GB</span>
+              </p>
+              <div class="progress" style="height:5px;">
+                <div class="progress-bar bg-primary" style="width:40%"></div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <p class="d-flex justify-content-between">
+                缓存(40%) <span class="text-body-secondary">80GB</span>
+              </p>
+              <div class="progress" style="height:5px;">
+                <div class="progress-bar bg-primary" style="width:40%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body">媒体数据</div>
+          <div class="card-body">
+            <canvas id="chart3"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body">房源租赁概况</div>
+          <div class="card-body">
+            <canvas id="chart4"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body">世界人口总数量</div>
+          <div class="card-body">
+            <div class="echarts-1" style="height: 300px;width: 100%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body">浏览器占比变化</div>
+          <div class="card-body">
+            <div class="echarts-2" style="height: 300px;width: 100%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body">订单摘要</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>订单号</th>
+                    <th>商品</th>
+                    <th>下单人</th>
+                    <th>下单日期</th>
+                    <th>价格</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    Array.from({ length: 5 }).map((_, index) => (
+                      <tr>
+                        <td>#15744449{index}</td>
+                        <td> Apple iPhone 13 (A2634) 512GB </td>
+                        <td>欲饮琵琶码上催</td>
+                        <td>2022/7/16</td>
+                        <td>￥100.00</td>
+                        <td>
+                          <span class="badge bg-success">交易成功</span>
+                        </td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <a href="javascript:" class="btn btn-sm btn-light">
+                              <i class="bi bi-gear" />
+                            </a>
+                            <a
+                              href="javascript:"
+                              class="btn btn-sm btn-light ms-4"
+                            >
+                              <i class="bi bi-arrow-down" />
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"
+  ></script>
+
+  <script is:inline slot="js">
+    $(async function () {
+      //数字老虎机效果
+      $('.animation-number').each(function (index, element) {
+        const number = $(element).text()
+        const decimalPlaces = (number.split('.')[1] || '').length
+        new countUp.CountUp(element, number, {
+          //小数点后面的位数
+          decimalPlaces: decimalPlaces,
+          //持续时间
+          duration: 2,
+        }).start()
+      })
+
+      new Chart(document.getElementById('chart-bar').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: [
+            '2022/7/11',
+            '2022/7/12',
+            '2022/7/13',
+            '2022/7/14',
+            '2022/7/15',
+            '2022/7/16',
+          ],
+          datasets: [
+            {
+              label: 'pv值',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                'rgba(52,143,80, 0.6)',
+                'rgba(52,143,80, 0.6)',
+                'rgba(52,143,80, 0.6)',
+                'rgba(52,143,80, 0.6)',
+                'rgba(52,143,80, 0.6)',
+                'rgba(52,143,80, 0.6)',
+              ],
+              borderColor: [
+                'rgba(52,143,80, 0.6)',
+                'rgba(52,143,80, 0.6)',
+                'rgba(52,143,80, 0.6)',
+                'rgba(52,143,80, 0.6)',
+                'rgba(52,143,80, 0.6)',
+                'rgba(52,143,80, 0.6)',
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      })
+      new Chart(document.getElementById('chart-line').getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
+          datasets: [
+            {
+              label: '营业额 单位/万元',
+              data: [65, 90, 60, 50, 40, 30, 20],
+              fill: false,
+              borderColor: 'rgba(185,110,228,.5)',
+              tension: 0.1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      })
+      new Chart(document.getElementById('chart3').getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: [
+            '2022.8.3',
+            '2022.8.4',
+            '2022.8.5',
+            '2022.8.6',
+            '2022.8.7',
+            '2022.8.9',
+          ],
+          datasets: [
+            {
+              label: '粉丝',
+              data: [65, 90, 60, 50, 40, 30, 120],
+              fill: false,
+              borderColor: 'rgba(252, 92, 125,.5)',
+              tension: 0.1,
+              cubicInterpolationMode: 'monotone',
+            },
+            {
+              label: '被收藏',
+              data: [30, 80, 70, 48, 64, 101, 10],
+              fill: false,
+              borderColor: 'rgba(10, 191, 188,.5)',
+              tension: 0.1,
+              cubicInterpolationMode: 'monotone',
+            },
+            {
+              label: '获赞',
+              data: [10, 37, 54, 68, 73, 98, 110],
+              fill: false,
+              borderColor: 'rgba(221, 100, 0,.5)',
+              tension: 0.1,
+              cubicInterpolationMode: 'monotone',
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      })
+      new Chart(document.getElementById('chart4').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+          labels: ['已租', '未租'],
+          datasets: [
+            {
+              label: '房源数量',
+              data: [300, 50],
+              backgroundColor: ['#0abfbc', '#348f50'],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: '已租未租房源占比图',
+            },
+          },
+        },
+      })
+
+      const myChart = echarts.init(document.querySelector('.echarts-1'))
+      myChart.setOption({
+        title: {
+          text: '世界人口',
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow',
+          },
+        },
+        legend: {},
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: {
+          type: 'value',
+          boundaryGap: [0, 0.01],
+        },
+        yAxis: {
+          type: 'category',
+          data: ['巴西', '印度尼西亚', '美国', '印度', '中国', '全球'],
+        },
+        series: [
+          {
+            name: '2011',
+            type: 'bar',
+            data: [18203, 23489, 29034, 104970, 131744, 630230],
+          },
+          {
+            name: '2012',
+            type: 'bar',
+            data: [19325, 23438, 31000, 121594, 134141, 681807],
+          },
+        ],
+      })
+      const myChart2 = echarts.init(document.querySelector('.echarts-2'))
+      myChart2.setOption({
+        title: {
+          text: '浏览器比例',
+          subtext: '主流浏览器',
+          top: 10,
+          left: 10,
+        },
+        tooltip: {
+          trigger: 'item',
+        },
+        legend: {
+          type: 'scroll',
+          bottom: 10,
+          data: (function () {
+            var list = []
+            for (var i = 1; i <= 28; i++) {
+              list.push(i + 2000 + '')
+            }
+            return list
+          })(),
+        },
+        visualMap: {
+          top: 'middle',
+          right: 10,
+          color: ['red', 'yellow'],
+          calculable: true,
+        },
+        radar: {
+          indicator: [
+            { text: 'IE8-', max: 400 },
+            { text: 'IE9+', max: 400 },
+            { text: 'Safari', max: 400 },
+            { text: 'Firefox', max: 400 },
+            { text: 'Chrome', max: 400 },
+          ],
+        },
+        series: (function () {
+          var series = []
+          for (var i = 1; i <= 28; i++) {
+            series.push({
+              type: 'radar',
+              symbol: 'none',
+              lineStyle: {
+                width: 1,
+              },
+              emphasis: {
+                areaStyle: {
+                  color: 'rgba(0,250,0,0.3)',
+                },
+              },
+              data: [
+                {
+                  value: [
+                    (40 - i) * 10,
+                    (38 - i) * 4 + 60,
+                    i * 5 + 10,
+                    i * 9,
+                    (i * i) / 2,
+                  ],
+                  name: i + 2000 + '',
+                },
+              ],
+            })
+          }
+          return series
+        })(),
+      })
+
+      const myChart3 = echarts.init(document.querySelector('.geo'))
+      $.when(
+        $.ajax({
+          url: 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
+          method: 'GET',
+        }),
+        $.ajax({
+          url: '/user/region',
+          method: 'GET',
+        }),
+      ).done(function (response1, response2) {
+        const tr = `<tr><td>%s</td><td>%s</td><td>%s</td></tr>`
+        const trArr = []
+        const province = response2[0].data // 省份数据
+        province.forEach((item, index) => {
+          //取前10条数据展示
+          if (index < 10) {
+            trArr.push(
+              adminlts.util.sprintf(tr, index + 1, item.name, item.value),
+            )
+          }
+        })
+        //然后把拼接后的字符串数组转换成字符串再赋值到tbody中
+        $('.lts-register-table tbody').html(trArr.join(''))
+
+        //注册地图数据
+        echarts.registerMap('china', response1[0])
+        myChart3.setOption({
+          title: {
+            text: '注册用户分布图',
+            subtext: '不完全统计',
+          },
+          tooltip: {
+            formatter: '{b} 注册用户 {c}人',
+          },
+          visualMap: {
+            orient: 'horizontal',
+            left: 20,
+            min: 0,
+            max: 10000,
+            text: ['高', '低'],
+            calculable: true,
+            inRange: {
+              color: [
+                '#313695',
+                '#4575b4',
+                '#74add1',
+                '#abd9e9',
+                '#e0f3f8',
+                '#ffffbf',
+                '#fee090',
+                '#fdae61',
+                '#f46d43',
+                '#d73027',
+                '#a50026',
+              ],
+            },
+          },
+          series: [
+            {
+              type: 'map',
+              map: 'china', //对应registerMap 注册名称
+              roam: true, // 鼠标进行拖拽和缩放操作
+              scaleLimit: {
+                min: 0.7,
+                max: 3,
+              },
+              data: province,
+            },
+          ],
+        })
+      })
+
+      //图表响应式处理
+      window.addEventListener(
+        'resize',
+        adminlts.util.debounce(() => {
+          //防抖提高性能
+
+          //Chart.js图表尺寸处理
+          for (let id in Chart.instances) {
+            Chart.instances[id].resize()
+          }
+
+          // echarts图表的大小处理
+          myChart.resize()
+          myChart2.resize()
+          myChart3.resize()
+        }, 500),
+      )
+    })
+  </script>
+</BaseLayout>

@@ -1,0 +1,46 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Header from '@/components/Header.astro'
+import Sidebar from '@/components/Sidebar.astro'
+import Footer from '@/components/Footer.astro'
+import Content from '@/components/Content.astro'
+---
+
+<BaseLayout bodyClass={false}>
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/quicktab@0.0.8/dist/css/quicktab.min.css"
+  />
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/quicktab@0.0.8/dist/js/quicktab.min.js"
+  ></script>
+  <Header />
+  <Sidebar />
+  <Content />
+  <Footer />
+
+  <script is:inline slot="js">
+    //退出登录
+    $(document).on('click', '.lts-logout', function (e) {
+      e.preventDefault()
+      $.modal({
+        body: '确定要退出吗？',
+        ok: function () {
+          //发起ajax请求
+          $.ajax({
+            url: '/logout',
+          }).then((response) => {
+            if (response.code === 200) {
+              //关闭modal
+              this.hide()
+              $.toasts.success('退出成功', () => location.replace('login.html'))
+            }
+          })
+        },
+      })
+    })
+  </script>
+</BaseLayout>

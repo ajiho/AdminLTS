@@ -1,7 +1,7 @@
 import $ from 'jquery'
 
 const NAME = 'PushMenu'
-const DATA_KEY = 'bsa.pushmenu'
+const DATA_KEY = 'lts.pushmenu'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
@@ -16,11 +16,11 @@ const Event = {
   EXPANDED: `expanded${EVENT_KEY}`,
 }
 
-const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="pushmenu"]'
+const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="pushmenu"]'
 
 //侧边栏选择器
-const SELECTOR_SIDEBAR = '.bsa-sidebar'
-const SELECTOR_MASK = '.bsa-mask'
+const SELECTOR_SIDEBAR = '.lts-sidebar'
+const SELECTOR_MASK = '.lts-mask'
 //折叠类名
 const CLASS_NAME_COLLAPSED = 'open'
 
@@ -48,7 +48,7 @@ class PushMenu {
       $(this.#element).trigger($.Event(Event.EXPAND))
 
       // 展开
-      $('.bsa-sidebar').addClass(CLASS_NAME_COLLAPSED)
+      $('.lts-sidebar').addClass(CLASS_NAME_COLLAPSED)
       $(SELECTOR_SIDEBAR).data('isOpen', true)
       //添加遮罩层
       this.#addOverlay()
@@ -83,7 +83,7 @@ class PushMenu {
 
   #addOverlay() {
     if ($(SELECTOR_MASK).length === 0) {
-      $('<div class="bsa-mask"></div>').prependTo('body')
+      $('<div class="lts-mask"></div>').prependTo('body')
     }
   }
 

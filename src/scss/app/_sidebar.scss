@@ -1,0 +1,45 @@
+// 侧边栏
+.#{$lts-prefix}sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  width: var(--#{$lts-prefix}sidebar-width);
+  background-color: var(--#{$prefix}body-bg);
+  box-shadow: 0 1px 1px rgb(0 0 0 / 12%);
+
+  // 交给js插件部分来实现
+  transform: translateX(0);
+  will-change: transform;
+
+  @include media-breakpoint-down(lg) {
+    box-shadow: none;
+    transform: translateX(-101%);
+  }
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  .card-header {
+    height: var(--#{$lts-prefix}header-height);
+    box-shadow: 0 1px 1px -1px rgb(var(--#{$prefix}dark-rgb) 0.25);
+
+    .#{$lts-prefix}logo-text {
+      margin-bottom: 0;
+      font-size: 18px;
+      color: var(--#{$prefix}body-color);
+      letter-spacing: 1px;
+    }
+  }
+
+  .card-body {
+    @include navigation;
+  }
+
+  .card-footer {
+    border-top: none;
+    border-top: var(--#{$prefix}border-width) solid rgb(0 0 0 / 12%);
+  }
+}

@@ -1,7 +1,9 @@
 @mixin btn-custom-modal-spacer() {
+  /* stylelint-disable function-disallowed-list */
   padding: calc(var(--#{$prefix}modal-header-padding-y) * 0.5)
     calc(var(--#{$prefix}modal-header-padding-x) * 0.5);
   margin: calc(-0.5 * var(--#{$prefix}modal-header-padding-y))
     calc(-0.5 * var(--#{$prefix}modal-header-padding-x))
     calc(-0.5 * var(--#{$prefix}modal-header-padding-y)) auto;
+  /* stylelint-enable function-disallowed-list */
 }

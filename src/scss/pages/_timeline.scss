@@ -1,5 +1,5 @@
 // 时间轴容器
-.bsa-timeline1-wrapper {
+.#{$lts-prefix}timeline1-wrapper {
   position: relative;
 
   // 时间轴中间的线条
@@ -11,7 +11,7 @@
     width: 3px;
     margin-left: -3px;
     content: '';
-    background-color: rgb(var(--bs-tertiary-color-rgb) 0.2);
+    background-color: rgb(var(--#{$prefix}tertiary-color-rgb) 0.2);
 
     // 小设备线条移动到左边
     @include media-breakpoint-down(md) {
@@ -20,7 +20,7 @@
   }
 
   /* 内容周围的容器 */
-  .bsa-timeline1 {
+  .#{$lts-prefix}timeline1 {
     position: relative;
     width: 50%;
     background-color: inherit;
@@ -32,7 +32,7 @@
 
       &::before {
         left: 61px;
-        border-color: transparent var(--bs-tertiary-color) transparent
+        border-color: transparent var(--#{$prefix}tertiary-color) transparent
           transparent;
         border-style: solid;
         border-width: 10px 10px 10px 0;
@@ -47,14 +47,16 @@
       width: 20px;
       height: 20px;
       content: '';
-      background-color: var(--bs-dark-bg-subtle); //颜色变浅
-      border: 5px solid var(--bs-dark-border-subtle);
-      border-radius: 50%;
+      background-color: var(--#{$prefix}dark-bg-subtle); // 颜色变浅
+      border: 5px solid var(--#{$prefix}dark-border-subtle);
+
+      // border-radius: 50%;
+      @include border-radius(50%);
     }
   }
 
   /* 将容器放在左侧 */
-  .bsa-timeline1-left {
+  .#{$lts-prefix}timeline1-left {
     left: 0;
     padding: 0 40px 20px 0;
 
@@ -66,7 +68,7 @@
       z-index: 1;
       content: ' ';
       border-color: transparent transparent transparent
-        rgb(var(--bs-tertiary-color-rgb) 0.2);
+        rgb(var(--#{$prefix}tertiary-color-rgb) 0.2);
       border-style: solid;
       border-width: 10px 0 10px 10px;
 
@@ -83,7 +85,7 @@
   }
 
   /* 将容器放置在右侧 */
-  .bsa-timeline1-right {
+  .#{$lts-prefix}timeline1-right {
     left: 50%;
     padding: 0 0 20px 40px;
 
@@ -97,7 +99,8 @@
       left: 31px;
       z-index: 1;
       content: ' ';
-      border-color: transparent var(--bs-dark-bg-subtle) transparent transparent;
+      border-color: transparent var(--#{$prefix}dark-bg-subtle) transparent
+        transparent;
       border-style: solid;
       border-width: 10px 10px 10px 0;
     }
@@ -115,7 +118,7 @@
 // 时间轴2样式
 
 ul {
-  &.bsa-timeline2 {
+  &.#{$lts-prefix}timeline2 {
     position: relative;
     list-style-type: none;
 
@@ -144,7 +147,8 @@ ul {
         content: ' ';
         background: #fff;
         border: 3px solid #22c0e8;
-        border-radius: 50%;
+
+        @include border-radius(50%);
       }
     }
   }

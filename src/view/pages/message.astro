@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout childpage backtotop>
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.css"
+  />
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css"
+  />
+  <div class="container-fluid">
+    <div class="row g-3">
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <ul class="nav nav-underline">
+              <li class="nav-item">
+                <button
+                  class="nav-link text-dark active"
+                  data-lts-toggle="tab"
+                  data-config='{"type":0}'
+                  type="button">全部消息</button
+                >
+              </li>
+              <li class="nav-item">
+                <button
+                  class="nav-link text-dark"
+                  data-lts-toggle="tab"
+                  type="button"
+                  data-config='{"type":1}'
+                >
+                  通知
+                  <span class="badge text-bg-warning align-text-bottom">4</span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  class="nav-link text-dark"
+                  data-lts-toggle="tab"
+                  type="button"
+                  data-config='{"type":2}'>私信</button
+                >
+              </li>
+            </ul>
+            <div id="toolbar" class="d-flex flex-wrap gap-2 my-2">
+              <button
+                class="btn btn-outline-secondary btn-sm lts-del-btn"
+                disabled>删除</button
+              >
+              <button
+                class="btn btn-outline-secondary btn-sm lts-read-btn"
+                disabled>标记已读</button
+              >
+              <button class="btn btn-outline-secondary btn-sm lts-readAll-btn"
+                >全部已读</button
+              >
+            </div>
+            <!--隐藏域,保存类型-->
+            <input type="hidden" name="type" />
+            <table id="table"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/locale/bootstrap-table-zh-CN.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"
+  ></script>
+
+  <script is:inline slot="js">
+    const $table = $('#table')
+
+    // 列配置
+    const columns = [
+      {
+        checkbox: true,
+        visible: true,
+      },
+      {
+        title: '标题内容',
+        field: 'title',
+        align: 'left',
+        formatter: formatTitle,
+      },
+      {
+        title: '时间',
+        field: 'create_at',
+        align: 'center',
+      },
+    ]
+
+    $table.Table({
+      // 请求方法
+      method: 'get',
+      // 请求地址
+      url: '/notice',
+      // 请求得到的数据类型
+      dataType: 'json',
+      //取消右侧第一列的固定
+      fixedRightNumber: 0,
+      //没有搜索区域,不需要自定义工具栏按钮
+      buttons: {},
+      // 响应处理,如果服务端返回的数据不是指定的格式，可以在前端进行处理
+      responseHandler: function (res) {
+        return res.data
+      },
+      queryParams: function (params) {
+        //params是一个对象
+        //左边是发送到服务端的字段参数，这里是随便做的示例,根据需求跳调整
+        return {
+          // 每页数据量
+          limit: params.limit,
+          // sql语句起始索引
+          offset: params.offset,
+          page: params.offset / params.limit + 1,
+          // 排序的列名
+          sort: params.sort,
+          // 排序方式 'asc' 'desc'
+          sortOrder: params.order,
+          // 通知类型
+          type: $('input[name=type]').val(),
+        }
+      },
+      columns,
+    })
+
+    function formatTitle(value, row, index, field) {
+      return `<a class="text-decoration-none link-body-emphasis" href="message-detail.html?id=${row.id}">${value}</a>`
+    }
+
+    //删除
+    $table.Table('batch', '.lts-del-btn', function (ids, selectedRows) {
+      $.modal({
+        body: `确定删除选中的数据吗?`,
+        ok: function () {
+          //发起ajax请求
+          $.ajax({
+            url: '/notice/delall',
+            method: 'delete',
+            data: {
+              id: ids,
+            },
+          }).then((response) => {
+            if (response.code === 200) {
+              $.toasts.success('删除成功')
+
+              $table.Table('refreshSelectPage')
+
+              //这里的this表示的是当前modal的实例对象
+              this.hide()
+            }
+          })
+        },
+      })
+    })
+
+    // 标记已读
+    $table.Table('batch', '.lts-read-btn', function (ids, selectedRows) {
+      $.toasts.success('标记已读成功')
+
+      $table.Table('refreshSelectPage')
+    })
+
+    //全部已读
+    $(document).on('click', '.lts-readAll-btn', function (event) {
+      //发起ajax请求
+      $.ajax({
+        url: '/notice/readall',
+        method: 'put',
+      }).then((response) => {
+        if (response.code === 200) {
+          //此时可以把头部的铃铛摇晃效果去除
+          parent.$('.lts-header .lts-has-msg').removeClass('lts-has-msg')
+
+          $.toasts.info('全部消息：全部已读')
+
+          $table.Table('refreshSelectPage')
+        }
+      })
+    })
+
+    $('[data-lts-toggle="tab"]').on('active.bsa.tab', function (event, config) {
+      //给隐藏域设置值
+      $('input[name=type]').val(config.type)
+
+      //刷新数据表格
+      $table.Table('refreshSelectPage')
+    })
+  </script>
+</BaseLayout>

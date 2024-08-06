@@ -1,0 +1,78 @@
+.#{$lts-prefix}layout-aside-right {
+  // 右侧固定定位的菜单
+  .#{$lts-prefix}layout3-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1020;
+    width: 240px;
+
+    // 左侧的箭头
+    .#{$lts-prefix}chevron-toggle {
+      position: absolute;
+      top: 40%;
+      left: -16px;
+      display: flex;
+      align-items: center;
+      width: 16px;
+      height: 60px;
+      color: var(--#{$prefix}dark-text-emphasis);
+      cursor: pointer;
+      background-color: var(--#{$prefix}dark-bg-subtle);
+
+      &::after {
+        font-family: bootstrap-icons, serif;
+        content: '\f285';
+
+        @include media-breakpoint-down(lg) {
+          content: '\F284';
+        }
+      }
+
+      &:hover {
+        color: var(--#{$prefix}light-text-emphasis);
+        background-color: var(--#{$prefix}light-bg-subtle);
+      }
+    }
+
+    @include media-breakpoint-down(lg) {
+      // transition: .3s transform;
+      @include transition(transform $lts-transition-speed);
+
+      transform: translateX(101%);
+      will-change: transform;
+
+      &.open {
+        transform: translateX(0) !important;
+
+        .#{$lts-prefix}chevron-toggle::after {
+          font-family: bootstrap-icons, serif;
+          content: '\f285';
+        }
+      }
+    }
+  }
+
+  .#{$lts-prefix}layout3-left {
+    margin-right: 244px;
+
+    @include media-breakpoint-down(lg) {
+      margin-right: 0;
+    }
+  }
+
+  &.collapsed {
+    .#{$lts-prefix}layout3-left {
+      margin-right: 0;
+    }
+
+    .#{$lts-prefix}layout3-right {
+      transform: translateX(101%);
+    }
+
+    .#{$lts-prefix}chevron-toggle::after {
+      content: '\F284';
+    }
+  }
+}

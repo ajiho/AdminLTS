@@ -1,0 +1,15 @@
+.#{$lts-prefix}content {
+  position: fixed;
+  inset: var(--#{$lts-prefix}header-height) 0 var(--#{$lts-prefix}footer-height)
+    var(--#{$lts-prefix}sidebar-width);
+  overflow: hidden;
+
+  &.fullscreen {
+    inset: 0;
+    z-index: 9999;
+  }
+
+  @include media-breakpoint-down(lg) {
+    left: 0;
+  }
+}

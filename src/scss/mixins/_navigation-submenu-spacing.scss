@@ -1,24 +1,27 @@
 // 递归生成样式，根据指定的层级停止循环
 @mixin navigation-submenu-spacing($maxLevel, $level: 0) {
-  @if $level <=$maxLevel {
+  /* stylelint-disable function-disallowed-list */
+  @if $level <= $maxLevel {
     a {
       @if $level == 0 {
         padding-left: calc(
-          var(--#{$bsa-prefix}navigation-padding-x) +
-            var(--#{$bsa-prefix}navigation-prepend-font-size) +
-            var(--#{$bsa-prefix}navigation-prepend-margin-right)
+          var(--#{$lts-prefix}navigation-padding-x) +
+            var(--#{$lts-prefix}navigation-prepend-font-size) +
+            var(--#{$lts-prefix}navigation-prepend-margin-right)
         );
       } @else {
         padding-left: calc(
-          var(--#{$bsa-prefix}navigation-padding-x) +
-            var(--#{$bsa-prefix}navigation-prepend-font-size) +
-            var(--#{$bsa-prefix}navigation-prepend-margin-right) +
+          var(--#{$lts-prefix}navigation-padding-x) +
+            var(--#{$lts-prefix}navigation-prepend-font-size) +
+            var(--#{$lts-prefix}navigation-prepend-margin-right) +
             (1em * $level)
         );
       }
+
       + ul {
         @include navigation-submenu-spacing($maxLevel, $level + 1);
       }
     }
   }
+  /* stylelint-enable function-disallowed-list */
 }

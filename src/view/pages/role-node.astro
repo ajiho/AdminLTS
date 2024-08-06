@@ -1,0 +1,303 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout childpage backtotop>
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/jquery-treegrid/css/jquery.treegrid.min.css"
+  />
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.css"
+  />
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css"
+  />
+
+  <div class="container-fluid">
+    <div class="row g-3">
+      <!--基本信息-->
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-body">基本信息</div>
+          <div class="card-body">
+            <form>
+              <div class="row g-3">
+                <div class="col-lg-6">
+                  <div class="row">
+                    <label
+                      for="username"
+                      class="col-sm-2 col-form-label text-sm-end"
+                      >角色名称</label
+                    >
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="username"
+                        name="username"
+                        value="研发组长"
+                        disabled
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 lts-search-area">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body bg-body">
+            <form class="row row-cols-sm-auto g-3 py-2 align-items-center">
+              <div class="col-12">
+                <div class="row">
+                  <label for="name" class="col-sm-auto col-form-label"
+                    >节点名称</label
+                  >
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      name="name"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="row">
+                  <label for="status" class="col-sm-auto col-form-label"
+                    >是否菜单</label
+                  >
+                  <div class="col">
+                    <select class="form-select" id="status" name="status">
+                      <option value="0" selected>所有</option>
+                      <option value="1">是</option>
+                      <option value="2">否</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 gap-2">
+                <button type="button" class="btn btn-light lts-search-btn">
+                  <i class="bi bi-search"></i>搜索
+                </button>
+                <button type="button" class="btn btn-light lts-reset-btn">
+                  <i class="bi bi-arrow-clockwise"></i>重置
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body bg-body">
+            <!--  表格上方左侧的工具条区域    -->
+            <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
+              <button class="btn btn-light lts-slide-toggle-btn"
+                ><i class="bi bi-arrow-left-right"></i> 展开/折叠
+              </button>
+            </div>
+            <!--  数据表格    -->
+            <table id="table"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/jquery.cookie/jquery.cookie.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/jquery-treegrid/js/jquery.treegrid.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/locale/bootstrap-table-zh-CN.js"
+  ></script>
+  <!-- bootstrap-table的拓展,实现树状结构 -->
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table/dist/extensions/treegrid/bootstrap-table-treegrid.min.js"
+  ></script>
+
+  <script is:inline slot="js">
+    const $table = $('#table')
+
+    // 列配置
+    const columns = [
+      {
+        checkbox: true,
+        visible: true,
+        //恢复勾选的逻辑
+        formatter: function (value, row, index) {
+          //你后端渲染过来的该角色所拥有的权限
+          const nodeIds = [0, 1, 2, 3, 4, 5]
+          if (nodeIds.includes(row.id)) {
+            return true
+          }
+        },
+      },
+      {
+        field: 'name',
+        title: '节点名称',
+        width: 20,
+        widthUnit: '%',
+      },
+      {
+        field: 'route_name',
+        align: 'center',
+        title: '路由别名',
+      },
+
+      {
+        field: 'type',
+        title: '类型',
+        align: 'center',
+        formatter: formatType,
+      },
+      {
+        field: 'icon',
+        title: '图标',
+        align: 'center',
+        formatter: formatIcon,
+      },
+      {
+        title: '是否菜单',
+        field: 'is_menu',
+        align: 'center',
+        formatter: formatIsMenu,
+      },
+      {
+        title: '加入时间',
+        field: 'create_at',
+        align: 'center',
+      },
+    ]
+
+    $table.Table({
+      // 请求地址
+      url: '/node',
+      // 请求方法
+      method: 'get',
+      // 请求得到的数据类型
+      dataType: 'json',
+      //头部的那个复选框 true:显示 false:不显示
+      checkboxHeader: true,
+      //单选效果 false:启用 true:不启用
+      singleSelect: false,
+      //右侧不要固定列,对于某些特殊的情况(比如不需要操作列的可以不要让右边冻结用户体验会比较好)
+      fixedRightNumber: 0,
+      // 这几个字段是treegrid拓展所需要的字段
+      idField: 'id',
+      parentIdField: 'pid',
+      pagination: false,
+      treeShowField: 'name',
+      // 响应处理,如果服务端返回的数据不是指定的格式，可以在前端进行处理
+      responseHandler: function (res) {
+        return res.data
+      },
+      queryParams: function (params) {
+        //params是一个对象
+        //左边是发送到服务端的字段参数，这里是随便做的示例,根据需求跳调整
+        return {
+          // 每页数据量
+          limit: params.limit,
+          // sql语句起始索引
+          offset: params.offset,
+          page: params.offset / params.limit + 1,
+          // 排序的列名
+          sort: params.sort,
+          // 排序方式 'asc' 'desc'
+          sortOrder: params.order,
+          //角色名称
+          name: $('input[name=name]').val(),
+        }
+      },
+      columns,
+    })
+
+    function formatIsMenu(value, row, index) {
+      if (value === 1) {
+        return '<span class="badge rounded-pill text-bg-success">是</span>'
+      }
+      return '-'
+    }
+
+    function formatType(value, row, index) {
+      if (value === 0) {
+        return '<span class="badge text-bg-primary">分类</span>'
+      } else if (value === 1) {
+        return '<span class="badge text-bg-success">显示</span>'
+      }
+      return '<span class="badge text-bg-danger">处理</span>'
+    }
+
+    function formatIcon(value, row, index) {
+      return `<i class="${value}"></i>`
+    }
+
+    //树列表初始化
+    $table.Table('treegridExtInit')
+    //展开和折叠
+    $table.Table('treegridExtSlideToggleByButton', '.lts-slide-toggle-btn')
+
+    //勾选联动
+    $table.Table('toggleCheckRelation', 'id', 'pid')
+
+    //搜索
+    $table.Table('search', '.lts-search-btn')
+    //重置
+    $table.Table('reset', '.lts-reset-btn', '.lts-search-area form')
+
+    //给角色授权
+    function add() {
+      //id数组
+      const ids = $table.Table('getSelections').map((item) => item.id)
+
+      $.ajax({
+        // /role/node/roleId
+        url: '/role/node/10',
+        method: 'post',
+        data: {
+          //节点的id数组
+          node_ids: ids,
+        },
+      }).then((response) => {
+        if (response.code === 200) {
+          //通知父级页面,操作成功,这里参数随意，这里是演示如果页面有多个消息给父页面发送的话，这里可以通过这种方式让父级页面区分
+          window.parent.postMessage({
+            type: 'node', //表示角色分配节点，这里随意，在父级页面就可以根绝这个来判断
+          })
+        }
+      })
+    }
+  </script>
+</BaseLayout>

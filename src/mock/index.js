@@ -10,7 +10,7 @@ import {
   provinceList,
 } from './data/index'
 
-//模拟ajax的延时操作
+// 模拟ajax的延时操作
 Mock.setup({
   timeout: '300-800',
 })

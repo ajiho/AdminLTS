@@ -1,12 +1,12 @@
 import $ from 'jquery'
 
 const NAME = 'NavbarSearch'
-const DATA_KEY = 'bsa.navbar-search'
+const DATA_KEY = 'lts.navbar-search'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 // 搜索事件触发
-const EVENT_SEARCH = 'search.bsa.navbar-search'
-const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="navbar-search"]'
+const EVENT_SEARCH = 'search.lts.navbar-search'
+const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="navbar-search"]'
 
 // 展开时的类名
 const CLASS_NAME_OPEN = 'open'
@@ -15,7 +15,7 @@ const Default = {
   //关闭时重置
   closeReset: false,
   //触发器
-  trigger: '.bsa-search-form-toggler',
+  trigger: '.lts-search-form-toggler',
 }
 
 class NavbarSearch {

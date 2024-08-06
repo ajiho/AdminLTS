@@ -1,0 +1,303 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout childpage backtotop>
+  <!-- 树状拓展样式 -->
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/jquery-treegrid/css/jquery.treegrid.min.css"
+  />
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.css"
+  />
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css"
+  />
+
+  <div class="container-fluid">
+    <div class="row g-3">
+      <div class="col-12 lts-search-area">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body bg-body">
+            <form class="row row-cols-sm-auto g-3 py-2 align-items-center">
+              <div class="col-12">
+                <div class="row">
+                  <label for="name" class="col-sm-auto col-form-label"
+                    >节点名称</label
+                  >
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      name="name"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="row">
+                  <label for="status" class="col-sm-auto col-form-label"
+                    >是否菜单</label
+                  >
+                  <div class="col">
+                    <select class="form-select" id="status" name="status">
+                      <option value="0" selected>所有</option>
+                      <option value="1">是</option>
+                      <option value="2">否</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 gap-2">
+                <button type="button" class="btn btn-light lts-search-btn">
+                  <i class="bi bi-search"></i>搜索
+                </button>
+                <button type="button" class="btn btn-light lts-reset-btn">
+                  <i class="bi bi-arrow-clockwise"></i>重置
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body bg-body">
+            <!--  表格上方左侧的工具条区域    -->
+            <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
+              <button
+                class="btn btn-light"
+                data-qt-parent-target="#qtab"
+                data-qt-tab-title="新增节点"
+                data-qt-tab-closable="true"
+                data-qt-tab-url="node-add.html"
+                ><i class="bi bi-plus"></i> 新增
+              </button>
+              <button class="btn btn-light lts-slide-toggle-btn"
+                ><i class="bi bi-arrow-left-right"></i> 展开/折叠
+              </button>
+            </div>
+            <!--  数据表格    -->
+            <table id="table"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/jquery.cookie/jquery.cookie.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/jquery-treegrid/js/jquery.treegrid.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/locale/bootstrap-table-zh-CN.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"
+  ></script>
+  <!-- bootstrap-table的拓展,实现树状结构 -->
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/bootstrap-table/dist/extensions/treegrid/bootstrap-table-treegrid.min.js"
+  ></script>
+
+  <script is:inline slot="js">
+    // 注意:这里是使用var来修饰使其变量提升到window对象上,在子页面就可以直接通过这个变量来访问该变量
+    var $table = $('#table')
+
+    // 列配置
+    const columns = [
+      {
+        radio: true,
+        visible: true,
+      },
+      {
+        field: 'name',
+        title: '节点名称',
+        width: 20,
+        widthUnit: '%',
+      },
+      {
+        field: 'route_name',
+        align: 'center',
+        title: '路由别名',
+      },
+
+      {
+        field: 'type',
+        title: '类型',
+        align: 'center',
+        formatter: formatType,
+      },
+      {
+        field: 'icon',
+        title: '图标',
+        align: 'center',
+        formatter: formatIcon,
+      },
+      {
+        title: '是否菜单',
+        field: 'is_menu',
+        align: 'center',
+        formatter: formatIsMenu,
+      },
+      {
+        title: '加入时间',
+        field: 'create_at',
+        align: 'center',
+      },
+      {
+        title: '操作',
+        align: 'center',
+        formatter: formatAction,
+      },
+    ]
+
+    $table.Table({
+      // 请求方法
+      method: 'get',
+      // 请求地址
+      url: '/node',
+      // 请求得到的数据类型
+      dataType: 'json',
+
+      // 这几个字段是treegrid拓展所需要的字段
+      idField: 'id',
+      parentIdField: 'pid',
+      pagination: false,
+      treeShowField: 'name',
+
+      //取消左侧第一列的固定
+      fixedNumber: 0,
+
+      // 响应处理,如果服务端返回的数据不是指定的格式，可以在前端进行处理
+      responseHandler: function (res) {
+        return res.data
+      },
+      queryParams: function (params) {
+        //params是一个对象
+        //左边是发送到服务端的字段参数，这里是随便做的示例,根据需求跳调整
+        return {
+          // 每页数据量
+          limit: params.limit,
+          // sql语句起始索引
+          offset: params.offset,
+          page: params.offset / params.limit + 1,
+          // 排序的列名
+          sort: params.sort,
+          // 排序方式 'asc' 'desc'
+          sortOrder: params.order,
+          //关键词
+          keywords: $('input[name=keyword]').val(),
+          //开始时间
+          beginTime: $('input[name=beginTime]').val(),
+          //结束时间
+          endTime: $('input[name=endTime]').val(),
+        }
+      },
+      columns,
+    })
+
+    function formatIsMenu(value, row, index) {
+      if (value === 1) {
+        return '<span class="badge rounded-pill text-bg-success">是</span>'
+      }
+      return '-'
+    }
+
+    function formatType(value, row, index) {
+      if (value === 0) {
+        return '<span class="badge text-bg-primary">分类</span>'
+      } else if (value === 1) {
+        return '<span class="badge text-bg-success">显示</span>'
+      }
+      return '<span class="badge text-bg-danger">处理</span>'
+    }
+
+    function formatIcon(value, row, index) {
+      return `<i class="${value}"></i>`
+    }
+
+    function formatAction(value, row, index, field) {
+      //修改
+      const editBtn = `<button type="button" class="btn btn-light btn-sm me-2" onclick="edit(${row.id})" data-bs-title="编辑" data-bs-toggle="tooltip" data-bs-placement="top"><i class="bi bi-pencil"></i></button>`
+
+      //删除
+      const delBtn = `<button type="button" class="btn btn-light btn-sm me-2" onclick='del(${JSON.stringify(row)})' data-bs-title="删除" data-bs-toggle="tooltip" data-bs-placement="top"><i class="bi bi-trash3"></i></button>`
+
+      return editBtn + delBtn
+    }
+
+    //树列表初始化
+    $table.Table('treegridExtInit')
+    //展开和折叠
+    $table.Table('treegridExtSlideToggleByButton', '.lts-slide-toggle-btn')
+    //处理treegrid插件点击行可以展开折叠当前行
+    $table.Table('treegridExtSlideToggleClickRow')
+
+    //搜索
+    $table.Table('search', '.lts-search-btn')
+    //重置
+    $table.Table('reset', '.lts-reset-btn', '.lts-search-area form')
+
+    function del(row) {
+      $.modal({
+        body: `确定要删除节点<b>${row.name}</b>吗?`,
+        ok: function () {
+          //发起ajax请求
+          $.ajax({
+            url: `/node/${row.id}`,
+            method: 'delete',
+          }).then((response) => {
+            if (response.code === 200) {
+              //刷新表格
+              $table.Table('refreshSelectPage')
+
+              //这里的this表示的是当前modal的实例对象
+              this.hide()
+
+              //通知
+              $.toasts.success()
+            }
+          })
+        },
+      })
+    }
+
+    function edit(id) {
+      parent.$('[data-lts-toggle="iframe"]').IFrame('addTab', {
+        url: `node-edit.html?id=${id}`,
+        title: '编辑节点',
+      })
+    }
+  </script>
+</BaseLayout>

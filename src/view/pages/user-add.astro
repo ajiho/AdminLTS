@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout childpage backtotop>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/formValidation.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/framework/bootstrap.js"
+  ></script>
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/gh/ajiho/formvalidation@main/dist/js/language/zh_CN.js"
+  ></script>
+
+  <div class="container-fluid">
+    <div class="row g-3">
+      <div class="col">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <form id="form">
+              <div class="mb-3">
+                <label for="name" class="form-label">姓名</label>
+                <input type="text" class="form-control" id="name" name="name" />
+              </div>
+              <div class="mb-3">
+                <label for="username" class="form-label">用户名</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">密码</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="rePassword" class="form-label">确认密码</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="rePassword"
+                  name="rePassword"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="gender-1" class="form-label">性别</label>
+                <div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      checked
+                      id="gender-1"
+                      value="1"
+                    />
+                    <label class="form-check-label" for="gender-1">男</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="gender-2"
+                      value="0"
+                    />
+                    <label class="form-check-label" for="gender-2">女</label>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">手机</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone"
+                  name="phone"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">邮箱</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">添加</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline slot="js">
+    //表单验证
+    $('#form')
+      .formValidation({
+        //验证字段
+        fields: {
+          name: {
+            validators: {
+              notEmpty: true,
+            },
+          },
+          username: {
+            validators: {
+              notEmpty: true,
+            },
+          },
+          //...
+        },
+      })
+      .on('success.form.fv', function (e) {
+        //阻止表单提交
+        e.preventDefault()
+        //得到表单对象
+        const $form = $(e.target)
+        const data = $form.serialize()
+
+        // 得到序列化数据
+        $.ajax({
+          url: '/user',
+          method: 'post',
+          data: data,
+        }).then((response) => {
+          if (response.code === 200) {
+            $.toasts.success()
+
+            const url = 'user-list.html'
+            //拿到用户列表页的$table变量调用refreshSelectPage刷新方法
+            parent.Quicktab.get('qtab')
+              .getTabWindowByUrl(url)
+              ?.$table.Table('refreshSelectPage')
+            //关闭当前激活的Tab并激活用户列表页
+            parent.Quicktab.get('qtab')
+              .closeActiveTab()
+              .activeTabByUrl(url, true)
+          }
+        })
+      })
+  </script>
+</BaseLayout>

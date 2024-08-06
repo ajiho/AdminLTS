@@ -1,7 +1,7 @@
 import $ from 'jquery'
 
 const NAME = 'Initialize'
-const DATA_KEY = 'bsa.initialize'
+const DATA_KEY = 'lts.initialize'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 //类名
@@ -47,11 +47,11 @@ class Initialize {
   }
 
   #headerDropdown() {
-    $('.bsa-header [data-bs-toggle="dropdown"]').on(
+    $('.lts-header [data-bs-toggle="dropdown"]').on(
       'hidden.bs.dropdown shown.bs.dropdown',
       function (event) {
-        const $content = $('.bsa-content')
-        $('.bsa-header .dropdown-menu.show').length > 0
+        const $content = $('.lts-content')
+        $('.lts-header .dropdown-menu.show').length > 0
           ? $content.addClass(ClassName.pe)
           : $content.removeClass(ClassName.pe)
       },

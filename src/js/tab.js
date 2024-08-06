@@ -1,10 +1,10 @@
 import $ from 'jquery'
 
 const NAME = 'Tab'
-const DATA_KEY = 'bsa.tab'
+const DATA_KEY = 'lts.tab'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
-const SELECTOR_DATA_TOGGLE = '[data-bsa-toggle="tab"]'
+const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="tab"]'
 
 const EVENT_ACTIVE = `active${EVENT_KEY}`
 

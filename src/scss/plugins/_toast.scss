@@ -8,7 +8,7 @@
   }
 }
 
-.bsa-toast-pause {
+.#{$lts-prefix}toast-pause {
   .progress-bar {
     animation-play-state: paused !important;
   }

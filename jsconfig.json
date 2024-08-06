@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es6",
+    "lib": ["es2018", "DOM"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/view/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

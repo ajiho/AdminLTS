@@ -94,7 +94,7 @@ const Default = {
 //类名
 const ClassName = {
   //自定义的类用来对一些样式进行设置
-  MODAL: 'bsa-modal',
+  MODAL: 'lts-modal',
   //居中类
   MODAL_DIALOG_CENTERED: 'modal-dialog-centered',
   //全屏类

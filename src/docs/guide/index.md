@@ -76,8 +76,6 @@ bootstrap-admin的iframe+多tab效果的驱动来源于bootstrap-admin的官方�
 - npm run build(编译css/js文件、以及压缩img文件)
 - npm run serve(默认开启一个服务可以访问页面,端口默认9999)
 
-<img src="/npm-run-serve.png">
-
 ::: tip
 真机调试:如果您的移动设备和serve端处于同一个无线网环境下就可以直接访问第二个地址在线预览和调试查看响应式效果
 :::
@@ -93,8 +91,3 @@ bootstrap-admin的iframe+多tab效果的驱动来源于bootstrap-admin的官方�
 ## 💖 捐赠
 
 开源不易,如果你觉得此项目的发展日后可以用上,或此时对你已有帮助,请支持我,让我继续前行
-
-<div style="display: flex;flex-wrap: wrap">
-    <img src="/ali_pay.png">
-    <img src="/wechat_pay.png">
-</div>

@@ -1,9 +1,9 @@
-.bsa-modal {
+.#{$lts-prefix}modal {
   .modal-wrapper {
     position: absolute;
     inset: 0;
-    height: 100%;
     width: 100%;
+    height: 100%;
     overflow: auto;
 
     /* 禁止这个元素接受鼠标事件 */
@@ -13,19 +13,19 @@
       }
 
       .btn-refresh {
-        @include btn-custom-modal-spacer;
+        @include btn-custom-modal-spacer();
       }
 
       .btn-fullscreen {
-        @include btn-custom-modal-spacer;
+        @include btn-custom-modal-spacer();
       }
 
       .btn-fullscreen-exit {
-        @include btn-custom-modal-spacer;
+        @include btn-custom-modal-spacer();
       }
 
       .btn-close {
-        --#{$prefix}btn-close-bg: #{escape-svg($btn-close-md-bg)};
+        --#{$prefix}btn-close-bg: #{escape-svg($lts-btn-close-md-bg)};
       }
     }
 

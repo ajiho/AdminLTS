@@ -1,19 +1,19 @@
 .dropzone {
-  border: none !important;
-  background: var(--bs-light-bg-subtle) !important;
-  min-height: 10rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  min-height: 10rem;
+  background: var(--#{$prefix}light-bg-subtle) !important;
+  border: none !important;
 
-  /*默认提示文本*/
+  /* 默认提示文本 */
   .dz-default {
-    color: var(--bs-light-text) !important;
+    color: var(--#{$prefix}light-text) !important;
   }
 
   .dz-preview {
-    background: var(--bs-light-bg-subtle) !important;
+    background: var(--#{$prefix}light-bg-subtle) !important;
 
     .dz-image {
       background-color: rgba(0, 0, 0, 0.08);
@@ -24,7 +24,7 @@
       margin-top: 1.3rem;
       background: #dc3545 !important;
 
-      &:after {
+      &::after {
         border-bottom-color: #dc3545 !important;
       }
     }
