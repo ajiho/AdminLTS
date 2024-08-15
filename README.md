@@ -8,7 +8,7 @@
 ---
 
 
-AdminLTS是一个基于[bootstrap(5.1.3+)](https://getbootstrap.com/)风格简约的纯静态通用后台模板项目,顾名思义(LTS),它是一个安全可靠的长期支持和维护的后台界面模板解决方案。无论您是用于项目开发、学习、毕设、还是教学视频演示、希望能给个star，这将会是我最大的动力!
+AdminLTS是一个基于[bootstrap(5.1.3+)](https://getbootstrap.com/)风格简约的纯静态通用后台模板项目,顾名思义([LTS](https://zh.wikipedia.org/wiki/%E9%95%B7%E6%9C%9F%E6%94%AF%E6%8F%B4)),它是一个安全可靠的长期支持和维护的后台管理模板解决方案。无论您是用于项目开发、学习、毕设、还是教学视频演示、希望能给个star，这将会是我最大的动力!
 如果对您有所帮助，您可以点仓库右上角 "Star" 收藏一下 ，获取第一时间更新，谢谢！
 
 
@@ -20,20 +20,20 @@ AdminLTS是一个基于[bootstrap(5.1.3+)](https://getbootstrap.com/)风格简�
 ## 变更日志
 
 
-每个版本的详细更改都记录在[CHANGELOG](https://github.com/ajiho/AdminLTS/blob/2.x/CHANGELOG.md)中
+每个版本的详细更改都记录在[CHANGELOG.md](https://github.com/ajiho/AdminLTS/blob/master/CHANGELOG.md)文件中
 
 
 
 ## 贡献指南
 
 
-PR之前请先阅读[贡献指南](https://github.com/ajiho/AdminLTS/blob/2.x/.github/CONTRIBUTING.md)
+PR之前请先阅读[贡献指南](https://github.com/ajiho/AdminLTS/blob/master/.github/CONTRIBUTING.md)
 
 
 
 ## License
 
-[MIT](https://github.com/ajiho/AdminLTS/blob/2.x/LICENSE)
+[MIT](https://github.com/ajiho/AdminLTS/blob/master/LICENSE)
 
 
 
