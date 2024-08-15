@@ -36,8 +36,8 @@ importers:
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.20.0)
       astro:
-        specifier: ^4.13.4
-        version: 4.13.4(@types/node@20.14.8)(sass@1.77.8)(terser@5.31.1)(typescript@5.5.2)
+        specifier: ^4.14.2
+        version: 4.14.2(@types/node@20.14.8)(rollup@4.20.0)(sass@1.77.8)(terser@5.31.1)(typescript@5.5.2)
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.41)
@@ -199,9 +199,6 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
-
-  '@astrojs/compiler@2.10.1':
-    resolution: {integrity: sha512-XmM4j6BjvOVMag2xELq0JuG2yKOW8wgIu6dvb9BsjbGYmnvoStJn/pqEzVqc1EBszf2xYT7onIkftIOUz9AwrQ==}
 
   '@astrojs/compiler@2.10.3':
     resolution: {integrity: sha512-bL/O7YBxsFt55YHU021oL+xz+B/9HvGNId3F9xURN16aeqDK9juHGktdkCSXz+U4nqFACq6ZFvWomOzhV+zfPw==}
@@ -1748,8 +1745,8 @@ packages:
     resolution: {integrity: sha512-8hJaCuqxObShWl2wEsnASqh/DbQ2O+S66m0Q3ctJlzBPEQ4pfGwwama3FCjZO3GDLQsjvn1T0v93Vxyu/+5fGw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  astro@4.13.4:
-    resolution: {integrity: sha512-uoW961qyU5xxCiUzITVX8wYmdWbSH1zeog9UomoWC5uNpnIbH6WxOPv/qYu2m7W4r2PCxdRqfVXoYjZhFyGfTA==}
+  astro@4.14.2:
+    resolution: {integrity: sha512-x9VeYx8Ih6kYKBMVwwsfRzsZVq30+SUhiawnYQ6+46qQnEx3zH05KcH24HsJMe6dVpHD8HdH7CWR5C4o7Q/jeg==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -3125,6 +3122,10 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
+  neotraverse@0.6.18:
+    resolution: {integrity: sha512-Z4SmBUweYa09+o6pG+eASabEpP6QkQ70yHj351pQoEXIs8uHbaU2DWVmzBANKgflPa47A50PtB2+NgRpQvr7vA==}
+    engines: {node: '>= 10'}
+
   nested-error-stacks@2.1.1:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
 
@@ -4154,6 +4155,9 @@ packages:
     resolution: {integrity: sha512-+QU2zd6OTD8XWIJCbffaiQeH9U73qIqafo1x6V1snCWYGJf6cVE0cDR4D8xRzcEnfI21IFrUPzPGtcPf8AC+Rw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
+  xxhash-wasm@1.0.2:
+    resolution: {integrity: sha512-ibF0Or+FivM9lNrg+HGJfVX8WJqgo+kCLDc4vx6xMeTce7Aj+DLttKbxxRR/gNLSAelRc1omAPlJ77N/Jem07A==}
+
   y18n@5.0.8:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
     engines: {node: '>=10'}
@@ -4190,6 +4194,12 @@ packages:
     resolution: {integrity: sha512-uSt90Gzc/tUfyNqxnjlfBs8W6WSGpNBv0rVsNxP/BVSMHMKGdthPYff4xtCHYloJGM0CFxFsb3NbC0eqPhfImw==}
     peerDependencies:
       zod: ^3.23.3
+
+  zod-to-ts@1.2.0:
+    resolution: {integrity: sha512-x30XE43V+InwGpvTySRNz9kB7qFU8DlyEy7BsSTCHPH1R0QasMmHWZDCzYm6bVXtj/9NNJAZF3jW8rzFvH5OFA==}
+    peerDependencies:
+      typescript: ^4.9.4 || ^5.0.2
+      zod: ^3
 
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
@@ -4307,8 +4317,6 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
-
-  '@astrojs/compiler@2.10.1': {}
 
   '@astrojs/compiler@2.10.3': {}
 
@@ -6021,11 +6029,11 @@ snapshots:
 
   astro-eslint-parser@1.0.2(typescript@5.5.2):
     dependencies:
-      '@astrojs/compiler': 2.10.1
+      '@astrojs/compiler': 2.10.3
       '@typescript-eslint/scope-manager': 7.14.1
       '@typescript-eslint/types': 7.14.1
       '@typescript-eslint/typescript-estree': 7.14.1(typescript@5.5.2)
-      astrojs-compiler-sync: 1.0.0(@astrojs/compiler@2.10.1)
+      astrojs-compiler-sync: 1.0.0(@astrojs/compiler@2.10.3)
       debug: 4.3.6
       entities: 4.5.0
       eslint-scope: 8.0.2
@@ -6038,7 +6046,7 @@ snapshots:
       - supports-color
       - typescript
 
-  astro@4.13.4(@types/node@20.14.8)(sass@1.77.8)(terser@5.31.1)(typescript@5.5.2):
+  astro@4.14.2(@types/node@20.14.8)(rollup@4.20.0)(sass@1.77.8)(terser@5.31.1)(typescript@5.5.2):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.1
@@ -6051,6 +6059,7 @@ snapshots:
       '@babel/traverse': 7.25.3
       '@babel/types': 7.25.2
       '@oslojs/encoding': 0.4.1
+      '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
       '@types/babel__core': 7.20.5
       '@types/cookie': 0.6.0
       acorn: 8.12.1
@@ -6081,7 +6090,9 @@ snapshots:
       js-yaml: 4.1.0
       kleur: 4.1.5
       magic-string: 0.30.11
+      micromatch: 4.0.7
       mrmime: 2.0.0
+      neotraverse: 0.6.18
       ora: 8.0.1
       p-limit: 6.1.0
       p-queue: 8.0.1
@@ -6099,15 +6110,18 @@ snapshots:
       vite: 5.4.0(@types/node@20.14.8)(sass@1.77.8)(terser@5.31.1)
       vitefu: 0.2.5(vite@5.4.0(@types/node@20.14.8)(sass@1.77.8)(terser@5.31.1))
       which-pm: 3.0.0
+      xxhash-wasm: 1.0.2
       yargs-parser: 21.1.1
       zod: 3.23.8
       zod-to-json-schema: 3.23.2(zod@3.23.8)
+      zod-to-ts: 1.2.0(typescript@5.5.2)(zod@3.23.8)
     optionalDependencies:
       sharp: 0.33.4
     transitivePeerDependencies:
       - '@types/node'
       - less
       - lightningcss
+      - rollup
       - sass
       - sass-embedded
       - stylus
@@ -6116,9 +6130,9 @@ snapshots:
       - terser
       - typescript
 
-  astrojs-compiler-sync@1.0.0(@astrojs/compiler@2.10.1):
+  astrojs-compiler-sync@1.0.0(@astrojs/compiler@2.10.3):
     dependencies:
-      '@astrojs/compiler': 2.10.1
+      '@astrojs/compiler': 2.10.3
       synckit: 0.9.0
 
   asynckit@0.4.0: {}
@@ -7669,6 +7683,8 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
+  neotraverse@0.6.18: {}
+
   nested-error-stacks@2.1.1: {}
 
   nlcst-to-string@4.0.0:
@@ -8774,6 +8790,8 @@ snapshots:
       imurmurhash: 0.1.4
       signal-exit: 4.1.0
 
+  xxhash-wasm@1.0.2: {}
+
   y18n@5.0.8: {}
 
   yallist@3.1.1: {}
@@ -8800,6 +8818,11 @@ snapshots:
 
   zod-to-json-schema@3.23.2(zod@3.23.8):
     dependencies:
+      zod: 3.23.8
+
+  zod-to-ts@1.2.0(typescript@5.5.2)(zod@3.23.8):
+    dependencies:
+      typescript: 5.5.2
       zod: 3.23.8
 
   zod@3.23.8: {}
