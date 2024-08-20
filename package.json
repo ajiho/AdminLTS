@@ -3,7 +3,7 @@
   "description": "open source responsive background management template based on bootstrap 5",
   "version": "2.0.1",
   "engines": {
-    "node": "^18.18.0"
+    "node": "^20.0.0"
   },
   "scripts": {
     "prepare": "husky || true",
