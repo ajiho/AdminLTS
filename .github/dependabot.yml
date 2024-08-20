@@ -1,8 +1,0 @@
-version: 2
-updates:
-  - package-ecosystem: npm
-    directory: "/" # 在项目根目录下查找 package 文件
-    schedule:
-      interval: daily
-      time: "21:30"
-    open-pull-requests-limit: 10 # 同时最多打开 10 个更新 PR
