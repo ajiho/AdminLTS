@@ -22,8 +22,8 @@ body:
   - type: input
     attributes:
       label: 使用版本
-      description: 请提供您当前使用的AdminLTS版本号。若不清楚，可打开 `adminlts.js` 查看头部注释。
-      placeholder: 如:v0.0.1
+      description: 请提供您当前使用的 **AdminLTS** 版本号。若不清楚，可打开 `adminlts.js` 查看头部注释。
+      placeholder: 如:v1.0.1
     validations:
       required: true
   - type: textarea
