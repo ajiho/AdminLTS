@@ -38,7 +38,7 @@
     "watch:script": "nodemon --watch src/script/ --ext js --exec \"run-s script\"",
     "watch": "run-p watch:*",
     "clean": "rimraf dist",
-    "bundlewatch": "bundlewatch --config .bundlewatch.config.json",
+    "bundlewatch": "bundlewatch --config src/config/bundlewatch.config.js",
     "commitlint": "commitlint --config src/config/commitlint.config.mjs -e -V",
     "lint": "run-p prettier stylelint eslint",
     "fix": "run-p *:fix",
