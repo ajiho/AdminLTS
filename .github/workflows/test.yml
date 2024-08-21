@@ -16,20 +16,20 @@ jobs:
     #     node_version: [18, 20, 22]
 
     steps:
-      - name: "Checkout"
-        uses: "actions/checkout@v4"
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
-      - name: "Setup Node and pnpm"
-        uses: "actions/setup-node@v4"
+      - name: Setup Node and pnpm
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: pnpm
 
-      - name: "Install Node dependencies"
-        run: "pnpm install"
+      - name: Install Node dependencies
+        run: pnpm install
 
-      - name: "Run Build Test"
-        run: "pnpm build"
+      - name: Run Build Test
+        run: pnpm build

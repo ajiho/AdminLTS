@@ -15,9 +15,7 @@ node_modules/
 *.log
 
 
-# vercel部署
-**/.vercel
-**/.vercelignore
+
 
 # 缓存文件
 .cache
@@ -32,3 +30,6 @@ node_modules/
 .astro/
 # 不需要的类型
 **/env.d.ts
+
+# vercel部署
+.vercel
