@@ -5,6 +5,8 @@
 [![npm](https://img.shields.io/npm/v/adminlts)](https://www.npmjs.com/package/adminlts)
 [![star](https://gitee.com/ajiho/AdminLTS/badge/star.svg?theme=dark)](https://gitee.com/ajiho/AdminLTS)
 [![star](https://img.shields.io/github/stars/ajiho/adminLTS)](https://github.com/ajiho/adminLTS)
+[![Packagist](https://img.shields.io/packagist/v/ajiho/adminlts.svg)](https://packagist.org/packages/ajiho/adminlts)
+[![cdn version](https://data.jsdelivr.com/v1/package/npm/adminlts/badge)](https://www.jsdelivr.com/package/npm/adminlts)
 ---
 
 
