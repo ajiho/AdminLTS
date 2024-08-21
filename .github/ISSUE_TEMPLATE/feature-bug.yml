@@ -6,7 +6,7 @@ body:
       label: 先决条件
       description: 请确认您已经按照如下流程进行操作
       options:
-        - label: 我确认已查阅文档: https://adminlts.com/docs ，但没有找到相关解决方案。
+        - label: "我确认已查阅文档:https://adminlts.com/docs ，但没有找到相关解决方案。"
           required: true
         - label: 我确认已在 [Issues](https://github.com/ajiho/AdminLTS/issues?q=is%3Aissue ) 中搜索过类似的问题，但没有找到相关解决方案。
           required: true
