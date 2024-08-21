@@ -1,5 +1,13 @@
 {
   "framework": null,
   "buildCommand": "",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/error.html",
+      "status": 404,
+      "continue": true
+    }
+  ]
 }

@@ -47,7 +47,7 @@
     "watch:script": "nodemon --watch src/script/ --ext js --exec \"run-s script\"",
     "watch": "run-p watch:*",
     "dev": "run-p watch view:dev",
-    "build": "run-s lint clean:dist && run-p css js assets script && run-s view && run-s bundlewatch"
+    "build": "run-s lint clean:dist && run-p css js assets script && run-s view && run-s bundlewatch docs:build"
   },
   "peerDependencies": {
     "jquery": "3"
