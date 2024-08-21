@@ -16,7 +16,7 @@
 
 - 在处理 PR 时可以有多个小的提交 - GitHub 可以在合并之前自动压缩它们
 
-- 提交信息必须遵循[常规提交规范](https://conventionalcommits.org)
+- 提交信息必须遵循[常规提交规范](https://conventionalcommits.org),查看该项目配置有哪些[主题](https://github.com/ajiho/AdminLTS/blob/master/src/config/commitlint.config.mjs#L7)
 
 
 
@@ -50,7 +50,7 @@ $ pnpm install
 ---
 
 > [!TIP]
-> `EditorConfig for VS Code` 拓展在vscode编辑上有一点小bug,
+> `EditorConfig for VS Code` 拓展在vscode编辑上有一点小[bug](https://github.com/editorconfig/editorconfig-vscode/issues/330),
 建议您把`Files: Auto Save`改成 `onFocusChange`
 
 
@@ -64,4 +64,4 @@ $ pnpm install
 $ pnpm dev
 ```
 
-执行上述命令后，访问http://localhost:4321并尝试修改源代码。您将获得实时更新
+执行上述命令后,访问`http://localhost:4321`并尝试修改源代码,您将获得实时更新

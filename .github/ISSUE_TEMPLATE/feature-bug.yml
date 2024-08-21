@@ -6,9 +6,9 @@ body:
       label: 先决条件
       description: 请确认您已经按照如下流程进行操作
       options:
-        - label: 我确认已查阅文档:https://ajiho.github.io/bootstrap-admin ，但没有找到相关解决方案。
+        - label: 我确认已查阅文档:https://adminlts/docs ，但没有找到相关解决方案。
           required: true
-        - label: 我确认已在 [Issues](https://github.com/ajiho/bootstrap-admin/issues?q=is%3Aissue ) 中搜索过类似的问题，但没有找到相关解决方案。
+        - label: 我确认已在 [Issues](https://github.com/ajiho/AdminLTS/issues?q=is%3Aissue ) 中搜索过类似的问题，但没有找到相关解决方案。
           required: true
   - type: dropdown
     id: type
@@ -22,7 +22,7 @@ body:
   - type: input
     attributes:
       label: 使用版本
-      description: 请提供您当前使用的 bootstrap-admin 版本号。若不清楚，可打开 `bootstrap-admin.js` 查看头部注释。
+      description: 请提供您当前使用的AdminLTS版本号。若不清楚，可打开 `adminlts.js` 查看头部注释。
       placeholder: 如:v0.0.1
     validations:
       required: true

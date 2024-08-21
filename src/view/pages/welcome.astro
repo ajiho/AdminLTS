@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
-import globalData from '../../../build/data/index.mjs'
-const { version, bootstrapVersion } = globalData
+import BaseLayout from "../layouts/BaseLayout.astro";
+import globalData from "../../../build/data/index.mjs";
+const { version, bootstrapVersion } = globalData;
 ---
 
 <BaseLayout childpage backtotop>
@@ -347,47 +347,47 @@ const { version, bootstrapVersion } = globalData
   <script is:inline slot="js">
     $(async function () {
       //数字老虎机效果
-      $('.animation-number').each(function (index, element) {
-        const number = $(element).text()
-        const decimalPlaces = (number.split('.')[1] || '').length
+      $(".animation-number").each(function (index, element) {
+        const number = $(element).text();
+        const decimalPlaces = (number.split(".")[1] || "").length;
         new countUp.CountUp(element, number, {
           //小数点后面的位数
           decimalPlaces: decimalPlaces,
           //持续时间
           duration: 2,
-        }).start()
-      })
+        }).start();
+      });
 
-      new Chart(document.getElementById('chart-bar').getContext('2d'), {
-        type: 'bar',
+      new Chart(document.getElementById("chart-bar").getContext("2d"), {
+        type: "bar",
         data: {
           labels: [
-            '2022/7/11',
-            '2022/7/12',
-            '2022/7/13',
-            '2022/7/14',
-            '2022/7/15',
-            '2022/7/16',
+            "2022/7/11",
+            "2022/7/12",
+            "2022/7/13",
+            "2022/7/14",
+            "2022/7/15",
+            "2022/7/16",
           ],
           datasets: [
             {
-              label: 'pv值',
+              label: "pv值",
               data: [12, 19, 3, 5, 2, 3],
               backgroundColor: [
-                'rgba(52,143,80, 0.6)',
-                'rgba(52,143,80, 0.6)',
-                'rgba(52,143,80, 0.6)',
-                'rgba(52,143,80, 0.6)',
-                'rgba(52,143,80, 0.6)',
-                'rgba(52,143,80, 0.6)',
+                "rgba(52,143,80, 0.6)",
+                "rgba(52,143,80, 0.6)",
+                "rgba(52,143,80, 0.6)",
+                "rgba(52,143,80, 0.6)",
+                "rgba(52,143,80, 0.6)",
+                "rgba(52,143,80, 0.6)",
               ],
               borderColor: [
-                'rgba(52,143,80, 0.6)',
-                'rgba(52,143,80, 0.6)',
-                'rgba(52,143,80, 0.6)',
-                'rgba(52,143,80, 0.6)',
-                'rgba(52,143,80, 0.6)',
-                'rgba(52,143,80, 0.6)',
+                "rgba(52,143,80, 0.6)",
+                "rgba(52,143,80, 0.6)",
+                "rgba(52,143,80, 0.6)",
+                "rgba(52,143,80, 0.6)",
+                "rgba(52,143,80, 0.6)",
+                "rgba(52,143,80, 0.6)",
               ],
               borderWidth: 1,
             },
@@ -401,17 +401,17 @@ const { version, bootstrapVersion } = globalData
             },
           },
         },
-      })
-      new Chart(document.getElementById('chart-line').getContext('2d'), {
-        type: 'line',
+      });
+      new Chart(document.getElementById("chart-line").getContext("2d"), {
+        type: "line",
         data: {
-          labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
+          labels: ["2017", "2018", "2019", "2020", "2021", "2022"],
           datasets: [
             {
-              label: '营业额 单位/万元',
+              label: "营业额 单位/万元",
               data: [65, 90, 60, 50, 40, 30, 20],
               fill: false,
-              borderColor: 'rgba(185,110,228,.5)',
+              borderColor: "rgba(185,110,228,.5)",
               tension: 0.1,
             },
           ],
@@ -424,42 +424,42 @@ const { version, bootstrapVersion } = globalData
             },
           },
         },
-      })
-      new Chart(document.getElementById('chart3').getContext('2d'), {
-        type: 'line',
+      });
+      new Chart(document.getElementById("chart3").getContext("2d"), {
+        type: "line",
         data: {
           labels: [
-            '2022.8.3',
-            '2022.8.4',
-            '2022.8.5',
-            '2022.8.6',
-            '2022.8.7',
-            '2022.8.9',
+            "2022.8.3",
+            "2022.8.4",
+            "2022.8.5",
+            "2022.8.6",
+            "2022.8.7",
+            "2022.8.9",
           ],
           datasets: [
             {
-              label: '粉丝',
+              label: "粉丝",
               data: [65, 90, 60, 50, 40, 30, 120],
               fill: false,
-              borderColor: 'rgba(252, 92, 125,.5)',
+              borderColor: "rgba(252, 92, 125,.5)",
               tension: 0.1,
-              cubicInterpolationMode: 'monotone',
+              cubicInterpolationMode: "monotone",
             },
             {
-              label: '被收藏',
+              label: "被收藏",
               data: [30, 80, 70, 48, 64, 101, 10],
               fill: false,
-              borderColor: 'rgba(10, 191, 188,.5)',
+              borderColor: "rgba(10, 191, 188,.5)",
               tension: 0.1,
-              cubicInterpolationMode: 'monotone',
+              cubicInterpolationMode: "monotone",
             },
             {
-              label: '获赞',
+              label: "获赞",
               data: [10, 37, 54, 68, 73, 98, 110],
               fill: false,
-              borderColor: 'rgba(221, 100, 0,.5)',
+              borderColor: "rgba(221, 100, 0,.5)",
               tension: 0.1,
-              cubicInterpolationMode: 'monotone',
+              cubicInterpolationMode: "monotone",
             },
           ],
         },
@@ -471,16 +471,16 @@ const { version, bootstrapVersion } = globalData
             },
           },
         },
-      })
-      new Chart(document.getElementById('chart4').getContext('2d'), {
-        type: 'doughnut',
+      });
+      new Chart(document.getElementById("chart4").getContext("2d"), {
+        type: "doughnut",
         data: {
-          labels: ['已租', '未租'],
+          labels: ["已租", "未租"],
           datasets: [
             {
-              label: '房源数量',
+              label: "房源数量",
               data: [300, 50],
-              backgroundColor: ['#0abfbc', '#348f50'],
+              backgroundColor: ["#0abfbc", "#348f50"],
               hoverOffset: 4,
             },
           ],
@@ -489,104 +489,104 @@ const { version, bootstrapVersion } = globalData
           responsive: true,
           plugins: {
             legend: {
-              position: 'top',
+              position: "top",
             },
             title: {
               display: true,
-              text: '已租未租房源占比图',
+              text: "已租未租房源占比图",
             },
           },
         },
-      })
+      });
 
-      const myChart = echarts.init(document.querySelector('.echarts-1'))
+      const myChart = echarts.init(document.querySelector(".echarts-1"));
       myChart.setOption({
         title: {
-          text: '世界人口',
+          text: "世界人口",
         },
         tooltip: {
-          trigger: 'axis',
+          trigger: "axis",
           axisPointer: {
-            type: 'shadow',
+            type: "shadow",
           },
         },
         legend: {},
         grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
           containLabel: true,
         },
         xAxis: {
-          type: 'value',
+          type: "value",
           boundaryGap: [0, 0.01],
         },
         yAxis: {
-          type: 'category',
-          data: ['巴西', '印度尼西亚', '美国', '印度', '中国', '全球'],
+          type: "category",
+          data: ["巴西", "印度尼西亚", "美国", "印度", "中国", "全球"],
         },
         series: [
           {
-            name: '2011',
-            type: 'bar',
+            name: "2011",
+            type: "bar",
             data: [18203, 23489, 29034, 104970, 131744, 630230],
           },
           {
-            name: '2012',
-            type: 'bar',
+            name: "2012",
+            type: "bar",
             data: [19325, 23438, 31000, 121594, 134141, 681807],
           },
         ],
-      })
-      const myChart2 = echarts.init(document.querySelector('.echarts-2'))
+      });
+      const myChart2 = echarts.init(document.querySelector(".echarts-2"));
       myChart2.setOption({
         title: {
-          text: '浏览器比例',
-          subtext: '主流浏览器',
+          text: "浏览器比例",
+          subtext: "主流浏览器",
           top: 10,
           left: 10,
         },
         tooltip: {
-          trigger: 'item',
+          trigger: "item",
         },
         legend: {
-          type: 'scroll',
+          type: "scroll",
           bottom: 10,
           data: (function () {
-            var list = []
+            var list = [];
             for (var i = 1; i <= 28; i++) {
-              list.push(i + 2000 + '')
+              list.push(i + 2000 + "");
             }
-            return list
+            return list;
           })(),
         },
         visualMap: {
-          top: 'middle',
+          top: "middle",
           right: 10,
-          color: ['red', 'yellow'],
+          color: ["red", "yellow"],
           calculable: true,
         },
         radar: {
           indicator: [
-            { text: 'IE8-', max: 400 },
-            { text: 'IE9+', max: 400 },
-            { text: 'Safari', max: 400 },
-            { text: 'Firefox', max: 400 },
-            { text: 'Chrome', max: 400 },
+            { text: "IE8-", max: 400 },
+            { text: "IE9+", max: 400 },
+            { text: "Safari", max: 400 },
+            { text: "Firefox", max: 400 },
+            { text: "Chrome", max: 400 },
           ],
         },
         series: (function () {
-          var series = []
+          var series = [];
           for (var i = 1; i <= 28; i++) {
             series.push({
-              type: 'radar',
-              symbol: 'none',
+              type: "radar",
+              symbol: "none",
               lineStyle: {
                 width: 1,
               },
               emphasis: {
                 areaStyle: {
-                  color: 'rgba(0,250,0,0.3)',
+                  color: "rgba(0,250,0,0.3)",
                 },
               },
               data: [
@@ -598,77 +598,78 @@ const { version, bootstrapVersion } = globalData
                     i * 9,
                     (i * i) / 2,
                   ],
-                  name: i + 2000 + '',
+                  name: i + 2000 + "",
                 },
               ],
-            })
+            });
           }
-          return series
+          return series;
         })(),
-      })
+      });
 
-      const myChart3 = echarts.init(document.querySelector('.geo'))
+      const myChart3 = echarts.init(document.querySelector(".geo"));
+
       $.when(
         $.ajax({
-          url: 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
-          method: 'GET',
+          url: "assets/areas.json",
+          method: "GET",
         }),
         $.ajax({
-          url: '/user/region',
-          method: 'GET',
-        }),
+          url: "/user/region",
+          method: "GET",
+        })
       ).done(function (response1, response2) {
-        const tr = `<tr><td>%s</td><td>%s</td><td>%s</td></tr>`
-        const trArr = []
-        const province = response2[0].data // 省份数据
+        const tr = `<tr><td>%s</td><td>%s</td><td>%s</td></tr>`;
+        const trArr = [];
+        const province = response2[0].data; // 省份数据
         province.forEach((item, index) => {
           //取前10条数据展示
           if (index < 10) {
             trArr.push(
-              adminlts.util.sprintf(tr, index + 1, item.name, item.value),
-            )
+              adminlts.util.sprintf(tr, index + 1, item.name, item.value)
+            );
           }
-        })
+        });
         //然后把拼接后的字符串数组转换成字符串再赋值到tbody中
-        $('.lts-register-table tbody').html(trArr.join(''))
+        $(".lts-register-table tbody").html(trArr.join(""));
 
         //注册地图数据
-        echarts.registerMap('china', response1[0])
+        echarts.registerMap("china", response1[0]);
         myChart3.setOption({
           title: {
-            text: '注册用户分布图',
-            subtext: '不完全统计',
+            text: "注册用户分布图",
+            subtext: "不完全统计",
           },
           tooltip: {
-            formatter: '{b} 注册用户 {c}人',
+            formatter: "{b} 注册用户 {c}人",
           },
           visualMap: {
-            orient: 'horizontal',
+            orient: "horizontal",
             left: 20,
             min: 0,
             max: 10000,
-            text: ['高', '低'],
+            text: ["高", "低"],
             calculable: true,
             inRange: {
               color: [
-                '#313695',
-                '#4575b4',
-                '#74add1',
-                '#abd9e9',
-                '#e0f3f8',
-                '#ffffbf',
-                '#fee090',
-                '#fdae61',
-                '#f46d43',
-                '#d73027',
-                '#a50026',
+                "#313695",
+                "#4575b4",
+                "#74add1",
+                "#abd9e9",
+                "#e0f3f8",
+                "#ffffbf",
+                "#fee090",
+                "#fdae61",
+                "#f46d43",
+                "#d73027",
+                "#a50026",
               ],
             },
           },
           series: [
             {
-              type: 'map',
-              map: 'china', //对应registerMap 注册名称
+              type: "map",
+              map: "china", //对应registerMap 注册名称
               roam: true, // 鼠标进行拖拽和缩放操作
               scaleLimit: {
                 min: 0.7,
@@ -677,26 +678,25 @@ const { version, bootstrapVersion } = globalData
               data: province,
             },
           ],
-        })
-      })
+        });
+      });
 
-      //图表响应式处理
-      window.addEventListener(
-        'resize',
+      $(window).on(
+        "resize",
         adminlts.util.debounce(() => {
           //防抖提高性能
 
           //Chart.js图表尺寸处理
           for (let id in Chart.instances) {
-            Chart.instances[id].resize()
+            Chart.instances[id].resize();
           }
 
           // echarts图表的大小处理
-          myChart.resize()
-          myChart2.resize()
-          myChart3.resize()
-        }, 500),
-      )
-    })
+          myChart.resize();
+          myChart2.resize();
+          myChart3.resize();
+        }, 500)
+      );
+    });
   </script>
 </BaseLayout>

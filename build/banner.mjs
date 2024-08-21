@@ -1,6 +1,6 @@
 import { glob } from "glob";
 import fs from "fs-extra";
-import getBanner from "../data/banner.mjs";
+import getBanner from "./data/banner.mjs";
 
 
 // 使用 glob 模式匹配文件
