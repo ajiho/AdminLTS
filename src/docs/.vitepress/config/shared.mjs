@@ -8,6 +8,9 @@ export const shared = defineConfig({
   // 标题
   title: 'AdminLTS',
 
+  base: '/docs/',
+  outDir: '../../dist/docs',
+
   rewrites: {
     'zh/:rest*': ':rest*',
   },
