@@ -2,12 +2,14 @@
   "framework": null,
   "buildCommand": "",
   "outputDirectory": "dist",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/error.html",
-      "status": 404,
-      "continue": true
+      "source": "/docs/(.*)",
+      "destination": "/docs/404.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/error.html"
     }
   ]
 }
