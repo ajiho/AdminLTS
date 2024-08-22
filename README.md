@@ -1,7 +1,7 @@
 
 # AdminLTS 🎨
 
-
+[![test](https://github.com/ajiho/AdminLTS/workflows/Test/badge.svg)](https://github.com/ajiho/AdminLTS/actions)
 [![npm](https://img.shields.io/npm/v/adminlts)](https://www.npmjs.com/package/adminlts)
 [![star](https://gitee.com/ajiho/AdminLTS/badge/star.svg?theme=dark)](https://gitee.com/ajiho/AdminLTS)
 [![star](https://img.shields.io/github/stars/ajiho/adminLTS)](https://github.com/ajiho/adminLTS)
@@ -17,7 +17,7 @@ AdminLTS是一个基于[bootstrap(5.1.3+)](https://getbootstrap.com/)风格简�
 
 ## 文档
 
-[adminlts.com](https://adminlts.com)
+[https://www.adminlts.com/docs](https://www.adminlts.com/docs)
 
 ## 变更日志
 

@@ -89,6 +89,9 @@ importers:
       just-throttle:
         specifier: ^4.2.0
         version: 4.2.0
+      medium-zoom:
+        specifier: ^1.1.0
+        version: 1.1.0
       nodemon:
         specifier: ^3.1.4
         version: 3.1.4
@@ -131,6 +134,9 @@ importers:
       vitepress:
         specifier: ^1.3.2
         version: 1.3.3(@algolia/client-search@4.24.0)(@types/node@22.4.1)(postcss@8.4.41)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4)
+      vitepress-plugin-tabs:
+        specifier: ^0.5.0
+        version: 0.5.0(vitepress@1.3.3(@algolia/client-search@4.24.0)(@types/node@22.4.1)(postcss@8.4.41)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4))(vue@3.4.38(typescript@5.5.4))
 
 packages:
 
@@ -2879,6 +2885,9 @@ packages:
   mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
 
+  medium-zoom@1.1.0:
+    resolution: {integrity: sha512-ewyDsp7k4InCUp3jRmwHBRFGyjBimKps/AJLjRSox+2q/2H4p/PNpQf+pwONWlJiOudkBXtbdmVbFjqyybfTmQ==}
+
   memorystream@0.3.1:
     resolution: {integrity: sha512-S3UwM3yj5mtUSEfP41UZmt/0SCoVYUcU1rkXv+BQ5Ig8ndL4sPoJNBUJERafdPb5jjHJGuMgytgKvKIf58XNBw==}
     engines: {node: '>= 0.10.0'}
@@ -3978,6 +3987,12 @@ packages:
     peerDependenciesMeta:
       vite:
         optional: true
+
+  vitepress-plugin-tabs@0.5.0:
+    resolution: {integrity: sha512-SIhFWwGsUkTByfc2b279ray/E0Jt8vDTsM1LiHxmCOBAEMmvzIBZSuYYT1DpdDTiS3SuJieBheJkYnwCq/yD9A==}
+    peerDependencies:
+      vitepress: ^1.0.0-rc.27
+      vue: ^3.3.8
 
   vitepress@1.3.3:
     resolution: {integrity: sha512-6UzEw/wZ41S/CATby7ea7UlffvRER/uekxgN6hbEvSys9ukmLOKsz87Ehq9yOx1Rwiw+Sj97yjpivP8w1sUmng==}
@@ -7241,6 +7256,8 @@ snapshots:
 
   mdn-data@2.0.30: {}
 
+  medium-zoom@1.1.0: {}
+
   memorystream@0.3.1: {}
 
   meow@12.1.1: {}
@@ -8487,6 +8504,11 @@ snapshots:
   vitefu@0.2.5(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)):
     optionalDependencies:
       vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+
+  vitepress-plugin-tabs@0.5.0(vitepress@1.3.3(@algolia/client-search@4.24.0)(@types/node@22.4.1)(postcss@8.4.41)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4))(vue@3.4.38(typescript@5.5.4)):
+    dependencies:
+      vitepress: 1.3.3(@algolia/client-search@4.24.0)(@types/node@22.4.1)(postcss@8.4.41)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4)
+      vue: 3.4.38(typescript@5.5.4)
 
   vitepress@1.3.3(@algolia/client-search@4.24.0)(@types/node@22.4.1)(postcss@8.4.41)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4):
     dependencies:
