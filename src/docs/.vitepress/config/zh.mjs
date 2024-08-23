@@ -4,7 +4,8 @@ import jsonData from '../../versions.json'
 
 export const zh = defineConfig({
   lang: 'zh-Hans',
-  description: '基于高德api的php天气组件',
+  description:
+    'AdminLTS是基于bootstrap(5.1.3+)设计的一个响应式纯静态通用后台管理HTML模板',
 
   themeConfig: {
     nav: nav(),
@@ -70,9 +71,10 @@ function nav() {
     },
     {
       text: '参考',
-      link: '/reference/javascript-modal',
+      link: '/reference/util',
       activeMatch: '/reference/',
     },
+    { text: '演示', link: 'https://www.adminlts.com/' },
     { text: '迁移', link: '/migrate' },
     {
       text: jsonData.currently, //版本号,请勿手动更改
@@ -118,12 +120,25 @@ function sidebarReference() {
     {
       text: '参考',
       items: [
+        { text: 'util', link: 'util' },
         {
           text: 'javascript',
           base: '/reference/javascript-',
           items: [
-            { text: 'Modal', link: 'modal' },
-            { text: 'Loadding', link: 'loadding' },
+            { text: 'fullscreen', link: 'fullscreen' },
+            { text: 'iframe', link: 'iframe' },
+            { text: 'initializer', link: 'initializer' },
+            { text: 'loading', link: 'loading' },
+            { text: 'modal', link: 'modal' },
+            { text: 'navbar-search', link: 'navbar-search' },
+            { text: 'password-toggle', link: 'password-toggle' },
+            { text: 'push-menu', link: 'push-menu' },
+            { text: 'scrollbar', link: 'scrollbar' },
+            { text: 'scrolltop', link: 'scrolltop' },
+            { text: 'tab', link: 'tab' },
+            { text: 'table', link: 'table' },
+            { text: 'toasts', link: 'toasts' },
+            { text: 'treeview', link: 'treeview' },
           ],
         },
       ],

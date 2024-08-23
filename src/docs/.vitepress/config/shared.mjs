@@ -8,6 +8,7 @@ export const shared = defineConfig({
   // 标题
   title: 'AdminLTS',
 
+  // fix:部署时无样式问题
   base: '/docs/',
   outDir: '../../dist/docs',
 

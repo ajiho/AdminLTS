@@ -17,6 +17,9 @@ hero:
       text: 快速开始
       link: /guide/getting-started
     - theme: alt
+      text: 演示
+      link: https://www.adminlts.com/
+    - theme: alt
       text: GitHub
       link: https://github.com/ajiho/adminlts
 

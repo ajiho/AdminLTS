@@ -1,7 +1,7 @@
 import $ from 'jquery'
 
-const NAME = 'Initialize'
-const DATA_KEY = 'lts.initialize'
+const NAME = 'Initializer'
+const DATA_KEY = 'lts.Initializer'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 //类名
@@ -21,7 +21,7 @@ const Default = {
   nextClickDismiss: true,
 }
 
-class Initialize {
+class Initializer {
   #config
   #element
 
@@ -173,11 +173,11 @@ class Initialize {
       }
 
       if (data) {
-        console.warn('You cannot initialize the table more than once!')
+        console.warn('You cannot Initializer the table more than once!')
         return
       }
 
-      data = new Initialize(
+      data = new Initializer(
         $(this),
         $.extend(
           {},
@@ -199,7 +199,7 @@ class Initialize {
  */
 
 $(() => {
-  Initialize.jQueryInterface.call($('body'))
+  Initializer.jQueryInterface.call($('body'))
 })
 
 /**
@@ -207,11 +207,11 @@ $(() => {
  * ====================================================
  */
 
-$.fn[NAME] = Initialize.jQueryInterface
-$.fn[NAME].Constructor = Initialize
+$.fn[NAME] = Initializer.jQueryInterface
+$.fn[NAME].Constructor = Initializer
 $.fn[NAME].noConflict = function () {
   $.fn[NAME] = JQUERY_NO_CONFLICT
-  return Initialize.jQueryInterface
+  return Initializer.jQueryInterface
 }
 
-export default Initialize
+export default Initializer
