@@ -19,13 +19,13 @@ export const zh = defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/ajiho/AdminLTS/edit/master/docs/:path',
+      pattern: 'https://github.com/ajiho/AdminLTS/tree/master/src/docs/:path',
       text: '在 GitHub 上编辑此页面',
     },
 
     footer: {
       message: '基于 MIT 许可发布',
-      copyright: `版权所有 © ${new Date().getFullYear()} ajiho`,
+      copyright: `版权所有 © 2022-${new Date().getFullYear()} ajiho`,
     },
 
     docFooter: {
