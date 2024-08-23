@@ -1,5 +1,9 @@
 # 快速开始
 
+::: warning
+AdminLTS还没有发布,还在积极调试中...
+:::
+
 ## 安装
 
 ### 发行页面(推荐)
@@ -32,7 +36,7 @@ $ composer require ajiho/adminlts
 
 :::
 
-### cdn
+### CDN
 
 ```html
 <link
@@ -41,3 +45,7 @@ $ composer require ajiho/adminlts
 />
 <script src="https://cdn.jsdelivr.net/npm/adminlts/dist/js/adminlts.min.js"></script>
 ```
+
+::: info
+cdn方式只是可以方便访问静态资源,无法获取到具体的页面,反馈bug的时候很有用
+:::
