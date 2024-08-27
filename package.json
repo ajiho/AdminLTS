@@ -50,7 +50,7 @@
     "build": "run-s lint clean:dist && run-p css js assets script && run-s view && run-s bundlewatch docs:build"
   },
   "peerDependencies": {
-    "jquery": "3"
+    "jquery": "3.7.1"
   },
   "repository": {
     "type": "git",
