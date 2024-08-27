@@ -5,8 +5,19 @@
     ":semanticCommits",
     ":semanticCommitTypeAll(chore)"
   ],
+  "enabledManagers": ["npm", "github-actions"],
   "prHourlyLimit": 10,
   "timezone": "Asia/Shanghai",
   "labels": ["dependencies", "renovate"],
-  "ignorePresets": ["node-engines"]
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "matchPackageNames": ["/eslint/", "/stylelint/", "/prettier/"],
+      "labels": ["linting"]
+    },
+    {
+      "matchPackagePatterns": ["node"],
+      "enabled": false
+    }
+  ]
 }
