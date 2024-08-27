@@ -75,8 +75,8 @@ importers:
         specifier: ^15.9.0
         version: 15.9.0
       husky:
-        specifier: ^9.1.4
-        version: 9.1.4
+        specifier: ^9.1.5
+        version: 9.1.5
       jquery:
         specifier: ^3.7.1
         version: 3.7.1
@@ -2523,8 +2523,8 @@ packages:
     resolution: {integrity: sha512-/1/GPCpDUCCYwlERiYjxoczfP0zfvZMU/OWgQPMya9AbAE24vseigFdhAMObpc8Q4lc/kjutPfUddDYyAmejnA==}
     engines: {node: '>=18.18.0'}
 
-  husky@9.1.4:
-    resolution: {integrity: sha512-bho94YyReb4JV7LYWRWxZ/xr6TtOTt8cMfmQ39MQYJ7f/YE268s3GdghGwi+y4zAeqewE5zYLvuhV0M0ijsDEA==}
+  husky@9.1.5:
+    resolution: {integrity: sha512-rowAVRUBfI0b4+niA4SJMhfQwc107VLkBUgEYYAOQAbqDCnra1nYh83hF/MDmhYs9t9n1E3DuKOrs2LYNC+0Ag==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -6941,7 +6941,7 @@ snapshots:
 
   human-signals@8.0.0: {}
 
-  husky@9.1.4: {}
+  husky@9.1.5: {}
 
   ignore-by-default@1.0.1: {}
 
