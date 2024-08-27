@@ -36,8 +36,8 @@ importers:
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.21.0)
       astro:
-        specifier: ^4.14.2
-        version: 4.14.2(@types/node@22.4.1)(rollup@4.21.0)(sass@1.77.8)(terser@5.31.6)(typescript@5.5.4)
+        specifier: ^4.14.5
+        version: 4.14.5(@types/node@22.4.1)(rollup@4.21.0)(sass@1.77.8)(terser@5.31.6)(typescript@5.5.4)
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.41)
@@ -1699,8 +1699,8 @@ packages:
     resolution: {integrity: sha512-8hJaCuqxObShWl2wEsnASqh/DbQ2O+S66m0Q3ctJlzBPEQ4pfGwwama3FCjZO3GDLQsjvn1T0v93Vxyu/+5fGw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  astro@4.14.2:
-    resolution: {integrity: sha512-x9VeYx8Ih6kYKBMVwwsfRzsZVq30+SUhiawnYQ6+46qQnEx3zH05KcH24HsJMe6dVpHD8HdH7CWR5C4o7Q/jeg==}
+  astro@4.14.5:
+    resolution: {integrity: sha512-sv47kPE6FnvyxxHHcCePNwTKpOMKBq0r1m6WZYg6ag9j3yF9m72ov64NFB7c+hAMDUKgsHfVdLKjOOqDC/c+fA==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -5921,7 +5921,7 @@ snapshots:
       - supports-color
       - typescript
 
-  astro@4.14.2(@types/node@22.4.1)(rollup@4.21.0)(sass@1.77.8)(terser@5.31.6)(typescript@5.5.4):
+  astro@4.14.5(@types/node@22.4.1)(rollup@4.21.0)(sass@1.77.8)(terser@5.31.6)(typescript@5.5.4):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.1
