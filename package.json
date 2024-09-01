@@ -101,7 +101,7 @@
     "just-throttle": "^4.2.0",
     "nodemon": "^3.1.4",
     "npm-run-all2": "^6.2.2",
-    "postcss": "^8.4.41",
+    "postcss": "^8.4.42",
     "postcss-cli": "^11.0.0",
     "postcss-sort-media-queries": "^5.2.0",
     "prettier": "^3.3.3",
