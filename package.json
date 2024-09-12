@@ -94,7 +94,7 @@
     "fs-extra": "^11.2.0",
     "glob": "^11.0.0",
     "globals": "^15.9.0",
-    "husky": "^9.1.5",
+    "husky": "^9.1.6",
     "jquery": "^3.7.1",
     "js-beautify": "^1.15.1",
     "just-debounce-it": "^3.2.0",
