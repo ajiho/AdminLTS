@@ -54,8 +54,8 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
       concurrently:
-        specifier: ^9.0.0
-        version: 9.0.0
+        specifier: ^9.0.1
+        version: 9.0.1
       cpy:
         specifier: ^11.1.0
         version: 11.1.0
@@ -1984,8 +1984,8 @@ packages:
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
-  concurrently@9.0.0:
-    resolution: {integrity: sha512-iAxbsDeUkn8E/4+QalT7T3WvlyTfmsoez+19lbbcsxZdOEMfBukd8LA30KYez2UR5xkKFzbcqXIZy5RisCbaxw==}
+  concurrently@9.0.1:
+    resolution: {integrity: sha512-wYKvCd/f54sTXJMSfV6Ln/B8UrfLBKOYa+lzc6CHay3Qek+LorVSBdMVfyewFhRbH0Rbabsk4D+3PL/VjQ5gzg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -6428,7 +6428,7 @@ snapshots:
 
   concat-map@0.0.1: {}
 
-  concurrently@9.0.0:
+  concurrently@9.0.1:
     dependencies:
       chalk: 4.1.2
       lodash: 4.17.21
