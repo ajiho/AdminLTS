@@ -1,0 +1,11 @@
+// 内容区域
+.#{$lts-prefix}page-wrapper {
+  padding-top: var(--#{$lts-prefix}header-height);
+  padding-bottom: var(--#{$lts-prefix}footer-height);
+  padding-left: var(--#{$lts-prefix}sidebar-width);
+  border: 1px solid #0f0;
+  @include transition(all $lts-transition-speed $lts-transition-fn);
+  @include media-breakpoint-down(lg) {
+    padding-left: 0;
+  }
+}

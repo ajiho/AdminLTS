@@ -58,17 +58,17 @@
   .table
   .bs-checkbox
   label
-  input[type='checkbox'] {
+  input[type="checkbox"] {
   @include bs-checkbox();
 }
 
 //  showColumns:true 时 右边工具栏下拉菜单的复选框按钮美化
-.bootstrap-table .keep-open .dropdown-item-marker input[type='checkbox'] {
+.bootstrap-table .keep-open .dropdown-item-marker input[type="checkbox"] {
   @include bs-checkbox();
 }
 
 // showToggle: true 时的复选框按钮美化
-.bootstrap-table .card-views .card-view label input[type='checkbox'] {
+.bootstrap-table .card-views .card-view label input[type="checkbox"] {
   @include bs-checkbox();
 }
 

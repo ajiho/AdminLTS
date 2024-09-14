@@ -1,21 +1,21 @@
-import $ from 'jquery'
+import $ from "jquery"
 
-const NAME = 'NavbarSearch'
-const DATA_KEY = 'lts.navbar-search'
+const NAME = "NavbarSearch"
+const DATA_KEY = "lts.navbar-search"
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 // 搜索事件触发
-const EVENT_SEARCH = 'search.lts.navbar-search'
+const EVENT_SEARCH = "search.lts.navbar-search"
 const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="navbar-search"]'
 
 // 展开时的类名
-const CLASS_NAME_OPEN = 'open'
+const CLASS_NAME_OPEN = "open"
 
 const Default = {
   //关闭时重置
   closeReset: false,
   //触发器
-  trigger: '.lts-search-form-toggler',
+  trigger: ".lts-search-form-toggler",
 }
 
 class NavbarSearch {
@@ -30,7 +30,7 @@ class NavbarSearch {
   // Public
 
   #init() {
-    console.log('init')
+    console.log("init")
   }
 
   // Static
@@ -40,12 +40,12 @@ class NavbarSearch {
     this.each(function () {
       let data = $(this).data(DATA_KEY)
 
-      if (typeof config === 'string') {
+      if (typeof config === "string") {
         if (!data) {
           return
         }
 
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === "undefined") {
           throw new TypeError(`No method named "${config}"`)
         }
 
@@ -55,7 +55,7 @@ class NavbarSearch {
       }
 
       if (data) {
-        console.warn('You cannot initialize the table more than once!')
+        console.warn("You cannot initialize the table more than once!")
         return
       }
 
@@ -64,14 +64,14 @@ class NavbarSearch {
         $.extend(
           {},
           Default,
-          typeof config === 'object' ? config : $(this).data(),
+          typeof config === "object" ? config : $(this).data(),
         ),
       )
       $(this).data(DATA_KEY, data)
       data.#init()
     })
 
-    return typeof value === 'undefined' ? this : value
+    return typeof value === "undefined" ? this : value
   }
 }
 

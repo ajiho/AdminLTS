@@ -1,7 +1,7 @@
-import $ from 'jquery'
+import $ from "jquery"
 
-const NAME = 'PasswordToggle'
-const DATA_KEY = 'lts.passwordtoggle'
+const NAME = "PasswordToggle"
+const DATA_KEY = "lts.passwordtoggle"
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="passwordtoggle"]'
@@ -10,9 +10,9 @@ const Default = {
   //针对的input输入框
   target: null,
   //可见的图标
-  visibleIcon: 'bi bi-eye-slash',
+  visibleIcon: "bi bi-eye-slash",
   //不可见的图标
-  invisibleIcon: 'bi bi-eye',
+  invisibleIcon: "bi bi-eye",
 }
 
 class PasswordToggle {
@@ -37,15 +37,15 @@ class PasswordToggle {
   #setupListeners() {
     const that = this
 
-    that.#element.on('click', function (event) {
+    that.#element.on("click", function (event) {
       const $input = $(that.#config.target)
 
-      if ($input.attr('type') === 'text') {
-        $input.attr('type', 'password')
+      if ($input.attr("type") === "text") {
+        $input.attr("type", "password")
 
         $(this).html(`<i class="${that.#config.visibleIcon}"></i>`)
-      } else if ($input.attr('type') === 'password') {
-        $input.attr('type', 'text')
+      } else if ($input.attr("type") === "password") {
+        $input.attr("type", "text")
         $(this).html(`<i class="${that.#config.invisibleIcon}"></i>`)
       }
     })
@@ -58,12 +58,12 @@ class PasswordToggle {
     this.each(function () {
       let data = $(this).data(DATA_KEY)
 
-      if (typeof config === 'string') {
+      if (typeof config === "string") {
         if (!data) {
           return
         }
 
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === "undefined") {
           throw new TypeError(`No method named "${config}"`)
         }
 
@@ -73,7 +73,7 @@ class PasswordToggle {
       }
 
       if (data) {
-        console.warn('You cannot initialize the table more than once!')
+        console.warn("You cannot initialize the table more than once!")
         return
       }
 
@@ -82,14 +82,14 @@ class PasswordToggle {
         $.extend(
           {},
           Default,
-          typeof config === 'object' ? config : $(this).data(),
+          typeof config === "object" ? config : $(this).data(),
         ),
       )
       $(this).data(DATA_KEY, data)
       data.#init()
     })
 
-    return typeof value === 'undefined' ? this : value
+    return typeof value === "undefined" ? this : value
   }
 }
 

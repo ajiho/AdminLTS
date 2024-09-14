@@ -1,7 +1,7 @@
 export default {
   presets: [
     [
-      '@babel/preset-env',
+      "@babel/preset-env",
       {
         //是否忽略browserslistrc配置
         ignoreBrowserslistConfig: false,
@@ -12,7 +12,7 @@ export default {
         //禁止转换为其他类型的模块
         modules: false,
         //排除对typeof Symbol 表达式转换，因为目前的环境已经支持 Symbol 类型
-        exclude: ['transform-typeof-symbol'],
+        exclude: ["transform-typeof-symbol"],
       },
     ],
   ],

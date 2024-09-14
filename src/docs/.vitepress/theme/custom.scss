@@ -79,16 +79,16 @@
   background-color: transparent;
 }
 
-html[lang='zh-Hans'] {
-  --vp-code-copy-copied-text-content: '已复制';
+html[lang="zh-Hans"] {
+  --vp-code-copy-copied-text-content: "已复制";
 }
 
-html[lang='en-US'] {
-  --vp-code-copy-copied-text-content: 'Copied!';
+html[lang="en-US"] {
+  --vp-code-copy-copied-text-content: "Copied!";
 }
 
 .vp-doc {
-  .demo-preview [class*='language-'] code {
+  .demo-preview [class*="language-"] code {
     color: unset;
     padding: 0;
   }

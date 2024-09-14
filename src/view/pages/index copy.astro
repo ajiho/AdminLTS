@@ -1,0 +1,35 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import Sidebar from "@/components/Sidebar.astro";
+import Footer from "@/components/Footer.astro";
+import Content from "@/components/Content.astro";
+---
+
+<BaseLayout bodyClass={false}>
+  <link
+    rel="stylesheet"
+    slot="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/quicktab@0.0.8/dist/css/quicktab.min.css"
+  />
+  <script
+    is:inline
+    slot="script"
+    src="https://cdn.jsdelivr.net/npm/quicktab@0.0.8/dist/js/quicktab.min.js"
+  ></script>
+
+  <div class="lts-wrapper">
+    <Sidebar />
+    <Header />
+    <div class="lts-page-wrapper">
+      dsadsa
+    </div>
+    <div class="lts-footer d-flex align-items-center justify-content-center">
+      <p class="">Copyright © 2024. All right reserved.</p>
+    </div>
+  </div>
+
+  <script is:inline slot="js">
+    console.log("ww");
+  </script>
+</BaseLayout>

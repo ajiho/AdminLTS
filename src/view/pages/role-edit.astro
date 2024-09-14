@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop bodyClass="bg-body py-3">
@@ -44,7 +44,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
   <script is:inline slot="js">
     //表单验证
-    $('#form')
+    $("#form")
       .formValidation({
         //验证字段
         fields: {
@@ -56,7 +56,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           //...
         },
       })
-      .on('success.form.fv', function (e) {
+      .on("success.form.fv", function (e) {
         //阻止表单提交
         e.preventDefault()
         //得到表单对象
@@ -65,8 +65,8 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
         // 得到序列化数据
         $.ajax({
-          url: '/role/20',
-          method: 'put',
+          url: "/role/20",
+          method: "put",
           data: data,
         }).then((response) => {
           if (response.code === 200) {

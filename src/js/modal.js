@@ -1,5 +1,5 @@
-import $ from 'jquery'
-import Utils from './util'
+import $ from "jquery"
+import Utils from "./util"
 
 const {
   OverlayScrollbars,
@@ -9,25 +9,25 @@ const {
 } = OverlayScrollbarsGlobal
 
 // 全局api的名称
-const NAME = 'modal'
+const NAME = "modal"
 
-const DATA_KEY_OK_NAME = 'ok'
-const DATA_KEY_CANCEL_NAME = 'cancel'
+const DATA_KEY_OK_NAME = "ok"
+const DATA_KEY_CANCEL_NAME = "cancel"
 
 // 默认参数
 const Default = {
   // 惰性打开
   lazyOpen: false,
   //打开的窗口对象
-  window: 'top',
+  window: "top",
   //取消按钮的文本
-  btnCancelText: '取消',
+  btnCancelText: "取消",
   //取消按钮的class
-  btnCancelClass: 'btn-light',
+  btnCancelClass: "btn-light",
   //ok按钮的文本
-  btnOKText: '确定',
+  btnOKText: "确定",
   //ok按钮的class
-  btnOKClass: 'btn-primary',
+  btnOKClass: "btn-primary",
   //确定按钮回调
   ok: function () {
     return false
@@ -39,25 +39,25 @@ const Default = {
     return true
   },
   //标题
-  title: '信息',
+  title: "信息",
   //高度 当为iframe时 高度默认自动计算为屏幕高度最适宜的高度,您可以设置该选项强制覆盖默认行为
   height: undefined,
   //内容
-  body: '',
+  body: "",
   //可以设置底部按钮对齐方式 可选值: start  center  end
-  btnAlign: 'end',
+  btnAlign: "end",
   //可以设置底部按钮的尺寸 可选值: sm lg
-  btnSize: '',
+  btnSize: "",
   //单个按钮的基本模板
   btntpl: {
-    text: '按钮',
-    class: 'btn-light',
+    text: "按钮",
+    class: "btn-light",
     action: null,
   },
   //自定义按钮,默认是null,默认的确定和取消按钮如果不满足需求可以自定义,设置为: 空数组[]模态框的footer部分将会被隐藏
   buttons: null,
   // ".modal"所在div修饰类  比如:fade
-  modalClass: 'fade',
+  modalClass: "fade",
   //垂直居中  undefined/boolean  true:启用垂直居中 false:不启用  如果是IFrame模式，则默认自动垂直居中，您可以设置该选项强制覆盖默认行为
   centered: undefined,
   //可滚动,undefined/boolean  该配置只在在非iframe模式下有效
@@ -94,48 +94,48 @@ const Default = {
 //类名
 const ClassName = {
   //自定义的类用来对一些样式进行设置
-  MODAL: 'lts-modal',
+  MODAL: "lts-modal",
   //居中类
-  MODAL_DIALOG_CENTERED: 'modal-dialog-centered',
+  MODAL_DIALOG_CENTERED: "modal-dialog-centered",
   //全屏类
-  MODAL_FULLSCREEN: 'modal-fullscreen',
+  MODAL_FULLSCREEN: "modal-fullscreen",
   //滚动类
-  MODAL_DIALOG_SCROLLABLE: 'modal-dialog-scrollable',
+  MODAL_DIALOG_SCROLLABLE: "modal-dialog-scrollable",
   //模态框包裹容器(用于美化滚动条的包裹)
-  MODAL_WRAPPER: 'modal-wrapper',
+  MODAL_WRAPPER: "modal-wrapper",
 
   //退出全屏
-  BTN_FULLSCREEN_EXIT: 'btn-fullscreen-exit',
+  BTN_FULLSCREEN_EXIT: "btn-fullscreen-exit",
   //全屏按钮类
-  BTN_FULLSCREEN: 'btn-fullscreen',
+  BTN_FULLSCREEN: "btn-fullscreen",
 }
 
 // 简短选项映射，为了使用的时候更方便
 const Map = {
   size: {
-    sm: 'modal-sm',
-    lg: 'modal-lg',
-    xl: 'modal-xl',
+    sm: "modal-sm",
+    lg: "modal-lg",
+    xl: "modal-xl",
   },
 
   fullscreen: {
-    always: 'modal-fullscreen',
-    sm: 'modal-fullscreen-sm-down',
-    md: 'modal-fullscreen-md-down',
-    lg: 'modal-fullscreen-lg-down',
-    xl: 'modal-fullscreen-xl-down',
-    xxl: 'modal-fullscreen-xxl-down',
+    always: "modal-fullscreen",
+    sm: "modal-fullscreen-sm-down",
+    md: "modal-fullscreen-md-down",
+    lg: "modal-fullscreen-lg-down",
+    xl: "modal-fullscreen-xl-down",
+    xxl: "modal-fullscreen-xxl-down",
   },
 
   btnAlign: {
-    start: 'justify-content-start',
-    center: 'justify-content-center',
-    end: 'justify-content-end',
+    start: "justify-content-start",
+    center: "justify-content-center",
+    end: "justify-content-end",
   },
 
   btnSize: {
-    sm: 'btn-sm',
-    lg: 'btn-lg',
+    sm: "btn-sm",
+    lg: "btn-lg",
   },
 }
 
@@ -258,8 +258,8 @@ class Modal {
       $.loading({
         window: this.#config.window,
         container: this.#modalBodyEl,
-        class: 'bg-body-tertiary',
-        spinner: 'grow',
+        class: "bg-body-tertiary",
+        spinner: "grow",
       }).show()
     }
   }
@@ -271,7 +271,7 @@ class Modal {
     this.#modalWrapper.Scrollbar()
 
     //处理美化遮罩层导致的关闭问题
-    this.#modalWrapper.on('click', function (event) {
+    this.#modalWrapper.on("click", function (event) {
       event.stopPropagation() //阻止冒泡行为
 
       const res = $(event.target).closest(that.#modalDialog)
@@ -279,7 +279,7 @@ class Modal {
       if (!res.length > 0) {
         //下面的代码摘自bootstrap的modal官方的源码
 
-        if (that.#config.modalOptions.backdrop === 'static') {
+        if (that.#config.modalOptions.backdrop === "static") {
           that.#modalInstance._triggerBackdropTransition()
           return
         }
@@ -306,27 +306,27 @@ class Modal {
     html.push(HTML.modalWrapper[0])
 
     //垂直居中,如果是iframe模式那么默认给它开启
-    let centered = ''
+    let centered = ""
     if (this.#config.url !== undefined && this.#config.centered === undefined) {
       centered = ClassName.MODAL_DIALOG_CENTERED
     } else if (this.#config.centered === true) {
       centered = ClassName.MODAL_DIALOG_CENTERED
     }
 
-    let scrollable = ''
+    let scrollable = ""
     //body可滚动，如果iframe模式则默认不给它使用该功能
     if (this.#config.scrollable === true && this.#config.url === undefined) {
       scrollable = ClassName.MODAL_DIALOG_SCROLLABLE
     }
 
-    let size = ''
+    let size = ""
     if (this.#config.url !== undefined && this.#config.size === undefined) {
-      size = Map.size['lg']
+      size = Map.size["lg"]
     } else {
-      size = Map.size[this.#config.size] || ''
+      size = Map.size[this.#config.size] || ""
     }
 
-    let fullscreen = Map.fullscreen[this.#config.fullscreen] || ''
+    let fullscreen = Map.fullscreen[this.#config.fullscreen] || ""
     html.push(
       Utils.sprintf(
         HTML.modalDialog[0],
@@ -377,7 +377,7 @@ class Modal {
     html.push(
       Utils.sprintf(
         HTML.modalBody[0],
-        this.#config.url !== undefined ? 'p-0 overflow-hidden' : '',
+        this.#config.url !== undefined ? "p-0 overflow-hidden" : "",
       ),
     )
 
@@ -390,8 +390,8 @@ class Modal {
     }
     html.push(HTML.modalBody[1])
 
-    let btnAlign = Map.btnAlign[this.#config.btnAlign] || ''
-    let btnSize = Map.btnSize[this.#config.btnSize] || ''
+    let btnAlign = Map.btnAlign[this.#config.btnAlign] || ""
+    let btnSize = Map.btnSize[this.#config.btnSize] || ""
 
     //装填modal-footer部分
     if (
@@ -446,19 +446,19 @@ class Modal {
     html.push(HTML.modal[1])
 
     //转回字符串
-    html = html.join('')
+    html = html.join("")
 
     //加入到body中放着
-    this.#$(html).prependTo('body')
+    this.#$(html).prependTo("body")
 
     //查找元素方便后续的使用,避免重复的查找
     this.#element = this.#$(`#${this.#id}`)
 
-    this.#modalDialog = this.#element.find('.modal-dialog')
-    this.#modalBodyEl = this.#element.find('.modal-body')
-    this.#modalHeader = this.#element.find('.modal-header')
-    this.#modalFooter = this.#element.find('.modal-footer')
-    this.#iframe = this.#modalBodyEl.find('iframe')
+    this.#modalDialog = this.#element.find(".modal-dialog")
+    this.#modalBodyEl = this.#element.find(".modal-body")
+    this.#modalHeader = this.#element.find(".modal-header")
+    this.#modalFooter = this.#element.find(".modal-footer")
+    this.#iframe = this.#modalBodyEl.find("iframe")
     this.#modalWrapper = this.#element.find(`.${ClassName.MODAL_WRAPPER}`)
 
     //动态计算高度
@@ -471,7 +471,7 @@ class Modal {
       //是iframe则动态设置高度
 
       //先动态显示出来
-      this.#element[0].style.display = 'block'
+      this.#element[0].style.display = "block"
       //拿到高度
       let headerHeader =
         this.#modalHeader.length > 0
@@ -482,7 +482,7 @@ class Modal {
           ? this.#modalFooter[0].getBoundingClientRect().height
           : 0
       //立马隐藏
-      this.#element[0].style.display = 'none'
+      this.#element[0].style.display = "none"
 
       //动态设置高度
       this.#modalBodyEl[0].style.height = `calc(100vh - 9rem - ${headerHeader + footerHeader}px)`
@@ -511,7 +511,7 @@ class Modal {
   #bindFullscreenEvents() {
     const that = this
 
-    this.#modalHeader.on('click', '.btn-fullscreen-trigger', function () {
+    this.#modalHeader.on("click", ".btn-fullscreen-trigger", function () {
       if (!that.#modalDialog.hasClass(ClassName.MODAL_FULLSCREEN)) {
         that.#modalDialog.addClass(ClassName.MODAL_FULLSCREEN)
 
@@ -532,7 +532,7 @@ class Modal {
     const that = this
 
     //刷新按钮
-    this.#modalHeader.on('click', '.btn-refresh', function () {
+    this.#modalHeader.on("click", ".btn-refresh", function () {
       that.#showLoading()
 
       //判断是否是跨域的iframe,如果是跨域的就直接移除重新添加
@@ -540,8 +540,8 @@ class Modal {
         that.#iframe[0].contentWindow.location.reload()
       } else {
         that.#iframe.attr(
-          'src',
-          Utils.addSearchParams(that.#iframe.attr('src'), {
+          "src",
+          Utils.addSearchParams(that.#iframe.attr("src"), {
             ___t: Math.random(),
           }),
         )
@@ -551,12 +551,12 @@ class Modal {
 
   #bindMessageEvent() {
     window[this.#config.window].addEventListener(
-      'message',
+      "message",
       (event) => {
         if (event.source === this.#iframe[0].contentWindow) {
           //判断是否来自子页面的
           //调用选项
-          typeof this.#config.onMessage === 'function' &&
+          typeof this.#config.onMessage === "function" &&
             this.#config.onMessage.call(
               this,
               event.data,
@@ -573,37 +573,37 @@ class Modal {
   #bindModalEvents() {
     let that = this
 
-    this.#element[0].addEventListener('hide.bs.modal', function (event) {
-      typeof that.#config.onHide === 'function' &&
+    this.#element[0].addEventListener("hide.bs.modal", function (event) {
+      typeof that.#config.onHide === "function" &&
         that.#config.onHide.call(that, event)
     })
 
     //监听
-    this.#element[0].addEventListener('hidden.bs.modal', function (event) {
-      typeof that.#config.onHidden === 'function' &&
+    this.#element[0].addEventListener("hidden.bs.modal", function (event) {
+      typeof that.#config.onHidden === "function" &&
         that.#config.onHidden.call(that, event)
       that.#destory()
     })
 
     //监听
     this.#element[0].addEventListener(
-      'hidePrevented.bs.modal',
+      "hidePrevented.bs.modal",
       function (event) {
-        typeof that.#config.onHidePrevented === 'function' &&
+        typeof that.#config.onHidePrevented === "function" &&
           that.#config.onHidePrevented.call(that, event)
       },
     )
 
-    this.#element[0].addEventListener('show.bs.modal', function (event) {
-      typeof that.#config.onShow === 'function' &&
+    this.#element[0].addEventListener("show.bs.modal", function (event) {
+      typeof that.#config.onShow === "function" &&
         that.#config.onShow.call(that, event)
     })
 
-    this.#element[0].addEventListener('shown.bs.modal', function (event) {
+    this.#element[0].addEventListener("shown.bs.modal", function (event) {
       //设置src
-      that.#iframe.attr('src', that.#config.url)
+      that.#iframe.attr("src", that.#config.url)
 
-      typeof that.#config.onShown === 'function' &&
+      typeof that.#config.onShown === "function" &&
         that.#config.onShown.call(that, event)
     })
   }
@@ -616,7 +616,7 @@ class Modal {
       return false
     } catch (e) {
       // 如果捕获到 SecurityError 异常，说明是跨域的
-      if (e instanceof DOMException && e.name === 'SecurityError') {
+      if (e instanceof DOMException && e.name === "SecurityError") {
         return true
       } else {
         throw e // 重新抛出不是 SecurityError 的异常
@@ -629,7 +629,7 @@ class Modal {
 
     if (this.#iframe.length > 0) {
       //绑定事件
-      this.#iframe.on('load', function () {
+      this.#iframe.on("load", function () {
         $.loading.hide({
           window: that.#config.window,
           container: that.#modalBodyEl,
@@ -640,14 +640,14 @@ class Modal {
 
   #destory() {
     //销毁滚动条
-    const osBodyInstance = this.#modalBodyEl.Scrollbar('getOsInstance')
+    const osBodyInstance = this.#modalBodyEl.Scrollbar("getOsInstance")
     if (!osBodyInstance.jquery) {
-      $(osBodyInstance.elements().viewport).html('')
+      $(osBodyInstance.elements().viewport).html("")
       osBodyInstance.destroy()
     }
-    const osInstance = this.#modalWrapper.Scrollbar('getOsInstance')
+    const osInstance = this.#modalWrapper.Scrollbar("getOsInstance")
     if (!osInstance.jquery) {
-      $(osInstance.elements().viewport).html('')
+      $(osInstance.elements().viewport).html("")
       osInstance.destroy()
     }
     // 删除dom上存储的数据
@@ -660,8 +660,8 @@ class Modal {
   #bandFooterBtnEvent() {
     let that = this
 
-    this.#modalFooter.on('click', 'button', function () {
-      let key = $(this).attr('data-key')
+    this.#modalFooter.on("click", "button", function () {
+      let key = $(this).attr("data-key")
 
       let contentWindow
 
@@ -670,14 +670,14 @@ class Modal {
       }
 
       if ([DATA_KEY_OK_NAME, DATA_KEY_CANCEL_NAME].includes(key)) {
-        if (key === DATA_KEY_OK_NAME && typeof that.#config.ok === 'function') {
+        if (key === DATA_KEY_OK_NAME && typeof that.#config.ok === "function") {
           //ok 默认不要自动关闭
           that.#config.ok.call(that, contentWindow)
         }
 
         if (
           key === DATA_KEY_CANCEL_NAME &&
-          typeof that.#config.cancel === 'function'
+          typeof that.#config.cancel === "function"
         ) {
           let callret = that.#config.cancel.call(that, contentWindow)
           if (callret !== false) {
@@ -685,7 +685,7 @@ class Modal {
           }
         }
       } else {
-        typeof that.#config.buttons[key]['action'] === 'function' &&
+        typeof that.#config.buttons[key]["action"] === "function" &&
           that.#config.buttons[key].action.call(that, contentWindow)
       }
     })

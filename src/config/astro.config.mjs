@@ -1,6 +1,6 @@
-import { defineConfig } from 'astro/config'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { defineConfig } from "astro/config"
+import path from "node:path"
+import { fileURLToPath } from "node:url"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -9,19 +9,19 @@ export default defineConfig({
   vite: {
     plugins: [
       {
-        name: 'watch-and-reload',
+        name: "watch-and-reload",
         configureServer(server) {
           const reload = (filePath) => {
-            if (filePath.startsWith(path.join(__dirname, '../../.tmp/dist'))) {
+            if (filePath.startsWith(path.join(__dirname, "../../.tmp/dist"))) {
               server.ws.send({
-                type: 'full-reload',
-                path: '*',
+                type: "full-reload",
+                path: "*",
               })
             }
           }
 
-          server.watcher.on('add', (path) => reload(path))
-          server.watcher.on('change', (path) => reload(path))
+          server.watcher.on("add", (path) => reload(path))
+          server.watcher.on("change", (path) => reload(path))
         },
       },
     ],
@@ -29,18 +29,18 @@ export default defineConfig({
   //构建配置
   build: {
     // 示例：在生成过程中生成`page.html`而不是`page/index.html`
-    format: 'file',
+    format: "file",
   },
   // 不要压缩html
   compressHTML: false,
   // 公共静态资源目录
-  publicDir: './.tmp/dist',
+  publicDir: "./.tmp/dist",
   // 源码目录
-  srcDir: './src/view',
+  srcDir: "./src/view",
   // 缓存目录
-  cacheDir: './dist',
+  cacheDir: "./dist",
   //输出目录
-  outDir: './dist',
+  outDir: "./dist",
   //开发工具栏
   devToolbar: {
     enabled: false,

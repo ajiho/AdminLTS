@@ -1,6 +1,6 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
-import globalData from '../../../build/data/index.mjs'
+import BaseLayout from "../layouts/BaseLayout.astro"
+import globalData from "../../../build/data/index.mjs"
 const { year } = globalData
 ---
 
@@ -191,7 +191,7 @@ const { year } = globalData
 
   <script is:inline slot="js">
     //前端表单验证
-    $('#form')
+    $("#form")
       .formValidation({
         fields: {
           keywords: {
@@ -201,7 +201,7 @@ const { year } = globalData
           },
         },
       })
-      .on('success.form.fv', function (e) {
+      .on("success.form.fv", function (e) {
         //阻止表单提交
         e.preventDefault()
         //得到表单对象
@@ -210,8 +210,8 @@ const { year } = globalData
 
         //ajax请求
         $.ajax({
-          url: '/sys/website',
-          method: 'put',
+          url: "/sys/website",
+          method: "put",
           data,
         }).then(function (response) {
           if (response.code === 200) {

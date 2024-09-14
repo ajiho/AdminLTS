@@ -1,7 +1,7 @@
-import $ from 'jquery'
+import $ from "jquery"
 
-const NAME = 'Tab'
-const DATA_KEY = 'lts.tab'
+const NAME = "Tab"
+const DATA_KEY = "lts.tab"
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="tab"]'
@@ -9,7 +9,7 @@ const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="tab"]'
 const EVENT_ACTIVE = `active${EVENT_KEY}`
 
 const Default = {
-  activeClass: 'active',
+  activeClass: "active",
   //配置
   config: {},
 }
@@ -37,7 +37,7 @@ class Tab {
   #setupListeners() {
     const that = this
 
-    that.#element.on('click', function (event) {
+    that.#element.on("click", function (event) {
       //已经激活的就不要再激活了
       if (!$(this).hasClass(that.#config.activeClass)) {
         //移除所有的激活类
@@ -57,12 +57,12 @@ class Tab {
     this.each(function () {
       let data = $(this).data(DATA_KEY)
 
-      if (typeof config === 'string') {
+      if (typeof config === "string") {
         if (!data) {
           return
         }
 
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === "undefined") {
           throw new TypeError(`No method named "${config}"`)
         }
 
@@ -72,7 +72,7 @@ class Tab {
       }
 
       if (data) {
-        console.warn('You cannot initialize the table more than once!')
+        console.warn("You cannot initialize the table more than once!")
         return
       }
 
@@ -81,14 +81,14 @@ class Tab {
         $.extend(
           {},
           Default,
-          typeof config === 'object' ? config : $(this).data(),
+          typeof config === "object" ? config : $(this).data(),
         ),
       )
       $(this).data(DATA_KEY, data)
       data.#init()
     })
 
-    return typeof value === 'undefined' ? this : value
+    return typeof value === "undefined" ? this : value
   }
 }
 

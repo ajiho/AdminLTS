@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop>
@@ -110,7 +110,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
   <script is:inline slot="js">
     //表单验证
-    $('#form')
+    $("#form")
       .formValidation({
         //验证字段
         fields: {
@@ -127,7 +127,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           //...
         },
       })
-      .on('success.form.fv', function (e) {
+      .on("success.form.fv", function (e) {
         //阻止表单提交
         e.preventDefault()
         //得到表单对象
@@ -136,22 +136,22 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
         // 得到序列化数据
         $.ajax({
-          url: '/node/66',
-          method: 'put',
+          url: "/node/66",
+          method: "put",
           data: data,
         }).then((response) => {
           if (response.code === 200) {
             //通知
-            $.toasts.success('修改成功')
+            $.toasts.success("修改成功")
 
             //关闭当前tab
-            const qtab = parent.Quicktab.get('qtab')
+            const qtab = parent.Quicktab.get("qtab")
 
             //跳转的url
-            const url = 'node-list.html'
+            const url = "node-list.html"
 
             const contentWindow = qtab.getTabWindowByUrl(url)
-            contentWindow && contentWindow.$table.Table('refreshSelectPage') //只刷新表格
+            contentWindow && contentWindow.$table.Table("refreshSelectPage") //只刷新表格
 
             //激活页面
             qtab.closeActiveTab().activeTabByUrl(url, true)

@@ -1,4 +1,4 @@
 // 和bootstrap的btn-close按钮保持一直样式,主要用于modal插件
-@include btn-custom($lts-btn-refresh-bg, 'btn-refresh');
-@include btn-custom($lts-btn-fullscreen-bg, 'btn-fullscreen');
-@include btn-custom($lts-btn-fullscreen-exit-bg, 'btn-fullscreen-exit');
+@include btn-custom($lts-btn-refresh-bg, "btn-refresh");
+@include btn-custom($lts-btn-fullscreen-bg, "btn-fullscreen");
+@include btn-custom($lts-btn-fullscreen-exit-bg, "btn-fullscreen-exit");

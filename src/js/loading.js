@@ -1,32 +1,32 @@
-import $ from 'jquery'
-import Utils from './util'
+import $ from "jquery"
+import Utils from "./util"
 
 // 全局api的名称
-const NAME = 'loading'
+const NAME = "loading"
 
 //类名
 const ClassName = {
-  loading: 'lts-loading',
+  loading: "lts-loading",
   //显示时的激活类
-  active: 'active',
+  active: "active",
 }
 
 const Map = {
   spinner: {
-    border: 'spinner-border',
-    grow: 'spinner-grow',
+    border: "spinner-border",
+    grow: "spinner-grow",
   },
 
   //主题色
   spinnerColorScheme: {
-    primary: 'text-primary',
-    secondary: 'text-secondary',
-    success: 'text-success',
-    danger: 'text-danger',
-    warning: 'text-warning',
-    info: 'text-info',
-    dark: 'text-dark',
-    light: 'text-light',
+    primary: "text-primary",
+    secondary: "text-secondary",
+    success: "text-success",
+    danger: "text-danger",
+    warning: "text-warning",
+    info: "text-info",
+    dark: "text-dark",
+    light: "text-light",
   },
 }
 
@@ -43,19 +43,19 @@ const HTML = {
 //默认参数
 const Default = {
   //打开的窗口对象
-  window: 'top',
+  window: "top",
   //容器,选择器，element。jQuery对象
-  container: 'body',
+  container: "body",
   // 容器的定位
-  containerPosition: 'relative',
+  containerPosition: "relative",
   //情景模式 undefined/string 可用值:primary success info  warning danger light dark
-  type: '',
+  type: "",
   //旋转器 grow:实心圈  border:空心圈
-  spinner: 'border',
+  spinner: "border",
   //尺寸 可选值 'sm' | 'style="width: 3rem; height: 3rem;"'
-  size: '',
+  size: "",
   //给loading层附加的样式类
-  class: '',
+  class: "",
   //是否有淡出效果
   fadeOut: true,
 }
@@ -83,12 +83,12 @@ class Loading {
     //事件委托
     if (this.#config.fadeOut === true) {
       this.#$(window[this.#config.window].document).off(
-        'transitionend',
+        "transitionend",
         `.${ClassName.loading}`,
         this.#transitionendHandle,
       )
       this.#$(window[this.#config.window].document).on(
-        'transitionend',
+        "transitionend",
         `.${ClassName.loading}`,
         this.#transitionendHandle,
       )
@@ -104,14 +104,14 @@ class Loading {
 
     html.push(HTML.container[0])
 
-    let spinner = Map.spinner[this.#config.spinner] || 'spinner-border'
-    let color = Map.spinnerColorScheme[this.#config.type] || ''
-    let size = this.#config.size === 'sm' ? spinner + '-sm' : ''
-    let styleSize = this.#config.size !== 'sm' ? this.#config.size : ''
+    let spinner = Map.spinner[this.#config.spinner] || "spinner-border"
+    let color = Map.spinnerColorScheme[this.#config.type] || ""
+    let size = this.#config.size === "sm" ? spinner + "-sm" : ""
+    let styleSize = this.#config.size !== "sm" ? this.#config.size : ""
     html.push(Utils.sprintf(HTML.spinner, spinner, color, size, styleSize))
 
     html.push(HTML.container[1])
-    html = html.join('')
+    html = html.join("")
 
     //先移除
     this.#$(this.#config.container).find(`.${ClassName.loading}`).remove()
@@ -125,14 +125,14 @@ class Loading {
       position: this.#config.containerPosition,
     })
 
-    if (this.#config.container !== 'body') {
+    if (this.#config.container !== "body") {
       //动态设置样式
       this.#$loading.css({
-        position: 'absolute',
+        position: "absolute",
       })
     }
 
-    this.#config.class !== '' && this.#$loading.addClass(this.#config.class)
+    this.#config.class !== "" && this.#$loading.addClass(this.#config.class)
   }
 
   show() {
@@ -142,13 +142,13 @@ class Loading {
   hide(options) {
     let config = Object.assign(
       this.#config,
-      typeof options === 'object' ? options : {},
+      typeof options === "object" ? options : {},
     )
     const $loading = window[config.window]
       .$(config.container)
       .find(`.${ClassName.loading}`)
     if (this.#config.fadeOut === true) {
-      $loading.addClass('fade-out')
+      $loading.addClass("fade-out")
     } else {
       $loading.remove()
     }
@@ -162,7 +162,7 @@ class Loading {
 let loadingInstance
 $[NAME] = function (options) {
   loadingInstance = new Loading(
-    $.extend({}, $[NAME].default, typeof options === 'object' ? options : {}),
+    $.extend({}, $[NAME].default, typeof options === "object" ? options : {}),
   )
   return loadingInstance
 }

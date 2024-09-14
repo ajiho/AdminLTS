@@ -1,7 +1,7 @@
-import $ from 'jquery'
+import $ from "jquery"
 
-const NAME = 'ScrollTop'
-const DATA_KEY = 'lts.scrolltop'
+const NAME = "ScrollTop"
+const DATA_KEY = "lts.scrolltop"
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="scrolltop"]'
@@ -10,7 +10,7 @@ const EVENT_SCROLL_BEFORE = `scroll.before${EVENT_KEY}`
 const EVENT_SCROLL_COMPLETE = `scroll.complete${EVENT_KEY}`
 
 // 类名,美化的
-const CLASS_NAME_BACKTOTOP = 'lts-back-to-top'
+const CLASS_NAME_BACKTOTOP = "lts-back-to-top"
 
 const Default = {
   //距离顶部的距离
@@ -18,9 +18,9 @@ const Default = {
   //滚动速度
   speed: 600,
   //添加到那个容器中
-  prependTo: 'body',
+  prependTo: "body",
   //触发元素
-  triggerElement: '.lts-back-to-top',
+  triggerElement: ".lts-back-to-top",
 }
 
 class Scrolltop {
@@ -41,7 +41,7 @@ class Scrolltop {
     const that = this
 
     //回到顶部,向下滚动300px渐显回到顶部按钮
-    $(window).on('scroll', function () {
+    $(window).on("scroll", function () {
       // 先找到这个滚动到顶部的元素
       const $backtotop = $(`.${CLASS_NAME_BACKTOTOP}`)
 
@@ -57,10 +57,10 @@ class Scrolltop {
     })
 
     //回到顶部事件监听
-    $(document).on('click', that.#config.triggerElement, function () {
+    $(document).on("click", that.#config.triggerElement, function () {
       $(that.#element).trigger($.Event(EVENT_SCROLL_BEFORE))
 
-      $('html').animate(
+      $("html").animate(
         {
           scrollTop: 0,
         },
@@ -79,12 +79,12 @@ class Scrolltop {
     this.each(function () {
       let data = $(this).data(DATA_KEY)
 
-      if (typeof config === 'string') {
+      if (typeof config === "string") {
         if (!data) {
           return
         }
 
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === "undefined") {
           throw new TypeError(`No method named "${config}"`)
         }
 
@@ -94,7 +94,7 @@ class Scrolltop {
       }
 
       if (data) {
-        console.warn('You cannot initialize the table more than once!')
+        console.warn("You cannot initialize the table more than once!")
         return
       }
 
@@ -103,14 +103,14 @@ class Scrolltop {
         $.extend(
           {},
           Default,
-          typeof config === 'object' ? config : $(this).data(),
+          typeof config === "object" ? config : $(this).data(),
         ),
       )
       $(this).data(DATA_KEY, data)
       data.#init()
     })
 
-    return typeof value === 'undefined' ? this : value
+    return typeof value === "undefined" ? this : value
   }
 }
 

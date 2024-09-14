@@ -1,19 +1,19 @@
 ---
-import globalData from '../../../build/data/index.mjs'
+import globalData from "../../../build/data/index.mjs";
 
 const {
   childpage = false,
   backtotop = false,
-  bodyClass = 'bg-body-tertiary py-3',
-} = Astro.props
+  bodyClass = "bg-body-tertiary py-3",
+} = Astro.props;
 
-const { keywords, description, author, title } = globalData
+const { keywords, description, author, title } = globalData;
 ---
 
 <!doctype html>
 <html
   lang="zh"
-  data-lts-toggle={backtotop ? 'backtotop' : false}
+  data-lts-toggle={backtotop ? "backtotop" : false}
   data-overlayscrollbars-initialize={childpage}
 >
   <head>
@@ -66,9 +66,11 @@ const { keywords, description, author, title } = globalData
     <slot name="css" />
   </head>
 
+
+
   <body
     class={bodyClass}
-    data-lts-toggle={childpage ? 'scrollbar' : false}
+    data-lts-toggle={childpage ? "scrollbar" : false}
     data-overlayscrollbars-initialize={childpage}
   >
     <slot />

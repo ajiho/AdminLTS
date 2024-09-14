@@ -23,10 +23,10 @@
 
       &::after {
         font-family: bootstrap-icons, serif;
-        content: '\f285';
+        content: "\f285";
 
         @include media-breakpoint-down(lg) {
-          content: '\F284';
+          content: "\F284";
         }
       }
 
@@ -48,7 +48,7 @@
 
         .#{$lts-prefix}chevron-toggle::after {
           font-family: bootstrap-icons, serif;
-          content: '\f285';
+          content: "\f285";
         }
       }
     }
@@ -72,7 +72,7 @@
     }
 
     .#{$lts-prefix}chevron-toggle::after {
-      content: '\F284';
+      content: "\F284";
     }
   }
 }

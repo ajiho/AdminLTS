@@ -1,12 +1,12 @@
 export default {
   template(tpl = {}, count = 1) {
     const retData = {
-      msg: 'success',
+      msg: "success",
       code: 200,
     }
 
-    if (typeof tpl === 'function') {
-      retData['data'] = tpl()
+    if (typeof tpl === "function") {
+      retData["data"] = tpl()
     } else {
       retData[`data|${count}`] = [tpl]
     }
@@ -18,7 +18,7 @@ export default {
     id = 1,
     parentId = 0,
     result = [],
-    childrenKey = 'children',
+    childrenKey = "children",
   ) {
     nodeList.forEach((node) => {
       const newNode = {

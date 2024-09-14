@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop>
@@ -213,7 +213,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
      * 3.客户端分页所需要的格式和不做分页时是一样的 都是 :[{},{}]
      * 4.服务端分页返回的格式为：{rows:[{},{}],total:200}
      */
-    var $table = $('#table')
+    var $table = $("#table")
     // 列配置
     const columns = [
       {
@@ -223,83 +223,83 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       },
       {
         //列的标题
-        title: 'ID',
+        title: "ID",
         //列的字段
-        field: 'id',
+        field: "id",
         // 对齐方式:https://bootstrap-table.com/docs/api/column-options/#align
-        align: 'center',
+        align: "center",
         // 是否作为排序列
         sortable: true,
         // 当列名称与实际名称不一致时可用
-        sortName: 'sortId',
+        sortName: "sortId",
         //设置false可以让该列不出现在showColumns:true时右侧工具栏按钮弹出的下拉菜单列表中
         switchable: false,
         // 列的宽度
         width: 8,
         // 宽度单位
-        widthUnit: 'rem',
+        widthUnit: "rem",
       },
       {
-        title: '用户名',
-        field: 'username',
-        align: 'center',
+        title: "用户名",
+        field: "username",
+        align: "center",
         formatter: formatUsername,
       },
       {
-        title: '姓名',
-        field: 'name',
-        align: 'center',
+        title: "姓名",
+        field: "name",
+        align: "center",
       },
       {
-        title: '角色',
-        field: 'role_id',
-        align: 'center',
+        title: "角色",
+        field: "role_id",
+        align: "center",
         formatter: formatRole,
       },
       {
-        title: '性别',
-        field: 'gender',
-        align: 'center',
+        title: "性别",
+        field: "gender",
+        align: "center",
         formatter: formatGender,
       },
       {
-        title: '手机',
-        field: 'phone',
-        align: 'center',
+        title: "手机",
+        field: "phone",
+        align: "center",
       },
       {
-        title: '邮箱',
-        field: 'email',
-        align: 'center',
+        title: "邮箱",
+        field: "email",
+        align: "center",
       },
       {
-        title: '加入时间',
-        field: 'create_at',
-        align: 'center',
+        title: "加入时间",
+        field: "create_at",
+        align: "center",
       },
       {
-        title: '状态',
-        field: 'status',
-        align: 'center',
+        title: "状态",
+        field: "status",
+        align: "center",
         formatter: formatStatus,
         events: {
-          'click .form-switch': function (event, value, row, index) {
+          "click .form-switch": function (event, value, row, index) {
             event.preventDefault()
 
-            const status = value === 0 ? '启用' : '停用'
+            const status = value === 0 ? "启用" : "停用"
             $.modal({
               body: `确定要${status}[${row.name}]吗?`,
               ok: function () {
                 //发送ajax改变用户的状态
                 $.ajax({
                   url: `/user/ChangeStatus/${row.id}`,
-                  method: 'get',
+                  method: "get",
                 }).then((response) => {
                   if (response.code === 200) {
                     //刷新表格
-                    $table.Table('refresh')
+                    $table.Table("refresh")
                     //给出通知
-                    $.toasts.success('已' + status)
+                    $.toasts.success("已" + status)
                     //关闭modal
                     this.hide()
                   }
@@ -310,12 +310,12 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         },
       },
       {
-        title: '操作',
-        align: 'center',
+        title: "操作",
+        align: "center",
         formatter: formatAction,
         events: {
-          'click .btn-reser': function (event, value, row, index) {
-            console.log('werw')
+          "click .btn-reser": function (event, value, row, index) {
+            console.log("werw")
           },
         },
       },
@@ -323,11 +323,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
     $table.Table({
       // 请求方法
-      method: 'get',
+      method: "get",
       // 请求地址
-      url: '/user',
+      url: "/user",
       // 请求得到的数据类型
-      dataType: 'json',
+      dataType: "json",
       // 响应处理,如果服务端返回的数据不是指定的格式，可以在前端进行处理
       responseHandler: function (res) {
         return res.data
@@ -346,11 +346,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           // 排序方式 'asc' 'desc'
           sortOrder: params.order,
           //关键词
-          keywords: $('input[name=keyword]').val(),
+          keywords: $("input[name=keyword]").val(),
           //开始时间
-          beginTime: $('input[name=beginTime]').val(),
+          beginTime: $("input[name=beginTime]").val(),
           //结束时间
-          endTime: $('input[name=endTime]').val(),
+          endTime: $("input[name=endTime]").val(),
         }
       },
       columns,
@@ -358,7 +358,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
     //value:当前数据 row:当前整行数据
     function formatGender(value, row, index, field) {
-      return value === true ? '先生' : '女士'
+      return value === true ? "先生" : "女士"
     }
 
     function formatUsername(value, row, index, field) {
@@ -368,17 +368,17 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     function formatRole(value, row, index, field) {
       switch (value) {
         case 1:
-          return '经理'
+          return "经理"
         case 2:
-          return '组长'
+          return "组长"
         case 3:
-          return '研发组长'
+          return "研发组长"
         case 4:
-          return '客服'
+          return "客服"
         case 5:
-          return '文章审核员'
+          return "文章审核员"
         case 6:
-          return '销售'
+          return "销售"
         default:
           return '<span class="badge text-bg-danger">未分配</span>'
       }
@@ -412,29 +412,29 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     }
 
     //搜索
-    $table.Table('search', '.lts-search-btn')
+    $table.Table("search", ".lts-search-btn")
     //重置
-    $table.Table('reset', '.lts-reset-btn', '.lts-search-area form')
+    $table.Table("reset", ".lts-reset-btn", ".lts-search-area form")
     //批量删除
-    $table.Table('batch', '.lts-batch-btn', function (ids, selectedRows) {
+    $table.Table("batch", ".lts-batch-btn", function (ids, selectedRows) {
       $.modal({
         body: `确定要删除所选${ids.length}个用户吗?`,
         ok: function () {
           //发起ajax请求
           $.ajax({
-            url: '/user/delall',
-            method: 'delete',
+            url: "/user/delall",
+            method: "delete",
             data: {
               id: ids,
             },
           }).then((response) => {
             if (response.code === 200) {
-              $table.Table('refreshSelectPage')
+              $table.Table("refreshSelectPage")
 
               //这里的this表示的是当前modal的实例对象
               this.hide()
 
-              $.toasts.success('已批量删除')
+              $.toasts.success("已批量删除")
             }
           })
         },
@@ -446,12 +446,12 @@ import BaseLayout from '../layouts/BaseLayout.astro'
      * 这里是es6语法,如果看不懂的去补一下这个知识
      */
     $table.Table(
-      'batch',
-      '.lts-edit-btn',
+      "batch",
+      ".lts-edit-btn",
       function (ids, selectedRows) {
-        parent.$('[data-lts-toggle="iframe"]').IFrame('addTab', {
+        parent.$('[data-lts-toggle="iframe"]').IFrame("addTab", {
           url: `user-edit.html?id=${ids[0]}`,
-          title: '修改用户',
+          title: "修改用户",
         })
       },
       (selectedRows) => selectedRows.length === 1,
@@ -459,8 +459,8 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
     // 删除按钮
     $table.Table(
-      'batch',
-      '.lts-del-btn',
+      "batch",
+      ".lts-del-btn",
       function (ids, selectedRows) {
         del(selectedRows[0])
       },
@@ -475,16 +475,16 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           //发起ajax请求
           $.ajax({
             url: `/user/${row.id}`,
-            method: 'delete',
+            method: "delete",
           }).then((response) => {
             if (response.code === 200) {
               //刷新表格
-              $table.Table('refreshSelectPage')
+              $table.Table("refreshSelectPage")
 
               //这里的this表示的是当前modal的实例对象
               this.hide()
 
-              $.toasts.success('删除成功')
+              $.toasts.success("删除成功")
             }
           })
         },
@@ -494,41 +494,41 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     /* 用户管理-编辑 */
     function edit(userId) {
       //也可以通过这种方式增加Tab
-      parent.Quicktab.get('qtab').addTab({
+      parent.Quicktab.get("qtab").addTab({
         url: `user-edit.html?id=${userId}`,
-        title: '修改用户',
+        title: "修改用户",
       })
     }
 
     /* 用户管理-重置密码 */
     function resetPwd(userId) {
       $.modal({
-        title: '重置密码',
-        url: 'user-repassword.html',
-        height: '150px',
+        title: "重置密码",
+        url: "user-repassword.html",
+        height: "150px",
         ok: function (contentWindow) {
           // 调用子页面的表单验证
-          contentWindow.$('#form').data('formValidation').validate()
+          contentWindow.$("#form").data("formValidation").validate()
         },
         //监听来自子页面的消息
         onMessage: function (data) {
           //通知
-          $.toasts.success('密码重置成功')
+          $.toasts.success("密码重置成功")
 
           //关闭模态框
           this.hide()
 
           //刷新表格
-          $table.Table('refreshSelectPage')
+          $table.Table("refreshSelectPage")
         },
       })
     }
 
     /* 用户管理-分配角色 */
     function authRole(userId) {
-      parent.$('[data-lts-toggle="iframe"]').IFrame('addTab', {
+      parent.$('[data-lts-toggle="iframe"]').IFrame("addTab", {
         url: `user-role.html?id=${userId}`,
-        title: '用户分配角色',
+        title: "用户分配角色",
       })
     }
 
@@ -540,14 +540,14 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     const tempusDominusConfig = {
       //本土化的一些设置
       localization: {
-        format: 'yyyy-MM-dd HH:mm:ss',
+        format: "yyyy-MM-dd HH:mm:ss",
         //是否使用24小时制,比如3.15分会变成15.15
-        hourCycle: 'h24',
+        hourCycle: "h24",
       },
       //布局控制
       display: {
         //视图模式(选择年份视图最先开始)
-        viewMode: 'calendar',
+        viewMode: "calendar",
         components: {
           //是否开启日历，false:则是时刻模式
           calendar: true,
@@ -575,11 +575,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       },
     }
     const td1 = new tempusDominus.TempusDominus(
-      document.getElementById('beginTime'),
+      document.getElementById("beginTime"),
       tempusDominusConfig,
     )
     const td2 = new tempusDominus.TempusDominus(
-      document.getElementById('endTime'),
+      document.getElementById("endTime"),
       tempusDominusConfig,
     )
     //事件监听设定起始时间为td2实例的选中时间

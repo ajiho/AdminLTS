@@ -1,18 +1,18 @@
-import $ from 'jquery'
+import $ from "jquery"
 
-import Utils from './util'
+import Utils from "./util"
 
-const NAME = 'toasts'
+const NAME = "toasts"
 
 const ClassName = {
   //白色按钮
-  BTN_CLOSE_WHITE: 'btn-close-white',
+  BTN_CLOSE_WHITE: "btn-close-white",
   //容器的类名
-  TOAST_CONTAINER: 'toast-container',
+  TOAST_CONTAINER: "toast-container",
   //动画暂停类
-  TOAST_PAUSE: 'lts-toast-pause',
+  TOAST_PAUSE: "lts-toast-pause",
   //body关闭按钮的修饰类
-  TOAST_BODY_BTN_CLASS: 'me-2 m-auto',
+  TOAST_BODY_BTN_CLASS: "me-2 m-auto",
 }
 const ICONS = {
   success: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-success me-2" viewBox="0 0 16 16">
@@ -43,7 +43,7 @@ const HTML = {
   //吐司
   toast: [
     `<div class="toast %s border-0  overflow-hidden" id="%s"  role="alert" aria-live="assertive" aria-atomic="true">`,
-    '</div>',
+    "</div>",
   ],
 
   //身体的容器
@@ -61,7 +61,7 @@ const HTML = {
 
   headerTitle: `<strong class="me-auto">%s</strong>`,
 
-  headerSubTitle: '<small>%s</small>',
+  headerSubTitle: "<small>%s</small>",
 
   progress: `<div style="height: 4px" class="progress" role="progressbar">
          <div class="progress-bar progress-bar-striped progress-bar-animated %s"
@@ -70,59 +70,59 @@ const HTML = {
 
 // 需要白色关闭按钮的情景
 const needWhiteCloseBtnType = [
-  'primary',
-  'secondary',
-  'success',
-  'danger',
-  'dark',
+  "primary",
+  "secondary",
+  "success",
+  "danger",
+  "dark",
 ]
 
 const Map = {
   //主题色
   toastColorScheme: {
-    primary: 'text-bg-primary',
-    secondary: 'text-bg-secondary',
-    success: 'text-bg-success',
-    danger: 'text-bg-danger',
-    warning: 'text-bg-warning',
-    info: 'text-bg-info',
-    dark: 'text-bg-dark',
-    light: 'text-bg-light',
+    primary: "text-bg-primary",
+    secondary: "text-bg-secondary",
+    success: "text-bg-success",
+    danger: "text-bg-danger",
+    warning: "text-bg-warning",
+    info: "text-bg-info",
+    dark: "text-bg-dark",
+    light: "text-bg-light",
   },
 
   //主题色
   toastHeaderColorScheme: {
-    primary: 'border-bottom border-primary-subtle text-bg-primary',
-    secondary: 'border-bottom border-secondary-subtle text-bg-secondary',
-    success: 'border-bottom border-success-subtle text-bg-success',
-    danger: 'border-bottom border-danger-subtle text-bg-danger',
-    warning: 'border-bottom border-warning-subtle text-bg-warning',
-    info: 'border-bottom border-info-subtle text-bg-info',
-    dark: 'border-bottom border-dark-subtle text-bg-dark',
-    light: 'border-bottom border-light-subtle text-bg-light',
+    primary: "border-bottom border-primary-subtle text-bg-primary",
+    secondary: "border-bottom border-secondary-subtle text-bg-secondary",
+    success: "border-bottom border-success-subtle text-bg-success",
+    danger: "border-bottom border-danger-subtle text-bg-danger",
+    warning: "border-bottom border-warning-subtle text-bg-warning",
+    info: "border-bottom border-info-subtle text-bg-info",
+    dark: "border-bottom border-dark-subtle text-bg-dark",
+    light: "border-bottom border-light-subtle text-bg-light",
   },
 
   progressColorScheme: {
-    primary: 'bg-primary',
-    secondary: 'bg-secondary',
-    success: 'bg-success',
-    danger: 'bg-danger',
-    warning: 'bg-warning',
-    info: 'bg-info',
-    dark: 'bg-dark',
-    light: 'bg-light',
+    primary: "bg-primary",
+    secondary: "bg-secondary",
+    success: "bg-success",
+    danger: "bg-danger",
+    warning: "bg-warning",
+    info: "bg-info",
+    dark: "bg-dark",
+    light: "bg-light",
   },
 
   placement: {
-    'top-left': 'top-0 start-0',
-    'top-center': 'top-0 start-50 translate-middle-x',
-    'top-right': 'top-0 end-0',
-    'middle-left': 'top-50 start-0 translate-middle-y',
-    'middle-center': 'top-50 start-50 translate-middle',
-    'middle-right': 'top-50 end-0 translate-middle-y',
-    'bottom-left': 'bottom-0 start-0',
-    'bottom-center': 'bottom-0 start-50 translate-middle-x',
-    'bottom-right': 'bottom-0 end-0',
+    "top-left": "top-0 start-0",
+    "top-center": "top-0 start-50 translate-middle-x",
+    "top-right": "top-0 end-0",
+    "middle-left": "top-50 start-0 translate-middle-y",
+    "middle-center": "top-50 start-50 translate-middle",
+    "middle-right": "top-50 end-0 translate-middle-y",
+    "bottom-left": "bottom-0 start-0",
+    "bottom-center": "bottom-0 start-50 translate-middle-x",
+    "bottom-right": "bottom-0 end-0",
   },
 }
 
@@ -131,23 +131,23 @@ const Default = {
   // 惰性打开
   lazyOpen: false,
   //打开的窗口对象
-  window: 'top',
+  window: "top",
   //鼠标移入进度条暂停
   hoverProgressPause: true,
   //是否添加关闭按钮,如果标题 title选项被定义，那么该关闭按钮则是头部的关闭按钮，否则则是body的关闭按钮
   btnClose: true,
   //标题
-  title: '',
+  title: "",
   //图片，title不为空时有效
-  image: '',
+  image: "",
   //图片的高度,title不为空时有效
-  imageHeight: '25px',
+  imageHeight: "25px",
   //图片的提示 title不为空时有效
-  imageAlt: '',
+  imageAlt: "",
   //副标题 title不为空时有效
-  subTitle: '',
+  subTitle: "",
   //身体部分的内容
-  body: '',
+  body: "",
   //index
   zIndex: 1081,
   //将过渡应用到吐司
@@ -157,7 +157,7 @@ const Default = {
   //延迟隐藏吐司（毫秒）
   delay: 5000,
   //方位 可用值：top-left,top-center, top-left, middle-left,middle-center,middle-right,bottom-left,bottom-center,bottom-right
-  placement: 'top-right',
+  placement: "top-right",
   //情景模式 undefined/string 可用值:primary success info  warning danger light dark
   type: undefined,
   //事件
@@ -217,23 +217,23 @@ class Toasts {
       this.#progressEvents()
     }
 
-    this.#toast[0].addEventListener('show.bs.toast', () => {
-      typeof this.#config.onShow === 'function' &&
+    this.#toast[0].addEventListener("show.bs.toast", () => {
+      typeof this.#config.onShow === "function" &&
         this.#config.onShow.call(this)
     })
 
-    this.#toast[0].addEventListener('shown.bs.toast', () => {
-      typeof this.#config.onShown === 'function' &&
+    this.#toast[0].addEventListener("shown.bs.toast", () => {
+      typeof this.#config.onShown === "function" &&
         this.#config.onShown.call(this)
     })
 
-    this.#toast[0].addEventListener('hide.bs.toast', () => {
-      typeof this.#config.onHide === 'function' &&
+    this.#toast[0].addEventListener("hide.bs.toast", () => {
+      typeof this.#config.onHide === "function" &&
         this.#config.onHide.call(this)
     })
 
-    this.#toast[0].addEventListener('hidden.bs.toast', () => {
-      typeof this.#config.onHidden === 'function' &&
+    this.#toast[0].addEventListener("hidden.bs.toast", () => {
+      typeof this.#config.onHidden === "function" &&
         this.#config.onHidden.call(this)
       //直接删除该toast
       this.#toast.remove()
@@ -260,7 +260,7 @@ class Toasts {
     }
 
     //监听滚动条读条动画完毕事件
-    this.#toast.on('animationend', '.progress-bar', function (event) {
+    this.#toast.on("animationend", ".progress-bar", function (event) {
       if (event.target === event.currentTarget) {
         //手动隐藏
         that.hide()
@@ -275,7 +275,7 @@ class Toasts {
     html.push(
       Utils.sprintf(
         HTML.toast[0],
-        Map.toastColorScheme[this.#config.type] || '',
+        Map.toastColorScheme[this.#config.type] || "",
         this.#id,
       ),
     )
@@ -283,17 +283,17 @@ class Toasts {
     //按钮类,确定哪些情景类型需要使用白色的按钮类
     const btnClass = needWhiteCloseBtnType.includes(this.#config.type)
       ? ClassName.BTN_CLOSE_WHITE
-      : ''
+      : ""
 
-    if (this.#config.title !== '') {
+    if (this.#config.title !== "") {
       //标题不为空
       //如果标题被设置了
 
-      let toastHeaderColor = Map.toastHeaderColorScheme[this.#config.type] || ''
+      let toastHeaderColor = Map.toastHeaderColorScheme[this.#config.type] || ""
 
       html.push(Utils.sprintf(HTML.toastHeader[0], toastHeaderColor)) //头部
 
-      if (this.#config.image !== '') {
+      if (this.#config.image !== "") {
         //有传递图标
 
         //判断是否是svg字符串
@@ -314,7 +314,7 @@ class Toasts {
       html.push(Utils.sprintf(HTML.headerSubTitle, this.#config.subTitle))
 
       if (this.#config.btnClose === true) {
-        html.push(Utils.sprintf(HTML.btnClose, btnClass, ''))
+        html.push(Utils.sprintf(HTML.btnClose, btnClass, ""))
       }
       //中间添加内容
       html.push(HTML.toastHeader[1])
@@ -330,7 +330,7 @@ class Toasts {
       }
 
       let body = this.#config.body
-      if (this.#config.image !== '') {
+      if (this.#config.image !== "") {
         //有传递图标
 
         //判断是否是svg字符串
@@ -372,7 +372,7 @@ class Toasts {
       html.push(
         Utils.sprintf(
           HTML.progress,
-          Map.progressColorScheme[this.#config.type] || 'bg-light',
+          Map.progressColorScheme[this.#config.type] || "bg-light",
           this.#config.delay,
         ),
       )
@@ -380,28 +380,28 @@ class Toasts {
 
     html.push(HTML.toast[1])
 
-    return html.join('')
+    return html.join("")
   }
 
   #buildContainer() {
-    let placement = Map.placement[this.#config.placement] || 'top-right'
+    let placement = Map.placement[this.#config.placement] || "top-right"
 
     let html = [
       Utils.sprintf(HTML.container[0], placement),
       HTML.container[1],
-    ].join('')
+    ].join("")
 
     //判断不同方向的容器是否存在，不存在就创建并添加到body中
-    const containerSelector = `.${ClassName.TOAST_CONTAINER}.${placement.replace(/ /g, '.')}`
+    const containerSelector = `.${ClassName.TOAST_CONTAINER}.${placement.replace(/ /g, ".")}`
 
     if (this.#$(containerSelector).length === 0) {
-      this.#$(html).appendTo('body')
+      this.#$(html).appendTo("body")
     }
 
     this.#container = this.#$(containerSelector)
 
     this.#container.append(this.#buildToast())
-    this.#toast = this.#container.find('#' + this.#id)
+    this.#toast = this.#container.find("#" + this.#id)
   }
 
   show() {
@@ -419,28 +419,28 @@ class Toasts {
  */
 $[NAME] = function (options) {
   return new Toasts(
-    $.extend({}, $[NAME].default, typeof options === 'object' ? options : {}),
+    $.extend({}, $[NAME].default, typeof options === "object" ? options : {}),
   )
 }
 
 //快捷方法的封装
 const fastMethods = {
   success: {
-    placement: 'top-center',
+    placement: "top-center",
     image: ICONS.success,
-    body: '操作成功',
+    body: "操作成功",
   },
   error: {
-    placement: 'top-center',
+    placement: "top-center",
     image: ICONS.error,
-    body: '操作失败',
+    body: "操作失败",
   },
   warning: {
-    placement: 'top-center',
+    placement: "top-center",
     image: ICONS.warning,
   },
   info: {
-    placement: 'top-center',
+    placement: "top-center",
     image: ICONS.info,
   },
 }
@@ -449,15 +449,15 @@ for (const methodName of Object.keys(fastMethods)) {
   //快捷方法
   $[NAME][methodName] = function (options, options2) {
     let ops = {}
-    if (typeof options === 'string') {
+    if (typeof options === "string") {
       ops.body = options
     }
 
-    if (typeof options2 === 'function') {
+    if (typeof options2 === "function") {
       ops.onHidden = options2
     }
 
-    if (typeof options === 'object') {
+    if (typeof options === "object") {
       ops = options
     }
 

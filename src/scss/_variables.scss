@@ -26,7 +26,7 @@ $lts-navigation-transition:
   color $lts-transition-speed $lts-transition-fn,
   border-color $lts-transition-speed $lts-transition-fn,
   box-shadow $lts-transition-speed $lts-transition-fn,
-  border-radius $lts-transition-speed $lts-transition-fn,
+  border-radius $lts-transition-speed ease,
   background-color $lts-transition-speed $lts-transition-fn !default;
 
 // 定义的一些按钮图标(主要用于modal插件)

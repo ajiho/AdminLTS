@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop>
@@ -182,71 +182,71 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
   <script is:inline slot="js">
     //文件上传插件
-    let picWrapper = new Dropzone('#pic-wrapper', {
-      url: '/article/upfile.php',
+    let picWrapper = new Dropzone("#pic-wrapper", {
+      url: "/article/upfile.php",
       headers: {
         //这里一般的mvc框架都有这个防止csrf攻击的方法用来生成token
-        'X-CSRF-TOKEN': 'xxxxxx',
+        "X-CSRF-TOKEN": "xxxxxx",
       },
-      paramName: 'file', // 上传字段名称 默认为file
+      paramName: "file", // 上传字段名称 默认为file
       maxFiles: 1, // 一次性上传的文件数量上限
       maxFilesize: 5, // 文件大小，单位：MB
-      acceptedFiles: '.jpg,.gif,.png,.jpeg', // 上传的类型
+      acceptedFiles: ".jpg,.gif,.png,.jpeg", // 上传的类型
       addRemoveLinks: true,
       parallelUploads: 1, // 一次上传的文件数量
-      dictDefaultMessage: '拖动文件至此或者点击上传',
-      dictMaxFilesExceeded: '最多只能上传3张封面',
-      dictResponseError: '文件上传失败!',
-      dictInvalidFileType: '文件类型只能是*.jpg,*.gif,*.png,*.jpeg',
-      dictFallbackMessage: '浏览器不受支持',
-      dictFileTooBig: '最大只能上传2M大小的封面.',
-      dictRemoveLinks: '删除',
-      dictRemoveFile: '删除',
-      dictCancelUpload: '取消',
+      dictDefaultMessage: "拖动文件至此或者点击上传",
+      dictMaxFilesExceeded: "最多只能上传3张封面",
+      dictResponseError: "文件上传失败!",
+      dictInvalidFileType: "文件类型只能是*.jpg,*.gif,*.png,*.jpeg",
+      dictFallbackMessage: "浏览器不受支持",
+      dictFileTooBig: "最大只能上传2M大小的封面.",
+      dictRemoveLinks: "删除",
+      dictRemoveFile: "删除",
+      dictCancelUpload: "取消",
       init: function () {
         //这一段代码解决最大上传文件数量(不用管)
-        this.on('addedfile', function (file) {
+        this.on("addedfile", function (file) {
           if (this.files.length > this.options.maxFiles) {
             this.removeFile(file)
           }
         })
 
-        this.on('success', function (file, response) {
+        this.on("success", function (file, response) {
           if (response.code === 200) {
             // 解决表单提交时，图片以#隔开解决
-            let arr = $('#fang_cover')
+            let arr = $("#fang_cover")
               .val()
-              .split(',')
+              .split(",")
               .filter((item) => item)
             arr.push(response.data)
-            let str = arr.join(',')
+            let str = arr.join(",")
 
             //同时把该值存到file对象上,等会儿删除的时候要通过它清空隐藏域的id值
             file.id = response.data
           } else {
             //文件上传失败
             $(file.previewTemplate)
-              .removeClass('dz-processing dz-image-preview dz-success')
-              .addClass('dz-error')
+              .removeClass("dz-processing dz-image-preview dz-success")
+              .addClass("dz-error")
             $(file.previewTemplate)
-              .find('.dz-error-message span')
+              .find(".dz-error-message span")
               .text(response.msg) //response.msg是后台返回的上传错误信息
           }
         })
 
         //文件上传同时也要清空input隐藏域的id值
-        this.on('removedfile', function (file) {
+        this.on("removedfile", function (file) {
           if (file.id !== undefined) {
-            let arr = $('#fang_cover').val().split(',')
+            let arr = $("#fang_cover").val().split(",")
             arr.splice(arr.indexOf(file.id), 1)
-            let str = arr.join(',')
+            let str = arr.join(",")
           }
         })
       },
     })
 
     //表单验证
-    $('#form')
+    $("#form")
       .formValidation({
         fields: {
           desc: {
@@ -256,19 +256,19 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           },
         },
       })
-      .on('success.form.fv', function (e) {
+      .on("success.form.fv", function (e) {
         //阻止表单提交
         e.preventDefault()
         //得到表单对象
         const $form = $(e.target)
         const data = $form.serialize()
 
-        console.log('rewrewerw')
+        console.log("rewrewerw")
 
         //ajax请求
         $.ajax({
-          url: '/profile',
-          method: 'put',
+          url: "/profile",
+          method: "put",
           data,
         }).then(function (response) {
           if (response.code === 200) {

@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop>
@@ -54,7 +54,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
   <script is:inline slot="js">
     //前端表单验证
-    $('#form')
+    $("#form")
       .formValidation({
         fields: {
           lockpwd: {
@@ -64,7 +64,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           },
         },
       })
-      .on('success.form.fv', function (e) {
+      .on("success.form.fv", function (e) {
         //阻止表单提交
         e.preventDefault()
 
@@ -75,16 +75,16 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
         //发起ajax请求
         $.ajax({
-          method: 'post',
-          url: '/login',
+          method: "post",
+          url: "/login",
           //表单数据
           data: data,
         }).then((response) => {
           if (response.code === 200) {
             $.toasts({
-              type: 'success',
-              body: '登录成功',
-              onHidden: () => location.replace('index.html'),
+              type: "success",
+              body: "登录成功",
+              onHidden: () => location.replace("index.html"),
             })
           }
         })

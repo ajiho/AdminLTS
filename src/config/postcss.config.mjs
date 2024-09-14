@@ -1,5 +1,5 @@
-import autoprefixer from 'autoprefixer'
-import sortMediaQueries from 'postcss-sort-media-queries'
+import autoprefixer from "autoprefixer"
+import sortMediaQueries from "postcss-sort-media-queries"
 
 export default (context) => {
   return {
@@ -15,7 +15,7 @@ export default (context) => {
       }),
       sortMediaQueries({
         //desktop-first mobile-first
-        sort: 'mobile-first',
+        sort: "mobile-first",
       }),
     ],
   }

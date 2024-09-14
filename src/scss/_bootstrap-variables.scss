@@ -1,0 +1,12 @@
+// 覆盖bootstrap的栅格变量,以便于利用bootstrap的媒体查询的封装
+$grid-breakpoints: (
+  xs: 0,
+  //添加一个自己的视口
+  xsm: 342px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+) !default;
+

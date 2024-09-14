@@ -8,7 +8,7 @@
  * @return {string} 转义后的字符串
  */
 function escapeDoubleQuotes(str) {
-  return str.replace(/"/g, '&quot;')
+  return str.replace(/"/g, "&quot;")
 }
 
 //============================================================================
@@ -16,7 +16,7 @@ function escapeDoubleQuotes(str) {
 // 内置插件的统一配置,比如loading、modal、toasts
 $.toasts.default.delay = 1500
 $.modal.default.centered = true
-$.modal.default.btnAlign = 'center'
+$.modal.default.btnAlign = "center"
 $.modal.default.loading = true
 
 // 配置进度条插件的小球不要显示
@@ -32,10 +32,10 @@ $.ajaxSetup({
   //请求头添加参数
   headers: {
     //请求头防止csrf攻击(参考php框架laravel)
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
   },
   //统一返回类型
-  dataType: 'json',
+  dataType: "json",
 })
 
 //============================================================================
@@ -54,7 +54,7 @@ $.ajaxSetup({
 /**
  * AJAX请求开始时触发
  */
-$(document).on('ajaxSend', function (event, jqXHR, ajaxOptions) {
+$(document).on("ajaxSend", function (event, jqXHR, ajaxOptions) {
   //进度条开始
   top.NProgress.start()
 })
@@ -62,7 +62,7 @@ $(document).on('ajaxSend', function (event, jqXHR, ajaxOptions) {
 /**
  * AJAX请求完成时(成功或失败)触发
  */
-$(document).on('ajaxComplete', function (event, jqXHR, ajaxOptions) {
+$(document).on("ajaxComplete", function (event, jqXHR, ajaxOptions) {
   //进度条结束
   top.NProgress.done()
 })
@@ -70,31 +70,31 @@ $(document).on('ajaxComplete', function (event, jqXHR, ajaxOptions) {
 /**
  * AJAX请求失败时触发
  */
-$(document).on('ajaxError', function (event, jqXHR, ajaxSettings, thrownError) {
+$(document).on("ajaxError", function (event, jqXHR, ajaxSettings, thrownError) {
   //处理网络错误
-  let msg = ''
+  let msg = ""
   const status = jqXHR.status
   switch (status) {
     case 401:
-      msg = 'token过期'
+      msg = "token过期"
       break
     case 403:
-      msg = '无权访问'
+      msg = "无权访问"
       break
     case 404:
-      msg = '请求地址错误'
+      msg = "请求地址错误"
       break
     case 500:
-      msg = '服务器出现问题'
+      msg = "服务器出现问题"
       break
     default:
-      msg = '无网络'
+      msg = "无网络"
   }
 
   //通知
   $.toasts({
-    placement: 'top-center',
-    type: 'danger',
+    placement: "top-center",
+    type: "danger",
     body: msg,
   })
 })

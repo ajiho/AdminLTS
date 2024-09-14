@@ -34,5 +34,9 @@ node_modules/
 # 不需要的类型
 **/env.d.ts
 
-# vercel部署
+# vercel部署产生的目录
 .vercel
+
+# 生产版本文件
+*dist
+*dist.zip

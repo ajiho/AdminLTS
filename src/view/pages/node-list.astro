@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop>
@@ -132,7 +132,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
   <script is:inline slot="js">
     // 注意:这里是使用var来修饰使其变量提升到window对象上,在子页面就可以直接通过这个变量来访问该变量
-    var $table = $('#table')
+    var $table = $("#table")
 
     // 列配置
     const columns = [
@@ -141,60 +141,60 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         visible: true,
       },
       {
-        field: 'name',
-        title: '节点名称',
+        field: "name",
+        title: "节点名称",
         width: 20,
-        widthUnit: '%',
+        widthUnit: "%",
       },
       {
-        field: 'route_name',
-        align: 'center',
-        title: '路由别名',
+        field: "route_name",
+        align: "center",
+        title: "路由别名",
       },
 
       {
-        field: 'type',
-        title: '类型',
-        align: 'center',
+        field: "type",
+        title: "类型",
+        align: "center",
         formatter: formatType,
       },
       {
-        field: 'icon',
-        title: '图标',
-        align: 'center',
+        field: "icon",
+        title: "图标",
+        align: "center",
         formatter: formatIcon,
       },
       {
-        title: '是否菜单',
-        field: 'is_menu',
-        align: 'center',
+        title: "是否菜单",
+        field: "is_menu",
+        align: "center",
         formatter: formatIsMenu,
       },
       {
-        title: '加入时间',
-        field: 'create_at',
-        align: 'center',
+        title: "加入时间",
+        field: "create_at",
+        align: "center",
       },
       {
-        title: '操作',
-        align: 'center',
+        title: "操作",
+        align: "center",
         formatter: formatAction,
       },
     ]
 
     $table.Table({
       // 请求方法
-      method: 'get',
+      method: "get",
       // 请求地址
-      url: '/node',
+      url: "/node",
       // 请求得到的数据类型
-      dataType: 'json',
+      dataType: "json",
 
       // 这几个字段是treegrid拓展所需要的字段
-      idField: 'id',
-      parentIdField: 'pid',
+      idField: "id",
+      parentIdField: "pid",
       pagination: false,
-      treeShowField: 'name',
+      treeShowField: "name",
 
       //取消左侧第一列的固定
       fixedNumber: 0,
@@ -217,11 +217,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           // 排序方式 'asc' 'desc'
           sortOrder: params.order,
           //关键词
-          keywords: $('input[name=keyword]').val(),
+          keywords: $("input[name=keyword]").val(),
           //开始时间
-          beginTime: $('input[name=beginTime]').val(),
+          beginTime: $("input[name=beginTime]").val(),
           //结束时间
-          endTime: $('input[name=endTime]').val(),
+          endTime: $("input[name=endTime]").val(),
         }
       },
       columns,
@@ -231,7 +231,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       if (value === 1) {
         return '<span class="badge rounded-pill text-bg-success">是</span>'
       }
-      return '-'
+      return "-"
     }
 
     function formatType(value, row, index) {
@@ -258,16 +258,16 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     }
 
     //树列表初始化
-    $table.Table('treegridExtInit')
+    $table.Table("treegridExtInit")
     //展开和折叠
-    $table.Table('treegridExtSlideToggleByButton', '.lts-slide-toggle-btn')
+    $table.Table("treegridExtSlideToggleByButton", ".lts-slide-toggle-btn")
     //处理treegrid插件点击行可以展开折叠当前行
-    $table.Table('treegridExtSlideToggleClickRow')
+    $table.Table("treegridExtSlideToggleClickRow")
 
     //搜索
-    $table.Table('search', '.lts-search-btn')
+    $table.Table("search", ".lts-search-btn")
     //重置
-    $table.Table('reset', '.lts-reset-btn', '.lts-search-area form')
+    $table.Table("reset", ".lts-reset-btn", ".lts-search-area form")
 
     function del(row) {
       $.modal({
@@ -276,11 +276,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           //发起ajax请求
           $.ajax({
             url: `/node/${row.id}`,
-            method: 'delete',
+            method: "delete",
           }).then((response) => {
             if (response.code === 200) {
               //刷新表格
-              $table.Table('refreshSelectPage')
+              $table.Table("refreshSelectPage")
 
               //这里的this表示的是当前modal的实例对象
               this.hide()
@@ -294,9 +294,9 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     }
 
     function edit(id) {
-      parent.$('[data-lts-toggle="iframe"]').IFrame('addTab', {
+      parent.$('[data-lts-toggle="iframe"]').IFrame("addTab", {
         url: `node-edit.html?id=${id}`,
-        title: '编辑节点',
+        title: "编辑节点",
       })
     }
   </script>

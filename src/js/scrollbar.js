@@ -1,4 +1,4 @@
-import $ from 'jquery'
+import $ from "jquery"
 
 const {
   OverlayScrollbars,
@@ -7,8 +7,8 @@ const {
   ClickScrollPlugin,
 } = OverlayScrollbarsGlobal
 
-const NAME = 'Scrollbar'
-const DATA_KEY = 'lts.scrollbar'
+const NAME = "Scrollbar"
+const DATA_KEY = "lts.scrollbar"
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="scrollbar"]'
@@ -17,12 +17,12 @@ const Default = {
   param1: {},
   param2: {
     overflow: {
-      x: 'hidden',
-      y: 'scroll',
+      x: "hidden",
+      y: "scroll",
     },
     scrollbars: {
       //never scroll leave move
-      autoHide: 'leave',
+      autoHide: "leave",
       //是否可以点击轨道滚动
       clickScroll: true,
       //隐藏滚动条的时间
@@ -73,12 +73,12 @@ class Scrollbar {
     this.each(function () {
       let data = $(this).data(DATA_KEY)
 
-      if (typeof config === 'string') {
+      if (typeof config === "string") {
         if (!data) {
           return
         }
 
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === "undefined") {
           throw new TypeError(`No method named "${config}"`)
         }
 
@@ -88,7 +88,7 @@ class Scrollbar {
       }
 
       if (data) {
-        console.warn('You cannot initialize the table more than once!')
+        console.warn("You cannot initialize the table more than once!")
         return
       }
 
@@ -97,14 +97,14 @@ class Scrollbar {
         $.extend(
           {},
           Default,
-          typeof config === 'object' ? config : $(this).data(),
+          typeof config === "object" ? config : $(this).data(),
         ),
       )
       $(this).data(DATA_KEY, data)
       data.#init()
     })
 
-    return typeof value === 'undefined' ? this : value
+    return typeof value === "undefined" ? this : value
   }
 }
 

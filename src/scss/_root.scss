@@ -3,7 +3,7 @@
 }
 
 :root,
-[data-bs-theme='light'] {
+[data-bs-theme="light"] {
   // lts自定义变量
   --#{$lts-prefix}header-height: #{$lts-header-height};
   --#{$lts-prefix}sidebar-width: #{$lts-sidebar-width};

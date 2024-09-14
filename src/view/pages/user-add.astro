@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop>
@@ -110,7 +110,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
   <script is:inline slot="js">
     //表单验证
-    $('#form')
+    $("#form")
       .formValidation({
         //验证字段
         fields: {
@@ -127,7 +127,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           //...
         },
       })
-      .on('success.form.fv', function (e) {
+      .on("success.form.fv", function (e) {
         //阻止表单提交
         e.preventDefault()
         //得到表单对象
@@ -136,20 +136,20 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
         // 得到序列化数据
         $.ajax({
-          url: '/user',
-          method: 'post',
+          url: "/user",
+          method: "post",
           data: data,
         }).then((response) => {
           if (response.code === 200) {
             $.toasts.success()
 
-            const url = 'user-list.html'
+            const url = "user-list.html"
             //拿到用户列表页的$table变量调用refreshSelectPage刷新方法
-            parent.Quicktab.get('qtab')
+            parent.Quicktab.get("qtab")
               .getTabWindowByUrl(url)
-              ?.$table.Table('refreshSelectPage')
+              ?.$table.Table("refreshSelectPage")
             //关闭当前激活的Tab并激活用户列表页
-            parent.Quicktab.get('qtab')
+            parent.Quicktab.get("qtab")
               .closeActiveTab()
               .activeTabByUrl(url, true)
           }

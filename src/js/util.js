@@ -1,4 +1,4 @@
-import debounce from 'just-debounce-it'
+import debounce from "just-debounce-it"
 
 // 公开的助手函数，使用方式：adminlts.util.xxx()
 export default {
@@ -7,7 +7,7 @@ export default {
   },
   // 给任意url添加一个参数
   addSearchParams(url, params = {}) {
-    let isRootPath = url.startsWith('/')
+    let isRootPath = url.startsWith("/")
 
     let isRelative
     let base = window.location.origin
@@ -32,7 +32,7 @@ export default {
     )
 
     if (isRelative) {
-      let finalUrl = new_url.href.replace(`${base}/`, '')
+      let finalUrl = new_url.href.replace(`${base}/`, "")
       return isRootPath ? `/${finalUrl}` : finalUrl
     } else {
       return new_url.href
@@ -47,7 +47,7 @@ export default {
       return false
     } catch (e) {
       // 如果捕获到 SecurityError 异常，说明是跨域的
-      if (e instanceof DOMException && e.name === 'SecurityError') {
+      if (e instanceof DOMException && e.name === "SecurityError") {
         return true
       } else {
         throw e // 重新抛出不是 SecurityError 的异常
@@ -57,22 +57,22 @@ export default {
 
   isSVGString(str) {
     // 1. 检查字符串是否包含 <svg> 标签
-    if (typeof str !== 'string' || !str.trim().startsWith('<svg')) {
+    if (typeof str !== "string" || !str.trim().startsWith("<svg")) {
       return false
     }
 
     // 2. 使用 DOMParser 解析字符串
     const parser = new DOMParser()
-    const doc = parser.parseFromString(str, 'image/svg+xml')
+    const doc = parser.parseFromString(str, "image/svg+xml")
 
     // 3. 检查解析结果是否包含 <svg> 根元素
     const svgElement = doc.documentElement
-    return svgElement.tagName === 'svg' && !doc.querySelector('parsererror')
+    return svgElement.tagName === "svg" && !doc.querySelector("parsererror")
   },
 
   //html反转义
   htmlspecialchars_decode(text) {
-    let temp = document.createElement('div')
+    let temp = document.createElement("div")
     temp.innerHTML = text
     let output = temp.innerText || temp.textContent
     temp = null
@@ -81,7 +81,7 @@ export default {
 
   // HTML转义
   htmlspecialchars(html) {
-    let temp = document.createElement('div')
+    let temp = document.createElement("div")
     temp.textContent != null
       ? (temp.textContent = html)
       : (temp.innerText = html)
@@ -96,18 +96,18 @@ export default {
     const str = _str.replace(/%s/g, () => {
       const arg = args[i++]
 
-      if (typeof arg === 'undefined') {
+      if (typeof arg === "undefined") {
         flag = false
-        return ''
+        return ""
       }
       return arg
     })
 
-    return flag ? str : ''
+    return flag ? str : ""
   },
 
-  clear(prefix = 'Quicktab') {
-    ;['localStorage', 'sessionStorage'].forEach((storage) => {
+  clear(prefix = "Quicktab") {
+    ;["localStorage", "sessionStorage"].forEach((storage) => {
       const keys = Object.keys(window[storage])
       keys.forEach((key) => {
         if (key.startsWith(prefix)) {

@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop>
@@ -149,7 +149,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   ></script>
 
   <script is:inline slot="js">
-    const $table = $('#table')
+    const $table = $("#table")
 
     // 列配置
     const columns = [
@@ -166,49 +166,49 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         },
       },
       {
-        field: 'name',
-        title: '节点名称',
+        field: "name",
+        title: "节点名称",
         width: 20,
-        widthUnit: '%',
+        widthUnit: "%",
       },
       {
-        field: 'route_name',
-        align: 'center',
-        title: '路由别名',
+        field: "route_name",
+        align: "center",
+        title: "路由别名",
       },
 
       {
-        field: 'type',
-        title: '类型',
-        align: 'center',
+        field: "type",
+        title: "类型",
+        align: "center",
         formatter: formatType,
       },
       {
-        field: 'icon',
-        title: '图标',
-        align: 'center',
+        field: "icon",
+        title: "图标",
+        align: "center",
         formatter: formatIcon,
       },
       {
-        title: '是否菜单',
-        field: 'is_menu',
-        align: 'center',
+        title: "是否菜单",
+        field: "is_menu",
+        align: "center",
         formatter: formatIsMenu,
       },
       {
-        title: '加入时间',
-        field: 'create_at',
-        align: 'center',
+        title: "加入时间",
+        field: "create_at",
+        align: "center",
       },
     ]
 
     $table.Table({
       // 请求地址
-      url: '/node',
+      url: "/node",
       // 请求方法
-      method: 'get',
+      method: "get",
       // 请求得到的数据类型
-      dataType: 'json',
+      dataType: "json",
       //头部的那个复选框 true:显示 false:不显示
       checkboxHeader: true,
       //单选效果 false:启用 true:不启用
@@ -216,10 +216,10 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       //右侧不要固定列,对于某些特殊的情况(比如不需要操作列的可以不要让右边冻结用户体验会比较好)
       fixedRightNumber: 0,
       // 这几个字段是treegrid拓展所需要的字段
-      idField: 'id',
-      parentIdField: 'pid',
+      idField: "id",
+      parentIdField: "pid",
       pagination: false,
-      treeShowField: 'name',
+      treeShowField: "name",
       // 响应处理,如果服务端返回的数据不是指定的格式，可以在前端进行处理
       responseHandler: function (res) {
         return res.data
@@ -238,7 +238,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           // 排序方式 'asc' 'desc'
           sortOrder: params.order,
           //角色名称
-          name: $('input[name=name]').val(),
+          name: $("input[name=name]").val(),
         }
       },
       columns,
@@ -248,7 +248,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       if (value === 1) {
         return '<span class="badge rounded-pill text-bg-success">是</span>'
       }
-      return '-'
+      return "-"
     }
 
     function formatType(value, row, index) {
@@ -265,27 +265,27 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     }
 
     //树列表初始化
-    $table.Table('treegridExtInit')
+    $table.Table("treegridExtInit")
     //展开和折叠
-    $table.Table('treegridExtSlideToggleByButton', '.lts-slide-toggle-btn')
+    $table.Table("treegridExtSlideToggleByButton", ".lts-slide-toggle-btn")
 
     //勾选联动
-    $table.Table('toggleCheckRelation', 'id', 'pid')
+    $table.Table("toggleCheckRelation", "id", "pid")
 
     //搜索
-    $table.Table('search', '.lts-search-btn')
+    $table.Table("search", ".lts-search-btn")
     //重置
-    $table.Table('reset', '.lts-reset-btn', '.lts-search-area form')
+    $table.Table("reset", ".lts-reset-btn", ".lts-search-area form")
 
     //给角色授权
     function add() {
       //id数组
-      const ids = $table.Table('getSelections').map((item) => item.id)
+      const ids = $table.Table("getSelections").map((item) => item.id)
 
       $.ajax({
         // /role/node/roleId
-        url: '/role/node/10',
-        method: 'post',
+        url: "/role/node/10",
+        method: "post",
         data: {
           //节点的id数组
           node_ids: ids,
@@ -294,7 +294,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         if (response.code === 200) {
           //通知父级页面,操作成功,这里参数随意，这里是演示如果页面有多个消息给父页面发送的话，这里可以通过这种方式让父级页面区分
           window.parent.postMessage({
-            type: 'node', //表示角色分配节点，这里随意，在父级页面就可以根绝这个来判断
+            type: "node", //表示角色分配节点，这里随意，在父级页面就可以根绝这个来判断
           })
         }
       })

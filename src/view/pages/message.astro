@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop>
@@ -86,7 +86,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   ></script>
 
   <script is:inline slot="js">
-    const $table = $('#table')
+    const $table = $("#table")
 
     // 列配置
     const columns = [
@@ -95,25 +95,25 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         visible: true,
       },
       {
-        title: '标题内容',
-        field: 'title',
-        align: 'left',
+        title: "标题内容",
+        field: "title",
+        align: "left",
         formatter: formatTitle,
       },
       {
-        title: '时间',
-        field: 'create_at',
-        align: 'center',
+        title: "时间",
+        field: "create_at",
+        align: "center",
       },
     ]
 
     $table.Table({
       // 请求方法
-      method: 'get',
+      method: "get",
       // 请求地址
-      url: '/notice',
+      url: "/notice",
       // 请求得到的数据类型
-      dataType: 'json',
+      dataType: "json",
       //取消右侧第一列的固定
       fixedRightNumber: 0,
       //没有搜索区域,不需要自定义工具栏按钮
@@ -136,7 +136,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           // 排序方式 'asc' 'desc'
           sortOrder: params.order,
           // 通知类型
-          type: $('input[name=type]').val(),
+          type: $("input[name=type]").val(),
         }
       },
       columns,
@@ -147,22 +147,22 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     }
 
     //删除
-    $table.Table('batch', '.lts-del-btn', function (ids, selectedRows) {
+    $table.Table("batch", ".lts-del-btn", function (ids, selectedRows) {
       $.modal({
         body: `确定删除选中的数据吗?`,
         ok: function () {
           //发起ajax请求
           $.ajax({
-            url: '/notice/delall',
-            method: 'delete',
+            url: "/notice/delall",
+            method: "delete",
             data: {
               id: ids,
             },
           }).then((response) => {
             if (response.code === 200) {
-              $.toasts.success('删除成功')
+              $.toasts.success("删除成功")
 
-              $table.Table('refreshSelectPage')
+              $table.Table("refreshSelectPage")
 
               //这里的this表示的是当前modal的实例对象
               this.hide()
@@ -173,36 +173,36 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     })
 
     // 标记已读
-    $table.Table('batch', '.lts-read-btn', function (ids, selectedRows) {
-      $.toasts.success('标记已读成功')
+    $table.Table("batch", ".lts-read-btn", function (ids, selectedRows) {
+      $.toasts.success("标记已读成功")
 
-      $table.Table('refreshSelectPage')
+      $table.Table("refreshSelectPage")
     })
 
     //全部已读
-    $(document).on('click', '.lts-readAll-btn', function (event) {
+    $(document).on("click", ".lts-readAll-btn", function (event) {
       //发起ajax请求
       $.ajax({
-        url: '/notice/readall',
-        method: 'put',
+        url: "/notice/readall",
+        method: "put",
       }).then((response) => {
         if (response.code === 200) {
           //此时可以把头部的铃铛摇晃效果去除
-          parent.$('.lts-header .lts-has-msg').removeClass('lts-has-msg')
+          parent.$(".lts-header .lts-has-msg").removeClass("lts-has-msg")
 
-          $.toasts.info('全部消息：全部已读')
+          $.toasts.info("全部消息：全部已读")
 
-          $table.Table('refreshSelectPage')
+          $table.Table("refreshSelectPage")
         }
       })
     })
 
-    $('[data-lts-toggle="tab"]').on('active.bsa.tab', function (event, config) {
+    $('[data-lts-toggle="tab"]').on("active.bsa.tab", function (event, config) {
       //给隐藏域设置值
-      $('input[name=type]').val(config.type)
+      $("input[name=type]").val(config.type)
 
       //刷新数据表格
-      $table.Table('refreshSelectPage')
+      $table.Table("refreshSelectPage")
     })
   </script>
 </BaseLayout>

@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop>
@@ -127,7 +127,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     bootstrapadmin.util.quicktabCacheClear()
 
     //前端表单验证
-    $('#form')
+    $("#form")
       .formValidation({
         fields: {
           username: {
@@ -147,7 +147,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           },
         },
       })
-      .on('success.form.fv', function (event) {
+      .on("success.form.fv", function (event) {
         //阻止表单提交
         event.preventDefault()
 
@@ -158,13 +158,13 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
         //发起ajax请求
         $.ajax({
-          method: 'post',
-          url: '/login',
+          method: "post",
+          url: "/login",
           //表单数据
           data: data,
         }).then((response) => {
           if (response.code === 200) {
-            $.toasts.success('登录成功', () => location.replace('index.html'))
+            $.toasts.success("登录成功", () => location.replace("index.html"))
           }
         })
       })

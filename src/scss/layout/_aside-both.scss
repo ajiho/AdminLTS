@@ -7,7 +7,7 @@
 
       // 箭头也改成展开
       .#{$lts-prefix}chevron-toggle::after {
-        content: '\F285';
+        content: "\F285";
       }
     }
 
@@ -25,7 +25,7 @@
 
       // 箭头也改成展开
       .#{$lts-prefix}chevron-toggle::after {
-        content: '\F284';
+        content: "\F284";
       }
     }
 
@@ -57,7 +57,7 @@
 
         .#{$lts-prefix}chevron-toggle::after {
           font-family: bootstrap-icons, serif;
-          content: '\f284';
+          content: "\f284";
         }
       }
     }
@@ -77,10 +77,10 @@
 
       &::after {
         font-family: bootstrap-icons, serif;
-        content: '\f284';
+        content: "\f284";
 
         @include media-breakpoint-down(lg) {
-          content: '\F285';
+          content: "\F285";
         }
       }
 
@@ -123,7 +123,7 @@
 
         .#{$lts-prefix}chevron-toggle::after {
           font-family: bootstrap-icons, serif;
-          content: '\f285';
+          content: "\f285";
         }
       }
     }
@@ -143,10 +143,10 @@
 
       &::after {
         font-family: bootstrap-icons, serif;
-        content: '\f285';
+        content: "\f285";
 
         @include media-breakpoint-down(lg) {
-          content: '\F284';
+          content: "\F284";
         }
       }
 

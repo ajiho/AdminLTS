@@ -1,10 +1,9 @@
 ---
-import globalData from '../../../build/data/index.mjs'
-const { version } = globalData
+import globalData from "../../../build/data/index.mjs";
+const { version } = globalData;
 ---
 
-<!--侧边栏-->
-<div class="lts-sidebar">
+<div class="lts-sidebar-wrapper">
   <div class="card border-0 h-100">
     <!--  侧边栏头部(用于展示品牌logo)  -->
     <div
@@ -18,15 +17,11 @@ const { version } = globalData
       <div class="lts-logo-text ms-2 lts-ellipsis-2">adminlts</div>
     </div>
     <!--  侧边栏身体部分(用于主要的侧边栏菜单)  -->
-    <div
-      class="card-body px-0 py-1 overflow-y-auto"
-      data-overlayscrollbars-initialize
-      data-lts-toggle="scrollbar"
-    >
+    <div class="card-body px-0 py-1 overflow-y-auto">
       <!--  导航菜单部分  -->
-      <ul class="lts-navigation" data-lts-toggle="treeview">
+      <ul class="lts-navigation">
         <li>
-          <a href="welcome.html">
+          <a class="active" href="index.html">
             <div class="prepend"><i class="bi bi-house"></i></div>
             <div class="content">首页</div>
           </a>
@@ -34,7 +29,7 @@ const { version } = globalData
         <!--  分割线  -->
         <li class="separator"></li>
         <li>
-          <a href="javascript:" class="has-arrow">
+          <a href="javascript:" class="arrow">
             <div class="prepend"><i class="bi bi-person-lock"></i></div>
             <div class="content">权限管理</div>
             <div class="append">
@@ -44,26 +39,26 @@ const { version } = globalData
           <ul>
             <li>
               <a href="user-list.html">
-                <div class="content">用户列表(Tab)</div>
-              </a>
-            </li>
-            <li>
-              <a href="role-list.html">
-                <div class="content">角色列表(Modal)</div>
-              </a>
-            </li>
-            <li>
-              <a href="node-list.html">
-                <div class="content">节点列表</div>
+                <div class="content">用户列表</div>
                 <div class="append">
                   <span class="badge text-bg-primary">2</span>
                 </div>
               </a>
             </li>
+            <li>
+              <a href="role-list.html">
+                <div class="content">角色列表</div>
+              </a>
+            </li>
+            <li>
+              <a href="node-list.html">
+                <div class="content">节点列表</div>
+              </a>
+            </li>
           </ul>
         </li>
         <li>
-          <a href="javascript:" class="has-arrow">
+          <a href="javascript:" class="arrow">
             <div class="prepend"><i class="bi bi-filetype-html"></i></div>
             <div class="content">示例页面</div>
             <div class="append">
@@ -72,7 +67,7 @@ const { version } = globalData
           </a>
           <ul>
             <li>
-              <a href="login.html" target="_blank">
+              <a href="login.html">
                 <div class="content">登录页</div>
               </a>
             </li>
@@ -82,8 +77,18 @@ const { version } = globalData
               </a>
             </li>
             <li>
-              <a href="lockscreen.html" target="_self">
+              <a href="lockscreen.html">
                 <div class="content">锁屏页</div>
+              </a>
+            </li>
+            <li>
+              <a href="timeline.html">
+                <div class="content">时间轴</div>
+              </a>
+            </li>
+            <li>
+              <a href="table-simple.html">
+                <div class="content">简单表格</div>
               </a>
             </li>
             <li>
@@ -93,10 +98,9 @@ const { version } = globalData
             </li>
           </ul>
         </li>
-        <!--  副标题  -->
-        <li class="subheader">APPLICATION</li>
+
         <li>
-          <a href="javascript:" class="has-arrow">
+          <a href="javascript:" class="arrow">
             <div class="prepend"><i class="bi bi-grid"></i></div>
             <div class="content">应用</div>
           </a>
@@ -106,17 +110,34 @@ const { version } = globalData
                 <div class="content">消息中心</div>
               </a>
             </li>
+            <li>
+              <a href="email-box.html">
+                <div class="content">邮箱</div>
+              </a>
+            </li>
+            <li>
+              <a href="chat-box.html">
+                <div class="content">聊天框</div>
+              </a>
+            </li>
+            <li>
+              <a href="calendar.html">
+                <div class="content">日历</div>
+              </a>
+            </li>
           </ul>
         </li>
 
+        <!--  副标题  -->
+        <li class="subheader">LABELS</li>
         <li>
-          <a href="javascript:" class="has-arrow">
+          <a href="javascript:" class="arrow">
             <div class="prepend"><i class="bi bi-gear"></i></div>
             <div class="content">设置</div>
           </a>
           <ul>
             <li>
-              <a href="javascript:" class="has-arrow">
+              <a href="javascript:" class="arrow">
                 <div class="content">系统设置</div>
               </a>
               <ul>
@@ -133,7 +154,7 @@ const { version } = globalData
               </ul>
             </li>
             <li>
-              <a href="javascript:" class="has-arrow">
+              <a href="javascript:" class="arrow">
                 <div class="content">我的设置</div>
               </a>
               <ul>
@@ -151,7 +172,35 @@ const { version } = globalData
             </li>
           </ul>
         </li>
-        <li class="subheader">OTHER</li>
+        <li class="subheader">布局&模式</li>
+        <li>
+          <a href="javascript:" class="arrow">
+            <div class="prepend"><i class="bi bi-columns"></i></div>
+            <div class="content">布局和模式</div>
+          </a>
+          <ul>
+            <li>
+              <a href="javascript:">
+                <div class="content">顶部菜单</div>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:">
+                <div class="content">布局1</div>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:">
+                <div class="content">布局2</div>
+              </a>
+            </li>
+            <li>
+              <a href="index-iframe.html" target="_blank">
+                <div class="content">IFrame+多tab模式</div>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li>
           <a href="https://www.bootstrap-admin.top/docs">
             <div class="prepend"><i class="bi bi-filetype-doc"></i></div>
@@ -159,63 +208,63 @@ const { version } = globalData
           </a>
         </li>
         <li>
-          <a href="javascript:" class="has-arrow">
+          <a href="javascript:" class="arrow">
             <div class="prepend"><i class="bi bi-list-nested"></i></div>
             <div class="content">多级菜单</div>
           </a>
           <ul>
             <li>
-              <a href="multilevel.html?id=1">
+              <a href="javascript:">
                 <div class="content">一级菜单</div>
               </a>
             </li>
             <li>
-              <a href="javascript:" class="has-arrow">
+              <a href="javascript:" class="arrow">
                 <div class="content">一级菜单</div>
               </a>
               <ul>
                 <li>
-                  <a href="multilevel.html?id=2">
+                  <a href="javascript:">
                     <div class="content">二级菜单</div>
                   </a>
                 </li>
                 <li>
-                  <a href="javascript:" class="has-arrow">
+                  <a href="javascript:" class="arrow">
                     <div class="content">二级菜单</div>
                   </a>
                   <ul>
                     <li>
-                      <a href="multilevel.html?id=3">
+                      <a href="javascript:">
                         <div class="content">三级菜单</div>
                       </a>
                     </li>
                     <li>
-                      <a href="javascript:" class="has-arrow">
+                      <a href="javascript:" class="arrow">
                         <div class="content">三级菜单</div>
                       </a>
                       <ul>
                         <li>
-                          <a href="multilevel.html?id=4">
+                          <a href="javascript:">
                             <div class="content">四级菜单</div>
                           </a>
                         </li>
                         <li>
-                          <a href="javascript:" class="has-arrow">
+                          <a href="javascript:" class="arrow">
                             <div class="content">四级菜单</div>
                           </a>
                           <ul>
                             <li>
-                              <a href="multilevel.html?id=5">
+                              <a href="javascript:">
                                 <div class="content">五级菜单</div>
                               </a>
                             </li>
                             <li>
-                              <a href="multilevel.html?id=6">
+                              <a href="javascript:">
                                 <div class="content">五级菜单</div>
                               </a>
                             </li>
                             <li>
-                              <a href="multilevel.html?id=7">
+                              <a href="javascript:">
                                 <div class="content">五级菜单</div>
                               </a>
                             </li>
@@ -228,12 +277,12 @@ const { version } = globalData
               </ul>
             </li>
             <li>
-              <a href="javascript:" class="has-arrow">
+              <a href="javascript:" class="arrow">
                 <div class="content">一级菜单</div>
               </a>
               <ul>
                 <li>
-                  <a href="multilevel.html?id=8">
+                  <a href="javascript:">
                     <div class="content">二级菜单</div>
                   </a>
                 </li>
@@ -244,6 +293,6 @@ const { version } = globalData
       </ul>
     </div>
     <!--  侧边栏底部(不需要可删除)  -->
-    <div class="card-footer bg-body bore">Version: {version}</div>
+    <div class="card-footer bg-body bore">Version: v2.0.1</div>
   </div>
 </div>

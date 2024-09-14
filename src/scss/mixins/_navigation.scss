@@ -1,9 +1,9 @@
-@use 'sass:color';
+@use "sass:color";
 
 @mixin navigation() {
   // 侧边栏的导航样式
   .#{$lts-prefix}navigation {
-    @include ul-reset;
+    @include ul-reset();
 
     // 使用变量是为了方便计算submenu距离左侧的padding值
     --#{$lts-prefix}navigation-arrow-icon: #{escape-svg(
@@ -16,7 +16,7 @@
     --#{$lts-prefix}navigation-prepend-font-size: #{$lts-navigation-prepend-font-size};
 
     ul {
-      @include ul-reset;
+      @include ul-reset();
     }
 
     li {
@@ -30,7 +30,7 @@
         // color: color.scale($body-color, $lightness: 60%);
         color: adjust($body-color, 60%);
 
-        @include text-ellipsis;
+        @include text-ellipsis();
       }
 
       // 分隔符
@@ -48,7 +48,7 @@
       a {
         position: relative;
         display: grid;
-        grid-template-areas: 'prepend content append arrow';
+        grid-template-areas: "prepend content append arrow";
         grid-template-columns: max-content 1fr auto auto;
         padding: var(--#{$lts-prefix}navigation-padding-y)
           var(--#{$lts-prefix}navigation-padding-x);
@@ -91,7 +91,7 @@
           grid-area: content;
           align-self: center;
 
-          @include text-ellipsis;
+          @include text-ellipsis();
         }
 
         // 追加内容
@@ -134,7 +134,7 @@
             align-self: center;
             width: 1.25em;
             height: 1.25em;
-            content: ' ';
+            content: " ";
             background-color: $body-color;
             mask-image: var(--#{$lts-prefix}navigation-arrow-icon);
             mask-repeat: no-repeat;

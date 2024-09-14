@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
 <BaseLayout childpage backtotop>
@@ -17,9 +17,9 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   </div>
   <script is:inline slot="js">
     $(function () {
-      $('.url').text(
+      $(".url").text(
         window.location.href.substring(
-          window.location.href.lastIndexOf('/') + 1,
+          window.location.href.lastIndexOf("/") + 1,
           window.location.href.length,
         ),
       )

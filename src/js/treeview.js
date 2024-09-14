@@ -1,7 +1,7 @@
-import $ from 'jquery'
+import $ from "jquery"
 
-const NAME = 'Treeview'
-const DATA_KEY = 'lts.treeview'
+const NAME = "Treeview"
+const DATA_KEY = "lts.treeview"
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 const SELECTOR_DATA_TOGGLE = '[data-lts-toggle="treeview"]'
@@ -12,11 +12,11 @@ const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 //递归折叠完成
 const EVENT_RECURSIVE_COLLAPSED = `recursive.collapsed${EVENT_KEY}`
 
-const SELECTOR_LI = 'li'
-const SELECTOR_LINK = 'a'
-const SELECTOR_SUBMENU = 'ul'
-const CLASS_NAME_EXPANDED = 'open'
-const CLASS_NAME_ACTIVE = 'active'
+const SELECTOR_LI = "li"
+const SELECTOR_LINK = "a"
+const SELECTOR_SUBMENU = "ul"
+const CLASS_NAME_EXPANDED = "open"
+const CLASS_NAME_ACTIVE = "active"
 
 const Default = {
   //动画速度,单位毫秒
@@ -45,7 +45,7 @@ class Treeview {
     const that = this
 
     $(this.#element).on(
-      'click',
+      "click",
       `${SELECTOR_LINK}:not([target])`,
       function (event) {
         let $link = $(this)
@@ -82,12 +82,12 @@ class Treeview {
     if (!$parentLi.hasClass(CLASS_NAME_EXPANDED)) {
       $parentLi.addClass(CLASS_NAME_EXPANDED)
       $nextUl
-        .css('display', 'none')
+        .css("display", "none")
         .stop(true, false)
         .slideDown(that.#config.animationSpeed, function () {
-          $(this).removeAttr('style')
+          $(this).removeAttr("style")
           $(that.#element).trigger($.Event(EVENT_EXPANDED))
-          typeof callback === 'function' && callback()
+          typeof callback === "function" && callback()
         })
     }
   }
@@ -101,12 +101,12 @@ class Treeview {
     if ($parentLi.hasClass(CLASS_NAME_EXPANDED)) {
       $parentLi.removeClass(CLASS_NAME_EXPANDED)
       $nextUl
-        .css('display', 'block')
+        .css("display", "block")
         .stop(true, false)
         .slideUp(that.#config.animationSpeed, function () {
-          $(this).removeAttr('style')
+          $(this).removeAttr("style")
           $(that.#element).trigger($.Event(EVENT_COLLAPSED))
-          typeof callback === 'function' && callback()
+          typeof callback === "function" && callback()
         })
     }
   }
@@ -196,8 +196,8 @@ class Treeview {
 
   #isAnimating($link) {
     return (
-      !$link.parent().find(SELECTOR_SUBMENU).slice(1).is(':animated') &&
-      !$link.parents(SELECTOR_SUBMENU).is(':animated')
+      !$link.parent().find(SELECTOR_SUBMENU).slice(1).is(":animated") &&
+      !$link.parents(SELECTOR_SUBMENU).is(":animated")
     )
   }
 
@@ -260,12 +260,12 @@ class Treeview {
     this.each(function () {
       let data = $(this).data(DATA_KEY)
 
-      if (typeof config === 'string') {
+      if (typeof config === "string") {
         if (!data) {
           return
         }
 
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === "undefined") {
           throw new TypeError(`No method named "${config}"`)
         }
 
@@ -275,7 +275,7 @@ class Treeview {
       }
 
       if (data) {
-        console.warn('You cannot initialize the table more than once!')
+        console.warn("You cannot initialize the table more than once!")
         return
       }
 
@@ -284,14 +284,14 @@ class Treeview {
         $.extend(
           {},
           Default,
-          typeof config === 'object' ? config : $(this).data(),
+          typeof config === "object" ? config : $(this).data(),
         ),
       )
       $(this).data(DATA_KEY, data)
       data.#init()
     })
 
-    return typeof value === 'undefined' ? this : value
+    return typeof value === "undefined" ? this : value
   }
 }
 

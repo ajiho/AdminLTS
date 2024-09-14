@@ -22,7 +22,7 @@
 
     border: 0; // for button elements
 
-    @include border-radius;
+    @include border-radius();
 
     opacity: var(--#{$prefix}btn-opacity);
 
@@ -48,13 +48,13 @@
   }
 
   .#{$class-name}-white {
-    @include btn-custom-white;
+    @include btn-custom-white();
   }
 
   @if $enable-dark-mode {
     @include color-mode(dark) {
       .#{$class-name} {
-        @include btn-custom-white;
+        @include btn-custom-white();
       }
     }
   }
