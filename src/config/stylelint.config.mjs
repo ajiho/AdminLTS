@@ -41,7 +41,7 @@ export default {
         "selector-max-type": null,
         "selector-no-qualifying-type": null,
         // 解决不支持color.scale等函数命名参数等问题
-        "scss/at-function-named-arguments":null,
+        "scss/at-function-named-arguments": null,
 
         // 解决和prettier冲突问题--begin
         "@stylistic/string-quotes": null,

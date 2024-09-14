@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Header from "@/components/Header.astro";
-import Sidebar from "@/components/Sidebar.astro";
-import Footer from "@/components/Footer.astro";
-import Content from "@/components/Content.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import Header from "@/components/Header.astro"
+import Sidebar from "@/components/Sidebar.astro"
+import Footer from "@/components/Footer.astro"
+import Content from "@/components/Content.astro"
 ---
 
 <BaseLayout bodyClass={false}>
@@ -21,15 +21,13 @@ import Content from "@/components/Content.astro";
   <div class="lts-wrapper">
     <Sidebar />
     <Header />
-    <div class="lts-page-wrapper">
-      dsadsa
-    </div>
+    <div class="lts-page-wrapper">dsadsa</div>
     <div class="lts-footer d-flex align-items-center justify-content-center">
       <p class="">Copyright © 2024. All right reserved.</p>
     </div>
   </div>
 
   <script is:inline slot="js">
-    console.log("ww");
+    console.log("ww")
   </script>
 </BaseLayout>
