@@ -37,4 +37,4 @@ jobs:
         run: pnpm build
 
       - name: Deploy to Vercel
-        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prod --local-config=.github/vercel.json --token=${{ secrets.VERCEL_TOKEN }}
