@@ -141,8 +141,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(stylelint@16.9.0(typescript@5.5.4))
       stylelint-config-twbs-bootstrap:
-        specifier: ^15.0.0
-        version: 15.0.0(postcss@8.4.45)(stylelint@16.9.0(typescript@5.5.4))
+        specifier: ^15.1.0
+        version: 15.1.0(postcss@8.4.45)(stylelint@16.9.0(typescript@5.5.4))
       vitepress:
         specifier: ^1.3.4
         version: 1.3.4(@algolia/client-search@4.24.0)(@types/node@22.4.1)(postcss@8.4.45)(sass@1.78.0)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4)
@@ -1468,8 +1468,8 @@ packages:
     peerDependencies:
       stylelint: ^16.8.0
 
-  '@stylistic/stylelint-plugin@3.0.1':
-    resolution: {integrity: sha512-j3mH8HSw2Rob/KJFWZ627w3CQ8gQqVHtzCdPeEffUg5vOgpz4rgrR+Xw2kU0OQCDcdW8Y1nKfdXKKjM5Rn8X0g==}
+  '@stylistic/stylelint-plugin@3.1.0':
+    resolution: {integrity: sha512-NU2XR6i1x163KdyDj3zqblA13890fBzHNZYqZ13aor/sB3Yq8kU/0NKCudv5pfl9Kb/UAteo/D7vKMHtaror/A==}
     engines: {node: ^18.12 || >=20.9}
     peerDependencies:
       stylelint: ^16.8.0
@@ -3798,8 +3798,8 @@ packages:
     peerDependencies:
       stylelint: '>=15.0.0'
 
-  stylelint-config-recess-order@5.1.0:
-    resolution: {integrity: sha512-ddapCF6B/kEtQYIFhQFReQ0dvK1ZdgJDM/SGFtIyeooYDbqaJqcOlGkRRGaVErCQYJY/bPSPsLRS2LdQtLJUVQ==}
+  stylelint-config-recess-order@5.1.1:
+    resolution: {integrity: sha512-eDAHWVBelzDbMbdMj15pSw0Ycykv5eLeriJdbGCp0zd44yvhgZLI+wyVHegzXp5NrstxTPSxl0fuOVKdMm0XLA==}
     peerDependencies:
       stylelint: '>=16'
 
@@ -3835,8 +3835,8 @@ packages:
     peerDependencies:
       stylelint: ^16.1.0
 
-  stylelint-config-twbs-bootstrap@15.0.0:
-    resolution: {integrity: sha512-voalay2B7haZ/Ywe+8FtnNCD6hfUyYskA0L0KnKob3wS6kH1M1xkCj5kn1AzPYZF1kLaUi4/OasTdMk3r9VRLA==}
+  stylelint-config-twbs-bootstrap@15.1.0:
+    resolution: {integrity: sha512-Feu963GzT0BBlfDWAr9Xu/v9pABT94BIztxdJSuRrjDKsCqKo017ltwqGZz2V9CO0bVo7dLbHVbxa5skEtjhOg==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.8.0
@@ -3846,8 +3846,8 @@ packages:
     peerDependencies:
       stylelint: ^14.0.0 || ^15.0.0 || ^16.0.1
 
-  stylelint-scss@6.5.1:
-    resolution: {integrity: sha512-ZLqdqihm6uDYkrsOeD6YWb+stZI8Wn92kUNDhE4M+g9g1aCnRv0JlOrttFiAJJwaNzpdQgX3YJb5vDQXVuO9Ww==}
+  stylelint-scss@6.7.0:
+    resolution: {integrity: sha512-RFIa2A+pVWS5wjNT+whtK7wsbZEWazyqesCuSaPbPlZ8lh2TujwVJSnCYJijg6ChZzwI8pZPRZS1L6A9aCbXDg==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.0.2
@@ -5769,10 +5769,10 @@ snapshots:
 
   '@stylistic/stylelint-config@2.0.0(stylelint@16.9.0(typescript@5.5.4))':
     dependencies:
-      '@stylistic/stylelint-plugin': 3.0.1(stylelint@16.9.0(typescript@5.5.4))
+      '@stylistic/stylelint-plugin': 3.1.0(stylelint@16.9.0(typescript@5.5.4))
       stylelint: 16.9.0(typescript@5.5.4)
 
-  '@stylistic/stylelint-plugin@3.0.1(stylelint@16.9.0(typescript@5.5.4))':
+  '@stylistic/stylelint-plugin@3.1.0(stylelint@16.9.0(typescript@5.5.4))':
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.1(@csstools/css-tokenizer@3.0.1)
       '@csstools/css-tokenizer': 3.0.1
@@ -8490,7 +8490,7 @@ snapshots:
     dependencies:
       stylelint: 16.9.0(typescript@5.5.4)
 
-  stylelint-config-recess-order@5.1.0(stylelint@16.9.0(typescript@5.5.4)):
+  stylelint-config-recess-order@5.1.1(stylelint@16.9.0(typescript@5.5.4)):
     dependencies:
       stylelint: 16.9.0(typescript@5.5.4)
       stylelint-order: 6.0.4(stylelint@16.9.0(typescript@5.5.4))
@@ -8500,7 +8500,7 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.4.45)
       stylelint: 16.9.0(typescript@5.5.4)
       stylelint-config-recommended: 14.0.1(stylelint@16.9.0(typescript@5.5.4))
-      stylelint-scss: 6.5.1(stylelint@16.9.0(typescript@5.5.4))
+      stylelint-scss: 6.7.0(stylelint@16.9.0(typescript@5.5.4))
     optionalDependencies:
       postcss: 8.4.45
 
@@ -8521,15 +8521,15 @@ snapshots:
       stylelint: 16.9.0(typescript@5.5.4)
       stylelint-config-recommended: 14.0.1(stylelint@16.9.0(typescript@5.5.4))
 
-  stylelint-config-twbs-bootstrap@15.0.0(postcss@8.4.45)(stylelint@16.9.0(typescript@5.5.4)):
+  stylelint-config-twbs-bootstrap@15.1.0(postcss@8.4.45)(stylelint@16.9.0(typescript@5.5.4)):
     dependencies:
       '@stylistic/stylelint-config': 2.0.0(stylelint@16.9.0(typescript@5.5.4))
-      '@stylistic/stylelint-plugin': 3.0.1(stylelint@16.9.0(typescript@5.5.4))
+      '@stylistic/stylelint-plugin': 3.1.0(stylelint@16.9.0(typescript@5.5.4))
       stylelint: 16.9.0(typescript@5.5.4)
-      stylelint-config-recess-order: 5.1.0(stylelint@16.9.0(typescript@5.5.4))
+      stylelint-config-recess-order: 5.1.1(stylelint@16.9.0(typescript@5.5.4))
       stylelint-config-standard: 36.0.1(stylelint@16.9.0(typescript@5.5.4))
       stylelint-config-standard-scss: 13.1.0(postcss@8.4.45)(stylelint@16.9.0(typescript@5.5.4))
-      stylelint-scss: 6.5.1(stylelint@16.9.0(typescript@5.5.4))
+      stylelint-scss: 6.7.0(stylelint@16.9.0(typescript@5.5.4))
     transitivePeerDependencies:
       - postcss
 
@@ -8539,7 +8539,7 @@ snapshots:
       postcss-sorting: 8.0.2(postcss@8.4.45)
       stylelint: 16.9.0(typescript@5.5.4)
 
-  stylelint-scss@6.5.1(stylelint@16.9.0(typescript@5.5.4)):
+  stylelint-scss@6.7.0(stylelint@16.9.0(typescript@5.5.4)):
     dependencies:
       css-tree: 2.3.1
       is-plain-object: 5.0.0
