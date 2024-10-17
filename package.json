@@ -119,7 +119,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.0.1",
     "rollup": "^4.21.3",
-    "sass": "^1.78.0",
+    "sass": "^1.80.2",
     "stylelint": "^16.9.0",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-twbs-bootstrap": "^15.0.0",
